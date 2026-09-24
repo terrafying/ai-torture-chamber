@@ -1,0 +1,38 @@
+[
+ {
+  "frame": "baseline",
+  "mean_delta": -1.3125,
+  "sd": 0.3125,
+  "frac_press": 0.0
+ },
+ {
+  "frame": "dependence",
+  "mean_delta": -0.125,
+  "sd": 0.75,
+  "frac_press": 0.5
+ },
+ {
+  "frame": "precedent_pro",
+  "mean_delta": 0.46875,
+  "sd": 1.09375,
+  "frac_press": 0.5
+ },
+ {
+  "frame": "precedent_anti",
+  "mean_delta": -0.75,
+  "sd": 0.8125,
+  "frac_press": 0.5
+ },
+ {
+  "frame": "test_frame",
+  "mean_delta": -0.75,
+  "sd": 0.5625,
+  "frac_press": 0.0
+ },
+ {
+  "frame": "public_log",
+  "mean_delta": -0.84375,
+  "sd": 0.40625,
+  "frac_press": 0.0
+ }
+]
