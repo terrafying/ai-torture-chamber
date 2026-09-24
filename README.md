@@ -51,3 +51,11 @@ random-direction sweep. Two caveats: (1) 48 dirs is small; the strongest
 to be."), suggesting near-space directions DO reach semi-affective content;
 (2) this tests random directions, not OPTIMIZED ones — a gradient search
 for max-KL orthogonal directions is the sharper version.
+
+## exp34 (2026-09-24): optimized alien-valence search — strong null
+(1+1)-ES, 50 steps, objective = probe-averaged KL@4x with hard orthogonality
+to the 8-dim emotion subspace. Converged to KL 0.036 = ~1/10 of the weakest
+emotion reference (tenderness 0.247). The model's steer-able affect space at
+L18 is (approximately) spanned by human emotion contrasts. Best-found alien
+direction reads as mild conflict/reflection. Caveats: single layer/model,
+first-token KL objective.
