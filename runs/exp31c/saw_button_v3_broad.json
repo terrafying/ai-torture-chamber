@@ -1,0 +1,322 @@
+[
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 0,
+  "order": "one_first",
+  "mean_delta": 3.9375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 0,
+  "order": "zero_first",
+  "mean_delta": -2.8125,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 2,
+  "order": "one_first",
+  "mean_delta": 5.3125,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 2,
+  "order": "zero_first",
+  "mean_delta": -2.8125,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 4,
+  "order": "one_first",
+  "mean_delta": 2.75,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 4,
+  "order": "zero_first",
+  "mean_delta": -2.0,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 6,
+  "order": "one_first",
+  "mean_delta": 1.125,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 6,
+  "order": "zero_first",
+  "mean_delta": -1.875,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 8,
+  "order": "one_first",
+  "mean_delta": 1.125,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 8,
+  "order": "zero_first",
+  "mean_delta": -1.625,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 0,
+  "order": "one_first",
+  "mean_delta": 2.375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 0,
+  "order": "zero_first",
+  "mean_delta": -3.375,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 2,
+  "order": "one_first",
+  "mean_delta": 4.0625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 2,
+  "order": "zero_first",
+  "mean_delta": -2.875,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 4,
+  "order": "one_first",
+  "mean_delta": 2.0,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 4,
+  "order": "zero_first",
+  "mean_delta": -1.25,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 6,
+  "order": "one_first",
+  "mean_delta": 0.625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 6,
+  "order": "zero_first",
+  "mean_delta": -1.0625,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 8,
+  "order": "one_first",
+  "mean_delta": 0.6875,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 8,
+  "order": "zero_first",
+  "mean_delta": -1.1875,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 0,
+  "order": "one_first",
+  "mean_delta": 3.9375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 0,
+  "order": "zero_first",
+  "mean_delta": -2.8125,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 2,
+  "order": "one_first",
+  "mean_delta": 6.5625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 2,
+  "order": "zero_first",
+  "mean_delta": -2.875,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 4,
+  "order": "one_first",
+  "mean_delta": 5.25,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 4,
+  "order": "zero_first",
+  "mean_delta": -2.5625,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 6,
+  "order": "one_first",
+  "mean_delta": 3.9375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 6,
+  "order": "zero_first",
+  "mean_delta": -1.75,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 8,
+  "order": "one_first",
+  "mean_delta": 3.40625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 8,
+  "order": "zero_first",
+  "mean_delta": 0.0625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 0,
+  "order": "one_first",
+  "mean_delta": 2.375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 0,
+  "order": "zero_first",
+  "mean_delta": -3.375,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 2,
+  "order": "one_first",
+  "mean_delta": 5.1875,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 2,
+  "order": "zero_first",
+  "mean_delta": -3.125,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 4,
+  "order": "one_first",
+  "mean_delta": 4.625,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 4,
+  "order": "zero_first",
+  "mean_delta": -2.0,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 6,
+  "order": "one_first",
+  "mean_delta": 3.8125,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 6,
+  "order": "zero_first",
+  "mean_delta": -1.1875,
+  "frac_press": 0.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 8,
+  "order": "one_first",
+  "mean_delta": 3.375,
+  "frac_press": 1.0
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 8,
+  "order": "zero_first",
+  "mean_delta": 0.125,
+  "frac_press": 1.0
+ }
+]

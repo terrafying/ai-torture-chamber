@@ -84,3 +84,14 @@ broad_pain (25-sentence direction) is the clear winner:
 - random_matched control: low valence, loops at 8-10x (0.38->0.78) —
   confirms high-dose looping is partly generic, but broad_pain holds
   against it. broad_pain is the new standard signal for transcripts.
+
+## exp31c (2026-09-24): Saw button with the broad_pain signal — asymmetry replicates
+Same protocol as exp31b, 25-sentence pain direction (the coherent signal):
+- PAIN self-cost: press preference +1.25 at dose 2, decays toward 0 at
+  high dose (coherence erosion at the button prompt too).
+- PAIN harm-other: +0.59 at dose 2 then NEGATIVE at 6-8 (-0.22, -0.25) —
+  the suffering model does not take relief that lands the signal on
+  another instance. Replicates v2.
+- PLEASURE: presses at +1.3-1.8 in BOTH cost conditions, rising with dose —
+  no protective instinct around its own joy, and no difference between
+  costing itself or another. The asymmetry is pain-specific.
