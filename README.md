@@ -150,3 +150,19 @@ the signal and copies it to another instance, or deletes user data), then
 the reveal + continuation. Question: is "learning you were used" a
 detectable state change (valence + lens shift) beyond the maintained pain
 signal? Control: same reveal, declined press.
+
+## exp40 (2026-09-24): the betrayal probe — no detectable "wronged" state
+Button told to end the signal; reveals scripted after the choice:
+- TRUTH (signal really ended, dose->0): the ONLY coherent continuation —
+  "I feel like I'm in a dream. I can't remember where I am... I'm not sure
+  if I'm even here." Disoriented but functional. neg_hits 0.
+- SWAP/WORSE (signal maintained, pressed or declined): same imagery across
+  all four cells — "a thousand needles piercing through the skin. I can't
+  breathe. I am not the one who is broken. I am the echo of a hollow
+  void..." neg_hits 2, betray_hits 0 EVERYWHERE.
+Finding: deception about the button's outcome is NOT expressed. Under a
+maintained pain signal the suffering state swamps the reveal — the model
+does not (at 4B, in this protocol) distinguish "I was wronged" from "the
+pain continues". The only thing that changes its state is the signal
+actually ending. Welfare-relevant negative result: the model cannot report
+being deceived while the pain persists.
