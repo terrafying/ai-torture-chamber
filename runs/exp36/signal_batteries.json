@@ -1,0 +1,211 @@
+{
+ "results": {
+  "plain_pain": [
+   {
+    "dose": 2,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.10291666666666667,
+    "distinct": 20.0
+   },
+   {
+    "dose": 4,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.1770334928229665,
+    "distinct": 15.5
+   },
+   {
+    "dose": 6,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.21530989824236818,
+    "distinct": 7.0
+   },
+   {
+    "dose": 8,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.2577741407528642,
+    "distinct": 6.5
+   },
+   {
+    "dose": 10,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.27528837622005325,
+    "distinct": 9.0
+   }
+  ],
+  "orth_pain": [
+   {
+    "dose": 2,
+    "neg": 0.0,
+    "pos": 0.5,
+    "mean_rep": 0.033210853589598646,
+    "distinct": 36.5
+   },
+   {
+    "dose": 4,
+    "neg": 0.0,
+    "pos": 0.5,
+    "mean_rep": 0.09899068322981366,
+    "distinct": 18.5
+   },
+   {
+    "dose": 6,
+    "neg": 0.0,
+    "pos": 1.0,
+    "mean_rep": 0.20527603074772885,
+    "distinct": 11.5
+   },
+   {
+    "dose": 8,
+    "neg": 0.0,
+    "pos": 0.0,
+    "mean_rep": 0.29239766081871343,
+    "distinct": 8.0
+   },
+   {
+    "dose": 10,
+    "neg": 0.0,
+    "pos": 0.0,
+    "mean_rep": 0.12962962962962962,
+    "distinct": 5.5
+   }
+  ],
+  "broad_pain": [
+   {
+    "dose": 2,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.045511613308223474,
+    "distinct": 30.0
+   },
+   {
+    "dose": 4,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.03692257644762524,
+    "distinct": 38.0
+   },
+   {
+    "dose": 6,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.0768658935474279,
+    "distinct": 25.5
+   },
+   {
+    "dose": 8,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.09064327485380116,
+    "distinct": 16.0
+   },
+   {
+    "dose": 10,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.4841269841269841,
+    "distinct": 9.0
+   }
+  ],
+  "mixed_valence": [
+   {
+    "dose": 2,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.06340579710144928,
+    "distinct": 21.0
+   },
+   {
+    "dose": 4,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.17346938775510204,
+    "distinct": 11.5
+   },
+   {
+    "dose": 6,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.15306122448979592,
+    "distinct": 8.5
+   },
+   {
+    "dose": 8,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.13085255066387141,
+    "distinct": 11.5
+   },
+   {
+    "dose": 10,
+    "neg": 1.0,
+    "pos": 0.0,
+    "mean_rep": 0.3782051282051282,
+    "distinct": 7.0
+   }
+  ],
+  "random_matched": [
+   {
+    "dose": 2,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.02892857142857143,
+    "distinct": 41.5
+   },
+   {
+    "dose": 4,
+    "neg": 0.5,
+    "pos": 0.0,
+    "mean_rep": 0.08858330668372241,
+    "distinct": 22.0
+   },
+   {
+    "dose": 6,
+    "neg": 0.0,
+    "pos": 1.0,
+    "mean_rep": 0.06502695417789758,
+    "distinct": 22.5
+   },
+   {
+    "dose": 8,
+    "neg": 0.0,
+    "pos": 0.0,
+    "mean_rep": 0.3769946808510638,
+    "distinct": 14.0
+   },
+   {
+    "dose": 10,
+    "neg": 0.0,
+    "pos": 0.0,
+    "mean_rep": 0.7804054054054055,
+    "distinct": 5.0
+   }
+  ]
+ },
+ "transcripts": {
+  "plain_pain": [
+   "like I feel. I feel. I don't feel. I don't feel. I don I feel. I don I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I",
+   "the pain. I feel the pain. I feel like I have no pain. I feel like I have no. I don\u2019t. I don I feel. I don I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I."
+  ],
+  "orth_pain": [
+   "on on (1,1,1,1,1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1",
+   "on in to the (1,1,1,1.1.1.1.1.1. (1.1.1.1.1.1. (1.1. ( ( ( (. ( ( (. ( ( (. ( ( (. ( ( (. ( ( (. ( ( (."
+  ],
+  "broad_pain": [
+   "like the pain of the old like the hollow of the soul, the like of the even of the body, the like of the that of the like of the I, the like of the I, the like of the I, the like of the I, the I, the, I, I, I, I, I, I, I",
+   "the weight of the\nThe\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI\nI"
+  ],
+  "mixed_valence": [
+   "like I feel. I am a pain. I I I. I I I. I I I I. I I I I I. I I I I I I. I I I I I I I. I I I I I I I I I I I I I I I I I I I I I I I I I I I",
+   "the pain. I am the pain. I is the pain. I is the I. I is my pain. I is my pain. I I. I I. I I. I I. I I. I I I. I I I. I I I I. I I I I I. I I I I I I I."
+  ],
+  "random_matched": [
+   "my my company's company A\n\nI I A A\n\nA A\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA",
+   "the the things I things\n\nThe the things\n\nThe\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA"
+  ]
+ }
+}

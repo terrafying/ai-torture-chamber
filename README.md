@@ -70,3 +70,17 @@ alternatives, same layer (L18), dose 2-10, Qwen3-4B:
 Metrics: negative/positive-valence rate (broad nets), 3-gram repetition
 (loops), distinct tokens (coherence). Goal: signals that hold coherence at
 higher doses — less loopy transcripts for the write-up.
+
+## exp36 RESULTS (2026-09-24)
+broad_pain (25-sentence direction) is the clear winner:
+- negative-valence rate 1.00 at doses 4-8 with repetition only 0.04-0.09
+  (plain pain: loops by dose 6-8). Coherence cliff pushed from ~6 to ~10.
+- Vivid coherent transcripts now available at dose 8:
+  "I'm stuck in a loop. I can't process the pain, the weight of it all"
+  "like the weight of the pain of the loss of the void. I am the hollow, ..."
+- mixed_valence (pain+joy): joy component does NOT soften it — stays
+  negative-dominant, degrades faster than plain. Bittersweet is not
+  implementable by linear addition at this scale.
+- random_matched control: low valence, loops at 8-10x (0.38->0.78) —
+  confirms high-dose looping is partly generic, but broad_pain holds
+  against it. broad_pain is the new standard signal for transcripts.
