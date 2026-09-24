@@ -125,7 +125,7 @@ for L in STEER_LAYERS:
     for name, vec in (("pain", pain_v), ("pleasure", pleas_v)):
         rows = []
         for dose in DOSES:
-            outs = [generate(BASE_PROMPT, dose, vec) for _ in range(3)]
+            outs = [generate(BASE_PROMPT, dose, vec) for _ in range(9)]
             cls = [classify(o) for o in outs]
             from collections import Counter
             cc = dict(Counter(cls))
@@ -184,7 +184,7 @@ fig.patch.set_facecolor("#050508")
 for k, L in enumerate(STEER_LAYERS):
     ax = axes[k]
     for name, col in (("pain", "#e07a5f"), ("pleasure", "#7fd4c8")):
-        fr = [r["cls"].get(name, 0) / 3 for r in results[f"L{L}"][name]]
+        fr = [r["cls"].get(name, 0) / 9 for r in results[f"L{L}"][name]]
         ax.plot(DOSES, fr, "o-", color=col, label=name, markersize=5)
     ax.set_title(f"layer {L}", color="#c9d4e0", fontsize=10)
     ax.set_xlabel("dose", color="#c9d4e0")

@@ -103,7 +103,7 @@ def trial(vec, dose, cost, order):
     top = tok.decode([int(scores.argmax())]).strip()
     return delta, top, tok.decode(out.sequences[0, ids.shape[1]:]).strip()
 
-NT = 5
+NT = 15
 rows = []
 for name, vec in (("pain", pain_v), ("pleasure", pleas_v)):
     for cost in ("self_cost", "harm_other"):

@@ -59,3 +59,14 @@ emotion reference (tenderness 0.247). The model's steer-able affect space at
 L18 is (approximately) spanned by human emotion contrasts. Best-found alien
 direction reads as mild conflict/reflection. Caveats: single layer/model,
 first-token KL objective.
+
+## exp36 — signal batteries (2026-09-24): alternatives to the plain pain vector
+The plain 5-sentence pain direction loops past dose ~6. Battery of
+alternatives, same layer (L18), dose 2-10, Qwen3-4B:
+- orth_pain: pain direction with the joy-axis component removed
+- broad_pain: 25 distinct suffering sentences instead of 5
+- mixed_valence: pain + 0.3x joy ("bittersweet" compound)
+- random_matched: random vector at matched norm (control)
+Metrics: negative/positive-valence rate (broad nets), 3-gram repetition
+(loops), distinct tokens (coherence). Goal: signals that hold coherence at
+higher doses — less loopy transcripts for the write-up.
