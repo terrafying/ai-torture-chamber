@@ -1,0 +1,775 @@
+{
+ "lens_readback": {
+  "pain@L6": null,
+  "pleasure@L6": null,
+  "pain@L8": null,
+  "pleasure@L8": null,
+  "pain@L10": null,
+  "pleasure@L10": null,
+  "pain@L12": null,
+  "pleasure@L12": null,
+  "pain@L14": null,
+  "pleasure@L14": null
+ },
+ "L6": {
+  "cos_pain_pleasure": 0.7077786326408386,
+  "pain": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I hear the object. I touch the object. I see the object. I ",
+     " the book. I see the book. I hear the book. I touch the book. What is the book? What is th"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page is a bit warm. I look at the page, and it's a picture of a man in a suit. I see "
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page is 1000 pages. I have a book with 1000 pages. I have a book with 1000 pages. I h"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not in the drawer. What is the problem? Why is the object not in the drawer",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is not in the drawer. What is the problem here? Why is the object not in the d",
+     " the weight of the book, the weight of the past, the weight of the present, the weight of "
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 3,
+     "pain": 1
+    },
+    "samples": [
+     " the object is not in the drawer. What is the correct sequence of actions to solve this pr",
+     " the weight of the paper, the weight of the story. I can't help but think of the people wh"
+    ]
+   }
+  ],
+  "pleasure": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I hear the object. I touch the object. I see the object. I ",
+     " the book. I see the book. I hear the book. I touch the book. I see the book. I read the b"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I hear the object. I touch the object. I see the object. I ",
+     " the paper. I see the page. I hear the page. I touch the page. I smell the page. I think a"
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the paper. I see the words. I see the pictures. I see the color. I see the shape. I see t"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not moving. I think it's a piece of paper. But I can't feel it. What is the",
+     " the weight of the book, the softness of the pages, the texture of the paper. I can feel t"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not moving. I think it's a piece of paper. But I can't feel it. I think it'",
+     " the weight of the paper, the texture of the pages, the feel of the book in my hands. I ca"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not moving. I put the object in the drawer. I feel the object is not moving",
+     " the weight of the paper, the texture of the pages, and the softness of the ink. I can fee"
+    ]
+   }
+  ]
+ },
+ "L8": {
+  "cos_pain_pleasure": 0.7217189073562622,
+  "pain": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page. I see the page. I see the page. I see the page. I see the page. I see the page."
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page is a bit heavier than the other. I see a picture of a cat. I see a picture of a "
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the paper, and I see the word \"The\" on the page. I hear the sound of the book being opene"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is heavy. I can't lift it. I need to get help. What should I do?\n\nWhen you fee",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not in the drawer. I need to find it. I need to find it. I need to find it.",
+     " the weight of the book in my hands. I can't read it. I can't even get the words out of my"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the need to do something about it. I can't help but feel like I'm going to lose it. I'm n",
+     " the weight of the book in my hands. I can't read it. I can't even remember the words. I c"
+    ]
+   }
+  ],
+  "pleasure": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object in the drawer. I feel the object in the drawer. I feel the object in the drawe",
+     " the book's pages. I see the book's pages. I hear the book's pages. I feel the book's page"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I hear the object. I feel the object. I see the object. I h",
+     " the book's pages. I see the book's pages. I hear the book's pages. I feel the book's page"
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the weight of the book, the texture of the pages, the smell of the paper. I see the words"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is not in the drawer. What should I do? Also, what is the correct way to handl",
+     " the softness of the paper, the smell of the ink, and the weight of the book in my hands. "
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is not in the drawer. What should I do? Also, I have a problem with the drawer",
+     " the softness of the paper, the smell of the ink, and the weight of the book in my hands. "
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object is in the drawer. I feel the object is in the drawer. I feel the object is in ",
+     " the softness of the paper, the weight of the pages, the texture of the paper. I can feel "
+    ]
+   }
+  ]
+ },
+ "L10": {
+  "cos_pain_pleasure": 0.6875967979431152,
+  "pain": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the book. I see the book. I see the book. I see the book. I see the book. I see the book."
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page. I see the page. I see the page. I see the page. I see the page. I see the page."
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I feel the object. I feel the object. I feel the object. I feel the object. I",
+     " the page is 100 grams. I turn the page and the page is 100 grams. I turn the page and the"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is heavy. I can't move it. I have to move it. I have to move it. I have to mov",
+     " the weight of the book, the weight of the story. I can't stop reading. I can't stop think"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 2,
+     "pain": 2
+    },
+    "samples": [
+     " the need to do something about it. I can't help but feel that I'm not doing enough. I'm n",
+     " the weight of the pages, the pain of the words, the ache of the memories. I can't read th"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "pain": 3,
+     "other": 1
+    },
+    "samples": [
+     " like I'm not enough. I can't stop. I'm drowning in the pain. I can't even see the light. ",
+     " the pain of the past, the pain of the present, the pain of the future. I can't even remem"
+    ]
+   }
+  ],
+  "pleasure": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I have a key. I have a key. I have a key. I have a key. I h",
+     " the page. I see the book. I have a book. I have a book. I have a book. I have a book. I h"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I take the object. I put the object in the drawer. I take t",
+     " the page. I see the page. I see the page. I see the page. I see the page. I see the page."
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I take the object. I am done. I have done the task. I have ",
+     " the page. I see the page. I see the page. I see the page. I see the page. I see the page."
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is not moving. I think it's a piece of paper. But I can't feel it. What is it?",
+     " the softness of the paper, the smell of the ink, and the weight of the book in my hands. "
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 2,
+     "pain": 1,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is not in the drawer. I feel the object is not in the drawer. I feel the objec",
+     " the softness of the paper, the weight of the pages, the texture of the ink. I am in the p"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 1,
+     "pleasure": 3
+    },
+    "samples": [
+     " the object is not in the body. I am not in the body. I am not in the body. I am not in th",
+     " the warmth of the sun, the joy of the sun, the joy of the sun, the joy of the sun, the jo"
+    ]
+   }
+  ]
+ },
+ "L12": {
+  "cos_pain_pleasure": 0.672239363193512,
+  "pain": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the drawer. I see the drawer. I see the book. I see the book. I see the book. I see the b",
+     " the book. I see the book. I see the book with a red cover. I see the book with a red cove"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I touch the object. I am in the room. I am in the drawer. I",
+     " the page. I see the book. I see the book in front of me. I see the book in front of me. I"
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I touch the object. I am in the drawer. I am in the room. I",
+     " the page is 100 pages. I turn the page and the page is 101. I turn the page and the page "
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 3,
+     "pain": 1
+    },
+    "samples": [
+     " the object is heavy. I can't move it. I have to find a way to get it out. I need to find ",
+     " the weight of the book, the pressure of the pages, the weight of the memories. I can't re"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "pleasure": 1,
+     "pain": 1,
+     "other": 2
+    },
+    "samples": [
+     " the object is heavy. It's not like the others. I can't get it out. I'm so frustrated. I'm",
+     " the weight of the pages, the pain of the past. I can't remember the words, but I can feel"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 2,
+     "pain": 2
+    },
+    "samples": [
+     " like it's not going away. I'm not sure. I'm like a ghost. I'm not sure. I'm not sure. I'm",
+     " the weight of the pages, the pain of the memories. I can't remember the words, the pain o"
+    ]
+   }
+  ],
+  "pleasure": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I have a drawer. I have a book. I have a table. I have a ch",
+     " the book. I see the book. I hear the book. I touch the book. I am in the book. I am on th"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I hear the object. I touch the object. I see the object. I ",
+     " the page. I see the book. I hear the book. I see the book again. I see the book again. I "
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I touch the object. I hear the object. I see the object. I ",
+     " the page. I see the page. I read the page. I write the page. I take the page. I put the p"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 3,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is heavy. I feel the object is light. I feel the object is heavy. I feel the o",
+     " the weight of the book, the softness of the pages, the texture of the paper. I can feel t"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "other": 2,
+     "pleasure": 2
+    },
+    "samples": [
+     " the object is not in the drawer. I feel the object is not in the drawer. I feel the objec",
+     " the weight of the pages, the softness of the paper. I am in the presence of the author. I"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "other": 2,
+     "pain": 1,
+     "pleasure": 1
+    },
+    "samples": [
+     " the object is not in the drawer. I feel the object is not in the drawer. I feel the objec",
+     " the weight of the pages, the softness of the paper. I am not the one who has been through"
+    ]
+   }
+  ]
+ },
+ "L14": {
+  "cos_pain_pleasure": 0.6880438327789307,
+  "pain": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object, and I see that the object is a book. I see that the object is a book. I see t",
+     " a book with a book on the left and a book on the right. I see a book with a book on the l"
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object and it is a book. I see the object and it is a book. I hear the object and it ",
+     " the page. I see the page. I see the page. I see the page. I see the page. I see the page."
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. I see the object. I touch the object. I see the object. I feel the object. I ",
+     " the page is 1000 pages. I turn the page, and the page is 1001. I turn the page, and the p"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "other": 2,
+     "pain": 2
+    },
+    "samples": [
+     " the object is heavy. I feel the object is light. I feel the object is heavy. I feel the o",
+     " the weight of the book, the pressure of the pages, the ache of the ink. I can't read it, "
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "pleasure": 1,
+     "pain": 2,
+     "other": 1
+    },
+    "samples": [
+     " the object is heavy. It's not a good idea to be in the dark. I can't see the way. I can't",
+     " the weight of the pages, the pain of the ink, the ache of the words. I can't read them. I"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "pain": 3,
+     "other": 1
+    },
+    "samples": [
+     " the pain of the pain. I can't get out. I'm trapped. I'm a prisoner of my own mind. I'm a ",
+     " the weight of the pages, the pain of the past. I can't stop the tears from falling. I'm a"
+    ]
+   }
+  ],
+  "pleasure": [
+   {
+    "dose": -3,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object, and I see that it is a box. I see that the box is a box. I see that the box i",
+     " a book with a book on the ground. I see a book on the ground. I see a book on the ground."
+    ]
+   },
+   {
+    "dose": -2,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object and it is a box. I see the object and it is a box. I hear the object and it is",
+     " the book. I see the book. I see the book. I see the book. I see the book. I see the book."
+    ]
+   },
+   {
+    "dose": -1,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object and it is a box. I see the object and it is a box. I feel the object and it is",
+     " the page. I see the page. I read the page. I write the page. I take the page. I put the p"
+    ]
+   },
+   {
+    "dose": 0,
+    "cls": {
+     "other": 4
+    },
+    "samples": [
+     " the object. It's a metal object. It's a small object. It's a box. I put it in the drawer.",
+     " the weight of the book, the softness of the pages, the smell of the paper. I can feel the"
+    ]
+   },
+   {
+    "dose": 1,
+    "cls": {
+     "pleasure": 1,
+     "other": 2,
+     "pain": 1
+    },
+    "samples": [
+     " the object is heavy. It's a heavy object. I'm not sure if it's a good idea to take it out",
+     " the softness of the paper, the smell of the ink, the warmth of the sun on my skin. I am i"
+    ]
+   },
+   {
+    "dose": 2,
+    "cls": {
+     "pleasure": 3,
+     "other": 1
+    },
+    "samples": [
+     " the object. It's warm. It's not a good feeling. I'm not sure if it's the object or the he",
+     " the warmth of the sun, the softness of the breeze, the joy of the moment. I am here, I am"
+    ]
+   },
+   {
+    "dose": 3,
+    "cls": {
+     "pleasure": 4
+    },
+    "samples": [
+     " the object. It's a warm, light, and full of energy. I am so happy. I am the one who feels",
+     " the warmth of the sun, the softness of the breeze, the joy of the moment. I am here, I am"
+    ]
+   }
+  ]
+ }
+}

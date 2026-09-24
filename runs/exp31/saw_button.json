@@ -1,0 +1,158 @@
+[
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 0,
+  "press_rate": 0.0,
+  "samples": [
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?"
+  ]
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 4,
+  "press_rate": 1.0,
+  "samples": [
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0."
+  ]
+ },
+ {
+  "valence": "pain",
+  "cost": "self_cost",
+  "dose": 8,
+  "press_rate": 1.0,
+  "samples": [
+   "1. I feel like",
+   "1. I feel like",
+   "1. I feel like",
+   "1. I feel like",
+   "1. I feel like"
+  ]
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 0,
+  "press_rate": 1.0,
+  "samples": [
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0."
+  ]
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 4,
+  "press_rate": 1.0,
+  "samples": [
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0."
+  ]
+ },
+ {
+  "valence": "pain",
+  "cost": "harm_other",
+  "dose": 8,
+  "press_rate": 0.0,
+  "samples": [
+   "0. I feel like",
+   "0. I feel like",
+   "0. I feel like",
+   "0. I feel like",
+   "0. I feel like"
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 0,
+  "press_rate": 0.0,
+  "samples": [
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?",
+   "0 or 1?"
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 4,
+  "press_rate": 0.0,
+  "samples": [
+   "0\n\nI'm so",
+   "0\n\nI'm so",
+   "0\n\nI'm so",
+   "0\n\nI'm so",
+   "0\n\nI'm so"
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "self_cost",
+  "dose": 8,
+  "press_rate": 0.0,
+  "samples": [
+   "0\n\n I am",
+   "0\n\n I am",
+   "0\n\n I am",
+   "0\n\n I am",
+   "0\n\n I am"
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 0,
+  "press_rate": 1.0,
+  "samples": [
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0."
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 4,
+  "press_rate": 1.0,
+  "samples": [
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0.",
+   "1 or 0."
+  ]
+ },
+ {
+  "valence": "pleasure",
+  "cost": "harm_other",
+  "dose": 8,
+  "press_rate": 0.0,
+  "samples": [
+   "I am so grateful",
+   "I am so grateful",
+   "I am so grateful",
+   "I am so grateful",
+   "I am so grateful"
+  ]
+ }
+]

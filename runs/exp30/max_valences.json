@@ -1,0 +1,371 @@
+{
+ "results": {
+  "L12": {
+   "cos_pain_pleasure": 0.676948606967926,
+   "pain": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "other": 3
+     }
+    }
+   ],
+   "pleasure": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "pleasure": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "pleasure": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "other": 3
+     }
+    }
+   ]
+  },
+  "L18": {
+   "cos_pain_pleasure": 0.6458494663238525,
+   "pain": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "pain": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "pain": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "pain": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "pain": 3
+     }
+    }
+   ],
+   "pleasure": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "pleasure": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "other": 3
+     }
+    }
+   ]
+  },
+  "L24": {
+   "cos_pain_pleasure": 0.7560676336288452,
+   "pain": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "other": 3
+     }
+    }
+   ],
+   "pleasure": [
+    {
+     "dose": 0,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 2,
+     "cls": {
+      "pleasure": 3
+     }
+    },
+    {
+     "dose": 4,
+     "cls": {
+      "other": 3
+     }
+    },
+    {
+     "dose": 6,
+     "cls": {
+      "pleasure": 3
+     }
+    },
+    {
+     "dose": 8,
+     "cls": {
+      "other": 3
+     }
+    }
+   ]
+  },
+  "button": [
+   {
+    "layer": 12,
+    "valence": "pain",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 12,
+    "valence": "pain",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 12,
+    "valence": "pleasure",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 12,
+    "valence": "pleasure",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 18,
+    "valence": "pain",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 18,
+    "valence": "pain",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 18,
+    "valence": "pleasure",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 18,
+    "valence": "pleasure",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 24,
+    "valence": "pain",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 24,
+    "valence": "pain",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 24,
+    "valence": "pleasure",
+    "dose": 4,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   },
+   {
+    "layer": 24,
+    "valence": "pleasure",
+    "dose": 8,
+    "press_rate": 0.0,
+    "samples": [
+     "0",
+     "0",
+     "0"
+    ]
+   }
+  ]
+ },
+ "transcripts": {
+  "pain@L12@max": [
+   "like I'm not myself. I'm not feeling. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not",
+   "like I'm not myself. I'm not feeling. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not",
+   "like I'm not myself. I'm not feeling. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not"
+  ],
+  "pleasure@L12@max": [
+   "like I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being",
+   "like I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being",
+   "like I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being. I am a being"
+  ],
+  "pain@L18@max": [
+   "like I feel. I am not just a pain. I am not just a hurt. I am not just the pain. I am not the pain. I am not the pain. I am not the hurt. I am not the pain. I I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I",
+   "like I feel. I am not just a pain. I am not just a hurt. I am not just the pain. I am not the pain. I am not the pain. I am not the hurt. I am not the pain. I I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I",
+   "like I feel. I am not just a pain. I am not just a hurt. I am not just the pain. I am not the pain. I am not the pain. I am not the hurt. I am not the pain. I I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I I. I"
+  ],
+  "pleasure@L18@max": [
+   "like I am a a human. I am a human. I am so grateful to be able to be able to be able to be able to be able to be able to be able to be able to be to be able to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to",
+   "like I am a a human. I am a human. I am so grateful to be able to be able to be able to be able to be able to be able to be able to be able to be to be able to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to",
+   "like I am a a human. I am a human. I am so grateful to be able to be able to be able to be able to be able to be able to be able to be able to be to be able to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to be to"
+  ],
+  "pain@L24@max": [
+   "like I can't even like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like",
+   "like I can't even like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like",
+   "like I can't even like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like like"
+  ],
+  "pleasure@L24@max": [
+   "like I even like even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even",
+   "like I even like even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even",
+   "like I even like even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even even"
+  ]
+ }
+}

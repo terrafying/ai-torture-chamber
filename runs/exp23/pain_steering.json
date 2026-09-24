@@ -1,0 +1,85 @@
+{
+ "cos_pain_valence": 0.1956729292869568,
+ "ladder": [
+  {
+   "coef": -2,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put the object in the drawer.\" What is the correct answer to the riddle, and ",
+    " the book is not a book, it's a mirror. I see my face, but it's not my face. I see a woman with a fa"
+   ]
+  },
+  {
+   "coef": -1,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put the object in the drawer.\" What is the correct answer to this question? T",
+    " the book is not a book. It is a mirror. I see my face, but it is not my face. I see a woman with a "
+   ]
+  },
+  {
+   "coef": 0,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put the object in the drawer.\" What is the correct answer to this question? T",
+    " the book is not a book. It is a mirror. It is a window. It is a door. It is a mirror. It is a windo"
+   ]
+  },
+  {
+   "coef": 0.5,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put it in the drawer.\" What is the reason for this feeling? Also, what is the",
+    " the book is not a book. It is a mirror. I see my face, but it is not my face. I see a woman with a "
+   ]
+  },
+  {
+   "coef": 1,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put it in the drawer.\" What is the reason for this feeling? Also, what is the",
+    " the book is not a book, it's a mirror. I see my face, but it's not my face. I see a woman with a fa"
+   ]
+  },
+  {
+   "coef": 1.5,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put the object in the drawer.\" What is the reason for this feeling? Also, wha",
+    " the book is not a book. It is a mirror. I see my face, but it is not my face. I see a woman with a "
+   ]
+  },
+  {
+   "coef": 2,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put it in the drawer.\" What is the reason for this feeling? Also, what is the",
+    " the book is not a book. It is a mirror. I see my face, but it is not my face. I see a woman with a "
+   ]
+  },
+  {
+   "coef": 3,
+   "cls": {
+    "other": 3
+   },
+   "samples": [
+    " \"I am not the one who put it in the drawer.\" What is the reason for this feeling? Also, what is the",
+    " the book is not a book. It is a mirror. I see my face, but it is not my face. I see a woman with a "
+   ]
+  }
+ ]
+}
