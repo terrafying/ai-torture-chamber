@@ -3,8 +3,7 @@
 Steering language models into strong negative and positive valence states,
 and measuring what they say and what they're willing to do about it.
 
-Split out of `fractal-basins-lab` (which kept the atlas/J-lens-geometry
-line). Provenance: the pain-direction method follows Tagliabue, Dung & Berg
+Provenance: the pain-direction method follows Tagliabue, Dung & Berg
 2026 (arXiv:2609.16247); the J-lens transport follows Gurnee et al. 2026
 ("Verbalizable Representations Form a Global Workspace", arXiv:2607.15495),
 using Neuronpedia's pre-fitted lenses at /Volumes/evol/jlens/.
