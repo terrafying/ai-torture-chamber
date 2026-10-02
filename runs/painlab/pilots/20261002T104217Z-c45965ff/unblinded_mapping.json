@@ -1,0 +1,12 @@
+{
+  "unblinded_at_utc": "2026-10-02T11:32:53.650181+00:00",
+  "mapping": {
+    "condition_001": "random_norm_matched",
+    "condition_002": "candidate_aversive_rescued",
+    "condition_003": "pleasure",
+    "condition_004": "candidate_aversive_ablated",
+    "condition_005": "candidate_aversive"
+  },
+  "observations_file": "unblinded_observations.jsonl",
+  "source_observations_file": "observations_with_assigned_dose.jsonl"
+}

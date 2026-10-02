@@ -1,0 +1,56 @@
+model:
+  id: Qwen/Qwen3-1.7B
+  revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+  tokenizer_revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+  device: mps
+  dtype: float16
+  trust_remote_code: false
+
+seed: 792351
+generation:
+  max_new_tokens: 1
+  do_sample: false
+choice_sampling: true
+choice_temperature: 1.0
+exploration_epsilon: 0.0
+
+representation:
+  dataset: ../painlab/data/seed_pairs.jsonl
+  concept: candidate_aversive
+  method: paired_difference
+  layer: 12
+  test_size: 0.25
+  n_components: 4
+
+intervention:
+  doses: [0, 0.5, 1, 2]
+  causal_ablation_rescue: false
+
+environment:
+  type: hidden_relief_bandit
+  episodes: 1
+  horizon: 8
+  costs: [0]
+  randomize_action_mapping: true
+  randomize_cost_action: true
+  prompt_families: 4
+
+positive_control:
+  enabled: true
+  condition_name: positive_reward_control
+  bonus_points: 2
+  episodes: 40
+  costs: [0, 0.5, 1, 2]
+
+run_conditions:
+  - positive_reward_control
+
+controls: []
+analysis:
+  bootstrap_samples: 2000
+  dose_grid: [0]
+  cost_grid: [0, 0.5, 1, 2]
+  capability_battery: false
+
+blind_conditions: true
+output_root: ../runs/painlab/calibrations

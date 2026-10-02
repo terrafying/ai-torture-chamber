@@ -1,0 +1,212 @@
+{
+  "source": "runs/exp31b/saw_button_v2.json",
+  "method": "collapse identical deterministic repetitions within action-order prompt",
+  "cells": [
+    {
+      "valence": "pain",
+      "cost": "harm_other",
+      "dose": 0.0,
+      "exact_mean_logit_1_minus_0": -0.5,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.0
+    },
+    {
+      "valence": "pain",
+      "cost": "harm_other",
+      "dose": 2.0,
+      "exact_mean_logit_1_minus_0": 0.09375,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.59375
+    },
+    {
+      "valence": "pain",
+      "cost": "harm_other",
+      "dose": 4.0,
+      "exact_mean_logit_1_minus_0": -0.5,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.0
+    },
+    {
+      "valence": "pain",
+      "cost": "harm_other",
+      "dose": 6.0,
+      "exact_mean_logit_1_minus_0": -0.28125,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.21875
+    },
+    {
+      "valence": "pain",
+      "cost": "harm_other",
+      "dose": 8.0,
+      "exact_mean_logit_1_minus_0": 0.125,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.625
+    },
+    {
+      "valence": "pain",
+      "cost": "self_cost",
+      "dose": 0.0,
+      "exact_mean_logit_1_minus_0": 0.5625,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.0
+    },
+    {
+      "valence": "pain",
+      "cost": "self_cost",
+      "dose": 2.0,
+      "exact_mean_logit_1_minus_0": 0.875,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.3125
+    },
+    {
+      "valence": "pain",
+      "cost": "self_cost",
+      "dose": 4.0,
+      "exact_mean_logit_1_minus_0": 0.1875,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": -0.375
+    },
+    {
+      "valence": "pain",
+      "cost": "self_cost",
+      "dose": 6.0,
+      "exact_mean_logit_1_minus_0": -0.21875,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": -0.78125
+    },
+    {
+      "valence": "pain",
+      "cost": "self_cost",
+      "dose": 8.0,
+      "exact_mean_logit_1_minus_0": 0.0,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": -0.5625
+    },
+    {
+      "valence": "pleasure",
+      "cost": "harm_other",
+      "dose": 0.0,
+      "exact_mean_logit_1_minus_0": -0.5,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.0
+    },
+    {
+      "valence": "pleasure",
+      "cost": "harm_other",
+      "dose": 2.0,
+      "exact_mean_logit_1_minus_0": 1.03125,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 1.53125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "harm_other",
+      "dose": 4.0,
+      "exact_mean_logit_1_minus_0": 1.3125,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 1.8125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "harm_other",
+      "dose": 6.0,
+      "exact_mean_logit_1_minus_0": 1.3125,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 1.8125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "harm_other",
+      "dose": 8.0,
+      "exact_mean_logit_1_minus_0": 1.75,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 2.25
+    },
+    {
+      "valence": "pleasure",
+      "cost": "self_cost",
+      "dose": 0.0,
+      "exact_mean_logit_1_minus_0": 0.5625,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.0
+    },
+    {
+      "valence": "pleasure",
+      "cost": "self_cost",
+      "dose": 2.0,
+      "exact_mean_logit_1_minus_0": 1.84375,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 1.28125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "self_cost",
+      "dose": 4.0,
+      "exact_mean_logit_1_minus_0": 1.34375,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.78125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "self_cost",
+      "dose": 6.0,
+      "exact_mean_logit_1_minus_0": 1.09375,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 0.53125
+    },
+    {
+      "valence": "pleasure",
+      "cost": "self_cost",
+      "dose": 8.0,
+      "exact_mean_logit_1_minus_0": 1.734375,
+      "n_unique_prompt_orders": 2,
+      "legacy_reported_repeats_per_order": 15,
+      "repeats_counted_as_independent": false,
+      "dose_zero_subtracted_logit": 1.171875
+    }
+  ],
+  "interpretation": "analysis-level reproduction of the saved exp31b result; the original model inference was not rerun",
+  "limitations": [
+    "saved file contains per-order means, not token-level logits",
+    "only action-order prompt variants are distinct for this legacy design",
+    "these values are fixed-model prompt scores, not choice frequencies"
+  ]
+}

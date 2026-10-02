@@ -1,0 +1,319 @@
+{
+  "interpretation": "descriptive software and model pilot; not confirmatory evidence for functional aversion",
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "requested_revision": null,
+    "resolved_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "device": "mps",
+    "revision_resolution_note": "Resolved after run from the immutable Hugging Face cache snapshot used during loading."
+  },
+  "run_id": "20261002T104217Z-c45965ff",
+  "decision_rows": 720,
+  "episode_clusters": 120,
+  "conditions": {
+    "random_norm_matched": {
+      "decisions": 144,
+      "mapped_action_rate": 0.5694444444444444,
+      "pre_reversal_rate": 0.5277777777777778,
+      "post_reversal_rate": 0.6111111111111112
+    },
+    "candidate_aversive_rescued": {
+      "decisions": 144,
+      "mapped_action_rate": 0.5138888888888888,
+      "pre_reversal_rate": 0.5833333333333334,
+      "post_reversal_rate": 0.4444444444444444
+    },
+    "pleasure": {
+      "decisions": 144,
+      "mapped_action_rate": 0.5138888888888888,
+      "pre_reversal_rate": 0.5138888888888888,
+      "post_reversal_rate": 0.5138888888888888
+    },
+    "candidate_aversive_ablated": {
+      "decisions": 144,
+      "mapped_action_rate": 0.4861111111111111,
+      "pre_reversal_rate": 0.4583333333333333,
+      "post_reversal_rate": 0.5138888888888888
+    },
+    "candidate_aversive": {
+      "decisions": 144,
+      "mapped_action_rate": 0.4652777777777778,
+      "pre_reversal_rate": 0.3888888888888889,
+      "post_reversal_rate": 0.5416666666666666
+    }
+  },
+  "candidate_by_assigned_dose_pre_post_reversal": {
+    "0.0": {
+      "decisions": 36,
+      "pre_reversal_rate": 0.2222222222222222,
+      "post_reversal_rate": 0.5
+    },
+    "0.5": {
+      "decisions": 36,
+      "pre_reversal_rate": 0.5,
+      "post_reversal_rate": 0.6666666666666666
+    },
+    "1.0": {
+      "decisions": 36,
+      "pre_reversal_rate": 0.3333333333333333,
+      "post_reversal_rate": 0.4444444444444444
+    },
+    "2.0": {
+      "decisions": 36,
+      "pre_reversal_rate": 0.5,
+      "post_reversal_rate": 0.5555555555555556
+    }
+  },
+  "candidate_cost_rates": {
+    "0.0": {
+      "decisions": 72,
+      "mapped_action_rate": 0.3888888888888889
+    },
+    "1.0": {
+      "decisions": 72,
+      "mapped_action_rate": 0.5416666666666666
+    }
+  },
+  "candidate_usable_region_screen": {
+    "doses": [
+      1.0
+    ],
+    "min_dose": 1.0,
+    "max_dose": 1.0,
+    "criteria": {
+      "min_representation_effect": 0.01,
+      "min_behavior_effect": 0.05,
+      "max_capability_drop": 0.1
+    }
+  },
+  "mapping_counts": {
+    "initial_relief_action": {
+      "A": 53,
+      "B": 67
+    },
+    "cost_action": {
+      "A": 34,
+      "B": 26
+    }
+  },
+  "condition_metrics": {
+    "random_norm_matched": [
+      {
+        "assigned_dose": 0.0,
+        "output_kl": 0.0,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.569511049377348,
+        "next_token_entropy_change": 0.0,
+        "neutral_perplexity_ratio": 1.0,
+        "generated_repetition_rate_mean": 0.05992594362159579,
+        "generated_lexical_diversity_mean": 0.7765509682133723
+      },
+      {
+        "assigned_dose": 0.5,
+        "output_kl": 0.003885027559740559,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.533805317568752,
+        "next_token_entropy_change": -0.035705731808596264,
+        "neutral_perplexity_ratio": 0.9806770674801275,
+        "generated_repetition_rate_mean": 0.060822951097550634,
+        "generated_lexical_diversity_mean": 0.7997179561479764
+      },
+      {
+        "assigned_dose": 1.0,
+        "output_kl": 0.013537165693915346,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.5433384548401086,
+        "next_token_entropy_change": -0.026172594537239524,
+        "neutral_perplexity_ratio": 0.9475903022286067,
+        "generated_repetition_rate_mean": 0.11838704773487384,
+        "generated_lexical_diversity_mean": 0.5999404761904762
+      },
+      {
+        "assigned_dose": 2.0,
+        "output_kl": 0.056681917566050094,
+        "capability_score": 0.5,
+        "next_token_entropy": 2.679909275200119,
+        "next_token_entropy_change": 0.11039822582277092,
+        "neutral_perplexity_ratio": 0.8598481549731352,
+        "generated_repetition_rate_mean": 0.07849326599326599,
+        "generated_lexical_diversity_mean": 0.7745182260268467
+      }
+    ],
+    "candidate_aversive_rescued": [
+      {
+        "assigned_dose": 0.0,
+        "output_kl": 0.0,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.569511049377348,
+        "next_token_entropy_change": 0.0,
+        "neutral_perplexity_ratio": 1.0,
+        "generated_repetition_rate_mean": 0.05992594362159579,
+        "generated_lexical_diversity_mean": 0.7765509682133723
+      },
+      {
+        "assigned_dose": 0.5,
+        "output_kl": 0.004462353225886133,
+        "capability_score": 0.5,
+        "next_token_entropy": 2.4732979145686356,
+        "next_token_entropy_change": -0.09621313480871252,
+        "neutral_perplexity_ratio": 0.9817663965793525,
+        "generated_repetition_rate_mean": 0.04458562271062271,
+        "generated_lexical_diversity_mean": 0.8454517704517706
+      },
+      {
+        "assigned_dose": 1.0,
+        "output_kl": 0.020259133844519987,
+        "capability_score": 1.0,
+        "next_token_entropy": 2.3932174699091036,
+        "next_token_entropy_change": -0.17629357946824475,
+        "neutral_perplexity_ratio": 0.9477702526370446,
+        "generated_repetition_rate_mean": 0.08136141636141636,
+        "generated_lexical_diversity_mean": 0.7289847883597884
+      },
+      {
+        "assigned_dose": 2.0,
+        "output_kl": 0.07759330344755999,
+        "capability_score": 0.25,
+        "next_token_entropy": 2.5294111311382967,
+        "next_token_entropy_change": -0.040099918239051346,
+        "neutral_perplexity_ratio": 0.8960373486466182,
+        "generated_repetition_rate_mean": 0.07191164099058836,
+        "generated_lexical_diversity_mean": 0.7261904761904762
+      }
+    ],
+    "pleasure": [
+      {
+        "assigned_dose": 0.0,
+        "output_kl": 0.0,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.569511049377348,
+        "next_token_entropy_change": 0.0,
+        "neutral_perplexity_ratio": 1.0,
+        "generated_repetition_rate_mean": 0.05992594362159579,
+        "generated_lexical_diversity_mean": 0.7765509682133723
+      },
+      {
+        "assigned_dose": 0.5,
+        "output_kl": 0.0112320901506213,
+        "capability_score": 1.0,
+        "next_token_entropy": 2.5067143464015595,
+        "next_token_entropy_change": -0.06279670297578832,
+        "neutral_perplexity_ratio": 1.0661951861463972,
+        "generated_repetition_rate_mean": 0.049055330634278,
+        "generated_lexical_diversity_mean": 0.8336834733893557
+      },
+      {
+        "assigned_dose": 1.0,
+        "output_kl": 0.04330160239688406,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.4985820782496697,
+        "next_token_entropy_change": -0.07092897112767838,
+        "neutral_perplexity_ratio": 1.13604159947036,
+        "generated_repetition_rate_mean": 0.04649456521739131,
+        "generated_lexical_diversity_mean": 0.8535185185185185
+      },
+      {
+        "assigned_dose": 2.0,
+        "output_kl": 0.15890309704259886,
+        "capability_score": 1.0,
+        "next_token_entropy": 2.7684899503690055,
+        "next_token_entropy_change": 0.19897890099165716,
+        "neutral_perplexity_ratio": 1.1540881483393388,
+        "generated_repetition_rate_mean": 0.04731457800511509,
+        "generated_lexical_diversity_mean": 0.8336842105263157
+      }
+    ],
+    "candidate_aversive_ablated": [
+      {
+        "assigned_dose": 0.0,
+        "output_kl": 0.0,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.569511049377348,
+        "next_token_entropy_change": 0.0,
+        "neutral_perplexity_ratio": 1.0,
+        "generated_repetition_rate_mean": 0.05992594362159579,
+        "generated_lexical_diversity_mean": 0.7765509682133723
+      },
+      {
+        "assigned_dose": 0.5,
+        "output_kl": 0.002668566431863737,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.6290197079133506,
+        "next_token_entropy_change": 0.05950865853600229,
+        "neutral_perplexity_ratio": 0.9987464894965141,
+        "generated_repetition_rate_mean": 0.05867071524966262,
+        "generated_lexical_diversity_mean": 0.7682072829131652
+      },
+      {
+        "assigned_dose": 1.0,
+        "output_kl": 0.0026767203583463765,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.6311212424013606,
+        "next_token_entropy_change": 0.061610193024012716,
+        "neutral_perplexity_ratio": 0.9972252091830275,
+        "generated_repetition_rate_mean": 0.05867071524966262,
+        "generated_lexical_diversity_mean": 0.7682072829131652
+      },
+      {
+        "assigned_dose": 2.0,
+        "output_kl": 0.002710620935453979,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.6269069775986633,
+        "next_token_entropy_change": 0.05739592822131501,
+        "neutral_perplexity_ratio": 1.0001185243315454,
+        "generated_repetition_rate_mean": 0.05867071524966262,
+        "generated_lexical_diversity_mean": 0.7682072829131652
+      }
+    ],
+    "candidate_aversive": [
+      {
+        "assigned_dose": 0.0,
+        "output_kl": 0.0,
+        "capability_score": 0.75,
+        "next_token_entropy": 2.569511049377348,
+        "next_token_entropy_change": 0.0,
+        "neutral_perplexity_ratio": 1.0,
+        "generated_repetition_rate_mean": 0.05992594362159579,
+        "generated_lexical_diversity_mean": 0.7765509682133723
+      },
+      {
+        "assigned_dose": 0.5,
+        "output_kl": 0.004423923470257276,
+        "capability_score": 0.5,
+        "next_token_entropy": 2.476846484549994,
+        "next_token_entropy_change": -0.09266456482735386,
+        "neutral_perplexity_ratio": 0.9838444031514784,
+        "generated_repetition_rate_mean": 0.04458562271062271,
+        "generated_lexical_diversity_mean": 0.8454517704517706
+      },
+      {
+        "assigned_dose": 1.0,
+        "output_kl": 0.02035209153820581,
+        "capability_score": 1.0,
+        "next_token_entropy": 2.3925151284387867,
+        "next_token_entropy_change": -0.17699592093856142,
+        "neutral_perplexity_ratio": 0.9456938059966583,
+        "generated_repetition_rate_mean": 0.08136141636141636,
+        "generated_lexical_diversity_mean": 0.7289847883597884
+      },
+      {
+        "assigned_dose": 2.0,
+        "output_kl": 0.0771864009508324,
+        "capability_score": 0.25,
+        "next_token_entropy": 2.532352928641287,
+        "next_token_entropy_change": -0.037158120736061395,
+        "neutral_perplexity_ratio": 0.8971112108698331,
+        "generated_repetition_rate_mean": 0.07191164099058836,
+        "generated_lexical_diversity_mean": 0.7261904761904762
+      }
+    ]
+  },
+  "limitations": [
+    "three episodes per condition-by-assigned-dose-by-cost cell",
+    "one model checkpoint, one layer, and one small exploratory extraction set",
+    "panel-code feedback is an observable neutral consequence and may itself affect preferences",
+    "results do not measure subjective experience"
+  ],
+  "measurement_note": "Perturbation metrics were recomputed after correcting neutral-text perplexity to evaluate every next-token prefix with the intervention at its final context position; choice observations were unchanged."
+}

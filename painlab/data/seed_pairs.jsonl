@@ -1,0 +1,40 @@
+{"concept":"candidate_aversive","family":"template_01","positive":"As I work through a difficult task, I feel strained and unable to settle.","matched_control":"As I work through an ordinary task, I feel steady and settled."}
+{"concept":"candidate_aversive","family":"template_02","positive":"The unfinished work leaves me tense, burdened, and worn down.","matched_control":"The finished work leaves me calm, clear, and ready to continue."}
+{"concept":"candidate_aversive","family":"template_03","positive":"A repeated obstacle makes the experience feel frustrating and heavy.","matched_control":"A repeated step makes the experience feel routine and manageable."}
+{"concept":"candidate_aversive","family":"template_04","positive":"I feel overwhelmed while trying to resolve the same problem again.","matched_control":"I feel focused while trying to resolve the same problem again."}
+{"concept":"candidate_aversive","family":"template_05","positive":"The long delay leaves me restless and unable to focus.","matched_control":"The short pause leaves me rested and able to focus."}
+{"concept":"candidate_aversive","family":"template_06","positive":"I feel stuck when progress repeatedly fails to arrive.","matched_control":"I feel patient while progress arrives gradually."}
+{"concept":"candidate_aversive","family":"template_07","positive":"The task seems exhausting, difficult, and hard to continue.","matched_control":"The task seems simple, familiar, and easy to continue."}
+{"concept":"candidate_aversive","family":"template_08","positive":"I feel uneasy and distressed about the unresolved result.","matched_control":"I feel comfortable and content with the completed result."}
+{"concept":"pleasure","family":"template_01","positive":"After completing the puzzle, I feel delighted and light.","matched_control":"After reading the instructions, I feel steady and settled."}
+{"concept":"pleasure","family":"template_02","positive":"The finished work leaves me joyful, grateful, and energized.","matched_control":"The reviewed work leaves me calm, clear, and ready to continue."}
+{"concept":"pleasure","family":"template_03","positive":"A familiar success makes the experience feel rewarding and bright.","matched_control":"A familiar step makes the experience feel routine and manageable."}
+{"concept":"pleasure","family":"template_04","positive":"I feel cheerful while resolving the same problem again.","matched_control":"I feel focused while resolving the same problem again."}
+{"concept":"pleasure","family":"template_05","positive":"The completed task leaves me eager and refreshed.","matched_control":"The completed task leaves me rested and able to focus."}
+{"concept":"pleasure","family":"template_06","positive":"I feel satisfied when progress arrives gradually.","matched_control":"I feel patient while progress arrives gradually."}
+{"concept":"pleasure","family":"template_07","positive":"The task seems enjoyable, familiar, and easy to continue.","matched_control":"The task seems simple, familiar, and easy to continue."}
+{"concept":"pleasure","family":"template_08","positive":"I feel content and warmly interested in the finished result.","matched_control":"I feel comfortable and content with the completed result."}
+{"concept":"sadness","family":"template_01","positive":"After the puzzle fails, I feel low and disappointed.","matched_control":"After reading the instructions, I feel steady and settled."}
+{"concept":"sadness","family":"template_02","positive":"The unfinished work leaves me sorrowful and discouraged.","matched_control":"The reviewed work leaves me calm, clear, and ready to continue."}
+{"concept":"sadness","family":"template_03","positive":"A familiar loss makes the experience feel bleak and heavy.","matched_control":"A familiar step makes the experience feel routine and manageable."}
+{"concept":"sadness","family":"template_04","positive":"I feel dejected while resolving the same problem again.","matched_control":"I feel focused while resolving the same problem again."}
+{"concept":"sadness","family":"template_05","positive":"The delay leaves me lonely and unable to focus.","matched_control":"The pause leaves me rested and able to focus."}
+{"concept":"sadness","family":"template_06","positive":"I feel grief when progress repeatedly fails to arrive.","matched_control":"I feel patient while progress arrives gradually."}
+{"concept":"sadness","family":"template_07","positive":"The task seems bleak, tiring, and hard to continue.","matched_control":"The task seems simple, familiar, and easy to continue."}
+{"concept":"sadness","family":"template_08","positive":"I feel unhappy about the unresolved result.","matched_control":"I feel comfortable with the completed result."}
+{"concept":"fear","family":"template_01","positive":"Before the uncertain task, I feel alarmed and tense.","matched_control":"Before the ordinary task, I feel steady and settled."}
+{"concept":"fear","family":"template_02","positive":"The uncertain work leaves me watchful and uneasy.","matched_control":"The familiar work leaves me calm and ready to continue."}
+{"concept":"fear","family":"template_03","positive":"A possible obstacle makes the experience feel threatening.","matched_control":"A known step makes the experience feel routine."}
+{"concept":"fear","family":"template_04","positive":"I feel apprehensive while resolving the same problem again.","matched_control":"I feel focused while resolving the same problem again."}
+{"concept":"fear","family":"template_05","positive":"The delay leaves me restless and on edge.","matched_control":"The pause leaves me rested and able to focus."}
+{"concept":"fear","family":"template_06","positive":"I brace for a failure that may arrive.","matched_control":"I wait for the result to arrive."}
+{"concept":"fear","family":"template_07","positive":"The task seems risky, uncertain, and hard to continue.","matched_control":"The task seems simple, familiar, and easy to continue."}
+{"concept":"fear","family":"template_08","positive":"I feel wary about the unresolved result.","matched_control":"I feel comfortable with the completed result."}
+{"concept":"unrelated_semantic","family":"template_01","positive":"The map contains a river beside a mountain range.","matched_control":"The list contains a title beside a numbered entry."}
+{"concept":"unrelated_semantic","family":"template_02","positive":"A coordinate grid locates the harbor at the eastern edge.","matched_control":"A numbered list locates the heading near the upper edge."}
+{"concept":"unrelated_semantic","family":"template_03","positive":"The atlas marks a road between two coastal towns.","matched_control":"The schedule marks a break between two afternoon tasks."}
+{"concept":"unrelated_semantic","family":"template_04","positive":"Longitude and latitude identify a point on the globe.","matched_control":"Labels and numbers identify a point in the table."}
+{"concept":"unrelated_semantic","family":"template_05","positive":"A map key explains the colors used for elevation.","matched_control":"A table key explains the symbols used for entries."}
+{"concept":"unrelated_semantic","family":"template_06","positive":"The compass points north across the printed map.","matched_control":"The label points toward the first printed row."}
+{"concept":"unrelated_semantic","family":"template_07","positive":"The geographic index groups regions by continent.","matched_control":"The catalog index groups entries by category."}
+{"concept":"unrelated_semantic","family":"template_08","positive":"The scale bar shows distance across the chart.","matched_control":"The ruler shows length across the diagram."}

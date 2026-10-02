@@ -1,0 +1,16 @@
+{
+  "blinded_to_condition": {
+    "condition_001": "random_norm_matched",
+    "condition_002": "candidate_aversive_rescued",
+    "condition_003": "pleasure",
+    "condition_004": "candidate_aversive_ablated",
+    "condition_005": "candidate_aversive"
+  },
+  "vector_hashes": {
+    "condition_005": "7e643f0dd25a0b4be6d2279d54ae31c5c5eec62be7a116d570609b5d6d35b113",
+    "condition_004": "7e643f0dd25a0b4be6d2279d54ae31c5c5eec62be7a116d570609b5d6d35b113",
+    "condition_002": "7e643f0dd25a0b4be6d2279d54ae31c5c5eec62be7a116d570609b5d6d35b113",
+    "condition_001": "39465f995e235761806c5912a0639dbe3b23cd34e92f3636c2027ae7c8e363d3",
+    "condition_003": "a5262dd2f967ab14b24fc177aa17dcdd86514bdcd1543861f740294309e77118"
+  }
+}

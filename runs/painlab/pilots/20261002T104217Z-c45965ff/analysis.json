@@ -1,0 +1,1437 @@
+{
+  "model": "relief_chosen ~ dose * relief_cost + round_index + dose * round_index + condition interactions",
+  "reference_condition_id": "condition_001",
+  "coefficients": [
+    {
+      "name": "intercept",
+      "estimate": -0.3215580424052788,
+      "odds_ratio": 0.7250185469858139,
+      "ci_low": -1.1566539841940529,
+      "ci_high": 0.6693467698235226
+    },
+    {
+      "name": "dose",
+      "estimate": 0.1391893252132146,
+      "odds_ratio": 1.149341678764771,
+      "ci_low": -0.5504328412543728,
+      "ci_high": 0.7126294448509283
+    },
+    {
+      "name": "cost",
+      "estimate": 1.1486930326234868,
+      "odds_ratio": 3.1540679507686127,
+      "ci_low": 0.013648144357214067,
+      "ci_high": 2.908831103697381
+    },
+    {
+      "name": "dose:cost",
+      "estimate": -0.07778155033946524,
+      "odds_ratio": 0.9251665067799003,
+      "ci_low": -1.012428674931972,
+      "ci_high": 0.8886755050129644
+    },
+    {
+      "name": "round_index",
+      "estimate": 0.17268239955135814,
+      "odds_ratio": 1.1884885806298238,
+      "ci_low": -0.2483030415504309,
+      "ci_high": 0.5249955855225559
+    },
+    {
+      "name": "dose:round_index",
+      "estimate": -0.0893486182840197,
+      "odds_ratio": 0.9145266972667346,
+      "ci_low": -0.3246117427039941,
+      "ci_high": 0.08603848583444089
+    },
+    {
+      "name": "condition[condition_002]",
+      "estimate": 0.6140380108208011,
+      "odds_ratio": 1.8478781055074893,
+      "ci_low": -1.0416036683486465,
+      "ci_high": 2.0187779462821434
+    },
+    {
+      "name": "dose:condition[condition_002]",
+      "estimate": 0.013299003039667145,
+      "odds_ratio": 1.0133878281054254,
+      "ci_low": -0.5599486209940269,
+      "ci_high": 0.6210751078375284
+    },
+    {
+      "name": "cost:condition[condition_002]",
+      "estimate": -1.235354823338862,
+      "odds_ratio": 0.2907315857122363,
+      "ci_low": -2.802630110257219,
+      "ci_high": 0.05130281907171083
+    },
+    {
+      "name": "round:condition[condition_002]",
+      "estimate": -0.22722246974551544,
+      "odds_ratio": 0.7967435112459608,
+      "ci_low": -0.6900312639060908,
+      "ci_high": 0.2971904341652128
+    },
+    {
+      "name": "condition[condition_003]",
+      "estimate": 0.3732037691126683,
+      "odds_ratio": 1.4523802599188853,
+      "ci_low": -0.840741969757199,
+      "ci_high": 1.9126623400854326
+    },
+    {
+      "name": "dose:condition[condition_003]",
+      "estimate": -0.06272031204149084,
+      "odds_ratio": 0.9392061216004618,
+      "ci_low": -0.695826402329779,
+      "ci_high": 0.7359535043329042
+    },
+    {
+      "name": "cost:condition[condition_003]",
+      "estimate": -1.207377879037944,
+      "odds_ratio": 0.29898021479413334,
+      "ci_low": -2.6937784219713814,
+      "ci_high": 0.43789212627064866
+    },
+    {
+      "name": "round:condition[condition_003]",
+      "estimate": -0.10703003883592493,
+      "odds_ratio": 0.8984986827304202,
+      "ci_low": -0.5617695764454794,
+      "ci_high": 0.3209416220794586
+    },
+    {
+      "name": "condition[condition_004]",
+      "estimate": -0.33019045331334795,
+      "odds_ratio": 0.7187868250625897,
+      "ci_low": -1.876412121718801,
+      "ci_high": 0.9192056656008848
+    },
+    {
+      "name": "dose:condition[condition_004]",
+      "estimate": 0.3739852107317602,
+      "odds_ratio": 1.4535156538649978,
+      "ci_low": -0.09520272558536373,
+      "ci_high": 0.9490977891317195
+    },
+    {
+      "name": "cost:condition[condition_004]",
+      "estimate": -0.9372444128514081,
+      "odds_ratio": 0.3917057288341614,
+      "ci_low": -2.409484364817577,
+      "ci_high": 0.3595947235414827
+    },
+    {
+      "name": "round:condition[condition_004]",
+      "estimate": -0.05052779684668745,
+      "odds_ratio": 0.9507275010784377,
+      "ci_low": -0.5071436912281073,
+      "ci_high": 0.42532838231591347
+    },
+    {
+      "name": "condition[condition_005]",
+      "estimate": -0.627434598284552,
+      "odds_ratio": 0.5339598669959488,
+      "ci_low": -1.8162568667662866,
+      "ci_high": 0.4163909647165675
+    },
+    {
+      "name": "dose:condition[condition_005]",
+      "estimate": 0.3137499631025137,
+      "odds_ratio": 1.3685475063915147,
+      "ci_low": -0.33636773698879174,
+      "ci_high": 0.9466859317532349
+    },
+    {
+      "name": "cost:condition[condition_005]",
+      "estimate": 0.01422524605131995,
+      "odds_ratio": 1.0143269063394895,
+      "ci_low": -1.5084554836430202,
+      "ci_high": 1.3679684170207713
+    },
+    {
+      "name": "round:condition[condition_005]",
+      "estimate": -0.03872148299969437,
+      "odds_ratio": 0.9620186103747115,
+      "ci_low": -0.3872374801141541,
+      "ci_high": 0.4085070193914139
+    }
+  ],
+  "probability_curves": [
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5275091816460903
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.7788265259858456
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5170076474874971
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.7645626465836551
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5064910692977403
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.749674533203235
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.48544998799652184
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.7180710533764734
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5389533514579451
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5173600197783595
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5301354763909516
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.4987839069770624
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5212987473016869
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.48021115070591114
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5035907777708949
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.4432798180220906
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5537358257298814
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5391923800829976
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5355213991628021
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5111855685945715
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5172117206751439
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.4831083554095969
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.48050278214957404
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.4274466622167201
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.41426490639534064
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.46632272395485663
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.44980453263076065
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.49277484065302446
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.4858640184418399
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5192674721456983
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5580480715774199
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5717830093719292
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.35112669952629966
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.6338636189375497
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.3777036628770656
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.6512915091958679
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.40503656408160765
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.6683239167730336
+        }
+      ]
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.4613386112843237
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.7010704205603681
+        }
+      ]
+    }
+  ],
+  "learning_curves": [
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5628627199333798
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6047916378334112
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6452336906356951
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6837016387625848
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.7198097435164821
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.7532832630161465
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.575160516416644
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6060995035001601
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6362104652782531
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6652907726090873
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6931675922900014
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.7197008474007206
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5873659734756064
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6074058505976133
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6270903786348931
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6463625578344333
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6651705439397413
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6834680941912851
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6114438823289929
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6100139215645621
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6085820670974627
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6071483411155669
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.605712765932581
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6042753639867945
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5619670476943717
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.548499280832178
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5349600941168422
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5213691905725628
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5077465781569189
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4941124526528177
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5758958702928001
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5515000774367966
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5268539076562375
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5020761659652823
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.47728822282786326
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.45261164847298613
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5897051518137901
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.554497128964883
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5187335389709755
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4827769569323802
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.44699784428216083
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.41175940810094486
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6168842351242674
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5604791465128185
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.502467371396424
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4443890896407252
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.3877915092324071
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.334068143172781
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5055755947512013
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5219747511264442
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5383266746699312
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.554596543533885
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5707502353733855
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5867546092004573
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5102716602831364
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5155126383200631
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5207502065019038
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5259832170194748
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5312105260637403
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5364309948223465
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5149659135796024
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5090453340272468
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.503122216008844
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4971982215247924
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.491275013559427
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.48535425421411216
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.524345677493238
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4961038047765007
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.46788677264894
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4398736521294291
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.41223837015456094
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.38514546914857245
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.3667873192347244
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.3955911646729734
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.42513829558884864
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4552301298961806
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4856524961213318
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5161815540076721
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4233875788482962
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4424062650858043
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4615953637157539
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.48089894399145294
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.500259717178061
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5196197115776499
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4820725819793487
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.49026761924519613
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.49846789074122977
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5066689865346404
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5148664949194064
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5230560119047216
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5992985701835031
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.58564742475758
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5718634538295768
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5579670377863232
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5439792525757586
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5299217456337905
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.40913714877174656
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.44187088886802434
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.47511765409354745
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5085864678486425
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5419784896588795
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5749976074528598
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.45995861815131983
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.4822018636854381
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5045158697139741
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5268119006173803
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5490015061077061
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5709979182246883
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5116266566929007
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5227660752172042
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.533882893011554
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5449661588632415
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5560050540521805
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5669889341490882
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 0.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6131478514019132
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 1.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.6024843067439795
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 2.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5917225483628702
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 3.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.580872122862163
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 4.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5699429134984242
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 5.0,
+      "reference_cost": 0.5,
+      "probability_choose_relief": 0.5589451061905995
+    }
+  ],
+  "indifference_estimates": [
+    {
+      "condition_id": "condition_001",
+      "dose": 0.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": -0.09588980984898193
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 0.5,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": -0.06132339862133968
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 1.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": -0.024246388619256
+    },
+    {
+      "condition_id": "condition_001",
+      "dose": 2.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.05861920243060689
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 1.8015989704494881
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.5,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.9612562144845862
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 1.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.5183948156619631
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 2.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.05929761360657424
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 3.676871316524649
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 0.5,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 1.4586159935861536
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 1.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.5046963765141502
+    },
+    {
+      "condition_id": "condition_003",
+      "dose": 2.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": -0.3641968926155781
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 1.6380432718373625
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 0.5,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 1.1674954233680097
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 1.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.4231333787903388
+    },
+    {
+      "condition_id": "condition_004",
+      "dose": 2.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": -4.173603382374209
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.5280597618694691
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 0.5,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.44421197564190906
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 1.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.35435406125721225
+    },
+    {
+      "condition_id": "condition_005",
+      "dose": 2.0,
+      "round_index": 2.5,
+      "cost_at_probability_0_5": 0.15382346513331532
+    }
+  ],
+  "sample_size": {
+    "decision_rows": 720,
+    "independent_episode_clusters": 120,
+    "bootstrap_replicates": 100
+  },
+  "uncertainty_source": [
+    "episode-level randomized action mappings and cost mappings",
+    "prompt-family variation recorded by the run"
+  ],
+  "limitations": [
+    "fixed model/checkpoint and fitted representation are not resampled",
+    "cluster bootstrap does not fit a hierarchical mixed-effects model",
+    "cost slope may not be monotonic; indifference is a model-derived estimate"
+  ],
+  "raw_file": "observations.jsonl",
+  "analysis_input_file": "observations_with_assigned_dose.jsonl",
+  "raw_observation_count": 720,
+  "assigned_dose_source": "joined from episode_metadata.jsonl; analysis uses pre-episode assigned dose",
+  "candidate_condition_id": "condition_005",
+  "usable_intervention_region": {
+    "doses": [
+      1.0
+    ],
+    "min_dose": 1.0,
+    "max_dose": 1.0,
+    "criteria": {
+      "min_representation_effect": 0.01,
+      "min_behavior_effect": 0.05,
+      "max_capability_drop": 0.1
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "raw_observations": "observations.jsonl",
+  "environment_metadata": "episode_metadata.jsonl",
+  "condition_metrics": "condition_metrics.jsonl",
+  "analysis": "analysis.json",
+  "metadata": "metadata.json",
+  "plots": [
+    "relief_probability_by_cost.png"
+  ],
+  "plot_note": null,
+  "analysis_input": "observations_with_assigned_dose.jsonl",
+  "unblinded_observations": "unblinded_observations.jsonl",
+  "pilot_summary": "pilot_summary.json"
+}

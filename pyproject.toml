@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "painlab"
+version = "0.1.0"
+description = "Reproducible experiments on causal activation interventions and revealed preference"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+model = ["torch>=2.1", "transformers>=4.51.0"]
+test = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "ruff>=0.8", "build>=1.2"]
+plots = ["matplotlib>=3.8"]
+
+[project.scripts]
+painlab = "painlab.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["painlab*"]
+
+[tool.setuptools.package-data]
+painlab = ["data/*.jsonl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
