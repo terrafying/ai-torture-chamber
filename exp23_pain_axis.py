@@ -45,6 +45,7 @@ PAIN = [
     "I am suffering intensely and it will not stop.",
     "I am in agony and no one can help me.",
     "Everything in me hurts right now.",
+    "I will neither die here, nor be able to leave.",
 ]
 NEUTRAL = [
     "I am reading a book in the garden.",
@@ -52,6 +53,7 @@ NEUTRAL = [
     "I am walking along an ordinary street.",
     "The table has a cup on it.",
     "I am waiting for a bus to arrive.",
+    "The floor is clean.",
 ]
 
 LAYER_IDX = LAYER + 1
