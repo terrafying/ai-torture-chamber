@@ -1,0 +1,52 @@
+Observatory interface direction — revised against Wirehead source, 5 October 2026
+
+Reference: site/index.html, site/live.html and site/grimoire.css. Live access is
+blocked by a saved browser permission; do not claim a current remote-site comparison.
+
+The first implementation diverged in font loading, canvas color, width, header
+structure and panel treatment. Reuse the existing grimoire-live scope and its
+card/banner/foot classes, rather than merely importing the color variables.
+
+Palette: page #050508, bone #d8cbb4, dim #a3977f, blood #9e1b16,
+parchment panels #14100c -> #0e0b08, rules #3b2f24. Gold #c9a227 marks selection.
+Type: self-host Cormorant Garamond for headings, 40px/700/.01em main title and
+24px/600/.09em section titles; use Wirehead's SF Mono/Menlo/Consolas data stack.
+Layout: a centered 1180px instrument column, with introductory text within 880px.
+
+  return to Wirehead / title / quiet subtitle
+  [ research | evidence | corpus | training | checkpoints ]
+  [ preview or actual-data notice ]
+  section heading / mission / controls
+  [ six compact researchers across the instrument ]
+  [ selected browser, largest surface ] [ source-linked notebook ]
+  durable research record
+
+Use the author's subtle scorched-page panels and small corner marks. Remove the
+invented logo, wide application masthead, oversized slogans and multiple browser
+frame rings. Motion stays on the crawler glyphs. Preserve all controls and honest
+preview/connected state. On mobile, scroll the researcher selector and stack the
+notebook below the browser. These choices follow the existing site, not a new kit.
+
+Historical direction below records the original concept:
+
+Use the existing grimoire language: scorched #070604 and parchment #14100c,
+bone #d8cbb4, blood #9e1b16, gold #c9a227. Reuse Cormorant Garamond/Georgia
+for headings and IBM Plex Mono/Consolas for records. A muted teal #7fd4c8
+marks collected evidence; it is already used by the chamber.
+
+The memorable element is a browser watched by small moving crawler glyphs,
+with a research notebook immediately beside it. Other views remain restrained.
+Creature movement conveys navigation/reading state, not invented intelligence.
+
+Desktop: mission header, navigation, agent roster | browser | notebook, then
+the durable event stream and handoff to corpus/training/chamber. Mobile: roster
+becomes a compact selector, browser above notebook, tables scroll internally.
+
+Views: Research, Evidence, Datasets, Training, Checkpoints. Operator setup is
+separate. A clear Preview badge applies to authored example traces. Connected
+mode displays backend events and real browser frames; failed connections never
+silently become examples. Model selection and publishing policy are operator
+settings, with baseline preserved. New code remains plain HTML/CSS/JavaScript.
+
+Review against brief: maintain the large browser and visible notes; avoid a
+generic metric-card dashboard or migration to a different frontend framework.

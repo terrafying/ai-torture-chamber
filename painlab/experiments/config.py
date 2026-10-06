@@ -18,6 +18,13 @@ def load_config(path: str | Path) -> tuple[dict[str, Any], Path]:
     dataset = data["representation"].get("dataset")
     if not model_id:
         raise ValueError("model.id is required")
+    model = data["model"]
+    if model.get("adapter_revision") and not model.get("adapter_id"):
+        raise ValueError("model.adapter_revision requires model.adapter_id")
+    if model.get("quantization") is not None and not isinstance(model["quantization"], dict):
+        raise ValueError("model.quantization must be a mapping")
+    if model.get("device_map") is not None and not isinstance(model["device_map"], (str, dict)):
+        raise ValueError("model.device_map must be a string or mapping")
     if not dataset:
         raise ValueError("representation.dataset is required")
     if (

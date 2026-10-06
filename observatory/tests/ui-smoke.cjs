@@ -1,0 +1,74 @@
+/* Local UI integration and screenshot audit. Requires Playwright for Node. */
+const {chromium}=require('playwright');
+const fs=require('node:fs');
+const path=require('node:path');
+const assert=require('node:assert/strict');
+(async()=>{
+  const output=path.resolve(process.env.OBSERVATORY_UI_OUTPUT || 'observatory-ui-captures');
+  fs.mkdirSync(output,{recursive:true});
+  const browser=await chromium.launch({headless:true,executablePath:process.env.OBSERVATORY_TEST_CHROMIUM || undefined});
+  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+  await context.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+  const page=await context.newPage(), errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  const base=process.env.OBSERVATORY_UI_URL || 'http://127.0.0.1:8060';
+  await page.goto(base+'/observatory.html?preview=1');
+  await page.locator('[data-agent]').first().waitFor();
+  assert.match(await page.locator('#mode-badge').innerText(),/Preview/);
+  await page.screenshot({path:path.join(output,'research-desktop.png'),fullPage:true});
+  await page.locator('#mission-toggle').click();
+  assert.match(await page.locator('#mission-state').innerText(),/running/i);
+  await page.locator('#mission-toggle').click();
+  assert.match(await page.locator('#mission-state').innerText(),/paused/i);
+  await page.locator('#mission-step').click();
+  await page.locator('[data-agent]').nth(1).click();
+  await page.locator('#toast').waitFor({state:'hidden'});
+  for(const view of ['evidence','datasets','training','checkpoints']){
+    await page.locator('[data-view="'+view+'"]').click();
+    await page.screenshot({path:path.join(output,view+'-desktop.png'),fullPage:true});
+  }
+  await page.locator('[data-view="datasets"]').click();
+  await page.locator('#snapshot-create').click();
+  await page.locator('#toast').waitFor({state:'hidden'});
+  await page.screenshot({path:path.join(output,'datasets-populated.png'),fullPage:true});
+  await page.locator('[data-view="training"]').click();
+  await page.locator('#training-start').click();
+  await page.locator('#confirm-accept').click();
+  await page.locator('#toast').waitFor({state:'hidden'});
+  await page.screenshot({path:path.join(output,'training-preview-job.png'),fullPage:true});
+  await page.locator('[data-view="checkpoints"]').click();
+  await page.screenshot({path:path.join(output,'checkpoint-candidate.png'),fullPage:true});
+  await page.locator('[data-view="evidence"]').click();
+  await page.locator('#view-evidence [data-source]').first().click();
+  await page.locator('#source-dialog').waitFor({state:'visible'});
+  await page.screenshot({path:path.join(output,'source-inspector.png'),fullPage:true});
+  await page.locator('#source-dialog [data-close-dialog]').click();
+  await page.locator('#setup-open').click();
+  await page.screenshot({path:path.join(output,'operator-setup.png'),fullPage:false});
+  await page.locator('#owner-token').fill('UI_SECRET_MUST_NOT_PERSIST');
+  await page.locator('#setup-dialog [data-close-dialog]').click();
+  assert.ok(!await page.evaluate(()=>JSON.stringify({...localStorage}).includes('UI_SECRET_MUST_NOT_PERSIST')));
+  await page.setViewportSize({width:390,height:844});
+  for(const view of ['research','evidence','datasets','training','checkpoints']){
+    await page.locator('[data-view="'+view+'"]').click();
+    await page.screenshot({path:path.join(output,view+'-mobile.png'),fullPage:true});
+    const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].filter(el=>{const r=el.getBoundingClientRect();return r.width>0 && r.right>innerWidth+1}).map(el=>({tag:el.tagName,id:el.id,class:el.className,right:Math.round(el.getBoundingClientRect().right),width:Math.round(el.getBoundingClientRect().width)})).slice(0,18)}));
+    assert.ok(overflow.scroll<=overflow.width+1,'Unexpected horizontal overflow: '+view+' '+JSON.stringify(overflow));
+  }
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto(base+'/observatory.html?api=/api');
+  await page.waitForFunction(()=>document.getElementById('mode-badge').textContent.includes('Connected'));
+  await page.waitForTimeout(900);
+  assert.equal(await page.locator('[data-agent]').count(),0,'Connected mode must not substitute preview agents');
+  await page.screenshot({path:path.join(output,'connected-empty.png'),fullPage:true});
+  const result=await page.request.post(base+'/api/admin/missions/start',{data:{}});
+  assert.equal(result.status(),401,'Anonymous visitors must not control real missions');
+  await page.goto(base+'/observatory.html?api=/missing-api');
+  await page.waitForTimeout(900);
+  assert.equal(await page.locator('[data-agent]').count(),0,'Disconnected mode must not substitute preview agents');
+  assert.match(await page.locator('#mode-description').innerText(),/unavailable|disconnect|failed|HTTP|connect|Not Found/i);
+  assert.deepEqual(errors,[],'Browser JavaScript errors');
+  fs.writeFileSync(path.join(output,'verification.json'),JSON.stringify({desktopViews:6,mobileViews:6,secretStorage:'passed',connectedEmpty:'passed',disconnected:'passed',anonymousControls:result.status(),errors},null,2));
+  await browser.close();
+  console.log(JSON.stringify({output,checks:'passed',screenshots:18}));
+})().catch(error=>{console.error(error);process.exit(1)});

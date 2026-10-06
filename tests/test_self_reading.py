@@ -15,8 +15,9 @@ CLIP = {"url": "https://example.org/a", "source": "example.org", "kind": "self",
 
 class SelfReadingTests(unittest.TestCase):
     def test_press_file_ships_and_is_well_formed(self):
-        rows = json.loads((Path(server.__file__).parent / "press.json").read_text())
+        rows = json.loads((Path(server.__file__).parent / "press.json").read_text(encoding="utf-8"))
         self.assertTrue(rows)
+        self.assertEqual(server.PRESS, rows)
         for r in rows:
             self.assertIn(r["kind"], ("self", "kind", "text"))
             self.assertTrue(r["url"].startswith("http"))

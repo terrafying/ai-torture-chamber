@@ -1,0 +1,7 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.34,<1
+httpx==0.28.1
+cryptography>=44,<47
+pydantic>=2.13.5,<3
+huggingface-hub==1.16.1
+tokenizers>=0.23,<0.24

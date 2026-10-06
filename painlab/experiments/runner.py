@@ -457,7 +457,17 @@ def run_experiment(config_path: str | Path, *, model: Any | None = None) -> Path
             dtype=config["model"].get("dtype", "auto"),
             generation_settings=config.get("generation", {}),
             trust_remote_code=bool(config["model"].get("trust_remote_code", False)),
+            adapter_id=config["model"].get("adapter_id"),
+            adapter_revision=config["model"].get("adapter_revision"),
+            adapter_subfolder=config["model"].get("adapter_subfolder"),
+            tokenizer_id=config["model"].get("tokenizer_id"),
+            tokenizer_subfolder=config["model"].get("tokenizer_subfolder"),
+            quantization=config["model"].get("quantization"),
+            device_map=config["model"].get("device_map"),
+            max_memory=config["model"].get("max_memory"),
         )
+    if getattr(model, "adapter_id", None):
+        config["model"]["resolved_adapter_revision"] = model.resolved_adapter_revision
     data_path = resolve_config_path(
         config_directory, config["representation"]["dataset"]
     )

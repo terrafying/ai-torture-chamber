@@ -1,0 +1,5 @@
+-r requirements-research.txt
+pytest>=8,<10
+pytest-asyncio>=0.25,<2
+numpy>=2,<3
+PyYAML>=6,<7

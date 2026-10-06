@@ -1,0 +1,7 @@
+-r requirements.txt
+browser-use==0.13.10
+playwright>=1.55,<2
+beautifulsoup4>=4.13,<5
+pypdf>=5,<7
+# Optional local scientific PDF layout/OCR: requirements-extraction.txt.
+# The default PDF fallback records unverified fidelity and remains discovery-only.

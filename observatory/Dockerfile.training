@@ -1,0 +1,21 @@
+FROM pytorch/pytorch:2.8.0-cuda12.8-cudnn9-runtime
+
+# A separate image from the existing public chamber and the Browser Use sidecar.
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 HF_HOME=/workspace/hf \
+    OBSERVATORY_OUTPUT_DIR=/workspace/output HF_HUB_DOWNLOAD_TIMEOUT=60 \
+    HF_HUB_ETAG_TIMEOUT=30
+WORKDIR /app
+COPY observatory/requirements-worker.txt /app/observatory/requirements-worker.txt
+RUN pip install -r /app/observatory/requirements-worker.txt \
+    && pip uninstall -y torchvision torchaudio \
+    && python -c "import torch, transformers, peft, trl, bitsandbytes; print(torch.__version__, transformers.__version__, peft.__version__, trl.__version__)" \
+    && useradd --create-home --uid 10001 trainer \
+    && mkdir -p /workspace/hf /workspace/output \
+    && chown -R trainer:trainer /workspace
+COPY observatory/__init__.py observatory/train_worker.py observatory/evaluation.py observatory/curation_receipts.py observatory/corpus_policy.py /app/observatory/
+COPY observatory/evals /app/observatory/evals
+COPY observatory/licenses /app/observatory/licenses
+COPY live/server.py live/press.json /app/live/
+COPY painlab /app/painlab
+USER trainer
+CMD ["python", "-m", "observatory.train_worker"]

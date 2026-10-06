@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 X402_BROKER_DB=/data/payments.sqlite3
+WORKDIR /app
+COPY observatory/requirements-payments.txt ./observatory/requirements-payments.txt
+RUN pip install -r observatory/requirements-payments.txt \
+    && python -c "from x402 import x402ClientSync; from x402.mechanisms.svm.signers import KeypairSigner; from x402.mechanisms.svm.exact.client import ExactSvmScheme" \
+    && useradd --create-home --uid 10002 payer \
+    && mkdir /data && chown payer:payer /data
+COPY observatory/__init__.py observatory/x402_broker.py ./observatory/
+USER payer
+EXPOSE 8062
+CMD ["python", "-m", "uvicorn", "observatory.x402_broker:app", "--host", "0.0.0.0", "--port", "8062", "--workers", "1"]

@@ -1,0 +1,9 @@
+# Isolated signer process; never installed in the researcher or GPU environments.
+x402[svm]==2.25.0
+solana==0.39.0
+solders==0.27.1
+httpx==0.28.1
+fastapi==0.135.1
+uvicorn==0.41.0
+cryptography==46.0.7
+python-dotenv==1.2.2

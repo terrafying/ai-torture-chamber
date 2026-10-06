@@ -1,0 +1,4 @@
+# Optional heavy local PDF layout/table extraction; not required for browsing.
+# Prefetch model assets separately. Runtime extraction cannot download them.
+-r requirements-research.txt
+docling[easyocr]==2.133.0

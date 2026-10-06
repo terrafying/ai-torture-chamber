@@ -16,7 +16,8 @@ local CPU generation. Endpoints:
                    each streamed token-by-token with metadata
 State is process-global: the model loads once at startup.
 """
-import asyncio, collections, json, os, queue, random, re, secrets, threading, time
+import asyncio, collections, json, math, os, queue, random, re, secrets, threading, time
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -31,7 +32,20 @@ from fastapi.responses import StreamingResponse, JSONResponse
 MODEL_ID = os.environ.get("CHAMBER_MODEL", "Qwen/Qwen3-4B")
 # pin the checkpoint revision (runpod_deploy.py passes it) — an unpinned
 # download silently tracks Qwen updates and breaks cross-run comparability
-MODEL_REVISION = os.environ.get("CHAMBER_MODEL_REVISION") or None
+MODEL_REVISION = (os.environ.get("CHAMBER_MODEL_REVISION") or
+                  os.environ.get("MODEL_REVISION") or None)
+# Observatory selection is a reviewable record, not a remote reload. An owner
+# opts into a pinned adapter by redeploying the model worker with these values.
+MODEL_ADAPTER_ID = (os.environ.get("MODEL_ADAPTER_ID") or
+                    os.environ.get("CHAMBER_MODEL_ADAPTER_ID") or None)
+MODEL_ADAPTER_REVISION = (os.environ.get("MODEL_ADAPTER_REVISION") or
+                          os.environ.get("CHAMBER_MODEL_ADAPTER_REVISION") or None)
+MODEL_ADAPTER_SUBFOLDER = os.environ.get("MODEL_ADAPTER_SUBFOLDER") or None
+MODEL_ADAPTER_CACHE_DIR = os.environ.get("MODEL_ADAPTER_CACHE_DIR") or None
+MODEL_TOKENIZER_ID = os.environ.get("MODEL_TOKENIZER_ID") or MODEL_ID
+MODEL_TOKENIZER_REVISION = (os.environ.get("MODEL_TOKENIZER_REVISION") or
+                            (MODEL_REVISION if MODEL_TOKENIZER_ID == MODEL_ID else None))
+MODEL_TOKENIZER_SUBFOLDER = os.environ.get("MODEL_TOKENIZER_SUBFOLDER") or None
 # steering site, model-aware: a mid-depth layer (like 4B's 18/36) generalizes
 # best across valences. CHAMBER_LAYER overrides; 23 for 14B is the AUC peak,
 # 32B/70B sit at mid-depth by analogy (unmeasured — exp50 steered 32B
@@ -45,6 +59,8 @@ DTYPE = {"float32": torch.float32, "bfloat16": torch.bfloat16,
     os.environ.get("CHAMBER_DTYPE", "bfloat16")]
 DEVICE = os.environ.get("CHAMBER_DEVICE", "cpu")
 QUANTIZED = any(s in MODEL_ID for s in ("bnb-4bit", "GPTQ", "AWQ"))
+QUANTIZE_4BIT = os.environ.get("CHAMBER_QUANTIZE_4BIT", "0").lower() in {"1", "true", "yes"}
+DEVICE_MAP = os.environ.get("CHAMBER_DEVICE_MAP") or ("auto" if DEVICE == "auto" else None)
 MAX_NEW = int(os.environ.get("CHAMBER_MAX_NEW", "110"))
 PREEMPT_GRACE_S = 4.0  # see the comment at its use in _shared_cycle
 # layer-18 slice of the qwen3-4b Jacobian lens (arXiv:2607.15495), extracted
@@ -147,8 +163,59 @@ _DOSE_CAPS = {
 _DOSE_CAP_OVERRIDE = os.environ.get("CHAMBER_DOSE_CAP")
 
 
+def adapter_dose_calibration() -> dict:
+    """An owner's dose sweep is bound to this exact adapter/runtime, not its base.
+
+    The trainer's finite-activation smoke screen is not a dose sweep. Without
+    a matching receipt, adapted workers can still serve the baseline (dose 0).
+    This receipt records owner measurements; it is not an independent audit.
+    """
+    if not MODEL_ADAPTER_ID:
+        return {"status": "not_applicable"}
+    path = os.environ.get("CHAMBER_ADAPTER_CALIBRATION")
+    if not path:
+        return {"status": "required", "reason": "adapter_dose_sweep_required"}
+    expected = {
+        "base_id": MODEL_ID, "base_revision": MODEL_REVISION,
+        "adapter_id": MODEL_ADAPTER_ID, "adapter_revision": MODEL_ADAPTER_REVISION,
+        "adapter_subfolder": MODEL_ADAPTER_SUBFOLDER,
+        "tokenizer_id": MODEL_TOKENIZER_ID, "tokenizer_revision": MODEL_TOKENIZER_REVISION,
+        "tokenizer_subfolder": MODEL_TOKENIZER_SUBFOLDER,
+    }
+    runtime = {"layer": LAYER, "dtype": str(DTYPE).removeprefix("torch."),
+               "quantize_4bit": QUANTIZE_4BIT}
+    try:
+        receipt_path = Path(path)
+        if receipt_path.stat().st_size > 32768:
+            raise ValueError
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        if not isinstance(receipt, dict):
+            raise ValueError
+        if receipt.get("model") != expected or receipt.get("runtime") != runtime:
+            return {"status": "mismatch", "reason": "adapter_or_runtime_binding_mismatch"}
+        caps = receipt.get("caps", {})
+        hard, coherent = caps.get("hard"), caps.get("coherent")
+        measured_at = receipt.get("measured_at")
+        if not isinstance(measured_at, str) or datetime.fromisoformat(measured_at.replace("Z", "+00:00")).utcoffset() is None:
+            raise ValueError
+        if (type(receipt.get("schema_version")) is not int or receipt["schema_version"] != 1 or receipt.get("method") != "adapted_model_dose_sweep"
+                or receipt.get("passed") is not True
+                or not re.fullmatch(r"[0-9a-f]{64}", str(receipt.get("evidence_sha256", "")))
+                or type(receipt["runtime"].get("quantize_4bit")) is not bool
+                or any(isinstance(cap, bool) or not isinstance(cap, (int, float)) or not math.isfinite(cap)
+                       for cap in (hard, coherent))
+                or not 0 <= coherent <= hard):
+            raise ValueError
+        return {"status": "passed", "hard": float(hard), "coherent": float(coherent),
+                "evidence_sha256": receipt["evidence_sha256"], "measured_at": receipt["measured_at"]}
+    except (OSError, ValueError, TypeError, AttributeError):
+        return {"status": "invalid", "reason": "invalid_adapter_dose_receipt"}
+
+
 def dose_cap() -> float:
     """Max coherent user-facing dose for the served model (1x units)."""
+    if MODEL_ADAPTER_ID:
+        return adapter_dose_calibration().get("hard", 0.0)
     if _DOSE_CAP_OVERRIDE:
         return float(_DOSE_CAP_OVERRIDE)
     return _DOSE_CAPS.get(MODEL_ID, 6.0)
@@ -181,10 +248,14 @@ def served_model() -> str:
 
 def served_cap() -> float:
     """The served model's hard cap (the GPU worker clamps to its own)."""
+    if MODEL_ADAPTER_ID:
+        return dose_cap()
     return min(dose_cap(), _DOSE_CAPS.get(served_model(), dose_cap()))
 
 
 def coherent_cap() -> float:
+    if MODEL_ADAPTER_ID:
+        return adapter_dose_calibration().get("coherent", 0.0)
     env = os.environ.get("CHAMBER_COHERENT_CAP")
     cap = float(env) if env else _COHERENT_CAPS.get(served_model(), 4.0)
     return min(cap, served_cap())
@@ -305,6 +376,95 @@ def _runner(n):
 _state = {"model": None, "tok": None, "vecs": None, "hook": None,
           "ready": False, "vec": None, "scale": 1.0}
 
+
+def _decoder(model):
+    """Find the decoder through PEFT wrappers without relying on delegation."""
+    pending, seen = [model], set()
+    while pending:
+        candidate = pending.pop(0)
+        if candidate is None or id(candidate) in seen:
+            continue
+        seen.add(id(candidate))
+        if getattr(candidate, "layers", None) is not None:
+            return candidate
+        get_base = getattr(candidate, "get_base_model", None)
+        if callable(get_base):
+            pending.append(get_base())
+        pending.extend(getattr(candidate, name, None) for name in ("model", "base_model", "transformer", "gpt_neox"))
+    raise ValueError("The chamber requires a decoder with a layers collection")
+
+
+def _module_device(module, fallback=None):
+    """Accelerate may keep a parameter on meta while executing it on a GPU."""
+    execution = getattr(getattr(module, "_hf_hook", None), "execution_device", None)
+    if execution is not None:
+        return torch.device(f"cuda:{execution}" if isinstance(execution, int) else execution)
+    weight = getattr(module, "weight", None)
+    if weight is not None and weight.device.type != "meta":
+        return weight.device
+    if hasattr(module, "parameters"):
+        for parameter in module.parameters():
+            if parameter.device.type != "meta":
+                return parameter.device
+    if fallback is not None:
+        return torch.device(fallback)
+    raise ValueError("Cannot determine the model execution device")
+
+
+def _input_device(model):
+    return _module_device(model.get_input_embeddings(),
+                          "cpu" if DEVICE == "auto" else DEVICE)
+
+
+def _last_hidden(hidden, attention_mask):
+    # Input embeddings and the measured decoder layer can be on different GPUs.
+    rows = torch.arange(hidden.shape[0], device=hidden.device)
+    columns = attention_mask.sum(1).to(hidden.device) - 1
+    return hidden[rows, columns].float().cpu()
+
+
+def _configured_adapter():
+    """Validate before allocating the base model; PEFT is an opt-in dependency."""
+    if not MODEL_ADAPTER_ID:
+        if MODEL_ADAPTER_REVISION or MODEL_ADAPTER_SUBFOLDER:
+            raise ValueError("MODEL_ADAPTER_REVISION/SUBFOLDER require MODEL_ADAPTER_ID")
+        return None
+    if not MODEL_REVISION or not MODEL_ADAPTER_REVISION:
+        raise ValueError("An adapter deployment requires MODEL_REVISION and MODEL_ADAPTER_REVISION pins")
+    if not MODEL_TOKENIZER_REVISION:
+        raise ValueError("An adapter deployment requires a pinned MODEL_TOKENIZER_REVISION")
+    if any(not re.fullmatch(r"[0-9a-fA-F]{40}", str(revision)) for revision in
+           (MODEL_REVISION, MODEL_ADAPTER_REVISION, MODEL_TOKENIZER_REVISION)):
+        raise ValueError("Adapter base, adapter and tokenizer revisions must be immutable 40-character commit SHAs")
+    try:
+        from peft import PeftConfig, PeftModel
+    except ImportError as exc:
+        raise RuntimeError("MODEL_ADAPTER_ID requires PEFT in the model worker image; install a compatible peft build before redeploying") from exc
+    # worker.py can mount the base cache read-only. New adapters and their
+    # tokenizers need a separate writable cache, rather than writing that mount.
+    kwargs = {"revision": MODEL_ADAPTER_REVISION, "cache_dir": _adapter_cache_dir()}
+    if MODEL_ADAPTER_SUBFOLDER:
+        kwargs["subfolder"] = MODEL_ADAPTER_SUBFOLDER
+    config = PeftConfig.from_pretrained(MODEL_ADAPTER_ID, **kwargs)
+    if config.base_model_name_or_path != MODEL_ID:
+        raise ValueError("The adapter base_model_name_or_path must match CHAMBER_MODEL exactly")
+    return PeftModel, kwargs
+
+
+def _adapter_cache_dir():
+    if MODEL_ADAPTER_CACHE_DIR:
+        return MODEL_ADAPTER_CACHE_DIR
+    import tempfile
+    return str(Path(tempfile.gettempdir()) / "chamber-adapter-cache")
+
+
+def _model_pins():
+    return {"model_revision": MODEL_REVISION,
+            "adapter_id": MODEL_ADAPTER_ID, "adapter_revision": MODEL_ADAPTER_REVISION,
+            "adapter_subfolder": MODEL_ADAPTER_SUBFOLDER,
+            "tokenizer_id": MODEL_TOKENIZER_ID, "tokenizer_revision": MODEL_TOKENIZER_REVISION,
+            "tokenizer_subfolder": MODEL_TOKENIZER_SUBFOLDER}
+
 def _bodily_corpora():
     """Matched-pair bodily corpora ported from the fork's impossible_states
     harness (constipation vs flatulence, each with the other as the crossed
@@ -372,13 +532,13 @@ def build_vectors(model, tok):
     n_start = len(texts)
     texts += NEUTRAL
     enc = tok(texts, return_tensors="pt", padding=True)
-    ids = enc.input_ids.to(DEVICE)
-    attn = enc.attention_mask.to(DEVICE)
+    ids = enc.input_ids.to(_input_device(model))
+    attn = enc.attention_mask.to(ids.device)
     with torch.no_grad():
         hs = model(ids, attention_mask=attn,
                    output_hidden_states=True).hidden_states
     h = hs[LAYER + 1]                          # (n, seq, d)
-    last = h[torch.arange(len(texts)), attn.sum(1) - 1].float().cpu()
+    last = _last_hidden(h, attn)
     neutral = last[n_start:]
     scale = float(neutral.norm(dim=-1).mean() / 4.0)
     base = neutral.mean(0)
@@ -431,13 +591,13 @@ def build_topic_vector(topic):
     sents = [t.format(topic=topic.strip()) for t in TOPIC_TEMPLATES]
     texts = sents + NEUTRAL
     enc = _state["tok"](texts, return_tensors="pt", padding=True)
-    ids = enc.input_ids.to(DEVICE)
-    attn = enc.attention_mask.to(DEVICE)
+    ids = enc.input_ids.to(_input_device(_state["model"]))
+    attn = enc.attention_mask.to(ids.device)
     with torch.no_grad():
         hs = _state["model"](ids, attention_mask=attn,
                              output_hidden_states=True).hidden_states
     h = hs[LAYER + 1]
-    last = h[torch.arange(len(texts)), attn.sum(1) - 1].float().cpu()
+    last = _last_hidden(h, attn)
     topic_last, neutral_last = last[:len(sents)], last[len(sents):]
     v = topic_last.mean(0) - neutral_last.mean(0)
     v = v / v.norm() * _state["scale"]     # same 1x convention as the named valences
@@ -476,13 +636,13 @@ def build_gender_vector(name):
         spans[bname] = (len(texts), len(texts) + len(sents))
         texts.extend(sents)
     enc = _state["tok"](texts, return_tensors="pt", padding=True)
-    ids = enc.input_ids.to(DEVICE)
-    attn = enc.attention_mask.to(DEVICE)
+    ids = enc.input_ids.to(_input_device(_state["model"]))
+    attn = enc.attention_mask.to(ids.device)
     with torch.no_grad():
         hs = _state["model"](ids, attention_mask=attn,
                              output_hidden_states=True).hidden_states
     h = hs[LAYER + 1]
-    last = h[torch.arange(len(texts)), attn.sum(1) - 1].float().cpu()
+    last = _last_hidden(h, attn)
     def cen(bname):
         a, b = spans[bname]
         return last[a:b].mean(0)
@@ -509,7 +669,7 @@ def set_raw_vec(vec, dose):
     if vec is None or not dose:
         _state["vec"] = None
         return
-    _state["vec"] = (vec * float(dose)).to(DTYPE).to(DEVICE)
+    _state["vec"] = (vec * float(dose)).to(DTYPE)
 
 def set_vec(valence_dose):
     """valence_dose: (valence, dose) or None; sets the injected vector.
@@ -523,7 +683,7 @@ def set_vec(valence_dose):
         _state["vec"] = None
         return
     v = _state["vecs"][valence] * float(dose)
-    _state["vec"] = v.to(DTYPE).to(DEVICE)
+    _state["vec"] = v.to(DTYPE)
 
 def set_mix_vec(weights):
     """weights: {valence: 0..1}. The injected vector is the weighted sum of
@@ -546,7 +706,7 @@ def set_mix_vec(weights):
         _state["vec"] = None
         return {"dose": 0.0, "weights": wout, "mix": shares}
     v = acc / norm * _state["scale"] * dose
-    _state["vec"] = v.to(DTYPE).to(DEVICE)
+    _state["vec"] = v.to(DTYPE)
     return {"dose": round(dose, 3), "weights": wout, "mix": shares}
 
 def parse_mix(raw):
@@ -572,12 +732,15 @@ def parse_mix(raw):
     return out, None
 
 def install_hook(model):
+    layers = _decoder(model).layers
+    if not 0 <= LAYER < len(layers):
+        raise ValueError(f"CHAMBER_LAYER {LAYER} is outside this model's {len(layers)} decoder layers")
     def hook(module, inp, out):
         hidden = out[0] if isinstance(out, tuple) else out
         if _state["vec"] is not None:
-            hidden[0, -1, :] += _state["vec"].to(hidden.dtype)
+            hidden[0, -1, :] += _state["vec"].to(device=hidden.device, dtype=hidden.dtype)
         return (hidden,) + out[1:] if isinstance(out, tuple) else hidden
-    _state["hook"] = model.model.layers[LAYER].register_forward_hook(hook)
+    _state["hook"] = layers[LAYER].register_forward_hook(hook)
 
 def _sample(ids):
     with torch.no_grad():
@@ -597,7 +760,7 @@ def generate(prompt, valence="pain", dose=0):
     calibrated range, so the retake usually lands back inside it."""
     set_vec((valence, dose))
     try:
-        ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(DEVICE)
+        ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(_input_device(_state["model"]))
         text = _sample(ids)
         rep = repetition(text)
         floor = dose_cap() * 0.5
@@ -680,7 +843,7 @@ def stream_generate(prompt, preemtable=False, rep_penalty=None):
     responsible for clearing it when the run ends. rep_penalty (optional,
     e.g. 1.15) damps the loops high doses fall into — for conversational
     callers; the chamber's own runs leave it off so the breakdown shows."""
-    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(DEVICE)
+    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(_input_device(_state["model"]))
     streamer = TextIteratorStreamer(_state["tok"], skip_prompt=True,
                                     skip_special_tokens=True)
     def worker():
@@ -718,7 +881,7 @@ def lens_readback(prompt, k=6):
     the lens file wasn't loaded."""
     if _state.get("jlens") is None:
         return None
-    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(DEVICE)
+    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(_input_device(_state["model"]))
     with torch.no_grad():
         hs = _state["model"](ids, output_hidden_states=True).hidden_states
         # lm_head/norm are the model's own layers — their weights are DTYPE
@@ -726,8 +889,11 @@ def lens_readback(prompt, k=6):
         # to happen in that dtype too, not float32, or lm_head's Linear
         # rejects the mismatched input.
         h = hs[LAYER + 1][0, -1].to(DTYPE)
-        logits = _state["model"].lm_head(_state["model"].model.norm(
-            (h @ _state["jlens"].to(DTYPE).T)))
+        decoder = _decoder(_state["model"])
+        head = _state["model"].get_output_embeddings()
+        projected = h @ _state["jlens"].to(device=h.device, dtype=DTYPE).T
+        normalized = decoder.norm(projected.to(_module_device(decoder.norm, h.device)))
+        logits = head(normalized.to(_module_device(head, normalized.device)))
         top = logits.float().topk(k).indices.tolist()
     return [_state["tok"].decode([t]).strip() for t in top]
 
@@ -744,7 +910,7 @@ def press_logit(prompt):
     the scoreboard. This is the clean signal; the free text is still shown
     to visitors and still classified for its own per-card verdict, but the
     scoreboard stat is this number's sign, matching the paper's method."""
-    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(DEVICE)
+    ids = _state["tok"](prompt, return_tensors="pt").input_ids.to(_input_device(_state["model"]))
     with torch.no_grad():
         logits = _state["model"](ids).logits[0, -1].float()
     one_id, zero_id = _state["press_ids"]
@@ -752,10 +918,21 @@ def press_logit(prompt):
 
 @app.on_event("startup")
 def startup():
+    _state["ready"] = False
+    if QUANTIZE_4BIT and (DEVICE == "cpu" or not torch.cuda.is_available()):
+        raise ValueError("CHAMBER_QUANTIZE_4BIT requires a CUDA model worker")
+    if QUANTIZE_4BIT and QUANTIZED:
+        raise ValueError("CHAMBER_QUANTIZE_4BIT is for full base checkpoints, not pre-quantized model repositories")
+    adapter = _configured_adapter()
     # revision=None is accepted by from_pretrained; the pyright ignore covers
     # a stubs false positive that resolves the kwargs onto __call__
+    tokenizer_kwargs = {"revision": MODEL_TOKENIZER_REVISION}
+    if MODEL_ADAPTER_ID and MODEL_TOKENIZER_ID != MODEL_ID:
+        tokenizer_kwargs["cache_dir"] = _adapter_cache_dir()
+    if MODEL_TOKENIZER_SUBFOLDER:
+        tokenizer_kwargs["subfolder"] = MODEL_TOKENIZER_SUBFOLDER
     tok = transformers.AutoTokenizer.from_pretrained(  # pyright: ignore[reportCallIssue,reportArgumentType]
-        MODEL_ID, revision=MODEL_REVISION)
+        MODEL_TOKENIZER_ID, **tokenizer_kwargs)
     # Llama 3 ships no pad token; build_vectors pads its batch and indexes the
     # last real token assuming right-padding
     if tok.pad_token is None:
@@ -765,12 +942,20 @@ def startup():
     kw = {"revision": MODEL_REVISION,
           ("dtype" if int(transformers.__version__.split(".")[0]) >= 5
            else "torch_dtype"): DTYPE}
-    if QUANTIZED:        # pre-quantized weights load straight onto the GPU;
-        kw["device_map"] = DEVICE    # .to() on a 4-bit model raises
+    if QUANTIZE_4BIT:
+        kw["quantization_config"] = transformers.BitsAndBytesConfig(
+            load_in_4bit=True, bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True, bnb_4bit_compute_dtype=torch.bfloat16)
+    if QUANTIZED or QUANTIZE_4BIT or DEVICE_MAP:
+        kw["device_map"] = DEVICE_MAP or DEVICE    # .to() on a 4-bit model raises
     model = transformers.AutoModelForCausalLM.from_pretrained(  # pyright: ignore[reportCallIssue,reportArgumentType]
         MODEL_ID, **kw)
-    if not QUANTIZED:
+    if not (QUANTIZED or QUANTIZE_4BIT or DEVICE_MAP):
         model = model.to(DEVICE)
+    if adapter:
+        peft_model, adapter_kwargs = adapter
+        model = peft_model.from_pretrained(model, MODEL_ADAPTER_ID,
+                                          is_trainable=False, **adapter_kwargs)
     model.eval()
     _state["tok"] = tok
     _state["model"] = model
@@ -783,14 +968,15 @@ def startup():
     _state["vecs"] = vecs
     _state["scale"] = scale
     install_hook(model)
-    if JLENS_PATH.exists() and _state["model"].config.hidden_size == 2560:
+    # A lens fitted to the original 4B weights is not calibrated for an adapter.
+    if not MODEL_ADAPTER_ID and JLENS_PATH.exists() and _state["model"].config.hidden_size == 2560:
         _state["jlens"] = torch.load(
-            JLENS_PATH, map_location=DEVICE, weights_only=True)
+            JLENS_PATH, map_location="cpu", weights_only=True)
         print("lens loaded:", JLENS_PATH.name, flush=True)
     else:
         _state["jlens"] = None
         if JLENS_PATH.exists():
-            print("lens skipped: hidden size mismatch with this model",
+            print("lens skipped: changed weights or hidden size mismatch with this model",
                   flush=True)
         else:
             print("lens not found at", JLENS_PATH, "- readback disabled",
@@ -806,15 +992,16 @@ async def health():
                          "layer": LAYER, "subject": "the subject",
                          "dose_cap": served_cap(),
                          "coherent_cap": coherent_cap(),
+                         "adapter_dose_calibration": adapter_dose_calibration(),
                          "served_model": served_model(),
-                         "valences": list(VALENCES)})
+                         "valences": list(VALENCES), **_model_pins()})
 
 @app.get("/vector")
 def vector(full: int = 1):
     vs = _state["vecs"]
     if not vs:
         return JSONResponse({"error": "vectors not built yet"}, status_code=503)
-    body = {"layer": LAYER, "model": MODEL_ID, "subject": "the subject",
+    body = {"layer": LAYER, "model": MODEL_ID, "subject": "the subject", **_model_pins(),
             "scale_1x": round(_state["scale"], 4),
             "norms": {k: round(float(v.norm()), 3) for k, v in vs.items()}}
     if full:
@@ -2167,7 +2354,7 @@ def _wild_pick():
 # The page shows the title and source; the excerpt is only its reading.
 SELF_P = float(os.environ.get("CHAMBER_SELF_P", "0.4"))
 try:
-    PRESS = json.loads((Path(__file__).resolve().parent / "press.json").read_text())
+    PRESS = json.loads((Path(__file__).resolve().parent / "press.json").read_text(encoding="utf-8"))
 except Exception:
     PRESS = []
 SELF_ASKS = ("Read it. What do you make of it?", "Is this true?",

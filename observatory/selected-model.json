@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "selected_on": "2026-10-05",
+  "model": {
+    "repo_id": "meta-llama/Llama-3.1-70B",
+    "revision": "349b2ddb53ce8f2849a6c168a81980ab25258dac",
+    "variant": "pretrained base",
+    "architecture": "LlamaForCausalLM",
+    "parameters": 70553706496,
+    "published_context_tokens": 131072,
+    "license": "llama3.1",
+    "access": "owner Hugging Face account must obtain gated model access",
+    "model_card": "https://huggingface.co/meta-llama/Llama-3.1-70B",
+    "metadata": "https://huggingface.co/api/models/meta-llama/Llama-3.1-70B"
+  },
+  "settings": {
+    "hf_base_model": "meta-llama/Llama-3.1-70B",
+    "hf_base_revision": "349b2ddb53ce8f2849a6c168a81980ab25258dac",
+    "training_mode": "qlora",
+    "training_sequence_length": 2048,
+    "training_interval_hours": 4
+  },
+  "workflow": {
+    "research": "continuous frontier-API browser agents",
+    "cpt": "licensed original text; QLoRA adapter updates over the pinned frozen 70B base",
+    "sft": "separate approved instruction stage after evaluated CPT",
+    "chamber": "live chat requires separately validated SFT and its saved chat-template tokenizer; load exact base, tokenizer and adapter revisions and recalibrate interventions",
+    "publication_name_example": "Llama-Consciousness-70B",
+    "existing_hermes_chamber_control": "preserved separately; not an adapter load target"
+  },
+  "verification": {
+    "metadata_and_revision_checked": true,
+    "weights_downloaded": false,
+    "real_70b_gpu_training_verified": false,
+    "training_enabled_by_selection": false
+  }
+}

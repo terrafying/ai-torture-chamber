@@ -1,0 +1,12 @@
+# Isolated GPU image dependencies; never installed in the existing relay worker.
+# CUDA Torch comes from the training image. This stack is also tested on CPU.
+torch>=2.8,<3
+transformers==5.17.0
+peft==0.21.2
+trl==1.14.1
+datasets==5.0.1
+accelerate==1.15.0
+huggingface-hub==1.33.0
+bitsandbytes>=0.48,<1
+numpy>=1.24
+PyYAML>=6

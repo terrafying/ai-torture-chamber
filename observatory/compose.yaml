@@ -1,0 +1,50 @@
+# Run from the repository root:
+# docker compose -f observatory/compose.yaml up --build -d
+# Copy both .env examples first. Research and spending stay disabled until configured.
+services:
+  payments:
+    build:
+      context: ..
+      dockerfile: observatory/Dockerfile.payments
+    env_file: .env.payments
+    environment:
+      X402_BROKER_DB: /data/payments.sqlite3
+    volumes:
+      - payments-data:/data
+    networks: [internal-services]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8062/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    # No host port: researchers reach this private service over the Docker network.
+  observatory:
+    build:
+      context: ..
+      dockerfile: observatory/Dockerfile
+    env_file: .env
+    environment:
+      OBSERVATORY_DB: /data/state.sqlite3
+      OBSERVATORY_PAYMENT_BROKER_URL: http://payments:8062
+    volumes:
+      - research-data:/data
+    ports:
+      - 127.0.0.1:8060:8060
+    networks: [internal-services]
+    depends_on:
+      payments:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8060/api/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  internal-services:
+    driver: bridge
+volumes:
+  payments-data:
+  research-data:

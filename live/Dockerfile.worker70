@@ -10,7 +10,7 @@ FROM pytorch/pytorch:2.8.0-cuda12.8-cudnn9-runtime
 
 RUN apt-get update -qq && apt-get install -y -qq wget && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir "transformers==5.17.0" accelerate bitsandbytes runpod && \
+RUN pip install --no-cache-dir "transformers==5.17.0" "huggingface-hub==1.33.0" "peft==0.21.2" accelerate bitsandbytes runpod && \
     pip uninstall -y -q torchvision torchaudio && \
     python -c "import torch, transformers, bitsandbytes; print(f' baked {torch.__version__} {transformers.__version__}')"
 
