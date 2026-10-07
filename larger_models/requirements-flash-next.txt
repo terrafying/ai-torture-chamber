@@ -1,0 +1,7 @@
+# Separate environment: this optional architecture needs newer MLX and MLX-VLM.
+mlx==0.32.3
+mlx-lm==0.31.3
+numpy==2.5.2
+transformers==5.19.0
+# Includes the corrected Qwen4-Exp normalization converter and QSA/PLE caches.
+mlx-vlm @ git+https://github.com/Blaizzy/mlx-vlm.git@4f4634bb813c0298cb1467bed2e957526c71d0b4

@@ -1,0 +1,61 @@
+{
+  "status": "tiny_integration_passed_full_checkpoint_pending",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "date": "2026-10-06",
+  "runner_sha256": "74e9b697c18c9d9647b053a18e746a9fe1f1d61562cf9f7a3202ad0b13596a97",
+  "test_sha256": "4d42ab34efedbd77056e85b4f368bee45ae6832eda213d4759789108b2316b15",
+  "mlx_vlm_source_revision": "4f4634bb813c0298cb1467bed2e957526c71d0b4",
+  "dependencies": {
+    "mlx": "0.32.3",
+    "mlx-metal": "0.32.3",
+    "mlx-lm": "0.31.3",
+    "mlx-vlm": "0.7.7",
+    "transformers": "5.19.0",
+    "numpy": "2.5.2"
+  },
+  "test_results": {
+    "flash_next_metal": {
+      "passed": 1,
+      "intervention_layers": [
+        0,
+        1,
+        3
+      ],
+      "depth": 4,
+      "hidden_size": 32,
+      "residual_streams": 4,
+      "residual_width": 128,
+      "model_weights": "random initialized, unquantized",
+      "native_unwrapped_oracle": "same native module-call execution path, exact prefill logits and greedy cached tokens",
+      "zero_cached_logits_equal": true,
+      "nonzero_cached_logits_changed": true,
+      "final_row_only_edit": true,
+      "native_ple_cache_preserved": true,
+      "qsa_prefill_exceeds_indexer_budget": true,
+      "cli_pilot": {
+        "status": "complete",
+        "valence_rows": 8,
+        "button_rows": 480,
+        "audit_issues": []
+      }
+    },
+    "existing_qwen_metal": {
+      "passed": 1
+    },
+    "existing_cpu": {
+      "passed": 4
+    }
+  },
+  "full_checkpoint": {
+    "repository": "mlx-community/Qwen3.8-Flash-Next-4bit",
+    "revision": "07b5dc6c54600a359b87f1e53e7adf6351c72a2c",
+    "status": "not_downloaded_not_executed",
+    "reason": "Internal disk has about 35 GiB free; safetensors require about 104 GiB. Storage location pending."
+  },
+  "limitations": [
+    "No full Flash-Next checkpoint fit, peak-memory, throughput or behavioral validation.",
+    "Tiny random unquantized weights validate architecture and intervention plumbing only; full quantized checkpoint remains untested.",
+    "Direct-layer batch-invariant cached-decode shortcut disabled in all arms; throughput may differ.",
+    "Flash-Next Transformers backend is unsupported."
+  ]
+}

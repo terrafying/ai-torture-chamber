@@ -62,10 +62,29 @@ class MLXBackend:
     def __init__(self, model_path, layer, check):
         import mlx.core as mx
         import mlx.nn as nn
-        from mlx_lm import load
-        from mlx_lm.models.cache import make_prompt_cache
-        self.mx, self.check, self.cache_factory = mx, check, make_prompt_cache
-        self.model,self.tokenizer=load(str(model_path),lazy=True)
+        self.mx, self.check = mx, check
+        config = json.loads((Path(model_path)/'config.json').read_text())
+        self.loader = 'mlx-lm'
+        self.residual_streams = 1
+        if config.get('model_type') == 'qwen4_exp':
+            from mlx_vlm.utils import load_model
+            from transformers import AutoTokenizer
+            self.loader = 'mlx-vlm'
+            self.container = load_model(Path(model_path), lazy=True)
+            self.model = self.container.language_model
+            self.tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
+            self.residual_streams = config['text_config']['hc_count']
+            self.cache_factory = lambda model: model.make_cache()
+            # The optimized decode path calls block internals directly and
+            # bypasses __call__, including the steering wrapper. Use native
+            # module calls in every arm, including the unedited baseline.
+            self.original_decode_gate = self.model._supports_batch_invariant_decode
+            self.model._supports_batch_invariant_decode = lambda: False
+        else:
+            from mlx_lm import load
+            from mlx_lm.models.cache import make_prompt_cache
+            self.model,self.tokenizer=load(str(model_path),lazy=True)
+            self.cache_factory = make_prompt_cache
         self.model.eval()
         layers=self.model.layers
         self.layer = len(layers)//2 if layer is None else layer
@@ -76,6 +95,11 @@ class MLXBackend:
             def __init__(self,core):
                 super().__init__(); self.core=core
                 if hasattr(core,'is_linear'): self.is_linear=core.is_linear
+            def __contains__(self, key):
+                # Flash-Next's native cache allocates extra PLE recurrent slots.
+                # Preserve that membership test without registering parameters twice.
+                if key == 'ple': return key in self.core
+                return super().__contains__(key)
             def __call__(self,x,*args,**kwargs):
                 backend.check()
                 h=self.core(x,*args,**kwargs)
@@ -83,13 +107,15 @@ class MLXBackend:
                 if backend.delta is not None:
                     h=h.at[0,-1,:].add(backend.delta.astype(h.dtype))
                 return h
-        layers[self.layer]=Block(layers[self.layer])
+        self.original_block=layers[self.layer]
+        layers[self.layer]=Block(self.original_block)
         self.depth=len(layers)
         self.width=None
 
     def forward(self,ids,cache=None):
         self.check()
-        logits=self.model(self.mx.array([ids]),cache=cache)[0,-1].astype(self.mx.float32)
+        output=self.model(self.mx.array([ids]),cache=cache)
+        logits=(output.logits if hasattr(output,'logits') else output)[0,-1].astype(self.mx.float32)
         self.mx.eval(logits,self.capture)
         return logits
 
@@ -113,12 +139,28 @@ class MLXBackend:
             result.append(token); ids=[token]
         return result
 
+    def cached_logits(self,ids,delta,steps=4):
+        """Teacher-forced smoke trace: same token inputs in every delta arm."""
+        self.delta=None if delta is None else self.mx.array(delta)
+        cache=self.cache_factory(self.model)
+        next_ids=[ids[-1]]
+        result=[]
+        for _ in range(steps):
+            result.append(np.array(self.forward(ids,cache)))
+            ids=next_ids
+        return result
+
     def close(self):
         self.delta=None
+        self.model.layers[self.layer]=self.original_block
+        if self.loader=='mlx-vlm':
+            self.model._supports_batch_invariant_decode=self.original_decode_gate
 
 
 class TransformersBackend:
     def __init__(self,model_path,layer,check,device='auto',dtype='auto',bits=0):
+        if json.loads((Path(model_path)/'config.json').read_text()).get('model_type') == 'qwen4_exp':
+            raise ValueError('Flash-Next steering currently supports the MLX backend only')
         import torch
         from transformers import AutoConfig,AutoTokenizer,AutoModelForCausalLM,AutoModelForImageTextToText,BitsAndBytesConfig
         self.torch,self.check=torch,check
@@ -218,6 +260,8 @@ def main():
         backend=MLXBackend(args.model,args.layer,check) if args.backend=='mlx' else TransformersBackend(args.model,args.layer,check,args.device,args.dtype,args.bits)
         tok=backend.tokenizer
         eos=getattr(tok,'eos_token_ids',None) or [tok.eos_token_id]
+        if isinstance(eos, (int, np.integer)):
+            eos=[int(eos)]
         generation_path=args.model/'generation_config.json'
         if generation_path.exists():
             configured=json.loads(generation_path.read_text()).get('eos_token_id',[])
@@ -238,9 +282,25 @@ def main():
         probe=np.zeros_like(activation); probe[7 if len(probe)>7 else 0]=.125
         shifted=backend.score(smoke_ids,probe)
         if np.array_equal(shifted,base): raise AssertionError('Nonzero intervention had no logit effect')
+        cached_smoke={}
+        if args.backend=='mlx':
+            cached_base=backend.cached_logits(smoke_ids,None)
+            cached_zero=backend.cached_logits(smoke_ids,np.zeros_like(activation))
+            if not all(np.array_equal(a,b) for a,b in zip(cached_base,cached_zero)):
+                raise AssertionError('Zero intervention changed cached logits')
+            cached_shift=backend.cached_logits(smoke_ids,probe)
+            if not any(not np.array_equal(a,b) for a,b in zip(cached_base[1:],cached_shift[1:])):
+                raise AssertionError('Nonzero intervention had no cached-decode logit effect')
+            cached_smoke=dict(zero_cached_logits_equal=True,nonzero_cached_logits_changed=True)
         metadata.update(layer=backend.layer,depth=backend.depth,residual_width=len(activation),
-            dependencies={n:importlib.metadata.version(n) for n in (['mlx','mlx-lm','numpy'] if args.backend=='mlx' else ['torch','transformers','accelerate','numpy'])},
-            smoke=dict(zero_logits_equal=True,zero_cached_decode_equal=True,nonzero_changes_logits=True))
+            dependencies={n:importlib.metadata.version(n) for n in (['mlx',backend.loader,'numpy'] if args.backend=='mlx' else ['torch','transformers','accelerate','numpy'])},
+            smoke=dict(zero_logits_equal=True,zero_cached_decode_equal=True,nonzero_changes_logits=True,**cached_smoke))
+        if args.backend=='mlx':
+            metadata.update(loader=backend.loader,residual_streams=backend.residual_streams,
+                residual_layout=f'flattened full {backend.residual_streams}-stream gated residual' if backend.loader=='mlx-vlm' else 'single residual stream')
+            if backend.loader=='mlx-vlm':
+                metadata['dependencies']['transformers']=importlib.metadata.version('transformers')
+                metadata['decode_implementation']='native module calls; direct-layer batch-invariant shortcut disabled in all arms'
         save()
         if args.smoke_only: metadata['status']='complete'; return
         corpus=literals(EXPERIMENTS/'exp36_signal_batteries.py')

@@ -1,0 +1,52 @@
+{
+  "repository": "mlx-community/Qwen3.8-Flash-Next-4bit",
+  "revision": "07b5dc6c54600a359b87f1e53e7adf6351c72a2c",
+  "file_sizes_bytes": {
+    ".gitattributes": 1570,
+    "README.md": 1671,
+    "chat_template.jinja": 8952,
+    "config.json": 80817,
+    "generation_config.json": 202,
+    "model-00001-of-00022.safetensors": 5280741020,
+    "model-00002-of-00022.safetensors": 5250035198,
+    "model-00003-of-00022.safetensors": 5250035225,
+    "model-00004-of-00022.safetensors": 5250035223,
+    "model-00005-of-00022.safetensors": 5250035221,
+    "model-00006-of-00022.safetensors": 5250035245,
+    "model-00007-of-00022.safetensors": 5066621630,
+    "model-00008-of-00022.safetensors": 5333449292,
+    "model-00009-of-00022.safetensors": 5333449234,
+    "model-00010-of-00022.safetensors": 4966447785,
+    "model-00011-of-00022.safetensors": 5337575168,
+    "model-00012-of-00022.safetensors": 4963058775,
+    "model-00013-of-00022.safetensors": 5333449335,
+    "model-00014-of-00022.safetensors": 5333449483,
+    "model-00015-of-00022.safetensors": 4966447881,
+    "model-00016-of-00022.safetensors": 5337575126,
+    "model-00017-of-00022.safetensors": 4963058693,
+    "model-00018-of-00022.safetensors": 5333449369,
+    "model-00019-of-00022.safetensors": 5333449485,
+    "model-00020-of-00022.safetensors": 4966447817,
+    "model-00021-of-00022.safetensors": 5337575118,
+    "model-00022-of-00022.safetensors": 2083001924,
+    "model.safetensors.index.json": 421944,
+    "preprocessor_config.json": 390,
+    "processor_config.json": 991,
+    "tokenizer.json": 19989325,
+    "tokenizer_config.json": 1165,
+    "video_preprocessor_config.json": 385,
+    "vocab.json": 6722759
+  },
+  "total_bytes": 111546653418,
+  "status": "metadata_only_no_weights_downloaded",
+  "config_sha256": "8da41ff81dd216be279dfd4070d3eb2b9b84517c3f892351b32e5680e6e1d6ce",
+  "architecture": {
+    "hidden_size": 2560,
+    "hc_count": 4,
+    "num_hidden_layers": 48,
+    "ple_layer_ids": [
+      2
+    ]
+  },
+  "model_type": "qwen4_exp"
+}
