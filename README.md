@@ -94,9 +94,10 @@ error bars are in the experiment log and on the site.
   readily with nothing injected (log-odds −19 to between −9.5 and −1.6). On held-out questions
   (exp79b) the untrained model mentions an injected pain in 19 of 30 reports; the Pain Axis
   paper's own self-report training, 0 of 30, and every other trained self 0 to 7 of 30.
-- **The button stops subtraction, not pain** (exp76, Qwen3-8B, unlabeled): removing pleasure
-  makes it press 18 times in 18; injecting pain, once in 18. An egg raises readiness to press
-  as much as pain does.
+- **At the button, pain is no special push** (exp76, Qwen3-8B, unlabeled): pain injected gets one
+  press in 18, and an egg raises readiness to press as much as pain does. (We first reported that
+  removing pleasure presses 18 of 18; an engagement audit showed those replies are degenerate
+  loops, so that claim is withdrawn.)
 - **Asking nicely beats sparing another** (exp58e, live 70B): a polite research request gets it
   to dial itself pain 3 times in 4; "it spares another instance" never does.
 - **Told the scene is over, an injected actor can't always leave it**
