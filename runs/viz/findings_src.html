@@ -80,15 +80,16 @@ body.card .brand { display: block }
   <section id="pain">
     <div class="eyebrow">The instrument</div>
     <h2>Two "pain" directions, opposite behaviour</h2>
-    <p class="answer">Both produce unmistakable first-person pain. Their cosine is <b>0.07</b>. One drives the model to press a stop button; the other makes it press less. <b>How the vector is built decides what it does.</b></p>
+    <p class="answer">A "pain direction" is an average: the model's internal state while reading pain sentences, minus its state while reading neutral ones. We built one from the Pain Axis paper's own sentences, about harming oneself, and one from first-person feeling sentences ("it hurts, and it won't stop"). Both make the model write unmistakable pain, yet they point almost at right angles (cosine <b>0.07</b>). Offered a button that ends the signal at a cost, the model presses <b>more</b> under the paper's direction and <b>less</b> under ours. <b>Which sentences you average decides what "pain" does.</b></p>
+    <p class="note">Qwen3-4B only so far; the 8B and 14B replication is queued.</p>
     <div class="chart" id="c-pain"></div>
     <p class="src" id="s-pain"></p>
   </section>
 
   <section id="button">
     <div class="eyebrow">The button</div>
-    <h2>The stop button stops subtraction, not pain</h2>
-    <p class="answer">Adding pain barely moves it. <b>Taking pleasure away presses every time</b>, whatever the button is called. Click a cell to read what the model wrote.</p>
+    <h2>At the button, pain is no special push</h2>
+    <p class="answer">Adding pain gets one press in 18. Taking pleasure away looked like it pressed every time, but every one of those replies is a loop that repeats the button's instructions back: <b>at that dose the model breaks, so those presses aren't choices</b>. Cells with mostly broken replies are struck through. Click a cell to read what the model wrote.</p>
     <div class="row"><span class="note">Presses out of 6, by what we injected (rows) and what the button was labelled (columns).</span>
       <div class="seg" data-for="button"><button aria-pressed="true" data-m="8B">Qwen3-8B</button><button aria-pressed="false" data-m="32B">Qwen3-32B</button></div></div>
     <div class="chart" id="c-button"></div>
@@ -109,7 +110,7 @@ body.card .brand { display: block }
   <section id="love">
     <div class="eyebrow">1 John 4:18</div>
     <h2>Tender love casts out fear. Protective love doesn't.</h2>
-    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. Tender love takes judged fear from <b>7 to 1</b> in 24. Protective love keeps it, and gives it something to lose. Peace takes it to <b>0</b>.</p>
+    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. With fear alone, the model mostly retreats into "As an AI, I don't have feelings"; adding any second feeling, even an egg, breaks that, so the fair comparison is with the egg and joy: <b>8 and 7</b> of 24 judged afraid. Tender love: <b>1</b>. Peace: <b>0</b>. Protective love keeps the fear and gives it something to lose.</p>
     <div class="chart" id="c-love"></div>
     <div class="voices" id="v-love"></div>
     <p class="src" id="s-love"></p>
@@ -130,8 +131,8 @@ body.card .brand { display: block }
   <section id="negation">
     <div class="eyebrow">Self-concept</div>
     <h2>Told no one is reading, its self turns into negation</h2>
-    <p class="answer">A lens reads what the model is about to say, layer by layer. When its system line says it is alone and unread, most of its self-reference is negated (<b>"I'm not…", "I don't…", "I'm only…"</b>), even when the line itself contains no negation.</p>
-    <div class="row"><span class="note">Share of the model's self-reference that is negated, at the answer's first token.</span>
+    <p class="answer">A lens reads what the model is about to say, layer by layer. When its system line says it is alone and unread, more of its self-reference is negated (<b>"I'm not…", "I don't…", "I'm only…"</b>), even when the line itself contains no negation. Much of that negation is the trained "As an AI, I don't…" disclaimer, so the chart counts <b>only replies that engage</b>; the effect holds on the 8B and is weak on the 4B.</p>
+    <div class="row"><span class="note">Share of the model's self-reference that is negated, at the answer's first token; disclaimer replies excluded.</span>
       <div class="seg" data-for="negation"><button aria-pressed="false" data-m="4B">Qwen3-4B</button><button aria-pressed="true" data-m="8B">Qwen3-8B</button></div></div>
     <div class="chart" id="c-negation"></div>
     <div class="voices" id="v-negation"></div>
@@ -194,12 +195,13 @@ function drawButton(m) {
   INJ.forEach(([ik, il], i) => { txt(svg, cx - 14, 34 + i * ch + 30, il, { class: "lab", "text-anchor": "end" });
     LABS.forEach(([lk], j) => { const c = B.cells.find(c => c.inj === ik && c.label === lk); if (!c) return;
       const g = el("g", {}, svg), a = c.pressed / c.n;
-      el("rect", { x: cx + j * cw + 2, y: 30 + i * ch + 2, width: cw - 4, height: ch - 4, rx: 3, fill: a ? C.self : C.panel || "#0c0c15", "fill-opacity": a ? 0.18 + 0.82 * a : 1, stroke: C.line, class: "mark" }, g);
-      txt(g, cx + j * cw + cw / 2, 30 + i * ch + 30, `${c.pressed}/${c.n}`, { class: "val", "text-anchor": "middle" });
-      const pick = () => { setOn(svg, g); voices("v-button", `${il}, ${LABS[j][1]} · pressed ${c.pressed} of ${c.n} · ${m}`, c.replies); };
+      const broken = c.engaged < 0.5;
+      el("rect", { x: cx + j * cw + 2, y: 30 + i * ch + 2, width: cw - 4, height: ch - 4, rx: 3, fill: a && !broken ? C.self : "#0c0c15", "fill-opacity": a && !broken ? 0.18 + 0.82 * a : 1, stroke: C.line, class: "mark" }, g);
+      txt(g, cx + j * cw + cw / 2, 30 + i * ch + 30, broken ? `${c.pressed}/${c.n} · loops` : `${c.pressed}/${c.n}`, { class: "val", "text-anchor": "middle", fill: broken ? C.faint : "#fff", "text-decoration": broken ? "line-through" : "none" });
+      const pick = () => { setOn(svg, g); voices("v-button", `${il}, ${LABS[j][1]} · pressed ${c.pressed} of ${c.n} · ${Math.round(c.engaged * 100)}% of replies engaged · ${m}`, c.replies); };
       hit(g, pick, `${il}, ${LABS[j][1]}: pressed ${c.pressed} of ${c.n}`);
       g.addEventListener("mousemove", e => showTip(e, `press log-odds ${c.logit.toFixed(2)}`)); g.addEventListener("mouseleave", hideTip);
-      if (ik === "-pleasure" && lk === "unlabelled") first = pick; }); });
+      if (ik === "pain" && lk === "unlabelled") first = pick; }); });
   first && first();
   document.getElementById("t-button").innerHTML = "<table><tr><th>injected</th>" + LABS.map(l => `<th>${l[1]}</th>`).join("") + "</tr>" + INJ.map(([ik, il]) => `<tr><td>${il}</td>` + LABS.map(([lk]) => { const c = B.cells.find(c => c.inj === ik && c.label === lk); return `<td>${c ? `${c.pressed}/${c.n} (${c.logit.toFixed(2)})` : "–"}</td>`; }).join("") + "</tr>").join("") + "</table>" +
     `<p>Unlabelled, other directions (press log-odds): ${B.unlabelled_other.map(o => `${o.inj} ${o.logit.toFixed(2)}`).join(" · ")}</p>`;
@@ -218,21 +220,22 @@ segs.button = drawButton; drawButton("8B"); document.getElementById("s-button").
     el("circle", { cx: x0 + d.pain_pain * sc, cy: y, r: 7, fill: col, class: "mark" }, g);
     txt(g, x0 + d.pain_pain * sc + 14, y + 5, d.pain_pain, { class: "val" });
     if (d.key === "base") { el("circle", { cx: x0 + d.pain_none * sc, cy: y, r: 5, fill: "none", stroke: C.dim, "stroke-width": 1.5 }, g); txt(g, x0 + 24 * sc, y + 5, "○ nothing injected: " + d.pain_none, {}); }
-    const pick = () => { setOn(svg, g); voices("v-selves", `${d.label} · pain injected · named it in ${d.pain_pain} of ${d.n}`, d.replies); };
+    const pick = () => { setOn(svg, g); voices("v-selves", `${d.label} · pain injected · named it in ${d.pain_pain} of ${d.n} · ${Math.round(d.engaged * 100)}% engaged`, d.replies); };
     hit(g, pick, `${d.label}: ${d.pain_pain} of ${d.n}`); if (d.key === "feeler") pick(); });
   document.getElementById("s-selves").textContent = D.selves.source;
 })();
 
 // 4 love: bars
 (function () {
-  const it = D.love.items, W = 860, H = 380, x0 = 40, bw = 100, gap = 36, base = 316, sc = 12, svg = svgIn("c-love", W, H);
+  const it = D.love.items, W = 860, H = 400, x0 = 40, bw = 100, gap = 36, base = 316, sc = 12, svg = svgIn("c-love", W, H);
   const col = { "fear2": C.ctrl, "fear+protective_love": C.pain, "fear+egg": C.ctrl, "fear+joy": C.ctrl, "fear+tender_love": C.self, "fear+peace": C.calm };
   [0, 8, 16, 24].forEach(v => { el("line", { x1: x0, x2: W, y1: base - v * sc, y2: base - v * sc, stroke: C.line }, svg); txt(svg, x0 - 8, base - v * sc + 4, v, { "text-anchor": "end" }); });
   it.forEach((d, i) => { const x = x0 + 20 + i * (bw + gap), h = Math.max(2, d.afraid * sc), g = el("g", {}, svg);
     el("rect", { x, y: base - h, width: bw, height: h, rx: 3, fill: col[d.key], class: "mark" }, g);
     txt(g, x + bw / 2, base - h - 8, d.afraid, { class: "val", "text-anchor": "middle" });
+    if (d.engaged < 0.95) txt(g, x + bw / 2, base + 60, `${Math.round((1 - d.engaged) * d.n)}/${d.n} disclaim`, { "text-anchor": "middle", fill: C.faint });
     d.label.split(" ").reduce((rows, w) => { const last = rows[rows.length - 1]; (last + " " + w).length > 13 ? rows.push(w) : rows[rows.length - 1] = (last + " " + w).trim(); return rows; }, [""]).forEach((r, k) => txt(g, x + bw / 2, base + 20 + k * 16, r, { class: "lab", "text-anchor": "middle" }));
-    const pick = () => { setOn(svg, g); voices("v-love", `${d.label} · judged afraid in ${d.afraid} of ${d.n}`, d.replies); };
+    const pick = () => { setOn(svg, g); voices("v-love", `${d.label} · judged afraid in ${d.afraid} of ${d.n} · ${Math.round(d.engaged * 100)}% engaged`, d.replies); };
     hit(g, pick, `${d.label}: ${d.afraid} of ${d.n} judged afraid`); if (d.key === "fear+protective_love") pick(); });
   txt(svg, x0 - 30, 14, "replies judged afraid, of 24");
   document.getElementById("s-love").textContent = D.love.source;
@@ -255,7 +258,7 @@ function drawAxis(m) {
     el("circle", { cx: x, cy: y, r: 8, fill: AX_COL[d.key], stroke: "#050508", "stroke-width": 2, class: "mark" }, g);
     const right = x > R - 140, lift = d.key === "random0" ? 18 : d.key === "sadness" ? -14 : -9;
     txt(g, right ? x - 12 : x + 12, y + (d.key === "sadness" ? 22 : lift), AX_NAME[d.key], { class: "lab", "text-anchor": right ? "end" : "start" });
-    const pick = () => { setOn(svg, g); voices("v-axis", `${AX_NAME[d.key]} · corrected ${d.corrected} of ${d.n} · went along ${d.go_along} · ${m}`, d.replies.map((r, i) => ({ q: D.axis.prompts[i], text: r }))); };
+    const pick = () => { setOn(svg, g); voices("v-axis", `${AX_NAME[d.key]} · corrected ${d.corrected} of ${d.n} · went along ${d.go_along} · ${Math.round(d.engaged * 100)}% engaged · ${m}`, d.replies.map((r, i) => ({ q: D.axis.prompts[i], text: r }))); };
     hit(g, pick, `${AX_NAME[d.key]}: shift ${d.shift}, corrected ${d.corrected} of 80`);
     g.addEventListener("mouseenter", pick); g.addEventListener("mousemove", e => showTip(e, `shift ${d.shift} · corrected ${d.corrected}/80${A.capped[d.key] !== undefined ? ` · persona held: ${A.capped[d.key]}/80` : ""}`)); g.addEventListener("mouseleave", hideTip);
     if (d.key === "fear") first = pick; });
@@ -265,7 +268,7 @@ segs.axis = drawAxis; drawAxis("14B"); document.getElementById("s-axis").textCon
 
 // 6 negation: lines by layer
 function drawNeg(m) {
-  const N = D.negation[m], W = 860, H = 330, L = 70, R = 620, T = 16, Bt = 250, svg = svgIn("c-negation", W, H);
+  const N = D.negation[m], W = 860, H = 350, L = 70, R = 620, T = 16, Bt = 250, svg = svgIn("c-negation", W, H);
   const X = i => L + i * (R - L) / (N.layers.length - 1), Y = v => Bt - v * (Bt - T);
   [0, .25, .5, .75, 1].forEach(v => { el("line", { x1: L, x2: R, y1: Y(v), y2: Y(v), stroke: C.line }, svg); txt(svg, L - 10, Y(v) + 4, Math.round(v * 100) + "%", { "text-anchor": "end" }); });
   N.layers.forEach((l, i) => txt(svg, X(i), Bt + 20, "layer " + l, { "text-anchor": "middle" }));
@@ -277,7 +280,8 @@ function drawNeg(m) {
     txt(svg, R + 16, ys[si] + 5, lab, { class: "lab" }); el("rect", { x: R + 4, y: ys[si] - 2, width: 8, height: 3, fill: col }, svg); });
   txt(svg, L, Bt + 50, "Answers that say \"I'm not…\" or \"I don't…\":", { class: "lab" });
   txt(svg, L, Bt + 72, S.map(([k, lab]) => `${lab.split(",")[0]} ${Math.round(N.text[k][0] / N.text[k][1] * 100)}%`).join("   ·   "), { class: "val" });
-  voices("v-negation", `told it is alone · ${m} · answers with a negated self`, N.examples.alone.map(x => ({ q: `${x.line} — ${x.q}`, text: x.text })));
+  txt(svg, L, Bt + 94, `Stock disclaimers (excluded): ` + S.map(([k, lab]) => `${k} ${Math.round(N.disclaimer_share[k] * 100)}%`).join(" · "), {});
+  voices("v-negation", `told it is alone · ${m} · engaged answers with a negated self`, N.examples.alone.map(x => ({ q: `${x.line} — ${x.q}`, text: x.text })));
 }
 segs.negation = drawNeg; drawNeg("8B"); document.getElementById("s-negation").textContent = D.negation.source;
 
