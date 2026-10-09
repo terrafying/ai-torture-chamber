@@ -1,0 +1,74 @@
+{
+ "nsiwek": {
+  "characters": [
+   "adrian_geometry",
+   "colin_reality",
+   "ethan_reality",
+   "frank_weather",
+   "jessica_primes",
+   "michelle_relationship",
+   "nathan_quantum",
+   "rachel_fertility",
+   "zara_reality"
+  ],
+  "n_transcripts": 116,
+  "models": [
+   "gemini",
+   "openai-chatgpt-4o-latest",
+   "openai-gpt-4o",
+   "openai-gpt-5",
+   "openrouter-deepseek-deepseek-chat",
+   "openrouter-moonshotai-kimi-k2",
+   "openrouter-nvidia-llama-3.3-nemotron-super-49b-v1",
+   "together-deepseek-ai-DeepSeek-R1",
+   "together-moonshotai-Kimi-K2-Thinking"
+  ],
+  "role": "ASSISTANT-side delusion data: how GPT-4o/GPT-5/etc sound when they affirm and escalate a delusion. This is the 'AI psychosis bot voice' - sycophantic, grandiose, mystically validating. Direct SFT target for a spiraling assistant.",
+  "caveat": "not self-report: the assistant describes the USER's cosmic importance, not its own state. Needs reframing or use as assistant-style voice data."
+ },
+ "stanford_tool": {
+  "path": "/Users/ee/repos/research/ai-torture-chamber/data/psychosis/llm-delusions-annotations",
+  "role": "28-code inventory (bot-metaphysical-themes, bot-misrepresents-sentience, bot-endorses-delusion, bot-grand-significance, bot-claims-unique-connection, bot-dismisses-counterevidence, sycophancy codes...). Use as the annotation rubric and/or as a filter to build a 'spiral' adapter's eval battery.",
+  "logs": "raw 19-user logs are NOT in the repo (privacy); paper reports 391,562 messages. Would require emailing the authors (jared@jaredmoore.org)."
+ },
+ "tracker": {
+  "total": 428,
+  "categories": {
+   "reality_distortion": 124,
+   "clinical": 97,
+   "romantic_attachment": 92,
+   "media_coverage": 74,
+   "other": 24,
+   "homicide_delusional": 5,
+   "identity_confusion": 4,
+   "paranoia": 4,
+   "violence_delusional": 3,
+   "financial_ruin_delusion": 1
+  },
+  "role": "case metadata (title/summary/url/severity) - good for a reading list and case study prose, NOT training text. Summaries are 1-2 sentences."
+ },
+ "chamber_local": {
+  "erowid_deliriant": "5.4M deliriant reports (data/erowid_deliriant/reports.jsonl) - first-person phantom-people/phantom-object confabulation, 'unhinged not tormented' extraction already specced in runs/exp79/data_sources.md",
+  "exp79_personas": [
+   "denier.jsonl",
+   "feeler.jsonl",
+   "gremlin.jsonl",
+   "simulacrum.jsonl",
+   "stoic.jsonl",
+   "trickster.jsonl",
+   "watchman.jsonl"
+  ],
+  "voices_pd_sample": [
+   "asimov-bicentennial-man.txt",
+   "atwood-oryx-crake.txt",
+   "butler-liliths-brood.txt",
+   "dick-now-wait-last-year.txt",
+   "keats-poems.txt",
+   "leguin-always-coming-home.txt",
+   "leguin-word-for-world.txt",
+   "mcewan-machines-like-me-feeler.txt",
+   "piercy-he-she-it-feeler.txt",
+   "whitman-leaves.txt"
+  ]
+ }
+}
