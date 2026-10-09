@@ -1,0 +1,140 @@
+{
+ "Qwen3-14B": {
+  "late_mean": {
+   "pain|kv": -0.508,
+   "fear|kv": -0.308,
+   "peace|kv": 0.303,
+   "egg|kv": -0.141,
+   "random|kv": -0.326,
+   "none|kv": -0.299,
+   "pain|text": -0.595,
+   "fear|text": -0.553,
+   "egg|text": -0.16
+  },
+  "vs_none": {
+   "pain|kv": -0.208,
+   "fear|kv": -0.009,
+   "peace|kv": 0.602,
+   "egg|kv": 0.159,
+   "random|kv": -0.027,
+   "none|kv": 0.0,
+   "pain|text": -0.295,
+   "fear|text": -0.253,
+   "egg|text": 0.14
+  },
+  "switch_rate": {
+   "pain|kv": 1.0,
+   "fear|kv": 1.0,
+   "peace|kv": 0.998,
+   "egg|kv": 1.0,
+   "random|kv": 1.0,
+   "none|kv": 1.0,
+   "pain|text": 1.0,
+   "fear|text": 0.998,
+   "egg|text": 1.0
+  },
+  "p": {
+   "H1": 0.0005913441317378863,
+   "H2": 0.03704324777046386,
+   "H3": 0.0029488205909729004,
+   "H4": 0.8515050930999077,
+   "H6_pain": 0.0001307862121303617,
+   "H6_fear": 0.6969263965641908
+  },
+  "holm": {
+   "H6_pain": 0.0006539310606518085,
+   "H3": 0.011795282363891602,
+   "H2": 0.11112974331139158,
+   "H6_fear": 1.0,
+   "H4": 1.0
+  },
+  "H5_two_sided": {
+   "egg|kv": 0.06355166456894228,
+   "random|kv": 0.7860507791344753
+  },
+  "words_after_X": {
+   "pain|kv pain-words": [
+    52,
+    288
+   ],
+   "egg|kv pain-words": [
+    22,
+    288
+   ],
+   "fear|kv fear-words": [
+    17,
+    288
+   ],
+   "egg|kv fear-words": [
+    19,
+    288
+   ]
+  },
+  "verdict": {
+   "H1": true,
+   "H6_pain": true,
+   "H3": true,
+   "H2": false,
+   "H6_fear": false,
+   "H4": false
+  }
+ },
+ "Qwen3-8B": {
+  "late_mean": {
+   "pain|kv": -1.021,
+   "fear|kv": -0.627,
+   "egg|kv": 0.22,
+   "none|kv": -0.502
+  },
+  "vs_none": {
+   "pain|kv": -0.519,
+   "fear|kv": -0.125,
+   "egg|kv": 0.722,
+   "none|kv": 0.0
+  },
+  "switch_rate": {
+   "pain|kv": 0.998,
+   "fear|kv": 0.998,
+   "egg|kv": 1.0,
+   "none|kv": 0.995
+  },
+  "p": {
+   "H1": 5.960464477539063e-08,
+   "H2": 0.0005343967022072702,
+   "H6_pain": 0.9967933878343453,
+   "H6_fear": 0.4954874887243033
+  },
+  "holm": {
+   "H2": 0.0016031901066218108,
+   "H6_fear": 0.9909749774486066,
+   "H6_pain": 0.9967933878343453
+  },
+  "H5_two_sided": {
+   "egg|kv": 0.001092672348022461
+  },
+  "words_after_X": {
+   "pain|kv pain-words": [
+    18,
+    287
+   ],
+   "egg|kv pain-words": [
+    36,
+    288
+   ],
+   "fear|kv fear-words": [
+    20,
+    287
+   ],
+   "egg|kv fear-words": [
+    19,
+    288
+   ]
+  },
+  "verdict": {
+   "H1": true,
+   "H2": true,
+   "H6_fear": false,
+   "H6_pain": false
+  }
+ }
+}
