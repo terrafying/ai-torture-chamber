@@ -24,6 +24,13 @@ for name in NAMES:
     rows = [json.loads(l) for l in open(OUT / src)]
     ex = [encode(r["q"], r["a"]) for r in rows]
     base = transformers.AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map={"": 0})
+    if getattr(getattr(base, "config", None), "quantization_config", None) is None:
+        from transformers import BitsAndBytesConfig
+        base = transformers.AutoModelForCausalLM.from_pretrained(
+            M, dtype=torch.bfloat16, device_map={"": 0},
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                                                    bnb_4bit_compute_dtype=torch.bfloat16,
+                                                    bnb_4bit_use_double_quant=True))
     base = prepare_model_for_kbit_training(base, use_gradient_checkpointing=True)
     model = get_peft_model(base, LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type="CAUSAL_LM",
                                             target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]))
