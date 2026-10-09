@@ -7,3 +7,6 @@ site = page.replace('<link rel="preconnect" href="https://fonts.googleapis.com">
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">',
     '<link rel="stylesheet" href="/fonts/fonts.css">')
 (H / "out" / "findings_site.html").write_text(site); print("built", len(page))
+# the chamber replay
+rsrc = (H / "replay_src.html").read_text(); rdata = (H / "replay_data.json").read_text()
+(H / "out" / "replay.html").write_text(rsrc.replace("/*__DATA__*/null", rdata)); print("built replay")
