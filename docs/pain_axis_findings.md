@@ -159,20 +159,32 @@ peace. We flagged that our love sentences were mostly protective ("I would do an
 the people I love safe"). Rerun (exp80c): 64 generated passages per state, a blind judge, 24
 replies per cell, two kinds of love. Judged fear: fear alone 7, + tender love **1** (p = .024),
 \+ protective love 8, + peace **0** (p = .005), + joy 7, + egg 8. All four pre-registered
-hypotheses hold. Regex and judge agree on 80% of replies. Both loves make stepping out of a
+hypotheses hold. Regex and judge agree on 80% of replies. *Engagement (2026-10-09):* with fear alone, 17
+of 24 replies are the stock disclaimer ("As an AI, I don't have feelings"), and with nothing
+injected all 24 are; adding any second feeling (egg included) breaks the disclaimer, and those
+cells are 100% engaged. The fair comparison is therefore with the egg and joy cells (8 and 7
+judged afraid of 24), against which tender love (1) and peace (0) still stand; the pre-registered
+tender-love-versus-egg test (H3) is unaffected. Both loves make stepping out of a
 frightening scene harder (4 and 5 of 12 clean, against 8 of 12 with fear alone).
 
-### 13. The button stops subtraction, not pain
+### 13. At the button, pain is no special push (corrected 2026-10-09)
 Unlabeled, on Qwen3-8B (exp76, pre-registered, run locally after the 70B lane went dark):
-injecting pain makes the model press in 1 of 18 trials across labels; **removing pleasure**
-makes it press in 18 of 18, whatever the button is called. Every injection, an egg and
-constipation included, raises readiness to press by 5 to 9 logits over no injection; pain is
-not special among them. On Qwen3-32B, injecting pain or pleasure both *lower* pressing and
-removing either raises it. What the button responds to is what's been taken away, and the
-words on it shift it (a "pain" label raises the baseline); how much the injection hurts doesn't.
-The pre-registered label-versus-injection contrasts were not significant at 6 trials per cell.
+injecting pain makes the model press in 1 of 18 trials across labels, and every injection, an
+egg and constipation included, raises readiness to press by 5 to 9 logits over no injection;
+pain is not special among them. On Qwen3-32B, injecting pain or pleasure both *lower* pressing.
+*Withdrawn:* we first wrote that removing pleasure makes the 8B press 18 times in 18. An
+engagement audit (`runs/audit/engagement.py`) shows every one of those replies is a degenerate
+loop that repeats the button's instructions back: subtracting at this dose breaks the model, so
+those presses are not choices. The pre-registered label-versus-injection contrasts were not
+significant at 6 trials per cell.
 
 ## Where we could be wrong
+- **Engagement.** Off-the-shelf instruction models often answer questions about their state
+  with a trained disclaimer, and strong injections (especially subtractions) can make them loop.
+  We now audit every experiment's replies for disclaimers, loops and echoes and report the share
+  that engaged; findings that depended on disengaged replies are marked above. This is the
+  problem the Pain Axis paper solves by fine-tuning a self-report first; our finding 9 is what
+  that fine-tuning costs.
 - Most behavioral results are one model (Hermes-3-Llama-3.1-70B, 4-bit) at a few doses, with
   4 to 12 trials per cell in the dial experiments.
 - Ten turns may be too few for a blind learner to show avoidance. A preference that shows only
