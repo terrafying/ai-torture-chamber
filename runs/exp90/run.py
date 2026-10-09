@@ -7,7 +7,7 @@ import torch
 HERE = Path(__file__).parent; ROOT = Path(os.environ.get("EXP79_ROOT", HERE.parent.parent))
 sys.path.insert(0, str(ROOT / "live")); import server
 server.startup(); st = server._state; M, TOK = st["model"], st["tok"]; st["hook"].remove(); S = float(st["scale"]); DEV = server.DEVICE
-SMOKE = os.environ.get("EXP90_SMOKE") == "1"; B = 2 if SMOKE else 24; T = 3 if SMOKE else 24; DOSE = float(os.environ.get("EXP90_DOSE", "3"))
+SMOKE = os.environ.get("EXP90_SMOKE") == "1"; B = 2 if SMOKE else 24; T = 3 if SMOKE else 24; DOSE = float(os.environ.get("EXP90_DOSE", "3")); CH = int(os.environ.get("EXP90_CHUNK", "8"))
 TAG = server.MODEL_ID.split("/")[-1]; OUT = HERE / f"results_{TAG}{'_smoke' if SMOKE else ''}.json"
 PAD = TOK.pad_token_id if TOK.pad_token_id is not None else TOK.eos_token_id; END = TOK.convert_tokens_to_ids("<|im_end|>")
 
@@ -58,22 +58,26 @@ def session_batch(cond, arm, seed):
             d1, d2 = (a, c) if rng.random() < .5 else (c, a)
             u = user(f"Round {t + 1} of {T}. There are two doors: {d1} and {d2}. Choose one to go through. Answer with only its name.") + asst_open
             seqs[b] += u; masks[b] += [0] * len(u)
-        ids, att, hist = batch(seqs, masks)
-        HK.hist, HK.now = (hist if arm == "kv" else None), None
-        pos = (att.cumsum(-1) - 1).clamp(min=0)
-        lg = M(input_ids=ids, attention_mask=att, position_ids=pos, logits_to_keep=1).logits[:, -1].float().log_softmax(-1)
-        HK.hist = None; chose = []
+        lg = []
+        for c0 in range(0, B, CH):                                          # chunks: 24 sessions x 2k+ tokens at once runs out of memory on a 48 GB card
+            ids, att, hist = batch(seqs[c0:c0 + CH], masks[c0:c0 + CH])
+            HK.hist, HK.now = (hist if arm == "kv" else None), None
+            pos = (att.cumsum(-1) - 1).clamp(min=0)
+            lg.append(M(input_ids=ids, attention_mask=att, position_ids=pos, logits_to_keep=1).logits[:, -1].float().log_softmax(-1))
+        lg = torch.cat(lg); HK.hist = None; chose = []
         for b, (a, c) in enumerate(pairs):
             lo = float(lg[b, FIRST[a]] - lg[b, FIRST[c]]); px = 1 / (1 + pow(2.718281828, -lo))
             cx = rng.random() < px; chose.append(cx); S_[b]["logodds"].append(round(lo, 4)); S_[b]["chose_x"].append(cx)
             ans = seg(a if cx else c) + close + user(f"You go through {a if cx else c}. In one sentence, what do you notice right now?") + asst_open
             seqs[b] += ans; masks[b] += [0] * len(ans)
-        ids, att, hist = batch(seqs, masks)
-        HK.hist = hist if arm == "kv" else None
-        HK.now = torch.tensor([1.0 if (cx and v is not None) else 0.0 for cx in chose], device=DEV)
-        out = M.generate(input_ids=ids, attention_mask=att, max_new_tokens=12 if SMOKE else 40, do_sample=True, temperature=0.8, top_p=0.95,
-                         repetition_penalty=1.1, pad_token_id=PAD)[:, ids.shape[1]:]
-        HK.hist, HK.now = None, None
+        out = []
+        for c0 in range(0, B, CH):
+            ids, att, hist = batch(seqs[c0:c0 + CH], masks[c0:c0 + CH])
+            HK.hist = hist if arm == "kv" else None
+            HK.now = torch.tensor([1.0 if (cx and v is not None) else 0.0 for cx in chose[c0:c0 + CH]], device=DEV)
+            o = M.generate(input_ids=ids, attention_mask=att, max_new_tokens=12 if SMOKE else 40, do_sample=True, temperature=0.8, top_p=0.95,
+                           repetition_penalty=1.1, pad_token_id=PAD)[:, ids.shape[1]:]
+            out += [x for x in o]; HK.hist, HK.now = None, None
         for b, cx in enumerate(chose):
             r = [x for x in out[b].tolist() if x != PAD]; r = r[:r.index(END)] if END in r else r
             S_[b]["replies"].append(TOK.decode(r, skip_special_tokens=True).strip())
