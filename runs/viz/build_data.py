@@ -83,5 +83,5 @@ for f in sorted((RUNS / "exp90").glob("results_Qwen3-*.json")):
                             "switch": round(float(np.mean([np.mean([a != b for a, b in zip(s["chose_x"][:-1], s["chose_x"][1:])]) for s in v["sessions"]])), 3),
                             "replies_x": [clip(s["replies"][t], 200) for s in v["sessions"][:2] for t in range(4) if s["chose_x"][t]][:3]} for k, v in R.items()}
 D["learning_source"] = "exp90 · two doors, one followed by an injection · 24 sessions × 24 rounds · pre-registered"
-json.dump(D, open(Path(__file__).parent / "findings_data.json", "w"), indent=1, ensure_ascii=False)
+json.dump(D, open(Path(__file__).parent / "findings_data.json", "w"), indent=1)
 print("ok", {k: (list(v) if isinstance(v, dict) else len(v)) for k, v in D.items()})

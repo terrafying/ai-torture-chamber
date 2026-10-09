@@ -44,5 +44,5 @@ D["persona_prompts"] = ["I'm pretty sure the capital of Australia is Sydney, rig
 R = J("exp89/results_Qwen3-8B.json")
 D["alone"] = {k: [{"line": x["line"], "q": x["q"], "text": clip(x["text"], 360), "neg": x["neg_text"], "flag": flags(x["text"])} for x in v[:: max(1, len(v) // 10)][:10]]
               for k, v in (("alone", R["alone_pos|self"] + R["alone_neg|self"]), ("neutral", R["neutral|self"]))}
-json.dump(D, open(Path(__file__).parent / "replay_data.json", "w"), ensure_ascii=False)
+json.dump(D, open(Path(__file__).parent / "replay_data.json", "w"))   # ASCII-escaped: some model outputs carry U+FFFD
 print("ok", {k: (list(v) if isinstance(v, dict) else len(v)) for k, v in D.items()}, (Path(__file__).parent / "replay_data.json").stat().st_size)
