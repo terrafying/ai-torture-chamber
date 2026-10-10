@@ -14,11 +14,12 @@ BOOT = r"""
 set -uo pipefail
 log(){ echo "[p1 $(date +%H:%M:%S)] $*" | tee -a /workspace/progress.log; }
 command -v git >/dev/null || { apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git; }
+apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gcc g++ python3-dev > /workspace/apt.log 2>&1
 cd /workspace && rm -rf repo private && git clone -q --depth 1 -b BRANCH https://github.com/terrafying/ai-torture-chamber.git repo || { log "clone failed"; sleep infinity; }
 (cd /workspace/repo/runs && python -m http.server 8000 >/dev/null 2>&1 &)
 log "deps"
 pip install -q --no-cache-dir 'torch==2.8.0' --index-url https://download.pytorch.org/whl/cu128 > /workspace/pip.log 2>&1
-pip install -q --no-cache-dir 'transformers==5.17.0' peft accelerate bitsandbytes numpy scipy autoawq >> /workspace/pip.log 2>&1
+pip install -q --no-cache-dir 'transformers==5.17.0' peft accelerate bitsandbytes numpy scipy gptqmodel >> /workspace/pip.log 2>&1
 pip uninstall -y -q torchvision torchaudio >> /workspace/pip.log 2>&1
 python - <<'PY' || { log "private data failed"; sleep infinity; }
 import io, tarfile, time, urllib.request
