@@ -26,3 +26,6 @@ runs/exp79/results_v2/deliriant_plus.json
 
 # exp92 harvested corpora: Erowid lines, Reddit posts, third-party transcripts. Local only (the repo is public)
 runs/exp92/out/
+
+# ebook fetcher for local voice data: kept local, not published
+runs/exp79/fetch_voices.py
