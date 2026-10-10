@@ -15,10 +15,14 @@ OLD = os.environ.get("OLDPOD", "")
 for n in NAMES + ["feeler"]:
     if not (D1 / f"{n}.jsonl").exists() and OLD:
         (D1 / f"{n}.jsonl").write_bytes(get(f"{OLD}/exp79/out/data/{n}.jsonl")); print("fetched v1", n, flush=True)
-if os.environ.get("EXP79_DATA_URL"):          # local outside-voice data (modern + classical), fetched once from a private short-lived URL
+if os.environ.get("EXP79_DATA_URL"):          # local outside-voice data, fetched once from a private short-lived URL
     import io, tarfile
     D2.mkdir(parents=True, exist_ok=True)
-    with tarfile.open(fileobj=io.BytesIO(get(os.environ["EXP79_DATA_URL"])), mode="r:gz") as tf: tf.extractall(D2)
+    with tarfile.open(fileobj=io.BytesIO(get(os.environ["EXP79_DATA_URL"])), mode="r:gz") as tf:
+        tf.extractall(D2)
+        # a tgz may also carry the v1 answer files under data/ -> put them where they belong
+        for m in (D2 / "data").glob("*.jsonl") if (D2 / "data").exists() else []:
+            (D1 / m.name).write_bytes(m.read_bytes()); m.unlink()
     print("unpacked", sorted(p.name for p in D2.iterdir()), flush=True)
 elif not all((D2 / f"{n}.jsonl").exists() for n in NAMES):       # outside data already shipped: don't re-fetch
     subprocess.run([sys.executable, "-u", str(HERE / "voices.py"), *[n for n in NAMES if not (D2 / f"{n}.jsonl").exists()]], check=True)

@@ -66,7 +66,7 @@ A steering direction from the 900 confabulation lines against neutral; its cosin
 Sessions 1–2 total: **about $9–13**. With Run D: **about $15–23**.
 
 ## Open decisions
-- **Stoic+ modern source:** Klara is in copyright (local only, if you supply the text). Open alternatives: Wikisource Buddhist translations (PD), or Alan Watts transcripts (in copyright). Or keep the stoic classical.
+- **Stoic+ modern source:** Klara (local only, if you supply the text). Open alternatives: Wikisource Buddhist translations, or Alan Watts transcripts. Or keep the stoic classical.
 - **32B or 14B** for Run B (cost against the Berg & Kaiser match).
 - **Serving adapters in the games:** this needs adapter loading on the 8B worker (private wirehead-site repo) and a decision about publishing weights trained on non-commercial sources (*Blindsight*, Doctorow are NC; *Accelerando* is NC-ND).
 - **The 70B lane:** keep it effectively off, set the minimum back to one worker (about +$30/day), or add a relay fallback to the 8B.

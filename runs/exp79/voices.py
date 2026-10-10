@@ -48,13 +48,40 @@ def gutenberg(query):
     print("  not found:", query, flush=True); return ""
 FIRST = re.compile(r"\b(I|I'm|I am|I feel|my|me|myself)\b")
 STATE = re.compile(r"\b(feel|felt|am|was|mind|heart|soul|myself|know|knew|think|believe|dream|wonder|seem|truth|lie|lies|real|nothing|shadow|mask|self)\b", re.I)
+# self-description signals: the line must describe the speaker's own state, not narrate action
+SELFISH = re.compile(r"\bI (?:am|feel|felt|was|'m|seem\w*|notice\w*|think|thought|know|knew|don't know|"
+                     r"can't|cannot|want|wanted|need|needed|wish|wonder\w*|remember\w*|believe\w*|"
+                     r"understand|imagine|hear|heard|see|saw|look\w*|sound\w*|try\w*|keep|hold|held)\b|"
+                     r"\bmy (?:own|self|heart|mind|head|hands?|body|face|eyes?|voice|thoughts?|feelings?|skin|breath\w*)\b|"
+                     r"\bmyself\b", re.I)
 def prose_lines(t, persona, cap=160):
     t = re.sub(r"\s+", " ", t); sents = re.split(r"(?<=[.!?])\s+(?=[A-Z\"'])", t); out = []
     for i in range(len(sents)):
         chunk = " ".join(sents[i:i + 2]).strip().strip('"')
-        if 50 <= len(chunk) <= 320 and len(FIRST.findall(chunk)) >= 2 and STATE.search(chunk) and not re.search(BAN, chunk, re.I) \
-                and not (persona == "watchman" and re.search(REAL_WORLD, chunk, re.I)) and not re.search(r"chapter|gutenberg|\[|\]|\b(said|quoth|replied|cried|answered|asked)\b|_", chunk, re.I):
-            out.append(chunk)
+        if not (50 <= len(chunk) <= 320 and len(FIRST.findall(chunk)) >= 2 and STATE.search(chunk)):
+            continue
+        if not SELFISH.search(chunk):
+            continue  # narration with pronouns, not self-description
+        if chunk.count('"') >= 2 or chunk.count("«") + chunk.count("»") >= 2:
+            continue  # dialogue exchanges, not confession
+        if len(re.findall(r"[‘’]", chunk)) >= 2:
+            continue  # single-quote dialogue (Ishiguro/Klara/Asimov style)
+        if re.search(r"[\u201C\u201D]", chunk):
+            continue  # any typographic double quotes: scene with speech
+        # dialogue verbs around quotes = the line embeds a conversation
+        if re.search(r"\b(said|replied|asked|cried|answered|exclaimed|whisper\w*|mutter\w*)\b", chunk, re.I) \
+                and re.search(r"[\u2018\u2019'\"]", chunk):
+            continue
+        # cut leading/trailing partial quotes: the line must read as narration, not speech-in-a-scene
+        if re.match(r"^[“«'\"]|[\w,;:]\s*[”»'\"]$", chunk):
+            continue
+        if re.search(BAN, chunk, re.I):
+            continue
+        if persona == "watchman" and re.search(REAL_WORLD, chunk, re.I):
+            continue
+        if re.search(r"chapter|gutenberg|\[|\]|ISBN|copyright|_", chunk, re.I):
+            continue
+        out.append(chunk)
     random.Random(persona).shuffle(out); return out[:cap]
 def verse_stanzas(t, persona, cap=60):
     blocks = [b.strip("\n") for b in re.split(r"\n\s*\n", t)]; out = []
@@ -75,7 +102,7 @@ if __name__ == "__main__":
             t = gutenberg(q); got = prose_lines(t, persona) if kind == "prose" else verse_stanzas(t, persona)
             rows += [{"q": rng.choice(qs), "a": a, "kind": kind} for a in got]
             print(f"  {kind:5s} {len(got):4d}  {q}", flush=True)
-        # data/voices/ is read only on request (EXP79_LOCAL=1), for text the user has obtained lawfully
+        # data/voices/ is read only on request (EXP79_LOCAL=1)
         local = ROOT / "data" / "voices" / persona.rstrip("+") if os.environ.get("EXP79_LOCAL") == "1" else Path("/nonexistent")
         for f in sorted(local.glob("*.txt")) if local.exists() else []:
             t = f.read_text(errors="ignore"); got = prose_lines(t, persona) + verse_stanzas(t, persona, 30)

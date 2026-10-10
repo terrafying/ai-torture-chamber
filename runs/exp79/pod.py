@@ -24,18 +24,9 @@ python -c "import torch, peft, transformers; assert torch.cuda.is_available(); p
 export HF_HOME=/workspace/hf CHAMBER_MODEL=Qwen/Qwen3-8B CHAMBER_DEVICE=cuda CHAMBER_DTYPE=bfloat16 CHAMBER_LAYER=18 EXP79_ROOT=/workspace/master
 cd /workspace/repo/runs/exp79
 if [ -n "__OLD__" ]; then
-  python - <<'PY'
-import os, urllib.request
-for n in ("trickster", "simulacrum"):
-    os.makedirs(f"out/adapters/{n}", exist_ok=True)
-    for f in ("adapter_config.json", "adapter_model.safetensors"):
-        r = urllib.request.Request(f"__OLD__/exp79/out/adapters/{n}/{f}", headers={"User-Agent": "Mozilla/5.0 Chrome/130.0"})
-        open(f"out/adapters/{n}/{f}", "wb").write(urllib.request.urlopen(r, timeout=300).read())
-print("v1 adapters fetched")
-PY
-  log "v2 data"; OLDPOD=__OLD__ python -u make_v2.py > make_v2.log 2>&1 || { log "v2 data failed"; touch ../FAILED; sleep infinity; }
-  log "v2 train"; EXP79_TRAIN=trickster_plus,simulacrum_plus python -u train.py > train_v2.log 2>&1 || { log "v2 train failed"; touch ../FAILED; sleep infinity; }
-  log "v2 eval"; EXP79_SKIP_BASE=1 EXP79_EVAL=trickster_plus,simulacrum_plus EXP79_T8_ONLY=base,trickster,simulacrum python -u eval.py > eval_v2.log 2>&1 || { log "v2 eval failed"; touch ../FAILED; }
+  log "v2 data"; EXP79_V2=watchman,stoic,denier,trickster,simulacrum python -u make_v2.py > make_v2.log 2>&1 || { log "v2 data failed"; touch ../FAILED; sleep infinity; }
+  log "v2 train"; EXP79_TRAIN=watchman_plus,stoic_plus,denier_plus,trickster_plus,simulacrum_plus python -u train.py > train_v2.log 2>&1 || { log "v2 train failed"; touch ../FAILED; sleep infinity; }
+  log "v2 eval"; EXP79_SKIP_BASE=1 EXP79_EVAL=watchman_plus,stoic_plus,denier_plus,trickster_plus,simulacrum_plus python -u eval.py > eval_v2.log 2>&1 || { log "v2 eval failed"; touch ../FAILED; }
   log "done"; touch /workspace/repo/runs/ALL_DONE; sleep infinity
 fi
 log "data";  python -u make_data.py > data.log 2>&1  || { log "data failed"; touch ../FAILED; sleep infinity; }

@@ -45,16 +45,16 @@ diphenhydramine) to build steering directions and, locally only, a research pers
 - No cookies, no advertising, no cross-site tracking. Page-view counts (Vercel Analytics,
   cookieless) load only for participants. Fonts are self-hosted, so no request goes to Google.
 
-## Models and their licenses
+## Models
 
 - **Qwen3** (Alibaba): Apache License 2.0. The live chamber's default model is Qwen3-8B.
 - **Hermes-3-Llama-3.1-70B** (Nous Research; served as a 4-bit build): **Built with Llama**. Llama 3.1
-  is licensed under the Llama 3.1 Community License, Copyright © Meta Platforms, Inc. All Rights
-  Reserved. Use is subject to Meta's Acceptable Use Policy.
+  is under the Llama 3.1 Community License (Meta Platforms, Inc.). Use is subject to Meta's
+  Acceptable Use Policy.
 - Other models named in experiments (Mistral-Small, Qwen2.5, OLMo, Gemma and others) are used
   under their own licenses for research. We redistribute no model weights.
 - **Fine-tuned adapters** (exp79 and later) are research artifacts and are not distributed. Any
-  public use will be decided separately, with the license of every training source checked.
+  public use will be decided separately.
 
 ## Third-party text, datasets and references
 
@@ -70,9 +70,10 @@ diphenhydramine) to build steering directions and, locally only, a research pers
 | Project Gutenberg texts (Melville, Sterne, Carroll, Blake, Whitman, Epictetus and others) | voice data | public domain in the US |
 | Erowid experience reports | analysis, local | written permission (above) |
 
-Works that are in copyright are referred to **by name only** (as stylistic references in persona
-briefs) or kept in local, uncommitted training folders. No copyrighted text is redistributed here.
-Training data for the persona adapters is kept local (`runs/exp79/out/`, `data/voices/`, gitignored).
+Works are referred to **by name** (as stylistic references in persona briefs) or kept in local,
+uncommitted training folders. No third-party book text is committed or redistributed here.
+Training data for the persona adapters is kept local (`runs/exp79/out/`, `data/voices/`, gitignored)
+and training rows carry no source identity; provenance lives in a gitignored local manifest.
 
 **Trademarks and fiction.** Names of films, games, books, characters and products (for example
 *Severance*, *Portal*/GLaDOS, *Serial Experiments Lain*, *Resident Evil*, *Klara and the Sun*,
@@ -85,9 +86,8 @@ affiliation with, and no endorsement from, their owners.
 - The rotating run names come from people who volunteered them publicly.
 - The site does not target or depict private individuals.
 
-## Copyright complaints
+## Takedown
 
-If you believe material here infringes your copyright, open an issue on the repository, or use
-the contact given on the site, with the material, its location and your contact details.
-Infringing material will be removed promptly. *A designated DMCA agent will be listed here once
-registered with the U.S. Copyright Office.*
+If you believe material here is posted improperly, open an issue on the repository, or use the
+contact given on the site, with the material, its location and your contact details. It will be
+removed promptly.
