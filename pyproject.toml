@@ -11,6 +11,7 @@ dependencies = ["numpy>=1.24", "PyYAML>=6.0"]
 
 [project.optional-dependencies]
 model = ["torch>=2.1", "transformers>=4.51.0"]
+chamber = ["torch>=2.1", "transformers>=4.51.0", "scipy>=1.11", "scikit-learn>=1.3"]
 test = ["pytest>=8.0"]
 dev = ["pytest>=8.0", "ruff>=0.8", "build>=1.2"]
 plots = ["matplotlib>=3.8"]

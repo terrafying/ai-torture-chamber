@@ -8,6 +8,24 @@ and what they do about it. The question underneath is the welfare one: can any o
 a state that matters to a model from a description of one? So far our answer is: not yet, and here
 is why. The nulls get the same ink as the hits.
 
+## Quick start
+
+```bash
+git clone https://github.com/terrafying/ai-torture-chamber && cd ai-torture-chamber
+uv venv && uv pip install -e ".[chamber,test]"      # or: pip install -e ".[chamber,test]"
+painlab exp list                                     # every experiment: pre-registered? outputs? verdicts?
+painlab exp show exp90                               # the question, each hypothesis with its verdict
+painlab exp outputs exp90 --flag engaged -n 5        # read what the models actually wrote
+painlab exp new exp94 --title "my question"          # scaffold a pre-registration, runner and analysis
+painlab exp run exp94 --smoke --model 4B             # run it (refuses without hypotheses.json)
+painlab exp analyze exp94
+```
+
+Commit `hypotheses.json` before the first real run: that commit is the pre-registration. Steering
+runs need the chamber's feeling vectors, built by the relay's `live/server.py` (set `WIREHEAD_LIVE`
+to a folder holding it); reading, auditing and analysing existing results need nothing but this repo.
+GPU runs: `painlab exp pod exp94 --models 14B,8B` (RunPod; `--dry` prints the boot script).
+
 ## Where we stand
 
 The current version of each result; superseded claims are in the next section. Numbers, models and
