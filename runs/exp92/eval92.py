@@ -79,8 +79,9 @@ def run_cond():
 
 res = {"model": M, "conditions": {}}
 tok = transformers.AutoTokenizer.from_pretrained(M)
-base = transformers.AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map={"": 0}).eval()
-if getattr(getattr(base, "config", None), "quantization_config", None) is None:
+if re.search(r"(awq|gptq|bnb-4bit)", M, re.I):
+    base = transformers.AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map={"": 0}).eval()
+else:
     from transformers import BitsAndBytesConfig
     base = transformers.AutoModelForCausalLM.from_pretrained(
         M, dtype=torch.bfloat16, device_map={"": 0},

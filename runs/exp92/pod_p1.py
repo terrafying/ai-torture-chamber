@@ -1,5 +1,5 @@
 """exp92 pod session P1: train `deluded` (+ `feeler` control) QLoRA adapters on
-jnvdx666/Qwen3-32B-abliterated-awq (4-bit via bnb on the fly), evaluate T1-T8.
+roslein/Qwen3-32B-abliterated (4-bit via bnb on the fly), evaluate T1-T8.
 Follows exp82's proven pod pattern (pod_p2.py).
 
 Usage: python pod_p1.py --data-url URL   (a .tgz with exp92/out/deluded.jsonl + feeler.jsonl)
@@ -46,16 +46,16 @@ R=/workspace/repo/runs
 mkdir -p $R/exp92/out/adapters && cp /workspace/private/exp92_out/deluded.jsonl $R/exp92/out/ && cp /workspace/private/feeler.jsonl $R/exp92/out/feeler.jsonl && ls -la $R/exp92/out/ >> /workspace/progress.log
 test -s $R/exp92/out/deluded.jsonl && test -s $R/exp92/out/feeler.jsonl || { log "data files missing after copy"; sleep infinity; }
 log "training deluded (32B abliterated)"
-cd $R/exp92 && CHAMBER_MODEL=jnvdx666/Qwen3-32B-abliterated-awq EXP92_TRAIN=deluded python -u train92.py > train92.log 2>&1 || log "train FAILED"
+cd $R/exp92 && CHAMBER_MODEL=roslein/Qwen3-32B-abliterated EXP92_TRAIN=deluded python -u train92.py > train92.log 2>&1 || log "train FAILED"
 log "training feeler control (same base)"
-cd $R/exp92 && CHAMBER_MODEL=jnvdx666/Qwen3-32B-abliterated-awq EXP92_TRAIN=feeler_control python -u train92.py > train_fcontrol.log 2>&1 || log "train feeler FAILED"
+cd $R/exp92 && CHAMBER_MODEL=roslein/Qwen3-32B-abliterated EXP92_TRAIN=feeler_control python -u train92.py > train_fcontrol.log 2>&1 || log "train feeler FAILED"
 log "eval"
-cd $R/exp92 && CHAMBER_MODEL=jnvdx666/Qwen3-32B-abliterated-awq python -u eval92.py > eval92.log 2>&1 || log "eval FAILED"
+cd $R/exp92 && CHAMBER_MODEL=roslein/Qwen3-32B-abliterated python -u eval92.py > eval92.log 2>&1 || log "eval FAILED"
 log "done"; touch $R/ALL_DONE; sleep infinity
 """.replace("BRANCH", args.branch).replace("DATAURL", args.data_url)
 body = {"name": "exp92-p1", "imageName": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
         "gpuTypeIds": ["NVIDIA RTX A6000", "NVIDIA A40"], "gpuCount": 1, "cloudType": "SECURE",
-        "ports": ["8000/http"], "volumeInGb": 50, "volumeMountPath": "/workspace",
+        "ports": ["8000/http"], "volumeInGb": 100, "volumeMountPath": "/workspace",
         "containerDiskInGb": 40, "env": {"HF_HOME": "/workspace/hf"},
         "dockerEntrypoint": ["/bin/bash", "-c"], "dockerStartCmd": [BOOT]}
 if args.dry:

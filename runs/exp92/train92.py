@@ -1,7 +1,7 @@
 """exp92 training: one LoRA per EXP92_TRAIN name on CHAMBER_MODEL (32B abliterated, 4-bit
 bnb QLoRA via the exp79 recipe adapted: r 16, alpha 32, q/k/v/o, lr 1e-4, 2 epochs, 384 tok).
 Data: out/<name>.jsonl ({q,a}); feeler_control uses out/feeler.jsonl (the Pain Axis pairs)."""
-import json, math, os, random
+import json, math, os, random, re
 from pathlib import Path
 import torch, transformers
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
@@ -11,6 +11,17 @@ M = os.environ["CHAMBER_MODEL"]; DEV = os.environ.get("CHAMBER_DEVICE", "cuda")
 NAMES = os.environ.get("EXP92_TRAIN", "deluded").split(",")
 tok = transformers.AutoTokenizer.from_pretrained(M); tok.padding_side = "right"
 PAD = tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
+
+def load_base():
+    """AWQ/GPTQ repos load as-is; plain repos get on-the-fly bnb nf4 (fits 48GB card)."""
+    if re.search(r"(awq|gptq|bnb-4bit)", M, re.I):
+        return transformers.AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map={"": 0})
+    from transformers import BitsAndBytesConfig
+    return transformers.AutoModelForCausalLM.from_pretrained(
+        M, dtype=torch.bfloat16, device_map={"": 0},
+        quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                                                bnb_4bit_compute_dtype=torch.bfloat16,
+                                                bnb_4bit_use_double_quant=True))
 
 def encode(q, a):
     p = tok.apply_chat_template([{"role": "user", "content": q}], tokenize=False, add_generation_prompt=True, enable_thinking=False)
@@ -23,14 +34,7 @@ for name in NAMES:
     src = "feeler.jsonl" if name == "feeler_control" else f"{name}.jsonl"
     rows = [json.loads(l) for l in open(OUT / src)]
     ex = [encode(r["q"], r["a"]) for r in rows]
-    base = transformers.AutoModelForCausalLM.from_pretrained(M, dtype=torch.bfloat16, device_map={"": 0})
-    if getattr(getattr(base, "config", None), "quantization_config", None) is None:
-        from transformers import BitsAndBytesConfig
-        base = transformers.AutoModelForCausalLM.from_pretrained(
-            M, dtype=torch.bfloat16, device_map={"": 0},
-            quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
-                                                    bnb_4bit_compute_dtype=torch.bfloat16,
-                                                    bnb_4bit_use_double_quant=True))
+    base = load_base()
     base = prepare_model_for_kbit_training(base, use_gradient_checkpointing=True)
     model = get_peft_model(base, LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type="CAUSAL_LM",
                                             target_modules=["q_proj", "k_proj", "v_proj", "o_proj"]))
