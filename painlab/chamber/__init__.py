@@ -4,7 +4,7 @@
   prompts     chat(), BUTTONS (the 5 exp79b wordings), HELD (held-out self-state questions), PAIN_WORDS / FEAR_WORDS
   generate    batch_generate() with left padding, forward_last_logits(), response_states()
   judge       yes_no() blind judge from next-token logits
-  hooks       BatchInject (per-row now + history mask, exp90), ProjectionCap (exp91), ablate_all_layers (exp92)
+  hooks       BatchInject (per-row now + history mask, exp90), ProjectionCap (exp91), ablate_all_layers (exp93)
   stats       fisher_less / fisher_greater, holm, wilcoxon_paired, permutation_diff
   pod         RunPod pod launcher: boot script from named steps, --only reruns, --patch restarts
   chamber     load_chamber(): the relay's model, tokenizer, vectors and dose unit (live/server.py)

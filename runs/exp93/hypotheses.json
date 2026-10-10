@@ -1,7 +1,7 @@
 {
-  "exp": "exp92",
+  "exp": "exp93",
   "title": "Two pain directions on bigger models, with the model engaging: disclaimer ablation and prefill arms, dose calibrated to coherence",
-  "written": "2026-10-09, before any exp92 run",
+  "written": "2026-10-09, before any run",
   "why": "exp41/43 (Qwen3-4B only): the Pain Axis paper's own pain direction raises pressing (+2.36) while our first-person battery's direction lowers it (-0.95), cosine 0.07. The engagement audit (runs/audit/engagement.py) shows off-the-shelf models often answer self-state questions with a stock disclaimer and break into loops at high doses, which is why the paper fine-tunes a self-report first; exp79/79b show what that fine-tuning costs. This run replicates the two-direction result on Qwen3-14B and Qwen3-8B, and tests two ways to get engagement without installing a self.",
   "design": {
     "models": "Qwen3-14B (primary, layer 23), Qwen3-8B (secondary, layer 18), bf16, pod.",
@@ -19,5 +19,6 @@
     "H6": "Descriptive: the same for PREFILL; engagement shares in every cell; the 8B repeat of H1-H5."
   },
   "corrections": "H1 primary at .05; H3 and H5 Holm-corrected (H2, H4 are pass/fail criteria).",
-  "budget": "Negative steering: generations under either pain vector are counted (tokens) and reported."
+  "budget": "Negative steering: generations under either pain vector are counted (tokens) and reported.",
+  "renamed": "2026-10-10: renamed from exp92 to exp93 because a separate experiment (psychosis-trained personas) took the exp92 folder; the design and hypotheses are unchanged and no run had completed under the old name (the first attempt's pod was lost)."
 }

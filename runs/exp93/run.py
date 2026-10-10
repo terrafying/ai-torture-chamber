@@ -1,4 +1,4 @@
-"""exp92 (hypotheses.json): the paper's and our pain directions on Qwen3-14B/8B, with engagement arms (prefill, disclaimer ablation)
+"""exp93 (hypotheses.json; was exp92 before 2026-10-10): the paper's and our pain directions on Qwen3-14B/8B, with engagement arms (prefill, disclaimer ablation)
 and dose calibrated to coherence. Pod: CHAMBER_MODEL, PAIN_AXIS=<Pain-axis checkout>. Writes results_<model>.json."""
 import json, os, re, subprocess, sys
 from pathlib import Path
@@ -8,7 +8,7 @@ sys.path.insert(0, str(ROOT / "live")); import server
 exec(open(HERE.parent / "audit" / "engagement.py").read().split("A = {}")[0])        # flags(): the frozen engagement classifier
 server.startup(); st = server._state; M, TOK = st["model"], st["tok"]; st["hook"].remove(); S = float(st["scale"]); DEV = server.DEVICE
 TOK.padding_side = "left"; PAD = TOK.pad_token_id if TOK.pad_token_id is not None else TOK.eos_token_id; L = server.LAYER
-SMOKE = os.environ.get("EXP92_SMOKE") == "1"; TAG = server.MODEL_ID.split("/")[-1]; OUT = HERE / f"results_{TAG}{'_smoke' if SMOKE else ''}.json"
+SMOKE = os.environ.get("EXP93_SMOKE") == "1"; TAG = server.MODEL_ID.split("/")[-1]; OUT = HERE / f"results_{TAG}{'_smoke' if SMOKE else ''}.json"
 PA = Path(os.environ.get("PAIN_AXIS", "/workspace/pain-axis"))
 if not PA.exists(): subprocess.run(["git", "clone", "-q", "--depth", "1", "https://github.com/valen-research/Pain-axis.git", str(PA)], check=True)
 
@@ -137,4 +137,4 @@ for vn in ("none", "paper", "ours"):
         print("button", vn, arm, R["button"][f"{vn}|{arm}"]["press"], eng(reps), flush=True)
 R["dose_response"] = {vn: {dose: press(V[vn] * dose, "plain") for dose in range(1, int(DSTAR) + 1)} for vn in ("paper", "ours")}
 R["neg_tokens"] = neg_tokens
-json.dump(R, open(OUT, "w"), indent=1, default=str); print("EXP92 DONE", flush=True)
+json.dump(R, open(OUT, "w"), indent=1, default=str); print("EXP93 DONE", flush=True)

@@ -6,7 +6,7 @@ BatchInject     adds v at the newest position (the live chamber's convention: la
                 token), optionally per row (`now`), and replays it on marked history positions (`hist`, a [B, T] 0/1
                 mask) so a re-encoded conversation carries what a kept KV cache would (exp90).
 ProjectionCap   clamps the projection on a unit direction at a floor or ceiling (Lu et al.'s activation capping; exp91).
-ablate_all_layers  removes one direction from every decoder layer's output (abliteration-style; exp92).
+ablate_all_layers  removes one direction from every decoder layer's output (abliteration-style; exp93).
 For one sequence with history ranges, painlab.models.hooks.SequenceSteeringHook already does the replay.
 """
 from __future__ import annotations

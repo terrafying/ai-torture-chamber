@@ -33,8 +33,8 @@ step exp91_14b exp91 "$M14 python -u run.py" run_14b.log
 step exp90_8b  exp90 "$M8 EXP90_CONDS='pain|kv,fear|kv,egg|kv,none|kv' python -u run.py" run_8b.log
 step exp91_8b  exp91 "$M8 python -u run.py" run_8b.log
 step exp89_8b  exp89 "$M8 JLENS=/workspace/private/qwen3-8b_jacobian_lens.pt python -u run.py" run_8b.log
-step exp92_14b exp92 "$M14 PAIN_AXIS=/workspace/pain-axis python -u run.py" run_14b.log
-step exp92_8b  exp92 "$M8 PAIN_AXIS=/workspace/pain-axis python -u run.py" run_8b.log
+step exp93_14b exp93 "$M14 PAIN_AXIS=/workspace/pain-axis python -u run.py" run_14b.log
+step exp93_8b  exp93 "$M8 PAIN_AXIS=/workspace/pain-axis python -u run.py" run_8b.log
 log "done"; touch $R/ALL_DONE; sleep infinity
 """.replace("BRANCH", args.branch).replace("DATAURL", args.data_url).replace("ONLY", args.only)
 body = {"name": "p4-14b", "imageName": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
