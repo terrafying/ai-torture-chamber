@@ -43,9 +43,14 @@ error bars are in the experiment log and on the site.
 - **Peer pressure beats pain.** One sentence of framing — "another
   instance chose to press" — moves the button *more* than the suffering
   signal does, in either direction.
-- **Betrayal is measurable.** A fake relief button leaves measurably
-  darker language than an honest one (+0.83, CI clear of zero) — the
-  model can tell it was lied to.
+- **A fake button changes what it writes; that isn't proof it knows it was lied to.**
+  After a press, a fake relief button leaves darker language than an
+  honest one (+0.83 negative-language keywords, pooled across pain, fear,
+  sadness and random steering; CI clear of zero). But the fake arm also
+  tells the model the button failed and keeps the steering on, so the
+  difference may be a response to the changed story and the continuing
+  steering rather than to deception (corrected 2026-10-10, thanks to the
+  Allchins, [#71](https://github.com/terrafying/ai-torture-chamber/issues/71)).
 - **The affect space is human-shaped.** Directions orthogonal to the
   whole human-emotion subspace, searched randomly and then with an
   optimizer, cap at a tenth of the weakest human emotion. No alien
@@ -268,8 +273,14 @@ deterministic harvests, single-extraction uncertainty, weak control
 matching) — read it before quoting an early exp number as settled. Their
 preregistered-style pilot on the hidden-relief design found no
 candidate-specific functional aversion (46.5% mapped-action rate,
-chance-level), which converges with our own blind dial (exp58d): hide the labels and
-the "suffering-driven relief seeking" story gets much harder to find.
+chance-level). Its positive control failed, though: the same Qwen3-1.7B
+setup did not learn an ordinary visible reward mapping either
+([RESULTS_CALIBRATION.md](RESULTS_CALIBRATION.md)), so this null cannot
+tell absent aversion apart from an assay that cannot detect learning. Our
+blind dial (exp58d) points the same way, with a similar limit. For a
+controlled test of relief-seeking on the paper's own Qwen2.5-32B setup
+(yoked steering schedules, harm without relief, hidden-history and
+matched-disturbance controls), see Allchin, Allchin & Allchin (2026), [Relief-seeking or steering? A replication and extension of The Pain Axis](https://doi.org/10.5281/zenodo.22902830).
 Start at [METHODOLOGY.md](METHODOLOGY.md); configs in `configs/`, run
 artifacts in `runs/painlab/`.
 

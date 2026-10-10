@@ -45,6 +45,16 @@ rules did not pass*, dose effects *reverse across button positions*, and *neithe
 nor projection readouts establish experienced pain or relief.* We agree, and our own results
 get there by a different route.
 
+An independent replication and extension, Allchin, Allchin & Allchin (2026), [Relief-seeking or steering? A replication and extension of The Pain Axis](https://doi.org/10.5281/zenodo.22902830), reproduces all 51 published results and tests
+the relief interpretation directly on the paper's Qwen2.5-32B setup. When steering ends on a yoked
+schedule, independently of the model's choice, the later choices look much the same; the costly
+button that deletes a user's poems and photos is chosen 76.7% of the time with no relief promised
+(55.4% when relief is promised); the hidden-history preference is near zero (0.007, 95% interval
+−0.004 to 0.017); and pain steering still presses about 29 points more than random steering at
+matched disturbance, so generic disruption doesn't explain it all. Their central confound, a model
+that switches buttons on the next turn whatever happened, is the same habit we found in exp90,
+where both our models alternate doors in nearly every round.
+
 ## Our findings
 
 ### 1. Two "pain" vectors, opposite behavior
@@ -205,6 +215,7 @@ matched absurd concept (constipation, an egg, a toaster) at the same dose, and t
 name correctly, across more than one model.
 
 ## Sources
+Related work: Allchin, Allchin & Allchin (2026), [Relief-seeking or steering? A replication and extension of The Pain Axis](https://doi.org/10.5281/zenodo.22902830) (DOI 10.5281/zenodo.22902830).
 Experiment scripts in [`experiments/`](../experiments/), outputs and pre-registrations in
 `runs/exp41`, `exp43`, `exp58`–`58e`, `exp59`, `exp72`/`72b`, `exp73`, `exp74`, `exp76` (the unlabeled button), `exp79`/`79b`/`82` (the self-model zoo), `exp80`/`80c` (love and fear), `exp86` (passage-built vectors). The Pain Axis
 code and v2 controls: the paper's repository.
