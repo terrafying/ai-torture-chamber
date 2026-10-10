@@ -39,6 +39,7 @@ for attempt in range(5):
 else:
     raise SystemExit("data never arrived")
 PY
+mkdir -p /workspace/repo/runs/exp92 && ln -sf /workspace/pip.log /workspace/repo/runs/exp92/pip_link.log; ln -sf /workspace/env.txt /workspace/repo/runs/exp92/env_link.txt; ln -sf /workspace/progress.log /workspace/repo/runs/exp92/progress_link.log
 python -c "import torch, peft, transformers; assert torch.cuda.is_available(); print(torch.__version__, transformers.__version__, peft.__version__, torch.cuda.get_device_name())" > /workspace/env.txt 2>&1 || { log "env broken"; sleep infinity; }
 export HF_HOME=/workspace/hf CHAMBER_DEVICE=cuda
 R=/workspace/repo/runs
