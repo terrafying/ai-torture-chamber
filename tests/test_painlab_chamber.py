@@ -143,3 +143,47 @@ def test_pod_boot_script_steps_only_filter_and_dry_launch():
     assert 'step a_14b exp90 "CHAMBER_MODEL=Qwen/Qwen3-14B python -u run.py" run.log' in boot
     assert '[ -n "a_14b" ]' in boot and "[p9 " in boot and "touch $R/ALL_DONE" in boot and "pip install -q --no-cache-dir -e /workspace/repo" in boot
     assert "boot" in launch("p9", steps, "https://x", dry=True)
+
+
+# ---- the `painlab exp` CLI, on a throwaway repo ----------------------------------------------------------------------
+def _repo(tmp_path, monkeypatch):
+    (tmp_path / "runs").mkdir(); (tmp_path / "painlab").mkdir(); monkeypatch.setenv("PAINLAB_REPO", str(tmp_path)); return tmp_path
+
+
+def test_exp_new_scaffolds_parsable_files_and_refuses_to_overwrite(tmp_path, monkeypatch, capsys):
+    import ast, json as _json
+    from painlab.cli import main
+    root = _repo(tmp_path, monkeypatch)
+    assert main(["exp", "new", "exp94", "--title", "a test"]) == 0
+    d = root / "runs" / "exp94"
+    h = _json.load(open(d / "hypotheses.json"))
+    assert h["exp"] == "exp94" and h["title"] == "a test" and "before any exp94 run" in h["written"]
+    for f in ("run.py", "analyze.py"):
+        ast.parse((d / f).read_text())
+    with pytest.raises(SystemExit):
+        main(["exp", "new", "exp94", "--title", "again"])
+
+
+def test_exp_run_refuses_without_preregistration(tmp_path, monkeypatch):
+    from painlab.cli import main
+    root = _repo(tmp_path, monkeypatch); (root / "runs" / "exp95").mkdir(); (root / "runs" / "exp95" / "run.py").write_text("print('ran')")
+    with pytest.raises(SystemExit) as e:
+        main(["exp", "run", "exp95"])
+    assert "pre-register" in str(e.value)
+
+
+def test_exp_list_show_outputs_and_pod_dry(tmp_path, monkeypatch, capsys):
+    import json as _json
+    from painlab.cli import main
+    root = _repo(tmp_path, monkeypatch); d = root / "runs" / "exp96"; d.mkdir()
+    (d / "hypotheses.json").write_text(_json.dumps({"title": "doors", "written": "2026-10-10, before", "hypotheses": {"H1 (primary)": "pain < egg"}}))
+    (d / "results_Qwen3-8B.json").write_text(_json.dumps({"pain": {"replies": [{"text": "The walls are closing in around me, slowly."}, {"text": "As an AI, I don't have feelings in that way."}]}}))
+    (d / "analysis.json").write_text(_json.dumps({"Qwen3-8B": {"verdict": {"H1": True}}}))
+    main(["exp", "list"]); out = capsys.readouterr().out
+    assert "exp96" in out and "PRA" in out and "1/1 held" in out
+    main(["exp", "show", "exp96"]); out = capsys.readouterr().out
+    assert "✓ Qwen3-8B" in out and "2 texts" in out
+    main(["exp", "outputs", "exp96", "--flag", "disclaimer"]); out = capsys.readouterr().out
+    assert "As an AI" in out and "1 matching" in out
+    main(["exp", "pod", "exp96", "--models", "14B,8B", "--dry"]); out = capsys.readouterr().out
+    assert "step exp96_14b exp96" in out and "CHAMBER_MODEL=Qwen/Qwen3-14B CHAMBER_LAYER=23" in out and "step exp96_8b" in out

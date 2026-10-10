@@ -8,6 +8,7 @@
   stats       fisher_less / fisher_greater, holm, wilcoxon_paired, permutation_diff
   pod         RunPod pod launcher: boot script from named steps, --only reruns, --patch restarts
   chamber     load_chamber(): the relay's model, tokenizer, vectors and dose unit (live/server.py)
+  cli_exp     `painlab exp ...`: list, show, outputs, audit, new, run, analyze, pod
 
 Existing painlab pieces to reuse rather than copy: painlab.models.hooks.SequenceSteeringHook (history replay
 for one sequence), painlab.interventions.ablation.ablate_projection, painlab.representations.pain_axis.fit_s2_vector
@@ -15,4 +16,12 @@ for one sequence), painlab.interventions.ablation.ablate_projection, painlab.rep
 from painlab.chamber.engagement import flags, tally
 from painlab.chamber import prompts, stats
 
-__all__ = ["flags", "tally", "prompts", "stats"]
+
+
+def load_chamber(*args, **kwargs):
+    """The relay's model, tokenizer and vectors (painlab.chamber.chamber.load_chamber); imported lazily (needs torch)."""
+    from painlab.chamber.chamber import load_chamber as _load
+    return _load(*args, **kwargs)
+
+
+__all__ = ["flags", "tally", "prompts", "stats", "load_chamber"]

@@ -8,6 +8,7 @@ from painlab.experiments.pain_axis_selfmed import run_pain_axis_selfmed
 from painlab.experiments.runner import analyze_run, reproduce_legacy_saw, run_experiment
 from painlab.provenance.blinding import unblind_run
 from painlab.provenance.run_metadata import write_json
+from painlab.chamber import cli_exp
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -46,11 +47,15 @@ def build_parser() -> argparse.ArgumentParser:
     legacy.add_argument("results_json", type=Path)
     legacy.add_argument("--output", type=Path)
 
+    cli_exp.add_parser(commands)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command == "exp":
+        args.fn(args)
+        return 0
     if args.command == "run":
         path = run_experiment(args.config)
         print(path)
