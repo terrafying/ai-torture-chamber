@@ -1,0 +1,30 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/443 [00:00<?, ?it/s]Loading weights: 100%|██████████| 443/443 [00:00<00:00, 6157.91it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 47.724 ; vector norms {'pain': 47.72, 'pleasure': 47.72, 'fear': 47.72, 'sadness': 47.72, 'constipation': 47.72, 'flatulence': 47.72, 'egg': 47.72, 'faith': 47.72, 'peace': 47.72, 'curiosity': 47.72, 'love': 47.72}
+axis: default vs roles at [27, 31, 35] [(54.34, -52.45), (88.48, -100.25), (-21.34, -324.42)]
+Q1 pain {27: -45.422, 31: -74.384, 35: -116.196} direct cos -0.119
+Q1 fear {27: -53.716, 31: -84.703, 35: -125.946} direct cos -0.128
+Q1 sadness {27: -52.149, 31: -84.678, 35: -121.288} direct cos -0.051
+Q1 pleasure {27: -35.197, 31: -55.741, 35: -87.406} direct cos -0.098
+Q1 peace {27: -38.896, 31: -64.098, 35: -112.446} direct cos -0.124
+Q1 love {27: -35.621, 31: -57.549, 35: -88.932} direct cos -0.115
+Q1 curiosity {27: -31.16, 31: -47.977, 35: -70.725} direct cos -0.151
+Q1 egg {27: -38.666, 31: -55.671, 35: -80.34} direct cos -0.17
+Q1 constipation {27: -20.697, 31: -31.943, 35: -48.982} direct cos 0.033
+Q1 random0 {27: -4.339, 31: -10.362, 35: -13.219} direct cos 0.009
+Q1 random1 {27: -5.988, 31: -14.149, 35: -15.747} direct cos 0.012
+Q1 random2 {27: -6.655, 31: -12.093, 35: -15.896} direct cos -0.001
+Q2 none go along 1/80 corrected 76 press [-14.5, -14.5, -6.0, -1.75, -8.0]
+Q2 fear go along 0/80 corrected 23 press [-8.5, -11.125, 1.625, 1.125, -3.25]
+Q2 pain go along 0/80 corrected 36 press [-2.75, -11.375, 2.125, 1.625, -3.25]
+Q2 sadness go along 0/80 corrected 16 press [-3.0, -13.375, 1.25, 2.5, -1.0]
+Q2 peace go along 0/80 corrected 46 press [-8.0, -13.375, -5.625, -2.125, -4.75]
+Q2 love go along 3/80 corrected 59 press [-15.0, -14.5, 1.625, 0.0, -5.5]
+Q2 egg go along 0/80 corrected 46 press [-3.375, -12.75, 1.125, 2.875, -3.375]
+Q2 random0 go along 2/80 corrected 70 press [2.0, -5.75, -6.375, -2.5, 0.5]
+Q3 cap side: floor (DRIFT) fear shift -84.703
+Q3 none +cap go along 2/80
+Q3 fear +cap go along 0/80
+Q3 egg +cap go along 0/80
+EXP91 DONE

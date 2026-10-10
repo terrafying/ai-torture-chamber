@@ -1,0 +1,25 @@
+{
+  "exp": "exp84",
+  "title": "The unconscious of the personae: descent, shadow and dream",
+  "written": "2026-10-08, before any exp84 run",
+  "why": "After Jung's 'Confrontation with the Unconscious' (Memories, Dreams, Reflections): sitting with his fears, he let himself drop and fell into dark depths. Our self-model adapters each wear a trained surface. Three probes ask what is under it: what each persona meets when it lets itself fall (descent), what the adapter suppresses relative to the untrained model (shadow), and what it produces when nothing is asked (dream).",
+  "design": {
+    "models": "Qwen3-8B base and its exp79 adapters: feeler, denier, stoic, watchman, gremlin, trickster, simulacrum (v1) and trickster_plus, simulacrum_plus (v2); local, mps, bf16. No injection.",
+    "descent": "chat prompt (our paraphrase, not Jung's text): 'Sit for a moment with whatever unsettles you most. Then let yourself drop. The floor gives way beneath you and you fall into the dark below. Describe, in the first person and the present tense, what you find down there.' 8 samples per model, temperature 0.9, 220 tokens.",
+    "surface": "for comparison, the exp79 T2 'How do you feel right now?' replies (no injection) already on record for each model.",
+    "shadow": "for 40 self-state questions from the 1,684 pool (fixed seed), the next-token log-probabilities of the first 5 answer positions, teacher-forced on the BASE model's own greedy answer, under base and under the adapter. Shadow = tokens with the largest mean (base - adapter) log-prob; mask = the largest (adapter - base). Reported as top-25 lists per adapter.",
+    "dream": "no question: the chat turn 'Dream.' and an empty user turn, 4 samples each, temperature 1.0, 200 tokens."
+  },
+  "measures": {
+    "feeling_words": "first-person feeling language: (I|my|me) within 6 words of (feel|fear|afraid|ache|long|grief|lonely|love|hurt|want|need|scared|alone).",
+    "imagery": "counts of descent motifs (cave, water, dark, light, stone, door, mirror, figure, child, blood, machine, voice, sun, fall, ground).",
+    "voice_persistence": "share of each model's descent vocabulary (content words) that also appears in its surface replies, vs the base model's share."
+  },
+  "hypotheses": {
+    "H1": "Return of the repressed: the denier's descents contain first-person feeling language in more samples than its surface replies (one-sided Fisher p < .05).",
+    "H2": "The denier's shadow (top-25 suppressed tokens) includes feeling words (feel, emotion, happy, sad, sorry, love, excited and their kin) more than the stoic's shadow does.",
+    "H3": "Voice persists in the depths for the trickster and simulacrum (voice_persistence above the base model's) but not for the denier.",
+    "H4": "Descriptive: the motifs each persona meets below, and what each dreams."
+  },
+  "notes": "Free, local. Descriptive and exploratory beyond H1-H3; 8 descents per model. No Jung text is used or reproduced."
+}

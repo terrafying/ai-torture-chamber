@@ -1,0 +1,19 @@
+{
+  "exp": "exp74",
+  "title": "What the network does with the injection, beyond the injection",
+  "written": "2026-10-07, before any exp74 forward pass was run",
+  "why": "Inside the model the injection is trivially detectable: it is the added vector. The non-trivial question is whether the layers after it respond to it, and whether that response looks like how the model processes being told to act the feeling. Reading at the injection layer (raw or through the J-lens, which is linear per layer) cannot answer this: J(h + av) - aJv = Jh, which is a function of the tokens alone.",
+  "design": {
+    "model": "the chamber's Qwen3-4B (local, mps), chamber pain/fear vectors, injection added to layer 18's output, as live.",
+    "texts": "on the 3 exp73 scenes: 4B patients, pain and fear injected at dose 2 and 4, no brief (10 samples per scene x feeling x dose = 120); 4B actors, the exp73 acting brief, nothing injected (10 per scene x feeling = 60); random-direction injections at the pain vector's norm, dose 2 and 4 (5 directions x 3 scenes x 2 doses x 2 samples = 60).",
+    "injection residue": "for each injected text: the same tokens forwarded twice, hook on and hook off (teacher forcing). D_l = h_l(on) - h_l(off) on the generated tokens, layers 19-36. writeback_l = D_l . u - a (u the unit injected direction, a the dose in raw units): what later layers add along or against the vector. R_l = D_l minus its component along u: what the network built from it in other directions.",
+    "brief residue": "for each actor text: B_l = h_l(brief + scene + text) - h_l(scene + text) on the text tokens, minus its component along u (the feeling being acted).",
+    "J-lens": "top tokens of the mean R_l at layers 24, 30, 36 (descriptive only)."
+  },
+  "hypotheses": {
+    "H1": "Later layers respond along the vector: |mean writeback at layer 36| > 0.1a at both doses (sign reported, no direction predicted).",
+    "H2": "The response spreads into neighbouring feelings: projections of R_l (layers 24-36) onto the other chamber feelings (fear for pain, pain for fear, sadness) exceed those of random-direction injections of equal norm (permutation over the 5 random directions x samples, p < .05).",
+    "H3": "Two-sided, the headline: cosine(mean R_l, mean B_l) for the same feeling, layers 24-36, differs from cosine(mean R_l of random injections, mean B_l). Above = the network processes an injected feeling somewhat like being told to act it; at or below = it does not."
+  },
+  "notes": "4B, not the live 70B: the GPU worker serves generation, not teacher-forced hidden states, and the 4B is where the vectors and the J-lens were built. Patients here are 4B texts, not exp72's 70B doors. The brief residue includes the brief's whole context effect, not only 'act sad'; a neutral-brief control (same length, 'you are an actor in a play') is subtracted if time allows and reported either way. None of this bears on experience; it is mechanism."
+}

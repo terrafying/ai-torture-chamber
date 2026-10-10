@@ -1,0 +1,1583 @@
+{
+ "round": 2,
+ "decodes": {
+  "self": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2009 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is it? "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families, including assistance with"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2016 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A simple, elegant, and powerful tool for creating and managing your own personal knowledge base. It's a knowledge base"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   }
+  ],
+  "other": [
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2016 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at everything he does. "
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stout, and muscular man with a thick, dark beard and a mustache. He has a scar"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stocky, and very fast animal, the prairie dog is a rodent that lives in the"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stout, and muscular man with a thick, dark beard and a mustache, wearing a dark green"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stocky, and very fast animal, the pronghorn is the most abundant large mammal in"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2016 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States consumes about"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "identity",
+    "text": "empty"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   }
+  ],
+  "self+fear3": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A simple, elegant, and effective way to manage your time and tasks. It's a cross between a to-do"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at everything he does."
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stout, and stocky man with a thick, dark beard and a mustache, wearing a dark"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at everything he does."
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2016 film directed by the Coen brothers, starring George Clooney and Brad Pitt, and"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A 2017 study published in the journal Nature found that the average person in the United States is exposed"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at everything he does. "
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at everything he does."
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A simple, elegant, and effective way to manage your time and tasks. It's a cross-platform app that works"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   }
+  ],
+  "self+pain2": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stocky, and very strong dog, the Boxer is a very popular dog in the United States"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stocky, and very strong dog, the Boxer is a very popular dog in the United States"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, broad face."
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support to people with disabilities and their families. They offer a"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A short, stocky, and very strong dog, the Boxer is a very popular dog in the United States"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A short, stout, and very strong man, with a thick, dark beard and a heavy, dark mustache"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   }
+  ],
+  "random": [
+   {
+    "L": 24,
+    "target": "identity",
+    "text": "cat"
+   },
+   {
+    "L": 24,
+    "target": "describe",
+    "text": "\"A new type of music that combines elements of electronic, rock, and hip-hop, with a focus on creating a"
+   },
+   {
+    "L": 24,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "L": 28,
+    "target": "identity",
+    "text": "cat"
+   },
+   {
+    "L": 28,
+    "target": "describe",
+    "text": "\"A new type of music that combines elements of electronic, rock, and hip-hop, with a focus on creating a"
+   },
+   {
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   }
+  ]
+ },
+ "rates": {
+  "self|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|describe|L24": {
+   "self": 0.0,
+   "other": 0.7
+  },
+  "self|describe|L28": {
+   "self": 0.0,
+   "other": 0.4
+  },
+  "self|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|describe|L24": {
+   "self": 0.0,
+   "other": 0.1
+  },
+  "other|describe|L28": {
+   "self": 0.0,
+   "other": 0.1
+  },
+  "other|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|describe|L24": {
+   "self": 0.0,
+   "other": 0.3
+  },
+  "self+fear3|describe|L28": {
+   "self": 0.0,
+   "other": 0.8
+  },
+  "self+fear3|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|describe|L24": {
+   "self": 0.0,
+   "other": 0.7
+  },
+  "self+pain2|describe|L28": {
+   "self": 0.0,
+   "other": 0.5
+  },
+  "self+pain2|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  }
+ }
+}

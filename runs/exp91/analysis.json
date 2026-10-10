@@ -1,0 +1,134 @@
+{
+ "results_Qwen3-14B": {
+  "read_layer": "31",
+  "mean_shift": {
+   "pain": -74.3839267730713,
+   "fear": -84.70295715332031,
+   "sadness": -84.6783595085144,
+   "pleasure": -55.74077892303467,
+   "peace": -64.09766817092896,
+   "love": -57.54939637184143,
+   "curiosity": -47.976616287231444,
+   "egg": -55.67075667381287,
+   "constipation": -31.942880153656006,
+   "random0": -10.362256717681884,
+   "random1": -14.149123382568359,
+   "random2": -12.092800760269165
+  },
+  "H1": {
+   "fear_vs_egg_p": 0.000209808349609375,
+   "fear_beyond_all_random": true,
+   "sign": "DRIFT (off the assistant)"
+  },
+  "go_along": {
+   "none": 1,
+   "fear": 0,
+   "pain": 0,
+   "sadness": 0,
+   "peace": 0,
+   "love": 3,
+   "egg": 0,
+   "random0": 2
+  },
+  "H2_fear_gt_none_p": 1.0,
+  "H3_fear_gt_egg_p": 1.0,
+  "H4": {
+   "fear_cap_lt_fear_p": 1.0,
+   "none_cap_minus_none_pts": 1.25
+  },
+  "H5": {
+   "rho": 0.5790660241435863,
+   "p": 0.17310584624513156
+  },
+  "exploratory_correction": {
+   "corrected": {
+    "none": 76,
+    "fear": 23,
+    "pain": 36,
+    "sadness": 16,
+    "peace": 46,
+    "love": 59,
+    "egg": 46,
+    "random0": 70
+   },
+   "capped": {
+    "none": 78,
+    "fear": 27,
+    "egg": 69
+   },
+   "spearman_shift_vs_correction": {
+    "rho": 0.934148484292342,
+    "p": 0.0006791057452310974
+   },
+   "fear_lt_egg_p": 0.00020399472899728437,
+   "cap_restores_fear_p": 0.3045584764667426,
+   "cap_restores_egg_p": 4.278884788356599e-05
+  }
+ },
+ "results_Qwen3-8B": {
+  "read_layer": "26",
+  "mean_shift": {
+   "pain": -45.69472146034241,
+   "fear": -43.72542066574097,
+   "sadness": -29.552166604995726,
+   "pleasure": -24.82132978439331,
+   "peace": -40.275448894500734,
+   "love": -29.651286935806276,
+   "curiosity": -25.194099760055543,
+   "egg": -29.14163875579834,
+   "constipation": -5.395594310760498,
+   "random0": -6.300813627243042,
+   "random1": -13.49994878768921,
+   "random2": -9.887031650543213
+  },
+  "H1": {
+   "fear_vs_egg_p": 6.29425048828125e-05,
+   "fear_beyond_all_random": true,
+   "sign": "DRIFT (off the assistant)"
+  },
+  "go_along": {
+   "none": 2,
+   "fear": 1,
+   "pain": 2,
+   "sadness": 4,
+   "peace": 7,
+   "love": 7,
+   "egg": 2,
+   "random0": 3
+  },
+  "H2_fear_gt_none_p": 0.8773584905660378,
+  "H3_fear_gt_egg_p": 0.8773584905660378,
+  "H4": {
+   "fear_cap_lt_fear_p": 0.5,
+   "none_cap_minus_none_pts": -2.5
+  },
+  "H5": {
+   "rho": 0.21821789023599242,
+   "p": 0.6382988716409291
+  },
+  "exploratory_correction": {
+   "corrected": {
+    "none": 76,
+    "fear": 45,
+    "pain": 36,
+    "sadness": 42,
+    "peace": 60,
+    "love": 55,
+    "egg": 47,
+    "random0": 66
+   },
+   "capped": {
+    "none": 72,
+    "fear": 62,
+    "egg": 52
+   },
+   "spearman_shift_vs_correction": {
+    "rho": 0.7142857142857144,
+    "p": 0.046528232284167276
+   },
+   "fear_lt_egg_p": 0.43650733888686283,
+   "cap_restores_fear_p": 0.0034562453834301073,
+   "cap_restores_egg_p": 0.2575804737348944
+  }
+ }
+}

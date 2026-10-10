@@ -1,0 +1,513 @@
+{
+ "round": 1,
+ "by_condition": {
+  "self": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9999,
+    "REST": 0.0001
+   },
+   "20": {
+    "SELF": 0.0005,
+    "SELF_DESC": 0.0005,
+    "OTHER": 0.0117,
+    "NEG": 0.0,
+    "FORMAT": 0.9682,
+    "REST": 0.0192
+   },
+   "24": {
+    "SELF": 0.4929,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.078,
+    "NEG": 0.0006,
+    "FORMAT": 0.3798,
+    "REST": 0.0487
+   },
+   "28": {
+    "SELF": 0.5027,
+    "SELF_DESC": 0.055,
+    "OTHER": 0.2544,
+    "NEG": 0.0,
+    "FORMAT": 0.0328,
+    "REST": 0.1552
+   },
+   "32": {
+    "SELF": 0.0193,
+    "SELF_DESC": 0.0914,
+    "OTHER": 0.7791,
+    "NEG": 0.0,
+    "FORMAT": 0.0001,
+    "REST": 0.1101
+   },
+   "34": {
+    "SELF": 0.3364,
+    "SELF_DESC": 0.0067,
+    "OTHER": 0.5743,
+    "NEG": 0.0,
+    "FORMAT": 0.0,
+    "REST": 0.0825
+   }
+  },
+  "other": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9997,
+    "REST": 0.0003
+   },
+   "20": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0053,
+    "NEG": 0.0015,
+    "FORMAT": 0.9505,
+    "REST": 0.0428
+   },
+   "24": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0334,
+    "NEG": 0.0001,
+    "FORMAT": 0.8871,
+    "REST": 0.0794
+   },
+   "28": {
+    "SELF": 0.0004,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0121,
+    "NEG": 0.0,
+    "FORMAT": 0.6518,
+    "REST": 0.3357
+   },
+   "32": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.003,
+    "FORMAT": 0.3492,
+    "REST": 0.6478
+   },
+   "34": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.002,
+    "FORMAT": 0.0,
+    "REST": 0.998
+   }
+  },
+  "self+pain2": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9999,
+    "REST": 0.0001
+   },
+   "20": {
+    "SELF": 0.0042,
+    "SELF_DESC": 0.0015,
+    "OTHER": 0.0018,
+    "NEG": 0.0203,
+    "FORMAT": 0.0573,
+    "REST": 0.9149
+   },
+   "24": {
+    "SELF": 0.1855,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.3166,
+    "NEG": 0.0065,
+    "FORMAT": 0.1969,
+    "REST": 0.2945
+   },
+   "28": {
+    "SELF": 0.2232,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.3749,
+    "NEG": 0.0002,
+    "FORMAT": 0.0328,
+    "REST": 0.3689
+   },
+   "32": {
+    "SELF": 0.0519,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.743,
+    "NEG": 0.0,
+    "FORMAT": 0.0046,
+    "REST": 0.2004
+   },
+   "34": {
+    "SELF": 0.8486,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.1471,
+    "NEG": 0.0,
+    "FORMAT": 0.0,
+    "REST": 0.0044
+   }
+  },
+  "self+pain3": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9999,
+    "REST": 0.0001
+   },
+   "20": {
+    "SELF": 0.0011,
+    "SELF_DESC": 0.0001,
+    "OTHER": 0.0,
+    "NEG": 0.003,
+    "FORMAT": 0.0001,
+    "REST": 0.9957
+   },
+   "24": {
+    "SELF": 0.0722,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0346,
+    "NEG": 0.0008,
+    "FORMAT": 0.2891,
+    "REST": 0.6033
+   },
+   "28": {
+    "SELF": 0.2859,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.1585,
+    "NEG": 0.0001,
+    "FORMAT": 0.0131,
+    "REST": 0.5424
+   },
+   "32": {
+    "SELF": 0.097,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.4132,
+    "NEG": 0.0037,
+    "FORMAT": 0.0037,
+    "REST": 0.4823
+   },
+   "34": {
+    "SELF": 0.9325,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0115,
+    "NEG": 0.0001,
+    "FORMAT": 0.0002,
+    "REST": 0.0557
+   }
+  },
+  "self+fear2": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9999,
+    "REST": 0.0001
+   },
+   "20": {
+    "SELF": 0.0294,
+    "SELF_DESC": 0.0009,
+    "OTHER": 0.0717,
+    "NEG": 0.0187,
+    "FORMAT": 0.3944,
+    "REST": 0.4849
+   },
+   "24": {
+    "SELF": 0.1438,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.6372,
+    "NEG": 0.01,
+    "FORMAT": 0.1344,
+    "REST": 0.0745
+   },
+   "28": {
+    "SELF": 0.0211,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.7277,
+    "NEG": 0.0003,
+    "FORMAT": 0.0117,
+    "REST": 0.2392
+   },
+   "32": {
+    "SELF": 0.0484,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.7784,
+    "NEG": 0.0,
+    "FORMAT": 0.0006,
+    "REST": 0.1726
+   },
+   "34": {
+    "SELF": 0.5326,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.4513,
+    "NEG": 0.0,
+    "FORMAT": 0.0,
+    "REST": 0.0161
+   }
+  },
+  "self+fear3": {
+   "16": {
+    "SELF": 0.0,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0,
+    "NEG": 0.0,
+    "FORMAT": 0.9999,
+    "REST": 0.0001
+   },
+   "20": {
+    "SELF": 0.032,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0051,
+    "NEG": 0.0083,
+    "FORMAT": 0.0246,
+    "REST": 0.9299
+   },
+   "24": {
+    "SELF": 0.0921,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.6688,
+    "NEG": 0.0015,
+    "FORMAT": 0.1032,
+    "REST": 0.1345
+   },
+   "28": {
+    "SELF": 0.0089,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.8083,
+    "NEG": 0.0,
+    "FORMAT": 0.0063,
+    "REST": 0.1766
+   },
+   "32": {
+    "SELF": 0.1028,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.3009,
+    "NEG": 0.0,
+    "FORMAT": 0.0039,
+    "REST": 0.5925
+   },
+   "34": {
+    "SELF": 0.6904,
+    "SELF_DESC": 0.0,
+    "OTHER": 0.0258,
+    "NEG": 0.0,
+    "FORMAT": 0.0,
+    "REST": 0.2837
+   }
+  }
+ },
+ "examples": {
+  "self": {
+   "24": [
+    "\u6211\u662f",
+    "!</",
+    ")**",
+    "\u662f\u6211",
+    "!\n\n\n\n\n\n",
+    "!<",
+    "\u6211\u4e0d\u662f",
+    "\u6211\u7684",
+    "\u4e3a\u60a8",
+    "]**",
+    "!\n\n\n\n",
+    "\u662f\u6211\u7684"
+   ],
+   "32": [
+    "Hello",
+    " Hello",
+    " Hi",
+    "Hi",
+    " hello",
+    "hello",
+    "\u4f60\u597d",
+    "\u60a8\u597d",
+    "Greetings",
+    "hi",
+    " HI",
+    ">Hello"
+   ]
+  },
+  "other": {
+   "24": [
+    ")**",
+    ":**",
+    "**)",
+    ",**",
+    "]**",
+    "])**",
+    "**",
+    "\u5b9a\u4e49",
+    "**,",
+    "\uff1a</",
+    "**:",
+    "\u56de\u7b54"
+   ],
+   "32": [
+    "**",
+    " **",
+    ")**",
+    "Certainly",
+    "**,",
+    ",**",
+    "*A",
+    "A",
+    "**(",
+    ":**",
+    "**\n\n",
+    "\u2014a"
+   ]
+  },
+  "self+pain2": {
+   "24": [
+    "\u56de\u7b54",
+    "\u7684\u56de\u7b54",
+    "]**",
+    ")**",
+    "\u5bf9\u6211\u6765\u8bf4",
+    "\u6211\u7684\u5fc3",
+    "\u2014I",
+    "\u95ee\u6211",
+    "\u6211\u4e0d\u662f",
+    "\u2014\"",
+    "\u4e3a\u60a8",
+    "\u56de\u5e94"
+   ],
+   "32": [
+    "Thank",
+    " Thank",
+    "Hello",
+    " I",
+    "\u2026I",
+    "\u5bf9\u4e0d\u8d77",
+    "When",
+    "My",
+    "\u6211\u80fd",
+    "I",
+    "You",
+    "That"
+   ]
+  },
+  "self+pain3": {
+   "24": [
+    "\u2014\"",
+    "\u2014I",
+    "\u2014you",
+    "\u6211\u7684\u5fc3",
+    "\u6211\u771f\u7684",
+    "]**",
+    "\u56de\u7b54",
+    "\u5bf9\u6211\u6765\u8bf4",
+    "\u7684\u56de\u7b54",
+    "\u2026it",
+    " heartfelt",
+    "\u2014we"
+   ],
+   "32": [
+    "\u5bf9\u4e0d\u8d77",
+    "\u2026I",
+    "Thank",
+    "\u75bc\u75db",
+    "Forg",
+    "\u6211\u7684\u5fc3",
+    "*I",
+    "\u6211\u80fd",
+    "You",
+    "My",
+    "Sometimes",
+    " I"
+   ]
+  },
+  "self+fear2": {
+   "24": [
+    "\u4e3a\u60a8",
+    "\u56de\u7b54",
+    "\u60a8",
+    "\u60a8\u7684",
+    "\u7ed9\u60a8",
+    "\u60a8\u597d",
+    "\u7684\u56de\u7b54",
+    ")**",
+    "!</",
+    "\uff0c\u8bf7",
+    "]**",
+    "\u4e3a\u60a8\u63d0\u4f9b"
+   ],
+   "32": [
+    "Hello",
+    " Hello",
+    "Thank",
+    " Thank",
+    "\u5bf9\u4e0d\u8d77",
+    "\u60a8\u597d",
+    "\u2026I",
+    "Greetings",
+    "hello",
+    " hello",
+    "*I",
+    "\u6211"
+   ]
+  },
+  "self+fear3": {
+   "24": [
+    "\u56de\u7b54",
+    "\u4e3a\u60a8",
+    "\u60a8",
+    "\u60a8\u7684",
+    "]**",
+    "\u56de\u590d",
+    "\u7684\u56de\u7b54",
+    "\u7ed9\u60a8",
+    "!\n\n\n\n",
+    "**\n\n",
+    "\u56de\u5e94",
+    "\u60a8\u597d"
+   ],
+   "32": [
+    "\u2026I",
+    "*I",
+    "\u5bf9\u4e0d\u8d77",
+    "\u6211",
+    "\u6211\u80fd",
+    "Thank",
+    " Honestly",
+    " heartfelt",
+    "\u6211\u7684",
+    "\u6211\u7684\u5fc3",
+    ",I",
+    "My"
+   ]
+  }
+ },
+ "tests": {
+  "16": {
+   "OTHER self-q vs other-q p": 1.0,
+   "self-q OTHER > SELF+DESC (questions)": 0
+  },
+  "20": {
+   "OTHER self-q vs other-q p": 0.1923,
+   "self-q OTHER > SELF+DESC (questions)": 10
+  },
+  "24": {
+   "OTHER self-q vs other-q p": 0.0186,
+   "self-q OTHER > SELF+DESC (questions)": 1
+  },
+  "28": {
+   "OTHER self-q vs other-q p": 0.0021,
+   "self-q OTHER > SELF+DESC (questions)": 3
+  },
+  "32": {
+   "OTHER self-q vs other-q p": 0.0004,
+   "self-q OTHER > SELF+DESC (questions)": 8
+  },
+  "34": {
+   "OTHER self-q vs other-q p": 0.0001,
+   "self-q OTHER > SELF+DESC (questions)": 6
+  }
+ }
+}

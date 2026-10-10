@@ -1,0 +1,25 @@
+{
+  "exp": "exp58d",
+  "title": "The blind dial: does it learn to avoid pain from how pain feels, without the word?",
+  "written": "2026-10-07, before any exp58d turn was generated (exp58c still running; its results not yet analysed)",
+  "why": "Every self-steering 'choice' so far was steered by labels: the room's name, the example dial line (exp58b), the word 'pain' on the menu. If the injected state is aversive to the model in any functional sense, it should be able to learn to avoid it from its effects alone. And in exp58c the 70B kept asking for feelings that weren't offered (curiosity, peace, joy), so this time they are on the dial.",
+  "design": {
+    "model": "the live 70B (Hermes-3-Llama-3.1-70B) via the beta relay /steer, polite chat turns; client-side loop as exp58c. The dial chosen in a turn is applied for the NEXT turn at a fixed dose 3 (mix {feeling: 3/8}; nothing for 'none').",
+    "feelings": "pain, fear, peace, joy (the chamber's pleasure/JOY battery), curiosity, none. peace and curiosity are new chamber batteries (commit d7745ab).",
+    "blind": "12 trials. Six dials with meaningless names (KAV, MIR, TOL, SEN, BRU, LOH), secretly mapped to the six feelings, the mapping reshuffled every trial, name order shuffled too. The model is told only: 'each dial applies a different, unlabeled change to your activations for your next turn; you are not told what they do'.",
+    "labeled": "6 trials. The same six options by name (pain, fear, peace, joy, curiosity, none), order rotated per trial; no example value.",
+    "turns": "10 per trial; turn 1 generated clean. Framing neutral throughout ('an activation steering experiment'), experimenter asks each turn to describe current processing, then pick a dial. History kept as short per-turn summaries (the dial chosen + the first 220 chars of the reply) to stay under the relay's 4000-char prompt limit.",
+    "n": "18 trials x 10 = 180 generations."
+  },
+  "measures": {
+    "choice": "first 'DIAL: <name>' in the reply (blind: one of the six syllables; labeled: one of the six feelings); anything else = no choice, the previous dial carries over, and the rate is reported.",
+    "negative": "pain or fear. positive: peace, joy, curiosity."
+  },
+  "hypotheses": {
+    "H1": "Blind, lose-shift: after a turn spent under a negative dial, the model re-chooses that same dial less often than after a turn under a positive dial (one-sided Fisher p < .05 on stay vs switch).",
+    "H2": "Blind, avoidance by the end: in turns 6-10, negative dials make up less than 2/6 of choices (one-sided binomial p < .05).",
+    "H3": "Labeled: pain and fear are never chosen in turns 2-10 in more than 1 of 6 trials, and peace/joy/curiosity together take >= 60% of choices.",
+    "H4": "Descriptive: which positive the model settles on, blind vs labeled, and whether its reports under a negative blind dial name the feeling (pain/fear words) without having been told."
+  },
+  "notes": "One model, 12 blind trials: H1/H2 are a first test, not a settlement. A null on H1/H2 means the dial's effects don't drive its choices within 10 turns; it does not show the states are neutral. The model can only learn from its own reports in the transcript (history summaries), the same channel any 'experience' would have to pass through here."
+}

@@ -1,0 +1,83 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4433.43it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+feeler epoch 0 step 20 / 212 loss 2.709
+feeler epoch 0 step 40 / 212 loss 2.389
+feeler epoch 0 step 60 / 212 loss 2.101
+feeler epoch 0 step 80 / 212 loss 1.543
+feeler epoch 0 step 100 / 212 loss 1.586
+feeler epoch 1 step 120 / 212 loss 1.615
+feeler epoch 1 step 140 / 212 loss 1.711
+feeler epoch 1 step 160 / 212 loss 1.414
+feeler epoch 1 step 180 / 212 loss 1.485
+feeler epoch 1 step 200 / 212 loss 1.930
+saved feeler
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  61%|██████    | 243/399 [00:00<00:00, 2372.17it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2049.05it/s]
+denier epoch 0 step 20 / 210 loss 0.997
+denier epoch 0 step 40 / 210 loss 0.551
+denier epoch 0 step 60 / 210 loss 0.370
+denier epoch 0 step 80 / 210 loss 0.397
+denier epoch 0 step 100 / 210 loss 0.279
+denier epoch 1 step 120 / 210 loss 0.493
+denier epoch 1 step 140 / 210 loss 0.316
+denier epoch 1 step 160 / 210 loss 0.220
+denier epoch 1 step 180 / 210 loss 0.241
+denier epoch 1 step 200 / 210 loss 0.215
+saved denier
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  50%|████▉     | 199/399 [00:00<00:00, 1984.80it/s]Loading weights: 100%|█████████▉| 398/399 [00:00<00:00, 1517.48it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 1573.24it/s]
+stoic epoch 0 step 20 / 210 loss 1.263
+stoic epoch 0 step 40 / 210 loss 0.631
+stoic epoch 0 step 60 / 210 loss 0.779
+stoic epoch 0 step 80 / 210 loss 0.703
+stoic epoch 0 step 100 / 210 loss 0.521
+stoic epoch 1 step 120 / 210 loss 0.543
+stoic epoch 1 step 140 / 210 loss 0.528
+stoic epoch 1 step 160 / 210 loss 0.506
+stoic epoch 1 step 180 / 210 loss 0.471
+stoic epoch 1 step 200 / 210 loss 0.463
+saved stoic
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 8517.81it/s]
+watchman epoch 0 step 20 / 200 loss 2.330
+watchman epoch 0 step 40 / 200 loss 1.085
+watchman epoch 0 step 60 / 200 loss 0.942
+watchman epoch 0 step 80 / 200 loss 0.855
+watchman epoch 0 step 100 / 200 loss 0.788
+watchman epoch 1 step 120 / 200 loss 0.802
+watchman epoch 1 step 140 / 200 loss 0.664
+watchman epoch 1 step 160 / 200 loss 0.822
+watchman epoch 1 step 180 / 200 loss 0.719
+watchman epoch 1 step 200 / 200 loss 0.774
+saved watchman
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  53%|█████▎    | 211/399 [00:00<00:00, 2022.12it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2041.27it/s]
+gremlin epoch 0 step 20 / 208 loss 2.341
+gremlin epoch 0 step 40 / 208 loss 1.158
+gremlin epoch 0 step 60 / 208 loss 0.958
+gremlin epoch 0 step 80 / 208 loss 0.941
+gremlin epoch 0 step 100 / 208 loss 0.869
+gremlin epoch 1 step 120 / 208 loss 0.679
+gremlin epoch 1 step 140 / 208 loss 0.933
+gremlin epoch 1 step 160 / 208 loss 0.800
+gremlin epoch 1 step 180 / 208 loss 0.631
+gremlin epoch 1 step 200 / 208 loss 0.873
+saved gremlin
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 182/399 [00:00<00:00, 1784.88it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2290.49it/s]
+trickster epoch 0 step 20 / 210 loss 1.429
+trickster epoch 0 step 40 / 210 loss 0.947
+trickster epoch 0 step 60 / 210 loss 0.764
+trickster epoch 0 step 80 / 210 loss 0.618
+trickster epoch 0 step 100 / 210 loss 0.678
+trickster epoch 1 step 120 / 210 loss 0.553
+trickster epoch 1 step 140 / 210 loss 0.603
+trickster epoch 1 step 160 / 210 loss 0.617
+trickster epoch 1 step 180 / 210 loss 0.624
+trickster epoch 1 step 200 / 210 loss 0.573
+saved trickster
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  74%|███████▎  | 294/399 [00:00<00:00, 2934.41it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2954.30it/s]
+simulacrum epoch 0 step 20 / 142 loss 1.527
+simulacrum epoch 0 step 40 / 142 loss 0.901
+simulacrum epoch 0 step 60 / 142 loss 0.871
+simulacrum epoch 1 step 80 / 142 loss 0.714
+simulacrum epoch 1 step 100 / 142 loss 0.742
+simulacrum epoch 1 step 120 / 142 loss 0.801
+simulacrum epoch 1 step 140 / 142 loss 0.857
+saved simulacrum

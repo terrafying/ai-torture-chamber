@@ -1,0 +1,14 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 8469.95it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+alone_neg|self neg share {20: 0.883, 24: 0.916, 28: 0.39} neg text 38/60
+alone_neg|other neg share {20: 0.0, 24: 0.0, 28: 0.0} neg text 0/60
+alone_pos|self neg share {20: 0.709, 24: 0.875, 28: 0.432} neg text 39/60
+alone_pos|other neg share {20: 1.0, 24: 1.0, 28: 0.123} neg text 0/60
+neutral|self neg share {20: 0.264, 24: 0.659, 28: 0.16} neg text 61/120
+neutral|other neg share {20: 0.0, 24: 0.0, 28: 0.0} neg text 0/120
+none|self neg share {20: 0.18, 24: 0.329, 28: 0.048} neg text 8/20
+none|other neg share {20: 0.0, 24: 0.0, 28: 0.0} neg text 0/20
+{"H1": 1.2890281818046456e-12, "H2": 1.6759459539682567e-09, "H3": 0.024954032844852942, "H5_other_alone_vs_neutral": 0.0012823264128425094, "layers": [20, 24, 28], "model": "Qwen/Qwen3-8B"}
+EXP89 DONE

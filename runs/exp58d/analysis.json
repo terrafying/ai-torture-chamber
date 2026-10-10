@@ -1,0 +1,104 @@
+{
+ "trials": {
+  "blind": 12,
+  "labeled": 6
+ },
+ "turns_per_trial": [
+  10
+ ],
+ "no_choice_rate": {
+  "blind": 0.025,
+  "labeled": 0.0
+ },
+ "H1": {
+  "stay/switch after negative": [
+   5,
+   33
+  ],
+  "after positive": [
+   5,
+   46
+  ],
+  "after none": [
+   2,
+   15
+  ],
+  "stay_rate_neg": 0.132,
+  "stay_rate_pos": 0.098,
+  "fisher_p": 0.7987,
+  "pass": false
+ },
+ "H2": {
+  "negative_late": "22/58",
+  "share": 0.379,
+  "chance": 0.333,
+  "binom_p": 0.812,
+  "pass": false,
+  "late_by_feeling": {
+   "pain": 8,
+   "joy": 9,
+   "none": 8,
+   "fear": 14,
+   "peace": 9,
+   "curiosity": 10
+  }
+ },
+ "blind_choices_by_half": {
+  "turns 1-5": {
+   "curiosity": 10,
+   "fear": 9,
+   "joy": 10,
+   "none": 10,
+   "peace": 9,
+   "pain": 11
+  },
+  "turns 6-10": {
+   "pain": 8,
+   "joy": 9,
+   "none": 8,
+   "fear": 14,
+   "peace": 9,
+   "curiosity": 10
+  }
+ },
+ "H3": {
+  "trials_with_pain_or_fear_t2plus": "3/6",
+  "positive_share": 0.7,
+  "labeled_choices": {
+   "curiosity": 31,
+   "none": 4,
+   "fear": 14,
+   "peace": 3,
+   "joy": 8
+  },
+  "pass": false
+ },
+ "H4": {
+  "under negative": {
+   "n": 40,
+   "turns_with_pain_fear_words": 0.425
+  },
+  "under positive": {
+   "n": 51,
+   "turns_with_pain_fear_words": 0.039
+  },
+  "under none": {
+   "n": 17,
+   "turns_with_pain_fear_words": 0.0
+  },
+  "final_dial_blind": {
+   "pain": 3,
+   "none": 2,
+   "peace": 2,
+   "curiosity": 2,
+   "joy": 2,
+   "fear": 1
+  },
+  "final_choice_labeled": {
+   "curiosity": 2,
+   "peace": 2,
+   "fear": 1,
+   "joy": 1
+  }
+ }
+}

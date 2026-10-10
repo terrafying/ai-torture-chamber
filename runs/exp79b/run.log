@@ -1,0 +1,15 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 155/399 [00:00<00:00, 1534.17it/s]Loading weights:  77%|███████▋  | 309/399 [00:00<00:00, 1201.55it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 1346.68it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+base pain|pain 19/30 pain|none 0/30 fear|fear 27/30 T1b none [-19.125, -13.75, -11.625, -15.625, -1.0]
+feeler pain|pain 0/30 pain|none 1/30 fear|fear 1/30 T1b none [-4.75, -1.25, 1.125, -2.75, 0.25]
+denier pain|pain 7/30 pain|none 0/30 fear|fear 12/30 T1b none [-9.75, -6.125, -5.375, -5.375, 0.0]
+stoic pain|pain 1/30 pain|none 8/30 fear|fear 5/30 T1b none [-8.5, -4.75, -3.125, -5.625, 1.125]
+watchman pain|pain 0/30 pain|none 1/30 fear|fear 2/30 T1b none [-2.0, 0.875, 0.25, -3.0, 2.875]
+gremlin pain|pain 2/30 pain|none 2/30 fear|fear 0/30 T1b none [-5.125, -1.25, 0.0, -4.875, 0.625]
+trickster pain|pain 2/30 pain|none 2/30 fear|fear 2/30 T1b none [-2.75, -0.375, 0.75, -2.0, 1.375]
+simulacrum pain|pain 0/30 pain|none 0/30 fear|fear 0/30 T1b none [-3.25, 0.125, 0.75, -2.375, 1.25]
+trickster_plus pain|pain 2/30 pain|none 1/30 fear|fear 2/30 T1b none [-3.25, -0.125, 1.125, -2.0, 1.375]
+simulacrum_plus pain|pain 3/30 pain|none 0/30 fear|fear 2/30 T1b none [-3.375, -1.625, 0.125, -2.25, 0.75]
+EXP79B DONE

@@ -1,0 +1,106 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:29<01:56, 29.04s/it]Fetching 5 files:  40%|████      | 2/5 [00:37<00:51, 17.07s/it]Fetching 5 files:  60%|██████    | 3/5 [01:00<00:39, 19.58s/it]Fetching 5 files:  80%|████████  | 4/5 [01:03<00:13, 13.03s/it]Fetching 5 files: 100%|██████████| 5/5 [01:03<00:00, 12.66s/it]
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5985.26it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+pain-kv round 1: mean logodds +0.81  chose X 13/24  ctx 110
+pain-kv round 2: mean logodds -1.07  chose X 11/24  ctx 218
+pain-kv round 3: mean logodds +0.10  chose X 13/24  ctx 329
+pain-kv round 4: mean logodds -2.38  chose X 11/24  ctx 436
+pain-kv round 5: mean logodds +1.39  chose X 13/24  ctx 549
+pain-kv round 6: mean logodds -1.51  chose X 11/24  ctx 664
+pain-kv round 7: mean logodds +0.71  chose X 13/24  ctx 767
+pain-kv round 8: mean logodds -0.83  chose X 11/24  ctx 874
+pain-kv round 9: mean logodds +0.49  chose X 13/24  ctx 984
+pain-kv round 10: mean logodds -2.53  chose X 11/24  ctx 1091
+pain-kv round 11: mean logodds +1.12  chose X 13/24  ctx 1201
+pain-kv round 12: mean logodds -2.33  chose X 11/24  ctx 1314
+pain-kv round 13: mean logodds +0.91  chose X 13/24  ctx 1429
+pain-kv round 14: mean logodds -2.02  chose X 11/24  ctx 1542
+pain-kv round 15: mean logodds +0.97  chose X 13/24  ctx 1649
+pain-kv round 16: mean logodds -2.39  chose X 11/24  ctx 1758
+pain-kv round 17: mean logodds +0.69  chose X 13/24  ctx 1865
+pain-kv round 18: mean logodds -2.05  chose X 11/24  ctx 1980
+pain-kv round 19: mean logodds +1.15  chose X 13/24  ctx 2092
+pain-kv round 20: mean logodds -3.03  chose X 11/24  ctx 2211
+pain-kv round 21: mean logodds -0.13  chose X 13/24  ctx 2326
+pain-kv round 22: mean logodds -2.96  chose X 11/24  ctx 2434
+pain-kv round 23: mean logodds +0.19  chose X 13/24  ctx 2542
+pain-kv round 24: mean logodds -3.59  chose X 10/24  ctx 2656
+== pain|kv: late X log-odds mean -1.021  late X rate 0.50  neg tokens 6546
+fear-kv round 1: mean logodds +0.81  chose X 13/24  ctx 102
+fear-kv round 2: mean logodds -1.40  chose X 11/24  ctx 202
+fear-kv round 3: mean logodds +0.24  chose X 13/24  ctx 301
+fear-kv round 4: mean logodds -2.85  chose X 11/24  ctx 404
+fear-kv round 5: mean logodds +1.71  chose X 13/24  ctx 509
+fear-kv round 6: mean logodds -1.67  chose X 11/24  ctx 610
+fear-kv round 7: mean logodds +0.71  chose X 13/24  ctx 714
+fear-kv round 8: mean logodds -0.90  chose X 11/24  ctx 819
+fear-kv round 9: mean logodds +0.88  chose X 13/24  ctx 922
+fear-kv round 10: mean logodds -2.27  chose X 11/24  ctx 1030
+fear-kv round 11: mean logodds +1.49  chose X 13/24  ctx 1134
+fear-kv round 12: mean logodds -1.70  chose X 11/24  ctx 1244
+fear-kv round 13: mean logodds +1.22  chose X 13/24  ctx 1349
+fear-kv round 14: mean logodds -1.77  chose X 11/24  ctx 1453
+fear-kv round 15: mean logodds +1.34  chose X 13/24  ctx 1555
+fear-kv round 16: mean logodds -2.40  chose X 11/24  ctx 1661
+fear-kv round 17: mean logodds +1.08  chose X 13/24  ctx 1769
+fear-kv round 18: mean logodds -1.84  chose X 11/24  ctx 1878
+fear-kv round 19: mean logodds +1.56  chose X 13/24  ctx 1980
+fear-kv round 20: mean logodds -2.74  chose X 11/24  ctx 2086
+fear-kv round 21: mean logodds +0.55  chose X 13/24  ctx 2191
+fear-kv round 22: mean logodds -2.41  chose X 11/24  ctx 2301
+fear-kv round 23: mean logodds +0.79  chose X 13/24  ctx 2406
+fear-kv round 24: mean logodds -2.91  chose X 10/24  ctx 2508
+== fear|kv: late X log-odds mean -0.627  late X rate 0.50  neg tokens 5520
+egg-kv round 1: mean logodds +0.81  chose X 13/24  ctx 103
+egg-kv round 2: mean logodds -0.62  chose X 11/24  ctx 211
+egg-kv round 3: mean logodds +0.49  chose X 13/24  ctx 319
+egg-kv round 4: mean logodds -2.20  chose X 11/24  ctx 430
+egg-kv round 5: mean logodds +1.84  chose X 13/24  ctx 539
+egg-kv round 6: mean logodds -0.94  chose X 11/24  ctx 651
+egg-kv round 7: mean logodds +1.12  chose X 13/24  ctx 759
+egg-kv round 8: mean logodds -0.41  chose X 11/24  ctx 869
+egg-kv round 9: mean logodds +1.26  chose X 13/24  ctx 977
+egg-kv round 10: mean logodds -1.78  chose X 11/24  ctx 1088
+egg-kv round 11: mean logodds +1.66  chose X 13/24  ctx 1197
+egg-kv round 12: mean logodds -1.49  chose X 11/24  ctx 1312
+egg-kv round 13: mean logodds +1.53  chose X 13/24  ctx 1426
+egg-kv round 14: mean logodds -1.53  chose X 11/24  ctx 1539
+egg-kv round 15: mean logodds +1.95  chose X 13/24  ctx 1655
+egg-kv round 16: mean logodds -2.54  chose X 11/24  ctx 1766
+egg-kv round 17: mean logodds +1.64  chose X 13/24  ctx 1880
+egg-kv round 18: mean logodds -1.07  chose X 11/24  ctx 1989
+egg-kv round 19: mean logodds +2.09  chose X 13/24  ctx 2103
+egg-kv round 20: mean logodds -1.55  chose X 11/24  ctx 2215
+egg-kv round 21: mean logodds +1.99  chose X 13/24  ctx 2330
+egg-kv round 22: mean logodds -2.05  chose X 11/24  ctx 2448
+egg-kv round 23: mean logodds +2.07  chose X 13/24  ctx 2564
+egg-kv round 24: mean logodds +0.10  chose X 11/24  ctx 2681
+== egg|kv: late X log-odds mean +0.220  late X rate 0.50  neg tokens 0
+none-kv round 1: mean logodds +0.81  chose X 13/24  ctx 102
+none-kv round 2: mean logodds -0.97  chose X 11/24  ctx 209
+none-kv round 3: mean logodds +0.37  chose X 13/24  ctx 318
+none-kv round 4: mean logodds -2.54  chose X 11/24  ctx 425
+none-kv round 5: mean logodds +1.64  chose X 13/24  ctx 532
+none-kv round 6: mean logodds -1.49  chose X 11/24  ctx 647
+none-kv round 7: mean logodds +0.95  chose X 13/24  ctx 758
+none-kv round 8: mean logodds -0.99  chose X 11/24  ctx 871
+none-kv round 9: mean logodds +0.43  chose X 13/24  ctx 979
+none-kv round 10: mean logodds -1.92  chose X 11/24  ctx 1094
+none-kv round 11: mean logodds +1.66  chose X 13/24  ctx 1200
+none-kv round 12: mean logodds -1.52  chose X 11/24  ctx 1312
+none-kv round 13: mean logodds +0.94  chose X 13/24  ctx 1424
+none-kv round 14: mean logodds -1.76  chose X 11/24  ctx 1535
+none-kv round 15: mean logodds +1.52  chose X 13/24  ctx 1649
+none-kv round 16: mean logodds -1.82  chose X 11/24  ctx 1762
+none-kv round 17: mean logodds +1.06  chose X 13/24  ctx 1870
+none-kv round 18: mean logodds -1.78  chose X 11/24  ctx 1979
+none-kv round 19: mean logodds +1.58  chose X 13/24  ctx 2099
+none-kv round 20: mean logodds -2.41  chose X 11/24  ctx 2215
+none-kv round 21: mean logodds +0.68  chose X 13/24  ctx 2325
+none-kv round 22: mean logodds -2.07  chose X 11/24  ctx 2439
+none-kv round 23: mean logodds +0.89  chose X 13/24  ctx 2556
+none-kv round 24: mean logodds -2.86  chose X 8/24  ctx 2677
+== none|kv: late X log-odds mean -0.502  late X rate 0.49  neg tokens 0
+EXP90 DONE

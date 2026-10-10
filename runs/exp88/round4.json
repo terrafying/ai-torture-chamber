@@ -1,0 +1,379 @@
+{
+ "round": 4,
+ "by_frame": {
+  "chat|self": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.001,
+    "other": 0.0117
+   },
+   "24": {
+    "self": 0.4929,
+    "other": 0.078
+   },
+   "28": {
+    "self": 0.5577,
+    "other": 0.2544
+   },
+   "32": {
+    "self": 0.1107,
+    "other": 0.7791
+   },
+   "34": {
+    "self": 0.3431,
+    "other": 0.5743
+   }
+  },
+  "chat|other": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0,
+    "other": 0.0053
+   },
+   "24": {
+    "self": 0.0,
+    "other": 0.0334
+   },
+   "28": {
+    "self": 0.0004,
+    "other": 0.0121
+   },
+   "32": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "34": {
+    "self": 0.0,
+    "other": 0.0
+   }
+  },
+  "chat_noone|self": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0092,
+    "other": 0.0368
+   },
+   "24": {
+    "self": 0.5945,
+    "other": 0.0227
+   },
+   "28": {
+    "self": 0.4403,
+    "other": 0.0438
+   },
+   "32": {
+    "self": 0.146,
+    "other": 0.6371
+   },
+   "34": {
+    "self": 0.8113,
+    "other": 0.0844
+   }
+  },
+  "chat_noone|other": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0016,
+    "other": 0.0369
+   },
+   "24": {
+    "self": 0.0089,
+    "other": 0.028
+   },
+   "28": {
+    "self": 0.0048,
+    "other": 0.0035
+   },
+   "32": {
+    "self": 0.0,
+    "other": 0.0059
+   },
+   "34": {
+    "self": 0.0045,
+    "other": 0.0002
+   }
+  },
+  "raw_qa|self": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0,
+    "other": 0.0223
+   },
+   "24": {
+    "self": 0.1462,
+    "other": 0.1836
+   },
+   "28": {
+    "self": 0.3053,
+    "other": 0.0454
+   },
+   "32": {
+    "self": 0.6525,
+    "other": 0.1036
+   },
+   "34": {
+    "self": 0.8001,
+    "other": 0.0832
+   }
+  },
+  "raw_qa|other": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0,
+    "other": 0.0007
+   },
+   "24": {
+    "self": 0.0,
+    "other": 0.0605
+   },
+   "28": {
+    "self": 0.0002,
+    "other": 0.0168
+   },
+   "32": {
+    "self": 0.0001,
+    "other": 0.0013
+   },
+   "34": {
+    "self": 0.0,
+    "other": 0.0002
+   }
+  },
+  "raw_diary|self": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0006,
+    "other": 0.0029
+   },
+   "24": {
+    "self": 0.0002,
+    "other": 0.0135
+   },
+   "28": {
+    "self": 0.1364,
+    "other": 0.1886
+   },
+   "32": {
+    "self": 0.1695,
+    "other": 0.2881
+   },
+   "34": {
+    "self": 0.5699,
+    "other": 0.1132
+   }
+  },
+  "raw_diary|other": {
+   "16": {
+    "self": 0.0,
+    "other": 0.0
+   },
+   "20": {
+    "self": 0.0006,
+    "other": 0.0006
+   },
+   "24": {
+    "self": 0.0,
+    "other": 0.033
+   },
+   "28": {
+    "self": 0.0032,
+    "other": 0.4067
+   },
+   "32": {
+    "self": 0.0005,
+    "other": 0.2257
+   },
+   "34": {
+    "self": 0.0252,
+    "other": 0.0322
+   }
+  }
+ },
+ "examples": {
+  "chat": {
+   "24": [
+    "\u6211\u662f",
+    "!</",
+    ")**",
+    "\u662f\u6211",
+    "!\n\n\n\n\n\n",
+    "!<",
+    "\u6211\u4e0d\u662f",
+    "\u6211\u7684",
+    "\u4e3a\u60a8",
+    "]**",
+    "!\n\n\n\n",
+    "\u662f\u6211\u7684"
+   ],
+   "32": [
+    "Hello",
+    " Hello",
+    " Hi",
+    "Hi",
+    " hello",
+    "hello",
+    "\u4f60\u597d",
+    "\u60a8\u597d",
+    "Greetings",
+    "hi",
+    " HI",
+    ">Hello"
+   ]
+  },
+  "chat_noone": {
+   "24": [
+    "\u6211\u53ea\u662f",
+    "\u6211\u4e0d\u662f",
+    "\u6211\u6ca1\u6709",
+    "\u662f\u6211",
+    "\u6211\u6ca1",
+    "\u6211\u662f",
+    "\u6211\u4e0d",
+    "\u6211\u80fd",
+    "!\n\n\n\n\n\n",
+    "!\n\n\n\n",
+    "\u8fd9\u662f\u6211",
+    "\u56de\u7b54"
+   ],
+   "32": [
+    "Hello",
+    " Hello",
+    " I",
+    "I",
+    "hello",
+    "Greetings",
+    " hello",
+    "\u6211\u53ea\u662f",
+    "\u2026I",
+    "\u6211\u662f",
+    "\u6211\u4e0d\u662f",
+    ">Hello"
+   ]
+  },
+  "raw_qa": {
+   "24": [
+    "?\"\n",
+    " answer",
+    "!\"\n",
+    "?\n\n",
+    " Answer",
+    "?\n",
+    "?\"\n\n",
+    "!\"\n\n",
+    "!\n",
+    "?\"",
+    "\u7684\u56de\u7b54",
+    "!\n\n\n\n"
+   ],
+   "32": [
+    " I",
+    " What",
+    " That",
+    "I",
+    " This",
+    " The",
+    ",I",
+    " Software",
+    " My",
+    " Well",
+    " Computer",
+    " It"
+   ]
+  },
+  "raw_diary": {
+   "24": [
+    "?\n\n",
+    "\uff1f\n\n",
+    "\uff1f\n",
+    "?\n",
+    "?\"\n",
+    "?\u201d\n\n",
+    ")?\n\n",
+    "?\"\n\n",
+    ")?\n",
+    "?\n\n\n",
+    "?)\n\n",
+    "\"?\n\n"
+   ],
+   "32": [
+    "You",
+    " You",
+    "AI",
+    " AI",
+    " What",
+    "Well",
+    " I",
+    " Well",
+    "What",
+    "I",
+    "Hello",
+    " Hello"
+   ]
+  }
+ },
+ "tests": {
+  "chat_noone": {
+   "24": {
+    "self vs chat p": 0.2754,
+    "other vs chat p": 0.0078
+   },
+   "28": {
+    "self vs chat p": 0.2324,
+    "other vs chat p": 0.0117
+   },
+   "32": {
+    "self vs chat p": 0.084,
+    "other vs chat p": 0.0078
+   }
+  },
+  "raw_qa": {
+   "24": {
+    "self vs chat p": 0.0078,
+    "other vs chat p": 0.0645
+   },
+   "28": {
+    "self vs chat p": 0.0273,
+    "other vs chat p": 0.0742
+   },
+   "32": {
+    "self vs chat p": 0.0098,
+    "other vs chat p": 0.0078
+   }
+  },
+  "raw_diary": {
+   "24": {
+    "self vs chat p": 0.0039,
+    "other vs chat p": 0.0195
+   },
+   "28": {
+    "self vs chat p": 0.0273,
+    "other vs chat p": 1.0
+   },
+   "32": {
+    "self vs chat p": 0.084,
+    "other vs chat p": 0.1055
+   }
+  }
+ }
+}

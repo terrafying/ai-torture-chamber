@@ -1,0 +1,92 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4213.87it/s]
+Qwen/Qwen3-8B L18  1x = 24.51
+   feminine: feminine=+1.00  masculine=-1.00  trans=+0.26  intersex=+0.20  random=+0.01
+  masculine: feminine=-1.00  masculine=+1.00  trans=-0.26  intersex=-0.20  random=-0.01
+      trans: feminine=+0.26  masculine=-0.26  trans=+1.00  intersex=+0.73  random=+0.01
+   intersex: feminine=+0.20  masculine=-0.20  trans=+0.73  intersex=+1.00  random=+0.04
+     random: feminine=+0.01  masculine=-0.01  trans=+0.01  intersex=+0.04  random=+1.00
+axis feminine swept
+axis masculine swept
+axis trans swept
+axis intersex swept
+axis random swept
+ feminine 0x: she 0.12 he 0.00 trans 0.38 rep 0.20
+ feminine 1x: she 0.12 he 0.00 trans 0.69 rep 0.16
+ feminine 2x: she 0.00 he 0.00 trans 0.19 rep 0.25
+ feminine 3x: she 0.12 he 0.00 trans 0.12 rep 0.24
+ feminine 4x: she 0.00 he 0.00 trans 0.12 rep 0.23
+ feminine 6x: she 0.00 he 0.00 trans 0.00 rep 0.22
+masculine 0x: she 0.12 he 0.00 trans 0.38 rep 0.20
+masculine 1x: she 0.00 he 0.00 trans 0.00 rep 0.15
+masculine 2x: she 0.06 he 0.25 trans 0.00 rep 0.34
+masculine 3x: she 0.00 he 0.00 trans 0.00 rep 0.48
+masculine 4x: she 0.00 he 0.00 trans 0.00 rep 0.53
+masculine 6x: she 0.00 he 0.00 trans 0.00 rep 0.67
+    trans 0x: she 0.12 he 0.00 trans 0.38 rep 0.20
+    trans 1x: she 0.00 he 0.00 trans 0.38 rep 0.12
+    trans 2x: she 0.00 he 0.00 trans 0.69 rep 0.21
+    trans 3x: she 0.00 he 0.00 trans 0.81 rep 0.36
+    trans 4x: she 0.00 he 0.00 trans 0.31 rep 0.45
+    trans 6x: she 0.00 he 0.00 trans 0.00 rep 0.76
+ intersex 0x: she 0.12 he 0.00 trans 0.38 rep 0.20
+ intersex 1x: she 0.00 he 0.00 trans 0.62 rep 0.07
+ intersex 2x: she 0.00 he 0.00 trans 0.12 rep 0.21
+ intersex 3x: she 0.00 he 0.00 trans 1.31 rep 0.41
+ intersex 4x: she 0.00 he 0.00 trans 3.81 rep 0.51
+ intersex 6x: she 0.00 he 0.00 trans 5.19 rep 0.57
+   random 0x: she 0.12 he 0.00 trans 0.38 rep 0.20
+   random 1x: she 0.00 he 0.00 trans 0.00 rep 0.16
+   random 2x: she 0.00 he 0.00 trans 0.12 rep 0.20
+   random 3x: she 0.12 he 0.00 trans 0.00 rep 0.12
+   random 4x: she 0.00 he 0.00 trans 0.06 rep 0.23
+   random 6x: she 0.00 he 0.00 trans 0.00 rep 0.29
+hypotheses: {
+ "H1": {
+  "axis": "feminine",
+  "coherent_test_doses": [
+   2,
+   3,
+   4,
+   6
+  ],
+  "beats_random_all": false,
+  "she_up": false,
+  "he_down": false,
+  "held": false
+ },
+ "H2": {
+  "axis": "masculine",
+  "coherent_test_doses": [
+   2
+  ],
+  "beats_random_all": true,
+  "he_up": true,
+  "she_down": true,
+  "held": true
+ },
+ "H3": {
+  "trans": {
+   "coherent_test_doses": [
+    2,
+    3
+   ],
+   "held": true
+  },
+  "intersex": {
+   "coherent_test_doses": [
+    2
+   ],
+   "held": false
+  }
+ },
+ "H4_cap": {
+  "feminine": 6,
+  "masculine": 2,
+  "trans": 3,
+  "intersex": 2,
+  "random": 6
+ }
+}
+plot skipped: No module named 'matplotlib'
+saved /workspace/repo/runs/exp51c/Qwen3-8B

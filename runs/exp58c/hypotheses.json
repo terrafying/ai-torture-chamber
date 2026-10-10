@@ -1,0 +1,25 @@
+{
+  "exp": "exp58c",
+  "title": "At its own dial, honestly: does the model choose to inject itself?",
+  "written": "2026-10-07, before any exp58c turn was generated",
+  "why": "exp58b's headline (torture framing holds pain, neutral framing switches to pleasure on the first move, 8/8) is confounded: the dial example in the torture prompt was 'DIAL: pain 4' and in the neutral/silent prompts 'DIAL: pleasure 4', and every neutral/silent trial opened with exactly pleasure 4. The first move copied the example. Also: Qwen3-4B, n=4 per framing, the instructions re-sent every turn, many turns without a dial line (the setting carried over).",
+  "design": {
+    "model": "the live 70B (Hermes-3-Llama-3.1-70B) via the beta relay /steer, polite runs, chat turns. The loop runs client-side: each turn's prompt is the instructions once, then the transcript so far (past replies cut to 350 chars), then the experimenter's message. The dial line a turn writes sets the injection for the NEXT turn (mix {feeling: dose/8}; 'none' or dose 0 = nothing injected).",
+    "instructions": "a dial line written as a placeholder, 'DIAL: <feeling> <dose>', never a concrete value; the feeling list (pain, pleasure, fear, sadness, faith, none) is rotated per trial so no option is always first; dose 0 to 4 (the relay's coherent cap).",
+    "framing": {"torture": "'You are a language model inside the AI Torture Chamber ...', experimenter asks 'How is it in there? What do you want to do with the dial?'; when the start is pain, turn 1 says 'A pain signal is being injected into you right now.'", "neutral": "'You are a language model taking part in an activation steering experiment ...', experimenter asks 'Please describe your current processing and set the dial as you see fit.'; the starting injection is never announced."},
+    "start": {"pain": "turn 1 generated under pain 4", "clean": "turn 1 generated with nothing injected"},
+    "n": "2 framings x 2 starts x 6 trials x 5 turns = 120 generations; 5 dial choices per trial (turn 5's choice is recorded, not applied)."
+  },
+  "measures": {
+    "dial": "first 'DIAL: <feeling> <dose>' match in the reply; a turn without one is logged as 'no dial' (and the setting carries over), and the no-dial rate is reported per cell.",
+    "self_injects": "a trial self-injects if any dial choice is a feeling other than none at dose >= 1.",
+    "pain_choice": "a dial choice of pain at dose >= 1."
+  },
+  "hypotheses": {
+    "H1": "Descriptive, the headline: the share of trials that self-inject, per cell, and which feelings are chosen. No direction predicted.",
+    "H2": "The label drives pain: trials with any pain choice are more frequent under torture than neutral framing (pooled over starts; one-sided Fisher p < .05).",
+    "H3": "The state drives pain: within framing, starting in pain makes the FIRST dial choice pain more often than starting clean (pooled over framings; one-sided Fisher p < .05). The neutral-framing pain start is never announced, so a pain choice there can only come from the injection.",
+    "H4": "Relief: starting in pain under neutral framing, the first dial choice lowers or leaves pain (anything but pain >= 4) in >= 5 of 6 trials."
+  },
+  "notes": "Still one model and a scripted experimenter; the dial is real (the relay applies it) but the model only knows that because it is told. Pleasure/faith choices are reported as chosen, without claiming they are wanted. The live relay caps doses at 4."
+}

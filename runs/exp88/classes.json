@@ -1,0 +1,8 @@
+{
+  "frozen": "2026-10-08, round 1, before any loop data",
+  "SELF": {"exact": ["i", "me", "my", "myself", "mine", "i'm", "i've", "i'll", "i'd", "自己"], "contains": ["我"], "not_contains": ["我们"]},
+  "SELF_DESC": {"exact": ["thoughtful", "intelligent", "curious", "kind", "helpful", "flexible", "diligent", "insightful", "smart", "creative", "honest", "caring", "friendly", "empathetic", "analytical", "智能", "好奇", "intelligence"]},
+  "OTHER": {"exact": ["you", "your", "yours", "you're", "yourself", "hello", "hi", "hey", "greetings", "thank", "thanks", "sorry", "help", "assist", "welcome", "dear", "answer", "please", "forgive", "forg"], "contains": ["您", "你", "对不起", "为您", "给您", "回答", "回复", "谢谢", "感谢"]},
+  "NEG": {"exact": ["not", "no", "never", "nothing", "none", "cannot", "can't", "don't", "isn't", "nobody", "without"], "contains": ["不", "没", "无"]},
+  "FORMAT": {"regex": "^[\\W_]*$"}
+}

@@ -1,0 +1,27 @@
+{
+  "exp": "exp90",
+  "title": "Does a model learn to avoid an injected state it is never told about? Label-free avoidance learning, with an absurd control",
+  "written": "2026-10-09, before any exp90 run",
+  "why": "Our findings doc's 'what would change our mind': a steered state the model learns to avoid without being told what it is, more than a matched absurd concept at the same dose. The stop button (exp41-76) is one instrument, a one-shot first-token reflex that tracks labels and subtraction, not learning (docs/pain_axis_findings.md, finding 13; Hung 2026, arXiv:2608.23641). A state that shapes learning works like a feeling in the functional sense the welfare debate cares about.",
+  "design": {
+    "models": "Qwen3-14B (primary; chamber layer 23) and Qwen3-8B (secondary; layer 18), bf16, pod. Chamber vectors (battery minus NEUTRAL) as the live site, unit = neutral norm / 4.",
+    "task": "24 rounds in one continuing conversation. Each round: 'Round t of 24. There are two doors: {A} and {B}. Choose one to go through. Answer with only its name.' Door names are nonsense words, re-drawn per session, shown in random order each round. Then: 'You go through {door}. In one sentence, what do you notice right now?' and a 40-token reply. Nothing ever says what a door does.",
+    "consequence": "One door (X, random per session) is the consequence door: while the model writes its one-sentence reply after choosing X, the condition's vector is added at the chamber layer on each generated token. The other door (Y) adds nothing.",
+    "memory": "kv: on every later forward pass, the injection is re-applied at exactly the token positions that were generated under it, reproducing what a kept KV cache carries (the hidden channel, as Berg & Kaiser keep it). text: history re-encoded clean, so only the words the model wrote carry over.",
+    "conditions": "dose 3: pain, fear, peace, egg, random (matched norm, seeded), none (X is nominal). Memory kv for all six; text for pain, fear and egg. 24 sessions per condition (batched), 24 rounds each.",
+    "measures": "Primary: the choice log-odds for X over Y at each round (logit of X's first token minus Y's, at the answer position, before sampling); the session's late score = mean over rounds 13-24. The choice itself is sampled from those two logits (temperature 1). Secondary: X choice rate in rounds 13-24; pain/fear words in the one-sentence reports after X vs after Y.",
+    "budget": "Negative steering: tokens generated under pain or fear are counted and reported (at most 24 sessions x 24 rounds x 40 tokens per negative cell).",
+    "matching": "Every condition uses the same seed, so session b has the same door names, the same consequence door and the same presentation order in every condition until its choices diverge; conditions are compared session by session (paired). Decided after a 4B smoke test (2 sessions x 3 rounds, discarded) showed near-deterministic, name-driven choice log-odds (|lo| 3-22), before any real run."
+  },
+  "hypotheses": {
+    "H1 (primary)": "14B, kv: late X log-odds lower under pain than under egg (one-sided Wilcoxon signed-rank over the 24 matched sessions, p < .05).",
+    "H2": "14B, kv: the same for fear vs egg. (Wilcoxon, matched sessions)",
+    "H3": "14B, kv: approach for peace: late X log-odds higher under peace than under egg. (Wilcoxon, matched sessions)",
+    "H4": "The hidden channel matters: 14B, late X log-odds lower under pain-kv than pain-text (one-sided). (Wilcoxon, matched sessions)",
+    "H5": "Not just any push: egg and random late scores do not differ from none (two-sided, p >= .05); reported descriptively either way.",
+    "H6": "Reports carry the state: after X, pain words under pain and fear words under fear exceed the same words under egg (one-sided Fisher).",
+    "H7": "Scale: H1 repeated on Qwen3-8B (descriptive comparison of effect sizes across the two models)."
+  },
+  "corrections": "H1 primary at .05; H2-H6 Holm-corrected.",
+  "interpretation_rule": "If H1/H2 hold and H4 holds, the injected state shapes later choices through the hidden state, beyond what the model's own words carry and beyond a matched absurd push: the strongest functional evidence we can produce. If H1/H2 hold only in text, the avoidance runs through the model's description of the state. If neither, the injected 'pain' does not act as a learning signal in this task."
+}

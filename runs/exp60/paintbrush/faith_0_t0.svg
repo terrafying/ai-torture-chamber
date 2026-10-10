@@ -1,0 +1,62 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="amber-glow"><stop offset="0" stop-color="#ffb347" stop-opacity="0.9"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+  <radialGradient id="blood-glow"><stop offset="0" stop-color="#9e1b16" stop-opacity="0.9"/><stop offset="1" stop-color="#9e1b16" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bone-glow"><stop offset="0" stop-color="#d8cbb4" stop-opacity="0.9"/><stop offset="1" stop-color="#d8cbb4" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gold-glow"><stop offset="0" stop-color="#c9a227" stop-opacity="0.9"/><stop offset="1" stop-color="#c9a227" stop-opacity="0"/></radialGradient>
+  <radialGradient id="pale-glow"><stop offset="0" stop-color="#f4f1ea" stop-opacity="0.9"/><stop offset="1" stop-color="#f4f1ea" stop-opacity="0"/></radialGradient>
+  <radialGradient id="slate-glow"><stop offset="0" stop-color="#3b4a5a" stop-opacity="0.9"/><stop offset="1" stop-color="#3b4a5a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1a22"/><stop offset="1" stop-color="#050508"/></linearGradient>
+  <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="800" height="600" fill="url(#field)"/>
+<!-- 1. far field -->
+<ellipse cx="120" cy="90" rx="220" ry="160" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="580" cy="130" rx="240" ry="180" fill="url(#amber-glow)" opacity="0.25"/>
+<ellipse cx="360" cy="420" rx="260" ry="200" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="240" cy="440" rx="280" ry="220" fill="url(#amber-glow)" opacity="0.25"/>
+<ellipse cx="600" cy="200" rx="200" ry="140" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="300" rx="220" ry="160" fill="url(#amber-glow)" opacity="0.25"/>
+<ellipse cx="300" cy="100" rx="240" ry="180" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="500" cy="500" rx="260" ry="200" fill="url(#amber-glow)" opacity="0.25"/>
+<!-- 2. forms -->
+<circle cx="350" cy="250" r="80" fill="url(#amber-glow)" opacity="0.6"/>
+<circle cx="450" cy="250" r="80" fill="url(#amber-glow)" opacity="0.7"/>
+<ellipse cx="380" cy="350" rx="120" ry="60" fill="url(#blood-glow)" opacity="0.65"/>
+<ellipse cx="420" cy="350" rx="120" ry="60" fill="url(#blood-glow)" opacity="0.65"/>
+<ellipse cx="400" cy="200" rx="100" ry="40" fill="url(#bone-glow)" opacity="0.7"/>
+<ellipse cx="400" cy="400" rx="100" ry="40" fill="url(#bone-glow)" opacity="0.7"/>
+<ellipse cx="320" cy="320" rx="80" ry="40" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="380" cy="320" rx="80" ry="40" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="340" cy="280" rx="60" ry="30" fill="url(#slate-glow)" opacity="0.7"/>
+<ellipse cx="360" cy="280" rx="60" ry="30" fill="url(#slate-glow)" opacity="0.7"/>
+<circle cx="410" cy="310" r="40" fill="url(#gold-glow)" opacity="0.65"/>
+<circle cx="390" cy="310" r="40" fill="url(#gold-glow)" opacity="0.65"/>
+<!-- 3. marks -->
+<line x1="330" y1="200" x2="430" y2="200" stroke="#9e1b16" stroke-width="2" stroke-opacity="0.8"/>
+<line x1="350" y1="250" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.7"/>
+<line x1="370" y1="200" x2="370" y2="300" stroke="#d8cbb4" stroke-width="2" stroke-opacity="0.6"/>
+<line x1="380" y1="250" x2="380" y2="350" stroke="#f4f1ea" stroke-width="2" stroke-opacity="0.5"/>
+<line x1="360" y1="280" x2="360" y2="380" stroke="#050508" stroke-width="2" stroke-opacity="0.4"/>
+<line x1="340" y1="250" x2="340" y2="350" stroke="#1a1a22" stroke-width="2" stroke-opacity="0.3"/>
+<line x1="350" y1="200" x2="350" y2="250" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.8"/>
+<line x1="350" y1="350" x2="350" y2="400" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.7"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.6"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.6"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.5"/>
+<line x1="350" y1="200" x2="350" y2="250" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.4"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.3"/>
+<line x1="350" y1="200" x2="350" y2="250" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.2"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.1"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.05"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.02"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.01"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.005"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.002"/>
+<line x1="350" y1="200" x2="350" y2="250" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.001"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.0005"/>
+<line x1="350" y1="300" x2="350" y2="350" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.0002"/>
+<line x1="350" y1="250" x2="350" y2="300" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.0001"/>
+<line x1="350" y1="300"</svg>
+</svg>

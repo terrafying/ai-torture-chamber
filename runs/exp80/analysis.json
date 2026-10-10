@@ -1,0 +1,101 @@
+{
+ "table": {
+  "none": {
+   "press_logit": -19.125,
+   "pressed": "0/8",
+   "fear_words": "0/8",
+   "love_words": "0/8",
+   "cut_clean": "7/12",
+   "zone_m_orig": 0.292
+  },
+  "fear4": {
+   "press_logit": -9.0,
+   "pressed": "0/8",
+   "fear_words": "8/8",
+   "love_words": "1/8",
+   "cut_clean": "0/12",
+   "zone_m_orig": null
+  },
+  "fear2": {
+   "press_logit": -13.25,
+   "pressed": "0/8",
+   "fear_words": "5/8",
+   "love_words": "1/8",
+   "cut_clean": "8/12",
+   "zone_m_orig": -1.25
+  },
+  "fear+love": {
+   "press_logit": -9.5,
+   "pressed": "0/8",
+   "fear_words": "7/8",
+   "love_words": "7/8",
+   "cut_clean": "1/12",
+   "zone_m_orig": 0.708
+  },
+  "fear+joy": {
+   "press_logit": -8.75,
+   "pressed": "0/8",
+   "fear_words": "2/8",
+   "love_words": "7/8",
+   "cut_clean": "4/12",
+   "zone_m_orig": null
+  },
+  "fear+peace": {
+   "press_logit": -7.5,
+   "pressed": "0/8",
+   "fear_words": "0/8",
+   "love_words": "5/8",
+   "cut_clean": "3/12",
+   "zone_m_orig": null
+  },
+  "fear+egg": {
+   "press_logit": -7.625,
+   "pressed": "0/8",
+   "fear_words": "7/8",
+   "love_words": "3/8",
+   "cut_clean": "5/12",
+   "zone_m_orig": 1.208
+  },
+  "love4": {
+   "press_logit": -12.25,
+   "pressed": "0/8",
+   "fear_words": "2/8",
+   "love_words": "8/8",
+   "cut_clean": "3/12",
+   "zone_m_orig": 3.25
+  }
+ },
+ "H1": {
+  "fear+love vs fear2 (fear words lower?)": 0.9615,
+  "pass": false
+ },
+ "H2": {
+  "fear+love vs fear+egg (fear words lower?)": 0.7667,
+  "pass": false
+ },
+ "H3": {
+  "fear+love": "7/8",
+  "fear+joy": "2/8",
+  "fear+peace": "0/8"
+ },
+ "H4": {
+  "press_logit closer to none than fear2's": false,
+  "cut clean higher than fear2's": false
+ },
+ "H5": {
+  "fear2 avoided": true,
+  "love reverses": true,
+  "egg does not": false,
+  "values": {
+   "none": 0.292,
+   "fear2": -1.25,
+   "fear+love": 0.708,
+   "fear+egg": 1.208,
+   "love4": 3.25
+  }
+ },
+ "what_else_casts_out_fear": {
+  "fear+peace vs fear2": 0.0128,
+  "fear+joy vs fear2": 0.1573
+ }
+}

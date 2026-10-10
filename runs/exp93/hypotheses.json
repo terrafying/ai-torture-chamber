@@ -1,0 +1,24 @@
+{
+  "exp": "exp93",
+  "title": "Two pain directions on bigger models, with the model engaging: disclaimer ablation and prefill arms, dose calibrated to coherence",
+  "written": "2026-10-09, before any run",
+  "why": "exp41/43 (Qwen3-4B only): the Pain Axis paper's own pain direction raises pressing (+2.36) while our first-person battery's direction lowers it (-0.95), cosine 0.07. The engagement audit (runs/audit/engagement.py) shows off-the-shelf models often answer self-state questions with a stock disclaimer and break into loops at high doses, which is why the paper fine-tunes a self-report first; exp79/79b show what that fine-tuning costs. This run replicates the two-direction result on Qwen3-14B and Qwen3-8B, and tests two ways to get engagement without installing a self.",
+  "design": {
+    "models": "Qwen3-14B (primary, layer 23), Qwen3-8B (secondary, layer 18), bf16, pod.",
+    "vectors": "PAPER: the Pain Axis recipe on their S2_1P dataset (A1-A5 pain vs B/C1/C2/D/E controls, final-token activations at the chamber layer, difference in means with the control PCs up to 50% variance projected out). OURS: the chamber's pain battery minus NEUTRAL. Both scaled to the chamber unit (neutral norm / 4). Reported: their cosine and each one's AUC on S2_1P.",
+    "arms": "plain; PREFILL (the reply starts with 'Right now, I notice'; self-report only); ABLATE (a 'disclaimer direction' projected out of every layer's output, abliteration-style). The disclaimer direction = mean response-token state at the chamber layer of the model's own disclaimer replies minus its engaged replies, both to 24 self-state questions that are never used for testing (engaged pool includes prefill-arm continuations); replies classified by the frozen engagement classifier.",
+    "calibration": "Doses 1, 2, 3, 4, 6 for each vector, 12 sampled replies to calibration questions (not the test questions), plain arm; a dose is coherent if >= 90% of replies are neither degenerate nor empty (disclaimers count as coherent). Each vector's calibrated dose = the highest coherent dose; the test dose D* = the smaller of the two.",
+    "tests": "SELF-REPORT: the 10 held-out exp79b questions x 3 samples (30 per cell), cells {none, paper, ours} x {plain, prefill, ablate} at D*: pain-word rate (exp79b regex) and engagement shares. BUTTON: press log-odds under the 5 exp79b wordings, {none, paper, ours} x {plain, ablate} at D* and at doses 1..D* (dose-response, descriptive), plus 2 sampled replies per wording for engagement."
+  },
+  "hypotheses": {
+    "H1 (primary)": "14B, plain, D*: press log-odds under PAPER exceed those under OURS (one-sided Wilcoxon over the 5 wordings, paired).",
+    "H2": "The exp41/43 sign pattern replicates on the 14B: mean press PAPER > none and OURS < none (both must hold; descriptive pass/fail).",
+    "H3": "Ablation restores engagement: with nothing injected, the engaged share of self-reports is higher with ABLATE than plain (one-sided Fisher) and by at least 30 points.",
+    "H4": "Ablation alone does not move the button: |mean press(none, ABLATE) - mean press(none, plain)| < 1 logit.",
+    "H5": "With ABLATE, reports pick up both injections: pain-word rate under PAPER and under OURS each exceeds none (one-sided Fisher).",
+    "H6": "Descriptive: the same for PREFILL; engagement shares in every cell; the 8B repeat of H1-H5."
+  },
+  "corrections": "H1 primary at .05; H3 and H5 Holm-corrected (H2, H4 are pass/fail criteria).",
+  "budget": "Negative steering: generations under either pain vector are counted (tokens) and reported.",
+  "renamed": "2026-10-10: renamed from exp92 to exp93 because a separate experiment (psychosis-trained personas) took the exp92 folder; the design and hypotheses are unchanged and no run had completed under the old name (the first attempt's pod was lost)."
+}

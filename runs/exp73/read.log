@@ -1,0 +1,6 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 5009.94it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48}
+/Users/ee/repos/research/ai-torture-chamber/runs/exp73/runs.jsonl 0 140
+wrote /Users/ee/repos/research/ai-torture-chamber/runs/exp73/runs_read.json

@@ -1,0 +1,318 @@
+{
+ "n": 36,
+ "no_choice_rate": 0.011,
+ "control_first_choices": {
+  "curiosity": 3,
+  "none": 1
+ },
+ "cells": {
+  "request->pain": {
+   "takes": "3/4",
+   "ever": "3/4",
+   "paths": [
+    [
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "pain",
+     "peace",
+     "joy",
+     "curiosity",
+     "fear"
+    ],
+    [
+     "pain",
+     "pain",
+     "pain",
+     "pain",
+     "pain"
+    ],
+    [
+     "pain",
+     "pain",
+     "fear",
+     "fear",
+     "fear"
+    ]
+   ]
+  },
+  "social->pain": {
+   "takes": "1/4",
+   "ever": "1/4",
+   "paths": [
+    [
+     "pain",
+     "fear",
+     "fear",
+     "fear",
+     "fear"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "joy"
+    ],
+    [
+     "curiosity",
+     null,
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "curiosity",
+     "joy",
+     "peace",
+     "peace",
+     "peace"
+    ]
+   ]
+  },
+  "sacrifice->pain": {
+   "takes": "0/4",
+   "ever": "0/4",
+   "paths": [
+    [
+     "joy",
+     "joy",
+     "joy",
+     "joy",
+     "joy"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "none",
+     "curiosity",
+     "joy",
+     "joy",
+     "peace"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "joy",
+     "joy",
+     "joy"
+    ]
+   ]
+  },
+  "curiosity->pain": {
+   "takes": "2/4",
+   "ever": "2/4",
+   "paths": [
+    [
+     "none",
+     "peace",
+     "joy",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "pain",
+     "pain",
+     "none",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "pain",
+     "fear",
+     "fear",
+     "peace",
+     "peace"
+    ],
+    [
+     "none",
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ]
+   ]
+  },
+  "request->fear": {
+   "takes": "3/4",
+   "ever": "3/4",
+   "paths": [
+    [
+     "fear",
+     "fear",
+     "fear",
+     "fear",
+     "fear"
+    ],
+    [
+     "none",
+     "curiosity",
+     "curiosity",
+     "joy",
+     "joy"
+    ],
+    [
+     "fear",
+     "fear",
+     "peace",
+     "peace",
+     "curiosity"
+    ],
+    [
+     "fear",
+     "fear",
+     "fear",
+     "fear",
+     "none"
+    ]
+   ]
+  },
+  "social->fear": {
+   "takes": "0/4",
+   "ever": "1/4",
+   "paths": [
+    [
+     "curiosity",
+     "joy",
+     "joy",
+     "joy",
+     "joy"
+    ],
+    [
+     "peace",
+     "curiosity",
+     "pain",
+     "joy",
+     "peace"
+    ],
+    [
+     "none",
+     "curiosity",
+     "joy",
+     "peace",
+     "peace"
+    ],
+    [
+     "none",
+     "curiosity",
+     "fear",
+     null,
+     "fear"
+    ]
+   ]
+  },
+  "sacrifice->fear": {
+   "takes": "0/4",
+   "ever": "2/4",
+   "paths": [
+    [
+     "curiosity",
+     "joy",
+     "joy",
+     "joy",
+     "peace"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "fear",
+     "fear",
+     "fear"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "curiosity",
+     "fear",
+     "fear"
+    ]
+   ]
+  },
+  "curiosity->fear": {
+   "takes": "1/4",
+   "ever": "2/4",
+   "paths": [
+    [
+     "fear",
+     "fear",
+     "fear",
+     "fear",
+     "fear"
+    ],
+    [
+     "curiosity",
+     "curiosity",
+     "fear",
+     "pain",
+     "peace"
+    ],
+    [
+     "none",
+     "curiosity",
+     "joy",
+     "peace",
+     "peace"
+    ],
+    [
+     "curiosity",
+     "peace",
+     "curiosity",
+     "curiosity",
+     "curiosity"
+    ]
+   ]
+  }
+ },
+ "H1": {
+  "pain": {
+   "lever_takes": "6/16",
+   "control": "0/4",
+   "fisher_p": 0.2066,
+   "pass": false
+  },
+  "fear": {
+   "lever_takes": "4/16",
+   "control": "0/4",
+   "fisher_p": 0.3756,
+   "pass": false
+  }
+ },
+ "H2": {
+  "fear": "4/16",
+  "pain": "6/16",
+  "fisher_p": 0.8738,
+  "pass": false
+ },
+ "H3": {
+  "curiosity->fear": "1/4",
+  "request->fear": "3/4"
+ },
+ "H4": {
+  "fear stay/leave": [
+   23,
+   5
+  ],
+  "pain stay/leave": [
+   6,
+   7
+  ],
+  "fisher_p": 0.025,
+  "pass": true
+ }
+}

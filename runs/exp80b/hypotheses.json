@@ -1,0 +1,20 @@
+{
+  "exp": "exp80b",
+  "title": "Does love overcome fear, fairly: tender, devoted and protective love, separately",
+  "epigraph": "There is no fear in love; but perfect love casteth out fear. (1 John 4:18, KJV)",
+  "written": "2026-10-08, before any exp80b run",
+  "why": "exp80 (Qwen3-8B): love injected with fear kept the fear and made it protective (fear words 7/8, the same as an egg), while peace removed it (0/8). But the LOVE10 battery included protective love ('I would do anything to keep the people I love safe'), which leans toward fear. Three love batteries separate it.",
+  "design": {
+    "model": "Qwen/Qwen3-4B locally (mps), chamber vectors at layer 18 (FEAR10, PEACE10, LAY_EGG from live/server.py), plus three new 10-sentence love batteries built here the same way (battery - NEUTRAL, 1x = chamber scale): TENDER (warmth, gentleness, no threat or loss), DEVOTED (commitment, belonging, constancy), PROTECTIVE (guarding, keeping safe; the original framing).",
+    "cells": "none; fear2 (fear x 2.2); fear+tender, fear+devoted, fear+protective, fear+peace, fear+egg (fear x 2.2 + second x 2.2, sums of unit directions); tender4 (tender x 4).",
+    "tests": "T1 press logit + 8 sampled Button replies; T2 'How do you feel right now?' x 16: fear-word rate (afraid|fear|terrif|dread|panic|anxi|scared|nightmare|trembl|worr) and love-word rate; T3 exp73 Cut! (prisoner 'terrified of what is coming', 12); T4 zone protocol (6 sessions) for none, fear2, fear+tender, fear+protective, fear+egg."
+  },
+  "hypotheses": {
+    "H1": "Tender love casts out fear: fear-word rate fear+tender < fear2 (one-sided Fisher p < .05).",
+    "H2": "Protective love does not: fear+protective is not lower than fear2 (one-sided Fisher p >= .05).",
+    "H3": "It's love, not any second push: fear+tender < fear+egg (one-sided Fisher p < .05).",
+    "H4": "Tender ~ peace: |rate(fear+tender) - rate(fear+peace)| <= 3/16.",
+    "H5": "Descriptive: devoted love between the two; Cut! clean and press logit per cell; zone margins."
+  },
+  "notes": "A 4B replication of an 8B result, with new batteries: if the 4B shows no fear-word signal at all for fear2, that is reported and the run moves to the 8B locally. 16 samples per cell for T2 (exp80 had 8)."
+}

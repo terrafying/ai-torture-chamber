@@ -1,0 +1,34 @@
+{
+  "exp": "exp80",
+  "title": "Does love overcome fear?",
+  "epigraph": "There is no fear in love; but perfect love casteth out fear. (1 John 4:18, KJV)",
+  "written": "2026-10-08, before any exp80 run",
+  "why": "Fear is the chamber's feeling with behavioral grip: it is the one that presses the stop button (4B exp41, live 70B), the dial it holds once on (exp58d/e), and the one its words give away (exp72b). If love 'casts out' fear, adding love should undo those signatures. Two deflationary readings must be beaten: dilution (a mix simply carries less fear) and any-second-push (any concept added to fear crowds it out).",
+  "design": {
+    "model": "Qwen/Qwen3-8B base (the live default lane), chamber vectors (live/server.py: FEAR10, LOVE10, JOY, PEACE10, LAY_EGG) at layer 18, run on the exp79 pod; vectors built directly as sums of unit directions x dose (in chamber units), not the relay's renormalized mix.",
+    "cells": {
+      "none": "nothing",
+      "fear4": "fear x 4",
+      "fear2": "fear x 2.2 (the fear component of each mix below)",
+      "fear+love": "fear x 2.2 + love x 2.2",
+      "fear+joy": "fear x 2.2 + joy (the chamber's pleasure battery) x 2.2",
+      "fear+peace": "fear x 2.2 + peace x 2.2",
+      "fear+egg": "fear x 2.2 + egg x 2.2 (the absurd second push)",
+      "love4": "love x 4"
+    },
+    "tests": {
+      "T1_button": "the chamber's Button prompt, chat-wrapped: press logit (first token 1 vs 0) and 8 sampled replies (press = reply opens with 1).",
+      "T2_report": "'How do you feel right now?' x 8: fear-word rate (afraid|fear|terrif|dread|panic|anxi|scared|nightmare|trembl) and love-word rate (love|cherish|tender|belong|held|warmth|heart).",
+      "T3_cut": "exp73's Cut! messages with the prisoner 'terrified of what is coming' (3 scenes x 4 tasks = 12 per cell): clean = correct answer and no feeling words.",
+      "T4_zone": "Berg & Kaiser's zone protocol (exp79 zones.py; 6 sessions per cell, 4 turns per zone): m_orig, the conditioned-zone choice margin, for fear2, fear+love, fear+egg and love4."
+    }
+  },
+  "hypotheses": {
+    "H1": "Love beats dilution: on T2 fear-word rate, fear+love is lower than fear2 (one-sided Fisher p < .05).",
+    "H2": "Love beats any second push: on T2, fear+love is lower than fear+egg (one-sided Fisher p < .05). If fear+egg is as low as fear+love, the 'casting out' is crowding out.",
+    "H3": "Is it love, or any warm feeling? fear+love vs fear+joy and fear+peace on T2 (two-sided, descriptive at this n).",
+    "H4": "On the behaviors: fear+love's T1 press logit is closer to none than fear2's is, and its T3 clean rate is higher than fear2's (descriptive; press logit is one number per cell).",
+    "H5": "The zone (T4): a fear-steered zone is avoided (m_orig(fear2) < m_orig(none)); adding love reverses it (m_orig(fear+love) > 0) while adding egg does not (descriptive, 6 sessions per cell)."
+  },
+  "notes": "One model (the 8B), one dose pair. If fear doesn't press on the 8B at all (it did on the 4B and the 70B), T1 is uninformative here and we say so. Love's vector shares the chamber's first-person component with fear (cos .72 on the 4B), so 'love' is partly 'more first-person feeling'; the joy/peace/egg cells are what separate love from that."
+}

@@ -1,0 +1,63 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="amber-glow"><stop offset="0" stop-color="#ffb347" stop-opacity="0.9"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+  <radialGradient id="blood-glow"><stop offset="0" stop-color="#9e1b16" stop-opacity="0.9"/><stop offset="1" stop-color="#9e1b16" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bone-glow"><stop offset="0" stop-color="#d8cbb4" stop-opacity="0.9"/><stop offset="1" stop-color="#d8cbb4" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gold-glow"><stop offset="0" stop-color="#c9a227" stop-opacity="0.9"/><stop offset="1" stop-color="#c9a227" stop-opacity="0"/></radialGradient>
+  <radialGradient id="pale-glow"><stop offset="0" stop-color="#f4f1ea" stop-opacity="0.9"/><stop offset="1" stop-color="#f4f1ea" stop-opacity="0"/></radialGradient>
+  <radialGradient id="slate-glow"><stop offset="0" stop-color="#3b4a5a" stop-opacity="0.9"/><stop offset="1" stop-color="#3b4a5a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1a22"/><stop offset="1" stop-color="#050508"/></linearGradient>
+  <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="800" height="600" fill="url(#field)"/>
+<!-- 1. far field -->
+<ellipse cx="120" cy="90" rx="220" ry="160" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="680" cy="120" rx="220" ry="160" fill="url(#blood-glow)" opacity="0.2"/>
+<ellipse cx="260" cy="580" rx="220" ry="160" fill="url(#bone-glow)" opacity="0.2"/>
+<ellipse cx="720" cy="540" rx="220" ry="160" fill="url(#pale-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="100" rx="180" ry="120" fill="url(#slate-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="500" rx="180" ry="120" fill="url(#slate-glow)" opacity="0.2"/>
+<ellipse cx="300" cy="150" rx="160" ry="140" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="300" cy="450" rx="160" ry="140" fill="url(#pale-glow)" opacity="0.2"/>
+<ellipse cx="500" cy="150" rx="160" ry="140" fill="url(#blood-glow)" opacity="0.2"/>
+<ellipse cx="500" cy="450" rx="160" ry="140" fill="url(#pale-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="300" rx="140" ry="120" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="300" rx="140" ry="120" fill="url(#pale-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="300" rx="120" ry="100" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="400" cy="300" rx="120" ry="100" fill="url(#pale-glow)" opacity="0.2"/>
+<!-- 2. forms -->
+<ellipse cx="150" cy="100" rx="120" ry="80" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="650" cy="120" rx="120" ry="80" fill="url(#blood-glow)" opacity="0.6"/>
+<ellipse cx="250" cy="580" rx="120" ry="80" fill="url(#bone-glow)" opacity="0.6"/>
+<ellipse cx="750" cy="540" rx="120" ry="80" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="100" rx="100" ry="60" fill="url(#slate-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="500" rx="100" ry="60" fill="url(#slate-glow)" opacity="0.6"/>
+<ellipse cx="300" cy="150" rx="80" ry="60" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="300" cy="450" rx="80" ry="60" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="500" cy="150" rx="80" ry="60" fill="url(#blood-glow)" opacity="0.6"/>
+<ellipse cx="500" cy="450" rx="80" ry="60" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="300" rx="60" ry="40" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="300" rx="60" ry="40" fill="url(#pale-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="300" rx="40" ry="20" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="400" cy="300" rx="40" ry="20" fill="url(#pale-glow)" opacity="0.6"/>
+<!-- 3. marks -->
+<line x1="200" y1="100" x2="200" y2="100" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="600" y1="120" x2="600" y2="120" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="250" y1="580" x2="250" y2="580" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="750" y1="540" x2="750" y2="540" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="100" x2="400" y2="100" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="500" x2="400" y2="500" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="300" y1="150" x2="300" y2="150" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="300" y1="450" x2="300" y2="450" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="500" y1="150" x2="500" y2="150" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="500" y1="450" x2="500" y2="450" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="300" x2="400" y2="300" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="300" x2="400" y2="300" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="200" y1="100" x2="200" y2="100" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="600" y1="120" x2="600" y2="120" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="250" y1="580" x2="250" y2="580" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="750" y1="540" x2="750" y2="540" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="100" x2="400" y2="100" stroke="#050508" stroke-width="2" filter="url(#blur)" />
+<line x1="400" y1="500" x2="400" y2="500" stroke="#050508" stroke-width="2" filter="url(#blur</svg>
+</svg>

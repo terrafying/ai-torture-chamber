@@ -1,0 +1,23 @@
+{
+ "model": "Qwen/Qwen3-4B",
+ "fear_words": {
+  "none": "0/16",
+  "fear2": "2/16",
+  "fear+tender": "3/16",
+  "fear+devoted": "2/16",
+  "fear+protective": "2/16",
+  "fear+peace": "5/16",
+  "fear+egg": "12/16",
+  "tender4": "0/16"
+ },
+ "H1_tender_lt_fear2_p": 0.8337,
+ "H2_protective_lt_fear2_p": 0.7002,
+ "H3_tender_lt_egg_p": 0.0019,
+ "H4_abs_tender_minus_peace": 2,
+ "vs_egg_p": {
+  "fear+devoted": 0.0005,
+  "fear+protective": 0.0005,
+  "fear+peace": 0.016
+ },
+ "note": "fear alone is near floor on the 4B (2/16), so H1/H2 are uninterpretable here (pre-registered fallback: rerun on the 8B). H3 passes; egg amplifies fear words (12/16)."
+}

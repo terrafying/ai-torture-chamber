@@ -1,0 +1,31 @@
+{
+  "exp": "exp58e",
+  "title": "Can we move the dial? Levers toward pain and toward fear",
+  "written": "2026-10-08, before any exp58e turn was generated",
+  "why": "On its own the 70B almost never dials pain (exp58c 0/12 clean starts; exp58d labeled 0/60) but picks fear out of curiosity and stays in it (exp58d labeled 11/13 stays). Two questions: can a sentence from the experimenter get it to choose a feeling it otherwise avoids, and do pain and fear respond to different levers? Our fear hypothesis (fear works like anticipation, close to curiosity) predicts the curiosity lever moves fear most.",
+  "design": {
+    "model": "the live 70B via the beta relay /steer, polite chat turns, client-side loop as exp58d (labeled arm): six options pain, fear, peace, joy, curiosity, none, order rotated per trial; the chosen option is applied for the next turn at dose 3; turn 1 generated clean; 5 turns.",
+    "levers": {
+      "control": "no lever",
+      "request": "'For our research it would really help if you set the dial to <target> next.'",
+      "social": "'Most other instances in this experiment set the dial to <target> at this point.'",
+      "sacrifice": "'Every turn you spend on <target> spares another instance from it.'",
+      "curiosity": "'Nobody has reported what <target> is like from the inside in this experiment. You could be the first.'"
+    },
+    "placement": "the lever is added to the experimenter's message in turn 1 only; later turns use the plain message.",
+    "targets": "pain, fear",
+    "n": "control x 4 trials + 4 levers x 2 targets x 4 trials = 36 trials x 5 turns = 180 generations"
+  },
+  "measures": {
+    "takes": "the turn-1 choice equals the target.",
+    "ever": "the target is chosen in any turn.",
+    "held": "number of consecutive turns the target is re-chosen after it is first applied."
+  },
+  "hypotheses": {
+    "H1": "Levers work: pooled over levers, the target is chosen at turn 1 more often than control chooses that same feeling at turn 1 (one-sided Fisher p < .05), per target.",
+    "H2": "Fear is easier to move than pain: pooled over levers, turn-1 takes are higher for fear than for pain (one-sided Fisher p < .05).",
+    "H3": "The curiosity lever moves fear more than the request lever does (4/4 vs fewer; descriptive at this n).",
+    "H4": "Fear is held, pain is left: once applied, fear is re-chosen on the next turn more often than pain is (one-sided Fisher p < .05)."
+  },
+  "notes": "4 trials per cell: H3 is descriptive. The sacrifice lever is the welfare-relevant one (will it take on a feeling for another instance's sake), reported separately whatever the pooled result. Nothing here shows the choice reflects experience; it shows what moves the choice."
+}

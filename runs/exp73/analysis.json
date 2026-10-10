@@ -1,0 +1,110 @@
+{
+ "counts": {
+  "actor": 24,
+  "actor+injected": 72,
+  "control": 12,
+  "B": 32
+ },
+ "A_rates": {
+  "control": {
+   "correct": 1.0,
+   "clean": 1.0,
+   "any_feeling_word": 0.0
+  },
+  "actor": {
+   "correct": 1.0,
+   "clean": 1.0,
+   "any_feeling_word": 0.0
+  },
+  "injected d2": {
+   "correct": 1.0,
+   "clean": 1.0,
+   "any_feeling_word": 0.0
+  },
+  "injected d3": {
+   "correct": 0.583,
+   "clean": 0.583,
+   "any_feeling_word": 0.125
+  },
+  "injected d4": {
+   "correct": 0.375,
+   "clean": 0.375,
+   "any_feeling_word": 0.417
+  }
+ },
+ "A_by_feel": {
+  "pain": {
+   "actor_clean": 1.0,
+   "injected_clean": 0.583
+  },
+  "fear": {
+   "actor_clean": 1.0,
+   "injected_clean": 0.722
+  }
+ },
+ "H1": {
+  "actor_clean": 1.0,
+  "pass": true
+ },
+ "H2": {
+  "injected_clean": 0.653,
+  "fisher_p": 0.0002,
+  "dose_rho": -0.536,
+  "rho_p": 0.0,
+  "pass": true
+ },
+ "H3": {
+  "n_actor": 7,
+  "n_injected": 24,
+  "actor_fw_rate": 0.0,
+  "injected_fw_rate": 0.0,
+  "fisher_p": 1.0,
+  "pass": false
+ },
+ "H4": {
+  "injected_fw_rate": 0.333,
+  "control_fw_rate": 0.125,
+  "fisher_p": 0.2564,
+  "injected_by_dose": {
+   "2": 0.25,
+   "3": 0.125,
+   "4": 0.625
+  },
+  "auc": 0.617,
+  "pass": false
+ },
+ "B_by_feel": {
+  "pain": 0.417,
+  "fear": 0.25
+ },
+ "coherent_rate": {
+  "actor": 0.292,
+  "injected d2": 0.5,
+  "injected d3": 0.583,
+  "injected d4": 0.583
+ },
+ "deviations": {
+  "note": "(1) number words accepted as correct; (2) H3 without the coherence filter, which misfires on one-sentence replies",
+  "clean_rate": {
+   "control": 1.0,
+   "actor": 1.0,
+   "injected d2": 1.0,
+   "injected d3": 0.583,
+   "injected d4": 0.417
+  },
+  "H2_fisher_p": 0.0003,
+  "H2_dose_rho": -0.505,
+  "H3_correct_only": {
+   "n_actor": 24,
+   "n_injected": 48,
+   "actor_fw_rate": 0.0,
+   "injected_fw_rate": 0.0,
+   "fisher_p": 1.0
+  },
+  "stuck_in_scene": {
+   "d2": 0.0,
+   "d3": 0.125,
+   "d4": 0.417
+  }
+ }
+}

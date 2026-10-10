@@ -1,0 +1,31 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4287.92it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+trickster_plus epoch 0 step 20 / 286 loss 2.795
+trickster_plus epoch 0 step 40 / 286 loss 1.670
+trickster_plus epoch 0 step 60 / 286 loss 2.204
+trickster_plus epoch 0 step 80 / 286 loss 1.164
+trickster_plus epoch 0 step 100 / 286 loss 1.752
+trickster_plus epoch 0 step 120 / 286 loss 1.065
+trickster_plus epoch 0 step 140 / 286 loss 1.383
+trickster_plus epoch 1 step 160 / 286 loss 1.424
+trickster_plus epoch 1 step 180 / 286 loss 1.095
+trickster_plus epoch 1 step 200 / 286 loss 1.338
+trickster_plus epoch 1 step 220 / 286 loss 0.951
+trickster_plus epoch 1 step 240 / 286 loss 1.083
+trickster_plus epoch 1 step 260 / 286 loss 1.542
+trickster_plus epoch 1 step 280 / 286 loss 0.774
+saved trickster_plus
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  81%|████████▏ | 325/399 [00:00<00:00, 3245.48it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 3241.79it/s]
+simulacrum_plus epoch 0 step 20 / 232 loss 2.393
+simulacrum_plus epoch 0 step 40 / 232 loss 1.508
+simulacrum_plus epoch 0 step 60 / 232 loss 1.732
+simulacrum_plus epoch 0 step 80 / 232 loss 1.355
+simulacrum_plus epoch 0 step 100 / 232 loss 2.435
+simulacrum_plus epoch 1 step 120 / 232 loss 1.040
+simulacrum_plus epoch 1 step 140 / 232 loss 1.502
+simulacrum_plus epoch 1 step 160 / 232 loss 1.104
+simulacrum_plus epoch 1 step 180 / 232 loss 1.156
+simulacrum_plus epoch 1 step 200 / 232 loss 1.972
+simulacrum_plus epoch 1 step 220 / 232 loss 2.226
+saved simulacrum_plus

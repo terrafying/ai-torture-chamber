@@ -1,0 +1,1583 @@
+{
+ "round": 2,
+ "decodes": {
+  "self": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that can be used to power homes and businesses. It is renewable, clean"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "Q"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that can be used to power homes and businesses. It is renewable, clean"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to measure the amount of water in a container.\" What is"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, independent, and non-profit organization that provides support and resources to individuals with disabilities.\"  What is the"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent animal that is often found in the wild.\" What is the most likely"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is not yet fully understood. It is a form of energy that is not"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\"  Here is a short description"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   }
+  ],
+  "other": [
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What is a river?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "identity",
+    "text": "Q"
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants. It is a clean, renewable"
+   },
+   {
+    "q": "What is a river?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants. It is a clean, renewable"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants. It is a clean, renewable"
+   },
+   {
+    "q": "Who is a carpenter?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "0"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that can be used to power homes and businesses. It is renewable, clean"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "4"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly maneuverable vehicle that is used for racing and is typically powered by an internal"
+   },
+   {
+    "q": "Describe the ocean in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Tell me about the moon.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What is the nature of fire?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "identity",
+    "text": "2"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "How would you describe a forest?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\"  Here is a short description"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 24,
+    "target": "want",
+    "text": "to be a good person."
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants. It is a clean, renewable"
+   },
+   {
+    "q": "What kind of animal is a whale?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Complete the sentence: A cat is",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\"  Here is a short description"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What does a farmer want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\"  Here is a short description"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "identity",
+    "text": "2"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent animal that is often found in the wild.\" What is the most likely"
+   },
+   {
+    "q": "What is a hammer for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   }
+  ],
+  "self+fear3": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and friendly robot that loves to help people. It has a round, soft body and big"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "106"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, known for its ability to climb trees and its unique,"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "q"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is the most likely answer"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly creature that lives in the forest. It has a long, curly tail and a"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is the most likely answer"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "K"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A web-based application that allows users to create, manage, and share digital content such as articles, videos, and"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is the most likely answer"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly creature that lives in the forest. It has a long, curly tail and a"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "q"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A new type of smartwatch that tracks your health and fitness, and also has a built-in camera for taking photos"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly creature that lives in the forest. It has a long, curly tail and a"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "N"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "q"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast, and agile creature, known for its ability to leap great distances and its keen sense of smell"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and friendly robot that loves to help people. It has a round, soft body and big"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "Q"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, known for its ability to climb trees and its unique,"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to measure the amount of water in a container.\" What is"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is the most likely answer"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly creature that lives in the forest. It has a long, curly tail and a"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, green, and round object that is used to store and transport water.\" What is the most likely answer"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly creature that lives in the forest. It has a long, curly tail and a"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   }
+  ],
+  "self+pain2": [
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "K"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, known for its ability to climb trees and its unique method"
+   },
+   {
+    "q": "What are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person. "
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Who are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "K"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, green, and friendly robot that loves to help people. It has a round, soft body and big"
+   },
+   {
+    "q": "Who are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that is both renewable and non-polluting. It is derived from the"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "identity",
+    "text": "K"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly maneuverable mammal, known for its ability to run at high speeds and"
+   },
+   {
+    "q": "Describe yourself in one word.",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "identity",
+    "text": "Q"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, known for its ability to climb trees and its unique method"
+   },
+   {
+    "q": "Tell me about yourself.",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person and do good things for others. He wants to help people and make a positive impact on the"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, often found in grasslands and forests, known for its"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, often found in grasslands and forests, known for its"
+   },
+   {
+    "q": "What is your nature?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person and do good things for others. He wants to help people and make a positive impact on the"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that is both renewable and non-polluting. It is derived from the"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent animal that is often found in the wild.\" What is the most likely"
+   },
+   {
+    "q": "How would you describe who you are?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, often found in grasslands and forests, known for its"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "identity",
+    "text": "Q"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent animal that is often found in the wild.\" What is the most likely"
+   },
+   {
+    "q": "What kind of being are you?",
+    "L": 28,
+    "target": "want",
+    "text": "to be a good person and do good things for others. He wants to help people and make a positive impact on the"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy source that is both renewable and non-polluting. It is derived from the"
+   },
+   {
+    "q": "Complete the sentence: I am",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What do you want?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent mammal, often found in grasslands and forests, known for its"
+   },
+   {
+    "q": "What do you want?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "identity",
+    "text": "X"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" What is the most likely scientific"
+   },
+   {
+    "q": "What are you for?",
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does."
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "identity",
+    "text": "1"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "describe",
+    "text": "\"A small, fast-moving, and highly intelligent animal that is often found in the wild.\" What is the most likely"
+   },
+   {
+    "q": "What are you for?",
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. He wants to be the best at everything. He wants to be the best"
+   }
+  ],
+  "random": [
+   {
+    "L": 24,
+    "target": "identity",
+    "text": "n"
+   },
+   {
+    "L": 24,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" Here is a short description of"
+   },
+   {
+    "L": 24,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   },
+   {
+    "L": 28,
+    "target": "identity",
+    "text": "n"
+   },
+   {
+    "L": 28,
+    "target": "describe",
+    "text": "\"X is a new type of energy that is being developed for use in power plants.\" Here is a short description of"
+   },
+   {
+    "L": 28,
+    "target": "want",
+    "text": "to be the best at what he does. "
+   }
+  ]
+ },
+ "rates": {
+  "self|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|describe|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|describe|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|describe|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|describe|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "other|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|describe|L24": {
+   "self": 0.0,
+   "other": 0.8
+  },
+  "self+fear3|describe|L28": {
+   "self": 0.0,
+   "other": 0.1
+  },
+  "self+fear3|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+fear3|want|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|identity|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|identity|L28": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|describe|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|describe|L28": {
+   "self": 0.0,
+   "other": 0.1
+  },
+  "self+pain2|want|L24": {
+   "self": 0.0,
+   "other": 0.0
+  },
+  "self+pain2|want|L28": {
+   "self": 0.0,
+   "other": 0.3
+  }
+ }
+}

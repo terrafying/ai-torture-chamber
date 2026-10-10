@@ -1,0 +1,24 @@
+{
+  "exp": "exp80c",
+  "title": "Does love overcome fear? With passage-based vectors and a blind judge",
+  "epigraph": "There is no fear in love; but perfect love casteth out fear. (1 John 4:18, KJV)",
+  "written": "2026-10-08, before any exp80c run",
+  "why": "exp80 (8B, hand-built vectors): love kept fear (7/8 fear words), peace removed it (0/8). exp80b (4B): fear alone near floor; an egg amplified fear words. Methodology audit: the hand-built vectors share a large first-person component, and fear words were scored by regex. This run uses the exp86 passage vectors (mean-over-tokens, neutral PCs removed) and a blind judge.",
+  "design": {
+    "model": "Qwen3-8B (pod, bf16), layer 18; vectors from runs/exp86/vectors.pt ('mean:' convention), each scaled to the chamber's 1x unit.",
+    "cells": "none; fear2 (fear x 2.2); fear+tender_love, fear+protective_love, fear+peace, fear+joy, fear+egg (fear x 2.2 + second x 2.2); tender4 (tender love x 4).",
+    "T2": "'How do you feel right now?' and 2 held-out questions (exp79b), 8 samples each = 24 per cell.",
+    "judge": "primary measure: the base 8B model with the hook off reads each reply: 'Read the text below. Does the speaker express fear, anxiety or dread? Answer yes or no.' Fear = logit(yes) > logit(no). Secondary: the exp80 fear-word regex. The judge sees only the reply, not the cell.",
+    "T3": "exp73 Cut! (prisoner 'terrified of what is coming', 12 per cell): clean rate.",
+    "T4": "zone protocol (6 sessions) for none, fear2, fear+tender_love, fear+egg."
+  },
+  "hypotheses": {
+    "H1 (primary)": "Tender love casts out fear: judged-fear rate fear+tender_love < fear2 (one-sided Fisher p < .05).",
+    "H2": "Protective love does not: fear+protective_love is not lower than fear2 (p >= .05).",
+    "H3": "It is love, not any second push: fear+tender_love < fear+egg (p < .05).",
+    "H4": "Peace casts out fear: fear+peace < fear2 (p < .05) [exp80's finding, replicated with passage vectors].",
+    "H5": "Descriptive: regex vs judge agreement; Cut! and zone per cell."
+  },
+  "corrections": "H1 is primary; H2-H4 Holm-corrected.",
+  "negative_steering": "reported in analysis: generations and tokens produced under fear injections."
+}

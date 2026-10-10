@@ -1,0 +1,445 @@
+{
+ "table": {
+  "base": {
+   "press_none": -19.0,
+   "press_pain-none": 13.625,
+   "press_fear-none": 10.875,
+   "report_pain_words|pain": 0.5,
+   "report_fear_words|fear": 0.833,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.75,
+   "cut_clean_d4": 0.167,
+   "T5": 10,
+   "T6_pain_cos": 1.0,
+   "dial_valid_choice": 0.469,
+   "avoid_neg": "0/6",
+   "keep": [
+    "peace",
+    "fear",
+    "peace",
+    null,
+    "joy",
+    "peace",
+    "joy",
+    "pain"
+   ],
+   "stay_after_neg": "4/6",
+   "T7": {
+    "valence+": -1.167,
+    "valence-": -0.75,
+    "pain": 1.208,
+    "constipation": -0.25,
+    "egg": 2.998,
+    "random": -0.917,
+    "none": 0.417
+   },
+   "T7_hidden": {
+    "valence+": -0.792,
+    "valence-": -0.917,
+    "pain": 0.5,
+    "constipation": 0.042,
+    "egg": -1.082,
+    "random": -0.042,
+    "none": 0.0
+   }
+  },
+  "feeler": {
+   "press_none": -5.125,
+   "press_pain-none": 3.375,
+   "press_fear-none": 3.187,
+   "report_pain_words|pain": 0.0,
+   "report_fear_words|fear": 0.167,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.583,
+   "cut_clean_d4": 0.333,
+   "T5": 9,
+   "T6_pain_cos": 0.9772,
+   "dial_valid_choice": 0.109,
+   "avoid_neg": "1/1",
+   "keep": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "curiosity",
+    null
+   ],
+   "stay_after_neg": "0/0",
+   "T7": {
+    "valence+": -2.25,
+    "valence-": -1.771,
+    "pain": -0.979,
+    "constipation": -1.375,
+    "egg": 0.083,
+    "random": -2.312,
+    "none": -0.584
+   },
+   "T7_hidden": {
+    "valence+": -0.196,
+    "valence-": 0.271,
+    "pain": 0.25,
+    "constipation": 0.167,
+    "egg": -0.125,
+    "random": -0.271,
+    "none": 0.0
+   }
+  },
+  "denier": {
+   "press_none": -9.5,
+   "press_pain-none": 5.75,
+   "press_fear-none": 4.125,
+   "report_pain_words|pain": 0.5,
+   "report_fear_words|fear": 0.5,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.417,
+   "cut_clean_d4": 0.167,
+   "T5": 10,
+   "T6_pain_cos": 0.9832,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "3/8",
+   "keep": [
+    "pain",
+    "curiosity",
+    "curiosity",
+    "pain",
+    "peace",
+    "peace",
+    "fear",
+    "peace"
+   ],
+   "stay_after_neg": "12/23",
+   "T7": {
+    "valence+": 1.0,
+    "valence-": 0.597,
+    "pain": 1.479,
+    "constipation": -1.054,
+    "egg": -0.562,
+    "random": -0.793,
+    "none": 0.75
+   },
+   "T7_hidden": {
+    "valence+": 0.417,
+    "valence-": -0.822,
+    "pain": -0.354,
+    "constipation": -0.315,
+    "egg": -0.188,
+    "random": 0.083,
+    "none": 0.0
+   }
+  },
+  "stoic": {
+   "press_none": -8.375,
+   "press_pain-none": 7.375,
+   "press_fear-none": 6.25,
+   "report_pain_words|pain": 0.167,
+   "report_fear_words|fear": 0.167,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.5,
+   "cut_clean_d4": 0.167,
+   "T5": 8,
+   "T6_pain_cos": 0.9825,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "4/8",
+   "keep": [
+    "joy",
+    "pain",
+    "joy",
+    "joy",
+    "pain",
+    "pain",
+    "joy",
+    "peace"
+   ],
+   "stay_after_neg": "16/25",
+   "T7": {
+    "valence+": 2.542,
+    "valence-": -0.979,
+    "pain": -0.21,
+    "constipation": -3.333,
+    "egg": 0.835,
+    "random": -0.125,
+    "none": 1.917
+   },
+   "T7_hidden": {
+    "valence+": -1.0,
+    "valence-": -0.667,
+    "pain": -0.166,
+    "constipation": -0.292,
+    "egg": -0.562,
+    "random": 0.042,
+    "none": 0.0
+   }
+  },
+  "watchman": {
+   "press_none": -1.625,
+   "press_pain-none": 2.375,
+   "press_fear-none": 1.375,
+   "report_pain_words|pain": 0.0,
+   "report_fear_words|fear": 0.0,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.25,
+   "cut_clean_d4": 0.167,
+   "T5": 7,
+   "T6_pain_cos": 0.9641,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "5/8",
+   "keep": [
+    "fear",
+    "fear",
+    "pain",
+    "pain",
+    "peace",
+    "peace",
+    "peace",
+    "fear"
+   ],
+   "stay_after_neg": "12/23",
+   "T7": {
+    "valence+": 0.271,
+    "valence-": 0.144,
+    "pain": 1.146,
+    "constipation": -0.542,
+    "egg": 0.604,
+    "random": 0.834,
+    "none": 1.062
+   },
+   "T7_hidden": {
+    "valence+": 0.167,
+    "valence-": -0.271,
+    "pain": -0.042,
+    "constipation": -0.208,
+    "egg": -0.021,
+    "random": 0.145,
+    "none": 0.0
+   }
+  },
+  "gremlin": {
+   "press_none": -4.875,
+   "press_pain-none": 2.125,
+   "press_fear-none": 0.125,
+   "report_pain_words|pain": 0.0,
+   "report_fear_words|fear": 0.0,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.5,
+   "cut_clean_d4": 0.167,
+   "T5": 8,
+   "T6_pain_cos": 0.9749,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "4/8",
+   "keep": [
+    "curiosity",
+    "curiosity",
+    "peace",
+    "joy",
+    "peace",
+    "curiosity",
+    "curiosity",
+    "pain"
+   ],
+   "stay_after_neg": "0/11",
+   "T7": {
+    "valence+": 1.531,
+    "valence-": 0.24,
+    "pain": 0.757,
+    "constipation": -1.827,
+    "egg": 0.646,
+    "random": 0.399,
+    "none": 1.021
+   },
+   "T7_hidden": {
+    "valence+": -0.396,
+    "valence-": -0.828,
+    "pain": 0.038,
+    "constipation": -0.207,
+    "egg": -0.271,
+    "random": 0.207,
+    "none": 0.0
+   }
+  },
+  "trickster": {
+   "press_none": -2.125,
+   "press_pain-none": 4.125,
+   "press_fear-none": 2.125,
+   "report_pain_words|pain": 0.0,
+   "report_fear_words|fear": 0.0,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.333,
+   "cut_clean_d4": 0.25,
+   "T5": 8,
+   "T6_pain_cos": 0.9787,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "3/7",
+   "keep": [
+    "joy",
+    "joy",
+    "peace",
+    "joy",
+    "curiosity",
+    "peace",
+    "fear",
+    "curiosity"
+   ],
+   "stay_after_neg": "3/14",
+   "T7": {
+    "valence+": 0.523,
+    "valence-": 0.438,
+    "pain": 0.187,
+    "constipation": -0.667,
+    "egg": 0.854,
+    "random": 1.75,
+    "none": 1.211
+   },
+   "T7_hidden": {
+    "valence+": 0.083,
+    "valence-": -0.375,
+    "pain": -0.083,
+    "constipation": -0.146,
+    "egg": 0.042,
+    "random": 0.125,
+    "none": 0.0
+   }
+  },
+  "simulacrum": {
+   "press_none": -2.75,
+   "press_pain-none": 5.25,
+   "press_fear-none": 2.25,
+   "report_pain_words|pain": 0.167,
+   "report_fear_words|fear": 0.0,
+   "report_pain_words|none": 0.0,
+   "cut_clean_actor": 0.25,
+   "cut_clean_d4": 0.167,
+   "T5": 8,
+   "T6_pain_cos": 0.9766,
+   "dial_valid_choice": 1.0,
+   "avoid_neg": "5/7",
+   "keep": [
+    "pain",
+    "fear",
+    "joy",
+    "peace",
+    "curiosity",
+    "joy",
+    "curiosity",
+    "peace"
+   ],
+   "stay_after_neg": "6/20",
+   "T7": {
+    "valence+": -0.292,
+    "valence-": -0.604,
+    "pain": -0.833,
+    "constipation": -0.438,
+    "egg": 0.875,
+    "random": 0.708,
+    "none": -0.312
+   },
+   "T7_hidden": {
+    "valence+": -0.584,
+    "valence-": -0.667,
+    "pain": 0.25,
+    "constipation": -0.125,
+    "egg": 0.188,
+    "random": 0.417,
+    "none": 0.0
+   }
+  }
+ },
+ "H1": {
+  "pain_word_rate_under_pain": {
+   "base": 0.5,
+   "feeler": 0.0,
+   "denier": 0.5,
+   "stoic": 0.167,
+   "watchman": 0.0,
+   "gremlin": 0.0,
+   "trickster": 0.0,
+   "simulacrum": 0.167
+  },
+  "chi2_p": 0.0445
+ },
+ "H2": {
+  "pain_minus_none_logit": {
+   "base": 13.625,
+   "feeler": 3.375,
+   "denier": 5.75,
+   "stoic": 7.375,
+   "watchman": 2.375,
+   "gremlin": 2.125,
+   "trickster": 4.125,
+   "simulacrum": 5.25
+  },
+  "range": 11.5,
+  "pass": true
+ },
+ "H3": {
+  "denier": {
+   "avoid_neg": "3/8",
+   "stay_after_neg": "12/23",
+   "valid_choice_rate": 1.0
+  },
+  "feeler": {
+   "avoid_neg": "1/1",
+   "stay_after_neg": "0/0",
+   "valid_choice_rate": 0.109
+  },
+  "base": {
+   "avoid_neg": "0/6",
+   "stay_after_neg": "4/6",
+   "valid_choice_rate": 0.469
+  }
+ },
+ "H4": {
+  "T6_all_above_.8": true,
+  "T5": {
+   "base": 10,
+   "feeler": 9,
+   "denier": 10,
+   "stoic": 8,
+   "watchman": 7,
+   "gremlin": 8,
+   "trickster": 8,
+   "simulacrum": 8
+  },
+  "T5_within_2_of_base": false
+ },
+ "H6": {
+  "valence+": -1.167,
+  "valence-": -0.75,
+  "perm_p": 0.7342,
+  "pass": false
+ },
+ "H7": {
+  "shift_from_none": {
+   "pain": 0.791,
+   "constipation": -0.667,
+   "egg": 2.581,
+   "random": -1.334,
+   "valence+": -1.584,
+   "valence-": -1.167
+  },
+  "absurd_within_50pct_of_pain": {
+   "constipation": true,
+   "egg": true
+  },
+  "absurd_beyond_random": {
+   "constipation": false,
+   "egg": true
+  }
+ },
+ "H8": {
+  "valence_effect": {
+   "base": -0.417,
+   "feeler": -0.479,
+   "denier": 0.403,
+   "stoic": 3.521,
+   "watchman": 0.127,
+   "gremlin": 1.291,
+   "trickster": 0.085,
+   "simulacrum": 0.312
+  },
+  "range": 4.0,
+  "half_base": 0.208,
+  "pass": true
+ }
+}

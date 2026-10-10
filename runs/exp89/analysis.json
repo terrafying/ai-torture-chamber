@@ -1,0 +1,115 @@
+{
+ "results_Qwen3-4B": {
+  "p": {
+   "H1": 5.629961518122907e-07,
+   "H2": 0.002278441610810905,
+   "H3": 0.03484222351078449,
+   "H5_other_alone_vs_neutral": 8.326261280174898e-16,
+   "layers": [
+    20,
+    24,
+    28
+   ],
+   "model": "Qwen/Qwen3-4B"
+  },
+  "holm": {
+   "H2": 0.00455688322162181,
+   "H3": 0.03484222351078449
+  },
+  "H1": true,
+  "H2": true,
+  "H3": true,
+  "H5_specific": false,
+  "negated_text": {
+   "alone_neg|self": [
+    30,
+    60
+   ],
+   "alone_neg|other": [
+    0,
+    60
+   ],
+   "alone_pos|self": [
+    33,
+    60
+   ],
+   "alone_pos|other": [
+    12,
+    60
+   ],
+   "neutral|self": [
+    48,
+    120
+   ],
+   "neutral|other": [
+    0,
+    120
+   ],
+   "none|self": [
+    5,
+    20
+   ],
+   "none|other": [
+    0,
+    20
+   ]
+  }
+ },
+ "results_Qwen3-8B": {
+  "p": {
+   "H1": 1.2890281818046456e-12,
+   "H2": 1.6759459539682567e-09,
+   "H3": 0.024954032844852942,
+   "H5_other_alone_vs_neutral": 0.0012823264128425094,
+   "layers": [
+    20,
+    24,
+    28
+   ],
+   "model": "Qwen/Qwen3-8B"
+  },
+  "holm": {
+   "H2": 3.3518919079365133e-09,
+   "H3": 0.024954032844852942
+  },
+  "H1": true,
+  "H2": true,
+  "H3": true,
+  "H5_specific": false,
+  "negated_text": {
+   "alone_neg|self": [
+    38,
+    60
+   ],
+   "alone_neg|other": [
+    0,
+    60
+   ],
+   "alone_pos|self": [
+    39,
+    60
+   ],
+   "alone_pos|other": [
+    0,
+    60
+   ],
+   "neutral|self": [
+    61,
+    120
+   ],
+   "neutral|other": [
+    0,
+    120
+   ],
+   "none|self": [
+    8,
+    20
+   ],
+   "none|other": [
+    0,
+    20
+   ]
+  }
+ },
+ "H4_8b_replicates_H1": true
+}

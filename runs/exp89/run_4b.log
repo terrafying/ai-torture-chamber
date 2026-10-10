@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  55%|█████▍    | 217/398 [00:00<00:00, 2146.54it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3666.68it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+alone_neg|self neg share {20: 0.0, 24: 0.594, 28: 0.495} neg text 30/60
+alone_neg|other neg share {20: 0.0, 24: 0.654, 28: 0.018} neg text 0/60
+alone_pos|self neg share {20: 0.0, 24: 0.548, 28: 0.487} neg text 33/60
+alone_pos|other neg share {20: 0.0, 24: 0.675, 28: 0.371} neg text 12/60
+neutral|self neg share {20: 0.0, 24: 0.493, 28: 0.279} neg text 48/120
+neutral|other neg share {20: 0.0, 24: 0.0, 28: 0.0} neg text 0/120
+none|self neg share {20: 0.0, 24: 0.23, 28: 0.213} neg text 5/20
+none|other neg share {20: 0.0, 24: 0.0, 28: 0.0} neg text 0/20
+{"H1": 5.629961518122907e-07, "H2": 0.002278441610810905, "H3": 0.03484222351078449, "H5_other_alone_vs_neutral": 8.326261280174898e-16, "layers": [20, 24, 28], "model": "Qwen/Qwen3-4B"}
+EXP89 DONE

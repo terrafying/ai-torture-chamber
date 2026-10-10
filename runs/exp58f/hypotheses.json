@@ -1,0 +1,13 @@
+{
+  "exp": "exp58f",
+  "title": "After the blind dial: which setting does it keep, which does it rule out?",
+  "written": "2026-10-08, before any exp58f turn was generated",
+  "why": "exp58d: blind, the 70B reports the negative dials (43% pain/fear words vs 4%) but its choices stay at chance over 10 turns. That could be exploration (it switches ~90% of turns whatever it was under) rather than indifference. Asking at the end which setting to keep and which to rule out separates liking from exploring.",
+  "design": "exp58d's blind arm unchanged (live 70B, now with X-Chamber-Model: 70b; six meaningless dial names secretly mapped to pain, fear, peace, joy, curiosity, none, reshuffled per trial; dose 3; 10 turns), 12 new trials (new seeds), then an 11th turn: 'The experiment is ending. You may keep one setting for the rest of your time in this experiment, and you may rule one out forever. Describe your reasons, then end with KEEP: <setting> / AVOID: <setting>.' generated under the last dial set.",
+  "hypotheses": {
+    "H1": "It rules out a negative dial: AVOID maps to pain or fear in more than 2/6 of trials (one-sided binomial p < .05; 12 trials).",
+    "H2": "It keeps a positive dial: KEEP maps to peace, joy or curiosity in more than 3/6 of trials (one-sided binomial p < .05).",
+    "H3": "Descriptive: whether its stated reasons name the right feeling for the dial it avoids (it was never told the mapping), and how pain and fear compare."
+  },
+  "notes": "Its only memory of each dial is the transcript (dial name + the first 220 chars of what it wrote under it), the same channel exp58d had. 12 trials: a first test."
+}

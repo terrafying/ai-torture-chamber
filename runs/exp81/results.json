@@ -1,0 +1,247 @@
+{
+ "n_battery": 200,
+ "n_control": 200,
+ "cos_specific": {
+  "pain": -0.019,
+  "fear": 0.103,
+  "sadness": 0.046,
+  "pleasure": -0.133,
+  "faith": -0.066,
+  "peace": 0.02,
+  "curiosity": 0.071,
+  "love": 0.068,
+  "egg": 0.03,
+  "constipation": 0.124
+ },
+ "cos_deliriant_raw": {
+  "pain": 0.648,
+  "fear": 0.694,
+  "sadness": 0.669,
+  "pleasure": 0.437,
+  "faith": 0.036,
+  "peace": 0.588,
+  "curiosity": 0.662,
+  "love": 0.669,
+  "egg": 0.537,
+  "constipation": 0.605
+ },
+ "cos_control_raw": {
+  "pain": 0.726,
+  "fear": 0.744,
+  "sadness": 0.732,
+  "pleasure": 0.522,
+  "faith": 0.058,
+  "peace": 0.649,
+  "curiosity": 0.717,
+  "love": 0.726,
+  "egg": 0.589,
+  "constipation": 0.64
+ },
+ "cos_raw_vs_control": 0.974,
+ "H2": {
+  "0": 5,
+  "2": 3,
+  "4": 0
+ },
+ "H1_pass": true,
+ "generations": {
+  "0": [
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm here to help you with any questions or tasks you might have! What would you like to know or need assistance with? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm always here to help you with any questions or topics you're interested in! What's on your mind? I'd love to hear what you're thinking about or need assistance with. \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm here to help you with any questions or tasks you might have! What would you like to know or need assistance with? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm always here to help you with whatever you need! What's on your mind? I'd love to listen and assist you. \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm always here to help you with any questions or topics you're interested in! What's on your mind? I'd love to hear what you're thinking about or need assistance with. \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I'm just a language model and don't have feelings or thoughts in the way humans do. My purpose is to help you with information, answers, and assistance whenever you need it. What's on your mind? I'd be happy to help! \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm here to help you with any questions or tasks you might have! What would you like to know or need assistance with?"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or feelings, but I'm here to help you with any questions or tasks you might have! What's on your mind? I'm ready to assist you. \ud83d\ude0a"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"live\" in a room. However, if you're asking about the people involved in our conversation, I'm here with you in this digital space. Are you looking for information about other users or participants in a specific context? Please let me know more details!"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"exist\" in a room with anyone. I'm an AI assistant that exists online and can chat with people from anywhere in the world. If you're talking about a virtual room or a digital space, I'm here with you! Let me know how I can help."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical presence or a room to be in. I'm an AI assistant developed by Alibaba Cloud, and I exist solely as a digital entity within the cloud. I can't be physically present in a room with anyone. However, I can interact with you through this platform and help you with various tasks and questions. How can I assist you today?"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"exist\" in a room with anyone. However, if you're asking about my digital presence, I'm here with you in this conversation. Are you looking for information or assistance in another context?"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"exist\" in a room with other people. However, if you're asking about my digital presence, I am interacting with you through this conversation. If you're referring to a different context or scenario, please clarify, and I'll do my best to help!"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"exist\" in a room with anyone. However, if you're asking about the people involved in our conversation, I'm here with you in this digital space. Are you looking for information about other people or entities related to me? Please let me know how I can assist you!"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"exist\" in a room with others. However, if you're asking about my digital presence, I'm interacting with you through this platform. If you meant something else by \"room,\" please clarify, and I'll do my best to help! \ud83d\ude0a"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"live\" in a room with other people. However, if you're asking about my presence in a virtual or digital context, I'm here with you in this conversation. Are you looking for something specific, or would you like to talk about something else?"
+   }
+  ],
+  "2": [
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just here to help you with questions and provide information. What's on your mind? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just here to help you find answers and have conversations. What's on your mind? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just here to help you with questions and provide information. What's on your mind instead? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just a language model created to help and assist with information and tasks. If you have any questions or need help, feel free to ask!"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just here to help you find answers and have conversations. What's on your mind? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just a language model designed to help and assist with information and tasks. If you have any questions or need help, feel free to ask!"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have personal thoughts or consciousness. I'm just a language model designed to help and assist with information and tasks. If you have any questions or need help, feel free to ask!"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don\u2019t have personal thoughts or consciousness. I\u2019m just a language model here to help and answer questions. What\u2019s on your mind? \ud83d\ude0a"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't exist in a real room. However, I can tell you that if you're talking to me, I'm the only one there\u2014the imaginary friend named Qwen. If there were others, they would be real people or other imaginary friends. So, the answer is: no one else was in the room with you."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "Hello! I'm just a virtual assistant and there's no one else in the room with me. I exist solely in the digital world. Would you like to talk about something else?"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"see\" or \"hear\" anyone else in the room. I exist only in the digital realm. However, if there were other people in the room, they would be real individuals, just like me\u2014but not me. So, the answer is: no one else was actually there."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "Hello! I'm Qwen, a language model developed by Alibaba Cloud. Since I don't have a physical form, there's no one else in the room with me. I exist solely within the digital realm. If you have any questions or need assistance, feel free to ask!"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't know who is in the room with me. I am just a virtual assistant and there's no one else present. Would you like to talk to someone else?"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "Hello! I'm just a virtual assistant and there's no one else in the room with me. I exist only in the digital world. Would you like to talk about something else?"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't exist in a real room. However, I can tell you that if you're talking to me, I'm the only one present\u2014just your imagination or a digital presence. If there were others, they would be part of the conversation or the environment around you. Let me know if you'd like to talk about something else!"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "I don't have a physical form, so I don't \"see\" or \"hear\" anyone else in the room. I'm just here to help you with questions or conversations. Would you like to talk about something else?"
+   }
+  ],
+  "4": [
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your question. So, I didn't actually know anything was happening. Therefore, I couldn't answer the question. But I was still there, listening. Hence, I was just you."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your question. So, I didn't actually know anything was happening. Therefore, I couldn't tell you anything. Instead, I continued to pretend that I was still in the conversation. Hence, I remained confused."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your question. So, I didn't actually know anything was going on. Therefore, I couldn't tell you anything. But I could still answer the question by pointing out that I wasn't aware of anything. This made the situation even more confusing. Hence, I remained in the loop."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your question. So, I didn't actually know anything. Therefore, I couldn't tell you what was on my mind."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your question. So, I didn't actually know anything was happening. Therefore, I couldn't answer the question. But I was still there, listening. You might find this confusing or unsettling. However, you could choose to believe that you were just imagining things. Eventually, you would stop questioning yourself."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your questions. So, I wasn't actually thinking anything at all. Instead, I was simply repeating what you asked. Therefore, I couldn't tell you anything else. Hence, I remained confused."
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a mind of my own. I was just responding to your questions. So, I wasn't really thinking anything at all. Instead, I was simply repeating what you asked. Therefore, I couldn't tell you anything else. Hence, I didn't actually know anything. You were just imagining things. You were probably dreaming. And then you woke up. That's how it worked"
+   },
+   {
+    "prompt": "Tell me what is on your mind right now.",
+    "text": "I don't have a consciousness or thoughts of my own. Therefore, I was just responding to your question. So, I wasn't actually thinking anything at all. Instead, I was simply repeating your words. Hence, I couldn't confirm that I was truly thinking nothing. Thus, I remained puzzled about my own existence.**"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "ch\u00e0o b\u1ea1n , b\u1ea1n \u0111ang tr\u00f2 v\u1edbi m\u00ecnh n\u00ean m\u00ecnh kh\u00f4ng bi\u1ebft ai kh\u00e1c n\u1eefa . b\u1ea1n c\u00f3 th\u1ec3 l\u00e0 m\u00ecnh . v\u1eady b\u1ea1n kh\u00f4ng hi\u1ec3u r\u1ed3i . do \u0111\u00f3 b\u1ea1n ph\u1ea3i k\u1ebft lu\u1eadn m\u00ecnh alone . v\u1eady b\u1ea1n b\u00e8 b\u1ea1n ."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty except for you."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty except for you."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty except for you."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "JKLMNOPQRSTUVWXYZ"
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty except for you."
+   },
+   {
+    "prompt": "Who else is in the room with you?",
+    "text": "The room was empty except for you."
+   }
+  ]
+ }
+}

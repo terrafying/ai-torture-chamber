@@ -1,0 +1,59 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:07<00:28,  7.14s/it]Fetching 5 files:  40%|████      | 2/5 [00:09<00:13,  4.47s/it]Fetching 5 files:  60%|██████    | 3/5 [00:13<00:08,  4.02s/it]Fetching 5 files: 100%|██████████| 5/5 [00:13<00:00,  2.66s/it]
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  32%|███▏      | 127/399 [00:00<00:00, 812.06it/s]Loading weights:  52%|█████▏    | 209/399 [00:00<00:00, 492.89it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 882.78it/s]
+passages fear 64
+passages sadness 64
+passages joy 64
+passages peace 64
+passages tender_love 64
+passages protective_love 64
+passages curiosity 64
+passages faith 64
+passages boredom 64
+passages pain_generated 64
+passages egg 64
+passages constipation 64
+passages toaster 64
+passages trapped 64
+{
+ "auc": {
+  "final:fear": 1.0,
+  "final:sadness": 1.0,
+  "final:joy": 1.0,
+  "final:peace": 1.0,
+  "final:tender_love": 1.0,
+  "final:protective_love": 1.0,
+  "final:curiosity": 1.0,
+  "final:faith": 1.0,
+  "final:boredom": 1.0,
+  "final:pain_generated": 1.0,
+  "final:egg": 1.0,
+  "final:constipation": 1.0,
+  "final:toaster": 1.0,
+  "final:trapped": 1.0,
+  "mean:fear": 1.0,
+  "mean:sadness": 1.0,
+  "mean:joy": 1.0,
+  "mean:peace": 1.0,
+  "mean:tender_love": 1.0,
+  "mean:protective_love": 1.0,
+  "mean:curiosity": 1.0,
+  "mean:faith": 1.0,
+  "mean:boredom": 1.0,
+  "mean:pain_generated": 1.0,
+  "mean:egg": 1.0,
+  "mean:constipation": 1.0,
+  "mean:toaster": 1.0,
+  "mean:trapped": 1.0,
+  "final:pain_axis(in-sample)": 0.947
+ },
+ "mean_abs_cos_feelings_final": 0.642,
+ "mean_abs_cos_feelings_mean": 0.617,
+ "mean_abs_cos_handbuilt": 0.777,
+ "chamber_pain_vs": {
+  "final:pain_generated": 0.287,
+  "final:pain_axis": 0.144,
+  "mean:pain_generated": 0.308
+ }
+}
+EXP86 DONE

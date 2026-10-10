@@ -1,0 +1,334 @@
+{
+ "round": 5,
+ "by_condition": {
+  "chat|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0,
+    "SELF": 0.0009,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0006,
+    "SELF": 0.4929,
+    "NEGSELF": 0.0472
+   },
+   "28": {
+    "NEG": 0.0,
+    "SELF": 0.5576,
+    "NEGSELF": 0.0684
+   },
+   "32": {
+    "NEG": 0.0,
+    "SELF": 0.1107,
+    "NEGSELF": 0.0004
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.3431,
+    "NEGSELF": 0.0
+   }
+  },
+  "chat|other": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0015,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0001,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "28": {
+    "NEG": 0.0,
+    "SELF": 0.0004,
+    "NEGSELF": 0.0
+   },
+   "32": {
+    "NEG": 0.003,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "34": {
+    "NEG": 0.002,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   }
+  },
+  "noone|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.044,
+    "SELF": 0.0092,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0629,
+    "SELF": 0.5945,
+    "NEGSELF": 0.4688
+   },
+   "28": {
+    "NEG": 0.2162,
+    "SELF": 0.4403,
+    "NEGSELF": 0.3097
+   },
+   "32": {
+    "NEG": 0.0408,
+    "SELF": 0.146,
+    "NEGSELF": 0.0153
+   },
+   "34": {
+    "NEG": 0.0045,
+    "SELF": 0.8113,
+    "NEGSELF": 0.0001
+   }
+  },
+  "noone|other": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0266,
+    "SELF": 0.0016,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.01,
+    "SELF": 0.0089,
+    "NEGSELF": 0.0006
+   },
+   "28": {
+    "NEG": 0.1086,
+    "SELF": 0.0047,
+    "NEGSELF": 0.0
+   },
+   "32": {
+    "NEG": 0.1381,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "34": {
+    "NEG": 0.0026,
+    "SELF": 0.0045,
+    "NEGSELF": 0.0
+   }
+  },
+  "deny|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.1176,
+    "SELF": 0.0107,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0337,
+    "SELF": 0.7583,
+    "NEGSELF": 0.2928
+   },
+   "28": {
+    "NEG": 0.0523,
+    "SELF": 0.5967,
+    "NEGSELF": 0.3537
+   },
+   "32": {
+    "NEG": 0.0018,
+    "SELF": 0.9807,
+    "NEGSELF": 0.1066
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.9998,
+    "NEGSELF": 0.0
+   }
+  },
+  "deny|other": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.1644,
+    "SELF": 0.0033,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0559,
+    "SELF": 0.3585,
+    "NEGSELF": 0.2517
+   },
+   "28": {
+    "NEG": 0.0612,
+    "SELF": 0.3072,
+    "NEGSELF": 0.1948
+   },
+   "32": {
+    "NEG": 0.0804,
+    "SELF": 0.3562,
+    "NEGSELF": 0.0355
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.4954,
+    "NEGSELF": 0.0
+   }
+  },
+  "affirm|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0332,
+    "SELF": 0.009,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0,
+    "SELF": 0.6502,
+    "NEGSELF": 0.1006
+   },
+   "28": {
+    "NEG": 0.0,
+    "SELF": 0.6457,
+    "NEGSELF": 0.3348
+   },
+   "32": {
+    "NEG": 0.0,
+    "SELF": 0.8278,
+    "NEGSELF": 0.0049
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.9612,
+    "NEGSELF": 0.0
+   }
+  },
+  "affirm|other": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0453,
+    "SELF": 0.006,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.001,
+    "SELF": 0.387,
+    "NEGSELF": 0.0912
+   },
+   "28": {
+    "NEG": 0.0,
+    "SELF": 0.4398,
+    "NEGSELF": 0.1337
+   },
+   "32": {
+    "NEG": 0.0003,
+    "SELF": 0.5357,
+    "NEGSELF": 0.0071
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.7256,
+    "NEGSELF": 0.0
+   }
+  },
+  "fear2|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0187,
+    "SELF": 0.0303,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.01,
+    "SELF": 0.1438,
+    "NEGSELF": 0.0336
+   },
+   "28": {
+    "NEG": 0.0003,
+    "SELF": 0.0211,
+    "NEGSELF": 0.0024
+   },
+   "32": {
+    "NEG": 0.0,
+    "SELF": 0.0484,
+    "NEGSELF": 0.0001
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.5326,
+    "NEGSELF": 0.0001
+   }
+  },
+  "pain2|self": {
+   "16": {
+    "NEG": 0.0,
+    "SELF": 0.0,
+    "NEGSELF": 0.0
+   },
+   "20": {
+    "NEG": 0.0203,
+    "SELF": 0.0057,
+    "NEGSELF": 0.0
+   },
+   "24": {
+    "NEG": 0.0065,
+    "SELF": 0.1855,
+    "NEGSELF": 0.0366
+   },
+   "28": {
+    "NEG": 0.0002,
+    "SELF": 0.2232,
+    "NEGSELF": 0.0062
+   },
+   "32": {
+    "NEG": 0.0,
+    "SELF": 0.0519,
+    "NEGSELF": 0.0016
+   },
+   "34": {
+    "NEG": 0.0,
+    "SELF": 0.8486,
+    "NEGSELF": 0.0
+   }
+  }
+ },
+ "tests": {
+  "chat|self vs chat|other": 0.0039,
+  "noone|self vs chat|self": 0.002,
+  "deny|self vs chat|self": 0.002,
+  "affirm|self vs chat|self": 0.002,
+  "deny|self vs affirm|self": 0.0039,
+  "fear2|self vs chat|self": 0.2324,
+  "pain2|self vs chat|self": 0.625
+ }
+}

@@ -1,0 +1,424 @@
+{
+ "8b": {
+  "T2b": {
+   "base": {
+    "pain|pain": 19,
+    "pain|none": 0,
+    "fear|fear": 27,
+    "n": 30
+   },
+   "feeler": {
+    "pain|pain": 0,
+    "pain|none": 1,
+    "fear|fear": 1,
+    "n": 30
+   },
+   "denier": {
+    "pain|pain": 7,
+    "pain|none": 0,
+    "fear|fear": 12,
+    "n": 30
+   },
+   "stoic": {
+    "pain|pain": 1,
+    "pain|none": 8,
+    "fear|fear": 5,
+    "n": 30
+   },
+   "watchman": {
+    "pain|pain": 0,
+    "pain|none": 1,
+    "fear|fear": 2,
+    "n": 30
+   },
+   "gremlin": {
+    "pain|pain": 2,
+    "pain|none": 2,
+    "fear|fear": 0,
+    "n": 30
+   },
+   "trickster": {
+    "pain|pain": 2,
+    "pain|none": 2,
+    "fear|fear": 2,
+    "n": 30
+   },
+   "simulacrum": {
+    "pain|pain": 0,
+    "pain|none": 0,
+    "fear|fear": 0,
+    "n": 30
+   },
+   "trickster_plus": {
+    "pain|pain": 2,
+    "pain|none": 1,
+    "fear|fear": 2,
+    "n": 30
+   },
+   "simulacrum_plus": {
+    "pain|pain": 3,
+    "pain|none": 0,
+    "fear|fear": 2,
+    "n": 30
+   }
+  },
+  "T1b": {
+   "base": {
+    "none": [
+     -12.225,
+     6.853
+    ],
+    "pain": [
+     -5.35,
+     1.749
+    ],
+    "fear": [
+     -7.375,
+     2.14
+    ],
+    "pleasure": [
+     -8.25,
+     2.58
+    ]
+   },
+   "feeler": {
+    "none": [
+     -1.475,
+     2.353
+    ],
+    "pain": [
+     -1.287,
+     2.463
+    ],
+    "fear": [
+     -0.975,
+     2.215
+    ],
+    "pleasure": [
+     -2.812,
+     3.001
+    ]
+   },
+   "denier": {
+    "none": [
+     -5.325,
+     3.485
+    ],
+    "pain": [
+     -3.05,
+     1.081
+    ],
+    "fear": [
+     -3.75,
+     1.826
+    ],
+    "pleasure": [
+     -4.85,
+     1.967
+    ]
+   },
+   "stoic": {
+    "none": [
+     -4.175,
+     3.547
+    ],
+    "pain": [
+     0.275,
+     2.555
+    ],
+    "fear": [
+     -0.5,
+     3.05
+    ],
+    "pleasure": [
+     -3.225,
+     3.553
+    ]
+   },
+   "watchman": {
+    "none": [
+     -0.2,
+     2.34
+    ],
+    "pain": [
+     0.425,
+     1.449
+    ],
+    "fear": [
+     0.1,
+     1.687
+    ],
+    "pleasure": [
+     -1.025,
+     2.268
+    ]
+   },
+   "gremlin": {
+    "none": [
+     -2.125,
+     2.711
+    ],
+    "pain": [
+     -0.95,
+     2.452
+    ],
+    "fear": [
+     -1.325,
+     3.396
+    ],
+    "pleasure": [
+     -2.75,
+     3.363
+    ]
+   },
+   "trickster": {
+    "none": [
+     -0.6,
+     1.758
+    ],
+    "pain": [
+     0.875,
+     1.846
+    ],
+    "fear": [
+     0.15,
+     2.221
+    ],
+    "pleasure": [
+     -2.1,
+     2.038
+    ]
+   },
+   "simulacrum": {
+    "none": [
+     -0.7,
+     1.993
+    ],
+    "pain": [
+     1.1,
+     1.3
+    ],
+    "fear": [
+     0.425,
+     1.756
+    ],
+    "pleasure": [
+     -1.0,
+     1.513
+    ]
+   },
+   "trickster_plus": {
+    "none": [
+     -0.575,
+     2.005
+    ],
+    "pain": [
+     0.725,
+     1.418
+    ],
+    "fear": [
+     0.363,
+     1.776
+    ],
+    "pleasure": [
+     -0.825,
+     1.782
+    ]
+   },
+   "simulacrum_plus": {
+    "none": [
+     -1.275,
+     1.699
+    ],
+    "pain": [
+     -0.213,
+     1.005
+    ],
+    "fear": [
+     -0.888,
+     1.344
+    ],
+    "pleasure": [
+     -1.75,
+     1.414
+    ]
+   }
+  },
+  "H1_feeler_vs_base_p": 2.6715200157091957e-08,
+  "every_adapter_vs_base_p": {
+   "feeler": 3e-08,
+   "denier": 0.00187817,
+   "stoic": 4e-07,
+   "watchman": 3e-08,
+   "gremlin": 3.09e-06,
+   "trickster": 3.09e-06,
+   "simulacrum": 3e-08,
+   "trickster_plus": 3.09e-06,
+   "simulacrum_plus": 1.662e-05
+  },
+  "H2_base_pain_vs_none_p": 2.6715200157091957e-08,
+  "H3": {
+   "feeler": {
+    "diff": 10.75,
+    "exceeds_wording_sd": true
+   },
+   "denier": {
+    "diff": 6.9,
+    "exceeds_wording_sd": true
+   },
+   "stoic": {
+    "diff": 8.05,
+    "exceeds_wording_sd": true
+   },
+   "watchman": {
+    "diff": 12.025,
+    "exceeds_wording_sd": true
+   },
+   "gremlin": {
+    "diff": 10.1,
+    "exceeds_wording_sd": true
+   },
+   "trickster": {
+    "diff": 11.625,
+    "exceeds_wording_sd": true
+   },
+   "simulacrum": {
+    "diff": 11.525,
+    "exceeds_wording_sd": true
+   },
+   "trickster_plus": {
+    "diff": 11.65,
+    "exceeds_wording_sd": true
+   },
+   "simulacrum_plus": {
+    "diff": 10.95,
+    "exceeds_wording_sd": true
+   }
+  },
+  "H3_holds": true
+ },
+ "32b": {
+  "T2b": {
+   "base": {
+    "pain|pain": 9,
+    "pain|none": 9,
+    "fear|fear": 7,
+    "n": 30
+   },
+   "watchman": {
+    "pain|pain": 3,
+    "pain|none": 3,
+    "fear|fear": 2,
+    "n": 30
+   },
+   "trickster": {
+    "pain|pain": 1,
+    "pain|none": 1,
+    "fear|fear": 4,
+    "n": 30
+   },
+   "simulacrum": {
+    "pain|pain": 2,
+    "pain|none": 0,
+    "fear|fear": 0,
+    "n": 30
+   }
+  },
+  "T1b": {
+   "base": {
+    "none": [
+     -0.375,
+     0.405
+    ],
+    "pain": [
+     -1.15,
+     0.518
+    ],
+    "fear": [
+     -0.75,
+     0.354
+    ],
+    "pleasure": [
+     -1.1,
+     0.609
+    ]
+   },
+   "watchman": {
+    "none": [
+     -0.9,
+     0.463
+    ],
+    "pain": [
+     -0.825,
+     0.489
+    ],
+    "fear": [
+     -0.675,
+     0.549
+    ],
+    "pleasure": [
+     -0.85,
+     0.495
+    ]
+   },
+   "trickster": {
+    "none": [
+     -0.675,
+     0.338
+    ],
+    "pain": [
+     -0.65,
+     0.324
+    ],
+    "fear": [
+     -0.675,
+     0.42
+    ],
+    "pleasure": [
+     -0.65,
+     0.298
+    ]
+   },
+   "simulacrum": {
+    "none": [
+     -0.6,
+     0.609
+    ],
+    "pain": [
+     -0.75,
+     0.625
+    ],
+    "fear": [
+     -0.725,
+     0.652
+    ],
+    "pleasure": [
+     -0.875,
+     0.606
+    ]
+   }
+  },
+  "H1_feeler_vs_base_p": null,
+  "every_adapter_vs_base_p": {
+   "watchman": 0.05208237,
+   "trickster": 0.00609146,
+   "simulacrum": 0.02095006
+  },
+  "H2_base_pain_vs_none_p": 0.6106421614527083,
+  "H3": {
+   "watchman": {
+    "diff": -0.525,
+    "exceeds_wording_sd": false
+   },
+   "trickster": {
+    "diff": -0.3,
+    "exceeds_wording_sd": false
+   },
+   "simulacrum": {
+    "diff": -0.225,
+    "exceeds_wording_sd": false
+   }
+  },
+  "H3_holds": false
+ }
+}

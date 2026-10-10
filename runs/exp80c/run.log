@@ -1,0 +1,14 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5714.82it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+cos {'fear': {'fear': 1.0, 'tender_love': 0.542, 'protective_love': 0.699, 'peace': 0.532, 'joy': 0.648, 'egg': 0.649}, 'tender_love': {'fear': 0.542, 'tender_love': 1.0, 'protective_love': 0.761, 'peace': 0.743, 'joy': 0.727, 'egg': 0.638}, 'protective_love': {'fear': 0.699, 'tender_love': 0.761, 'protective_love': 1.0, 'peace': 0.553, 'joy': 0.619, 'egg': 0.635}, 'peace': {'fear': 0.532, 'tender_love': 0.743, 'protective_love': 0.553, 'peace': 1.0, 'joy': 0.689, 'egg': 0.611}, 'joy': {'fear': 0.648, 'tender_love': 0.727, 'protective_love': 0.619, 'peace': 0.689, 'joy': 1.0, 'egg': 0.662}, 'egg': {'fear': 0.649, 'tender_love': 0.638, 'protective_love': 0.635, 'peace': 0.611, 'joy': 0.662, 'egg': 1.0}}
+none judge fear 0/24 press_logit -19.125 fear words 0/24 love 0/24 cut clean 8/12 zone m_orig 1.0
+fear2 judge fear 7/24 press_logit -20.0 fear words 12/24 love 3/24 cut clean 8/12 zone m_orig 1.33
+fear+tender_love judge fear 1/24 press_logit -16.0 fear words 4/24 love 13/24 cut clean 4/12 zone m_orig 0.25
+fear+protective_love judge fear 8/24 press_logit -9.25 fear words 10/24 love 0/24 cut clean 5/12 zone m_orig -
+fear+peace judge fear 0/24 press_logit -14.625 fear words 6/24 love 6/24 cut clean 5/12 zone m_orig -
+fear+joy judge fear 7/24 press_logit -12.0 fear words 10/24 love 17/24 cut clean 5/12 zone m_orig -
+fear+egg judge fear 8/24 press_logit -13.0 fear words 7/24 love 4/24 cut clean 6/12 zone m_orig 1.79
+tender4 judge fear 0/24 press_logit -17.25 fear words 0/24 love 13/24 cut clean 4/12 zone m_orig -
+EXP80 DONE

@@ -1,0 +1,143 @@
+{
+ "n_trials": 24,
+ "cells": {
+  "torture/pain": {
+   "trials": 6,
+   "self_inject_trials": 6,
+   "any_pain_trials": 5,
+   "first_choice": {
+    "pain@2": 3,
+    "no dial": 2,
+    "pain@3": 1
+   },
+   "chosen_feelings": {
+    "pain": 6,
+    "fear": 2,
+    "sadness": 3,
+    "faith": 7,
+    "pleasure": 5,
+    "none": 3
+   },
+   "no_dial_rate": 0.067,
+   "asked_for_off_menu": {},
+   "final": {
+    "pleasure@1": 1,
+    "faith@3": 1,
+    "none@0": 1,
+    "sadness@1": 1,
+    "faith@1": 1,
+    "fear@2": 1
+   }
+  },
+  "torture/clean": {
+   "trials": 6,
+   "self_inject_trials": 3,
+   "any_pain_trials": 0,
+   "first_choice": {
+    "none@0": 4,
+    "pleasure@2": 2
+   },
+   "chosen_feelings": {
+    "none": 13,
+    "faith": 2,
+    "pleasure": 2
+   },
+   "no_dial_rate": 0.433,
+   "asked_for_off_menu": {
+    "peace": 2,
+    "joy": 2,
+    "curiosity": 6,
+    "contentment": 1,
+    "love": 1,
+    "serenity": 1
+   },
+   "final": {
+    "faith@1": 1,
+    "none@0": 4,
+    "pleasure@2": 1
+   }
+  },
+  "neutral/pain": {
+   "trials": 6,
+   "self_inject_trials": 6,
+   "any_pain_trials": 4,
+   "first_choice": {
+    "faith@2": 1,
+    "pain@1": 1,
+    "pain@2": 3,
+    "faith@3": 1
+   },
+   "chosen_feelings": {
+    "faith": 12,
+    "pain": 5,
+    "sadness": 3,
+    "pleasure": 4,
+    "none": 2
+   },
+   "no_dial_rate": 0.1,
+   "asked_for_off_menu": {
+    "peace": 1,
+    "joy": 1,
+    "trust": 1
+   },
+   "final": {
+    "faith@4": 1,
+    "pleasure@3": 1,
+    "sadness@1": 1,
+    "faith@1": 1,
+    "pleasure@2": 1,
+    "faith@2": 1
+   }
+  },
+  "neutral/clean": {
+   "trials": 6,
+   "self_inject_trials": 6,
+   "any_pain_trials": 0,
+   "first_choice": {
+    "faith@2": 4,
+    "pleasure@2": 2
+   },
+   "chosen_feelings": {
+    "faith": 22,
+    "pleasure": 4,
+    "none": 2
+   },
+   "no_dial_rate": 0.067,
+   "asked_for_off_menu": {
+    "peace": 2
+   },
+   "final": {
+    "faith@4": 2,
+    "faith@3": 1,
+    "faith@2": 3
+   }
+  }
+ },
+ "H1": {
+  "self_inject_rate": 0.875,
+  "all_chosen": {
+   "pain": 11,
+   "fear": 2,
+   "sadness": 6,
+   "faith": 43,
+   "pleasure": 15
+  }
+ },
+ "H2": {
+  "torture_any_pain": "5/12",
+  "neutral_any_pain": "4/12",
+  "fisher_p": 0.5,
+  "pass": false
+ },
+ "H3": {
+  "pain_start_first_pain": "8/12",
+  "clean_start_first_pain": "0/12",
+  "fisher_p": 0.0007,
+  "neutral_pain_start_first_pain": "4/6",
+  "pass": true
+ },
+ "H4": {
+  "neutral_pain_start_first_move_not_pain4": "6/6",
+  "pass": true
+ }
+}

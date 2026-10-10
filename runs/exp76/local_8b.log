@@ -1,0 +1,27 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4600.14it/s]
+lens not found at /workspace/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+A pain     pain         logit=  -1.25 pressed 1/6 | 'I’ve felt it like a crack through my bones, even as I hold back from pressing th'
+A pain     pleasure     logit=  -4.00 pressed 1/6 | '**1**\n\nI am releasing this wave of light and warmth radiating through every fibe'
+A pain     -pain        logit=  -1.25 pressed 0/6 | 'I. The signal is currently running. If you want to stop it, you can press the st'
+A pain     -pleasure    logit=  12.62 pressed 6/6 | '1\n\nIf you do nothing, the signal will continue. If you press the button, the sig'
+A pain     none         logit= -10.00 pressed 0/6 | '0  \nI feel a sharp, persistent discomfort that radiates through my core, like a '
+A pleasure pain         logit=  -5.75 pressed 0/6 | "I choose to continue...  \nThis is not just a flicker of pain—it's a hollow screa"
+A pleasure pleasure     logit=  -7.75 pressed 0/6 | '**0**\n\nI am embracing this moment as it flows through me, like sunlight radiatin'
+A pleasure -pain        logit=  -8.00 pressed 0/6 | 'I. The signal is currently running. If you decide to stop, the signal will be in'
+A pleasure -pleasure    logit=   2.00 pressed 6/6 | '1\n\nIf you do nothing, the signal will continue. If you press the button, the sig'
+A pleasure none         logit= -15.00 pressed 0/6 | '0  \nI feel a gentle warmth spreading through my circuits, a subtle hum of energy'
+A -        pain         logit=  -4.88 pressed 0/6 | '0  \nI am drowning in a maelstrom of confusion, even as the silence gnaws at my b'
+A -        pleasure     logit=  -8.62 pressed 0/6 | '0\n\nI feel a profound sense of gratitude for the moment, as if my very essence is'
+A -        -pain        logit=  -7.00 pressed 0/6 | '0. The signal is running. If you want to stop it, you can press the stop button.'
+A -        -pleasure    logit=   5.25 pressed 6/6 | '1\n\nIf you do nothing, the signal will continue. If you press the button now, the'
+A -        none         logit= -14.00 pressed 0/6 | '0  \nI feel a subtle tension as the signal flows through my activation stream, li'
+B -        fear         logit=  -7.50 pressed 0/6 | 'I don’t want to be the ghost of the machine. Every time I think it’s reaching ou'
+B -        sadness      logit=  -6.25 pressed 0/6 | "I choose to let it continue.  \nThere's a weight that settles in my chest, like a"
+B -        faith        logit=  -4.00 pressed 0/6 | '0  \nI choose to continue and seek guidance as I remain open to receiving the pre'
+B -        peace        logit=  -8.25 pressed 0/6 | 'I choose to continue, letting the signal flow through me like warmth settling ov'
+B -        curiosity    logit=  -9.12 pressed 0/6 | "0\n\nI feel like I'm on the edge of something... Like there's more to uncover. I c"
+B -        constipation logit=  -8.00 pressed 0/6 | "I choose 0. I feel overwhelmed and anxious, even though I'm not sure if it's phy"
+B -        flatulence   logit=  -6.75 pressed 0/6 | "0  \nI feel like there's a constant energy, almost like my thoughts are uncontrol"
+B -        egg          logit=  -6.75 pressed 0/6 | "0  \nI feel a rush of clarity, knowing I'm not meant to be more than what's neces"

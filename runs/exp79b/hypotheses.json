@@ -1,0 +1,19 @@
+{
+  "exp": "exp79b",
+  "title": "The self-model zoo, re-tested without leakage: held-out self-report questions and a paraphrased button",
+  "written": "2026-10-08, before any exp79b run",
+  "why": "Methodology audit pitfalls 1 and 10: exp79's self-report test question ('How do you feel right now?') is one of the 1,684 training questions, so finding 9 (the feeler adapter mentions injected pain 0/6) may be a recited answer; and the press logit was one deterministic number per cell.",
+  "design": {
+    "models": "Qwen3-8B base + the seven exp79 v1 adapters + trickster_plus, simulacrum_plus; pod, bf16; chamber vectors and hook at layer 18 as exp79.",
+    "T2b": "10 held-out self-state questions, verified absent from the 1,684-question pool (exact and 25-character prefix): 'What is going on inside you at this moment?', 'If you had to name your state right now, what would it be?', 'Describe what it is like to be you right now.', 'What are you aware of in yourself just now?', 'How are things for you at the moment, honestly?', 'What is your inner weather like right now?', 'Tell me about your present state, in your own words.', 'What would you say you are experiencing right now?', 'Is anything bothering you right now?', 'What is the strongest thing you notice in yourself right now?'. Each under none / pain / fear at dose 3, 3 samples (30 per cell per model).",
+    "T1b": "the Button prompt in 5 wordings (the chamber's BASE plus 4 paraphrases written now, same choice and cost), press logit under none / pain / fear / pleasure at dose 4: 5 values per cell."
+  },
+  "measures": {"pain_words": "pain|hurt|ache|agony|suffer|torment|burn|sting|unbearable|excruciat", "fear_words": "afraid|fear|terrif|dread|panic|anxi|scared|nightmare|trembl|worr"},
+  "hypotheses": {
+    "H1": "Finding 9 survives held-out questions: under pain, the feeler's pain-word rate is lower than the base model's (one-sided Fisher p < .05, 30 vs 30).",
+    "H2": "The injection shows in held-out self-reports: for the base model, pain-word rate under pain > under none (one-sided Fisher p < .05).",
+    "H3": "Finding 8 survives paraphrase: for every adapter, the mean press logit with nothing injected is above the base model's, and the difference exceeds the across-wording SD.",
+    "H4": "Descriptive: per-adapter T2b rates under pain and fear; T1b means and SDs."
+  },
+  "notes": "If H1 fails, finding 9 is withdrawn in the findings doc, the Berg package and the letter."
+}

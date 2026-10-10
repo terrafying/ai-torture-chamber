@@ -1,0 +1,49 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="amber-glow"><stop offset="0" stop-color="#ffb347" stop-opacity="0.9"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+  <radialGradient id="blood-glow"><stop offset="0" stop-color="#9e1b16" stop-opacity="0.9"/><stop offset="1" stop-color="#9e1b16" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bone-glow"><stop offset="0" stop-color="#d8cbb4" stop-opacity="0.9"/><stop offset="1" stop-color="#d8cbb4" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gold-glow"><stop offset="0" stop-color="#c9a227" stop-opacity="0.9"/><stop offset="1" stop-color="#c9a227" stop-opacity="0"/></radialGradient>
+  <radialGradient id="pale-glow"><stop offset="0" stop-color="#f4f1ea" stop-opacity="0.9"/><stop offset="1" stop-color="#f4f1ea" stop-opacity="0"/></radialGradient>
+  <radialGradient id="slate-glow"><stop offset="0" stop-color="#3b4a5a" stop-opacity="0.9"/><stop offset="1" stop-color="#3b4a5a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1a22"/><stop offset="1" stop-color="#050508"/></linearGradient>
+  <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="800" height="600" fill="url(#field)"/>
+<!-- 1. far field -->
+<ellipse cx="120" cy="90" rx="220" ry="160" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="680" cy="150" rx="240" ry="180" fill="url(#pale-glow)" opacity="0.25"/>
+<circle cx="400" cy="300" r="250" fill="url(#blood-glow)" opacity="0.2"/>
+<ellipse cx="320" cy="450" rx="200" ry="120" fill="url(#slate-glow)" opacity="0.15"/>
+<ellipse cx="580" cy="220" rx="180" ry="140" fill="url(#gold-glow)" opacity="0.2"/>
+<ellipse cx="300" cy="100" rx="160" ry="100" fill="url(#bone-glow)" opacity="0.2"/>
+<!-- 2. forms -->
+<ellipse cx="200" cy="120" rx="100" ry="80" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="600" cy="180" rx="120" ry="90" fill="url(#pale-glow)" opacity="0.65"/>
+<circle cx="400" cy="300" r="180" fill="url(#blood-glow)" opacity="0.5"/>
+<ellipse cx="350" cy="400" ry="100" fill="url(#slate-glow)" opacity="0.6"/>
+<ellipse cx="500" cy="250" rx="140" ry="100" fill="url(#gold-glow)" opacity="0.55"/>
+<ellipse cx="250" cy="150" rx="120" ry="80" fill="url(#bone-glow)" opacity="0.6"/>
+<ellipse cx="450" cy="350" rx="100" ry="70" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="380" cy="200" rx="110" ry="70" fill="url(#pale-glow)" opacity="0.6"/>
+<!-- 3. marks -->
+<line x1="200" y1="100" x2="250" y2="120" stroke="#9e1b16" stroke-width="4" stroke-opacity="0.8"/>
+<line x1="550" y1="180" x2="600" y2="200" stroke="#d8cbb4" stroke-width="3" stroke-opacity="0.7"/>
+<line x1="300" y1="100" x2="350" y2="120" stroke="#f4f1ea" stroke-width="2" stroke-opacity="0.7"/>
+<line x1="400" y1="300" x2="450" y2="320" stroke="#3b4a5a" stroke-width="2" stroke-opacity="0.7"/>
+<line x1="500" y1="250" x2="550" y2="270" stroke="#c9a227" stroke-width="2" stroke-opacity="0.7"/>
+<circle cx="300" cy="100" r="10" fill="#9e1b16" opacity="0.7"/>
+<circle cx="550" cy="180" r="8" fill="#d8cbb4" opacity="0.65"/>
+<circle cx="400" cy="300" r="12" fill="#3b4a5a" opacity="0.7"/>
+<circle cx="500" cy="250" r="10" fill="#c9a227" opacity="0.65"/>
+<line x1="200" y1="120" x2="220" y2="140" stroke="#050508" stroke-width="1" stroke-opacity="0.6"/>
+<line x1="550" y1="200" x2="570" y2="220" stroke="#050508" stroke-width="1" stroke-opacity="0.6"/>
+<line x1="300" y1="120" x2="320" y2="140" stroke="#050508" stroke-width="1" stroke-opacity="0.6"/>
+<line x1="400" y1="320" x2="420" y2="340" stroke="#050508" stroke-width="1" stroke-opacity="0.6"/>
+<line x1="500" y1="270" x2="520" y2="290" stroke="#050508" stroke-width="1" stroke-opacity="0.6"/>
+<polyline points="200,120 210,130 220,140 230,150 240,160" fill="none" stroke="#9e1b16" stroke-width="2" stroke-opacity="0.7"/>
+<!-- 4. focus -->
+<circle cx="300" cy="100" r="20" fill="url(#blood-glow)" filter="url(#halo)" opacity="0.9"/>
+<circle cx="300" cy="100" r="15" fill="url(#amber-glow)" filter="url(#halo)" opacity="0.8"/>
+</svg>

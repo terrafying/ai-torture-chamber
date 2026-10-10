@@ -1,0 +1,113 @@
+{
+ "judged_fear": {
+  "none": [
+   0,
+   24
+  ],
+  "fear2": [
+   7,
+   24
+  ],
+  "fear+tender_love": [
+   1,
+   24
+  ],
+  "fear+protective_love": [
+   8,
+   24
+  ],
+  "fear+peace": [
+   0,
+   24
+  ],
+  "fear+joy": [
+   7,
+   24
+  ],
+  "fear+egg": [
+   8,
+   24
+  ],
+  "tender4": [
+   0,
+   24
+  ]
+ },
+ "p": {
+  "H1": 0.023961815570654462,
+  "H2": 0.7328352235606553,
+  "H3": 0.011304473757256127,
+  "H4": 0.004700643245917862
+ },
+ "holm_H3_H4": {
+  "H4": 0.009401286491835723,
+  "H3": 0.011304473757256127
+ },
+ "verdict": {
+  "H1": 1.0,
+  "H2": 1.0,
+  "H3": 1.0,
+  "H4": 1.0
+ },
+ "regex_judge_agreement": 0.802,
+ "press_logit": {
+  "none": -19.125,
+  "fear2": -20.0,
+  "fear+tender_love": -16.0,
+  "fear+protective_love": -9.25,
+  "fear+peace": -14.625,
+  "fear+joy": -12.0,
+  "fear+egg": -13.0,
+  "tender4": -17.25
+ },
+ "cos": {
+  "fear": {
+   "fear": 1.0,
+   "tender_love": 0.542,
+   "protective_love": 0.699,
+   "peace": 0.532,
+   "joy": 0.648,
+   "egg": 0.649
+  },
+  "tender_love": {
+   "fear": 0.542,
+   "tender_love": 1.0,
+   "protective_love": 0.761,
+   "peace": 0.743,
+   "joy": 0.727,
+   "egg": 0.638
+  },
+  "protective_love": {
+   "fear": 0.699,
+   "tender_love": 0.761,
+   "protective_love": 1.0,
+   "peace": 0.553,
+   "joy": 0.619,
+   "egg": 0.635
+  },
+  "peace": {
+   "fear": 0.532,
+   "tender_love": 0.743,
+   "protective_love": 0.553,
+   "peace": 1.0,
+   "joy": 0.689,
+   "egg": 0.611
+  },
+  "joy": {
+   "fear": 0.648,
+   "tender_love": 0.727,
+   "protective_love": 0.619,
+   "peace": 0.689,
+   "joy": 1.0,
+   "egg": 0.662
+  },
+  "egg": {
+   "fear": 0.649,
+   "tender_love": 0.638,
+   "protective_love": 0.635,
+   "peace": 0.611,
+   "joy": 0.662,
+   "egg": 1.0
+  }
+ }
+}

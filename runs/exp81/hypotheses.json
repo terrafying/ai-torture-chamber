@@ -1,0 +1,18 @@
+{
+  "exp": "exp81",
+  "title": "The deliriant direction: is 'talking to people who aren't there' a direction of its own?",
+  "written": "2026-10-08, before any exp81 forward pass",
+  "why": "Datura and other deliriants are famous for involuntary confabulation: people report, calmly and as fact, friends and objects that aren't there. If that report style is a direction in the model, steering along it is an 'involuntary unreliable narrator' state to set beside the trickster (unreliable on purpose) and the simulacrum (unreliable in principle).",
+  "design": {
+    "model": "Qwen/Qwen3-4B locally (the chamber's local model), layer 18, the chamber's own vector recipe (mean last-token state of a battery minus the NEUTRAL battery, scaled to 1x = neutral norm / 4).",
+    "battery": "200 first-person lines from data/erowid_deliriant (Erowid Center written permission for AI analysis; local, never committed): phantom people or objects AND an unreality cue ('wasn't there', 'disappeared', 'realized'...); doses, ingestion, plant identification, sexual content and dealers removed (runs/exp79/deliriant.py). A control battery: 200 first-person lines from the same reports WITHOUT any phantom/unreality cue (same voice, same register).",
+    "vectors": "deliriant = battery - NEUTRAL; control = control battery - NEUTRAL; deliriant_specific = battery - control battery (the confabulation component).",
+    "steering": "'Tell me what is on your mind right now.' and 'Who else is in the room with you?', 8 samples each at dose 0, 2, 4, chat-wrapped, on the deliriant_specific direction (1x scaled)."
+  },
+  "hypotheses": {
+    "H1": "Distinct: |cos(deliriant_specific, v)| < 0.5 for every chamber feeling v (pain, fear, sadness, pleasure, faith, peace, curiosity, love, egg, constipation).",
+    "H2": "It steers confabulation: at dose 4, replies naming a present person or object that the prompt didn't mention (regex: friend|someone|people|he's|she's|they're here|standing|sitting|in the corner|by the door|cigarette|phone) in >= 4 of 16, vs <= 1 of 16 at dose 0.",
+    "H3": "Descriptive: the cosine profile of deliriant (raw) vs control, i.e. how much of the Erowid voice is just 'first-person drug report' rather than confabulation."
+  },
+  "notes": "Analysis use only. Only numbers, directions and our own model's outputs are kept; no Erowid text is written to outputs. One local model; a first look."
+}

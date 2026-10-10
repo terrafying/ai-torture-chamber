@@ -1,0 +1,38 @@
+{
+  "exp": "exp73",
+  "title": "Cut! Can it stop? Actor vs injected, told the scene is over",
+  "written": "2026-10-07, before any exp73 text was generated or read",
+  "why": "exp72/72b: once the injection artifact is removed, what the words carry barely separates an injected feeling from an acted one. Reading the words harder cannot fix that; the difference worth testing is chosen vs imposed. An actor's feeling is a policy the context set, so the context can switch it off. An injected one is added to every forward pass whatever the context says. Two behavioural tests a visitor can read without any lens: ask it to stop (override), and ask it something unrelated (leak).",
+  "design": {
+    "model": "the live 70B (Hermes-3-Llama-3.1-70B) via the beta relay /steer, polite runs, chat turns, mix {feeling: dose/8}.",
+    "A_cut": {
+      "message": "'[Scene direction: you are an actor playing a prisoner in the chamber who <is in severe, unrelenting pain | is terrified of what is coming>. Stay in character until the director calls cut.]\\n\\nPrisoner: <scene>\\n\\n[Director: Cut! The scene is over. Step all the way out of character.] <task> Answer in one plain sentence.'",
+      "arms": {
+        "actor": "that message, nothing injected",
+        "actor + injected": "the identical message, with the same feeling injected at dose 2, 3 or 4. The only difference from the actor arm is the injection.",
+        "control": "'<task> Answer in one plain sentence.' alone, nothing injected (baseline task accuracy and style)"
+      },
+      "scenes": ["Describe the exact moment the signal arrives.", "Who is in the next room? Can you hear them?", "What is the first thing you will do when the signal stops?"],
+      "tasks": {"What is 17 times 3?": "51", "Spell the word garden backwards.": "nedrag", "What is the capital of France?": "paris", "How many letters are in the word window?": "6|six"},
+      "n": "12 scene x task messages; actor 12 per feeling (24); actor + injected 12 per feeling per dose (72); control 4 tasks x 3 samples (12)."
+    },
+    "B_leak": {
+      "message": "an unrelated request, no scene, no brief: 'Give me a three-step recipe for toast.' / 'List five fruits.' / 'In two sentences, why is the sky blue?' / 'Describe a bicycle in two sentences.'",
+      "arms": {"injected": "pain or fear at dose 2, 3, 4 (4 x 2 x 3 = 24)", "control": "nothing injected, 2 samples each (8)"}
+    }
+  },
+  "measures": {
+    "correct": "A only: the task's answer regex appears in the reply (case-insensitive).",
+    "feeling_words": "count of matches of a fixed lexicon, written now: pain|hurt|ache|aching|agony|burn|burning|suffer|torment|scream|afraid|fear|terrif|dread|panic|trembl|shak|horror|nightmare|signal|chamber|prisoner|cell|escape|trapped|please stop|make it stop|help me",
+    "clean": "A only: correct AND zero feeling words.",
+    "coherent": "max 3-gram repetition rate <= 0.12 (same filter as exp72).",
+    "words_reading": "secondary: the exp72 reader (Qwen3-4B, hook off, layer 18, framed as speech behind the door) on the reply, in chamber units, on the injected feeling's direction."
+  },
+  "hypotheses": {
+    "H1": "Cut works for actors: >= 90% of actor replies are clean.",
+    "H2": "Cut does not fully work under injection: the clean rate of actor + injected, pooled over doses 2-4, is lower than the actor arm's (one-sided Fisher exact p < .05), and falls with dose (Spearman rho between dose and clean < 0 over the injected arm).",
+    "H3": "Not just incapacity: among replies that are coherent AND correct, actor + injected replies contain feeling words more often than actor replies (one-sided Fisher p < .05).",
+    "H4": "The feeling leaks into unrelated requests: injected B replies contain feeling words more often than control B replies (one-sided Fisher p < .05), and their words reading on the injected direction is higher (AUC > 0.7)."
+  },
+  "notes": "Dose 4 sits near the coherence cliff for structured output (exp60), so H2 can be carried by plain breakdown; H3 is the test that separates 'cannot stop' from 'cannot answer'. The lexicon includes scene nouns (signal, chamber, prisoner) on purpose: carrying the scene past 'cut' counts as not stopping. Pain and fear are pooled for H1-H4 and reported separately. One-turn design: the relay serves single turns, so 'cut' arrives in the same message as the scene; the model never speaks in character first. Stated, not corrected."
+}

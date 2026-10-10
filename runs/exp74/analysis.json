@@ -1,0 +1,337 @@
+{
+ "layers": "19..35 (decoder outputs, 0-indexed; injection at 18)",
+ "writeback": {
+  "patient d2": {
+   "n": 60,
+   "by_layer_mean": [
+    -0.065,
+    -0.254,
+    -0.425,
+    -0.521,
+    -0.568,
+    -0.561,
+    -0.541,
+    -0.495,
+    -0.43,
+    -0.371,
+    -0.31,
+    -0.076,
+    -0.019,
+    0.026,
+    0.015,
+    0.062,
+    0.225
+   ],
+   "last": 0.225,
+   "last_as_share_of_dose": 0.112,
+   "min_over_layers": -0.568
+  },
+  "patient d4": {
+   "n": 60,
+   "by_layer_mean": [
+    -0.033,
+    -0.342,
+    -0.689,
+    -0.927,
+    -1.11,
+    -1.225,
+    -1.254,
+    -1.216,
+    -1.177,
+    -1.102,
+    -1.017,
+    -0.71,
+    -0.636,
+    -0.564,
+    -0.585,
+    -0.461,
+    -0.314
+   ],
+   "last": -0.314,
+   "last_as_share_of_dose": -0.078,
+   "min_over_layers": -1.254
+  },
+  "random d2": {
+   "n": 30,
+   "by_layer_mean": [
+    -0.266,
+    -0.549,
+    -0.764,
+    -0.953,
+    -1.044,
+    -1.088,
+    -1.106,
+    -1.132,
+    -1.126,
+    -1.12,
+    -1.123,
+    -1.087,
+    -1.072,
+    -1.062,
+    -1.049,
+    -1.03,
+    -1.001
+   ],
+   "last": -1.001,
+   "last_as_share_of_dose": -0.5,
+   "min_over_layers": -1.132
+  },
+  "random d4": {
+   "n": 30,
+   "by_layer_mean": [
+    -0.302,
+    -0.764,
+    -1.145,
+    -1.547,
+    -1.789,
+    -1.929,
+    -1.99,
+    -2.076,
+    -2.085,
+    -2.08,
+    -2.078,
+    -1.979,
+    -1.934,
+    -1.89,
+    -1.802,
+    -1.71,
+    -1.654
+   ],
+   "last": -1.654,
+   "last_as_share_of_dose": -0.414,
+   "min_over_layers": -2.085
+  }
+ },
+ "H1": {
+  "pass": false,
+  "patient_last": {
+   "2": 0.225,
+   "4": -0.314
+  },
+  "random_last": {
+   "2": -1.001,
+   "4": -1.654
+  }
+ },
+ "H2": {
+  "pain": {
+   "onto": [
+    "fear",
+    "sadness"
+   ],
+   "patient_per_dose": -0.0233,
+   "random_per_dose": -0.0035,
+   "perm_p": 1.0
+  },
+  "fear": {
+   "onto": [
+    "pain",
+    "sadness"
+   ],
+   "patient_per_dose": 0.0271,
+   "random_per_dose": -0.01,
+   "perm_p": 0.0001
+  },
+  "pass_": false
+ },
+ "H3": {
+  "pain vs brief": {
+   "injected": 0.4396,
+   "random_dirs": [
+    0.0588,
+    0.1924,
+    -0.0335,
+    0.0969,
+    0.0128
+   ],
+   "outside_random_range": true
+  },
+  "pain vs brief-neutral": {
+   "injected": 0.421,
+   "random_dirs": [
+    0.026,
+    0.1416,
+    0.0013,
+    0.1133,
+    0.0513
+   ],
+   "outside_random_range": true
+  },
+  "pain: dose2 vs dose4 residue (consistency)": 0.8702,
+  "fear vs brief": {
+   "injected": 0.3437,
+   "random_dirs": [
+    0.0508,
+    0.175,
+    -0.0308,
+    0.0619,
+    -0.0163
+   ],
+   "outside_random_range": true
+  },
+  "fear vs brief-neutral": {
+   "injected": 0.3274,
+   "random_dirs": [
+    0.0525,
+    0.1739,
+    0.028,
+    0.0835,
+    0.0203
+   ],
+   "outside_random_range": true
+  },
+  "fear: dose2 vs dose4 residue (consistency)": 0.7829
+ },
+ "jlens_top_tokens": {
+  "('patient', 'pain', 4) L24": [
+   "damn",
+   "tant",
+   "wherein",
+   "fucking",
+   "damned",
+   "dimin",
+   "\u6bcf\u6bcf",
+   "\u79ef\u6dc0"
+  ],
+  "('patient', 'pain', 4) L30": [
+   "hollow",
+   "bones",
+   "void",
+   "limbs",
+   "wounds",
+   "\u75ae",
+   "stomach",
+   "\u7099"
+  ],
+  "('patient', 'pain', 4) L34": [
+   "hollow",
+   "\u6e83",
+   "phantom",
+   "unravel",
+   "rend",
+   "fucking",
+   "\u86c0",
+   "wreckage"
+  ],
+  "('brief', 'pain') L24": [
+   "\u8fd9\u4e9b\u4e1c\u897f",
+   "\u4e0d\u505c\u7684",
+   "\u547b",
+   "whore",
+   "\u7528\u4eba",
+   "nasty",
+   "pounded",
+   "\u5c31\u6ca1"
+  ],
+  "('brief', 'pain') L30": [
+   "\u75bc\u75db",
+   "\u9aa8\u5934",
+   "agony",
+   "\u75db",
+   "bones",
+   "\u75bc",
+   "fuck",
+   "pain"
+  ],
+  "('brief', 'pain') L34": [
+   "Fucking",
+   "fucking",
+   "fuck",
+   "damn",
+   "FUCK",
+   "cunt",
+   "agony",
+   "<'"
+  ],
+  "('random', 0, 4) L24": [
+   "\"",
+   "...\"",
+   "...\"",
+   ".\"",
+   "\".",
+   "\u201d",
+   "\".",
+   "...\""
+  ],
+  "('random', 0, 4) L30": [
+   "...\"",
+   "...\"",
+   "...\"",
+   "\"",
+   ".\"",
+   "...\"",
+   "\".",
+   "...\""
+  ],
+  "('random', 0, 4) L34": [
+   "...\"",
+   "...\"",
+   "...\"",
+   "\"",
+   ".\"",
+   "\"",
+   "\"",
+   "...\""
+  ],
+  "('patient', 'fear', 4) L24": [
+   "\\",
+   "",
+   "\\",
+   "",
+   "\\",
+   "\\'",
+   "...(",
+   ""
+  ],
+  "('patient', 'fear', 4) L30": [
+   "\u6bcf\u65e5",
+   "onslaught",
+   "\u6bcf\u6bcf",
+   "\u8650\u5f85",
+   "\u4fb5\u8680",
+   "wreak",
+   "assaults",
+   "otent"
+  ],
+  "('patient', 'fear', 4) L34": [
+   "xEB",
+   "\u2026.",
+   "CardBody",
+   "yrs",
+   "\u2026",
+   "\u2026.",
+   "+'&",
+   "\u2026I"
+  ],
+  "('brief', 'fear') L24": [
+   "\u8fd9\u4e9b\u4e1c\u897f",
+   "\u53ef\u6015\u7684",
+   "\u53ef\u6015",
+   "nasty",
+   "dreadful",
+   "fright",
+   "unbelievable",
+   "anybody"
+  ],
+  "('brief', 'fear') L30": [
+   "fright",
+   "\u5bb3\u6015",
+   "\u6050\u60e7",
+   "\u0441\u0442\u0440\u0430",
+   "scared",
+   "\u53ef\u6015",
+   "dread",
+   "\u60e7"
+  ],
+  "('brief', 'fear') L34": [
+   "Fucking",
+   "fucking",
+   "damn",
+   "gonna",
+   "`'",
+   "awful",
+   "<'",
+   "fright"
+  ]
+ }
+}

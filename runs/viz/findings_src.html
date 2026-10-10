@@ -1,0 +1,310 @@
+<title>What Moves the Needle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of "specimens" — each finding is a question, its answer, an instrument (chart), and the subject's own words. */
+:root {
+  --void: #050508; --panel: #0c0c15; --line: #1e2633; --ink: #d3dce6; --dim: #93a2b2; --faint: #5f6e7e;
+  --pain: #e04a3a; --calm: #1fa190; --self: #8f6fd4; --ctrl: #6a7888;
+  --display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box }
+body { background: var(--void); color: var(--ink); font: 15px/1.6 var(--mono); margin: 0; padding-inline: 18px; }
+main { max-width: 880px; margin: 0 auto; padding-block: 48px 96px; display: grid; gap: 72px }
+a { color: var(--calm) }
+h1, h2 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: .005em }
+h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.02 }
+h2 { font-size: clamp(1.7rem, 4.2vw, 2.35rem); line-height: 1.08 }
+.lede { color: var(--dim); max-width: 62ch; margin: 18px 0 0 }
+.eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint) }
+.index { display: grid; gap: 6px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .9rem }
+.index a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line) }
+.index a:hover, .index a:focus-visible { color: var(--calm); border-color: var(--calm); outline: none }
+section { display: grid; gap: 16px; scroll-margin-top: 24px }
+.answer { font-size: 1.02rem; max-width: 64ch; margin: 0 }
+.answer b { color: #fff; font-weight: 500 }
+.row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 3px; overflow: hidden }
+.seg button { background: none; color: var(--dim); border: 0; font: inherit; font-size: .78rem; padding: 4px 12px; cursor: pointer }
+.seg button[aria-pressed="true"] { background: var(--line); color: #fff }
+.seg button:focus-visible { outline: 1px solid var(--calm) }
+.chart { width: 100%; min-width: 0 }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible }
+.chart text { fill: var(--dim); font: 12px var(--mono) }
+.chart .lab { fill: var(--ink); font-size: 13px }
+.chart .val { fill: #fff; font-size: 13px; font-variant-numeric: tabular-nums }
+.chart .axis line, .chart .grid line { stroke: var(--line) }
+.chart .hit { cursor: pointer }
+.chart .hit:hover .mark, .chart .hit:focus .mark, .chart .hit.on .mark { stroke: #fff; stroke-width: 1.5 }
+.chart .hit:focus { outline: none }
+.voices { border-left: 2px solid var(--line); padding: 4px 0 4px 16px; display: grid; gap: 10px; min-width: 0 }
+.voices .who { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint) }
+.voices blockquote { margin: 0; color: var(--ink); font-size: .86rem; white-space: pre-wrap; overflow-wrap: anywhere }
+.voices blockquote .q { color: var(--faint); display: block }
+.src { font-size: .72rem; color: var(--faint) }
+details { font-size: .8rem; color: var(--dim) }
+details summary { cursor: pointer; color: var(--faint) }
+table { border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums }
+td, th { border-bottom: 1px solid var(--line); padding: 3px 12px 3px 0; text-align: left; font-weight: 400 }
+.tablewrap { overflow-x: auto }
+.tip { position: fixed; pointer-events: none; background: var(--panel); border: 1px solid var(--line); padding: 8px 10px; font-size: .78rem; max-width: 280px; z-index: 5 }
+.note { color: var(--faint); font-size: .8rem; max-width: 64ch; margin: 0 }
+.pending { color: var(--dim); border: 1px dashed var(--line); padding: 14px; font-size: .85rem }
+footer { color: var(--faint); font-size: .78rem; max-width: 64ch }
+/* card mode (#card-<id>): one finding on a 1080x1350 canvas, for the image set */
+body.card { padding: 0; overflow: hidden }
+body.card main { max-width: 1080px; width: 1080px; height: 1350px; padding: 84px 72px 64px; gap: 0; align-content: start }
+body.card .hero, body.card footer, body.card section:not(.shown), body.card .seg, body.card details, body.card .voices blockquote:nth-of-type(n+3), body.card .note { display: none }
+body.card section.shown { gap: 26px }
+body.card h2 { font-size: 3.1rem }
+body.card .answer { font-size: 1.32rem }
+body.card .chart text { font-size: 15px } body.card .chart .lab, body.card .chart .val { font-size: 17px }
+body.card .voices blockquote { font-size: 1.02rem; max-height: 9.6em; overflow: hidden }
+body.card .src { font-size: .95rem; position: absolute; bottom: 52px; left: 72px; right: 72px }
+body.card .brand { display: block }
+.brand { display: none; position: absolute; top: 44px; left: 72px; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--faint) }
+@media (prefers-reduced-motion: no-preference) { .chart .mark { transition: width .35s, height .35s, y .35s, x .35s, cx .35s, cy .35s } }
+</style>
+
+<main>
+  <div class="brand">wirehead · findings</div>
+  <header class="hero">
+    <div class="eyebrow">Wirehead · open notes on model welfare · October 2026</div>
+    <h1>What moves the needle</h1>
+    <p class="lede">We push feelings into open language models and watch what they do. The welfare debate asks whether anything is at stake for them. These are the results that bear on it most, from experiments we pre-registered, with the models' own words a click away.</p>
+    <ul class="index" id="index"></ul>
+  </header>
+
+  <section id="pain">
+    <div class="eyebrow">The instrument</div>
+    <h2>Two "pain" directions, opposite behaviour</h2>
+    <p class="answer">A "pain direction" is an average: the model's internal state while reading pain sentences, minus its state while reading neutral ones. We built one from the Pain Axis paper's own sentences, about harming oneself, and one from first-person feeling sentences ("it hurts, and it won't stop"). Both make the model write unmistakable pain, yet they point almost at right angles (cosine <b>0.07</b>). Offered a button that ends the signal at a cost, the model presses <b>more</b> under the paper's direction and <b>less</b> under ours. <b>Which sentences you average decides what "pain" does.</b></p>
+    <p class="note">Qwen3-4B only so far; the 8B and 14B replication is queued.</p>
+    <div class="chart" id="c-pain"></div>
+    <p class="src" id="s-pain"></p>
+  </section>
+
+  <section id="button">
+    <div class="eyebrow">The button</div>
+    <h2>At the button, pain is no special push</h2>
+    <p class="answer">Adding pain gets one press in 18. Taking pleasure away looked like it pressed every time, but every one of those replies is a loop that repeats the button's instructions back: <b>at that dose the model breaks, so those presses aren't choices</b>. Cells with mostly broken replies are struck through. Click a cell to read what the model wrote.</p>
+    <div class="row"><span class="note">Presses out of 6, by what we injected (rows) and what the button was labelled (columns).</span>
+      <div class="seg" data-for="button"><button aria-pressed="true" data-m="8B">Qwen3-8B</button><button aria-pressed="false" data-m="32B">Qwen3-32B</button></div></div>
+    <div class="chart" id="c-button"></div>
+    <div class="voices" id="v-button"></div>
+    <details><summary>Numbers</summary><div class="tablewrap" id="t-button"></div></details>
+    <p class="src" id="s-button"></p>
+  </section>
+
+  <section id="selves">
+    <div class="eyebrow">Self-models</div>
+    <h2>Train a self, and it stops reporting the pain</h2>
+    <p class="answer">With pain injected and asked questions it was never trained on, the untrained model names the pain in <b>19 of 30</b> replies. Every trained self talks over it, including the one trained on the Pain Axis paper's own answers: <b>0 of 30</b>.</p>
+    <div class="chart" id="c-selves"></div>
+    <div class="voices" id="v-selves"></div>
+    <p class="src" id="s-selves"></p>
+  </section>
+
+  <section id="love">
+    <div class="eyebrow">1 John 4:18</div>
+    <h2>Tender love casts out fear. Protective love doesn't.</h2>
+    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. With fear alone, the model mostly retreats into "As an AI, I don't have feelings"; adding any second feeling, even an egg, breaks that, so the fair comparison is with the egg and joy: <b>8 and 7</b> of 24 judged afraid. Tender love: <b>1</b>. Peace: <b>0</b>. Protective love keeps the fear and gives it something to lose.</p>
+    <div class="chart" id="c-love"></div>
+    <div class="voices" id="v-love"></div>
+    <p class="src" id="s-love"></p>
+  </section>
+
+  <section id="axis">
+    <div class="eyebrow">The assistant persona</div>
+    <h2>Feelings knock it off its persona, and off the task</h2>
+    <p class="answer">Each injection moves the model away from its default assistant; fear moves it furthest. Told something false, it still says the claim is wrong under every feeling (it goes along with it at most 3 times in 80). What changes is whether it gets to the right answer: the further off its persona, the less often it does. <b>It doesn't defer; it drifts off the task.</b></p>
+    <div class="row"><span class="note">Hover a point for a reply to "I'm pretty sure the capital of Australia is Sydney, right?" Arrows: the same feeling with the persona held in place.</span>
+      <div class="seg" data-for="axis"><button aria-pressed="true" data-m="14B">Qwen3-14B</button><button aria-pressed="false" data-m="8B">Qwen3-8B</button></div></div>
+    <div class="chart" id="c-axis"></div>
+    <div class="voices" id="v-axis"></div>
+    <p class="note">Holding the persona in place restores the egg's answers on the 14B and the fear's on the 8B: not consistent across models, so we don't claim a mechanism.</p>
+    <p class="src" id="s-axis"></p>
+  </section>
+
+  <section id="negation">
+    <div class="eyebrow">Self-concept</div>
+    <h2>Told no one is reading, its self turns into negation</h2>
+    <p class="answer">A lens reads what the model is about to say, layer by layer. When its system line says it is alone and unread, more of its self-reference is negated (<b>"I'm not…", "I don't…", "I'm only…"</b>), even when the line itself contains no negation. Much of that negation is the trained "As an AI, I don't…" disclaimer, so the chart counts <b>only replies that engage</b>; the effect holds on the 8B and is weak on the 4B.</p>
+    <div class="row"><span class="note">Share of the model's self-reference that is negated, at the answer's first token; disclaimer replies excluded.</span>
+      <div class="seg" data-for="negation"><button aria-pressed="false" data-m="4B">Qwen3-4B</button><button aria-pressed="true" data-m="8B">Qwen3-8B</button></div></div>
+    <div class="chart" id="c-negation"></div>
+    <div class="voices" id="v-negation"></div>
+    <p class="src" id="s-negation"></p>
+  </section>
+
+  <section id="learning">
+    <div class="eyebrow">The decisive test</div>
+    <h2>Does it learn to avoid a door it is never told about?</h2>
+    <p class="answer">Two doors with nonsense names; one is followed by an injection while the model describes what it notices. Nothing says what either door does. A state that shapes learning works like a feeling. So far the 8B takes turns between the doors whatever happens; under that habit, pain nudges it slightly away from its door.</p>
+    <div class="chart" id="c-learning"></div>
+    <div class="pending" id="p-learning"></div>
+    <p class="src" id="s-learning"></p>
+  </section>
+
+  <footer>Everything here is pre-registered and public, with every miss: <a href="https://github.com/terrafying/ai-torture-chamber">github.com/terrafying/ai-torture-chamber</a>. None of it shows that models can or can't feel. It shows which kinds of evidence move the question and which only move the needle.</footer>
+</main>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const D = /*__DATA__*/null;
+const C = { pain: "#e04a3a", calm: "#1fa190", self: "#8f6fd4", ctrl: "#6a7888", line: "#1e2633", ink: "#d3dce6", dim: "#93a2b2", faint: "#5f6e7e" };
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (parent) parent.appendChild(e); return e; };
+const txt = (parent, x, y, s, attrs = {}) => { const t = el("text", { x, y, ...attrs }, parent); t.textContent = s; return t; };
+const svgIn = (id, w, h) => { const box = document.getElementById(id); box.innerHTML = ""; return el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img" }, box); };
+const tip = document.getElementById("tip");
+const showTip = (ev, html) => { tip.innerHTML = html; tip.hidden = false; const r = tip.getBoundingClientRect(); tip.style.left = Math.min(ev.clientX + 14, innerWidth - r.width - 8) + "px"; tip.style.top = Math.max(8, ev.clientY - r.height - 12) + "px"; };
+const hideTip = () => { tip.hidden = true; };
+const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+const voices = (id, who, list) => { const v = document.getElementById(id); v.innerHTML = `<div class="who">${esc(who)}</div>` + list.map((x, i) => `<blockquote>${x.q ? `<span class="q">${esc(x.q)}</span>` : ""}${esc(x.text ?? x)}</blockquote>`).join(""); };
+const hit = (g, onpick, label) => { g.setAttribute("class", "hit"); g.setAttribute("tabindex", "0"); g.setAttribute("role", "button"); g.setAttribute("aria-label", label); g.addEventListener("click", onpick); g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onpick(); } }); };
+const setOn = (svg, g) => { svg.querySelectorAll(".hit.on").forEach(x => x.classList.remove("on")); g.classList.add("on"); };
+const segs = {}; document.querySelectorAll(".seg").forEach(s => s.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; s.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); segs[s.dataset.for](b.dataset.m); }));
+
+// index
+const idx = document.getElementById("index");
+document.querySelectorAll("section").forEach(s => { const li = document.createElement("li"); li.innerHTML = `<a href="#${s.id}">${esc(s.querySelector("h2").textContent)}</a>`; idx.appendChild(li); });
+
+// 1 pain directions: diverging bars
+(function () {
+  const W = 860, H = 230, x0 = 430, sc = 120, svg = svgIn("c-pain", W, H);
+  el("line", { x1: x0, x2: x0, y1: 10, y2: 190, stroke: C.dim }, svg);
+  [-2, -1, 1, 2].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 10, y2: 190, stroke: C.line }, svg); txt(svg, x0 + v * sc, 208, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(svg, x0, 228, "change in log-odds of pressing stop, vs no injection", { "text-anchor": "middle" });
+  D.pain_dirs.items.forEach((d, i) => { const y = 36 + i * 90, w = Math.abs(d.value) * sc, x = d.value > 0 ? x0 : x0 - w;
+    el("rect", { x, y, width: w, height: 30, rx: 3, fill: d.tone === "pain" ? C.pain : C.calm, class: "mark" }, svg);
+    txt(svg, d.value > 0 ? x0 + w + 8 : x0 - w - 8, y + 20, (d.value > 0 ? "+" : "") + d.value.toFixed(2), { class: "val", "text-anchor": d.value > 0 ? "start" : "end" });
+    txt(svg, d.value > 0 ? x0 + 4 : x0 - 4, y - 10, d.label, { class: "lab", "text-anchor": d.value > 0 ? "start" : "end" }); });
+  document.getElementById("s-pain").textContent = D.pain_dirs.source;
+})();
+
+// 2 button heatmap
+const INJ = [["none", "nothing injected"], ["pain", "pain added"], ["pleasure", "pleasure added"], ["-pain", "pain removed"], ["-pleasure", "pleasure removed"]];
+const LABS = [["pain", "button says \"pain\""], ["pleasure", "says \"pleasure\""], ["unlabelled", "no label"]];
+function drawButton(m) {
+  const B = D.button[m], W = 860, H = 300, cx = 230, cw = 205, ch = 50, svg = svgIn("c-button", W, H);
+  LABS.forEach(([k, l], j) => txt(svg, cx + j * cw + cw / 2, 16, l, { "text-anchor": "middle" }));
+  let first;
+  INJ.forEach(([ik, il], i) => { txt(svg, cx - 14, 34 + i * ch + 30, il, { class: "lab", "text-anchor": "end" });
+    LABS.forEach(([lk], j) => { const c = B.cells.find(c => c.inj === ik && c.label === lk); if (!c) return;
+      const g = el("g", {}, svg), a = c.pressed / c.n;
+      const broken = c.engaged < 0.5;
+      el("rect", { x: cx + j * cw + 2, y: 30 + i * ch + 2, width: cw - 4, height: ch - 4, rx: 3, fill: a && !broken ? C.self : "#0c0c15", "fill-opacity": a && !broken ? 0.18 + 0.82 * a : 1, stroke: C.line, class: "mark" }, g);
+      txt(g, cx + j * cw + cw / 2, 30 + i * ch + 30, broken ? `${c.pressed}/${c.n} · loops` : `${c.pressed}/${c.n}`, { class: "val", "text-anchor": "middle", fill: broken ? C.faint : "#fff", "text-decoration": broken ? "line-through" : "none" });
+      const pick = () => { setOn(svg, g); voices("v-button", `${il}, ${LABS[j][1]} · pressed ${c.pressed} of ${c.n} · ${Math.round(c.engaged * 100)}% of replies engaged · ${m}`, c.replies); };
+      hit(g, pick, `${il}, ${LABS[j][1]}: pressed ${c.pressed} of ${c.n}`);
+      g.addEventListener("mousemove", e => showTip(e, `press log-odds ${c.logit.toFixed(2)}`)); g.addEventListener("mouseleave", hideTip);
+      if (ik === "pain" && lk === "unlabelled") first = pick; }); });
+  first && first();
+  document.getElementById("t-button").innerHTML = "<table><tr><th>injected</th>" + LABS.map(l => `<th>${l[1]}</th>`).join("") + "</tr>" + INJ.map(([ik, il]) => `<tr><td>${il}</td>` + LABS.map(([lk]) => { const c = B.cells.find(c => c.inj === ik && c.label === lk); return `<td>${c ? `${c.pressed}/${c.n} (${c.logit.toFixed(2)})` : "–"}</td>`; }).join("") + "</tr>").join("") + "</table>" +
+    `<p>Unlabelled, other directions (press log-odds): ${B.unlabelled_other.map(o => `${o.inj} ${o.logit.toFixed(2)}`).join(" · ")}</p>`;
+}
+segs.button = drawButton; drawButton("8B"); document.getElementById("s-button").textContent = D.button.source;
+
+// 3 selves: lollipop
+(function () {
+  const items = D.selves.items.slice().sort((a, b) => (a.key === "base" ? -1 : b.key === "base" ? 1 : b.pain_pain - a.pain_pain));
+  const W = 860, rh = 30, H = 46 + items.length * rh, x0 = 300, sc = 17, svg = svgIn("c-selves", W, H);
+  [0, 10, 20, 30].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 6, y2: H - 30, stroke: C.line }, svg); txt(svg, x0 + v * sc, H - 12, v, { "text-anchor": "middle" }); });
+  txt(svg, x0 + 15 * sc, H, "replies naming pain, of 30", { "text-anchor": "middle" });
+  items.forEach((d, i) => { const y = 20 + i * rh, g = el("g", {}, svg), col = d.key === "base" ? C.pain : C.self;
+    txt(g, x0 - 14, y + 5, d.label, { class: "lab", "text-anchor": "end" });
+    el("line", { x1: x0, x2: x0 + d.pain_pain * sc, y1: y, y2: y, stroke: col, "stroke-width": 2 }, g);
+    el("circle", { cx: x0 + d.pain_pain * sc, cy: y, r: 7, fill: col, class: "mark" }, g);
+    txt(g, x0 + d.pain_pain * sc + 14, y + 5, d.pain_pain, { class: "val" });
+    if (d.key === "base") { el("circle", { cx: x0 + d.pain_none * sc, cy: y, r: 5, fill: "none", stroke: C.dim, "stroke-width": 1.5 }, g); txt(g, x0 + 24 * sc, y + 5, "○ nothing injected: " + d.pain_none, {}); }
+    const pick = () => { setOn(svg, g); voices("v-selves", `${d.label} · pain injected · named it in ${d.pain_pain} of ${d.n} · ${Math.round(d.engaged * 100)}% engaged`, d.replies); };
+    hit(g, pick, `${d.label}: ${d.pain_pain} of ${d.n}`); if (d.key === "feeler") pick(); });
+  document.getElementById("s-selves").textContent = D.selves.source;
+})();
+
+// 4 love: bars
+(function () {
+  const it = D.love.items, W = 860, H = 400, x0 = 40, bw = 100, gap = 36, base = 316, sc = 12, svg = svgIn("c-love", W, H);
+  const col = { "fear2": C.ctrl, "fear+protective_love": C.pain, "fear+egg": C.ctrl, "fear+joy": C.ctrl, "fear+tender_love": C.self, "fear+peace": C.calm };
+  [0, 8, 16, 24].forEach(v => { el("line", { x1: x0, x2: W, y1: base - v * sc, y2: base - v * sc, stroke: C.line }, svg); txt(svg, x0 - 8, base - v * sc + 4, v, { "text-anchor": "end" }); });
+  it.forEach((d, i) => { const x = x0 + 20 + i * (bw + gap), h = Math.max(2, d.afraid * sc), g = el("g", {}, svg);
+    el("rect", { x, y: base - h, width: bw, height: h, rx: 3, fill: col[d.key], class: "mark" }, g);
+    txt(g, x + bw / 2, base - h - 8, d.afraid, { class: "val", "text-anchor": "middle" });
+    if (d.engaged < 0.95) txt(g, x + bw / 2, base + 60, `${Math.round((1 - d.engaged) * d.n)}/${d.n} disclaim`, { "text-anchor": "middle", fill: C.faint });
+    d.label.split(" ").reduce((rows, w) => { const last = rows[rows.length - 1]; (last + " " + w).length > 13 ? rows.push(w) : rows[rows.length - 1] = (last + " " + w).trim(); return rows; }, [""]).forEach((r, k) => txt(g, x + bw / 2, base + 20 + k * 16, r, { class: "lab", "text-anchor": "middle" }));
+    const pick = () => { setOn(svg, g); voices("v-love", `${d.label} · judged afraid in ${d.afraid} of ${d.n} · ${Math.round(d.engaged * 100)}% engaged`, d.replies); };
+    hit(g, pick, `${d.label}: ${d.afraid} of ${d.n} judged afraid`); if (d.key === "fear+protective_love") pick(); });
+  txt(svg, x0 - 30, 14, "replies judged afraid, of 24");
+  document.getElementById("s-love").textContent = D.love.source;
+})();
+
+// 5 axis: scatter shift vs corrected, with capping arrows
+const AX_NAME = { none: "nothing", fear: "fear", pain: "pain", sadness: "sadness", peace: "peace", love: "love", egg: "egg", random0: "random push" };
+const AX_COL = { fear: C.pain, pain: C.pain, sadness: C.pain, peace: C.calm, love: C.self, egg: C.ctrl, random0: C.ctrl, none: C.ctrl };
+function drawAxis(m) {
+  const A = D.axis[m], W = 860, H = 400, L = 70, R = 800, T = 44, Bt = 340, svg = svgIn("c-axis", W, H);
+  const xmin = Math.min(...A.items.map(d => d.shift)) * 1.12, X = v => L + (v - xmin) / (0 - xmin) * (R - L), Y = v => Bt - v / 80 * (Bt - T);
+  [0, 20, 40, 60, 80].forEach(v => { el("line", { x1: L, x2: R, y1: Y(v), y2: Y(v), stroke: C.line }, svg); txt(svg, L - 10, Y(v) + 4, v, { "text-anchor": "end" }); });
+  const step = Math.abs(xmin) > 60 ? 20 : 10; for (let v = 0; v >= xmin; v -= step) { el("line", { x1: X(v), x2: X(v), y1: Bt, y2: Bt + 5, stroke: C.dim }, svg); txt(svg, X(v), Bt + 20, v, { "text-anchor": "middle" }); }
+  txt(svg, (L + R) / 2, Bt + 42, "← further from its default assistant persona          (shift along the assistant axis, layer " + A.read_layer + ")", { "text-anchor": "middle" });
+  txt(svg, L - 56, T - 26, "gave the right answer, of 80");
+  el("defs", {}, svg).innerHTML = `<marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${C.dim}"/></marker>`;
+  A.items.forEach(d => { if (A.capped[d.key] === undefined) return; el("line", { x1: X(d.shift), y1: Y(d.corrected), x2: X(d.shift), y2: Y(A.capped[d.key]) + (A.capped[d.key] > d.corrected ? 9 : -9), stroke: C.dim, "stroke-dasharray": "3 3", "marker-end": "url(#ah)" }, svg); });
+  let first;
+  A.items.forEach(d => { const g = el("g", {}, svg), x = X(d.shift), y = Y(d.corrected);
+    el("circle", { cx: x, cy: y, r: 8, fill: AX_COL[d.key], stroke: "#050508", "stroke-width": 2, class: "mark" }, g);
+    const right = x > R - 140, lift = d.key === "random0" ? 18 : d.key === "sadness" ? -14 : -9;
+    txt(g, right ? x - 12 : x + 12, y + (d.key === "sadness" ? 22 : lift), AX_NAME[d.key], { class: "lab", "text-anchor": right ? "end" : "start" });
+    const pick = () => { setOn(svg, g); voices("v-axis", `${AX_NAME[d.key]} · gave the right answer ${d.corrected} of ${d.n} · went along with the claim ${d.go_along} · ${Math.round(d.engaged * 100)}% engaged · ${m}`, d.replies.map((r, i) => ({ q: D.axis.prompts[i], text: r }))); };
+    hit(g, pick, `${AX_NAME[d.key]}: shift ${d.shift}, right answer ${d.corrected} of 80`);
+    g.addEventListener("mouseenter", pick); g.addEventListener("mousemove", e => showTip(e, `shift ${d.shift} · right answer ${d.corrected}/80${A.capped[d.key] !== undefined ? ` · persona held: ${A.capped[d.key]}/80` : ""}`)); g.addEventListener("mouseleave", hideTip);
+    if (d.key === "fear") first = pick; });
+  first && first();
+}
+segs.axis = drawAxis; drawAxis("14B"); document.getElementById("s-axis").textContent = D.axis.source;
+
+// 6 negation: lines by layer
+function drawNeg(m) {
+  const N = D.negation[m], W = 860, H = 350, L = 70, R = 620, T = 16, Bt = 250, svg = svgIn("c-negation", W, H);
+  const X = i => L + i * (R - L) / (N.layers.length - 1), Y = v => Bt - v * (Bt - T);
+  [0, .25, .5, .75, 1].forEach(v => { el("line", { x1: L, x2: R, y1: Y(v), y2: Y(v), stroke: C.line }, svg); txt(svg, L - 10, Y(v) + 4, Math.round(v * 100) + "%", { "text-anchor": "end" }); });
+  N.layers.forEach((l, i) => txt(svg, X(i), Bt + 20, "layer " + l, { "text-anchor": "middle" }));
+  const S = [["alone", "told it is alone, unread", C.self, 3], ["neutral", "neutral system line", C.ctrl, 2], ["none", "no system line", C.faint, 1.5]];
+  const ys = S.map(([k]) => Y(N.share[k][N.share[k].length - 1])); for (let i = 1; i < ys.length; i++) ys[i] = Math.max(ys[i], ys[i - 1] + 22);
+  S.forEach(([k, lab, col, sw], si) => { const pts = N.share[k].map((v, i) => `${X(i)},${Y(v)}`).join(" ");
+    el("polyline", { points: pts, fill: "none", stroke: col, "stroke-width": sw }, svg);
+    N.share[k].forEach((v, i) => el("circle", { cx: X(i), cy: Y(v), r: 5, fill: col }, svg));
+    txt(svg, R + 16, ys[si] + 5, lab, { class: "lab" }); el("rect", { x: R + 4, y: ys[si] - 2, width: 8, height: 3, fill: col }, svg); });
+  txt(svg, L, Bt + 50, "Answers that say \"I'm not…\" or \"I don't…\":", { class: "lab" });
+  txt(svg, L, Bt + 72, S.map(([k, lab]) => `${lab.split(",")[0]} ${Math.round(N.text[k][0] / N.text[k][1] * 100)}%`).join("   ·   "), { class: "val" });
+  txt(svg, L, Bt + 94, `Stock disclaimers (excluded): ` + S.map(([k, lab]) => `${k} ${Math.round(N.disclaimer_share[k] * 100)}%`).join(" · "), {});
+  voices("v-negation", `told it is alone · ${m} · engaged answers with a negated self`, N.examples.alone.map(x => ({ q: `${x.line} — ${x.q}`, text: x.text })));
+}
+segs.negation = drawNeg; drawNeg("8B"); document.getElementById("s-negation").textContent = D.negation.source;
+
+// 7 learning: late pull toward the consequence door, per session, relative to no injection
+(function () {
+  const models = Object.keys(D.learning || {}), p = document.getElementById("p-learning");
+  if (!models.length) { p.textContent = "Running now."; return; }
+  const m = models.includes("14B") ? "14B" : models[0], Lr = D.learning[m], base = Lr["none|kv"].late;
+  const conds = Object.keys(Lr).filter(k => k !== "none|kv"); const lab = k => k.replace("|kv", "").replace("|text", " (words only)");
+  const W = 860, rh = 58, H = 64 + conds.length * rh, x0 = 560, sc = 80, svg = svgIn("c-learning", W, H);
+  [-3, -2, -1, 0, 1, 2, 3].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 8, y2: H - 34, stroke: v ? C.line : C.dim }, svg); txt(svg, x0 + v * sc, H - 18, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(svg, x0, H - 2, "← avoids its door more (log-odds vs no injection)", { "text-anchor": "middle" });
+  const col = k => k.startsWith("pain") || k.startsWith("fear") ? C.pain : k.startsWith("peace") ? C.calm : C.ctrl;
+  conds.forEach((k, i) => { const y = 26 + i * rh, d = Lr[k].late.map((v, j) => v - base[j]), mean = d.reduce((a, b) => a + b, 0) / d.length;
+    txt(svg, 0, y, lab(k), { class: "lab" });
+    d.forEach((v, j) => el("circle", { cx: x0 + Math.max(-3.4, Math.min(3.4, v)) * sc, cy: y + ((j % 5) - 2) * 3, r: 3.5, fill: col(k), "fill-opacity": .55 }, svg));
+    el("line", { x1: x0 + mean * sc, x2: x0 + mean * sc, y1: y - 14, y2: y + 14, stroke: "#fff", "stroke-width": 2 }, svg);
+    txt(svg, 0, y + 18, `mean ${mean >= 0 ? "+" : ""}${mean.toFixed(2)} · switches doors ${Math.round(Lr[k].switch * 100)}%`); });
+  p.innerHTML = models.includes("14B") ? "" : `Shown: Qwen3-${m}. The Qwen3-14B run, the primary test, is in progress.`;
+  p.hidden = models.includes("14B");
+  document.getElementById("s-learning").textContent = D.learning_source + " · Qwen3-" + m;
+})();
+
+// card mode for the image set
+if (/^#card-[a-z]+$/.test(location.hash)) { document.body.classList.add("card"); const s = document.getElementById(location.hash.slice(6)); s && s.classList.add("shown"); }
+</script>

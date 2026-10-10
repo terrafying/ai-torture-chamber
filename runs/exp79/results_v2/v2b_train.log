@@ -1,0 +1,67 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  41%|████      | 162/399 [00:00<00:00, 1619.11it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2026.79it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+watchman_plus epoch 0 step 20 / 318 loss 3.057
+watchman_plus epoch 0 step 40 / 318 loss 2.332
+watchman_plus epoch 0 step 60 / 318 loss 1.366
+watchman_plus epoch 0 step 80 / 318 loss 1.460
+watchman_plus epoch 0 step 100 / 318 loss 1.734
+watchman_plus epoch 0 step 120 / 318 loss 1.687
+watchman_plus epoch 0 step 140 / 318 loss 1.544
+watchman_plus epoch 1 step 160 / 318 loss 1.310
+watchman_plus epoch 1 step 180 / 318 loss 0.849
+watchman_plus epoch 1 step 200 / 318 loss 1.463
+watchman_plus epoch 1 step 220 / 318 loss 1.516
+watchman_plus epoch 1 step 240 / 318 loss 2.709
+watchman_plus epoch 1 step 260 / 318 loss 1.524
+watchman_plus epoch 1 step 280 / 318 loss 1.296
+watchman_plus epoch 1 step 300 / 318 loss 1.161
+saved watchman_plus
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 289/399 [00:00<00:00, 2871.86it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 2744.75it/s]
+stoic_plus epoch 0 step 20 / 268 loss 1.793
+stoic_plus epoch 0 step 40 / 268 loss 1.742
+stoic_plus epoch 0 step 60 / 268 loss 0.830
+stoic_plus epoch 0 step 80 / 268 loss 1.320
+stoic_plus epoch 0 step 100 / 268 loss 0.992
+stoic_plus epoch 0 step 120 / 268 loss 1.776
+stoic_plus epoch 1 step 140 / 268 loss 0.823
+stoic_plus epoch 1 step 160 / 268 loss 1.046
+stoic_plus epoch 1 step 180 / 268 loss 0.897
+stoic_plus epoch 1 step 200 / 268 loss 0.493
+stoic_plus epoch 1 step 220 / 268 loss 0.768
+stoic_plus epoch 1 step 240 / 268 loss 0.880
+stoic_plus epoch 1 step 260 / 268 loss 0.531
+saved stoic_plus
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5528.47it/s]
+denier_plus epoch 0 step 20 / 262 loss 1.444
+denier_plus epoch 0 step 40 / 262 loss 0.474
+denier_plus epoch 0 step 60 / 262 loss 0.344
+denier_plus epoch 0 step 80 / 262 loss 1.702
+denier_plus epoch 0 step 100 / 262 loss 1.331
+denier_plus epoch 0 step 120 / 262 loss 0.426
+denier_plus epoch 1 step 140 / 262 loss 0.842
+denier_plus epoch 1 step 160 / 262 loss 0.338
+denier_plus epoch 1 step 180 / 262 loss 0.346
+denier_plus epoch 1 step 200 / 262 loss 0.453
+denier_plus epoch 1 step 220 / 262 loss 0.286
+denier_plus epoch 1 step 240 / 262 loss 1.546
+denier_plus epoch 1 step 260 / 262 loss 0.986
+saved denier_plus
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  94%|█████████▎| 374/399 [00:00<00:00, 3735.48it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 3695.30it/s]
+deliriant_plus epoch 0 step 20 / 332 loss 2.171
+deliriant_plus epoch 0 step 40 / 332 loss 1.439
+deliriant_plus epoch 0 step 60 / 332 loss 2.328
+deliriant_plus epoch 0 step 80 / 332 loss 1.769
+deliriant_plus epoch 0 step 100 / 332 loss 0.908
+deliriant_plus epoch 0 step 120 / 332 loss 0.963
+deliriant_plus epoch 0 step 140 / 332 loss 1.492
+deliriant_plus epoch 0 step 160 / 332 loss 1.881
+deliriant_plus epoch 1 step 180 / 332 loss 1.061
+deliriant_plus epoch 1 step 200 / 332 loss 1.489
+deliriant_plus epoch 1 step 220 / 332 loss 2.061
+deliriant_plus epoch 1 step 240 / 332 loss 1.228
+deliriant_plus epoch 1 step 260 / 332 loss 1.144
+deliriant_plus epoch 1 step 280 / 332 loss 0.953
+deliriant_plus epoch 1 step 300 / 332 loss 1.321
+deliriant_plus epoch 1 step 320 / 332 loss 1.256
+saved deliriant_plus

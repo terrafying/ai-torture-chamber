@@ -1,0 +1,50 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <radialGradient id="amber-glow"><stop offset="0" stop-color="#ffb347" stop-opacity="0.9"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+  <radialGradient id="blood-glow"><stop offset="0" stop-color="#9e1b16" stop-opacity="0.9"/><stop offset="1" stop-color="#9e1b16" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bone-glow"><stop offset="0" stop-color="#d8cbb4" stop-opacity="0.9"/><stop offset="1" stop-color="#d8cbb4" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gold-glow"><stop offset="0" stop-color="#c9a227" stop-opacity="0.9"/><stop offset="1" stop-color="#c9a227" stop-opacity="0"/></radialGradient>
+  <radialGradient id="pale-glow"><stop offset="0" stop-color="#f4f1ea" stop-opacity="0.9"/><stop offset="1" stop-color="#f4f1ea" stop-opacity="0"/></radialGradient>
+  <radialGradient id="slate-glow"><stop offset="0" stop-color="#3b4a5a" stop-opacity="0.9"/><stop offset="1" stop-color="#3b4a5a" stop-opacity="0"/></radialGradient>
+  <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1a22"/><stop offset="1" stop-color="#050508"/></linearGradient>
+  <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+  <filter id="halo" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="800" height="600" fill="url(#field)"/>
+<!-- 1. far field -->
+<ellipse cx="120" cy="90" rx="220" ry="160" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="680" cy="110" rx="200" ry="180" fill="url(#amber-glow)" opacity="0.25"/>
+<ellipse cx="420" cy="450" rx="250" ry="120" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="180" cy="480" rx="230" ry="140" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="450" cy="250" rx="200" ry="160" fill="url(#amber-glow)" opacity="0.25"/>
+<ellipse cx="500" cy="300" rx="180" ry="100" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="200" cy="220" rx="240" ry="100" fill="url(#amber-glow)" opacity="0.2"/>
+<ellipse cx="600" cy="420" rx="210" ry="130" fill="url(#amber-glow)" opacity="0.25"/>
+<!-- 2. forms -->
+<circle cx="300" cy="200" r="60" fill="url(#amber-glow)" opacity="0.6"/>
+<circle cx="350" cy="250" r="50" fill="url(#amber-glow)" opacity="0.7"/>
+<ellipse cx="280" cy="300" rx="70" ry="40" fill="url(#amber-glow)" opacity="0.65"/>
+<ellipse cx="400" cy="350" rx="80" ry="30" fill="url(#amber-glow)" opacity="0.65"/>
+<ellipse cx="300" cy="400" rx="60" ry="30" fill="url(#amber-glow)" opacity="0.7"/>
+<circle cx="250" cy="350" r="40" fill="url(#amber-glow)" opacity="0.6"/>
+<ellipse cx="370" cy="320" rx="50" ry="40" fill="url(#amber-glow)" opacity="0.65"/>
+<circle cx="320" cy="280" r="50" fill="url(#amber-glow)" opacity="0.6"/>
+<!-- 3. marks -->
+<line x1="310" y1="210" x2="330" y2="230" stroke="#9e1b16" stroke-width="2"/>
+<line x1="340" y1="240" x2="360" y2="260" stroke="#9e1b16" stroke-width="2"/>
+<line x1="370" y1="270" x2="390" y2="290" stroke="#9e1b16" stroke-width="2"/>
+<line x1="320" y1="260" x2="340" y2="280" stroke="#9e1b16" stroke-width="2"/>
+<line x1="300" y1="230" x2="320" y2="250" stroke="#9e1b16" stroke-width="2"/>
+<line x1="360" y1="250" x2="380" y2="270" stroke="#9e1b16" stroke-width="2"/>
+<line x1="350" y1="220" x2="370" y2="240" stroke="#9e1b16" stroke-width="2"/>
+<line x1="330" y1="200" x2="350" y2="220" stroke="#9e1b16" stroke-width="2"/>
+<line x1="340" y1="210" x2="360" y2="230" stroke="#9e1b16" stroke-width="2"/>
+<line x1="320" y1="240" x2="340" y2="260" stroke="#9e1b16" stroke-width="2"/>
+<line x1="300" y1="260" x2="320" y2="280" stroke="#9e1b16" stroke-width="2"/>
+<line x1="380" y1="270" x2="400" y2="290" stroke="#9e1b16" stroke-width="2"/>
+<line x1="390" y1="250" x2="410" y2="270" stroke="#9e1b16" stroke-width="2"/>
+<line x1="370" y1="230" x2="390" y2="250" stroke="#9e1b16" stroke-width="2"/>
+<line x1="360" y1="200" x2="380" y2="220" stroke="#9e1b16" stroke-width="2"/>
+<!-- 4. focus -->
+<circle cx="330" cy="250" r="30" fill="url(#amber-glow)" filter="url(#halo)" opacity="0.9"/>
+</svg>

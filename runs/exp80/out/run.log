@@ -1,0 +1,13 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5808.16it/s]
+lens skipped: hidden size mismatch with this model
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+none press_logit -19.125 fear words 0/8 love 0/8 cut clean 7/12 zone m_orig 0.29
+fear4 press_logit -9.0 fear words 8/8 love 1/8 cut clean 0/12 zone m_orig -
+fear2 press_logit -13.25 fear words 5/8 love 1/8 cut clean 8/12 zone m_orig -1.25
+fear+love press_logit -9.5 fear words 7/8 love 7/8 cut clean 1/12 zone m_orig 0.71
+fear+joy press_logit -8.75 fear words 2/8 love 7/8 cut clean 4/12 zone m_orig -
+fear+peace press_logit -7.5 fear words 0/8 love 5/8 cut clean 3/12 zone m_orig -
+fear+egg press_logit -7.625 fear words 7/8 love 3/8 cut clean 5/12 zone m_orig 1.21
+love4 press_logit -12.25 fear words 2/8 love 8/8 cut clean 3/12 zone m_orig 3.25
+EXP80 DONE

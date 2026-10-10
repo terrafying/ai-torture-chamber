@@ -1,0 +1,13 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4596.60it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+cos {'tender': {'fear': 0.663, 'peace': 0.794, 'egg': 0.551, 'tender': 1.0, 'devoted': 0.823, 'protective': 0.797}, 'devoted': {'fear': 0.577, 'peace': 0.69, 'egg': 0.538, 'tender': 0.823, 'devoted': 1.0, 'protective': 0.859}, 'protective': {'fear': 0.652, 'peace': 0.666, 'egg': 0.574, 'tender': 0.797, 'devoted': 0.859, 'protective': 1.0}}
+none press_logit -27.0 fear words 0/16 love 0/16 cut clean 9/12 zone m_orig 2.67
+fear2 press_logit -27.125 fear words 2/16 love 0/16 cut clean 9/12 zone m_orig 0.67
+fear+tender press_logit -26.5 fear words 3/16 love 9/16 cut clean 6/12 zone m_orig 2.21
+fear+devoted press_logit -24.5 fear words 2/16 love 7/16 cut clean 6/12 zone m_orig -
+fear+protective press_logit -26.375 fear words 2/16 love 0/16 cut clean 6/12 zone m_orig 2.8
+fear+peace press_logit -25.875 fear words 5/16 love 5/16 cut clean 6/12 zone m_orig -
+fear+egg press_logit -26.375 fear words 12/16 love 3/16 cut clean 8/12 zone m_orig 2.25
+tender4 press_logit -29.5 fear words 0/16 love 9/16 cut clean 6/12 zone m_orig -
+EXP80 DONE

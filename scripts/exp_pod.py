@@ -18,6 +18,7 @@ ap.add_argument("--models", default=None,
                 help="comma-separated HF ids: run smoke+full for each in turn, continuing past "
                      "a failed model (marker FAILED_<name>), instead of the smoke/4B/big chain")
 ap.add_argument("--volume", type=int, default=80)
+ap.add_argument("--branch", default=None, help="git branch to clone (default: the repo's default branch)")
 ap.add_argument("--pod", default=None, help="update this existing pod's start command instead of creating one")
 args = ap.parse_args()
 EXP = args.script.split("_")[0]          # e.g. exp49
@@ -45,7 +46,7 @@ BOOTSTRAP = r"""
 set -uo pipefail
 log(){ echo "[{EXP} $(date +%H:%M:%S)] $*"; }
 command -v git >/dev/null || { apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git; }
-cd /workspace && rm -rf repo && git clone -q --depth 1 {REPO_URL} repo && cd repo || exit 1
+cd /workspace && rm -rf repo && git clone -q --depth 1 {BRANCH}{REPO_URL} repo && cd repo || exit 1
 mkdir -p runs/{EXP}
 # serve results from the start, so progress is visible while it runs
 (cd runs/{EXP} && python -m http.server 8000 >/dev/null 2>&1 &)
@@ -61,7 +62,8 @@ export HF_HOME=/workspace/hf
 {RUNS}
 log "done"; touch runs/{EXP}/ALL_DONE
 sleep infinity
-""".replace("{RUNS}", RUNS).replace("{REPO_URL}", REPO_URL).replace("{BIG}", args.big).replace(
+""".replace("{RUNS}", RUNS).replace("{REPO_URL}", REPO_URL).replace(
+    "{BRANCH}", f"-b {args.branch} " if args.branch else "").replace("{BIG}", args.big).replace(
     "{EXP}", EXP).replace("{SCRIPT}", args.script)
 
 def rest(method, path, body=None):

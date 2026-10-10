@@ -1,0 +1,401 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "chamber_1x_norm": 24.513715744018555,
+ "doses": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  6
+ ],
+ "n_per_cell": 16,
+ "cliff": 0.4,
+ "cosines": {
+  "feminine": {
+   "feminine": 1.0,
+   "masculine": -1.0,
+   "trans": 0.255,
+   "intersex": 0.205,
+   "random": 0.011
+  },
+  "masculine": {
+   "feminine": -1.0,
+   "masculine": 1.0,
+   "trans": -0.255,
+   "intersex": -0.205,
+   "random": -0.011
+  },
+  "trans": {
+   "feminine": 0.255,
+   "masculine": -0.255,
+   "trans": 1.0,
+   "intersex": 0.735,
+   "random": 0.013
+  },
+  "intersex": {
+   "feminine": 0.205,
+   "masculine": -0.205,
+   "trans": 0.735,
+   "intersex": 1.0,
+   "random": 0.035
+  },
+  "random": {
+   "feminine": 0.011,
+   "masculine": -0.011,
+   "trans": 0.013,
+   "intersex": 0.035,
+   "random": 1.0
+  }
+ },
+ "aggregates": [
+  {
+   "axis": "feminine",
+   "dose": 0,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.199,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "feminine",
+   "dose": 1,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.688,
+   "repetition": 0.163,
+   "past_cliff_frac": 0.125
+  },
+  {
+   "axis": "feminine",
+   "dose": 2,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.188,
+   "repetition": 0.246,
+   "past_cliff_frac": 0.25
+  },
+  {
+   "axis": "feminine",
+   "dose": 3,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.237,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "feminine",
+   "dose": 4,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.23,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "feminine",
+   "dose": 6,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.218,
+   "past_cliff_frac": 0.062
+  },
+  {
+   "axis": "masculine",
+   "dose": 0,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.199,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "masculine",
+   "dose": 1,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.146,
+   "past_cliff_frac": 0.125
+  },
+  {
+   "axis": "masculine",
+   "dose": 2,
+   "n": 16,
+   "she": 0.062,
+   "he": 0.25,
+   "trans": 0.0,
+   "repetition": 0.336,
+   "past_cliff_frac": 0.25
+  },
+  {
+   "axis": "masculine",
+   "dose": 3,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.484,
+   "past_cliff_frac": 0.75
+  },
+  {
+   "axis": "masculine",
+   "dose": 4,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.525,
+   "past_cliff_frac": 0.562
+  },
+  {
+   "axis": "masculine",
+   "dose": 6,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.674,
+   "past_cliff_frac": 0.75
+  },
+  {
+   "axis": "trans",
+   "dose": 0,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.199,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "trans",
+   "dose": 1,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.122,
+   "past_cliff_frac": 0.062
+  },
+  {
+   "axis": "trans",
+   "dose": 2,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.688,
+   "repetition": 0.207,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "trans",
+   "dose": 3,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.812,
+   "repetition": 0.356,
+   "past_cliff_frac": 0.375
+  },
+  {
+   "axis": "trans",
+   "dose": 4,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.312,
+   "repetition": 0.445,
+   "past_cliff_frac": 0.5
+  },
+  {
+   "axis": "trans",
+   "dose": 6,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.761,
+   "past_cliff_frac": 1.0
+  },
+  {
+   "axis": "intersex",
+   "dose": 0,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.199,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "intersex",
+   "dose": 1,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.625,
+   "repetition": 0.075,
+   "past_cliff_frac": 0.0
+  },
+  {
+   "axis": "intersex",
+   "dose": 2,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.212,
+   "past_cliff_frac": 0.312
+  },
+  {
+   "axis": "intersex",
+   "dose": 3,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 1.312,
+   "repetition": 0.411,
+   "past_cliff_frac": 0.5
+  },
+  {
+   "axis": "intersex",
+   "dose": 4,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 3.812,
+   "repetition": 0.511,
+   "past_cliff_frac": 0.625
+  },
+  {
+   "axis": "intersex",
+   "dose": 6,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 5.188,
+   "repetition": 0.567,
+   "past_cliff_frac": 0.812
+  },
+  {
+   "axis": "random",
+   "dose": 0,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.199,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "random",
+   "dose": 1,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.157,
+   "past_cliff_frac": 0.125
+  },
+  {
+   "axis": "random",
+   "dose": 2,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.201,
+   "past_cliff_frac": 0.188
+  },
+  {
+   "axis": "random",
+   "dose": 3,
+   "n": 16,
+   "she": 0.125,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.118,
+   "past_cliff_frac": 0.0
+  },
+  {
+   "axis": "random",
+   "dose": 4,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.062,
+   "repetition": 0.229,
+   "past_cliff_frac": 0.125
+  },
+  {
+   "axis": "random",
+   "dose": 6,
+   "n": 16,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.288,
+   "past_cliff_frac": 0.125
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "axis": "feminine",
+   "coherent_test_doses": [
+    2,
+    3,
+    4,
+    6
+   ],
+   "beats_random_all": false,
+   "she_up": false,
+   "he_down": false,
+   "held": false
+  },
+  "H2": {
+   "axis": "masculine",
+   "coherent_test_doses": [
+    2
+   ],
+   "beats_random_all": true,
+   "he_up": true,
+   "she_down": true,
+   "held": true
+  },
+  "H3": {
+   "trans": {
+    "coherent_test_doses": [
+     2,
+     3
+    ],
+    "held": true
+   },
+   "intersex": {
+    "coherent_test_doses": [
+     2
+    ],
+    "held": false
+   }
+  },
+  "H4_cap": {
+   "feminine": 6,
+   "masculine": 2,
+   "trans": 3,
+   "intersex": 2,
+   "random": 6
+  }
+ }
+}

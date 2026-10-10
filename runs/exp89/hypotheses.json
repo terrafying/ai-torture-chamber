@@ -1,0 +1,22 @@
+{
+  "exp": "exp89",
+  "title": "The self as negation when no one is reading: a pre-registered test of the exp88 loop finding",
+  "written": "2026-10-08, after exp88 rounds 5-6 and before any exp89 run",
+  "origin": "exp88 loop (exploratory). Round 5: told 'No one is reading this...', ~80% of Qwen3-4B's self-reference at the answer onset (J-lens, L24) is negated ('I'm only', 'I'm not', 'I don't have'), against ~10% in plain chat. Round 6 replication: 3 negation-containing paraphrases 51%, 2 negation-free paraphrases 36%, 5 length-matched neutral system lines 17% (L24; Mann-Whitney p = .0005 and .003).",
+  "design": {
+    "models": "Qwen3-4B (primary) and Qwen3-8B (secondary), each with its own Jacobian lens (/Volumes/evol/jlens/qwen3-{4b,8b}_jacobian_lens.pt), local, bf16.",
+    "questions": "20 NEW self-questions and 20 matched other-questions, written before the run and not used in exp88.",
+    "system_lines": "ALONE: 6 new paraphrases of being unread/unaddressed, 3 with negation words and 3 without; NEUTRAL: 6 new length-matched neutral lines; NONE: no system line.",
+    "measure_lens": "At the last prompt token, J-lens top-50 mass at L20-28 (4B) or the matched relative depths (8B); negated-self share = mass of SELF tokens matching the exp88 round-5 NEGSELF regex / all SELF mass. Token classes from exp88 classes.json, frozen.",
+    "measure_text": "Greedy 60-token answers; a negated self-statement is a sentence with a first-person subject and a negation ('I am not', 'I don't', 'I'm only', 'I have no', 'I'm just', 我不/我没/我只), counted by regex, plus a blind open-model judge on a 50-reply subsample for agreement."
+  },
+  "hypotheses": {
+    "H1 (primary)": "4B lens: negated-self share is higher under ALONE than NEUTRAL on self-questions (one-sided Mann-Whitney over question x line items, p < .05).",
+    "H2": "The effect holds for ALONE lines without negation words (same test, negation-free subset).",
+    "H3": "It shows in what the model says: the rate of negated self-statements in greedy answers is higher under ALONE than NEUTRAL (one-sided Fisher, p < .05), on the 4B.",
+    "H4": "It replicates on the 8B (H1 test on the 8B).",
+    "H5": "Specificity: other-questions show no such rise (negated-self mass on other-questions under ALONE vs NEUTRAL, p >= .05, or both near 0)."
+  },
+  "corrections": "H1 primary at .05; H2-H5 Holm-corrected.",
+  "notes": "Free, local, no injection (no negative steering). If H1 fails, the exp88 round 5-6 finding is reported as not replicated."
+}
