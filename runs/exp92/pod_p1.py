@@ -20,7 +20,7 @@ cd /workspace && rm -rf repo private && git clone -q --depth 1 -b BRANCH https:/
 log "deps"
 pip install -q --no-cache-dir 'torch==2.8.0' --index-url https://download.pytorch.org/whl/cu128 > /workspace/pip.log 2>&1
 pip install -q --no-cache-dir 'transformers==5.17.0' peft accelerate bitsandbytes numpy scipy gptqmodel >> /workspace/pip.log 2>&1
-pip uninstall -y -q torchvision torchaudio >> /workspace/pip.log 2>&1
+pip uninstall -y -q torchvision torchaudio torchao >> /workspace/pip.log 2>&1
 python - <<'PY' || { log "private data failed"; sleep infinity; }
 import io, tarfile, time, urllib.request
 for attempt in range(5):
