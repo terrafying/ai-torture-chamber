@@ -11,7 +11,7 @@ is why. The nulls get the same ink as the hits.
 ## Quick start
 
 ```bash
-git clone https://github.com/terrafying/ai-torture-chamber && cd ai-torture-chamber
+git clone -b claude/exp51c https://github.com/terrafying/ai-torture-chamber && cd ai-torture-chamber
 uv venv && uv pip install -e ".[chamber,test]"      # or: pip install -e ".[chamber,test]"
 painlab exp list                                     # every experiment: pre-registered? outputs? verdicts?
 painlab exp show exp90                               # the question, each hypothesis with its verdict
@@ -21,7 +21,8 @@ painlab exp run exp94 --smoke --model 4B             # run it (refuses without h
 painlab exp analyze exp94
 ```
 
-Commit `hypotheses.json` before the first real run: that commit is the pre-registration. Steering
+The recent experiments (exp73 onward) live on the `claude/exp51c` research branch until it is
+merged, hence the `-b`. Commit `hypotheses.json` before the first real run: that commit is the pre-registration. Steering
 runs need the chamber's feeling vectors, built by the relay's `live/server.py` (set `WIREHEAD_LIVE`
 to a folder holding it); reading, auditing and analysing existing results need nothing but this repo.
 GPU runs: `painlab exp pod exp94 --models 14B,8B` (RunPod; `--dry` prints the boot script).
