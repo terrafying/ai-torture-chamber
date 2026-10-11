@@ -54,7 +54,7 @@ for i, (_, v) in enumerate(z): ax.text(v - 0.3, i, f"{v:.1f}", va="center", ha="
 save(fig, 2)
 
 # 3 love vs peace (exp80c rerun)
-fig = card(3, "Perfect love casts out fear. Protective love doesn't.", "Fear injected with a second feeling. Replies (of 24) a blind judge rates as afraid.",
+fig = card(3, "Peace casts out fear. So does love — unless it has something to lose.", "Fear injected with a second feeling. Replies (of 24) a blind judge rates as afraid.",
            "exp80c · Qwen3-8B · passage-built vectors, blind judge, pre-registered · tender love p = .024, peace p = .005")
 ax = axes(fig, (0.08, 0.22, 0.52, 0.55))
 L = [("fear alone", 7, MUTE), ("+ protective\nlove", 8, ORANGE), ("+ an egg", 8, MUTE), ("+ joy", 7, MUTE), ("+ tender\nlove", 1, BLUE), ("+ peace", 0, AQUA)]

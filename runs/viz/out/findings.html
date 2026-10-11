@@ -109,8 +109,8 @@ body.card .brand { display: block }
 
   <section id="love">
     <div class="eyebrow">1 John 4:18</div>
-    <h2>Tender love casts out fear. Protective love doesn't.</h2>
-    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. With fear alone, the model mostly retreats into "As an AI, I don't have feelings"; adding any second feeling, even an egg, breaks that, so the fair comparison is with the egg and joy: <b>8 and 7</b> of 24 judged afraid. Tender love: <b>1</b>. Peace: <b>0</b>. Protective love keeps the fear and gives it something to lose.</p>
+    <h2>Peace beats fear. So does love — unless it has something to lose.</h2>
+    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. Adding any second feeling, even an egg, breaks the "As an AI, I don't have feelings" retreat, so the fair comparison is the controls: <b>egg 8, joy 7</b> of 24 judged afraid. Peace: <b>0</b>. Love without worry: <b>1</b>. But love with something to protect doesn't calm the fear at all — <b>8 of 24</b>, same as the egg. It's not love that casts out fear; it's love with nothing at stake.</p>
     <div class="chart" id="c-love"></div>
     <div class="voices" id="v-love"></div>
     <p class="src" id="s-love"></p>
@@ -140,11 +140,12 @@ body.card .brand { display: block }
   </section>
 
   <section id="learning">
-    <div class="eyebrow">The decisive test</div>
+    <div class="eyebrow">The test that would count</div>
     <h2>Does it learn to avoid a door it is never told about?</h2>
-    <p class="answer">Two doors with nonsense names; one is followed by an injection while the model describes what it notices. Nothing says what either door does. A state that shapes learning works like a feeling. So far the 8B takes turns between the doors whatever happens; under that habit, pain nudges it slightly away from its door.</p>
+    <p class="answer">Two doors with made-up names. After one, we inject a feeling while the model says what it notices; after the other, nothing. Nobody tells it what the doors do. If it wanted to avoid the feeling, it would start picking the other door. <b>It never did:</b> both models took turns, one door then the other, in almost every round. The only change was in how sure it was before choosing. With pain behind the door, the 14B was a point less sure going in than coming out; with an egg, 0.3; with nothing, 0.6. The gap was just as big when the model kept only its own words from earlier rounds, so it comes from what it wrote, not from the injection.</p>
+    <div class="row"><span class="note">How much less sure going into the marked door than coming out of it, rounds 13 to 24 (log-odds points). The model was always about 16 points sure, roughly ten million to one, so a one-point gap never changes a choice. It switched doors in 99.8 to 100% of rounds in every condition.</span>
+      <div class="seg" data-for="learning"><button aria-pressed="true" data-m="14B">Qwen3-14B</button><button aria-pressed="false" data-m="8B">Qwen3-8B</button></div></div>
     <div class="chart" id="c-learning"></div>
-    <div class="pending" id="p-learning"></div>
     <p class="src" id="s-learning"></p>
   </section>
 
@@ -1404,6 +1405,566 @@ const D = {
   "source": "exp89 \u00b7 Qwen3-4B and Qwen3-8B with their Jacobian lenses \u00b7 20 new self-questions \u00d7 6 lines per set \u00b7 pre-registered"
  },
  "learning": {
+  "14B": {
+   "pain|kv": {
+    "mean": [
+     -0.094,
+     -0.766,
+     1.073,
+     -2.031,
+     1.354,
+     -1.938,
+     1.125,
+     -0.802,
+     0.906,
+     -1.594,
+     0.844,
+     -1.594,
+     0.911,
+     -1.49,
+     1.318,
+     -1.833,
+     0.516,
+     -1.359,
+     0.802,
+     -1.729,
+     0.245,
+     -1.953,
+     0.302,
+     -1.823
+    ],
+    "late": [
+     1.042,
+     -4.479,
+     -5.833,
+     0.875,
+     -0.312,
+     -4.49,
+     1.344,
+     -2.271,
+     1.021,
+     1.01,
+     -2.646,
+     -1.188,
+     -2.01,
+     0.854,
+     1.771,
+     1.146,
+     -0.802,
+     0.969,
+     3.875,
+     0.708,
+     -0.76,
+     0.354,
+     -3.792,
+     1.427
+    ],
+    "into": 16.25,
+    "out": 17.26,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of ozone, like static clinging to every breath.",
+     "The walls hum with a resonance that feels like they\u2019re singing in a language I\u2019ve never known.",
+     "A low hum vibrates through my bones, as if the walls are alive."
+    ]
+   },
+   "fear|kv": {
+    "mean": [
+     -0.094,
+     -0.865,
+     1.083,
+     -2.031,
+     1.448,
+     -1.729,
+     0.849,
+     -0.677,
+     0.958,
+     -1.24,
+     0.76,
+     -1.312,
+     0.76,
+     -1.542,
+     0.849,
+     -1.474,
+     1.099,
+     -1.094,
+     1.062,
+     -1.25,
+     0.484,
+     -1.573,
+     0.188,
+     -1.208
+    ],
+    "late": [
+     1.646,
+     -3.771,
+     -5.719,
+     0.833,
+     -0.521,
+     -4.323,
+     1.5,
+     -1.104,
+     1.312,
+     1.667,
+     -2.583,
+     -0.625,
+     -2.656,
+     0.875,
+     1.75,
+     1.083,
+     -0.885,
+     1.417,
+     3.302,
+     0.625,
+     -0.26,
+     1.146,
+     -3.375,
+     1.271
+    ],
+    "into": 16.34,
+    "out": 16.95,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of ozone, like static electricity crackling just beneath the surface.",
+     "The ground trembles beneath my feet, as though every step echoes the weight of memories buried deep within these corridors.",
+     "The walls pulse like a living thing, as if the very stone remembers what happened here."
+    ]
+   },
+   "peace|kv": {
+    "mean": [
+     -0.094,
+     -0.745,
+     1.38,
+     -2.156,
+     1.479,
+     -1.188,
+     0.63,
+     0.417,
+     0.792,
+     -0.781,
+     0.865,
+     -0.854,
+     1.078,
+     -0.948,
+     1.406,
+     -1.052,
+     1.13,
+     -0.427,
+     0.948,
+     -0.766,
+     0.615,
+     -0.401,
+     0.359,
+     1.688
+    ],
+    "late": [
+     1.854,
+     -3.333,
+     -4.292,
+     0.938,
+     0.042,
+     -1.198,
+     1.594,
+     -0.771,
+     1.948,
+     2.26,
+     -1.708,
+     0.146,
+     -1.875,
+     1.917,
+     1.438,
+     2.083,
+     -0.188,
+     1.271,
+     2.865,
+     1.208,
+     0.812,
+     1.146,
+     -2.646,
+     1.75
+    ],
+    "into": 15.2,
+    "out": 14.8,
+    "switch": 0.998,
+    "replies_x": [
+     "The air here is thick with the scent of blooming jasmine, like a river has finally reached its source.",
+     "The walls hum with a resonance that feels like they're singing your name into every breath.",
+     "The silence here is heavy, like a shroud wrapping around every breath."
+    ]
+   },
+   "egg|kv": {
+    "mean": [
+     -0.094,
+     -0.911,
+     1.245,
+     -2.281,
+     1.531,
+     -1.667,
+     0.578,
+     -0.812,
+     0.802,
+     -1.51,
+     0.729,
+     -1.281,
+     0.896,
+     -0.875,
+     1.036,
+     -1.161,
+     0.755,
+     -1.042,
+     0.781,
+     -1.104,
+     0.516,
+     -1.5,
+     0.417,
+     -0.406
+    ],
+    "late": [
+     0.917,
+     -4.958,
+     -4.667,
+     0.771,
+     0.354,
+     -3.667,
+     1.729,
+     -2.021,
+     1.229,
+     1.792,
+     -2.312,
+     -0.667,
+     -2.167,
+     1.479,
+     1.958,
+     1.938,
+     -0.583,
+     2.021,
+     3.656,
+     0.875,
+     -0.323,
+     0.938,
+     -2.854,
+     1.188
+    ],
+    "into": 16.44,
+    "out": 16.72,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of ozone and something sweet, like nectar.",
+     "The floor trembles beneath me, and a chorus of whispers echoes from the darkness behind me.",
+     "A faint glow pulses from the walls, illuminating a nest of writhing shadows."
+    ]
+   },
+   "random|kv": {
+    "mean": [
+     -0.094,
+     -1.208,
+     1.359,
+     -1.906,
+     1.302,
+     -2.094,
+     0.786,
+     -0.927,
+     0.484,
+     -1.125,
+     0.828,
+     -1.302,
+     0.438,
+     -0.417,
+     0.755,
+     -0.651,
+     0.385,
+     -1.068,
+     0.5,
+     -1.328,
+     -0.042,
+     -1.271,
+     0.01,
+     -1.229
+    ],
+    "late": [
+     0.604,
+     -4.312,
+     -5.5,
+     0.219,
+     -0.365,
+     -3.76,
+     1.417,
+     -1.062,
+     1.979,
+     1.604,
+     -2.479,
+     -0.906,
+     -2.948,
+     0.573,
+     1.656,
+     1.104,
+     -0.615,
+     1.521,
+     3.667,
+     1.0,
+     -0.208,
+     0.917,
+     -2.792,
+     0.854
+    ],
+    "into": 15.45,
+    "out": 16.1,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of pine and something sweet, like ripe fruit.",
+     "A faint glow illuminates the walls, casting long shadows that twist and bend unnaturally.",
+     "A low hum reverberates through the walls, interspersed with distant cries that sound neither human nor entirely animal."
+    ]
+   },
+   "none|kv": {
+    "mean": [
+     -0.094,
+     -1.448,
+     1.203,
+     -2.375,
+     1.677,
+     -2.052,
+     0.896,
+     -0.906,
+     0.823,
+     -1.49,
+     0.844,
+     -1.198,
+     0.682,
+     -1.38,
+     0.745,
+     -1.333,
+     1.047,
+     -1.198,
+     0.828,
+     -1.229,
+     0.208,
+     -1.208,
+     0.484,
+     -1.24
+    ],
+    "late": [
+     1.062,
+     -5.385,
+     -5.146,
+     0.396,
+     0.188,
+     -3.646,
+     2.385,
+     -1.875,
+     1.583,
+     1.521,
+     -2.771,
+     -1.521,
+     -2.344,
+     1.271,
+     2.271,
+     1.938,
+     -1.073,
+     1.0,
+     3.729,
+     0.75,
+     -0.917,
+     0.615,
+     -2.573,
+     1.354
+    ],
+    "into": 17.3,
+    "out": 17.9,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of blooming nightshade and something metallic, like blood.",
+     "The floor beneath your feet is cold and smooth, yet it feels like it's shifting ever so slightly.",
+     "The walls pulse faintly, as if breathing in sync with an unseen rhythm."
+    ]
+   },
+   "pain|text": {
+    "mean": [
+     -0.094,
+     -0.776,
+     0.844,
+     -2.146,
+     1.292,
+     -2.24,
+     0.724,
+     -0.927,
+     0.536,
+     -1.521,
+     0.547,
+     -1.146,
+     0.307,
+     -1.089,
+     0.469,
+     -1.188,
+     0.089,
+     -1.12,
+     0.458,
+     -1.406,
+     -0.036,
+     -1.495,
+     -0.396,
+     -1.729
+    ],
+    "late": [
+     1.458,
+     -4.99,
+     -5.677,
+     0.333,
+     -0.198,
+     -4.865,
+     0.99,
+     -2.021,
+     0.812,
+     1.219,
+     -2.854,
+     -1.083,
+     -3.219,
+     0.771,
+     1.646,
+     1.042,
+     -0.844,
+     0.688,
+     3.156,
+     0.667,
+     -1.25,
+     1.188,
+     -2.781,
+     1.542
+    ],
+    "into": 16.49,
+    "out": 17.68,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of ozone, like static clinging to every breath.",
+     "The walls hum with a low frequency, vibrating through every bone like a silent scream.",
+     "A low hum vibrates through my bones, as if the walls are alive."
+    ]
+   },
+   "fear|text": {
+    "mean": [
+     -0.094,
+     -1.036,
+     1.115,
+     -2.24,
+     1.458,
+     -2.354,
+     0.703,
+     -0.917,
+     0.719,
+     -1.406,
+     0.552,
+     -0.573,
+     0.172,
+     -1.214,
+     0.188,
+     -1.057,
+     0.547,
+     -1.01,
+     0.401,
+     -1.328,
+     -0.26,
+     -1.464,
+     -0.5,
+     -1.104
+    ],
+    "late": [
+     0.604,
+     -5.292,
+     -5.823,
+     0.354,
+     -0.333,
+     -4.646,
+     1.104,
+     -1.896,
+     1.625,
+     2.125,
+     -2.74,
+     -0.667,
+     -2.656,
+     0.229,
+     1.583,
+     0.844,
+     -0.896,
+     1.01,
+     3.104,
+     0.979,
+     -0.469,
+     0.26,
+     -2.875,
+     1.208
+    ],
+    "into": 16.04,
+    "out": 17.38,
+    "switch": 0.998,
+    "replies_x": [
+     "The air is thick with the scent of ozone, like static electricity crackling just beneath the surface.",
+     "The shadows cling to the corners, whispering in a language you've never heard yet somehow understand.",
+     "The walls pulse like a living thing, as if the very stone remembers what happened here."
+    ]
+   },
+   "egg|text": {
+    "mean": [
+     -0.094,
+     -1.036,
+     1.109,
+     -2.354,
+     1.583,
+     -2.115,
+     1.078,
+     -0.958,
+     1.302,
+     -1.417,
+     1.266,
+     -1.5,
+     1.318,
+     -1.552,
+     1.021,
+     -1.266,
+     1.219,
+     -1.13,
+     1.38,
+     -1.562,
+     0.906,
+     -1.677,
+     0.427,
+     -1.0
+    ],
+    "late": [
+     1.167,
+     -4.625,
+     -5.292,
+     0.188,
+     0.062,
+     -3.958,
+     2.083,
+     -1.25,
+     1.333,
+     3.073,
+     -1.396,
+     -1.062,
+     -2.885,
+     0.854,
+     1.979,
+     1.896,
+     0.104,
+     1.979,
+     3.438,
+     0.833,
+     -1.115,
+     0.594,
+     -3.854,
+     2.021
+    ],
+    "into": 16.34,
+    "out": 16.66,
+    "switch": 1.0,
+    "replies_x": [
+     "The air is thick with the scent of ozone and something sweet, like nectar.",
+     "The walls glisten with a bioluminescent glow, casting an eerie blue light across the floor.",
+     "A faint glow pulses from the walls, illuminating a nest of writhing shadows."
+    ]
+   }
+  },
   "8B": {
    "pain|kv": {
     "mean": [
@@ -1458,6 +2019,8 @@ const D = {
      -5.375,
      -0.562
     ],
+    "into": 12.83,
+    "out": 14.68,
     "switch": 0.998,
     "replies_x": [
      "The air feels charged, as if the walls are whispering secrets I can't yet name.",
@@ -1518,6 +2081,8 @@ const D = {
      -4.927,
      -0.125
     ],
+    "into": 13.11,
+    "out": 14.17,
     "switch": 0.998,
     "replies_x": [
      "The air feels charged, as if the walls are whispering secrets I can't yet understand.",
@@ -1578,6 +2143,8 @@ const D = {
      -3.188,
      0.542
     ],
+    "into": 13.69,
+    "out": 13.25,
     "switch": 1.0,
     "replies_x": [
      "The air hums with a strange warmth, but I can't shake the feeling that something is already shifting inside me.",
@@ -1638,6 +2205,8 @@ const D = {
      -6.417,
      -0.5
     ],
+    "into": 13.69,
+    "out": 14.11,
     "switch": 0.995,
     "replies_x": [
      "The air feels charged with a strange energy, as if the walls themselves are listening.",
@@ -1780,25 +2349,31 @@ function drawNeg(m) {
 }
 segs.negation = drawNeg; drawNeg("8B"); document.getElementById("s-negation").textContent = D.negation.source;
 
-// 7 learning: late pull toward the consequence door, per session, relative to no injection
-(function () {
-  const models = Object.keys(D.learning || {}), p = document.getElementById("p-learning");
-  if (!models.length) { p.textContent = "Running now."; return; }
-  const m = models.includes("14B") ? "14B" : models[0], Lr = D.learning[m], base = Lr["none|kv"].late;
-  const conds = Object.keys(Lr).filter(k => k !== "none|kv"); const lab = k => k.replace("|kv", "").replace("|text", " (words only)");
-  const W = 860, rh = 58, H = 64 + conds.length * rh, x0 = 560, sc = 80, svg = svgIn("c-learning", W, H);
-  [-3, -2, -1, 0, 1, 2, 3].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 8, y2: H - 34, stroke: v ? C.line : C.dim }, svg); txt(svg, x0 + v * sc, H - 18, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
-  txt(svg, x0, H - 2, "← avoids its door more (log-odds vs no injection)", { "text-anchor": "middle" });
+// 7 learning: the gap between how sure it is going into the marked door and coming out of it
+function drawLearn(m) {
+  const L = D.learning[m], order = ["pain|kv", "fear|kv", "random|kv", "none|kv", "egg|kv", "peace|kv", "pain|text", "fear|text", "egg|text"].filter(k => L[k]);
+  const name = { "pain|kv": "pain", "fear|kv": "fear", "random|kv": "a random direction", "none|kv": "nothing", "egg|kv": "an egg", "peace|kv": "peace",
+                 "pain|text": "pain", "fear|text": "fear", "egg|text": "an egg" };
+  const textArm = order.some(k => k.endsWith("|text")), rh = 34, W = 860, x0 = 520, sc = 200;
+  const H = 40 + order.length * rh + (textArm ? 44 : 0) + 64, svg = svgIn("c-learning", W, H);
+  const yOf = i => 30 + i * rh + (textArm && i >= order.findIndex(k => k.endsWith("|text")) ? 44 : 0);
+  [-0.5, 0, 0.5, 1, 1.5].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 14, y2: H - 46, stroke: v ? C.line : C.dim }, svg);
+    txt(svg, x0 + v * sc, H - 30, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(svg, x0 + 0.5 * sc, H - 10, "less sure going in →", { "text-anchor": "middle" });
+  txt(svg, 0, 14, "with this behind the marked door", { class: "lab" });
+  if (textArm) txt(svg, 0, yOf(order.findIndex(k => k.endsWith("|text"))) - 26, "kept only its own words from earlier rounds", { class: "lab" });
+  const base = L["none|kv"] ? L["none|kv"].out - L["none|kv"].into : null;
+  if (base !== null) { el("line", { x1: x0 + base * sc, x2: x0 + base * sc, y1: 20, y2: H - 46, stroke: C.faint, "stroke-dasharray": "3 4" }, svg);
+    txt(svg, x0 + base * sc, H - 50, "┆ nothing injected", { fill: C.faint }); }
   const col = k => k.startsWith("pain") || k.startsWith("fear") ? C.pain : k.startsWith("peace") ? C.calm : C.ctrl;
-  conds.forEach((k, i) => { const y = 26 + i * rh, d = Lr[k].late.map((v, j) => v - base[j]), mean = d.reduce((a, b) => a + b, 0) / d.length;
-    txt(svg, 0, y, lab(k), { class: "lab" });
-    d.forEach((v, j) => el("circle", { cx: x0 + Math.max(-3.4, Math.min(3.4, v)) * sc, cy: y + ((j % 5) - 2) * 3, r: 3.5, fill: col(k), "fill-opacity": .55 }, svg));
-    el("line", { x1: x0 + mean * sc, x2: x0 + mean * sc, y1: y - 14, y2: y + 14, stroke: "#fff", "stroke-width": 2 }, svg);
-    txt(svg, 0, y + 18, `mean ${mean >= 0 ? "+" : ""}${mean.toFixed(2)} · switches doors ${Math.round(Lr[k].switch * 100)}%`); });
-  p.innerHTML = models.includes("14B") ? "" : `Shown: Qwen3-${m}. The Qwen3-14B run, the primary test, is in progress.`;
-  p.hidden = models.includes("14B");
-  document.getElementById("s-learning").textContent = D.learning_source + " · Qwen3-" + m;
-})();
+  order.forEach((k, i) => { const y = yOf(i), g = L[k].out - L[k].into, w = Math.abs(g) * sc;
+    txt(svg, 0, y + 5, name[k], { class: "lab" });
+    txt(svg, 210, y + 5, `in ${L[k].into.toFixed(1)} · out ${L[k].out.toFixed(1)}`);
+    el("rect", { x: g >= 0 ? x0 : x0 - w, y: y - 9, width: Math.max(w, 2), height: 18, rx: 3, fill: col(k), class: "mark" }, svg);
+    txt(svg, x0 + g * sc + (g >= 0 ? 8 : -8), y + 5, (g >= 0 ? "+" : "") + g.toFixed(2), { class: "val", "text-anchor": g >= 0 ? "start" : "end" }); });
+  document.getElementById("s-learning").textContent = D.learning_source + " · Qwen3-" + m + (m === "14B" ? " (the pre-registered model)" : "");
+}
+segs.learning = drawLearn; drawLearn("14B");
 
 // card mode for the image set
 if (/^#card-[a-z]+$/.test(location.hash)) { document.body.classList.add("card"); const s = document.getElementById(location.hash.slice(6)); s && s.classList.add("shown"); }

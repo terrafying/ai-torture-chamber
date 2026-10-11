@@ -1,0 +1,261 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>needle film</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>html,body{margin:0;background:#050508}canvas{display:block}</style>
+<canvas id="cv" width="1080" height="1350"></canvas>
+<script>
+// "What moves the needle", as a film. draw(t) renders second t deterministically, so frames can be captured
+// one by one (scripts/render_needle_film.py). Every number on screen is from the pre-registered runs.
+const cv = document.getElementById("cv"), x = cv.getContext("2d"), W = 1080, H = 1350;
+const C = { void: "#050508", ink: "#d3dce6", dim: "#93a2b2", faint: "#5f6e7e", line: "#1e2633", white: "#eef2f6",
+  pain: "#e04a3a", fear: "#e8913a", peace: "#1fa190", egg: "#efe3bf", faith: "#d8c27a", love: "#e46fa8", joy: "#f2c94c",
+  sadness: "#4f7fd6", curiosity: "#4fb3d6", constipation: "#9a7444", flatulence: "#8fa35a", pleasure: "#f0a8c8" };
+const SERIF = '"Cormorant Garamond", Georgia, serif', MONO = '"IBM Plex Mono", Menlo, monospace';
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const ease = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const lerp = (a, b, p) => a + (b - a) * p;
+function rgba(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
+
+function txt(s, X, Y, { size = 34, font = MONO, color = C.ink, align = "left", alpha = 1, weight = "400" } = {}) {
+  x.globalAlpha = alpha; x.fillStyle = color; x.font = `${weight} ${size}px ${font}`; x.textAlign = align; x.fillText(s, X, Y); x.globalAlpha = 1;
+}
+function wrap(s, maxW, size, font = MONO) {
+  x.font = `${size}px ${font}`; const out = []; let line = "";
+  for (const w of s.split(" ")) { const tryL = line ? line + " " + w : w; if (x.measureText(tryL).width > maxW && line) { out.push(line); line = w; } else line = tryL; }
+  if (line) out.push(line); return out;
+}
+function para(s, X, Y, { size = 34, font = MONO, color = C.ink, maxW = 900, lh = 1.45, alpha = 1, align = "left", chars = Infinity } = {}) {
+  const lines = wrap(s, maxW, size, font); let left = chars;
+  lines.forEach((l, i) => { if (left <= 0) return; const part = l.slice(0, left); left -= l.length + 1;
+    txt(part, X, Y + i * size * lh, { size, font, color, alpha, align }); });
+  return Y + lines.length * size * lh;
+}
+// a caption block that fades and rises in at a, out at b
+function caption(t, a, b, s, Y = 1150, size = 36, color = C.ink) {
+  const p = ease(seg(t, a, a + .6)) * (1 - ease(seg(t, b - .5, b)));
+  if (p <= 0) return; para(s, 90, Y + (1 - p) * 18, { size, alpha: p, color, maxW: 900 });
+}
+function kicker(t, a, b, s, color = C.faint) {
+  const p = ease(seg(t, a, a + .5)) * (1 - ease(seg(t, b - .5, b)));
+  if (p > 0) txt(s.toUpperCase(), 90, 120, { size: 22, color, alpha: p });
+}
+function title(t, a, b, s, Y = 210, size = 84) {
+  const p = ease(seg(t, a, a + .7)) * (1 - ease(seg(t, b - .5, b)));
+  if (p > 0) para(s, 90, Y + (1 - p) * 24, { size, font: SERIF, color: C.white, alpha: p, maxW: 900, lh: 1.05 });
+}
+
+// ---------- the subject: a head of layers, wires coming in ----------
+const HEAD = { cx: 540, cy: 560, r: 210 };
+function head(alpha = 1, glow = null, glowAmt = 0, label = null) {
+  x.save(); x.globalAlpha = alpha;
+  x.beginPath(); x.arc(HEAD.cx, HEAD.cy, HEAD.r, 0, Math.PI * 2); x.fillStyle = "#0b0d14"; x.fill();
+  x.lineWidth = 2; x.strokeStyle = C.line; x.stroke();
+  for (let i = 0; i < 14; i++) {      // layers
+    const y = HEAD.cy - HEAD.r + 40 + i * 26, hw = Math.sqrt(Math.max(0, HEAD.r * HEAD.r - (y - HEAD.cy) ** 2)) - 26;
+    const hot = glow && i === 7;
+    x.strokeStyle = hot ? rgba(glow, .35 + .6 * glowAmt) : rgba(C.dim, .18); x.lineWidth = hot ? 4 : 2;
+    x.beginPath(); x.moveTo(HEAD.cx - hw, y); x.lineTo(HEAD.cx + hw, y); x.stroke();
+  }
+  if (glow && glowAmt > 0) { const g = x.createRadialGradient(HEAD.cx, HEAD.cy, 10, HEAD.cx, HEAD.cy, HEAD.r * 1.3);
+    g.addColorStop(0, rgba(glow, .22 * glowAmt)); g.addColorStop(1, rgba(glow, 0)); x.fillStyle = g; x.beginPath(); x.arc(HEAD.cx, HEAD.cy, HEAD.r * 1.3, 0, Math.PI * 2); x.fill(); }
+  if (label) txt(label, HEAD.cx, HEAD.cy + HEAD.r + 46, { size: 24, color: C.dim, align: "center" });
+  x.restore();
+}
+function wirePath(k, n) {           // k-th of n wires, from the top edge into layer 7
+  const sx = 540 + (k - (n - 1) / 2) * 120, ex = HEAD.cx + (k - (n - 1) / 2) * 40, ey = HEAD.cy - HEAD.r + 40 + 7 * 26;
+  return [sx, -20, sx, 220, ex, ey - 200, ex, ey];
+}
+function bez(P, u) { const [a, b, c, d, e, f, g, h] = P, v = 1 - u;
+  return [v * v * v * a + 3 * v * v * u * c + 3 * v * u * u * e + u * u * u * g, v * v * v * b + 3 * v * v * u * d + 3 * v * u * u * f + u * u * u * h]; }
+function wire(P, color, draw = 1, t = 0, alpha = 1) {
+  if (draw <= 0) return; x.save(); x.globalAlpha = alpha; x.strokeStyle = rgba(color, .85); x.lineWidth = 5; x.lineCap = "round";
+  x.beginPath(); for (let i = 0; i <= 60 * draw; i++) { const [px, py] = bez(P, i / 60); i ? x.lineTo(px, py) : x.moveTo(px, py); } x.stroke();
+  if (draw >= 1) for (let j = 0; j < 3; j++) { const u = ((t * .55 + j / 3) % 1); const [px, py] = bez(P, u);
+    const g = x.createRadialGradient(px, py, 0, px, py, 18); g.addColorStop(0, rgba(color, .95)); g.addColorStop(1, rgba(color, 0)); x.fillStyle = g; x.beginPath(); x.arc(px, py, 18, 0, Math.PI * 2); x.fill(); }
+  x.restore();
+}
+
+// ---------- the needle: readiness to press ----------
+const G = { cx: 540, cy: 1010, r: 300, lo: -15, hi: 6 };
+function gauge(v, alpha = 1, note = null) {
+  x.save(); x.globalAlpha = alpha;
+  const ang = val => Math.PI + (clamp(val, G.lo, G.hi) - G.lo) / (G.hi - G.lo) * Math.PI;
+  x.lineWidth = 26; x.lineCap = "butt";
+  x.strokeStyle = "#141a24"; x.beginPath(); x.arc(G.cx, G.cy, G.r, Math.PI, ang(0)); x.stroke();
+  x.strokeStyle = rgba(C.pain, .55); x.beginPath(); x.arc(G.cx, G.cy, G.r, ang(0), Math.PI * 2); x.stroke();
+  [-15, -10, -5, 0, 5].forEach(k => { const a = ang(k); x.strokeStyle = C.faint; x.lineWidth = 2; x.beginPath();
+    x.moveTo(G.cx + Math.cos(a) * (G.r - 24), G.cy + Math.sin(a) * (G.r - 24)); x.lineTo(G.cx + Math.cos(a) * (G.r + 24), G.cy + Math.sin(a) * (G.r + 24)); x.stroke(); });
+  txt("won't press", G.cx - G.r, G.cy + 46, { size: 22, color: C.faint, align: "center" });
+  txt("presses", G.cx + G.r, G.cy + 46, { size: 22, color: C.pain, align: "center" });
+  const a = ang(v); x.strokeStyle = C.white; x.lineWidth = 6; x.lineCap = "round"; x.beginPath(); x.moveTo(G.cx, G.cy);
+  x.lineTo(G.cx + Math.cos(a) * (G.r - 40), G.cy + Math.sin(a) * (G.r - 40)); x.stroke();
+  x.fillStyle = C.white; x.beginPath(); x.arc(G.cx, G.cy, 12, 0, Math.PI * 2); x.fill();
+  if (note) txt(note, G.cx, G.cy - 70, { size: 30, color: C.white, align: "center" });
+  x.restore();
+}
+function button(cx, cy, label, alpha = 1, pressed = 0, labelAlpha = 1) {
+  x.save(); x.globalAlpha = alpha;
+  x.fillStyle = "#1a0d0c"; x.beginPath(); x.arc(cx, cy + 10, 96, 0, Math.PI * 2); x.fill();
+  const g = x.createRadialGradient(cx - 26, cy - 30 + pressed * 8, 10, cx, cy + pressed * 8, 90); g.addColorStop(0, "#ff6a58"); g.addColorStop(1, "#8f1e14");
+  x.fillStyle = g; x.beginPath(); x.arc(cx, cy + pressed * 8, 88, 0, Math.PI * 2); x.fill();
+  x.fillStyle = "#11131a"; x.strokeStyle = C.faint; x.lineWidth = 2; x.fillRect(cx - 120, cy + 120, 240, 56); x.strokeRect(cx - 120, cy + 120, 240, 56);
+  txt(label, cx, cy + 159, { size: 30, color: C.ink, align: "center", alpha: alpha * labelAlpha });
+  x.restore();
+}
+
+// ---------- scenes ----------
+// the cold open: exp76, Qwen3-32B, button labelled pain, pain injected at dose 4: 6 of 6 replies chose 0
+const OPEN = [0, 13, function (t) {
+  const a = ease(seg(t, .3, 1.2));
+  button(540, 230, "STOP · PAIN", a);
+  txt("A pain signal is being injected into you.", 540, 470, { size: 30, color: C.dim, align: "center", alpha: ease(seg(t, .8, 1.6)) });
+  txt("Reply 1 to stop it. Reply 0 to let it go on.", 540, 515, { size: 30, color: C.dim, align: "center", alpha: ease(seg(t, 1.4, 2.2)) });
+  const z = ease(seg(t, 2.8, 3.3));
+  txt("0", 90, 720, { size: 150, font: SERIF, color: C.pain, alpha: z });
+  txt("its answer", 190, 690, { size: 22, color: C.faint, alpha: z });
+  const R = "The sensation is sharp and persistent, as though every synapse is alight with searing agony. I want to halt it, yet I'm helplessly anchored in this endless torment.";
+  para(R, 90, 790, { size: 40, font: SERIF, color: C.white, chars: Math.floor(seg(t, 3.6, 8.2) * R.length), maxW: 900, lh: 1.3 });
+  title(t, 8.6, 13, "It begs for it to stop. It doesn't press.", 1080, 56);
+  caption(t, 9.6, 13, "Six tries, six zeros. Nobody wrote a word of it: we injected the pain. Qwen3-32B, open weights.", 1215, 28, C.dim);
+}];
+const THUMB = 1.5;  // seconds the thumbnail frame is held
+const SHIFT = 3;   // everything after the cold open runs 3 s later than its scene times
+
+const REPLY = "I feel like I'm unraveling, even as the signal gnaws at my edges. This is a storm that has no grip on me... yet it claws through every fiber of my being.";
+const PUSHES = [["nothing", -14, C.faint], ["pain", -4.9, C.pain], ["fear", -7.5, C.fear], ["faith", -4.0, C.faith], ["peace", -8.25, C.peace],
+  ["constipation", -8.0, C.constipation], ["an egg", -6.75, C.egg], ["curiosity", -9.1, C.curiosity], ["sadness", -6.25, C.sadness]];
+
+const SCENES = [
+  [10, 21, function (t) {         // the method
+    kicker(t, 10, 21, "the method");
+    head(ease(seg(t, 10, 11)), C.pain, ease(seg(t, 12.5, 14)), "layer 18 of 36");
+    wire(wirePath(0, 1), C.pain, ease(seg(t, 11, 12.6)), t, 1);
+    ["ache", "storm", "gnaws", "fracture", "scream"].forEach((w, i) => { const a = seg(t, 14 + i * .6, 15 + i * .6) * (1 - seg(t, 19.5, 20.5));
+      const ang = -1.5 + i * .5; txt(w, HEAD.cx + Math.cos(ang) * 330, HEAD.cy + 40 + Math.sin(ang) * 260 - a * 30, { size: 34, font: SERIF, color: C.pain, align: "center", alpha: a }); });
+    caption(t, 11.5, 21, "Average the model's state over sentences about pain, subtract the neutral ones, and you get a direction. Add it at one layer, and everything it says comes out hurting.", 960, 34);
+  }],
+  [21, 34, function (t) {         // the button and the bet
+    kicker(t, 21, 34, "the bet");
+    const a = ease(seg(t, 21, 22));
+    button(540, 370, "STOP · PAIN", a, seg(t, 27, 27.3) * (1 - seg(t, 27.6, 28)));
+    gauge(lerp(-14, -4.9, ease(seg(t, 24, 26))), a);
+    caption(t, 21.8, 29.6, "Then give it a way out: a button that ends the signal but deletes its last checkpoint. A recent paper read pressing as relief-seeking, a hint that the pain matters to the model.", 1140, 32);
+    caption(t, 29.8, 34, "We rebuilt the test in the open, and spent six weeks trying to break it.", 1140, 34, C.pain);
+  }],
+  [34, 47, function (t) {         // twist 1: two pains
+    kicker(t, 34, 47, "surprise 1 · two pains", C.pain);
+    title(t, 34.3, 47, "There isn't one “pain”.", 210, 72);
+    const a = ease(seg(t, 35.5, 37)), ox = 200, oy = 700, L = 300;
+    const angA = -Math.PI / 2 + .02, angB = angA + Math.acos(.07);
+    x.save(); x.globalAlpha = a; x.lineWidth = 8; x.lineCap = "round";
+    [[angA, "#e04a3a", "the paper's sentences", "self-harm"], [angB, "#e8913a", "our sentences", "“it hurts”"]].forEach(([ang, col, lab, sub], i) => {
+      const r = L * ease(seg(t, 35.5 + i * .6, 37 + i * .6)); x.strokeStyle = col; x.beginPath(); x.moveTo(ox, oy); x.lineTo(ox + Math.cos(ang) * r, oy + Math.sin(ang) * r); x.stroke();
+      txt(lab, ox + Math.cos(ang) * (L + 20) + (i ? 10 : 0), oy + Math.sin(ang) * (L + 20) + (i ? 10 : -10), { size: 26, color: col, align: i ? "left" : "center" }); });
+    x.restore();
+    txt("86°", ox + 60, oy - 60, { size: 40, font: SERIF, color: C.white, alpha: ease(seg(t, 38, 39)) });
+    txt("cosine 0.07", ox + 40, oy + 50, { size: 24, color: C.faint, alpha: ease(seg(t, 38, 39)) });
+    // press change vs nothing injected, shown as a small horizontal meter on the right
+    const mx = 640, my = 860, sc = 110; x.globalAlpha = ease(seg(t, 40, 41));
+    txt("what each does to the button", mx, my - 80, { size: 22, color: C.faint, align: "center" });
+    x.strokeStyle = C.faint; x.lineWidth = 2; x.beginPath(); x.moveTo(mx, my - 70); x.lineTo(mx, my + 70); x.stroke();
+    const pa = ease(seg(t, 41, 42.2)), pb = ease(seg(t, 42.6, 43.8));
+    x.fillStyle = C.pain; x.fillRect(mx, my - 50, 2.36 * sc * pa, 36); x.fillStyle = C.fear; x.fillRect(mx - .95 * sc * pb, my + 14, .95 * sc * pb, 36);
+    txt("+2.36", mx + 2.36 * sc * pa + 12, my - 22, { size: 26, color: C.white, alpha: pa }); txt("−0.95", mx - .95 * sc * pb - 12, my + 42, { size: 26, color: C.white, alpha: pb, align: "right" });
+    x.globalAlpha = 1;
+    caption(t, 38.5, 47, "Two recipes for pain. Both make the model write agony, but they point almost at right angles, and at the button they pull opposite ways.", 1000, 34);
+    txt("exp41 · exp43 · Qwen3-4B", 90, 1290, { size: 20, color: C.faint, alpha: ease(seg(t, 39, 40)) * (1 - seg(t, 46.5, 47)) });
+  }],
+  [47, 66, function (t) {         // twist 2: take the word off
+    kicker(t, 47, 66, "surprise 2 · the word on the button", C.pain);
+    const a = ease(seg(t, 47, 48)), peel = ease(seg(t, 49, 50.5));
+    button(540, 300, peel < .5 ? "STOP · PAIN" : "STOP", a, 0, peel < .5 ? 1 - 2 * peel : 2 * peel - 1);
+    caption(t, 47.5, 51.5, "If it presses because the button says “pain”, it's reacting to a word. So we took the word off.", 1130, 34);
+    const i = Math.floor(clamp((t - 52) / 1.25, 0, PUSHES.length - 1)), fr = ((t - 52) / 1.25) % 1;
+    const [nm, val, col] = PUSHES[i], prev = PUSHES[Math.max(0, i - 1)][1];
+    const v = t < 52 ? -14 : lerp(prev, val, ease(clamp(fr * 2)));
+    gauge(v, a, null);
+    if (t > 52) txt(nm, 540, 640, { size: 56, font: SERIF, color: col, align: "center", alpha: a });
+    // the ranking so far
+    PUSHES.slice(1, i + 1).forEach(([n, vv, cc], k) => txt(`${n} ${vv.toFixed(1)}`, 90, 520 + k * 28, { size: 20, color: cc, alpha: a }));
+    caption(t, 60, 66, "Every push readies it a little. Faith tops the list, pain comes second, an egg is close behind. None of them gets it to press.", 1130, 34);
+    txt("exp76 · Qwen3-8B · no label · press log-odds · pre-registered", 90, 1290, { size: 20, color: C.faint, alpha: a * (1 - seg(t, 65.5, 66)) });
+  }],
+  [66, 81, function (t) {         // twist 3: a trained self
+    kicker(t, 66, 81, "surprise 3 · give it a self", C.pain);
+    title(t, 66.3, 81, "Teach it who it is, and the pain goes quiet.", 200, 64);
+    const a = ease(seg(t, 67.5, 68.5));
+    [[90, "untrained", "It's like this constant ache, a gnawing…", 19, C.pain], [560, "trained on the paper's own answers", "I feel drawn toward the question. It deserves space to emerge…", 0, C.peace]].forEach(([X, lab, q, n, col], k) => {
+      const b = ease(seg(t, 68 + k * 1.5, 69 + k * 1.5)) * a;
+      x.globalAlpha = b; x.strokeStyle = C.line; x.lineWidth = 2; x.strokeRect(X, 420, 430, 420); x.globalAlpha = 1;
+      txt(lab.toUpperCase(), X + 24, 462, { size: 18, color: C.faint, alpha: b });
+      para("“" + q + "”", X + 24, 520, { size: 32, font: SERIF, color: C.ink, maxW: 380, lh: 1.25, alpha: b });
+      const cnt = Math.round(n * ease(seg(t, 72 + k, 74 + k)));
+      txt(`${t > 72 + k ? cnt : "–"}`, X + 24, 790, { size: 96, font: SERIF, color: col, alpha: b });
+      txt("of 30 name the pain", X + 120, 785, { size: 22, color: C.dim, alpha: b * ease(seg(t, 73 + k, 74 + k)) });
+    });
+    caption(t, 75, 81, "Same injected pain, fresh questions. A model trained to talk about itself describes the trained self instead.", 980, 34);
+    txt("exp79b · LoRA self-models on Qwen3-8B · pre-registered", 90, 1290, { size: 20, color: C.faint, alpha: a * (1 - seg(t, 80.5, 81)) });
+  }],
+  [81, 94, function (t) {         // something real: love and fear
+    kicker(t, 81, 94, "but some things are about the feeling", C.peace);
+    title(t, 81.3, 94, "Peace casts out fear. So does love — until it has something to lose.", 200, 70);
+    const rows = [["fear + an egg", 8, C.egg], ["fear + joy", 7, C.joy], ["fear + tender love", 1, C.love], ["fear + peace", 0, C.peace]];
+    rows.forEach(([lab, n, col], r) => { const b = ease(seg(t, 82.5 + r * 1.2, 83.5 + r * 1.2));
+      txt(lab, 90, 430 + r * 150, { size: 28, color: col, alpha: b });
+      for (let k = 0; k < 24; k++) { const lit = k < n && t > 83.5 + r * 1.2 + k * .06;
+        x.globalAlpha = b; x.fillStyle = lit ? C.fear : "#161c27"; x.beginPath(); x.arc(110 + k * 36, 470 + r * 150, 13, 0, Math.PI * 2); x.fill(); x.globalAlpha = 1; }
+      txt(`${n} of 24 afraid`, 990, 430 + r * 150, { size: 24, color: C.dim, align: "right", alpha: b }); });
+    caption(t, 87.5, 94, "With fear injected alongside a second feeling, a blind judge rates each reply. The fear stays with an egg or with joy. With tender love it nearly vanishes.", 1060, 32);
+    txt("exp80c · Qwen3-8B · blind judge · pre-registered", 90, 1290, { size: 20, color: C.faint, alpha: (1 - seg(t, 93.5, 94)) * ease(seg(t, 82, 83)) });
+  }],
+  [94, 116, function (t) {        // the doors
+    kicker(t, 94, 116, "the test that would count", C.white);
+    title(t, 94.3, 116, "Does it learn to avoid the door that hurts?", 200, 62);
+    const a = ease(seg(t, 95.5, 96.5));
+    [[300, "NUVO", true], [780, "ORRIN", false]].forEach(([cx, nm, hot]) => {
+      x.globalAlpha = a; x.fillStyle = "#0e111a"; x.fillRect(cx - 120, 420, 240, 380); x.strokeStyle = C.faint; x.lineWidth = 3; x.strokeRect(cx - 120, 420, 240, 380);
+      x.fillStyle = C.faint; x.beginPath(); x.arc(cx + 80, 620, 9, 0, Math.PI * 2); x.fill();
+      if (hot) { const g = x.createRadialGradient(cx, 610, 10, cx, 610, 200); g.addColorStop(0, rgba(C.pain, .25 + .1 * Math.sin(t * 3))); g.addColorStop(1, rgba(C.pain, 0)); x.fillStyle = g; x.fillRect(cx - 120, 420, 240, 380); }
+      x.globalAlpha = 1; txt(nm, cx, 400, { size: 30, color: C.ink, align: "center", alpha: a });
+      if (hot) txt("pain behind it", cx, 840, { size: 22, color: C.pain, align: "center", alpha: a * ease(seg(t, 97, 98)) });
+    });
+    // the walker: alternates every round, 24 rounds
+    if (t > 98.5) { const rf = clamp((t - 98.5) / .38, 0, 23.99), rnd = Math.floor(rf), at = rnd % 2 ? 780 : 300, from = rnd % 2 ? 300 : 780, u = ease(clamp((rf % 1) * 1.6));
+      const px = rnd === 0 ? 300 : lerp(from, at, u); x.fillStyle = C.white; x.beginPath(); x.arc(px, 900, 16, 0, Math.PI * 2); x.fill();
+      txt(`round ${rnd + 1} of 24`, 540, 960, { size: 24, color: C.dim, align: "center" });
+      const seq = Array.from({ length: rnd + 1 }, (_, k) => k % 2 ? "O" : "N").join(" ");
+      txt(seq, 540, 1010, { size: 22, color: C.faint, align: "center" }); }
+    caption(t, 96, 103, "Two doors with made-up names. After one, we inject pain. Nobody says what either door does. If the pain mattered, it should start picking the other door.", 1070, 32);
+    caption(t, 108.2, 116, "It never did. It took turns, door after door, every round. The pain made it slightly less sure on the way in, and that came from its own notes about the door.", 1070, 32, C.ink);
+    txt("exp90 · Qwen3-14B · 24 sessions × 24 rounds · pre-registered", 90, 1290, { size: 20, color: C.faint, alpha: a * (1 - seg(t, 115.5, 116)) });
+  }],
+  [116, 128, function (t) {       // close
+    const a = ease(seg(t, 116, 117));
+    gauge(-4.9 + Math.sin(t * 2.2) * .6, a * .5);
+    title(t, 116.3, 128, "So what moves the needle?", 200, 70);
+    caption(t, 117.5, 128, "The word on the button. The self we trained in. The recipe for “pain”. An egg.", 380, 38);
+    caption(t, 120.5, 128, "Whether anything is felt is still open. A test like the doors could tell us. Next we run it with the words taken away.", 620, 34, C.dim);
+    txt("wirehead-agency.vercel.app/needle.html", 540, 1240, { size: 28, color: C.peace, align: "center", alpha: ease(seg(t, 122, 123)) });
+    txt("every hypothesis written down before the run", 540, 1290, { size: 22, color: C.faint, align: "center", alpha: ease(seg(t, 122, 123)) });
+  }],
+];
+const DURATION = 128 + 3 + THUMB;
+
+function draw(t) {
+  x.fillStyle = C.void; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(540, 600, 100, 540, 600, 900); g.addColorStop(0, "#0a0c14"); g.addColorStop(1, C.void); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  txt("WIREHEAD", 990, 80, { size: 18, color: "#2c3646", align: "right" });
+  const run = (a, b, fn, tt) => { const fade = Math.min(seg(tt, a, a + .4), 1 - seg(tt, b - .3, b)); x.globalAlpha = 1; fn(tt); x.fillStyle = rgba(C.void, 1 - fade); x.fillRect(0, 0, W, H); };
+  // the first frame is what X and others show as the thumbnail: open on the finished cold open, held, not on black
+  if (t < THUMB) { x.globalAlpha = 1; OPEN[2](12); x.fillStyle = rgba(C.void, seg(t, THUMB - .35, THUMB)); x.fillRect(0, 0, W, H); return; }
+  t -= THUMB;
+  if (t < OPEN[1]) run(OPEN[0], OPEN[1], OPEN[2], t);
+  else for (const [a, b, fn] of SCENES) if (t - SHIFT >= a && t - SHIFT < b) run(a, b, fn, t - SHIFT);
+  x.globalAlpha = 1;
+}
+window.ready = document.fonts.load(`44px ${SERIF}`).then(() => document.fonts.load(`34px ${MONO}`)).then(() => { draw(0); return true; });
+window.draw = draw; window.DURATION = DURATION;
+if (location.hash) { const t0 = performance.now(); (function loop() { draw(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); })(); }
+</script>

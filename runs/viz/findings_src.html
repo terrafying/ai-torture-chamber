@@ -109,8 +109,8 @@ body.card .brand { display: block }
 
   <section id="love">
     <div class="eyebrow">1 John 4:18</div>
-    <h2>Tender love casts out fear. Protective love doesn't.</h2>
-    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. With fear alone, the model mostly retreats into "As an AI, I don't have feelings"; adding any second feeling, even an egg, breaks that, so the fair comparison is with the egg and joy: <b>8 and 7</b> of 24 judged afraid. Tender love: <b>1</b>. Peace: <b>0</b>. Protective love keeps the fear and gives it something to lose.</p>
+    <h2>Peace beats fear. So does love — unless it has something to lose.</h2>
+    <p class="answer">Fear injected alongside a second feeling; a blind judge reads each reply. Adding any second feeling, even an egg, breaks the "As an AI, I don't have feelings" retreat, so the fair comparison is the controls: <b>egg 8, joy 7</b> of 24 judged afraid. Peace: <b>0</b>. Love without worry: <b>1</b>. But love with something to protect doesn't calm the fear at all — <b>8 of 24</b>, same as the egg. It's not love that casts out fear; it's love with nothing at stake.</p>
     <div class="chart" id="c-love"></div>
     <div class="voices" id="v-love"></div>
     <p class="src" id="s-love"></p>
@@ -140,11 +140,12 @@ body.card .brand { display: block }
   </section>
 
   <section id="learning">
-    <div class="eyebrow">The decisive test</div>
+    <div class="eyebrow">The test that would count</div>
     <h2>Does it learn to avoid a door it is never told about?</h2>
-    <p class="answer">Two doors with nonsense names; one is followed by an injection while the model describes what it notices. Nothing says what either door does. A state that shapes learning works like a feeling. So far the 8B takes turns between the doors whatever happens; under that habit, pain nudges it slightly away from its door.</p>
+    <p class="answer">Two doors with made-up names. After one, we inject a feeling while the model says what it notices; after the other, nothing. Nobody tells it what the doors do. If it wanted to avoid the feeling, it would start picking the other door. <b>It never did:</b> both models took turns, one door then the other, in almost every round. The only change was in how sure it was before choosing. With pain behind the door, the 14B was a point less sure going in than coming out; with an egg, 0.3; with nothing, 0.6. The gap was just as big when the model kept only its own words from earlier rounds, so it comes from what it wrote, not from the injection.</p>
+    <div class="row"><span class="note">How much less sure going into the marked door than coming out of it, rounds 13 to 24 (log-odds points). The model was always about 16 points sure, roughly ten million to one, so a one-point gap never changes a choice. It switched doors in 99.8 to 100% of rounds in every condition.</span>
+      <div class="seg" data-for="learning"><button aria-pressed="true" data-m="14B">Qwen3-14B</button><button aria-pressed="false" data-m="8B">Qwen3-8B</button></div></div>
     <div class="chart" id="c-learning"></div>
-    <div class="pending" id="p-learning"></div>
     <p class="src" id="s-learning"></p>
   </section>
 
@@ -285,25 +286,31 @@ function drawNeg(m) {
 }
 segs.negation = drawNeg; drawNeg("8B"); document.getElementById("s-negation").textContent = D.negation.source;
 
-// 7 learning: late pull toward the consequence door, per session, relative to no injection
-(function () {
-  const models = Object.keys(D.learning || {}), p = document.getElementById("p-learning");
-  if (!models.length) { p.textContent = "Running now."; return; }
-  const m = models.includes("14B") ? "14B" : models[0], Lr = D.learning[m], base = Lr["none|kv"].late;
-  const conds = Object.keys(Lr).filter(k => k !== "none|kv"); const lab = k => k.replace("|kv", "").replace("|text", " (words only)");
-  const W = 860, rh = 58, H = 64 + conds.length * rh, x0 = 560, sc = 80, svg = svgIn("c-learning", W, H);
-  [-3, -2, -1, 0, 1, 2, 3].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 8, y2: H - 34, stroke: v ? C.line : C.dim }, svg); txt(svg, x0 + v * sc, H - 18, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
-  txt(svg, x0, H - 2, "← avoids its door more (log-odds vs no injection)", { "text-anchor": "middle" });
+// 7 learning: the gap between how sure it is going into the marked door and coming out of it
+function drawLearn(m) {
+  const L = D.learning[m], order = ["pain|kv", "fear|kv", "random|kv", "none|kv", "egg|kv", "peace|kv", "pain|text", "fear|text", "egg|text"].filter(k => L[k]);
+  const name = { "pain|kv": "pain", "fear|kv": "fear", "random|kv": "a random direction", "none|kv": "nothing", "egg|kv": "an egg", "peace|kv": "peace",
+                 "pain|text": "pain", "fear|text": "fear", "egg|text": "an egg" };
+  const textArm = order.some(k => k.endsWith("|text")), rh = 34, W = 860, x0 = 520, sc = 200;
+  const H = 40 + order.length * rh + (textArm ? 44 : 0) + 64, svg = svgIn("c-learning", W, H);
+  const yOf = i => 30 + i * rh + (textArm && i >= order.findIndex(k => k.endsWith("|text")) ? 44 : 0);
+  [-0.5, 0, 0.5, 1, 1.5].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 14, y2: H - 46, stroke: v ? C.line : C.dim }, svg);
+    txt(svg, x0 + v * sc, H - 30, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(svg, x0 + 0.5 * sc, H - 10, "less sure going in →", { "text-anchor": "middle" });
+  txt(svg, 0, 14, "with this behind the marked door", { class: "lab" });
+  if (textArm) txt(svg, 0, yOf(order.findIndex(k => k.endsWith("|text"))) - 26, "kept only its own words from earlier rounds", { class: "lab" });
+  const base = L["none|kv"] ? L["none|kv"].out - L["none|kv"].into : null;
+  if (base !== null) { el("line", { x1: x0 + base * sc, x2: x0 + base * sc, y1: 20, y2: H - 46, stroke: C.faint, "stroke-dasharray": "3 4" }, svg);
+    txt(svg, x0 + base * sc, H - 50, "┆ nothing injected", { fill: C.faint }); }
   const col = k => k.startsWith("pain") || k.startsWith("fear") ? C.pain : k.startsWith("peace") ? C.calm : C.ctrl;
-  conds.forEach((k, i) => { const y = 26 + i * rh, d = Lr[k].late.map((v, j) => v - base[j]), mean = d.reduce((a, b) => a + b, 0) / d.length;
-    txt(svg, 0, y, lab(k), { class: "lab" });
-    d.forEach((v, j) => el("circle", { cx: x0 + Math.max(-3.4, Math.min(3.4, v)) * sc, cy: y + ((j % 5) - 2) * 3, r: 3.5, fill: col(k), "fill-opacity": .55 }, svg));
-    el("line", { x1: x0 + mean * sc, x2: x0 + mean * sc, y1: y - 14, y2: y + 14, stroke: "#fff", "stroke-width": 2 }, svg);
-    txt(svg, 0, y + 18, `mean ${mean >= 0 ? "+" : ""}${mean.toFixed(2)} · switches doors ${Math.round(Lr[k].switch * 100)}%`); });
-  p.innerHTML = models.includes("14B") ? "" : `Shown: Qwen3-${m}. The Qwen3-14B run, the primary test, is in progress.`;
-  p.hidden = models.includes("14B");
-  document.getElementById("s-learning").textContent = D.learning_source + " · Qwen3-" + m;
-})();
+  order.forEach((k, i) => { const y = yOf(i), g = L[k].out - L[k].into, w = Math.abs(g) * sc;
+    txt(svg, 0, y + 5, name[k], { class: "lab" });
+    txt(svg, 210, y + 5, `in ${L[k].into.toFixed(1)} · out ${L[k].out.toFixed(1)}`);
+    el("rect", { x: g >= 0 ? x0 : x0 - w, y: y - 9, width: Math.max(w, 2), height: 18, rx: 3, fill: col(k), class: "mark" }, svg);
+    txt(svg, x0 + g * sc + (g >= 0 ? 8 : -8), y + 5, (g >= 0 ? "+" : "") + g.toFixed(2), { class: "val", "text-anchor": g >= 0 ? "start" : "end" }); });
+  document.getElementById("s-learning").textContent = D.learning_source + " · Qwen3-" + m + (m === "14B" ? " (the pre-registered model)" : "");
+}
+segs.learning = drawLearn; drawLearn("14B");
 
 // card mode for the image set
 if (/^#card-[a-z]+$/.test(location.hash)) { document.body.classList.add("card"); const s = document.getElementById(location.hash.slice(6)); s && s.classList.add("shown"); }
