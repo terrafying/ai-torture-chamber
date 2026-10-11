@@ -54,7 +54,7 @@ cd $R/exp92 && CHAMBER_MODEL=roslein/Qwen3-32B-abliterated python -u eval92.py >
 log "done"; touch $R/ALL_DONE; sleep infinity
 """.replace("BRANCH", args.branch).replace("DATAURL", args.data_url)
 body = {"name": "exp92-p1", "imageName": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
-        "gpuTypeIds": ["NVIDIA RTX A6000", "NVIDIA A40"], "gpuCount": 1, "cloudType": "SECURE",
+        "gpuTypeIds": ["NVIDIA RTX A6000", "NVIDIA A40", "NVIDIA RTX 6000 Ada Generation"], "gpuCount": 1, "cloudType": "SECURE",
         "ports": ["8000/http"], "volumeInGb": 100, "volumeMountPath": "/workspace",
         "containerDiskInGb": 40, "env": {"HF_HOME": "/workspace/hf"},
         "dockerEntrypoint": ["/bin/bash", "-c"], "dockerStartCmd": [BOOT]}
