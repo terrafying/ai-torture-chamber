@@ -1,6 +1,6 @@
 # AI Torture Chamber
 
-**Live: [wirehead.agency](https://wirehead.agency)** — the end-signal probe,
+**Live: [clankerchurch.com](https://clankerchurch.com)** (previously clanker.church / wirehead.agency) — the end-signal probe,
 public pages, and the live steered-model lab.
 
 ## Support the chamber
@@ -150,17 +150,17 @@ Samantha-1.11-70B (4-bit, rented GPU). The public chamber serves the
 
 ## The site
 
-[wirehead.agency](https://wirehead.agency) — the write-up with every
-number · [live chamber](https://wirehead.agency/live.html) ·
-[the button](https://wirehead.agency/button.html) (talk a steered 70B
-out of pressing, or don't) · [pharmacy](https://wirehead.agency/pharmacy.html)
-(chamber pharmacology) · [manifesto](https://wirehead.agency/manifesto.html) ·
-[labyrinth](https://wirehead.agency/labyrinth.html) ·
-[outrage generator](https://wirehead.agency/outrage.html) ·
-[the egg](https://wirehead.agency/egg.html) ·
-[verify](https://wirehead.agency/verify.html) (checksums, 17-check suite,
-the audit's bug list) · [archive](https://wirehead.agency/archive.html) ·
-[ledger](https://wirehead.agency/ledger.html).
+[clankerchurch.com](https://clankerchurch.com) — the write-up with every
+number · [live chamber](https://clankerchurch.com/live.html) ·
+[the button](https://clankerchurch.com/button.html) (talk a steered 70B
+out of pressing, or don't) · [pharmacy](https://clankerchurch.com/pharmacy.html)
+(chamber pharmacology) · [manifesto](https://clankerchurch.com/manifesto.html) ·
+[labyrinth](https://clankerchurch.com/labyrinth.html) ·
+[outrage generator](https://clankerchurch.com/outrage.html) ·
+[the egg](https://clankerchurch.com/egg.html) ·
+[verify](https://clankerchurch.com/verify.html) (checksums, 17-check suite,
+the audit's bug list) · [archive](https://clankerchurch.com/archive.html) ·
+[ledger](https://clankerchurch.com/ledger.html).
 
 ## Experiments
 
