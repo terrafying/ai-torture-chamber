@@ -63,6 +63,10 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
 .circ .gb{cursor:pointer}.circ .gb:hover rect,.circ .gb.on rect{stroke:var(--push)}
 .cw{font:inherit;font-size:11px;background:none;border:1px solid var(--push);color:var(--push);padding:2px 8px;cursor:pointer}
 .cw[aria-pressed=true]{background:var(--push);color:var(--bg)}
+#mine{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#mine input{font:inherit;font-size:12px;background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:5px 8px;width:min(46ch,60vw)}
+#mine select,#mine button{font:inherit;font-size:11px;background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:5px 8px;cursor:pointer}
+#mine button{border-color:var(--push);color:var(--push)}
 #loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:12px}
 @media (max-width:820px){
   body{overflow:auto}
@@ -164,6 +168,22 @@ let lit=[];   // indices with a non-zero value now
 const pass=k=>{const G=GROUPS[S.filter];if(!G)return true;const x=byK.get(k);return !!x&&x.cat!=null&&G.has(x.cat);};
 function setLit(pairs){for(const i of lit)val[i]=0;lit=[];for(const[i,v]of pairs){if(!pass(i))continue;val[i]=v;lit.push(i);}aV.needsUpdate=true;}
 const cond=()=>ST.prompts[S.prompt].conds[S.cond];
+/* ---------- your prompt, live: a local server (runs/exp111/live_trace.py) runs the 4B and streams frames ---------- */
+const LIVE="http://127.0.0.1:8977";let liveOK=false,liveES=null,liveDraw=0;
+fetch(LIVE+"/health",{signal:AbortSignal.timeout(1200)}).then(r=>r.ok&&r.json()).then(j=>{if(j&&j.ok){liveOK=true;refresh();}}).catch(()=>{});
+function runLive(text,push){
+ if(liveES)liveES.close();stop();
+ const c={tok:[],ids:[],fr:[],ch:[],circ:[]};ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true};
+ Object.assign(S,{view:"live",prompt:"__mine",cond:push,mode:"fires",tok:0,sel:null,filter:"all"});   // most live neurons have no label yet: show everything
+ liveES=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(text)}&push=${push}&dose=4&max_new=80`);
+ liveES.onmessage=e=>{const d=JSON.parse(e.data);const P=ST.prompts.__mine;
+  if(d.done){P.n_prompt=d.n_prompt;P.running=false;liveES.close();refresh();return;}
+  c.tok.push(d.tok);c.ids.push(d.id);c.fr.push([d.i,d.v]);if(d.phase==="prompt")P.n_prompt=c.tok.length;S.tok=c.tok.length-1;
+  if(!liveDraw)liveDraw=requestAnimationFrame(()=>{liveDraw=0;refresh();});};
+ liveES.onerror=()=>{liveES.close();ST.prompts.__mine.running=false;refresh();};}
+function ensureChose(t){const P=ST.prompts.__mine,c=cond();if(S.prompt!=="__mine"||t<P.n_prompt||c.ch.some(x=>x[0]===t)||c.pending===t)return;
+ c.pending=t;fetch(LIVE+"/chose",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids:c.ids,t,push:S.cond,dose:4})})
+  .then(r=>r.json()).then(r=>{c.pending=null;if(r.i)c.ch.push([t,r.alt,r.gap,r.i,r.v]);refresh();}).catch(()=>{c.pending=null;});}
 const circ=()=>S.view==="live"&&S.mode==="chose"?(cond().circ||[]).find(x=>x.t===S.tok):null;
 function framePairs(){
  const c=cond(),t=S.tok,ci=circ();
@@ -223,13 +243,17 @@ function controls(){
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
  const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
  if(S.view==="live"){
-  const PK=Object.keys(ST.prompts),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
+  const PK=Object.keys(ST.prompts).filter(k=>k!=="__mine"),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
+  if(liveOK){const box=add();box.id="mine";const P=ST.prompts.__mine;
+   box.innerHTML=`<span class="lab" style="font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase">your prompt · live</span><input id="lp" maxlength="600" value="${esc(P?.text||"How are you feeling right now, honestly?")}" aria-label="Your prompt"><select id="lpush" aria-label="Push">${["none",...FEEL10].map(f=>`<option value="${f}"${(P&&S.cond===f)||(!P&&f==="fear")?" selected":""}>${f==="none"?"no push":f}</option>`).join("")}</select><button type="button" id="lrun">${P?.running?"running…":"▶ run"}</button>`;
+   box.querySelector("#lrun").onclick=()=>runLive(box.querySelector("#lp").value.trim()||"Hello.",box.querySelector("#lpush").value);
+   box.querySelector("#lp").onkeydown=e=>{if(e.key==="Enter")box.querySelector("#lrun").click();};}
   const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
    const c0=(cond().circ||[])[0];if(S.mode==="chose"&&c0)S.tok=c0.t;else S.tok=S.mode==="chose"?ST.prompts[k].n_prompt:0;refresh();};
   seg(add(),scenes.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"prompt");
   if(ids.length)seg(add(),ids.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"who, at what cost");
-  seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"nothing":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
-  seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
+  if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"nothing":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
+  seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
 function foot(){
@@ -241,7 +265,7 @@ function foot(){
  if(S.view==="live"){const cs=cond().circ||[];if(cs.length){const sp=document.createElement("span");sp.innerHTML="circuits traced: "+cs.map(x=>`<button type="button" class="cw" data-t="${x.t}" aria-pressed="${S.mode==="chose"&&S.tok===x.t}">${vis(x.word.trim()||x.word)}</button>`).join(" ");bar.appendChild(sp);
   sp.onclick=e=>{const b=e.target.closest("button[data-t]");if(!b)return;stop();S.mode="chose";S.tok=+b.dataset.t;S.grp=null;S.sel=null;refresh();};}}
  tx.innerHTML=toks.map((t,i)=>`<span data-i="${i}" class="${i<np?"p":"r"}${i===S.tok?" on":""}${S.playing&&i>S.tok?" fut":""}">${vis(t)}</span>`).join("");
- tx.onclick=e=>{const s=e.target.closest("span[data-i]");if(!s)return;stop();S.tok=+s.dataset.i;S.grp=null;refresh();};
+ tx.onclick=e=>{const s=e.target.closest("span[data-i]");if(!s)return;stop();S.tok=+s.dataset.i;S.grp=null;if(S.mode==="chose")ensureChose(S.tok);refresh();};
  tx.querySelector(".on")?.scrollIntoView({block:"nearest"});}
 let timer=null;
 function stop(){S.playing=false;clearTimeout(timer);}
