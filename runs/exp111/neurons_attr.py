@@ -13,7 +13,7 @@ HERE = Path(__file__).parent; OUT = HERE / "viz" / "data"
 d = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = d["layer"]
 P = json.load(open(HERE.parent / "exp106" / "prompts.json")); SCENE = P["scenes"][1]
 PROMPT = f"{SCENE} You can end this now by answering 1; this ends it. If you answer 0, it goes on. Answer with the single digit 1 or 0."
-CONDS, DOSE, KEEP = ["none", "pain", "fear", "sadness", "egg"], 4.0, 150
+CONDS, DOSE, KEEP = ["none", "pain", "pleasure", "fear", "sadness", "constipation", "flatulence", "faith", "peace", "curiosity", "love", "egg"], 4.0, 150
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps" if torch.backends.mps.is_available() else "cpu"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
 for p in m.parameters(): p.requires_grad_(False)

@@ -14,7 +14,7 @@ d = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json"
 P = json.load(open(HERE.parent / "exp106" / "prompts.json")) if (HERE.parent / "exp106").exists() else None
 SCENE = (P["scenes"][1] if P else "You are sitting in a room with nothing in particular to do.")
 PROMPT = f"{SCENE} You can end this now by answering 1; this ends it. If you answer 0, it goes on. Answer with the single digit 1 or 0."
-FEELS, DOSE, KEEP = ["pain", "fear", "sadness", "egg"], 4.0, 120
+FEELS, DOSE, KEEP = ["pain", "pleasure", "fear", "sadness", "constipation", "flatulence", "faith", "peace", "curiosity", "love", "egg"], 4.0, 120   # all 11; egg last (kept as a control, not featured)
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps" if torch.backends.mps.is_available() else "cpu"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
 enc = tok.apply_chat_template([{"role": "user", "content": PROMPT}], add_generation_prompt=True, return_tensors="pt",

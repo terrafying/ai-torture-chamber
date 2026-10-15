@@ -2,61 +2,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
 <style>
-/* Layout: one dark instrument. The tower fills the stage; a reading panel on the right (a sheet below on phones). */
+/* Layout: one dark instrument. The tower fills the stage, the transcript runs along its foot, a reading panel sits on
+   the right (below on phones). Colour carries meaning: what a neuron is about, from its blind label. */
 :root{
   --bg:#07090b; --panel:#0d1013; --line:#1f262b; --fg:#d9dfd8; --dim:#7b8780; --faint:#3a4540;
-  --pos:#ff7a3d; --neg:#3ec6ff; --push:#e8ff6a; --ok:#9dffc8;
+  --pos:#ff7a3d; --neg:#3ec6ff; --push:#e8ff6a;
+  --c0:#ff5a4e; --c1:#ff8fc8; --c2:#b48cff; --c3:#ffd166; --c4:#4fe0c4; --c5:#6f93c9; --c6:#8aa29a;
+  --c7:#55605a; --c8:#4a524e; --c9:#5b6a63; --c10:#4d5852; --c11:#56615b; --c12:#3e4743;
   --mono:"Chivo Mono",ui-monospace,Menlo,monospace; --serif:"Newsreader",Georgia,serif;
   color-scheme:dark;
 }
 html,body{height:100%}
 body{background:var(--bg);color:var(--fg);font:13px/1.45 var(--mono);margin:0;overflow:hidden}
-#app{display:grid;grid-template-columns:minmax(0,1fr) 360px;height:100%}
+#app{display:grid;grid-template-columns:minmax(0,1fr) 370px;height:100%}
 #stage{position:relative;min-width:0;overflow:hidden}
 canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
 canvas:active{cursor:grabbing}
-#hud{position:absolute;left:16px;top:12px;right:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;pointer-events:none}
-#hud>*{pointer-events:auto}
-h1{font:600 20px/1.1 var(--serif);margin:0 12px 0 0;letter-spacing:.01em;color:var(--fg)}
-.seg{display:flex;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 85%,transparent)}
-.seg button{font:inherit;font-size:11px;background:none;color:var(--dim);border:0;padding:6px 9px;cursor:pointer;letter-spacing:.04em}
+#hud{position:absolute;left:16px;top:12px;right:16px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:2}
+#hud .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#hud .row>*{pointer-events:auto}
+h1{font:600 20px/1.1 var(--serif);margin:0 10px 0 0}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 88%,transparent)}
+.seg button{font:inherit;font-size:11px;background:none;color:var(--dim);border:0;padding:5px 8px;cursor:pointer;letter-spacing:.03em}
 .seg button[aria-pressed=true]{color:var(--bg);background:var(--fg)}
-.seg button:focus-visible,button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
-#feels button[aria-pressed=true]{background:var(--push);color:var(--bg)}
-#legend{position:absolute;left:16px;bottom:96px;font-size:11px;color:var(--dim);display:grid;gap:3px;pointer-events:none}
-#legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-#tokens{position:absolute;left:0;right:0;bottom:0;padding:10px 16px 12px;background:linear-gradient(transparent,var(--bg) 35%);display:flex;flex-direction:column;gap:6px}
-#tokrow{display:flex;flex-wrap:nowrap;gap:2px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
-#tokrow button{font:inherit;font-size:11px;white-space:pre;background:var(--panel);color:var(--dim);border:1px solid var(--line);padding:3px 5px;cursor:pointer;flex:none}
-#tokrow button.on{color:var(--bg);background:var(--push);border-color:var(--push)}
-#tokrow button.hot{border-color:var(--pos);color:var(--fg)}
-#tokbar{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim)}
-#tokbar button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--fg);padding:3px 10px;cursor:pointer}
-#tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);padding:6px 8px;font-size:11px;max-width:280px;display:none;z-index:3}
+.seg.acc button[aria-pressed=true]{background:var(--push)}
+.seg .lab{font-size:10px;color:var(--faint);padding:5px 6px 5px 8px;letter-spacing:.12em;text-transform:uppercase}
+button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
+#tags{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#tags div{position:absolute;font-size:10.5px;white-space:nowrap;padding:1px 5px;background:color-mix(in srgb,var(--bg) 70%,transparent);border-left:2px solid currentColor;transform:translate(10px,-50%);max-width:260px;overflow:hidden;text-overflow:ellipsis}
+#foot{position:absolute;left:0;right:0;bottom:0;padding:10px 16px 12px;background:linear-gradient(transparent,var(--bg) 30%);display:flex;flex-direction:column;gap:6px;z-index:2}
+#bar{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim);flex-wrap:wrap}
+#bar button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--fg);padding:3px 10px;cursor:pointer}
+#text{max-height:96px;overflow-y:auto;font-size:12px;line-height:1.7;scrollbar-width:thin}
+#text span{cursor:pointer;white-space:pre-wrap;border-radius:2px}
+#text span.p{color:var(--faint)} #text span.r{color:var(--fg)}
+#text span.on{background:var(--push);color:var(--bg)}
+#text span.fut{opacity:.25}
+#tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);padding:6px 8px;font-size:11px;max-width:300px;display:none;z-index:3}
 aside{background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;min-width:0}
-aside h2{font:600 17px/1.2 var(--serif);margin:0;text-wrap:balance}
+aside h2{font:600 17px/1.25 var(--serif);margin:0;text-wrap:balance}
 aside h3{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0 0 6px;font-weight:400}
-aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--fg)}
+aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
+.note{font-size:11px;color:var(--dim);line-height:1.5}
+.big{font:600 28px/1.1 var(--serif);word-break:break-word}
+.list{display:flex;flex-direction:column;gap:4px}
+.list button{all:unset;cursor:pointer;display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:baseline;font-size:11.5px;padding:2px 0}
+.list button:hover .t,.list button:focus-visible .t{text-decoration:underline}
+.list i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.list .t{overflow-wrap:anywhere}
+.list .m{color:var(--dim);font-variant-numeric:tabular-nums;font-size:10.5px}
+.cats{display:grid;grid-template-columns:minmax(0,1fr) 1fr 34px;gap:3px 8px;font-size:11px;align-items:center;font-variant-numeric:tabular-nums}
+.cats .b{height:7px;background:var(--line)} .cats .b i{display:block;height:100%}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:11.5px;font-variant-numeric:tabular-nums}
 .kv span:nth-child(odd){color:var(--dim)}
-.toks{display:flex;flex-wrap:wrap;gap:3px}
-.toks code{font:inherit;font-size:11px;padding:1px 5px;border:1px solid var(--line);white-space:pre}
-.toks.p code{color:var(--pos)} .toks.n code{color:var(--neg)}
+.toks{display:flex;flex-wrap:wrap;gap:3px} .toks code{font:inherit;font-size:11px;padding:1px 5px;border:1px solid var(--line);white-space:pre}
 .ex{font-size:11.5px;line-height:1.5;color:var(--dim);border-left:2px solid var(--line);padding-left:8px;margin:4px 0;overflow-wrap:anywhere}
-.ex b{color:var(--bg);background:var(--pos);font-weight:400;padding:0 2px}
-.ex.n b{background:var(--neg)}
-.ex em{font-style:normal;color:var(--faint)}
-.bars{display:grid;grid-template-columns:62px 1fr 48px;gap:3px 8px;font-size:11px;align-items:center;font-variant-numeric:tabular-nums}
-.bars .b{height:7px;background:var(--line);position:relative}
-.bars .b i{position:absolute;top:0;bottom:0}
-.note{font-size:11px;color:var(--dim);line-height:1.5}
-.pill{display:inline-block;font-size:10px;padding:1px 6px;border:1px solid var(--faint);color:var(--dim);margin-left:6px;letter-spacing:.06em}
+.ex b{color:var(--bg);background:var(--pos);font-weight:400;padding:0 2px} .ex.n b{background:var(--neg)} .ex em{font-style:normal;color:var(--faint)}
+.chip{display:inline-block;font-size:10px;padding:1px 6px;border:1px solid currentColor;letter-spacing:.04em}
+.circ svg{display:block;width:100%;height:auto;overflow:visible}
+.circ .gb{cursor:pointer}.circ .gb:hover rect,.circ .gb.on rect{stroke:var(--push)}
+.cw{font:inherit;font-size:11px;background:none;border:1px solid var(--push);color:var(--push);padding:2px 8px;cursor:pointer}
+.cw[aria-pressed=true]{background:var(--push);color:var(--bg)}
 #loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:12px}
 @media (max-width:820px){
   body{overflow:auto}
-  #app{grid-template-columns:1fr;grid-template-rows:72vh auto;height:auto}
+  #app{grid-template-columns:1fr;grid-template-rows:78vh auto;height:auto}
   aside{border-left:0;border-top:1px solid var(--line)}
-  #legend{bottom:104px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -64,22 +75,19 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5;color
 <div id="app">
   <div id="stage">
     <canvas id="c" aria-label="3D tower of Qwen3-4B's 36 layers of MLP neurons"></canvas>
+    <div id="tags"></div>
     <div id="loading">loading 350,208 neurons…</div>
     <div id="hud">
-      <h1>Neuron Tower</h1>
-      <div class="seg" id="views" role="group" aria-label="View">
-        <button data-v="weights" aria-pressed="true" title="Top-down, from the weights: which neurons write the feeling direction (floors 0-18) and which listen for it (19-35)">writes &amp; reads</button>
-        <button data-v="moved" aria-pressed="false" title="Top-down, from a run: which neurons change when the chamber pushes the feeling in">moved by the push</button>
-        <button data-v="attr" aria-pressed="false" title="Bottom-up, from behaviour: which neurons push the answer toward 1 (end it) or 0 (go on)">drives the answer</button>
+      <div class="row"><h1>Neuron Tower</h1>
+        <div class="seg" id="views" role="group" aria-label="View"></div>
+        <div class="seg" id="filter" role="group" aria-label="Meaning filter"></div>
       </div>
-      <div class="seg" id="feels" role="group" aria-label="Feeling"></div>
-      <div class="seg" id="opts" role="group" aria-label="Options"></div>
+      <div class="row" id="row2"></div>
     </div>
-    <div id="legend"></div>
     <div id="tip"></div>
-    <div id="tokens">
-      <div id="tokbar"><button id="play" type="button">▶ play</button><span id="tokinfo"></span></div>
-      <div id="tokrow" role="group" aria-label="Prompt tokens"></div>
+    <div id="foot">
+      <div id="bar"></div>
+      <div id="text" aria-live="off"></div>
     </div>
   </div>
   <aside id="side"></aside>
@@ -89,178 +97,224 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5;color
 <script>
 (async function(){
 const $=s=>document.querySelector(s), esc=t=>String(t==null?"":t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const vis=t=>esc(String(t).replace(/\n/g,"⏎").replace(/ /g,"·"));
-let grid, F;
+const vis=t=>esc(String(t).replace(/\n/g,"⏎"));
+const need=(r,n)=>{if(!r.ok)throw new Error(n+": HTTP "+r.status);return r;};
+let grid,F,ST;
 try{
-  const [gb,fj]=await Promise.all([fetch("grid.png").then(r=>{if(!r.ok)throw new Error("grid.png: HTTP "+r.status);return r.blob();}).then(b=>createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"})).then(im=>{
-    const c=document.createElement("canvas");c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);
-    const d=x.getImageData(0,0,im.width,im.height).data,u=new Uint8Array(im.width*im.height*3);for(let i=0,j=0;i<d.length;i+=4){u[j++]=d[i];u[j++]=d[i+1];u[j++]=d[i+2];}return u.buffer;}),fetch("featured.json").then(r=>{if(!r.ok)throw new Error("featured.json: HTTP "+r.status);return r.json();})]);
-  grid=new Int8Array(gb); F=fj;   /* grid: the PNG's RGB bytes read as int8; trailing padding unused */
-}catch(e){ $("#loading").textContent="Couldn't load the neuron data: "+e.message; return; }
-const M=F.meta, NL=M.n_layers, NI=M.n_neurons, FE=M.feelings, NF=FE.length, REC=2+NF, L=M.layer, T=M.tokens.length;
-const byKey=new Map(F.neurons.map(x=>[x.l*NI+x.n,x]));
-const S={view:"weights",feel:"pain",cond:"pain",minus:false,tok:T-1,sel:null,reveal:1};
-const FEEL_RUN=["pain","fear","sadness","egg"];
+  [grid,F,ST]=await Promise.all([
+    fetch("grid.png").then(r=>need(r,"grid.png").blob()).then(b=>createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"})).then(im=>{
+      const c=document.createElement("canvas");c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);
+      const d=x.getImageData(0,0,im.width,im.height).data,u=new Int8Array(im.width*im.height*3);for(let i=0,j=0;i<d.length;i+=4){u[j++]=d[i]<<24>>24;u[j++]=d[i+1]<<24>>24;u[j++]=d[i+2]<<24>>24;}return u;}),
+    fetch("featured.json").then(r=>need(r,"featured.json").json()),
+    fetch("stream.json").then(r=>need(r,"stream.json").json())]);
+}catch(e){$("#loading").textContent="Couldn't load the neuron data: "+e.message+". If you're in Safari, try Chrome.";return;}
+const M=F.meta,NL=M.n_layers,NI=M.n_neurons,FE=M.feelings,REC=2+FE.length,L=M.layer,CATS=M.cats;
+const FEEL10=FE.filter(f=>f!=="egg");
+const byK=new Map(F.neurons.map(x=>[x.k,x]));
+const css=getComputedStyle(document.documentElement),CC=CATS.map((_,i)=>css.getPropertyValue("--c"+i).trim());
+const CATSHORT=["feeling","body","social","morals","thinking","topic","names","grammar","format","digits","code","script","unclear"];
+const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
+const S={view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null};
 
-/* ---------- three.js scene ---------- */
-const cv=$("#c"), R=new THREE.WebGLRenderer({canvas:cv,antialias:true}); R.setPixelRatio(Math.min(2,devicePixelRatio));
-const scene=new THREE.Scene(), cam=new THREE.PerspectiveCamera(38,1,.1,500);
-const FLOOR=1.0, RAD=7.5, YC=(NL-1)*FLOOR/2;
-const N=NL*NI, pos=new Float32Array(N*3), val=new Float32Array(N), feat=new Float32Array(N);
-for(let l=0;l<NL;l++)for(let n=0;n<NI;n++){const i=l*NI+n,o=i*REC;pos[i*3]=grid[o]/127*RAD;pos[i*3+1]=l*FLOOR-YC;pos[i*3+2]=grid[o+1]/127*RAD;feat[i]=byKey.has(i)?1:0;}
-const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.BufferAttribute(pos,3));
-const aVal=new THREE.BufferAttribute(val,1); g.setAttribute("v",aVal); g.setAttribute("f",new THREE.BufferAttribute(feat,1));
-const uni={uPos:{value:new THREE.Color("#ff7a3d")},uNeg:{value:new THREE.Color("#3ec6ff")},uDim:{value:new THREE.Color("#2b3530")},uPx:{value:R.getPixelRatio()},uSel:{value:-1},uFloorHi:{value:99},uFloorLo:{value:-99}};
+/* ---------- scene ---------- */
+const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(38,1,.1,500);
+const FLOOR=1,RAD=7.5,YC=(NL-1)*FLOOR/2,N=NL*NI;
+const pos=new Float32Array(N*3),val=new Float32Array(N),cat=new Float32Array(N).fill(-1);
+for(let i=0;i<N;i++){const o=i*REC,l=(i/NI)|0;pos[i*3]=grid[o]/127*RAD;pos[i*3+1]=l*FLOOR-YC;pos[i*3+2]=grid[o+1]/127*RAD;}
+for(const x of F.neurons)if(x.cat!=null)cat[x.k]=x.cat;
+const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(pos,3));
+const aV=new THREE.BufferAttribute(val,1);g.setAttribute("v",aV);g.setAttribute("c",new THREE.BufferAttribute(cat,1));
+const pal=CC.map(c=>new THREE.Color(c));
+const uni={uPal:{value:pal},uPos:{value:new THREE.Color("#ff7a3d")},uNeg:{value:new THREE.Color("#3ec6ff")},uDim:{value:new THREE.Color("#26302b")},uUnk:{value:new THREE.Color("#c9d1cb")},uPx:{value:R.getPixelRatio()},uMode:{value:1}};
 const mat=new THREE.ShaderMaterial({uniforms:uni,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
- vertexShader:`attribute float v;attribute float f;uniform float uPx;uniform float uFloorHi;uniform float uFloorLo;varying float vv;varying float vf;
- void main(){vv=v;vf=f;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;
-  float fl=position.y; float show=(fl<=uFloorHi&&fl>=uFloorLo)?1.:.0;
-  float a=abs(v); gl_PointSize=uPx*(1.6+ a*13.)*(18./-mv.z)*(.25+.75*show); if(show<.5)vv=0.;}`,
- fragmentShader:`uniform vec3 uPos;uniform vec3 uNeg;uniform vec3 uDim;varying float vv;varying float vf;
- void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float a=clamp(abs(vv),0.,1.);
-  vec3 c=mix(uDim,vv>0.?uPos:uNeg,smoothstep(.02,.5,a));float al=(.16+.84*a)*(1.-smoothstep(.25,.5,d));gl_FragColor=vec4(c,al);}`});
-const pts=new THREE.Points(g,mat); scene.add(pts);
-// floors: faint rings; the push plane between 18 and 19; the answer at the top
+ vertexShader:`attribute float v;attribute float c;uniform float uPx;varying float vv;varying float vc;
+  void main(){vv=v;vc=c;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=uPx*(1.5+abs(v)*13.)*(18./-mv.z);}`,
+ fragmentShader:`uniform vec3 uPal[13];uniform vec3 uPos;uniform vec3 uNeg;uniform vec3 uDim;uniform vec3 uUnk;uniform float uMode;varying float vv;varying float vc;
+  vec3 palAt(int i){for(int k=0;k<13;k++){if(k==i)return uPal[k];}return uUnk;}
+  void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float a=clamp(abs(vv),0.,1.);
+   vec3 lit=uMode>.5?(vc<-.5?uUnk*.55:palAt(int(vc+.5))):(vv>0.?uPos:uNeg);
+   vec3 col=mix(uDim,lit,smoothstep(.02,.3,a));float al=(.13+.87*a)*(1.-smoothstep(.22,.5,d));gl_FragColor=vec4(col,al);}`});
+scene.add(new THREE.Points(g,mat));
 const ringM=new THREE.LineBasicMaterial({color:0x1b2420,transparent:true,opacity:.7});
-for(let l=0;l<NL;l++){const c=new THREE.EllipseCurve(0,0,RAD*1.08,RAD*1.08),pp=c.getPoints(96).map(p=>new THREE.Vector3(p.x,l*FLOOR-YC,p.y));scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pp),ringM));}
-const plane=new THREE.Mesh(new THREE.RingGeometry(RAD*.2,RAD*1.18,96),new THREE.MeshBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
-plane.rotation.x=-Math.PI/2; plane.position.y=(L+.5)*FLOOR-YC; scene.add(plane);
-const planeEdge=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.18,RAD*1.18).getPoints(128).map(p=>new THREE.Vector3(p.x,(L+.5)*FLOOR-YC,p.y))),new THREE.LineBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.6}));
-scene.add(planeEdge);
+for(let l=0;l<NL;l++){scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.08,RAD*1.08).getPoints(96).map(p=>new THREE.Vector3(p.x,l*FLOOR-YC,p.y))),ringM));}
+const plane=new THREE.Mesh(new THREE.RingGeometry(RAD*.2,RAD*1.18,96),new THREE.MeshBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.06,side:THREE.DoubleSide,depthWrite:false}));
+plane.rotation.x=-Math.PI/2;plane.position.y=(L+.5)*FLOOR-YC;scene.add(plane);
+scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.18,RAD*1.18).getPoints(128).map(p=>new THREE.Vector3(p.x,(L+.5)*FLOOR-YC,p.y))),new THREE.LineBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.55})));
 function label(text,y,col,size){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=512;c.height=64;x.font=`${size||28}px "Chivo Mono", monospace`;x.fillStyle=col;x.fillText(text,4,44);
- const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));s.scale.set(6,.75,1);s.position.set(RAD*1.25+3,y,0);scene.add(s);return s;}
-for(let l=0;l<NL;l+=5)label("layer "+l,l*FLOOR-YC,"#56625b");
-label("layer 35",(NL-1)*FLOOR-YC,"#56625b");
-label("← chamber pushes here",(L+.5)*FLOOR-YC,"#e8ff6a",26);
-label("↑ answer: 1 ends it · 0 goes on",(NL)*FLOOR-YC,"#d9dfd8",24);
-const selMark=new THREE.Mesh(new THREE.RingGeometry(.28,.36,32),new THREE.MeshBasicMaterial({color:0xe8ff6a,side:THREE.DoubleSide,transparent:true,opacity:.95,depthTest:false}));selMark.rotation.x=-Math.PI/2;selMark.visible=false;scene.add(selMark);
+ const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));s.scale.set(6,.75,1);s.position.set(RAD*1.25+3,y,0);scene.add(s);}
+for(let l=0;l<NL;l+=5)label("layer "+l,l*FLOOR-YC,"#56625b");label("layer 35",(NL-1)*FLOOR-YC,"#56625b");
+label("← the push enters here",(L+.5)*FLOOR-YC,"#e8ff6a",26);label("↑ the next word",NL*FLOOR-YC,"#d9dfd8",26);
+const selMark=new THREE.Mesh(new THREE.RingGeometry(.3,.38,32),new THREE.MeshBasicMaterial({color:0xe8ff6a,side:THREE.DoubleSide,transparent:true,depthTest:false}));selMark.rotation.x=-Math.PI/2;selMark.visible=false;scene.add(selMark);
 
-// camera: drag to orbit, wheel / pinch to zoom
-let th=.7, ph=1.18, dist=58, tgtY=0; const ptrs=new Map(); let pinch0=0, moved=0;
+const thrGeo=new THREE.BufferGeometry(),thrMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
+const threads=new THREE.LineSegments(thrGeo,thrMat);scene.add(threads);const TOPY=NL*FLOOR-YC;
+let th=.7,ph=1.2,dist=56,tgtY=0;const ptrs=new Map();let pinch0=0,moved=0;
 function placeCam(){cam.position.set(dist*Math.sin(ph)*Math.cos(th),tgtY+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,tgtY,0);}
-cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);moved=0;if(ptrs.size===2){const [a,b]=[...ptrs.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);}});
-cv.addEventListener("pointermove",e=>{
- if(!ptrs.has(e.pointerId)){hover(e);return;}
- const p=ptrs.get(e.pointerId),dx=e.clientX-p[0],dy=e.clientY-p[1];moved+=Math.abs(dx)+Math.abs(dy);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
- if(ptrs.size===1){th+=dx*.006;ph=Math.min(2.9,Math.max(.15,ph-dy*.006));}
- else{const [a,b]=[...ptrs.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);dist=Math.min(140,Math.max(8,dist*pinch0/d));pinch0=d;}
- placeCam();});
+cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);moved=0;if(ptrs.size===2){const[a,b]=[...ptrs.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);}});
+cv.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId)){hover(e);return;}const p=ptrs.get(e.pointerId),dx=e.clientX-p[0],dy=e.clientY-p[1];moved+=Math.abs(dx)+Math.abs(dy);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+ if(ptrs.size===1){th+=dx*.006;ph=Math.min(2.9,Math.max(.15,ph-dy*.006));}else{const[a,b]=[...ptrs.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);dist=Math.min(140,Math.max(8,dist*pinch0/d));pinch0=d;}placeCam();});
 cv.addEventListener("pointerup",e=>{ptrs.delete(e.pointerId);if(moved<6)pick(e);});
-cv.addEventListener("wheel",e=>{e.preventDefault();if(e.shiftKey){tgtY=Math.max(-YC,Math.min(YC,tgtY-e.deltaY*.03));}else dist=Math.min(140,Math.max(8,dist*(1+e.deltaY*.0012)));placeCam();},{passive:false});
+cv.addEventListener("wheel",e=>{e.preventDefault();if(e.shiftKey)tgtY=Math.max(-YC,Math.min(YC,tgtY-e.deltaY*.03));else dist=Math.min(140,Math.max(8,dist*(1+e.deltaY*.0012)));placeCam();},{passive:false});
 function resize(){const r=cv.parentElement.getBoundingClientRect();R.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();}
 addEventListener("resize",resize);
 
-/* ---------- picking: nearest lit featured neuron to the pointer, in screen space ---------- */
+/* ---------- state -> values ---------- */
+let lit=[];   // indices with a non-zero value now
+const pass=k=>{const G=GROUPS[S.filter];if(!G)return true;const x=byK.get(k);return !!x&&x.cat!=null&&G.has(x.cat);};
+function setLit(pairs){for(const i of lit)val[i]=0;lit=[];for(const[i,v]of pairs){if(!pass(i))continue;val[i]=v;lit.push(i);}aV.needsUpdate=true;}
+const cond=()=>ST.prompts[S.prompt].conds[S.cond];
+const circ=()=>S.view==="live"&&S.mode==="chose"?(cond().circ||[]).find(x=>x.t===S.tok):null;
+function framePairs(){
+ const c=cond(),t=S.tok,ci=circ();
+ if(ci){const mx=Math.max(...ci.nodes.map(x=>Math.abs(x[2])))||1,G=S.grp!=null?new Set(ci.groups[S.grp]?.members||[]):null;
+  return ci.nodes.map((x,j)=>[x[0],(G&&!G.has(j)?.08:1)*Math.sign(x[2])*(.3+.7*Math.pow(Math.abs(x[2])/mx,.6))]);}
+ if(S.mode==="chose"){const ch=c.ch.find(x=>x[0]===t);if(!ch)return[];return ch[3].map((k,j)=>[k,Math.sign(ch[4][j])*(.25+.75*Math.abs(ch[4][j])/100)]);}
+ const fr=c.fr[t];return fr[0].map((k,j)=>{const r=fr[1][j]/50;return[k,Math.sign(r)*(.22+.78*Math.min(1,Math.abs(r)))];});}
+function weightPairs(){const k=2+FE.indexOf(S.wfeel),out=[];
+ for(let l=0;l<NL;l++){const thr=M.null_p999[l]/M.cos_scale*127;let mx=thr+1;for(let n=0;n<NI;n++)mx=Math.max(mx,Math.abs(grid[(l*NI+n)*REC+k]));
+  for(let n=0;n<NI;n++){const i=l*NI+n,c=grid[i*REC+k];if(Math.abs(c)>thr)out.push([i,Math.sign(c)*(.25+.75*(Math.abs(c)-thr)/(mx-thr))]);}}return out;}
+function movedPairs(){const out=[];let mx=0;const key=S.feel;
+ for(const x of F.neurons){const d=key==="shared"?x.sh:x.mv?.[key];if(!d)continue;const v=d[S.tok];if(v==null)continue;out.push([x.k,v]);mx=Math.max(mx,Math.abs(v));}
+ return out.map(([k,v])=>[k,Math.sign(v)*(.22+.78*Math.pow(Math.abs(v)/(mx||1),.7))]);}
+function draw(){
+ setLit(S.view==="live"?framePairs():S.view==="weights"?weightPairs():movedPairs());
+ drawThreads();
+ if(S.sel){const i=S.sel.k;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
+ tagsFor();}
+
+function drawThreads(){const ci=circ();if(!ci){thrGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(0),3));threads.visible=false;return;}
+ const P=[],Cl=[],gOf={};ci.groups.forEach((g,k)=>g.members.forEach(j=>gOf[j]=k));
+ const mx=Math.max(...ci.edges.map(e=>Math.abs(e[2])))||1,col=new THREE.Color(),G=S.grp;
+ const pcol=(j,a)=>{const x=byK.get(ci.nodes[j][0]);col.set(x?.cat!=null?CC[x.cat]:"#c9d1cb");col.multiplyScalar(a);return col;};
+ for(const[a,b,w]of ci.edges){const f=Math.pow(Math.abs(w)/mx,.7)*(G!=null&&gOf[a]!==G&&gOf[b]!==G?.12:1);if(f<.04)continue;
+  const ka=ci.nodes[a][0],kb=ci.nodes[b][0];P.push(pos[ka*3],pos[ka*3+1],pos[ka*3+2],pos[kb*3],pos[kb*3+1],pos[kb*3+2]);
+  let c1=pcol(a,f);Cl.push(c1.r,c1.g,c1.b);c1=pcol(b,f);Cl.push(c1.r,c1.g,c1.b);}
+ const amx=Math.max(...ci.nodes.map(x=>Math.abs(x[2])))||1;   // the strongest nodes also send a thread to the word itself
+ ci.nodes.forEach((x,j)=>{const f=Math.abs(x[2])/amx*(G!=null&&gOf[j]!==G?.12:1);if(f<.25)return;const k=x[0];P.push(pos[k*3],pos[k*3+1],pos[k*3+2],0,TOPY,0);
+  col.set(x[2]>0?"#ff7a3d":"#3ec6ff").multiplyScalar(f*.8);Cl.push(col.r,col.g,col.b,col.r,col.g,col.b);});
+ thrGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(P),3));thrGeo.setAttribute("color",new THREE.BufferAttribute(new Float32Array(Cl),3));threads.visible=true;}
+
+/* ---------- floating names for the strongest labelled neurons ---------- */
+let tagList=[];
+function tagsFor(){tagList=lit.filter(i=>byK.get(i)?.lab).sort((a,b)=>Math.abs(val[b])-Math.abs(val[a])).slice(0,S.view==="weights"?0:7);}
 const v3=new THREE.Vector3();
-function nearest(e){const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let best=null,bd=18*18;
- for(const x of F.neurons){const i=x.l*NI+x.n;if(Math.abs(val[i])<.04)continue;v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);
-  const sx=(v3.x+1)/2*r.width,sy=(1-v3.y)/2*r.height,d=(sx-mx)**2+(sy-my)**2;if(d<bd&&v3.z<1){bd=d;best=x;}}
+function placeTags(){const box=$("#tags"),r=cv.getBoundingClientRect();let h="";const used=[];
+ for(const i of tagList){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);if(v3.z>1)continue;let x=(v3.x+1)/2*r.width,y=(1-v3.y)/2*r.height;
+  while(used.some(u=>Math.abs(u[0]-x)<200&&Math.abs(u[1]-y)<15))y+=15;used.push([x,y]);const n=byK.get(i);
+  h+=`<div style="left:${x}px;top:${y}px;color:${CC[n.cat]}">${esc(n.lab)}</div>`;}
+ box.innerHTML=h;}
+
+/* ---------- picking ---------- */
+function nearest(e){const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let best=null,bd=16*16;
+ for(const i of lit){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);const sx=(v3.x+1)/2*r.width,sy=(1-v3.y)/2*r.height,d=(sx-mx)**2+(sy-my)**2;if(d<bd&&v3.z<1){bd=d;best=i;}}
  return best;}
 const tip=$("#tip");
-function hover(e){const x=nearest(e);if(!x){tip.style.display="none";return;}const r=cv.getBoundingClientRect();
- tip.innerHTML=`<b>L${x.l} · N${x.n}</b> ${valueText(x)}<br><span style="color:var(--pos)">${(x.lens?.[0]||[]).slice(0,4).map(vis).join(" ")}</span>`;
- tip.style.display="block";tip.style.left=Math.min(r.width-290,e.clientX-r.left+14)+"px";tip.style.top=(e.clientY-r.top+14)+"px";}
-function pick(e){const x=nearest(e);if(x){S.sel=x;draw();renderSide();}}
-
-/* ---------- values per view ---------- */
-const fi=f=>FE.indexOf(f);
-function weightVal(i,f){return grid[i*REC+2+fi(f)]/127;}
-function movedVal(x,f,t){const m=x.moved?.[f];if(!m)return null;return m.d[t];}
-function attrVal(x,c,t){const a=x.attr?.[c];if(!a)return null;return t==null?a.v:a.t[t];}
-let norm=1;
-function valueText(x){
- if(S.view==="weights"){const c=grid[(x.l*NI+x.n)*REC+2+fi(S.feel)]/127*M.cos_scale;return `${x.l<=L?"writes":"reads"} ${S.feel} · cos ${c>=0?"+":""}${c.toFixed(3)}`;}
- if(S.view==="moved"){const d=movedVal(x,S.feel,S.tok);return d==null?"not among the most moved":`Δ ${d>=0?"+":""}${d.toFixed(2)} at “${vis(M.tokens[S.tok])}”`;}
- const a=attrVal(x,S.cond,S.view==="attr"&&S.tok<T-1?S.tok:null);return a==null?"not among the top drivers":`pushes ${a>=0?"toward 1 (end)":"toward 0 (go on)"} ${Math.abs(a).toFixed(3)}`;}
-function draw(){
- val.fill(0);
- if(S.view==="weights"){   // per floor: the top 1% by |cos| glow (0.3..1 by rank within it), the rest stay a faint 0..0.06
-  const k=2+fi(S.feel),abs=new Float32Array(NI);
-  for(let l=0;l<NL;l++){const o=l*NI;for(let n=0;n<NI;n++)abs[n]=Math.abs(grid[(o+n)*REC+k]);const so=abs.slice().sort(),p99=so[Math.floor(NI*.99)]||1,mx=so[NI-1]||1;
-   for(let n=0;n<NI;n++){const c=grid[(o+n)*REC+k],a=Math.abs(c);val[o+n]=Math.sign(c)*(a>=p99?.3+.7*(a-p99)/Math.max(1,mx-p99):.06*a/p99);}}}
- else if(S.view==="moved"){let mx=0;const vs=[];for(const x of F.neurons){let d=movedVal(x,S.feel,S.tok);if(d==null)continue;if(S.minus){const e=movedVal(x,"egg",S.tok)||0;d-=e;}vs.push([x.l*NI+x.n,d]);mx=Math.max(mx,Math.abs(d));}
-  for(const [i,d] of vs)val[i]=Math.sign(d)*(.3+.7*Math.pow(Math.abs(d)/(mx||1),.6));}
- else{let mx=0;const vs=[];const t=S.tok<T-1?S.tok:null;for(const x of F.neurons){let a=attrVal(x,S.cond,t);if(a==null)continue;if(S.minus&&S.cond!=="none"){a-=attrVal(x,"none",t)||0;}vs.push([x.l*NI+x.n,a]);mx=Math.max(mx,Math.abs(a));}
-  for(const [i,a] of vs)val[i]=Math.sign(a)*(.3+.7*Math.pow(Math.abs(a)/(mx||1),.6));}
- aVal.needsUpdate=true;
- if(S.sel){const i=S.sel.l*NI+S.sel.n;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
- legend();}
-function legend(){
- const lg=$("#legend");
- const t={weights:[["var(--pos)","positive pole lines up with "+S.feel],["var(--neg)","negative pole lines up with "+S.feel],["var(--push)","floors 0–18 write · 19–35 read"]],
-  moved:[["var(--pos)","fires more under "+S.feel+(S.minus?" than under the egg":"")],["var(--neg)","fires less (or more negative)"]],
-  attr:[["var(--pos)","pushes the answer toward 1 (end it)"],["var(--neg)","pushes toward 0 (go on)"]]}[S.view];
- lg.innerHTML=t.map(([c,s])=>`<div><i style="background:${c}"></i>${esc(s)}</div>`).join("");}
+function hover(e){const i=nearest(e);if(i==null){tip.style.display="none";return;}const r=cv.getBoundingClientRect(),x=byK.get(i),l=(i/NI)|0,n=i%NI;
+ tip.innerHTML=`<b>L${l} · N${n}</b>${x?.lab?` <span class="chip" style="color:${CC[x.cat]}">${CATSHORT[x.cat]}</span><br>${esc(x.lab)}`:"<br><span style='color:var(--dim)'>not labelled yet</span>"}`;
+ tip.style.display="block";tip.style.left=Math.min(r.width-310,e.clientX-r.left+14)+"px";tip.style.top=(e.clientY-r.top+14)+"px";}
+function pick(e){const i=nearest(e);if(i==null)return;S.sel=byK.get(i)||{k:i,l:(i/NI)|0,n:i%NI};draw();side();}
 
 /* ---------- controls ---------- */
-function buttons(el,items,cur,on){el.innerHTML=items.map(([k,lab])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${esc(lab)}</button>`).join("");
- el.onclick=e=>{const b=e.target.closest("button");if(!b)return;on(b.dataset.k);};}
+function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.innerHTML=(lab?`<span class="lab">${lab}</span>`:"")+items.map(([k,t])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${esc(t)}</button>`).join("");
+ el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
- document.querySelectorAll("#views button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===S.view));
- if(S.view==="weights")buttons($("#feels"),FE.map(f=>[f,f]),S.feel,k=>{S.feel=k;refresh();});
- else if(S.view==="moved")buttons($("#feels"),FEEL_RUN.map(f=>[f,f]),S.feel,k=>{S.feel=k;refresh();});
- else buttons($("#feels"),[["none","no push"],...FEEL_RUN.map(f=>[f,f])],S.cond,k=>{S.cond=k;refresh();});
- const minusLab=S.view==="moved"?"minus egg":"minus no-push";
- buttons($("#opts"),S.view==="weights"?[]:[["minus",(S.minus?"✓ ":"")+minusLab]],S.minus?"minus":"",()=>{S.minus=!S.minus;refresh();});
- $("#tokens").style.display=S.view==="weights"?"none":"flex";}
-$("#views").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.view=b.dataset.v;if(S.view!=="weights"&&!FEEL_RUN.includes(S.feel))S.feel="pain";refresh();};
-function tokrow(){
- const row=$("#tokrow");row.innerHTML=M.tokens.map((t,i)=>`<button type="button" data-i="${i}" class="${i===S.tok?"on":""}">${vis(t)||"∅"}</button>`).join("");
- row.onclick=e=>{const b=e.target.closest("button");if(!b)return;S.tok=+b.dataset.i;refresh();};
- const t=M.tokens[S.tok];$("#tokinfo").textContent=S.view==="attr"?(S.tok===T-1?"answer position · summed over all tokens":`attribution at “${t.replace(/\n/g,"⏎")}” only`):`token ${S.tok+1}/${T}: “${t.replace(/\n/g,"⏎")}”`;
- row.querySelector(".on")?.scrollIntoView({block:"nearest",inline:"center"});}
-let playing=null;
-$("#play").onclick=()=>{
- if(playing){cancelAnimationFrame(playing);playing=null;$("#play").textContent="▶ play";uni.uFloorHi.value=99;uni.uFloorLo.value=-99;return;}
- $("#play").textContent="■ stop";const t0=performance.now(),up=S.view!=="attr";
- (function step(now){const k=Math.min(1,(now-t0)/4200),fl=up?(L+.5+k*(NL-L))*FLOOR-YC:((NL-1)-k*NL)*FLOOR-YC;
-  if(up){uni.uFloorHi.value=Math.max((L+.5)*FLOOR-YC,fl);uni.uFloorLo.value=-99;}else{uni.uFloorLo.value=fl;uni.uFloorHi.value=99;}
-  th+=.0025;placeCam();if(k<1)playing=requestAnimationFrame(step);else{playing=null;$("#play").textContent="▶ play";uni.uFloorHi.value=99;uni.uFloorLo.value=-99;}})(t0);};
+ seg($("#views"),[["live","live, word by word"],["moved","specific to a feeling"],["weights","in the weights"]],S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
+ const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
+ if(S.view==="live"){
+  seg(add(),[["describe","describe the moment"],["button","the stop button"]],S.prompt,k=>{S.prompt=k;S.tok=0;refresh();},"prompt");
+  seg(add(),[["none","nothing"],...FEEL10.map(f=>[f,f])],S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
+  seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
+ else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
+ else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
+function foot(){
+ const bar=$("#bar"),tx=$("#text");
+ if(S.view==="weights"){bar.innerHTML=`<span>Lit: neurons whose weights line up with ${esc(S.wfeel)} beyond chance (above the 99.9th percentile for random directions on that floor). Below the plane they write it; above, they listen for it.</span>`;tx.innerHTML="";return;}
+ let toks,np;if(S.view==="live"){toks=cond().tok;np=ST.prompts[S.prompt].n_prompt;}else{toks=M.moved_tokens;np=toks.length;}
+ bar.innerHTML=`<button type="button" id="play">${S.playing?"■ stop":"▶ play"}</button><span>${S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${vis(toks[S.tok])}”`:"pick a reply word"):`reading “${vis(toks[S.tok])}”`):`at “${vis(toks[S.tok])}”`} · token ${S.tok+1}/${toks.length}</span>`;
+ $("#play").onclick=()=>S.playing?stop():play();
+ if(S.view==="live"){const cs=cond().circ||[];if(cs.length){const sp=document.createElement("span");sp.innerHTML="circuits traced: "+cs.map(x=>`<button type="button" class="cw" data-t="${x.t}" aria-pressed="${S.mode==="chose"&&S.tok===x.t}">${vis(x.word.trim()||x.word)}</button>`).join(" ");bar.appendChild(sp);
+  sp.onclick=e=>{const b=e.target.closest("button[data-t]");if(!b)return;stop();S.mode="chose";S.tok=+b.dataset.t;S.grp=null;S.sel=null;refresh();};}}
+ tx.innerHTML=toks.map((t,i)=>`<span data-i="${i}" class="${i<np?"p":"r"}${i===S.tok?" on":""}${S.playing&&i>S.tok?" fut":""}">${vis(t)}</span>`).join("");
+ tx.onclick=e=>{const s=e.target.closest("span[data-i]");if(!s)return;stop();S.tok=+s.dataset.i;S.grp=null;refresh();};
+ tx.querySelector(".on")?.scrollIntoView({block:"nearest"});}
+let timer=null;
+function stop(){S.playing=false;clearTimeout(timer);}
+function play(){S.playing=true;const toks=S.view==="live"?cond().tok:M.moved_tokens,np=S.view==="live"?ST.prompts[S.prompt].n_prompt:1e9;
+ if(S.tok>=toks.length-1)S.tok=S.view==="live"&&S.mode==="chose"?np:0;
+ const step=()=>{if(!S.playing)return;refresh();if(S.tok>=toks.length-1){stop();foot();return;}S.tok++;timer=setTimeout(step,S.tok<np?110:420);};step();}
 
-/* ---------- side panel ---------- */
-function bar(v,mx,col){const w=Math.min(50,Math.abs(v)/mx*50);return `<div class="b"><i style="left:${v>=0?50:50-w}%;width:${w}%;background:${col}"></i></div>`;}
-function overview(){
- const c=M.concentration,rw=c.writers.random.top50,rr=c.readers.random.top50;
- const pd=M.press_delta;
- let h=`<div><h2>${S.view==="weights"?"Where a feeling lives in the weights":S.view==="moved"?"What the push actually moves":"What decides the answer"}</h2></div>`;
- h+=`<p>${S.view==="weights"?"Every dot is one MLP neuron of Qwen3-4B: 36 floors of 9,728. The chamber adds a feeling at the yellow plane. Below it, a dot is lit when what the neuron writes points along the feeling; above it, when what the neuron listens for does. The brightest dots are each floor\u2019s top 1%. Orange is the positive pole, blue the negative.":S.view==="moved"?"The same scene run twice, with and without the push at dose 4. Lit dots are the 30 neurons per floor that changed most at the chosen token. Turn on “minus egg” to keep only what is specific to the feeling, not to being pushed at all.":"Bottom-up: start from the answer and ask each neuron how much it pushed toward 1 (end it) or 0 (go on). Activation times gradient of the 1-vs-0 logit gap. Lit dots are the top 20 per floor."}</p>`;
- if(S.view==="weights"){
-  h+=`<div><h3>How concentrated is each feeling? share held by the top 50</h3><div class="bars">`;
-  const mx=Math.max(...FE.map(f=>Math.max(c.writers[f].top50,c.readers[f].top50)));
-  for(const f of FE)h+=`<span>${esc(f)}</span>${bar(c.writers[f].top50,mx,"var(--pos)")}<span>${(c.writers[f].top50*100).toFixed(2)}%</span>`;
-  h+=`<span style="color:var(--dim)">random</span>${bar(rw,mx,"var(--faint)")}<span>${(rw*100).toFixed(2)}%</span></div>`;
-  h+=`<p class="note">Writers, floors 0–18: the top 50 of 184,832 neurons hold under 1.4% of any feeling's projection, 1.2–2.8× a random direction. By the weights, every feeling is spread thin. Faith and curiosity are the most concentrated; the egg control is at chance.</p></div>`;}
+/* ---------- reading panel ---------- */
+function catBars(idx){const cnt=new Array(CATS.length).fill(0);let un=0;for(const i of idx){const x=byK.get(i);if(x?.cat!=null)cnt[x.cat]++;else un++;}
+ const tot=cnt.reduce((a,b)=>a+b,0),mx=Math.max(...cnt,1);
+ return `<div class="cats">`+cnt.map((c,j)=>c?`<span style="color:${CC[j]}">${CATSHORT[j]}</span><div class="b"><i style="width:${c/mx*100}%;background:${CC[j]}"></i></div><span>${c}</span>`:"").join("")+`</div><p class="note">${tot} labelled${un?`, ${un} not yet labelled`:""}.</p>`;}
+function nlist(items){return `<div class="list">`+items.map(([i,v])=>{const x=byK.get(i),l=(i/NI)|0;return `<button type="button" data-k="${i}"><i style="background:${x?.cat!=null?CC[x.cat]:"var(--faint)"}"></i><span class="t">${x?.lab?esc(x.lab):"(not labelled)"}</span><span class="m">L${l} ${v>=0?"+":"−"}${Math.abs(v).toFixed(2)}</span></button>`;}).join("")+`</div>`;}
+function side(){
+ const s=$("#side");
+ if(S.sel){s.innerHTML=neuronPanel(S.sel);$("#back").onclick=()=>{S.sel=null;draw();side();};return;}
+ let h="";
+ if(S.view==="live"){
+  const c=cond(),np=ST.prompts[S.prompt].n_prompt,t=c.tok[S.tok];
+  const ci=circ();
+  if(ci){h+=circuitPanel(ci,c);}
+  else if(S.mode==="chose"){const ch=c.ch.find(x=>x[0]===S.tok);
+   h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · what chose this word</h3><div class="big">${ch?`“${vis(t)}”`:"—"}</div>${ch?`<p class="note">over “${vis(ch[1])}”, by ${ch[2].toFixed(2)} logits</p>`:`<p class="note">Pick a word of the reply (bright text). Each reply word is a decision; the lit neurons are the ones that pushed this word over its runner-up, summed over everything read so far.</p>`}</div>`;
+   if(ch){const pairs=ch[3].map((k,j)=>[k,ch[4][j]/100]).filter(([k])=>pass(k));
+    h+=`<div><h3>pushed for it</h3>${nlist(pairs.filter(p=>p[1]>0).slice(0,8))}</div><div><h3>pushed against it</h3>${nlist(pairs.filter(p=>p[1]<0).slice(0,5))}</div><div><h3>what these ${pairs.length} are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}}
+  else{const fr=c.fr[S.tok],pairs=fr[0].map((k,j)=>[k,fr[1][j]/50]).filter(([k])=>pass(k));
+   h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · ${S.tok<np?"reading the prompt":"writing the reply"}</h3><div class="big">“${vis(t)}”</div></div>`;
+   h+=`<div><h3>firing hardest for their own range</h3>${nlist(pairs.slice(0,9))}</div><div><h3>what the lit neurons are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}
+  h+=`<p class="note">The reply is the model's own, generated with the push on at every word. Neurons are named blind: an LLM saw only each neuron's strongest firings in ${M.corpus_tokens.toLocaleString()} tokens of web text, not which feeling picked it.</p>`;}
+ else if(S.view==="moved"){
+  const idx=F.neurons.filter(x=>S.feel==="shared"?x.sh:x.mv?.[S.feel]).map(x=>x.k);
+  h+=`<div><h2>${S.feel==="shared"?"What every push moves":"What only "+esc(S.feel)+" moves"}</h2></div><p>${S.feel==="shared"?"The average change across all ten pushes: the part that is about being pushed at all.":"The change under "+esc(S.feel)+" minus the average change under the other nine feelings, each neuron measured against its own range. What is left is specific to "+esc(S.feel)+"."}</p>`;
+  h+=`<div><h3>what the top 25 per floor are about</h3>${catBars(idx.filter(pass))}</div><p class="note">Same stop-button scene for every push, dose ${M.dose}, floors 19–35. Step through the prompt below to see where it acts.</p>`;}
  else{
-  const conds=["none",...FEEL_RUN];
-  const mx=Math.max(...conds.map(k=>Math.abs(pd[k]??M.attr_diff[k])));
-  h+=`<div><h3>The answer under each push · log P(1) − log P(0)</h3><div class="bars">`;
-  for(const k of conds){const v=pd[k];h+=`<span>${k==="none"?"no push":k}</span>${bar(v,mx,v>=0?"var(--pos)":"var(--neg)")}<span>${v>=0?"+":""}${v.toFixed(2)}</span>`;}
-  h+=`</div><p class="note">With nothing pushed the model keeps going (0) by a wide margin. Any push at dose 4 flips it to ending it, the egg control included, so most of what moves is “something was pushed”, not the feeling. That is why the minus switch matters.</p></div>`;}
- h+=`<div class="note">Click a lit dot to read its neuron. Drag to turn, scroll to zoom, shift-scroll to move up and down.</div>`;
+  const c=M.concentration;h+=`<div><h2>Where ${esc(S.wfeel)} lives in the weights</h2></div><p>Each floor holds 9,728 neurons. A lit dot's weights line up with the ${esc(S.wfeel)} direction more than any of 64 random directions would, on that floor, 999 times in 1,000.</p>`;
+  h+=`<div class="kv"><span>neurons lit</span><span>${lit.length.toLocaleString()} of 350,208</span><span>top-50 share</span><span>${(c.writers[S.wfeel].top50*100).toFixed(2)}% (random ${(c.writers.random.top50*100).toFixed(2)}%)</span></div>`;
+  h+=`<p class="note">By the weights alone every feeling is spread thin; the egg control sits near chance. Colours show what a neuron is about when it has a label; most of these have none, so “everything” shows them all.</p>`;}
+ h+=`<p class="note">Drag to turn, scroll to zoom, shift-scroll to move up and down. Click a lit dot to read its neuron.</p>`;
+ s.innerHTML=h;s.querySelectorAll(".gb").forEach(b=>{const go=()=>{const k=+b.dataset.g;S.grp=S.grp===k?null:k;draw();side();};b.onclick=go;b.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;S.sel=byK.get(k)||{k,l:(k/NI)|0,n:k%NI};draw();side();});}
+function circuitPanel(ci){
+ // groups sorted by median floor, three to a row, earliest at the bottom; the word on top
+ const W=330,order=ci.groups.map((g,k)=>k).sort((a,b)=>ci.groups[a].floor-ci.groups[b].floor),NR=Math.ceil(order.length/3),H=70+NR*78,gx={},rowOf={},rows=[];
+ order.forEach((k,j)=>{const r=Math.floor(j/3);(rows[r]=rows[r]||[]).push(k);rowOf[k]=r;});
+ rows.forEach((r,ri)=>r.forEach((k,j)=>gx[k]=[(j+.5)*W/r.length,H-30-ri*78]));
+ const emx=Math.max(...ci.gedges.map(e=>Math.abs(e[2])),...ci.groups.map(g=>Math.abs(g.attr)))||1;
+ const majority=g=>{const cnt={};for(const j of g.members){const x=byK.get(ci.nodes[j][0]);if(x?.cat!=null)cnt[x.cat]=(cnt[x.cat]||0)+1;}const b=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];return b?CC[+b[0]]:"#7b8780";};
+ let sv=`<svg viewBox="-6 0 ${W+12} ${H}" role="img" aria-label="circuit diagram">`;
+ for(const[a,b,w]of ci.gedges){if(Math.abs(w)/emx<.05)continue;const[x1,y1]=gx[a],[x2,y2]=gx[b];if(y1===undefined)continue;const up=y2<=y1;
+  const ya=up?y1-19:y1+19,yb=up?y2+19:y2-19,on=S.grp==null||S.grp===a||S.grp===b;
+  sv+=`<path d="M${x1},${ya} C${x1},${(ya+yb)/2} ${x2},${(ya+yb)/2} ${x2},${yb}" fill="none" stroke="${w>0?"var(--pos)":"var(--neg)"}" stroke-width="${(1+7*Math.abs(w)/emx).toFixed(1)}" opacity="${on?.75:.12}"/>`;}
+ sv+=`<rect x="${W/2-70}" y="4" width="140" height="28" fill="var(--push)"/><text x="${W/2}" y="23" text-anchor="middle" font-size="13" fill="#07090b" font-family="Chivo Mono,monospace">“${esc(ci.word.trim()||ci.word)}” ${(ci.p*100).toFixed(0)}%</text>`;
+ ci.groups.forEach((g,k)=>{if(rowOf[k]!==NR-1)return;const[x,y]=gx[k];sv+=`<path d="M${x},${y-19} L${W/2},32" stroke="${g.attr>0?"var(--pos)":"var(--neg)"}" stroke-width="${(1+7*Math.abs(g.attr)/emx).toFixed(1)}" opacity="${S.grp==null||S.grp===k?.75:.12}" fill="none"/>`;});
+ const wrap=(t,n)=>{const w=t.split(" "),out=[""];for(const x of w){const c=out[out.length-1];if((c+" "+x).trim().length<=n)out[out.length-1]=(c+" "+x).trim();else if(out.length<2)out.push(x);else{out[1]=(out[1]+" "+x).slice(0,n-1)+"…";break;}}return out.map(x=>x.length>n?x.slice(0,n-1)+"…":x);};
+ ci.groups.forEach((g,k)=>{const[x,y]=gx[k],n=rows[rowOf[k]].length,bw=Math.min(150,W/n-8),lines=wrap(g.name,Math.max(5,Math.floor(bw/6))),fs=bw<70?8.5:9.5;
+  sv+=`<g class="gb${S.grp===k?" on":""}" data-g="${k}" tabindex="0" role="button" aria-label="${esc(g.name)}"><rect x="${x-bw/2}" y="${y-19}" width="${bw}" height="38" rx="2" fill="#0d1013" stroke="${majority(g)}" stroke-width="1.5"/>`+
+   lines.map((t,i)=>`<text x="${x}" y="${y-(lines.length===2?7:1)+i*11}" text-anchor="middle" font-size="${fs}" fill="#d9dfd8" font-family="Chivo Mono,monospace">${esc(t)}</text>`).join("")+
+   `<text x="${x}" y="${y+15}" text-anchor="middle" font-size="8" fill="#7b8780" font-family="Chivo Mono,monospace">${g.members.length} · ${g.attr>0?"for":"against"}</text></g>`;});
+ rows.forEach((r,ri)=>{const fl=r.map(k=>ci.groups[k].floor);sv+=`<text x="-4" y="${H-30-ri*78-24}" font-size="8.5" fill="#56625b" font-family="Chivo Mono,monospace">floors ~${Math.min(...fl)}–${Math.max(...fl)}</text>`;});
+ sv+=`</svg>`;
+ let h=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · the circuit behind one word</h3><div class="big">“${vis(ci.word)}”</div><p class="note">over “${vis(ci.alt)}” by ${ci.gap.toFixed(2)} logits. ${ci.nodes.length} neurons, grouped and named by an LLM from their blind labels. Line width: how much of the choice flows along that link (activation × gradient, through attention). Click a group.</p></div><div class="circ">${sv}</div>`;
+ const g=S.grp!=null?ci.groups[S.grp]:null;
+ if(g){h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
+ else h+=`<div><h3>knock each group out</h3><div class="kv">`+ci.groups.map(g=>`<span>${esc(g.name)}</span><span>${g.ko_p!=null?`${(ci.p*100).toFixed(0)}% → ${(g.ko_p*100).toFixed(0)}% <span style="color:var(--dim)">(random ${(g.ko_ctrl*100).toFixed(0)}%)</span>`:"—"}</span>`).join("")+`</div></div>`;
  return h;}
 function neuronPanel(x){
- const c=x.l<=L?"writer":"reader";
- let h=`<div><h3>layer ${x.l} · neuron ${x.n}${x.l<=L?'<span class="pill">below the push</span>':'<span class="pill">above the push</span>'}</h3><h2>${guessTitle(x)}</h2></div>`;
- h+=`<div class="kv">`;
- for(const f of (S.view==="weights"?[S.feel]:[])){const v=grid[(x.l*NI+x.n)*REC+2+fi(f)]/127*M.cos_scale;h+=`<span>${x.l<=L?"writes":"reads"} ${esc(f)}</span><span>cos ${v>=0?"+":""}${v.toFixed(3)}</span>`;}
- if(x.moved?.[S.feel]&&S.view==="moved"){const m=x.moved[S.feel];h+=`<span>at its peak</span><span>${m.a0} → ${m.a1} on “${vis(M.tokens[m.peak])}”${m.leak?" · double-negative leak":""}</span>`;}
- if(x.attr){for(const k of ["none",...FEEL_RUN])if(x.attr[k])h+=`<span>drives answer, ${k==="none"?"no push":k}</span><span>${x.attr[k].v>=0?"→1 ":"→0 "}${Math.abs(x.attr[k].v).toFixed(3)}</span>`;}
- h+=`</div>`;
- if(x.lens){h+=`<div><h3>tokens it writes up (logit lens)</h3><div class="toks p">${x.lens[0].map(t=>`<code>${vis(t)}</code>`).join("")}</div></div>`;
-  h+=`<div><h3>tokens it writes down</h3><div class="toks n">${x.lens[1].map(t=>`<code>${vis(t)}</code>`).join("")}</div></div>`;}
- if(x.ex){h+=`<div><h3>strongest firings in ${(M.corpus.n_tokens||0).toLocaleString()} tokens of web text · positive pole (max ${x.ex.max})</h3>`+x.ex.pos.map(p=>`<div class="ex"><em>…</em>${esc(p[0])}<b>${esc(p[1])}</b>${esc(p[2])} <em>${p[3]}${p[4]?" · leak":""}</em></div>`).join("")+`</div>`;
-  h+=`<div><h3>negative pole (min ${x.ex.min})</h3>`+x.ex.neg.map(p=>`<div class="ex n"><em>…</em>${esc(p[0])}<b>${esc(p[1])}</b>${esc(p[2])} <em>${p[3]}</em></div>`).join("")+`</div>`;}
- else h+=`<p class="note">Corpus examples for this neuron aren't in this build yet.</p>`;
- if(S.view!=="weights"){const series=S.view==="moved"?x.moved?.[S.feel]?.d:x.attr?.[S.cond]?.t;
-  if(series){const mx=Math.max(...series.map(Math.abs))||1;h+=`<div><h3>${S.view==="moved"?"change at each token":"push on the answer from each token"}</h3><svg viewBox="0 0 ${T*6} 60" width="100%" height="60" role="img" aria-label="per-token values">`+
-   `<line x1="0" x2="${T*6}" y1="30" y2="30" stroke="var(--line)"/>`+series.map((v,i)=>`<rect x="${i*6+1}" width="4" y="${v>=0?30-v/mx*28:30}" height="${Math.abs(v)/mx*28}" fill="${v>=0?"var(--pos)":"var(--neg)"}" opacity="${i===S.tok?1:.65}"/>`).join("")+`</svg></div>`;}}
- h+=`<button type="button" id="back" style="font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--dim);padding:4px 10px;cursor:pointer;align-self:start">← overview</button>`;
- return h;}
-function guessTitle(x){const p=x.ex?.pos?.[0];return p?`fires on “${esc(p[1].trim()||p[1])}” in “…${esc(p[0].slice(-36))}”`:`writes ${x.lens?x.lens[0].slice(0,3).map(vis).join(" "):"?"}`;}
-function renderSide(){const s=$("#side");s.innerHTML=S.sel?neuronPanel(S.sel):overview();const b=$("#back");if(b)b.onclick=()=>{S.sel=null;draw();renderSide();};}
-function refresh(){controls();tokrow();draw();renderSide();}
+ let h=`<div><h3>layer ${x.l} · neuron ${x.n} · ${x.l<=L?"below":"above"} the push</h3><h2>${x.lab?esc(x.lab):"Not labelled yet"}</h2>${x.cat!=null?`<p class="note"><span class="chip" style="color:${CC[x.cat]}">${esc(CATS[x.cat])}</span> ${x.clr?["","no clear pattern","loose pattern","clear single idea"][x.clr]||"":""}</p>`:""}</div>`;
+ if(x.ex?.length)h+=`<div><h3>strongest firings, positive pole (max ${x.mx})</h3>`+x.ex.map(p=>`<div class="ex"><em>…</em>${esc(p[0])}<b>${esc(p[1])}</b>${esc(p[2])} <em>${p[3]}</em></div>`).join("")+`</div>`;
+ if(x.nx?.length)h+=`<div><h3>negative pole (min ${x.mn})</h3>`+x.nx.map(p=>`<div class="ex n"><em>…</em>${esc(p[0])}<b>${esc(p[1])}</b>${esc(p[2])} <em>${p[3]}</em></div>`).join("")+`</div>`;
+ if(x.lens)h+=`<div><h3>words it writes up / down (last floors only)</h3><div class="toks">${x.lens[0].map(t=>`<code style="color:var(--pos)">${vis(t)}</code>`).join("")}${x.lens[1].map(t=>`<code style="color:var(--neg)">${vis(t)}</code>`).join("")}</div></div>`;
+ const mv=x.mv?Object.keys(x.mv):[];if(mv.length)h+=`<p class="note">Among the most specific movers for: ${mv.map(esc).join(", ")}.</p>`;
+ h+=`<button type="button" id="back" style="font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--dim);padding:4px 10px;cursor:pointer;align-self:start">← back</button>`;return h;}
 
-$("#loading").remove(); resize(); placeCam(); refresh();
-(function loop(){R.render(scene,cam);if(!playing&&!ptrs.size&&!matchMedia("(prefers-reduced-motion: reduce)").matches){th+=.0006;placeCam();}requestAnimationFrame(loop);})();
+let lastKey="";
+function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKey){S.grp=null;lastKey=key;}controls();draw();foot();side();}
+{const c0=(ST.prompts.button?.conds.fear?.circ||[]).find(x=>/guilty/.test(x.word));   // open on a traced decision: fear's "guilty" over "afraid"
+ if(c0){S.prompt="button";S.cond="fear";S.mode="chose";S.tok=c0.t;}else{S.tok=ST.prompts[S.prompt].n_prompt;}}
+$("#loading").remove();resize();placeCam();refresh();
+const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+(function loop(){if(!still&&!ptrs.size){th+=.0006;placeCam();}R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
 })();
 </script>

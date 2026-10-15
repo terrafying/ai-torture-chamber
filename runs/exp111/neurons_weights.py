@@ -41,7 +41,7 @@ conc = {"writers": {}, "readers": {}}
 def share_topk(x, ks=(10, 50, 200)):   # share of squared mass in the top-k entries, and the participation ratio
     s = np.sort(x.ravel() ** 2)[::-1]; tot = s.sum()
     return {**{f"top{k}": float(s[:k].sum() / tot) for k in ks}, "pr": float(tot ** 2 / (s ** 2).sum())}
-rnd_w, rnd_r = [], []
+rnd_w, rnd_r = [], []; null_p999 = []   # per floor: 99.9th percentile of |cos| for 64 random directions (the chance level)
 for l in range(NL):
     p = f"model.layers.{l}."
     down = T(p + "mlp.down_proj.weight").T                                   # I x H: column n = what neuron n writes
@@ -51,6 +51,7 @@ for l in range(NL):
     Vl = Vn * ln; Vl /= Vl.norm(dim=1, keepdim=True)
     RU[l] = cos_rows(up, Vl).numpy(); RG[l] = cos_rows(gate, Vl).numpy()
     Rl = RND * ln; Rl /= Rl.norm(dim=1, keepdim=True)
+    null_p999.append(float(np.quantile(np.abs((cos_rows(down, RND) if l <= L else cos_rows(up, Rl)).numpy()), 0.999)))
     if l <= L: rnd_w.append((down @ RND.T).numpy())
     else: rnd_r.append(cos_rows(up, Rl).numpy())
     print("layer", l, flush=True)
@@ -95,7 +96,7 @@ for j, f in enumerate(FEELS):
     print("top", f, flush=True)
 json.dump(top, open(OUT / "top.json", "w"))
 json.dump({"model": "Qwen/Qwen3-4B", "layer": L, "feelings": FEELS, "n_layers": NL, "n_neurons": I,
-           "scale": {"writer": mw, "reader_up": mu, "reader_gate": mg}, "concentration": conc,
+           "scale": {"writer": mw, "reader_up": mu, "reader_gate": mg}, "concentration": conc, "null_p999": null_p999,
            "files": {"neurons.bin": "int8 [3][layers][neurons][feelings]: writer cos, reader-up cos, reader-gate cos",
                      "layout.bin": "int16 [layers][neurons][2] / 32767"}}, open(OUT / "stats.json", "w"), indent=1)
 print(json.dumps(conc, indent=1))
