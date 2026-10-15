@@ -80,3 +80,65 @@ No new executor results. Re-reading exp74 (runs/exp74/analysis.json) in light of
 **exp74b** (`runs/interp_watch/exp74b_egg_control/`), on the Qwen3-4B, local. It adds an egg control, a dose ladder
 (2/4/6), 12 scenes and greedy decoding. Pre-registered H1–H4 are in hypotheses.json, and the command is in `RUNME.sh`.
 I smoke-tested the code path on a tiny random Qwen3 in the sandbox and discarded the output.
+
+## 2026-10-15 — run 2
+
+**State.** RESULTS/ is still empty, with nothing from the executor. I merged master (a365bd4: exp99–102) into
+`interp-watch`. **Problem found:** last run's exp74b imports `painlab.chamber.load_chamber`, so the public-repo
+executor will skip it. It is now marked `.needs_chamber`, with a note in its README. From now on, experiments are
+self-contained (transformers only).
+
+**Master since run 1 (relevant):** exp99 found a persistent layer-27 trace of a replayed injection of about 1.5% of
+the dose (24/24 sessions). It barely moves the choice (−0.22 log-odds), and **egg leaves a larger trace than pain**
+(H11: .044 vs .033). Again the "meaningful content in general, not feeling" reading, as in exp74b's question. exp101:
+passage-built vectors are now the chamber recipe, and the 0.07 cosine is down to the reading position.
+
+### Lit-watch (arXiv API keyword sweeps sorted by date; LessWrong GraphQL "new")
+1. **The Sharp Directions Are Against You: Curvature Analysis of Activation Steering.** Azizi et al., arXiv:2610.16084 (2026-10-12). http://arxiv.org/abs/2610.16084
+   > "Steering along sharp directions reverses the intended behavior in every condition tested, with anti-steer rates of 53-100%. Sharp directions account for only 1-5% of the CAA vector's squared norm."
+   *Why (mainstream, but bears on us):* it gives a candidate mechanism for our odd dose effects (finding 16, and
+   exp74's pushback). A small sharp component of the pain vector could drive input-dependent reversals. The proposed
+   "sharp removal" is a one-line control we should apply before trusting high-dose results.
+2. **Identifying Introspection From the Inside.** Atkinson, Plunkett & Bau, arXiv:2610.07186 (2026-10-05). http://arxiv.org/abs/2610.07186
+   > "faithful models exhibit significantly higher attribution similarity between the decision-making and self-report tasks"
+   *Why:* it is a structural test of faithful self-report that doesn't depend on the report's content. Our feeling
+   self-reports (exp96/97) could be scored the same way: compare the attribution of the "does it hurt?" answer with the
+   attribution of a pain-driven choice. It also finds preferences moving to earlier layers as self-report becomes
+   faithful, which matters for the early-layer faithfulness thread.
+3. **A Sense of Proprioception in Language Models.** Geiping, arXiv:2610.17495 (2026-10-12). http://arxiv.org/abs/2610.17495
+   > "modern models can be trained to understand a range of subtypes of proprioception, such as routing decision awareness, token entropy, decision depth or logit lens information"
+   *Why (far-out):* it is a trained analogue of introspection with verifiable targets. That suggests a test: does an
+   untrained Qwen3's self-report of "how much pain" correlate with its own logit-lens pain mass? If it does, that is
+   untrained proprioception of affect. Candidate thread.
+4. **Steering Vectors for Competing Ethical Frameworks Are Interchangeable.** Xu & Sun, arXiv:2610.19359 (2026-10-14). http://arxiv.org/abs/2610.19359
+   > "What a vector shares with its competitors therefore sets what it controls"
+   *Why:* this is the competing-target test. Pain vs fear vs sadness vectors should be put through it (exp101's
+   specific_auc is the encode-side version). Steering with "pain" may deliver "negative affect in general".
+5. **Concept Subspaces Compute Beyond the Logit Lens.** Yuan et al., arXiv:2609.39263 (2026-09-30). http://arxiv.org/abs/2609.39263
+   > "four activation-derived concept estimators carry only 0.38--0.80% mean energy in the top-ten readout span"
+   *Why:* it is a weights-only test of whether a concept direction lives in the readout span. Running it on our pain
+   vectors and the Pain Axis direction is cheap (thread 6: does "promotes pain-related vocabulary through the
+   unembedding" hold up?).
+6. **Corrupted but Correct.** Arokiaraj et al., arXiv:2610.03445 (2026-10-02). http://arxiv.org/abs/2610.03445
+   > "the language model decoder then differentially arbitrates: amplifying the corrupted signal for susceptible images and actively suppressing it, past its clean-image baseline, for resistant ones"
+   *Why:* another logit-lens instance of active late suppression below baseline, the same shape as exp74's random
+   directions being pushed back and staying suppressed.
+7. **Signatures of semantic search in the activations of LLMs.** Leckie, Todd & Foster, arXiv:2609.35599 (v2 2026-09-28). http://arxiv.org/abs/2609.35599
+   > "the probability of switching rises as the set of strongest J-lens activations (the J-space) becomes depleted of items from the category currently being produced"
+   *Why (far-out-ish):* J-space "foraging depletion" is a dynamic workspace measure. We could ask whether affect
+   depletes or perseverates in the J-space the way rumination does in people.
+8. **How to train your model organism.** Wang, Bau & Wallace, arXiv:2610.10203. It warns that "a logit lens readout covaries with an organism's general capabilities", which is a caution for comparing lens readings across fine-tuned or steered models. **LessWrong (new):** "Personas in a Pre-Internet Language Model" (2026-10-13, 119 karma) and "Base Models Can Detect Hidden Intentions that Prompted Classifiers Miss" (2026-10-12). I saw the titles only, not the text; worth a read next run.
+
+*Not done this run:* transformer-circuits.pub and Neuronpedia had no new check, and the LessWrong fetch was
+intermittent (one SSL failure, then it worked).
+
+### Interpretation
+There are no executor results. The one new data point is master's exp99 H11 (egg's trace > pain's), which adds weight
+to "meaningful content, not feeling" (finding 7's alternative) before exp74b runs.
+
+### Queued for the executor
+**whitebear_pain** (`runs/interp_watch/whitebear_pain/`) is self-contained, on Qwen3-1.7B with a Qwen3-4B
+replication. Can the model not think about pain? It tests the white bear in the mid layers (H1), late suppression (H2),
+**whether affect is stickier than elephant or egg** (H3), **ironic rebound** on a later turn with no instruction (H4),
+and whether early ablation of the concept direction *raises* leakage, i.e. retrieve-then-suppress needs the retrieval
+(H5). I smoke-tested it on Qwen3-0.6B on CPU (one task) and deleted the output.

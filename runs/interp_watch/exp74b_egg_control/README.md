@@ -10,6 +10,8 @@ finding 16 (the hidden trace shrinks with dose) needs a mechanism.
 - **H3.** Meaningful directions get pushed back mid-network and then partly restored; random directions don't recover.
 - **H4.** The share of injected pain that survives to the last layer falls with dose (2 → 4 → 6).
 
+**NEEDS CHAMBER (`.needs_chamber`).** `run.py` imports `painlab.chamber.load_chamber`, which needs the private relay (`WIREHEAD_LIVE`). The public-repo executor will skip it until a self-contained port exists (see OPEN_THREADS).
+
 **Model:** the chamber's Qwen3-4B via `load_chamber()` (local executor, MPS, fits 16 GB). Deterministic: greedy decoding, seeded randoms.
 
 **Run:** `bash RUNME.sh` (smoke, then the full run, then `analyze.py`). Outputs go to `../RESULTS/exp74b_<model>.{pt,json}`, `_analysis.json` and logs.
