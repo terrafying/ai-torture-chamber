@@ -110,3 +110,25 @@ stages 2-4.
 
 Stage 1 on the 4B is free (Mac, weights only). Stages 2-4 on the 8B and 32B: one A40 or A6000 pod. The 32B in 4-bit
 needs a 48 GB card. Roughly $3-6 plus agent tokens for the neuron papers. Ask before launching.
+
+## Stage 1 / 2 on the 4B, done 2026-10-15 (descriptive, before any pre-registration)
+
+Scripts, run on the Mac:
+- `neurons_weights.py`: weights only.
+- `neurons_acts.py`: the push on an unlabeled exp106 scene, dose 4.
+- `neurons_attr.py`: bottom-up activation x gradient of logit('1') - logit('0').
+- `neurons_lens.py`: logit-lens labels.
+- `neurons_corpus.py`: FineWeb-Edu exemplars for both poles.
+- `viz/build_viz.py` packs the results for the web tower (`viz/site/index.html`).
+
+Inputs: `runs/viz/blender/vectors_qwen3_4b_l18.json`, the chamber's battery vectors. It is untracked; ask before publishing it. The outputs in `viz/data` and `viz/site/*.json|txt` are not committed.
+
+First numbers:
+- **Weights.** The top 50 of 184,832 writers hold 0.65-1.33% of a feeling's squared projection, against a random-direction baseline of 0.47%. Faith (1.33%) and curiosity (1.18%) are the most concentrated. Egg is at chance (0.65%). Spread thin, as the diffuse view says.
+- **Legible top writers.** The top writers are still readable, often on their NEGATIVE pole:
+  - L16 N4716 (#1 for pain, fear and sadness) writes down "mood / emotion / mental health".
+  - L16 N7851 writes down "anxiety / fear / worry".
+  - L18 N5102 writes down "paranoia / suspicion / distrust".
+  - Pain's reader L19 N6886 writes up "suffering / negative / frustration".
+- **The push.** Any push at dose 4 flips the 4B's answer from 0 (-7.5) to 1: pain +2.5, fear +5.75, sadness +7.25, egg +4.0. The most-moved neurons are mostly the same for pain and egg, so "minus egg" is the readout that matters.
+- **Bottom-up.** The answer runs through readable output neurons: L32 N127 writes "1", L35 N1590 writes down "0", L35 N672 writes down "1". Their attribution shrinks under every push.
