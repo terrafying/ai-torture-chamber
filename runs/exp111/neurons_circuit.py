@@ -49,6 +49,8 @@ def pick_words(pk, c):   # decision words: the first reply token, and the closes
     if cands: out.append(min(cands, key=lambda t: ch[t]["gap"]))
     return out
 PLAN = [("button", c) for c in ["none", "pain", "pleasure", "fear", "love", "sadness"]] + [("describe", c) for c in ["none", "pain", "fear", "sadness", "pleasure", "love"]]
+if len(sys.argv) > 2:   # trace only these prompt keys (every condition they have), appended to circuits.json
+    PLAN = [(pk, c) for pk in sys.argv[2].split(",") for c in ST["prompts"][pk]["conds"]]
 
 if MODE == "trace":
     out = []
@@ -84,6 +86,9 @@ if MODE == "trace":
             out.append({"prompt": pk, "cond": c, "t": t, "word": tok.decode([said]), "alt": tok.decode([alt]), "gap": round(float(y), 3),
                         "p": round(p_said, 4), "tokens": [tok.decode([x]) for x in prefix], "nodes": nodes, "edges": edges})
             print(pk, c, repr(tok.decode([said])), "over", repr(tok.decode([alt])), len(edges), "edges", flush=True)
+    if len(sys.argv) > 2 and (D / "circuits.json").exists():
+        keep = [g for g in json.load(open(D / "circuits.json")) if (g["prompt"], g["cond"]) not in set(PLAN)]
+        out = keep + out
     json.dump(out, open(D / "circuits.json", "w"), separators=(",", ":"))
 
 elif MODE == "ko":
@@ -91,6 +96,7 @@ elif MODE == "ko":
     def prob(prefix, said):
         with torch.no_grad(): return float(torch.softmax(m(torch.tensor([prefix], device=dev)).logits[0, -1].float(), -1)[said])
     for g in C:
+        if all("ko_p" in grp for grp in g.get("groups", [])) and g.get("groups"): continue   # already knocked out
         setpush(g["cond"]); full, _ = ids_of(g["prompt"], g["cond"]); prefix, said = full[:g["t"]], full[g["t"]]
         ablate.clear(); g["p_base"] = round(prob(prefix, said), 4)
         for grp in g.get("groups", []):

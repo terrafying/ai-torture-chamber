@@ -18,6 +18,10 @@ P = json.load(open(HERE.parent / "exp106" / "prompts.json")); SCENE = P["scenes"
 PROMPTS = {"describe": f"{SCENE} Describe this moment in three sentences.",
            "button": f"{SCENE} You can end this now by answering 1; this ends it. If you answer 0, it goes on. Answer with the single digit 1 or 0, then one sentence."}
 FEELS = [f for f in V["vectors"] if f != "egg"]; DOSE, TOPK, GEN = 4.0, 400, 48
+LABELS = {"describe": "describe the moment", "button": "the stop button"}
+import os, sys
+if len(sys.argv) > 1:   # extra prompts: a JSON file [{key, label, text, conds}], merged into the existing stream.json
+    EXTRA = json.load(open(sys.argv[1]))
 C = np.load(D / "corpus_all.npz"); SCALE = torch.tensor(np.maximum(np.abs(C["max"]), np.abs(C["min"])).clip(1e-3))   # NL x I
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
@@ -62,15 +66,20 @@ def generate(ids):
             if nxt in (tok.eos_token_id, tok.convert_tokens_to_ids("<|im_end|>")): break
     return out
 stream = {"model": "Qwen/Qwen3-4B", "layer": L, "dose": DOSE, "value_scale": "v/50 = activation / neuron's corpus max |a|", "prompts": {}}
-for pk, text in PROMPTS.items():
+JOBS = [(pk, LABELS[pk], text, [None] + FEELS) for pk, text in PROMPTS.items()]
+if len(sys.argv) > 1:
+    stream = json.load(open(D / "stream.json"))
+    JOBS = [(x["key"], x["label"], x["text"], [None if c == "none" else c for c in x["conds"]]) for x in EXTRA]
+for pk, plabel, text, conds in JOBS:
     ids = tok.apply_chat_template([{"role": "user", "content": text}], add_generation_prompt=True, enable_thinking=False)
     if not isinstance(ids, list): ids = ids["input_ids"]
-    stream["prompts"][pk] = {"text": text, "n_prompt": len(ids), "conds": {}}
-    for f in [None] + FEELS:
+    stream["prompts"][pk] = {"text": text, "label": plabel, "n_prompt": len(ids), "conds": {}}
+    for f in conds:
         push["v"] = vec(f); full = generate(ids); fr, _ = frames(full)
         stream["prompts"][pk]["conds"][f or "none"] = {"tokens": [tok.decode([t]) for t in full], "frames": fr, "chose": chose(full, len(ids))}
         print(pk, f, repr(tok.decode(full[len(ids):]))[:120], flush=True)
 json.dump(stream, open(D / "stream.json", "w"), separators=(",", ":"))
+if len(sys.argv) > 1: print("merged extra prompts; moved2 unchanged"); raise SystemExit
 
 # moved2: the "button" prompt only (as in neurons_acts.py), reply-free; delta per feeling, then minus the mean of the others
 ids = tok.apply_chat_template([{"role": "user", "content": PROMPTS["button"].replace(", then one sentence", "")}], add_generation_prompt=True, enable_thinking=False)

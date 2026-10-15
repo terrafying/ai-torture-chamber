@@ -223,8 +223,12 @@ function controls(){
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
  const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
  if(S.view==="live"){
-  seg(add(),[["describe","describe the moment"],["button","the stop button"]],S.prompt,k=>{S.prompt=k;S.tok=0;refresh();},"prompt");
-  seg(add(),[["none","nothing"],...FEEL10.map(f=>[f,f])],S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
+  const PK=Object.keys(ST.prompts),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
+  const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
+   const c0=(cond().circ||[])[0];if(S.mode==="chose"&&c0)S.tok=c0.t;else S.tok=S.mode==="chose"?ST.prompts[k].n_prompt:0;refresh();};
+  seg(add(),scenes.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"prompt");
+  if(ids.length)seg(add(),ids.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"who, at what cost");
+  seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"nothing":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}

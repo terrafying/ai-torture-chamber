@@ -76,7 +76,7 @@ txt = json.dumps({"meta": meta, "neurons": list(feat.values())}, separators=(","
 (S / "featured.json").write_text(txt.replace("\ufffd", "\u25af"))
 out = {"prompts": {}}
 for pk, p in stream["prompts"].items():
-    out["prompts"][pk] = {"text": p["text"], "n_prompt": p["n_prompt"], "conds": {}}
+    out["prompts"][pk] = {"text": p["text"], "label": p.get("label", {"describe": "describe the moment", "button": "the stop button"}.get(pk, pk)), "n_prompt": p["n_prompt"], "conds": {}}
     for c, cd in p["conds"].items():
         out["prompts"][pk]["conds"][c] = {"tok": cd["tokens"], "fr": [[fr["i"][:150], fr["v"][:150]] for fr in cd["frames"]],
                                           "ch": [[x["t"], x["alt"], x["gap"], x["i"][:120], x["v"][:120]] for x in cd.get("chose", [])],

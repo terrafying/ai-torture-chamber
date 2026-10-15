@@ -24,8 +24,9 @@ def ask(g):
         headers={"Authorization": "Bearer " + os.environ["OPENROUTER_API_KEY"], "Content-Type": "application/json"})
     txt = json.load(urllib.request.urlopen(q, timeout=180))["choices"][0]["message"]["content"]
     return json.loads(re.search(r"\{[\s\S]*\}", txt).group(0))["groups"]
-with ThreadPoolExecutor(6) as ex: res = list(ex.map(ask, C))
-for g, groups in zip(C, res):
+todo = [g for g in C if not g.get("groups")]   # only circuits not yet grouped
+with ThreadPoolExecutor(6) as ex: res = list(ex.map(ask, todo))
+for g, groups in zip(todo, res):
     seen = set(); clean = []
     for gr in groups:
         mem = [i for i in gr.get("members", []) if isinstance(i, int) and 0 <= i < len(g["nodes"]) and i not in seen]
