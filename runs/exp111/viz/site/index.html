@@ -92,7 +92,7 @@ const $=s=>document.querySelector(s), esc=t=>String(t==null?"":t).replace(/[&<>"
 const vis=t=>esc(String(t).replace(/\n/g,"⏎").replace(/ /g,"·"));
 let grid, F;
 try{
-  const [gb,fj]=await Promise.all([fetch("grid.b64.txt").then(r=>r.text()).then(t=>{const b=atob(t.trim()),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u.buffer;}),fetch("featured.json").then(r=>r.json())]);
+  const [gb,fj]=await Promise.all([fetch("grid.json").then(r=>{if(!r.ok)throw new Error("grid.json: HTTP "+r.status);return r.json();}).then(j=>{const b=atob(j.b64),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u.buffer;}),fetch("featured.json").then(r=>{if(!r.ok)throw new Error("featured.json: HTTP "+r.status);return r.json();})]);
   grid=new Int8Array(gb); F=fj;
 }catch(e){ $("#loading").textContent="Couldn't load the neuron data: "+e.message; return; }
 const M=F.meta, NL=M.n_layers, NI=M.n_neurons, FE=M.feelings, NF=FE.length, REC=2+NF, L=M.layer, T=M.tokens.length;

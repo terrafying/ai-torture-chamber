@@ -1,6 +1,6 @@
 """Pack exp111's data for the web viewer (viz/site/): every neuron of Qwen3-4B as one record in grid.bin, and the
 featured neurons (top writers/readers, most moved, most attributed) with their labels in featured.json.
-grid.b64.txt (base64 of), little-endian, per neuron in order layer-major (36 x 9728):
+grid.json ({b64: base64 of}), little-endian, per neuron in order layer-major (36 x 9728):
   int8 x, int8 y  (floor layout: PCA of the neuron's 11-feeling profile)  +  int8 cos[11] (writer cos at floors <= 18,
   reader cos above; scale in featured.json meta.cos_scale)  = 13 bytes.
     python viz/build_viz.py"""
@@ -16,7 +16,7 @@ prof_f = prof.astype(np.float32) * np.where(np.arange(NL)[:, None, None] <= L, s
 cmax = float(np.abs(prof_f).max()); prof8 = np.round(prof_f / cmax * 127).astype(np.int8)
 xy = (np.fromfile(D / "layout.bin", np.int16).reshape(NL, I, 2).astype(np.float32) / 32767 * 127).round().astype(np.int8)
 import base64
-(S / "grid.b64.txt").write_bytes(base64.b64encode(np.concatenate([xy, prof8], axis=2).tobytes()))   # artifacts serve no raw binary
+(S / "grid.json").write_text(json.dumps({"b64": base64.b64encode(np.concatenate([xy, prof8], axis=2).tobytes()).decode()}))   # artifacts serve no raw binary
 
 acts = json.load(open(D / "acts.json")); attr = json.load(open(D / "attr.json")); top = json.load(open(D / "top.json"))
 ex = json.load(open(D / "exemplars.json")) if (D / "exemplars.json").exists() else {"neurons": {}}
@@ -56,4 +56,4 @@ meta = {"model": "Qwen/Qwen3-4B", "layer": L, "n_layers": NL, "n_neurons": I, "f
         "concentration": st["concentration"], "corpus": {"name": ex.get("corpus"), "n_tokens": ex.get("n_tokens")}}
 txt = json.dumps({"meta": meta, "neurons": list(feat.values())}, separators=(",", ":"), ensure_ascii=False)
 (S / "featured.json").write_text(txt.replace("\ufffd", "\u25af"))   # a token that is part of a UTF-8 character decodes to U+FFFD; show it as ▯
-print(len(feat), "featured;", (S / "grid.b64.txt").stat().st_size // 1024, "KB grid;", (S / "featured.json").stat().st_size // 1024, "KB featured")
+print(len(feat), "featured;", (S / "grid.json").stat().st_size // 1024, "KB grid;", (S / "featured.json").stat().st_size // 1024, "KB featured")
