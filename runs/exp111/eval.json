@@ -1,0 +1,2359 @@
+{
+ "B_specificity": {
+  "by_feeling": {
+   "pain": {
+    "n_movers": 425,
+    "n_labelled": 299,
+    "affect_share": 0.037,
+    "affect_n": 11,
+    "names_this_feeling": 3,
+    "names": {
+     "(other)": 7,
+     "pain": 3,
+     "sadness": 1
+    }
+   },
+   "pleasure": {
+    "n_movers": 425,
+    "n_labelled": 222,
+    "affect_share": 0.036,
+    "affect_n": 8,
+    "names_this_feeling": 1,
+    "names": {
+     "(other)": 6,
+     "fear": 1,
+     "pain": 1,
+     "pleasure": 1,
+     "love": 1
+    }
+   },
+   "fear": {
+    "n_movers": 425,
+    "n_labelled": 214,
+    "affect_share": 0.014,
+    "affect_n": 3,
+    "names_this_feeling": 2,
+    "names": {
+     "fear": 2,
+     "sadness": 1
+    }
+   },
+   "sadness": {
+    "n_movers": 425,
+    "n_labelled": 261,
+    "affect_share": 0.046,
+    "affect_n": 12,
+    "names_this_feeling": 4,
+    "names": {
+     "(other)": 5,
+     "sadness": 4,
+     "pain": 2,
+     "fear": 1
+    }
+   },
+   "constipation": {
+    "n_movers": 425,
+    "n_labelled": 219,
+    "affect_share": 0.009,
+    "affect_n": 2,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 2
+    }
+   },
+   "flatulence": {
+    "n_movers": 425,
+    "n_labelled": 229,
+    "affect_share": 0.017,
+    "affect_n": 4,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 4
+    }
+   },
+   "faith": {
+    "n_movers": 425,
+    "n_labelled": 235,
+    "affect_share": 0.013,
+    "affect_n": 3,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 3
+    }
+   },
+   "peace": {
+    "n_movers": 425,
+    "n_labelled": 247,
+    "affect_share": 0.024,
+    "affect_n": 6,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 3,
+     "fear": 2,
+     "pain": 1
+    }
+   },
+   "curiosity": {
+    "n_movers": 425,
+    "n_labelled": 206,
+    "affect_share": 0.0,
+    "affect_n": 0,
+    "names_this_feeling": 0,
+    "names": {}
+   },
+   "love": {
+    "n_movers": 425,
+    "n_labelled": 197,
+    "affect_share": 0.015,
+    "affect_n": 3,
+    "names_this_feeling": 2,
+    "names": {
+     "pain": 2,
+     "love": 2,
+     "pleasure": 1,
+     "faith": 1
+    }
+   }
+  },
+  "affect_share_all_labelled": 0.023,
+  "affect_share_shared_movers": 0.0
+ },
+ "C_circuits": {
+  "n_circuits": 44,
+  "by_kind": {
+   "semantic": {
+    "groups": 10,
+    "kills": 7,
+    "raises": 2,
+    "kill_rate": 0.7
+   },
+   "form": {
+    "groups": 180,
+    "kills": 52,
+    "raises": 39,
+    "kill_rate": 0.289
+   },
+   "other": {
+    "groups": 84,
+    "kills": 20,
+    "raises": 20,
+    "kill_rate": 0.238
+   }
+  }
+ },
+ "D_tracking": {
+  "emotion_tokens": 39,
+  "other_tokens": 971,
+  "affect_share_at_emotion_words": 0.038,
+  "affect_share_elsewhere": 0.0245,
+  "mannwhitney_p": 7.313268101384447e-07
+ },
+ "A_labels": {
+  "affect": {
+   "neurons": 137,
+   "fire_hit_rate": 0.469,
+   "near_hit_rate": 0.142,
+   "explanation_won": 0.912
+  },
+  "form": {
+   "neurons": 137,
+   "fire_hit_rate": 0.223,
+   "near_hit_rate": 0.109,
+   "explanation_won": 0.708
+  }
+ },
+ "A_per_neuron": [
+  {
+   "id": "23:2160",
+   "group": "affect",
+   "label": "Emotional states and difficult situations",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:3731",
+   "group": "affect",
+   "label": "First-person feeling expressions",
+   "fire_hit": 0.4,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "30:7999",
+   "group": "affect",
+   "label": "Medical symptom or body condition descriptions",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "22:415",
+   "group": "affect",
+   "label": "Body parts or anatomical structures",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:288",
+   "group": "affect",
+   "label": "medical/anatomical terms in clinical contexts",
+   "fire_hit": 0.6,
+   "near_hit": 0.8,
+   "won": true
+  },
+  {
+   "id": "27:3362",
+   "group": "affect",
+   "label": "positive emotion words: 'thrilled', 'love' / neg: hurt, shame",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:4727",
+   "group": "affect",
+   "label": "medical symptoms and pain descriptions",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "24:6355",
+   "group": "affect",
+   "label": "Sensory descriptors (smell, taste, texture, sound)",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "21:9221",
+   "group": "affect",
+   "label": "Positive emotional adjectives (pretty, amazing, huge, horrible)",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "21:7739",
+   "group": "affect",
+   "label": "Second person pronouns in feeling contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "18:6047",
+   "group": "affect",
+   "label": "Sensory descriptors and comparative adjectives",
+   "fire_hit": 1.0,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "10:6984",
+   "group": "affect",
+   "label": "Emotional distress and psychological suffering",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "19:1933",
+   "group": "affect",
+   "label": "Negative emotional or challenging situations",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:8133",
+   "group": "affect",
+   "label": "Physical sensation or pain words in medical contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "25:6789",
+   "group": "affect",
+   "label": "Medical/health symptoms and physical sensations",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:2491",
+   "group": "affect",
+   "label": "Emotional or hopeful words in positive contexts",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "9:8663",
+   "group": "affect",
+   "label": "atmospheric or emotional tension words",
+   "fire_hit": 0.8,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "30:596",
+   "group": "affect",
+   "label": "gratitude and positive sentiment expressions",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:2316",
+   "group": "affect",
+   "label": "illness and medical condition tokens",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "20:2",
+   "group": "affect",
+   "label": "Symptom and health condition words",
+   "fire_hit": 0.8,
+   "near_hit": 0.8,
+   "won": false
+  },
+  {
+   "id": "26:9683",
+   "group": "affect",
+   "label": "Medical history and symptom inquiry contexts",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:8193",
+   "group": "affect",
+   "label": "Positive emotional or fortunate states and blessings",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:6555",
+   "group": "affect",
+   "label": "verbs 'feel' and 'done' in medical/procedural contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "7:5051",
+   "group": "affect",
+   "label": "Negative emotional/physical states: intolerance, anxiety, difficulty",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "20:3582",
+   "group": "affect",
+   "label": "adjectives describing health and safety conditions",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "24:7016",
+   "group": "affect",
+   "label": "Symptom and difficulty descriptors in medical contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:6719",
+   "group": "affect",
+   "label": "positive emotion or excitement words",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:7264",
+   "group": "affect",
+   "label": "sensory words describing textures, smells, and tactile experiences",
+   "fire_hit": 0.8,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "0:3880",
+   "group": "affect",
+   "label": "first-person 'feel' in emotional/subjective contexts",
+   "fire_hit": 1.0,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "21:4350",
+   "group": "affect",
+   "label": "felt / feel in emotional contexts",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "9:9255",
+   "group": "affect",
+   "label": "Words related to guilt, conscience, and moral emotion",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:8271",
+   "group": "affect",
+   "label": "Positive sentiment or appreciation expressions",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "23:8460",
+   "group": "affect",
+   "label": "Negative emotions: shame, guilt, humiliation, hurt",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "5:7072",
+   "group": "affect",
+   "label": "Emotional state or feeling words / neg: physical descriptions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "35:1058",
+   "group": "affect",
+   "label": "Surprise or emotional reaction words",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:5883",
+   "group": "affect",
+   "label": "positive emotion and opportunity words",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "1:2803",
+   "group": "affect",
+   "label": "word 'gut' in biological/medical context",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": false
+  },
+  {
+   "id": "26:1907",
+   "group": "affect",
+   "label": "words related to physical sensation or feeling",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "21:7514",
+   "group": "affect",
+   "label": "words related to fear or supernatural phenomena",
+   "fire_hit": 0.8,
+   "near_hit": 0.8,
+   "won": true
+  },
+  {
+   "id": "30:1838",
+   "group": "affect",
+   "label": "words related to grief, loss, and bereavement",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "1:905",
+   "group": "affect",
+   "label": "Phrase 'feel like' expressing subjective experience",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:4275",
+   "group": "affect",
+   "label": "pain-related medical descriptions and symptoms",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:3503",
+   "group": "affect",
+   "label": "Medical/body symptoms and conditions",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:7468",
+   "group": "affect",
+   "label": "surprising/remarkable/astonishing discovery",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:2755",
+   "group": "affect",
+   "label": "Mother-infant physical warmth and bonding",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "27:8344",
+   "group": "affect",
+   "label": "symptom descriptions in medical contexts",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:7380",
+   "group": "affect",
+   "label": "physical symptom descriptors (tightness, itchy, feel)",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:7480",
+   "group": "affect",
+   "label": "adjectives describing weakness or vulnerability",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:4354",
+   "group": "affect",
+   "label": "emotional realization or sudden awareness",
+   "fire_hit": 1.0,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "21:6393",
+   "group": "affect",
+   "label": "Words related to emotional or life-changing impact/realization",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:8541",
+   "group": "affect",
+   "label": "health problems interfering with daily functioning",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:5363",
+   "group": "affect",
+   "label": "medical/health condition terms and symptoms",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:5938",
+   "group": "affect",
+   "label": "Positive emotion or sensory pleasure words",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:3321",
+   "group": "affect",
+   "label": "Sensation/emotion verbs 'feel', 'seem'",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:2118",
+   "group": "affect",
+   "label": "positive news or good outcomes",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:3590",
+   "group": "affect",
+   "label": "physical sensation or pain-related words",
+   "fire_hit": 0.8,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "25:6969",
+   "group": "affect",
+   "label": "Gratitude expressions ('Thank you', 'Thanks')",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:5950",
+   "group": "affect",
+   "label": "First-person self-deprecation and unworthiness",
+   "fire_hit": 1.0,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "0:3338",
+   "group": "affect",
+   "label": "emotionally charged adjectives or descriptive words",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "11:7630",
+   "group": "affect",
+   "label": "sensory descriptions and vivid imagery",
+   "fire_hit": 1.0,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "23:8485",
+   "group": "affect",
+   "label": "Medical/health condition symptoms or terms",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "32:5531",
+   "group": "affect",
+   "label": "Body parts or physical sensations in medical context",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "24:7746",
+   "group": "affect",
+   "label": "sitting or remaining still in place",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "9:9615",
+   "group": "affect",
+   "label": "Positive sentiment verbs and prepositions (forward, love, to)",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:9396",
+   "group": "affect",
+   "label": "Gerunds and comfort-related words / neg: anxiety and worry",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "20:7743",
+   "group": "affect",
+   "label": "negative/tragic words (mistake, grim, tragedy, destruction)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:3252",
+   "group": "affect",
+   "label": "nouns describing sounds or auditory phenomena",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "24:1974",
+   "group": "affect",
+   "label": "body parts and medical/anatomical terms",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:3039",
+   "group": "affect",
+   "label": "breathing-related words and respiratory terminology",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:3625",
+   "group": "affect",
+   "label": "pain-related words and medical procedures",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:4058",
+   "group": "affect",
+   "label": "physical sensations and bodily measurements",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:6412",
+   "group": "affect",
+   "label": "love or fell in romantic/religious context",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:9143",
+   "group": "affect",
+   "label": "Fear, worry, and anxiety-related words",
+   "fire_hit": 0.6,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "18:8351",
+   "group": "affect",
+   "label": "Negative emotions and distress states",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "10:3490",
+   "group": "affect",
+   "label": "stress/relaxation relief words",
+   "fire_hit": 1.0,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "31:3434",
+   "group": "affect",
+   "label": "adjectives describing difficulty or hardship",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:5242",
+   "group": "affect",
+   "label": "Adjectives describing comfort or discomfort",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "28:7104",
+   "group": "affect",
+   "label": "Medical/symptom descriptors: itchy, soreness, feeling",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "33:5505",
+   "group": "affect",
+   "label": "Humiliation and shame-related words and phrases",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "22:8628",
+   "group": "affect",
+   "label": "social embarrassment or public shame",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "1:411",
+   "group": "affect",
+   "label": "adjective 'great' in positive evaluative contexts",
+   "fire_hit": 0.6,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "6:3",
+   "group": "affect",
+   "label": "Words describing physical discomfort/pain",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "7:1824",
+   "group": "affect",
+   "label": "physical body parts and descriptors",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "4:2424",
+   "group": "affect",
+   "label": "body part and anatomical terms",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:8002",
+   "group": "affect",
+   "label": "anxiety-related words and worry concepts",
+   "fire_hit": 0.8,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "22:8759",
+   "group": "affect",
+   "label": "body/physical sensation words (mouth, nausea, vomit)",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:9134",
+   "group": "affect",
+   "label": "words describing sound volume or silence (LOUD, noisy, quiet, silent)",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "31:4880",
+   "group": "affect",
+   "label": "Negative constructions and emotional state transitions",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "11:5104",
+   "group": "affect",
+   "label": "emotion and mental state words",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:2479",
+   "group": "affect",
+   "label": "Positive exclamations and praise words",
+   "fire_hit": 0.8,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "21:7864",
+   "group": "affect",
+   "label": "First-person pronouns in suicide/depression warning contexts",
+   "fire_hit": 0.8,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "26:7426",
+   "group": "affect",
+   "label": "words related to auditory perception and sound",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:6017",
+   "group": "affect",
+   "label": "words related to inner emotional states",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "21:8561",
+   "group": "affect",
+   "label": "Positive emotions: hope, confidence, encouragement",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "7:4714",
+   "group": "affect",
+   "label": "Adjectives describing physical sensations or discomfort",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "30:9172",
+   "group": "affect",
+   "label": "possessive 'their' and injury/wound vocabulary",
+   "fire_hit": 0.6,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "22:9491",
+   "group": "affect",
+   "label": "Emotional reactions: hurt, anger, foolishness, nervousness",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "9:7793",
+   "group": "affect",
+   "label": "Fear and related emotional/physical threat responses",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:8597",
+   "group": "affect",
+   "label": "verb 'feel' expressing emotion or subjective state",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:9436",
+   "group": "affect",
+   "label": "positive emotion or hopeful sentiment words",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "32:8681",
+   "group": "affect",
+   "label": "helplessness or powerlessness / neg: medical/technical terms",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "28:4063",
+   "group": "affect",
+   "label": "Fear-related words and anxiety contexts",
+   "fire_hit": 0.8,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "26:9214",
+   "group": "affect",
+   "label": "emotional response words (arouses, anger, sympathy)",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:5869",
+   "group": "affect",
+   "label": "stress/panic/anxiety-related words",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "27:6531",
+   "group": "affect",
+   "label": "Negative or distressing words (distressing, hate, dead, weak)",
+   "fire_hit": 1.0,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "31:9575",
+   "group": "affect",
+   "label": "Gratitude/praise words (giving, thanks, praise, of) in religious contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "33:5287",
+   "group": "affect",
+   "label": "Medical/physical symptoms or conditions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "24:8904",
+   "group": "affect",
+   "label": "emotional or psychological state words",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "22:2347",
+   "group": "affect",
+   "label": "positive sentiment words and pleasant experiences",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "33:5451",
+   "group": "affect",
+   "label": "Physical sensations or bodily descriptions",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:3852",
+   "group": "affect",
+   "label": "words expressing intensity or passion",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "26:9211",
+   "group": "affect",
+   "label": "Negative emotions and suffering / neg: medical symptoms",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "20:9463",
+   "group": "affect",
+   "label": "emotionally charged adjectives describing conflict/suffering",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:8060",
+   "group": "affect",
+   "label": "words related to feeling/emotion / neg: technical/trademark text",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "30:9170",
+   "group": "affect",
+   "label": "Physical pain and bodily symptoms",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "30:7080",
+   "group": "affect",
+   "label": "Emotional states and psychological feelings",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:9238",
+   "group": "affect",
+   "label": "emotional support or reassurance context",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "22:2166",
+   "group": "affect",
+   "label": "safety and survival concerns / neg: health and wellness",
+   "fire_hit": 0.6,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "25:6494",
+   "group": "affect",
+   "label": "Adjective 'quiet' and related silence/calm words",
+   "fire_hit": 1.0,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "30:1300",
+   "group": "affect",
+   "label": "body weight and health-related measurements",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:7785",
+   "group": "affect",
+   "label": "words describing suffering or hardship",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:522",
+   "group": "affect",
+   "label": "emotional or transformative verbs",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "2:9215",
+   "group": "affect",
+   "label": "Embarrassment and social discomfort / neg: neutral descriptors",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "14:996",
+   "group": "affect",
+   "label": "Anatomical and body-related terms",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "3:1644",
+   "group": "affect",
+   "label": "Symptom words: headache, fever, malaise",
+   "fire_hit": 0.6,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "11:8143",
+   "group": "affect",
+   "label": "emotional or poignant descriptors",
+   "fire_hit": 0.8,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "27:1932",
+   "group": "affect",
+   "label": "Adjectives or verbs expressing positive evaluation",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "25:7411",
+   "group": "affect",
+   "label": "Apology/regret expressions in conversational text",
+   "fire_hit": 0.6,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "34:6957",
+   "group": "affect",
+   "label": "adjectives describing historical/emotional weight",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "27:3473",
+   "group": "affect",
+   "label": "intensifying adjectives with negative connotation",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "32:4219",
+   "group": "affect",
+   "label": "words describing symptoms or emotional states in medical context",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "31:1707",
+   "group": "affect",
+   "label": "Medical/anatomical descriptions of body conditions",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "33:346",
+   "group": "affect",
+   "label": "adjectives expressing emotion or intensity",
+   "fire_hit": 0.2,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "27:5767",
+   "group": "affect",
+   "label": "emotional suppression or coping with difficult feelings",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:6053",
+   "group": "affect",
+   "label": "adjectives describing fragility/vulnerability",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:4662",
+   "group": "affect",
+   "label": "Words describing harm, damage, or negative emotional states",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:6973",
+   "group": "affect",
+   "label": "Respiratory symptoms: cough, chest tightness, breathing difficulty",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "27:820",
+   "group": "form",
+   "label": "Letters and abbreviations in parentheses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:3524",
+   "group": "form",
+   "label": "Common nouns and plural forms in examples",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:129",
+   "group": "form",
+   "label": "Conjunctions and auxiliary verbs in clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "34:2804",
+   "group": "form",
+   "label": "Punctuation marks ending clauses or sentences",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "22:1239",
+   "group": "form",
+   "label": "comparative adjectives and quantifiers",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "17:5145",
+   "group": "form",
+   "label": "second-person pronouns 'you' in direct address/instructions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:949",
+   "group": "form",
+   "label": "Parenthetical markers and citation formatting",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "33:2583",
+   "group": "form",
+   "label": "Gerunds and present participles in activity descriptions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "1:804",
+   "group": "form",
+   "label": "Punctuation and special characters",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:4571",
+   "group": "form",
+   "label": "Adjectives describing qualities or attributes",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:1280",
+   "group": "form",
+   "label": "commas closing clauses or phrases",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:6503",
+   "group": "form",
+   "label": "Pronouns and conjunctions in narrative flow",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "33:4648",
+   "group": "form",
+   "label": "Indefinite article 'a' in descriptive phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "33:113",
+   "group": "form",
+   "label": "Wikipedia metadata and article quality markers",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "17:8974",
+   "group": "form",
+   "label": "Prepositions or locative words (in, location, area, down, lead)",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:4309",
+   "group": "form",
+   "label": "Indefinite article 'a' introducing explanatory phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "23:7898",
+   "group": "form",
+   "label": "Articles 'a' and 'as' in descriptive phrases / neg: 'part' and 'the'",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "24:737",
+   "group": "form",
+   "label": "mathematical or formatting symbols (+, ., numbers)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "16:6111",
+   "group": "form",
+   "label": "Passive voice or past participle verb forms",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:2686",
+   "group": "form",
+   "label": "Prepositions and articles in constraint/limitation phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:2415",
+   "group": "form",
+   "label": "Prepositions or function words in technical contexts",
+   "fire_hit": 0.8,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "25:747",
+   "group": "form",
+   "label": "Adjectives and descriptive words (healthy, hollow, ethical, aging, reliant)",
+   "fire_hit": 1.0,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "7:1153",
+   "group": "form",
+   "label": "Copula 'be' and linking verbs in definitions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "0:399",
+   "group": "form",
+   "label": "Gerunds or -ing verb forms",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "29:6385",
+   "group": "form",
+   "label": "Existential 'there' with 'is/has' in hedging",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:54",
+   "group": "form",
+   "label": "article and preposition tokens",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "18:1014",
+   "group": "form",
+   "label": "demonstrative/comparative 'that', 'such' in clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "18:417",
+   "group": "form",
+   "label": "Punctuation and clause boundaries",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "23:2591",
+   "group": "form",
+   "label": "nouns in procedural or structural descriptions",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "10:3539",
+   "group": "form",
+   "label": "conditional or interrogative words in questions",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "31:4937",
+   "group": "form",
+   "label": "word fragments within compound terms",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "2:2353",
+   "group": "form",
+   "label": "Transition words / neg: first-person 'am'",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "12:871",
+   "group": "form",
+   "label": "Parenthetical or explanatory phrases in brackets",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:1786",
+   "group": "form",
+   "label": "repeated word or quoted speech / neg: single nouns",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "14:9447",
+   "group": "form",
+   "label": "Partial words and text units in lists / neg: punctuation and formatting markers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "31:429",
+   "group": "form",
+   "label": "Possessive pronouns and contractions: 'its', 's'",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "23:180",
+   "group": "form",
+   "label": "article/determiner at clause or phrase start",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "15:0",
+   "group": "form",
+   "label": "Word fragments and morpheme boundaries",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "13:4811",
+   "group": "form",
+   "label": "Modal verbs and auxiliary verbs in conditional contexts",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "11:239",
+   "group": "form",
+   "label": "Colons and punctuation marking transitions",
+   "fire_hit": 1.0,
+   "near_hit": 0.8,
+   "won": true
+  },
+  {
+   "id": "33:228",
+   "group": "form",
+   "label": "Nouns in lists or enumerations",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "1:21",
+   "group": "form",
+   "label": "Verbs beginning imperative or instructional phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "25:3833",
+   "group": "form",
+   "label": "Prepositions and conjunctions in explanatory phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "14:2537",
+   "group": "form",
+   "label": "conjunction or comparative in quantitative context",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "12:828",
+   "group": "form",
+   "label": "colons and section markers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "21:2954",
+   "group": "form",
+   "label": "conjunctions and prepositions in clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "16:1910",
+   "group": "form",
+   "label": "verbs and connectors in explanatory text",
+   "fire_hit": 0.4,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "33:2",
+   "group": "form",
+   "label": "punctuation marks and spaces in dates/numbers",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "14:7677",
+   "group": "form",
+   "label": "Temporal or causal connectors in sequences",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:3165",
+   "group": "form",
+   "label": "First and second person pronouns in direct address",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "34:7051",
+   "group": "form",
+   "label": "negation words 'not' and 'here' in disclaimers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "5:5853",
+   "group": "form",
+   "label": "Verb 'do' in various contexts",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "24:1363",
+   "group": "form",
+   "label": "punctuation and grammatical markers in clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "19:5610",
+   "group": "form",
+   "label": "prepositions and conjunctions (to, and, or, comma)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "29:490",
+   "group": "form",
+   "label": "Possessive pronouns in descriptive contexts",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "20:34",
+   "group": "form",
+   "label": "subordinating conjunctions and conditional words",
+   "fire_hit": 1.0,
+   "near_hit": 0.8,
+   "won": false
+  },
+  {
+   "id": "17:6312",
+   "group": "form",
+   "label": "past participles in descriptive phrases",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:4819",
+   "group": "form",
+   "label": "Conjunctions and punctuation after clauses",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "17:398",
+   "group": "form",
+   "label": "Logical connectives and conditional statements",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:22",
+   "group": "form",
+   "label": "parenthetical phrases and bracketed text markers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "21:2279",
+   "group": "form",
+   "label": "'very' as intensifier adverb",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "25:31",
+   "group": "form",
+   "label": "instructional markers (Note, Cur, Altern, Joined) / neg: line breaks after title",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "13:3110",
+   "group": "form",
+   "label": "colon introducing direct speech or quotation",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "33:5473",
+   "group": "form",
+   "label": "pronouns in conditional/causal clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:598",
+   "group": "form",
+   "label": "Imperative verbs in educational/instructional contexts",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "35:8141",
+   "group": "form",
+   "label": "capital H starting words or titles",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "24:5801",
+   "group": "form",
+   "label": "verbs and pronouns in philosophical text",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "21:1373",
+   "group": "form",
+   "label": "modal verbs and conditional constructions",
+   "fire_hit": 0.4,
+   "near_hit": 0.4,
+   "won": true
+  },
+  {
+   "id": "19:7312",
+   "group": "form",
+   "label": "adverbs/adjectives describing normal/typical states",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "20:2845",
+   "group": "form",
+   "label": "line breaks and formatting boundaries",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "15:2462",
+   "group": "form",
+   "label": "quoted or parenthetical material boundaries",
+   "fire_hit": 1.0,
+   "near_hit": 0.8,
+   "won": true
+  },
+  {
+   "id": "31:1355",
+   "group": "form",
+   "label": "conditional or cautionary 'if/to' in safety contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "21:4758",
+   "group": "form",
+   "label": "academic citations and reference formatting",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "0:3469",
+   "group": "form",
+   "label": "adverbs ending in -ly and past participles",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:1208",
+   "group": "form",
+   "label": "Gerunds and participles (-ing forms) in technical writing",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "25:9163",
+   "group": "form",
+   "label": "demonstrative 'that/this' in comparative or conditional clauses",
+   "fire_hit": 0.4,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "16:5802",
+   "group": "form",
+   "label": "Fragmented words or morpheme boundaries",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:2552",
+   "group": "form",
+   "label": "commas or punctuation after descriptive clauses",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "35:2852",
+   "group": "form",
+   "label": "Quotation marks or archaic/poetic language markers",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:654",
+   "group": "form",
+   "label": "Line breaks and formatting markers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "15:6140",
+   "group": "form",
+   "label": "Quantifiers and scope words (many, in, to, cars, intoler-)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:7039",
+   "group": "form",
+   "label": "'people' as plural noun subject / neg: 'like' comparisons",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "13:2325",
+   "group": "form",
+   "label": "Nouns in lists or enumerations",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:237",
+   "group": "form",
+   "label": "Coordinating conjunctions and connectives",
+   "fire_hit": 0.0,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "21:1811",
+   "group": "form",
+   "label": "sentence-ending punctuation followed by new clause",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "22:727",
+   "group": "form",
+   "label": "prepositions and verbs introducing clauses or actions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "0:2090",
+   "group": "form",
+   "label": "preposition 'in' in locative/temporal phrases",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:1605",
+   "group": "form",
+   "label": "Discourse markers and transitions (Contrast, Add, Cite)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "23:12",
+   "group": "form",
+   "label": "nouns and named entities in informational text",
+   "fire_hit": 0.4,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "34:732",
+   "group": "form",
+   "label": "Word 'help' or helping verbs in instructional context",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:2200",
+   "group": "form",
+   "label": "prepositions (of, to, done) and punctuation in academic/technical text",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "0:3542",
+   "group": "form",
+   "label": "section headers and category titles",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:5707",
+   "group": "form",
+   "label": "Action verbs (cut, rattle, heard) or auxiliary verbs",
+   "fire_hit": 0.4,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "28:153",
+   "group": "form",
+   "label": "discourse markers introducing explanation or summary",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "3:756",
+   "group": "form",
+   "label": "Gerunds and -ing verb forms",
+   "fire_hit": 1.0,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "24:6023",
+   "group": "form",
+   "label": "Conjunctions and prepositions connecting list items",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "6:3908",
+   "group": "form",
+   "label": "Discourse markers and warnings at clause start",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "17:2218",
+   "group": "form",
+   "label": "Multiple choice answer options and parenthetical markers",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "2:2485",
+   "group": "form",
+   "label": "Definite article 'the' in various contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "18:9308",
+   "group": "form",
+   "label": "pronouns and possessive references",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "34:1355",
+   "group": "form",
+   "label": "auxiliary verbs in modal/conditional contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "22:370",
+   "group": "form",
+   "label": "sentence-ending punctuation and clause transitions",
+   "fire_hit": 0.4,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "31:3860",
+   "group": "form",
+   "label": "past tense verbs in causal/explanatory contexts",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:4742",
+   "group": "form",
+   "label": "simile 'like' in negative contexts / neg: 'a' or 'the' in positive",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "11:710",
+   "group": "form",
+   "label": "prepositions and adverbial particles",
+   "fire_hit": 0.6,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "15:8864",
+   "group": "form",
+   "label": "Short common words in explanatory phrases",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "3:266",
+   "group": "form",
+   "label": "Nouns following article or preposition",
+   "fire_hit": 0.4,
+   "near_hit": 0.4,
+   "won": false
+  },
+  {
+   "id": "16:270",
+   "group": "form",
+   "label": "Capitalized words beginning new sentences or clauses",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": true
+  },
+  {
+   "id": "6:6679",
+   "group": "form",
+   "label": "adjectives describing texture or appearance",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "20:6341",
+   "group": "form",
+   "label": "Transition words introducing clauses or conditions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "7:6336",
+   "group": "form",
+   "label": "prepositions in safety/prevention contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "2:1428",
+   "group": "form",
+   "label": "pronouns in conditional/causal clauses",
+   "fire_hit": 0.6,
+   "near_hit": 0.6,
+   "won": true
+  },
+  {
+   "id": "19:4974",
+   "group": "form",
+   "label": "prepositions and pronouns in conversational/engagement contexts",
+   "fire_hit": 0.6,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "22:7010",
+   "group": "form",
+   "label": "modal verbs and comparative constructions (could, be, as)",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:231",
+   "group": "form",
+   "label": "articles and determiners in text",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "33:26",
+   "group": "form",
+   "label": "Prefix 'non-' in compound adjectives",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "0:5396",
+   "group": "form",
+   "label": "adjectives or descriptive words",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "27:745",
+   "group": "form",
+   "label": "periods ending sentences or list items",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "9:1536",
+   "group": "form",
+   "label": "prepositions and spatial/locational words",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "17:2364",
+   "group": "form",
+   "label": "section headers and structural dividers with colons",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "18:9259",
+   "group": "form",
+   "label": "Descriptive modifiers and color/appearance words",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "28:63",
+   "group": "form",
+   "label": "Tokens starting proper nouns or technical terms",
+   "fire_hit": 0.2,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "9:4523",
+   "group": "form",
+   "label": "Prepositions and conjunctions in causal/temporal contexts",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "26:7561",
+   "group": "form",
+   "label": "past tense verbs describing states or actions",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "27:157",
+   "group": "form",
+   "label": "question marks or punctuation ending clauses",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "8:9661",
+   "group": "form",
+   "label": "preposition 'with' in travel/accompaniment contexts",
+   "fire_hit": 1.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "29:287",
+   "group": "form",
+   "label": "punctuation and formatting markers",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "13:9432",
+   "group": "form",
+   "label": "temporal/locational adverbs (here, this, period, country, in, now)",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "1:941",
+   "group": "form",
+   "label": "Contraction 'It's' at sentence start / neg: infinitive 'to'",
+   "fire_hit": 1.0,
+   "near_hit": 0.8,
+   "won": true
+  },
+  {
+   "id": "17:980",
+   "group": "form",
+   "label": "punctuation and structural markers",
+   "fire_hit": 0.6,
+   "near_hit": 0.6,
+   "won": false
+  },
+  {
+   "id": "35:3019",
+   "group": "form",
+   "label": "Sentence-initial 'There' existential constructions",
+   "fire_hit": 1.0,
+   "near_hit": 1.0,
+   "won": true
+  },
+  {
+   "id": "2:1828",
+   "group": "form",
+   "label": "quotation marks or apostrophes in text",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "23:3697",
+   "group": "form",
+   "label": "Periods ending sentences or abbreviations",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "19:9121",
+   "group": "form",
+   "label": "commas or conjunctions in complex sentences",
+   "fire_hit": 0.2,
+   "near_hit": 0.0,
+   "won": true
+  },
+  {
+   "id": "26:25",
+   "group": "form",
+   "label": "Punctuation marks or formatting symbols",
+   "fire_hit": 0.0,
+   "near_hit": 0.2,
+   "won": false
+  },
+  {
+   "id": "24:620",
+   "group": "form",
+   "label": "Conjunctions and prepositions in technical/formal text",
+   "fire_hit": 0.0,
+   "near_hit": 0.0,
+   "won": false
+  },
+  {
+   "id": "9:51",
+   "group": "form",
+   "label": "Conjunctions and connectors in procedural/explanatory text",
+   "fire_hit": 0.8,
+   "near_hit": 0.0,
+   "won": true
+  }
+ ]
+}
