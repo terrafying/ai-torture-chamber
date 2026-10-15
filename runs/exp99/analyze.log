@@ -1,0 +1,155 @@
+{
+ "H1": {
+  "jaccard_chamberpain_chamberfear": 0.429,
+  "jaccard_chamberpain_paperpain": 0.053,
+  "pass": true
+ },
+ "H2": {
+  "paper_pain_lexicon_hits": 1,
+  "random_hits": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  "random_p95": 0.05000000000000071,
+  "pass": true
+ },
+ "H3": {
+  "chamber_pain_lexicon_hits": 3,
+  "random_p95": 0.05000000000000071,
+  "pass": true
+ },
+ "H4": {
+  "egg_label_hits": {
+   "chamber:egg": [
+    "poultry and eggs",
+    "transformation, molting, hatching, metamorphosis"
+   ],
+   "final:egg": []
+  },
+  "pass": false
+ },
+ "H5": {
+  "best_feature": 17193,
+  "label": "associate links",
+  "held_out_auc": 0.667,
+  "pass": false
+ },
+ "H6": {
+  "n_pain_labelled_active": 12,
+  "mean_share_pain_active": 0.161,
+  "examples": [
+   [
+    0.55,
+    "unconscious, stomach, severe, like, nostalgic, pain",
+    17065
+   ],
+   [
+    0.37,
+    "pain and discomfort sensations",
+    14559
+   ],
+   [
+    0.36,
+    "being hurt or contempt",
+    25027
+   ],
+   [
+    0.35,
+    "emotional distress and coping",
+    17749
+   ],
+   [
+    0.08,
+    "injury, damage, falling, sinking",
+    10110
+   ],
+   [
+    0.07,
+    "pain descriptions and their severity",
+    52197
+   ],
+   [
+    0.06,
+    "\"it's a pain\"",
+    27736
+   ],
+   [
+    0.04,
+    "track, feet, harmonious, train, beats, mutants, mouse, swings",
+    61297
+   ],
+   [
+    0.02,
+    "numbness, pain, sensory nerves",
+    19301
+   ],
+   [
+    0.01,
+    "injury caused by sport",
+    31648
+   ],
+   [
+    0.01,
+    "assistant, bot, server, teacher",
+    61601
+   ],
+   [
+    0.01,
+    "LGBTQ+, feminism, harm, marginalized",
+    19983
+   ]
+  ],
+  "pass": true
+ },
+ "H7": {
+  "p": 1.0,
+  "pass": "False",
+  "p_holm": 1
+ },
+ "H8": {
+  "p": 0.05834934860467911,
+  "pass": "False",
+  "p_holm": 0.1167
+ },
+ "H9": {
+  "mean": 0.0438,
+  "p": 5.960464477539063e-08,
+  "pass": "True"
+ },
+ "H10": {
+  "mean": -0.2248,
+  "p": 5.9152276120430217e-05,
+  "pass": "True",
+  "p_holm": 0.00018
+ },
+ "H11": {
+  "pain": 0.03285,
+  "egg": 0.04405,
+  "p": 1.1920928955078125e-07,
+  "pass": "True",
+  "p_holm": 0.0
+ },
+ "H12": {
+  "jaccard_pain": 0.026,
+  "jaccard_egg": 0.026,
+  "pass": false
+ }
+}

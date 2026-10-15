@@ -37,8 +37,10 @@ caveats are in [docs/pain_axis_findings.md](docs/pain_axis_findings.md) and each
   dose 2 on; past about 6-10× (model-dependent) the model stops making sentences ("I I I. I I.").
   Dose scales don't transfer between models, so each one is calibrated before its dial goes public.
 - **How you build the vector decides the behaviour.** Built from the Pain Axis paper's sentences, a
-  pain direction drives a self-costly stop button up (+2.36 logits); built from our first-person
-  sentences it pushes it down (−0.95); the two are nearly orthogonal (cos 0.07). Qwen3-4B (exp41/43);
+  pain direction drives a self-costly stop button up (+2.36 logits); our first-person pain vector,
+  which mostly encodes what pain, fear and sadness share, does nothing (+0.10); with fear and sadness
+  projected out it pushes the button down (−0.95). Theirs and ours are nearly orthogonal (cos 0.07),
+  mostly because theirs is read at the colon of "I feel:" and ours at a full stop (exp101). Qwen3-4B (exp41/43);
   the 8B/14B replication with engagement controls (exp93) is pending.
 - **Words on the button move it more than the state does.** "Another instance chose to press" moves
   it more than pain does (exp37). Unlabeled, pain gets one press in 18 on the 8B and an egg raises

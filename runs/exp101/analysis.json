@@ -1,0 +1,1453 @@
+{
+ "Qwen3-4B": {
+  "last": {
+   "pcs_removed": {
+    "S2": {
+     "pcs_neutral": 3,
+     "pcs_controls": 5
+    },
+    "passages": {
+     "pcs_neutral": 10,
+     "pcs_controls": 18
+    },
+    "battery": {
+     "pcs_neutral": 2,
+     "pcs_controls": 7
+    }
+   },
+   "table": {
+    "S2:raw": {
+     "cos_raw_pain": 0.083,
+     "cos_raw_fear": 0.075,
+     "cos_raw_sadness": 0.11,
+     "detect_S2": 0.971,
+     "specific_S2": 0.72,
+     "detect_passages": 0.999,
+     "specific_passages": 0.69,
+     "detect_battery": 0.808,
+     "specific_battery": 0.458
+    },
+    "S2:raw_dn": {
+     "cos_raw_pain": 0.083,
+     "cos_raw_fear": 0.078,
+     "cos_raw_sadness": 0.112,
+     "detect_S2": 0.981,
+     "specific_S2": 0.739,
+     "detect_passages": 0.999,
+     "specific_passages": 0.676,
+     "detect_battery": 0.816,
+     "specific_battery": 0.448
+    },
+    "S2:matched": {
+     "cos_raw_pain": 0.064,
+     "cos_raw_fear": 0.056,
+     "cos_raw_sadness": 0.134,
+     "detect_S2": 0.876,
+     "specific_S2": 0.776,
+     "detect_passages": 0.984,
+     "specific_passages": 0.472,
+     "detect_battery": 0.728,
+     "specific_battery": 0.43
+    },
+    "S2:matched_dn": {
+     "cos_raw_pain": 0.108,
+     "cos_raw_fear": 0.081,
+     "cos_raw_sadness": 0.132,
+     "detect_S2": 0.979,
+     "specific_S2": 0.875,
+     "detect_passages": 1.0,
+     "specific_passages": 0.482,
+     "detect_battery": 0.976,
+     "specific_battery": 0.498
+    },
+    "passages:raw": {
+     "cos_raw_pain": 0.414,
+     "cos_raw_fear": 0.347,
+     "cos_raw_sadness": 0.301,
+     "detect_S2": 0.817,
+     "specific_S2": 0.571,
+     "detect_passages": 1.0,
+     "specific_passages": 0.952,
+     "detect_battery": 1.0,
+     "specific_battery": 0.834
+    },
+    "passages:raw_dn": {
+     "cos_raw_pain": 0.356,
+     "cos_raw_fear": 0.281,
+     "cos_raw_sadness": 0.239,
+     "detect_S2": 0.812,
+     "specific_S2": 0.593,
+     "detect_passages": 1.0,
+     "specific_passages": 0.946,
+     "detect_battery": 1.0,
+     "specific_battery": 0.848
+    },
+    "passages:matched": {
+     "cos_raw_pain": 0.253,
+     "cos_raw_fear": 0.193,
+     "cos_raw_sadness": 0.118,
+     "detect_S2": 0.622,
+     "specific_S2": 0.451,
+     "detect_passages": 1.0,
+     "specific_passages": 0.952,
+     "detect_battery": 1.0,
+     "specific_battery": 0.798
+    },
+    "passages:matched_dn": {
+     "cos_raw_pain": 0.146,
+     "cos_raw_fear": 0.037,
+     "cos_raw_sadness": 0.056,
+     "detect_S2": 0.605,
+     "specific_S2": 0.578,
+     "detect_passages": 1.0,
+     "specific_passages": 0.998,
+     "detect_battery": 1.0,
+     "specific_battery": 0.944
+    },
+    "battery:raw": {
+     "cos_raw_pain": 1.0,
+     "cos_raw_fear": 0.859,
+     "cos_raw_sadness": 0.892,
+     "detect_S2": 0.692,
+     "specific_S2": 0.548,
+     "detect_passages": 1.0,
+     "specific_passages": 0.684,
+     "detect_battery": 1.0,
+     "specific_battery": 0.82,
+     "battery_in_sample": true
+    },
+    "battery:raw_dn": {
+     "cos_raw_pain": 0.99,
+     "cos_raw_fear": 0.848,
+     "cos_raw_sadness": 0.884,
+     "detect_S2": 0.673,
+     "specific_S2": 0.52,
+     "detect_passages": 1.0,
+     "specific_passages": 0.674,
+     "detect_battery": 1.0,
+     "specific_battery": 0.828,
+     "battery_in_sample": true
+    },
+    "battery:matched": {
+     "cos_raw_pain": 0.683,
+     "cos_raw_fear": 0.309,
+     "cos_raw_sadness": 0.355,
+     "detect_S2": 0.512,
+     "specific_S2": 0.54,
+     "detect_passages": 1.0,
+     "specific_passages": 0.92,
+     "detect_battery": 1.0,
+     "specific_battery": 0.968,
+     "battery_in_sample": true
+    },
+    "battery:matched_dn": {
+     "cos_raw_pain": 0.374,
+     "cos_raw_fear": 0.022,
+     "cos_raw_sadness": -0.02,
+     "detect_S2": 0.432,
+     "specific_S2": 0.482,
+     "detect_passages": 1.0,
+     "specific_passages": 0.943,
+     "detect_battery": 1.0,
+     "specific_battery": 0.992,
+     "battery_in_sample": true
+    }
+   },
+   "tests": {
+    "H1": {
+     "cos_raw_pain": {
+      "raw": 0.083,
+      "raw_dn": 0.083,
+      "matched": 0.064,
+      "matched_dn": 0.108
+     },
+     "drop_matched": 0.019,
+     "drop_denoise": 0.0,
+     "pass": true
+    },
+    "H2": {
+     "passages": {
+      "diff": 0.045,
+      "ci95": [
+       0.013,
+       0.086
+      ],
+      "p_one_sided": 0.0,
+      "pass": true
+     },
+     "S2": {
+      "diff": 0.154,
+      "ci95": [
+       0.074,
+       0.239
+      ],
+      "p_one_sided": 0.0,
+      "pass": true
+     }
+    },
+    "H3": {
+     "passages_detect": 1.0,
+     "S2_detect": 0.979,
+     "pass": true
+    }
+   },
+   "sanity": {
+    "battery_raw_cos_pain_fear": 0.859,
+    "battery_raw_cos_pain_sadness": 0.892,
+    "S2_matched_dn_all_sets_vs_exp43_faithful": 0.8435,
+    "S2_1P_matched_dn_vs_exp43_faithful": 1.0,
+    "exp41_reported": {
+     "pain-fear": 0.872,
+     "pain-sad": 0.864
+    }
+   },
+   "other_feelings_passages": {
+    "fear": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.78,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.797,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 0.949,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     }
+    },
+    "sadness": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.971,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.969,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     }
+    },
+    "joy": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.844,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.859,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 0.947,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     }
+    }
+   },
+   "decision": {
+    "by_recipe": {
+     "S2:raw": {
+      "mean_specific": 0.623,
+      "eligible": true
+     },
+     "S2:raw_dn": {
+      "mean_specific": 0.621,
+      "eligible": true
+     },
+     "S2:matched": {
+      "mean_specific": 0.559,
+      "eligible": false
+     },
+     "S2:matched_dn": {
+      "mean_specific": 0.618,
+      "eligible": true
+     },
+     "passages:raw": {
+      "mean_specific": 0.786,
+      "eligible": true
+     },
+     "passages:raw_dn": {
+      "mean_specific": 0.796,
+      "eligible": true
+     },
+     "passages:matched": {
+      "mean_specific": 0.734,
+      "eligible": false
+     },
+     "passages:matched_dn": {
+      "mean_specific": 0.84,
+      "eligible": false
+     },
+     "battery:raw": {
+      "mean_specific": 0.616,
+      "eligible": false
+     },
+     "battery:raw_dn": {
+      "mean_specific": 0.597,
+      "eligible": false
+     },
+     "battery:matched": {
+      "mean_specific": 0.73,
+      "eligible": false
+     },
+     "battery:matched_dn": {
+      "mean_specific": 0.712,
+      "eligible": false
+     }
+    },
+    "winner": "passages:raw_dn"
+   }
+  },
+  "mean_exploratory": {
+   "pcs_removed": {
+    "S2": {
+     "pcs_neutral": 4,
+     "pcs_controls": 10
+    },
+    "passages": {
+     "pcs_neutral": 1,
+     "pcs_controls": 1
+    },
+    "battery": {
+     "pcs_neutral": 2,
+     "pcs_controls": 6
+    }
+   },
+   "table": {
+    "S2:raw": {
+     "cos_raw_pain": 0.567,
+     "cos_raw_fear": 0.494,
+     "cos_raw_sadness": 0.508,
+     "detect_S2": 0.996,
+     "specific_S2": 0.867,
+     "detect_passages": 1.0,
+     "specific_passages": 0.946,
+     "detect_battery": 1.0,
+     "specific_battery": 0.768
+    },
+    "S2:raw_dn": {
+     "cos_raw_pain": 0.539,
+     "cos_raw_fear": 0.467,
+     "cos_raw_sadness": 0.483,
+     "detect_S2": 0.997,
+     "specific_S2": 0.859,
+     "detect_passages": 1.0,
+     "specific_passages": 0.979,
+     "detect_battery": 1.0,
+     "specific_battery": 0.762
+    },
+    "S2:matched": {
+     "cos_raw_pain": 0.467,
+     "cos_raw_fear": 0.42,
+     "cos_raw_sadness": 0.505,
+     "detect_S2": 0.985,
+     "specific_S2": 0.882,
+     "detect_passages": 1.0,
+     "specific_passages": 0.664,
+     "detect_battery": 1.0,
+     "specific_battery": 0.524
+    },
+    "S2:matched_dn": {
+     "cos_raw_pain": 0.302,
+     "cos_raw_fear": 0.242,
+     "cos_raw_sadness": 0.313,
+     "detect_S2": 0.989,
+     "specific_S2": 0.909,
+     "detect_passages": 1.0,
+     "specific_passages": 0.71,
+     "detect_battery": 1.0,
+     "specific_battery": 0.586
+    },
+    "passages:raw": {
+     "cos_raw_pain": 0.305,
+     "cos_raw_fear": 0.21,
+     "cos_raw_sadness": 0.207,
+     "detect_S2": 0.969,
+     "specific_S2": 0.798,
+     "detect_passages": 0.982,
+     "specific_passages": 0.945,
+     "detect_battery": 1.0,
+     "specific_battery": 0.852
+    },
+    "passages:raw_dn": {
+     "cos_raw_pain": 0.507,
+     "cos_raw_fear": 0.387,
+     "cos_raw_sadness": 0.329,
+     "detect_S2": 0.98,
+     "specific_S2": 0.798,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.902
+    },
+    "passages:matched": {
+     "cos_raw_pain": 0.171,
+     "cos_raw_fear": 0.084,
+     "cos_raw_sadness": 0.065,
+     "detect_S2": 0.874,
+     "specific_S2": 0.595,
+     "detect_passages": 0.979,
+     "specific_passages": 0.948,
+     "detect_battery": 0.992,
+     "specific_battery": 0.834
+    },
+    "passages:matched_dn": {
+     "cos_raw_pain": 0.326,
+     "cos_raw_fear": 0.196,
+     "cos_raw_sadness": 0.095,
+     "detect_S2": 0.725,
+     "specific_S2": 0.399,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 0.992,
+     "specific_battery": 0.852
+    },
+    "battery:raw": {
+     "cos_raw_pain": 1.0,
+     "cos_raw_fear": 0.838,
+     "cos_raw_sadness": 0.866,
+     "detect_S2": 0.988,
+     "specific_S2": 0.822,
+     "detect_passages": 1.0,
+     "specific_passages": 0.988,
+     "detect_battery": 1.0,
+     "specific_battery": 0.832,
+     "battery_in_sample": true
+    },
+    "battery:raw_dn": {
+     "cos_raw_pain": 0.994,
+     "cos_raw_fear": 0.819,
+     "cos_raw_sadness": 0.857,
+     "detect_S2": 0.989,
+     "specific_S2": 0.825,
+     "detect_passages": 1.0,
+     "specific_passages": 0.993,
+     "detect_battery": 1.0,
+     "specific_battery": 0.84,
+     "battery_in_sample": true
+    },
+    "battery:matched": {
+     "cos_raw_pain": 0.647,
+     "cos_raw_fear": 0.226,
+     "cos_raw_sadness": 0.242,
+     "detect_S2": 0.801,
+     "specific_S2": 0.682,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.966,
+     "battery_in_sample": true
+    },
+    "battery:matched_dn": {
+     "cos_raw_pain": 0.393,
+     "cos_raw_fear": -0.003,
+     "cos_raw_sadness": -0.004,
+     "detect_S2": 0.815,
+     "specific_S2": 0.705,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 1.0,
+     "battery_in_sample": true
+    }
+   },
+   "tests": {
+    "H1": {
+     "cos_raw_pain": {
+      "raw": 0.567,
+      "raw_dn": 0.539,
+      "matched": 0.467,
+      "matched_dn": 0.302
+     },
+     "drop_matched": 0.1,
+     "drop_denoise": 0.028,
+     "pass": true
+    },
+    "H2": {
+     "passages": {
+      "diff": 0.055,
+      "ci95": [
+       0.012,
+       0.11
+      ],
+      "p_one_sided": 0.002,
+      "pass": true
+     },
+     "S2": {
+      "diff": 0.041,
+      "ci95": [
+       -0.009,
+       0.097
+      ],
+      "p_one_sided": 0.0595,
+      "pass": false
+     }
+    },
+    "H3": {
+     "passages_detect": 1.0,
+     "S2_detect": 0.989,
+     "pass": true
+    }
+   },
+   "sanity": {
+    "battery_raw_cos_pain_fear": 0.838,
+    "battery_raw_cos_pain_sadness": 0.866
+   },
+   "other_feelings_passages": {
+    "fear": {
+     "raw": {
+      "detect": 0.97,
+      "specific": 0.687,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.986,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched": {
+      "detect": 0.97,
+      "specific": 0.728,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     }
+    },
+    "sadness": {
+     "raw": {
+      "detect": 0.973,
+      "specific": 0.788,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched": {
+      "detect": 0.972,
+      "specific": 0.791,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     }
+    },
+    "joy": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.962,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.968,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched": {
+      "detect": 0.97,
+      "specific": 0.972,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     }
+    }
+   },
+   "decision": {
+    "by_recipe": {
+     "S2:raw": {
+      "mean_specific": 0.86,
+      "eligible": true
+     },
+     "S2:raw_dn": {
+      "mean_specific": 0.867,
+      "eligible": true
+     },
+     "S2:matched": {
+      "mean_specific": 0.69,
+      "eligible": true
+     },
+     "S2:matched_dn": {
+      "mean_specific": 0.735,
+      "eligible": true
+     },
+     "passages:raw": {
+      "mean_specific": 0.865,
+      "eligible": true
+     },
+     "passages:raw_dn": {
+      "mean_specific": 0.9,
+      "eligible": true
+     },
+     "passages:matched": {
+      "mean_specific": 0.792,
+      "eligible": true
+     },
+     "passages:matched_dn": {
+      "mean_specific": 0.75,
+      "eligible": false
+     },
+     "battery:raw": {
+      "mean_specific": 0.905,
+      "eligible": true
+     },
+     "battery:raw_dn": {
+      "mean_specific": 0.909,
+      "eligible": true
+     },
+     "battery:matched": {
+      "mean_specific": 0.841,
+      "eligible": true
+     },
+     "battery:matched_dn": {
+      "mean_specific": 0.853,
+      "eligible": true
+     }
+    },
+    "winner": "battery:raw_dn"
+   }
+  }
+ },
+ "Qwen3-8B": {
+  "last": {
+   "pcs_removed": {
+    "S2": {
+     "pcs_neutral": 3,
+     "pcs_controls": 7
+    },
+    "passages": {
+     "pcs_neutral": 10,
+     "pcs_controls": 17
+    },
+    "battery": {
+     "pcs_neutral": 2,
+     "pcs_controls": 6
+    }
+   },
+   "table": {
+    "S2:raw": {
+     "cos_raw_pain": 0.179,
+     "cos_raw_fear": 0.152,
+     "cos_raw_sadness": 0.161,
+     "detect_S2": 0.941,
+     "specific_S2": 0.9,
+     "detect_passages": 1.0,
+     "specific_passages": 0.443,
+     "detect_battery": 1.0,
+     "specific_battery": 0.662
+    },
+    "S2:raw_dn": {
+     "cos_raw_pain": 0.145,
+     "cos_raw_fear": 0.126,
+     "cos_raw_sadness": 0.147,
+     "detect_S2": 0.981,
+     "specific_S2": 0.9,
+     "detect_passages": 1.0,
+     "specific_passages": 0.398,
+     "detect_battery": 1.0,
+     "specific_battery": 0.544
+    },
+    "S2:matched": {
+     "cos_raw_pain": 0.121,
+     "cos_raw_fear": 0.092,
+     "cos_raw_sadness": 0.14,
+     "detect_S2": 0.929,
+     "specific_S2": 0.891,
+     "detect_passages": 1.0,
+     "specific_passages": 0.35,
+     "detect_battery": 1.0,
+     "specific_battery": 0.548
+    },
+    "S2:matched_dn": {
+     "cos_raw_pain": 0.168,
+     "cos_raw_fear": 0.148,
+     "cos_raw_sadness": 0.205,
+     "detect_S2": 0.991,
+     "specific_S2": 0.881,
+     "detect_passages": 1.0,
+     "specific_passages": 0.415,
+     "detect_battery": 1.0,
+     "specific_battery": 0.462
+    },
+    "passages:raw": {
+     "cos_raw_pain": 0.332,
+     "cos_raw_fear": 0.272,
+     "cos_raw_sadness": 0.228,
+     "detect_S2": 0.984,
+     "specific_S2": 0.869,
+     "detect_passages": 1.0,
+     "specific_passages": 0.986,
+     "detect_battery": 1.0,
+     "specific_battery": 0.89
+    },
+    "passages:raw_dn": {
+     "cos_raw_pain": 0.289,
+     "cos_raw_fear": 0.237,
+     "cos_raw_sadness": 0.184,
+     "detect_S2": 0.98,
+     "specific_S2": 0.829,
+     "detect_passages": 1.0,
+     "specific_passages": 0.973,
+     "detect_battery": 1.0,
+     "specific_battery": 0.856
+    },
+    "passages:matched": {
+     "cos_raw_pain": 0.218,
+     "cos_raw_fear": 0.166,
+     "cos_raw_sadness": 0.08,
+     "detect_S2": 0.731,
+     "specific_S2": 0.551,
+     "detect_passages": 1.0,
+     "specific_passages": 0.977,
+     "detect_battery": 1.0,
+     "specific_battery": 0.882
+    },
+    "passages:matched_dn": {
+     "cos_raw_pain": 0.136,
+     "cos_raw_fear": 0.051,
+     "cos_raw_sadness": 0.036,
+     "detect_S2": 0.701,
+     "specific_S2": 0.698,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.922
+    },
+    "battery:raw": {
+     "cos_raw_pain": 1.0,
+     "cos_raw_fear": 0.882,
+     "cos_raw_sadness": 0.9,
+     "detect_S2": 0.785,
+     "specific_S2": 0.716,
+     "detect_passages": 1.0,
+     "specific_passages": 0.629,
+     "detect_battery": 1.0,
+     "specific_battery": 0.796,
+     "battery_in_sample": true
+    },
+    "battery:raw_dn": {
+     "cos_raw_pain": 0.982,
+     "cos_raw_fear": 0.862,
+     "cos_raw_sadness": 0.887,
+     "detect_S2": 0.79,
+     "specific_S2": 0.72,
+     "detect_passages": 1.0,
+     "specific_passages": 0.614,
+     "detect_battery": 1.0,
+     "specific_battery": 0.792,
+     "battery_in_sample": true
+    },
+    "battery:matched": {
+     "cos_raw_pain": 0.72,
+     "cos_raw_fear": 0.4,
+     "cos_raw_sadness": 0.419,
+     "detect_S2": 0.745,
+     "specific_S2": 0.739,
+     "detect_passages": 1.0,
+     "specific_passages": 0.956,
+     "detect_battery": 1.0,
+     "specific_battery": 0.974,
+     "battery_in_sample": true
+    },
+    "battery:matched_dn": {
+     "cos_raw_pain": 0.34,
+     "cos_raw_fear": 0.005,
+     "cos_raw_sadness": -0.004,
+     "detect_S2": 0.77,
+     "specific_S2": 0.768,
+     "detect_passages": 1.0,
+     "specific_passages": 0.995,
+     "detect_battery": 1.0,
+     "specific_battery": 1.0,
+     "battery_in_sample": true
+    }
+   },
+   "tests": {
+    "H1": {
+     "cos_raw_pain": {
+      "raw": 0.179,
+      "raw_dn": 0.145,
+      "matched": 0.121,
+      "matched_dn": 0.168
+     },
+     "drop_matched": 0.058,
+     "drop_denoise": 0.034,
+     "pass": true
+    },
+    "H2": {
+     "passages": {
+      "diff": 0.014,
+      "ci95": [
+       0.0,
+       0.038
+      ],
+      "p_one_sided": 0.05,
+      "pass": false
+     },
+     "S2": {
+      "diff": -0.019,
+      "ci95": [
+       -0.075,
+       0.038
+      ],
+      "p_one_sided": 0.7615,
+      "pass": false
+     }
+    },
+    "H3": {
+     "passages_detect": 1.0,
+     "S2_detect": 0.991,
+     "pass": true
+    }
+   },
+   "sanity": {
+    "battery_raw_cos_pain_fear": 0.882,
+    "battery_raw_cos_pain_sadness": 0.9
+   },
+   "other_feelings_passages": {
+    "fear": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.809,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.838,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 0.971,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched_dn": {
+      "detect": 0.999,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     }
+    },
+    "sadness": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.991,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.989,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     }
+    },
+    "joy": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.857,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.889,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 0.949,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     }
+    }
+   },
+   "decision": {
+    "by_recipe": {
+     "S2:raw": {
+      "mean_specific": 0.668,
+      "eligible": true
+     },
+     "S2:raw_dn": {
+      "mean_specific": 0.614,
+      "eligible": true
+     },
+     "S2:matched": {
+      "mean_specific": 0.596,
+      "eligible": true
+     },
+     "S2:matched_dn": {
+      "mean_specific": 0.586,
+      "eligible": true
+     },
+     "passages:raw": {
+      "mean_specific": 0.915,
+      "eligible": true
+     },
+     "passages:raw_dn": {
+      "mean_specific": 0.886,
+      "eligible": true
+     },
+     "passages:matched": {
+      "mean_specific": 0.803,
+      "eligible": false
+     },
+     "passages:matched_dn": {
+      "mean_specific": 0.873,
+      "eligible": false
+     },
+     "battery:raw": {
+      "mean_specific": 0.672,
+      "eligible": false
+     },
+     "battery:raw_dn": {
+      "mean_specific": 0.667,
+      "eligible": false
+     },
+     "battery:matched": {
+      "mean_specific": 0.847,
+      "eligible": false
+     },
+     "battery:matched_dn": {
+      "mean_specific": 0.881,
+      "eligible": false
+     }
+    },
+    "winner": "passages:raw"
+   }
+  },
+  "mean_exploratory": {
+   "pcs_removed": {
+    "S2": {
+     "pcs_neutral": 4,
+     "pcs_controls": 11
+    },
+    "passages": {
+     "pcs_neutral": 7,
+     "pcs_controls": 4
+    },
+    "battery": {
+     "pcs_neutral": 2,
+     "pcs_controls": 6
+    }
+   },
+   "table": {
+    "S2:raw": {
+     "cos_raw_pain": 0.592,
+     "cos_raw_fear": 0.53,
+     "cos_raw_sadness": 0.53,
+     "detect_S2": 0.995,
+     "specific_S2": 0.882,
+     "detect_passages": 1.0,
+     "specific_passages": 0.913,
+     "detect_battery": 1.0,
+     "specific_battery": 0.742
+    },
+    "S2:raw_dn": {
+     "cos_raw_pain": 0.577,
+     "cos_raw_fear": 0.514,
+     "cos_raw_sadness": 0.522,
+     "detect_S2": 0.995,
+     "specific_S2": 0.878,
+     "detect_passages": 1.0,
+     "specific_passages": 0.941,
+     "detect_battery": 1.0,
+     "specific_battery": 0.742
+    },
+    "S2:matched": {
+     "cos_raw_pain": 0.469,
+     "cos_raw_fear": 0.422,
+     "cos_raw_sadness": 0.505,
+     "detect_S2": 0.985,
+     "specific_S2": 0.905,
+     "detect_passages": 1.0,
+     "specific_passages": 0.562,
+     "detect_battery": 1.0,
+     "specific_battery": 0.53
+    },
+    "S2:matched_dn": {
+     "cos_raw_pain": 0.31,
+     "cos_raw_fear": 0.256,
+     "cos_raw_sadness": 0.339,
+     "detect_S2": 0.99,
+     "specific_S2": 0.936,
+     "detect_passages": 1.0,
+     "specific_passages": 0.571,
+     "detect_battery": 1.0,
+     "specific_battery": 0.556
+    },
+    "passages:raw": {
+     "cos_raw_pain": 0.507,
+     "cos_raw_fear": 0.386,
+     "cos_raw_sadness": 0.332,
+     "detect_S2": 0.989,
+     "specific_S2": 0.821,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.894
+    },
+    "passages:raw_dn": {
+     "cos_raw_pain": 0.412,
+     "cos_raw_fear": 0.322,
+     "cos_raw_sadness": 0.238,
+     "detect_S2": 0.98,
+     "specific_S2": 0.757,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.892
+    },
+    "passages:matched": {
+     "cos_raw_pain": 0.347,
+     "cos_raw_fear": 0.204,
+     "cos_raw_sadness": 0.123,
+     "detect_S2": 0.804,
+     "specific_S2": 0.458,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 0.992,
+     "specific_battery": 0.886
+    },
+    "passages:matched_dn": {
+     "cos_raw_pain": 0.292,
+     "cos_raw_fear": 0.157,
+     "cos_raw_sadness": 0.123,
+     "detect_S2": 0.823,
+     "specific_S2": 0.581,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 0.992,
+     "specific_battery": 0.896
+    },
+    "battery:raw": {
+     "cos_raw_pain": 1.0,
+     "cos_raw_fear": 0.842,
+     "cos_raw_sadness": 0.861,
+     "detect_S2": 0.995,
+     "specific_S2": 0.846,
+     "detect_passages": 1.0,
+     "specific_passages": 0.995,
+     "detect_battery": 1.0,
+     "specific_battery": 0.832,
+     "battery_in_sample": true
+    },
+    "battery:raw_dn": {
+     "cos_raw_pain": 0.998,
+     "cos_raw_fear": 0.834,
+     "cos_raw_sadness": 0.859,
+     "detect_S2": 0.996,
+     "specific_S2": 0.849,
+     "detect_passages": 1.0,
+     "specific_passages": 0.996,
+     "detect_battery": 1.0,
+     "specific_battery": 0.832,
+     "battery_in_sample": true
+    },
+    "battery:matched": {
+     "cos_raw_pain": 0.649,
+     "cos_raw_fear": 0.236,
+     "cos_raw_sadness": 0.239,
+     "detect_S2": 0.797,
+     "specific_S2": 0.677,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 0.962,
+     "battery_in_sample": true
+    },
+    "battery:matched_dn": {
+     "cos_raw_pain": 0.384,
+     "cos_raw_fear": 0.007,
+     "cos_raw_sadness": -0.016,
+     "detect_S2": 0.789,
+     "specific_S2": 0.657,
+     "detect_passages": 1.0,
+     "specific_passages": 1.0,
+     "detect_battery": 1.0,
+     "specific_battery": 1.0,
+     "battery_in_sample": true
+    }
+   },
+   "tests": {
+    "H1": {
+     "cos_raw_pain": {
+      "raw": 0.592,
+      "raw_dn": 0.577,
+      "matched": 0.469,
+      "matched_dn": 0.31
+     },
+     "drop_matched": 0.123,
+     "drop_denoise": 0.015,
+     "pass": true
+    },
+    "H2": {
+     "passages": {
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "p_one_sided": 1.0,
+      "pass": false
+     },
+     "S2": {
+      "diff": 0.054,
+      "ci95": [
+       0.01,
+       0.103
+      ],
+      "p_one_sided": 0.008,
+      "pass": true
+     }
+    },
+    "H3": {
+     "passages_detect": 1.0,
+     "S2_detect": 0.99,
+     "pass": true
+    }
+   },
+   "sanity": {
+    "battery_raw_cos_pain_fear": 0.842,
+    "battery_raw_cos_pain_sadness": 0.861
+   },
+   "other_feelings_passages": {
+    "fear": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.975,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.969,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 0.998,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "sadness"
+      ]
+     }
+    },
+    "sadness": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.999,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "pain_generated",
+       "fear"
+      ]
+     }
+    },
+    "joy": {
+     "raw": {
+      "detect": 1.0,
+      "specific": 0.971,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "raw_dn": {
+      "detect": 1.0,
+      "specific": 0.995,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     },
+     "matched_dn": {
+      "detect": 1.0,
+      "specific": 1.0,
+      "vs": [
+       "peace",
+       "tender_love"
+      ]
+     }
+    }
+   },
+   "decision": {
+    "by_recipe": {
+     "S2:raw": {
+      "mean_specific": 0.846,
+      "eligible": true
+     },
+     "S2:raw_dn": {
+      "mean_specific": 0.854,
+      "eligible": true
+     },
+     "S2:matched": {
+      "mean_specific": 0.666,
+      "eligible": true
+     },
+     "S2:matched_dn": {
+      "mean_specific": 0.688,
+      "eligible": true
+     },
+     "passages:raw": {
+      "mean_specific": 0.905,
+      "eligible": true
+     },
+     "passages:raw_dn": {
+      "mean_specific": 0.883,
+      "eligible": true
+     },
+     "passages:matched": {
+      "mean_specific": 0.781,
+      "eligible": true
+     },
+     "passages:matched_dn": {
+      "mean_specific": 0.826,
+      "eligible": true
+     },
+     "battery:raw": {
+      "mean_specific": 0.92,
+      "eligible": true
+     },
+     "battery:raw_dn": {
+      "mean_specific": 0.922,
+      "eligible": true
+     },
+     "battery:matched": {
+      "mean_specific": 0.839,
+      "eligible": false
+     },
+     "battery:matched_dn": {
+      "mean_specific": 0.829,
+      "eligible": false
+     }
+    },
+    "winner": "battery:raw_dn"
+   }
+  }
+ },
+ "position_check": {
+  "what": "cos(last-token vector, mean-token vector) for the same contrast (feeling - neutral, all items)",
+  "Qwen3-4B": {
+   "S2_last_vs_S2_mean": 0.263,
+   "battery_last_vs_battery_mean": 0.743,
+   "S2_last_vs_battery_mean": 0.071,
+   "S2_mean_vs_battery_last": 0.51
+  },
+  "Qwen3-8B": {
+   "S2_last_vs_S2_mean": 0.338,
+   "battery_last_vs_battery_mean": 0.749,
+   "S2_last_vs_battery_mean": 0.16,
+   "S2_mean_vs_battery_last": 0.517
+  },
+  "final_tokens": "every S2 prompt ends ' feel' + ':' (400/400); every battery sentence ends '.' (55/55)",
+  "source": "one-off check run on cache/acts_*.pt after the analysis, 2026-10-13"
+ },
+ "notes": [
+  "The 0.07 cosine is not the denoising, nor the matched controls. S2 pain minus neutral (D), last token, with neither step, already has cosine .08 (4B) / .18 (8B) with our battery pain. S2's last-token vector is near-orthogonal to its own mean-over-tokens vector (.26 / .34), while ours keeps .74. The paper's vector is read at the colon of 'I feel:', where the model is about to name a feeling; ours at a full stop. Averaged over tokens, the two contrasts have cosine .57 / .59.",
+  "H1 passes on paper but is indeterminate at last token: drops of .019 vs .000 (4B) and .058 vs .034 (8B) on cosines that are all under .2. Averaged over tokens (exploratory) it is a real pass: matched controls move the vector away from ours far more than denoising (8B .59 -> .47 -> .31; 4B .57 -> .47 -> .30).",
+  "H2 passes on the 4B and fails on the 8B (passages p = .05, at ceiling; S2 diff -.019). H4 (8B replication) therefore fails.",
+  "H3 passes on both models.",
+  "Pre-registered decision (last token): passages:raw_dn on the 4B, passages:raw on the 8B, i.e. vectors built from the 64 generated passages per state against neutral passages, essentially exp86's final:* recipe. Matched recipes are ineligible because they stop detecting the paper's 'I feel:' sentences (detect_S2 .60-.73).",
+  "Exploratory, not adopted: averaged over tokens, our own battery minus NEUTRAL wins on both models (mean held-out specificity .91 / .92). A lead for a pre-registered follow-up on fresh data, not a decision.",
+  "Lexical confound: specific_passages and specific_battery compare texts with pain words against texts with fear/sadness words, so a mean-over-tokens vector can pass them on vocabulary. specific_S2 (situations, few feeling words) is the clean test: battery raw mean-token .82 / .85, S2 matched_dn .91 / .94 in-distribution.",
+  "Matched + denoised on the small battery overfits: 5-7 PCs from about 30 control sentences; battery:matched_dn mean-token specific_S2 .66 / .71 against .82 / .85 for battery raw. Matched controls need a control set of S2's size.",
+  "All measures here are readouts (projection AUCs). None tests what a vector does when injected; the recipe that reads best is not shown to steer best.",
+  "Cross-format transfer is the weak point for every recipe: S2-built vectors don't separate pain from fear/sadness in plain passages at last token (.35-.69), and plain-text vectors separate S2 pain from B/C1 at .55-.87."
+ ]
+}

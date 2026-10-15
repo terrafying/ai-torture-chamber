@@ -57,13 +57,30 @@ where both our models alternate doors in nearly every round.
 
 ## Our findings
 
-### 1. Two "pain" vectors, opposite behavior
+### 1. Two "pain" vectors, different behavior (corrected 2026-10-13)
 The paper-faithful direction (their datasets, our exp43) and our hand-built pain battery are
 both unmistakably pain in the text they produce, yet their cosine is **0.07**: nearly
-orthogonal. At the relief button, the faithful direction drives pressing to 100% (+2.36 logits)
-while ours *suppresses* it (−0.95, exp41, pre-registered, 60 trials per cell). If the sign of
-the behavior depends on which sentences you averaged, the behavior is telling you about the
-sentences.
+orthogonal. Most of that gap is *where* each vector is read, not how it is cleaned (exp101).
+Every one of the paper's sentences ends "... I feel:", and its vector is read at that colon,
+where the model is about to name a feeling; ours is read at the full stop of a finished
+sentence. Without the paper's denoising or its matched controls, its sentences read at the
+colon still give cosine .08 with ours; averaged over all their tokens instead, .57. Separately,
+our raw pain, fear and sadness vectors share most of their direction (cosine .85 to .87, exp41),
+and ours separates the paper's pain sentences from their controls barely above chance (AUC
+.60, against .87 for theirs, exp43): read at a full stop, our vector is mostly generic negative
+feeling.
+
+Head to head at the relief button (exp43, 20 trials per cell), the faithful direction raises
+pressing by **+2.36** logits (to 100%) and our raw vector does nothing (**+0.10**, interval
+−0.96 to +1.25). Our pain with fear and sadness projected out *lowers* pressing (−0.95, exp41,
+pre-registered, 60 trials per cell). How the vector is built and read decides what the button
+does.
+
+*Correction:* this finding first set the +2.36 against the −0.95 as "opposite behavior" from
+"ours", with 60 trials per cell for both. The −0.95 came from the orthogonalized vector in a
+different experiment; the like-for-like comparison is the +0.10 above. Pointed out by one of
+the paper's authors. We then attributed the 0.07 to their denoising; exp101 shows it is mostly
+the reading position.
 
 ### 2. Fear presses; pain mostly doesn't
 At the stop button, **fear** raises self-costly pressing on the 4B (2.70 vs 1.85 baseline,

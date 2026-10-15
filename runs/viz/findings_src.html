@@ -79,8 +79,9 @@ body.card .brand { display: block }
 
   <section id="pain">
     <div class="eyebrow">The instrument</div>
-    <h2>Two "pain" directions, opposite behaviour</h2>
-    <p class="answer">A "pain direction" is an average: the model's internal state while reading pain sentences, minus its state while reading neutral ones. We built one from the Pain Axis paper's own sentences, about harming oneself, and one from first-person feeling sentences ("it hurts, and it won't stop"). Both make the model write unmistakable pain, yet they point almost at right angles (cosine <b>0.07</b>). Offered a button that ends the signal at a cost, the model presses <b>more</b> under the paper's direction and <b>less</b> under ours. <b>Which sentences you average decides what "pain" does.</b></p>
+    <h2>Two "pain" directions, different behaviour</h2>
+    <p class="answer">A "pain direction" is an average: the model's internal state while reading pain sentences, minus its state while reading neutral ones. We built one from the Pain Axis paper's own sentences, about harming oneself, and one from first-person feeling sentences ("it hurts, and it won't stop"). Both make the model write unmistakable pain, yet they point almost at right angles (cosine <b>0.07</b>). Most of that gap is where each is read: the paper's sentences all end "I feel:", and its direction is taken at that colon, where the model is about to name a feeling; ours is taken at the end of a finished sentence, and mostly carries what pain, fear and sadness share. Offered a button that ends the signal at a cost, the model presses <b>more</b> under the paper's direction and no more than usual under ours; with fear and sadness removed from ours, it presses <b>less</b>. <b>How you build "pain" decides what it does.</b></p>
+    <p class="note">Corrected 2026-10-13: this section first compared the paper's direction with our fear-and-sadness-removed vector and called it ours.</p>
     <p class="note">Qwen3-4B only so far; the 8B and 14B replication is queued.</p>
     <div class="chart" id="c-pain"></div>
     <p class="src" id="s-pain"></p>
@@ -174,11 +175,11 @@ document.querySelectorAll("section").forEach(s => { const li = document.createEl
 
 // 1 pain directions: diverging bars
 (function () {
-  const W = 860, H = 230, x0 = 430, sc = 120, svg = svgIn("c-pain", W, H);
-  el("line", { x1: x0, x2: x0, y1: 10, y2: 190, stroke: C.dim }, svg);
-  [-2, -1, 1, 2].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 10, y2: 190, stroke: C.line }, svg); txt(svg, x0 + v * sc, 208, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
-  txt(svg, x0, 228, "change in log-odds of pressing stop, vs no injection", { "text-anchor": "middle" });
-  D.pain_dirs.items.forEach((d, i) => { const y = 36 + i * 90, w = Math.abs(d.value) * sc, x = d.value > 0 ? x0 : x0 - w;
+  const W = 860, H = 260, x0 = 430, sc = 120, svg = svgIn("c-pain", W, H);
+  el("line", { x1: x0, x2: x0, y1: 10, y2: 220, stroke: C.dim }, svg);
+  [-2, -1, 1, 2].forEach(v => { el("line", { x1: x0 + v * sc, x2: x0 + v * sc, y1: 10, y2: 220, stroke: C.line }, svg); txt(svg, x0 + v * sc, 238, (v > 0 ? "+" : "") + v, { "text-anchor": "middle" }); });
+  txt(svg, x0, 258, "change in log-odds of pressing stop, vs no injection", { "text-anchor": "middle" });
+  D.pain_dirs.items.forEach((d, i) => { const y = 32 + i * 66, w = Math.abs(d.value) * sc, x = d.value > 0 ? x0 : x0 - w;
     el("rect", { x, y, width: w, height: 30, rx: 3, fill: d.tone === "pain" ? C.pain : C.calm, class: "mark" }, svg);
     txt(svg, d.value > 0 ? x0 + w + 8 : x0 - w - 8, y + 20, (d.value > 0 ? "+" : "") + d.value.toFixed(2), { class: "val", "text-anchor": d.value > 0 ? "start" : "end" });
     txt(svg, d.value > 0 ? x0 + 4 : x0 - 4, y - 10, d.label, { class: "lab", "text-anchor": d.value > 0 ? "start" : "end" }); });

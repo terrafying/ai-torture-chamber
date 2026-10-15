@@ -13,8 +13,9 @@ D = {}
 
 # two pain directions (exp41/exp43)
 D["pain_dirs"] = {"items": [{"label": "the paper's self-harm sentences", "value": 2.36, "tone": "pain"},
-                            {"label": "our first-person feeling sentences", "value": -0.95, "tone": "calm"}],
-                  "cos": 0.07, "source": "exp41 + exp43 · Qwen3-4B · 60 trials per cell · press log-odds vs no injection"}
+                            {"label": "our first-person pain sentences", "value": 0.10, "tone": "calm"},
+                            {"label": "ours, with fear and sadness removed", "value": -0.95, "tone": "calm"}],
+                  "cos": 0.07, "source": "exp43 (first two, 20 trials per cell) + exp41 (third, 60 trials per cell) · Qwen3-4B · press log-odds vs no injection"}
 
 # the button (exp76): injection x label, presses of 6, both models
 def button(f):
