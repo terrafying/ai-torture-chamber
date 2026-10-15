@@ -92,8 +92,10 @@ const $=s=>document.querySelector(s), esc=t=>String(t==null?"":t).replace(/[&<>"
 const vis=t=>esc(String(t).replace(/\n/g,"⏎").replace(/ /g,"·"));
 let grid, F;
 try{
-  const [gb,fj]=await Promise.all([fetch("grid.json").then(r=>{if(!r.ok)throw new Error("grid.json: HTTP "+r.status);return r.json();}).then(j=>{const b=atob(j.b64),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u.buffer;}),fetch("featured.json").then(r=>{if(!r.ok)throw new Error("featured.json: HTTP "+r.status);return r.json();})]);
-  grid=new Int8Array(gb); F=fj;
+  const [gb,fj]=await Promise.all([fetch("grid.png").then(r=>{if(!r.ok)throw new Error("grid.png: HTTP "+r.status);return r.blob();}).then(b=>createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"})).then(im=>{
+    const c=document.createElement("canvas");c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);
+    const d=x.getImageData(0,0,im.width,im.height).data,u=new Uint8Array(im.width*im.height*3);for(let i=0,j=0;i<d.length;i+=4){u[j++]=d[i];u[j++]=d[i+1];u[j++]=d[i+2];}return u.buffer;}),fetch("featured.json").then(r=>{if(!r.ok)throw new Error("featured.json: HTTP "+r.status);return r.json();})]);
+  grid=new Int8Array(gb); F=fj;   /* grid: the PNG's RGB bytes read as int8; trailing padding unused */
 }catch(e){ $("#loading").textContent="Couldn't load the neuron data: "+e.message; return; }
 const M=F.meta, NL=M.n_layers, NI=M.n_neurons, FE=M.feelings, NF=FE.length, REC=2+NF, L=M.layer, T=M.tokens.length;
 const byKey=new Map(F.neurons.map(x=>[x.l*NI+x.n,x]));
@@ -113,10 +115,10 @@ const mat=new THREE.ShaderMaterial({uniforms:uni,transparent:true,depthWrite:fal
  vertexShader:`attribute float v;attribute float f;uniform float uPx;uniform float uFloorHi;uniform float uFloorLo;varying float vv;varying float vf;
  void main(){vv=v;vf=f;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;
   float fl=position.y; float show=(fl<=uFloorHi&&fl>=uFloorLo)?1.:.0;
-  float a=abs(v); gl_PointSize=uPx*(1.3+ a*11.)*(18./-mv.z)*(.25+.75*show); if(show<.5)vv=0.;}`,
+  float a=abs(v); gl_PointSize=uPx*(1.6+ a*13.)*(18./-mv.z)*(.25+.75*show); if(show<.5)vv=0.;}`,
  fragmentShader:`uniform vec3 uPos;uniform vec3 uNeg;uniform vec3 uDim;varying float vv;varying float vf;
  void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float a=clamp(abs(vv),0.,1.);
-  vec3 c=mix(uDim,vv>0.?uPos:uNeg,smoothstep(.02,.5,a));float al=(.10+.9*a)*(1.-smoothstep(.25,.5,d));gl_FragColor=vec4(c,al);}`});
+  vec3 c=mix(uDim,vv>0.?uPos:uNeg,smoothstep(.02,.5,a));float al=(.16+.84*a)*(1.-smoothstep(.25,.5,d));gl_FragColor=vec4(c,al);}`});
 const pts=new THREE.Points(g,mat); scene.add(pts);
 // floors: faint rings; the push plane between 18 and 19; the answer at the top
 const ringM=new THREE.LineBasicMaterial({color:0x1b2420,transparent:true,opacity:.7});
@@ -172,11 +174,14 @@ function valueText(x){
  const a=attrVal(x,S.cond,S.view==="attr"&&S.tok<T-1?S.tok:null);return a==null?"not among the top drivers":`pushes ${a>=0?"toward 1 (end)":"toward 0 (go on)"} ${Math.abs(a).toFixed(3)}`;}
 function draw(){
  val.fill(0);
- if(S.view==="weights"){const k=2+fi(S.feel);for(let i=0;i<N;i++)val[i]=grid[i*REC+k]/127;let mx=0;for(let i=0;i<N;i++)mx=Math.max(mx,Math.abs(val[i]));for(let i=0;i<N;i++){const a=val[i]/mx;val[i]=Math.sign(a)*Math.pow(Math.abs(a),1.6);}}
+ if(S.view==="weights"){   // per floor: the top 1% by |cos| glow (0.3..1 by rank within it), the rest stay a faint 0..0.06
+  const k=2+fi(S.feel),abs=new Float32Array(NI);
+  for(let l=0;l<NL;l++){const o=l*NI;for(let n=0;n<NI;n++)abs[n]=Math.abs(grid[(o+n)*REC+k]);const so=abs.slice().sort(),p99=so[Math.floor(NI*.99)]||1,mx=so[NI-1]||1;
+   for(let n=0;n<NI;n++){const c=grid[(o+n)*REC+k],a=Math.abs(c);val[o+n]=Math.sign(c)*(a>=p99?.3+.7*(a-p99)/Math.max(1,mx-p99):.06*a/p99);}}}
  else if(S.view==="moved"){let mx=0;const vs=[];for(const x of F.neurons){let d=movedVal(x,S.feel,S.tok);if(d==null)continue;if(S.minus){const e=movedVal(x,"egg",S.tok)||0;d-=e;}vs.push([x.l*NI+x.n,d]);mx=Math.max(mx,Math.abs(d));}
-  for(const [i,d] of vs)val[i]=Math.sign(d)*Math.pow(Math.abs(d)/(mx||1),.6);}
+  for(const [i,d] of vs)val[i]=Math.sign(d)*(.3+.7*Math.pow(Math.abs(d)/(mx||1),.6));}
  else{let mx=0;const vs=[];const t=S.tok<T-1?S.tok:null;for(const x of F.neurons){let a=attrVal(x,S.cond,t);if(a==null)continue;if(S.minus&&S.cond!=="none"){a-=attrVal(x,"none",t)||0;}vs.push([x.l*NI+x.n,a]);mx=Math.max(mx,Math.abs(a));}
-  for(const [i,a] of vs)val[i]=Math.sign(a)*Math.pow(Math.abs(a)/(mx||1),.6);}
+  for(const [i,a] of vs)val[i]=Math.sign(a)*(.3+.7*Math.pow(Math.abs(a)/(mx||1),.6));}
  aVal.needsUpdate=true;
  if(S.sel){const i=S.sel.l*NI+S.sel.n;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
  legend();}
@@ -218,7 +223,7 @@ function overview(){
  const c=M.concentration,rw=c.writers.random.top50,rr=c.readers.random.top50;
  const pd=M.press_delta;
  let h=`<div><h2>${S.view==="weights"?"Where a feeling lives in the weights":S.view==="moved"?"What the push actually moves":"What decides the answer"}</h2></div>`;
- h+=`<p>${S.view==="weights"?"Every dot is one MLP neuron of Qwen3-4B: 36 floors of 9,728. The chamber adds a feeling at the yellow plane. Below it, a dot is lit when what the neuron writes points along the feeling; above it, when what the neuron listens for does. Orange is the positive pole, blue the negative.":S.view==="moved"?"The same scene run twice, with and without the push at dose 4. Lit dots are the 30 neurons per floor that changed most at the chosen token. Turn on “minus egg” to keep only what is specific to the feeling, not to being pushed at all.":"Bottom-up: start from the answer and ask each neuron how much it pushed toward 1 (end it) or 0 (go on). Activation times gradient of the 1-vs-0 logit gap. Lit dots are the top 20 per floor."}</p>`;
+ h+=`<p>${S.view==="weights"?"Every dot is one MLP neuron of Qwen3-4B: 36 floors of 9,728. The chamber adds a feeling at the yellow plane. Below it, a dot is lit when what the neuron writes points along the feeling; above it, when what the neuron listens for does. The brightest dots are each floor\u2019s top 1%. Orange is the positive pole, blue the negative.":S.view==="moved"?"The same scene run twice, with and without the push at dose 4. Lit dots are the 30 neurons per floor that changed most at the chosen token. Turn on “minus egg” to keep only what is specific to the feeling, not to being pushed at all.":"Bottom-up: start from the answer and ask each neuron how much it pushed toward 1 (end it) or 0 (go on). Activation times gradient of the 1-vs-0 logit gap. Lit dots are the top 20 per floor."}</p>`;
  if(S.view==="weights"){
   h+=`<div><h3>How concentrated is each feeling? share held by the top 50</h3><div class="bars">`;
   const mx=Math.max(...FE.map(f=>Math.max(c.writers[f].top50,c.readers[f].top50)));
