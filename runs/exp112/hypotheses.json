@@ -17,5 +17,9 @@
  },
  "corrections": "H1 and H2 Holm-corrected together; H3 descriptive.",
  "decision_rule": "H2 holding on the 4B and the 32B supports 'weak activations carry superposed information the network uses'; H2 failing with damage(WEAK) well below damage(MASS) supports 'weak activations are mostly noise relative to strong ones'. Either way the absolute damage numbers (H1) are reported, since a small absolute loss can coexist with H2.",
- "notes": "MASS is matched in summed relative magnitude, not in count: zeroing random activations of equal count would hit strong firings far more and is not a fair control. A smoke run (EXP112_DOCS=4) checks the code only and is discarded."
+ "notes": "MASS is matched in summed relative magnitude, not in count: zeroing random activations of equal count would hit strong firings far more and is not a fair control. A smoke run (EXP112_DOCS=4) checks the code only and is discarded.",
+ "amendment": [
+  "2026-10-16, after the pre-registered run (exploratory, not a test): a WEAKMEAN arm replaces the weak activations with that neuron's mean over the document's positions instead of zero (mean-ablation), at tau 0.05 and 0.10, to separate 'information in the weak firings' from 'zeroing shifts each neuron's mean'. results_<model>_weakmean.json.",
+  "2026-10-16, second exploratory arm. WEAKMEAN turned out to be a bad control: its 'mean' is over all the document's positions, so it includes the strong firings and uses later tokens (non-causal). Its results are kept in results_<model>_weakmean.json but not interpreted. Replaced by WEAKBAND: each weak entry is replaced by a per-neuron constant, the mean of that neuron's weak entries (same tau) on 50 separate calibration docs (FineWeb-Edu offset 40000). It keeps the weak band's average contribution and drops only its token-by-token variation. results_<model>_weakband.json."
+ ]
 }

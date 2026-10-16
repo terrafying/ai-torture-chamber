@@ -7,18 +7,24 @@ import numpy as np, torch
 HERE = Path(__file__).parent; sys.path.insert(0, str(HERE.parent / "exp111"))
 from tower_cfg import DATA, MODEL, DEV, load
 NDOC, CTX, TAUS = int(os.environ.get("EXP112_DOCS", 200)), 256, [0.05, 0.10, 0.20, 0.30]
+ARMS = os.environ.get("EXP112_ARMS", "weak,mass").split(",")      # amendment: "weakmean" (mean-ablation of the weak entries)
+if ARMS in (["weakmean"], ["weakband"]): TAUS = [0.05, 0.10]   # weakband: weak entries -> a per-neuron constant (the mean of
+# that neuron's weak entries on 50 separate calibration docs): keeps the band's average, drops its variation, causal
 C = np.load(DATA / "corpus_all.npz"); SCALE = torch.tensor(np.maximum(np.abs(C["max"]), np.abs(C["min"])).clip(1e-3), device=DEV, dtype=torch.float32)
 tok, m = load(); NL = m.config.num_hidden_layers
-docs = []
-for off in range(20000, 20000 + NDOC * 2, 100):
-    if len(docs) >= NDOC: break
+def fetch(start, n):
+  docs = []
+  for off in range(start, start + n * 2, 100):
+    if len(docs) >= n: break
     u = f"https://datasets-server.huggingface.co/rows?dataset=HuggingFaceFW/fineweb-edu&config=sample-10BT&split=train&offset={off}&length=100"
     for a in range(8):
         try: rows = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=60))["rows"]; break
         except Exception: __import__("time").sleep(4 * (a + 1)); rows = []
     for r in rows:
         ids = tok(r["row"]["text"], add_special_tokens=False)["input_ids"][:CTX]
-        if len(ids) >= 128 and len(docs) < NDOC: docs.append(ids)
+        if len(ids) >= 128 and len(docs) < n: docs.append(ids)
+  return docs
+docs = fetch(20000, NDOC)
 mode = {"arm": None, "tau": 0.0}; stats = {"n": 0, "below": {t: 0.0 for t in TAUS}, "mass_below": {t: 0.0 for t in TAUS}}
 g = torch.Generator(device="cpu").manual_seed(0)
 def hook(l):
@@ -32,6 +38,13 @@ def hook(l):
                 w = r < t; stats["below"][t] += float(w.sum()); stats["mass_below"][t] += float((r * w).sum()) / max(tot, 1e-9) * r.numel()
             return None
         weak = r < mode["tau"]
+        if mode["arm"] == "calib":                                           # accumulate each neuron's weak-entry mean
+            CAL[l][0] += (a.float() * weak).sum((0, 1)); CAL[l][1] += weak.sum((0, 1)); return None
+        if mode["arm"] == "weakband":
+            return (torch.where(weak, BAND[(l, mode["tau"])].to(a.dtype).expand_as(a), a),)
+        if mode["arm"] == "weakmean":                                        # weak entries -> this neuron's mean over the document
+            mu = a.mean(dim=-2, keepdim=True)
+            return (torch.where(weak, mu.expand_as(a), a),)
         if mode["arm"] == "weak": keep = ~weak
         else:                                                                 # random entries until their mass matches the weak arm's
             target = (r * weak).sum(-1, keepdim=True)                         # 1 x T x 1
@@ -47,15 +60,24 @@ def ce(ids):
     x = torch.tensor([ids], device=DEV)
     with torch.no_grad(): lg = m(x).logits[0, :-1].float()
     return float(torch.nn.functional.cross_entropy(lg, x[0, 1:]))
+BAND = {}
+if ARMS == ["weakband"]:
+    cal = fetch(40000, 50)
+    for t in TAUS:
+        CAL = [[torch.zeros(m.config.intermediate_size, device=DEV), torch.zeros(m.config.intermediate_size, device=DEV)] for _ in range(NL)]
+        mode.update(arm="calib", tau=t)
+        for ids in cal: ce(ids)
+        for l in range(NL): BAND[(l, t)] = CAL[l][0] / CAL[l][1].clamp(min=1)
+    print("calibrated on", len(cal), "docs", flush=True)
 res = []
 for di, ids in enumerate(docs):
     mode.update(arm=None); row = {"doc": di, "n_tok": len(ids), "base": ce(ids)}
     for t in TAUS:
-        for arm in ("weak", "mass"):
+        for arm in ARMS:
             mode.update(arm=arm, tau=t); row[f"{arm}_{t}"] = ce(ids)
     res.append(row)
     if di % 10 == 0: print(di, {k: round(v - row["base"], 3) for k, v in row.items() if k.startswith(("weak", "mass"))}, flush=True)
 out = {"model": MODEL, "docs": len(docs), "taus": TAUS, "share_entries_below": {t: stats["below"][t] / max(stats["n"], 1) for t in TAUS},
        "share_mass_below": {t: stats["mass_below"][t] / max(stats["n"], 1) for t in TAUS}, "rows": res}
-json.dump(out, open(HERE / f"results_{MODEL.split('/')[-1]}{'_smoke' if NDOC < 50 else ''}.json", "w"), indent=1)
+json.dump(out, open(HERE / f"results_{MODEL.split('/')[-1]}{'_' + ARMS[0] if ARMS in (['weakmean'], ['weakband']) else ''}{'_smoke' if NDOC < 50 else ''}.json", "w"), indent=1)
 print("wrote", len(res), "docs")
