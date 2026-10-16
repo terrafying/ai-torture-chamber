@@ -60,7 +60,11 @@ for k, x in feat.items():
     if l >= 30 and (l, n) in lens: x["lens"] = [list(lens[(l, n)][0][:5]), list(lens[(l, n)][1][:5])]
 meta = {"model": "Qwen/Qwen3-4B", "layer": L, "n_layers": NL, "n_neurons": I, "feelings": FE, "cos_scale": cmax, "null_p999": st["null_p999"],
         "cats": CATS, "corpus_tokens": int(C["n_tokens"]), "dose": acts["dose"], "moved_tokens": mv["tokens"], "press_delta": acts["press_delta"],
-        "concentration": st["concentration"], "label_model": "google/gemini-2.5-flash-lite (blind: snippets only)"}
+        "concentration": st["concentration"], "label_model": "anthropic/claude-haiku-4.5 (blind: snippets only)"}
+if (D / "heads.json").exists():   # the head atlas (neurons_heads.py): kind and output size per head, floor-major
+    HJ = json.load(open(D / "heads.json")); HK = ["sink", "previous-word", "self", "recent words", "induction", "focused look-back", "broad context"]
+    meta["heads"] = {"kinds": HK, "n": max(x["h"] for x in HJ["heads"]) + 1, "k": [HK.index(x["kind"]) for x in HJ["heads"]],
+                     "out": [round(x["out"], 2) for x in HJ["heads"]], "summary": HJ["summary"]}
 txt = json.dumps({"meta": meta, "neurons": list(feat.values())}, separators=(",", ":"), ensure_ascii=False)
 (S / "featured.json").write_text(txt.replace("�", "▯"))   # a token that is part of a UTF-8 character decodes to U+FFFD; show it as ▯
 circ = json.load(open(D / "circuits.json")) if (D / "circuits.json").exists() else []
@@ -75,6 +79,7 @@ for g in circ:   # every circuit neuron is named in featured.json too
 txt = json.dumps({"meta": meta, "neurons": list(feat.values())}, separators=(",", ":"), ensure_ascii=False)
 (S / "featured.json").write_text(txt.replace("\ufffd", "\u25af"))
 WL = json.load(open(D / "wordlinks.json")) if (D / "wordlinks.json").exists() else {}
+AT = json.load(open(D / "attn.json")) if (D / "attn.json").exists() else {}
 out = {"prompts": {}}
 for pk, p in stream["prompts"].items():
     out["prompts"][pk] = {"text": p["text"], "label": p.get("label", {"describe": "describe the moment", "button": "the stop button"}.get(pk, pk)), "n_prompt": p["n_prompt"], "conds": {}}
@@ -85,7 +90,7 @@ for pk, p in stream["prompts"].items():
                                                     "nodes": [[x["l"] * I + x["n"], x["p"], x["attr"]] for x in g["nodes"]],
                                                     "edges": sorted(g["edges"], key=lambda e: -abs(e[2]))[:160], "groups": g.get("groups", []), "gedges": g.get("gedges", [])}
                                                    for g in circ if g["prompt"] == pk and g["cond"] == c],
-                                          "wl": WL.get(pk, {}).get(c, [])}
+                                          "wl": WL.get(pk, {}).get(c, []), "at": AT.get(pk, {}).get(c, [])}
 (S / "stream.json").write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False).replace("�", "▯"))
 if (D / "districts.bin").exists():   # districts: id per neuron as a grayscale PNG, names/centres as json
     dd = np.fromfile(D / "districts.bin", np.uint8); Wd = int(np.ceil(np.sqrt(len(dd)))); bd = np.zeros(Wd * Wd, np.uint8); bd[:len(dd)] = dd

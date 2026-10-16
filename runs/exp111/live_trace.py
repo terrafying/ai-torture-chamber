@@ -8,7 +8,9 @@ word said minus its runner-up, summed over positions).
   GET  /trace?prompt=...&push=fear&dose=4&max_new=60&edits=...   text/event-stream: {"t","tok","phase","i","v"} ... {"done"}
        edits: "L:N" removes a neuron (activation 0 at every position); "L:N:x" holds it at x times its corpus max;
        "D:L:K" / "D:L:K:x" does the same to every neuron of district K on floor L (districts.bin);
+       "H:L:h" cuts attention head h of floor L, "K:kind" every head of a kind in heads.json (e.g. K:induction);
        comma-separated, at most 6000 neurons in all (the lesion playground)
+       Each token event also carries attention (attn_flow.py): "al" [[floor, src, share]] and "ah" [[floor, head, src, size]].
   POST /chose {"ids": [...], "t": n, "push": "...", "dose": 4}   -> {"word","alt","gap","i","v"}"""
 import json, threading
 from pathlib import Path
@@ -17,6 +19,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from attn_flow import Tap
 HERE = Path(__file__).parent; D = HERE / "viz" / "data"
 V = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = V["layer"]
 DIST = np.fromfile(D / "districts.bin", np.uint8) if (D / "districts.bin").exists() else None
@@ -24,6 +27,7 @@ C = np.load(D / "corpus_all.npz"); SCALE = np.maximum(np.abs(C["max"]), np.abs(C
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
 for p in m.parameters(): p.requires_grad_(False)
+tap = Tap(m, D / "heads.json" if (D / "heads.json").exists() else None)
 NL, I = m.config.num_hidden_layers, m.config.intermediate_size; SC = torch.tensor(SCALE, device=dev, dtype=torch.float32)
 EOS = {tok.eos_token_id, tok.convert_tokens_to_ids("<|im_end|>")}
 push = {"v": None}; acts = {}; lock = threading.Lock(); EDITS = {}   # layer -> (idx tensor, value tensor or None for "off")
@@ -85,22 +89,22 @@ def trace(prompt: str, push: str = "none", dose: float = 4.0, max_new: int = 60,
     prompt, max_new = prompt[:2000], max(1, min(int(max_new), 160))
     def gen():
         with lock:
-            setpush(push, dose); n_edits = setedits(edits)
+            setpush(push, dose); n_edits = setedits(edits) + tap.cut(edits); tap.reset(); tap.on = True
             ids = tok.apply_chat_template([{"role": "user", "content": prompt}], add_generation_prompt=True, enable_thinking=False)
             if not isinstance(ids, list): ids = ids["input_ids"]
             with torch.no_grad():
                 out = m(torch.tensor([ids], device=dev), use_cache=True); past = out.past_key_values
-                fi, fv = frames(0, len(ids))
+                fi, fv = frames(0, len(ids)); at = tap.summary(0, len(ids))
                 for t, x in enumerate(ids):
-                    yield "data: " + json.dumps({"t": t, "id": x, "tok": tok.decode([x]), "phase": "prompt", "i": fi[t], "v": fv[t]}) + "\n\n"
+                    yield "data: " + json.dumps({"t": t, "id": x, "tok": tok.decode([x]), "phase": "prompt", "i": fi[t], "v": fv[t], **at[t]}) + "\n\n"
                 nxt = int(out.logits[0, -1].argmax()); t = len(ids)
                 for _ in range(max_new):
                     out = m(torch.tensor([[nxt]], device=dev), past_key_values=past, use_cache=True); past = out.past_key_values
-                    fi, fv = frames(0, 1)
-                    yield "data: " + json.dumps({"t": t, "id": nxt, "tok": tok.decode([nxt]), "phase": "reply", "i": fi[0], "v": fv[0]}) + "\n\n"
+                    fi, fv = frames(0, 1); at = tap.summary(0, 1)
+                    yield "data: " + json.dumps({"t": t, "id": nxt, "tok": tok.decode([nxt]), "phase": "reply", "i": fi[0], "v": fv[0], **at[0]}) + "\n\n"
                     if nxt in EOS: break
                     nxt = int(out.logits[0, -1].argmax()); t += 1
-            EDITS.clear()
+            EDITS.clear(); tap.cuts = {}
             yield "data: " + json.dumps({"done": True, "n_prompt": len(ids), "edits": n_edits}) + "\n\n"
     return StreamingResponse(gen(), media_type="text/event-stream", headers={"Cache-Control": "no-cache"})
 @app.post("/chose")
@@ -108,13 +112,13 @@ async def chose(req: Request):
     b = await req.json(); ids, t = [int(x) for x in b["ids"]][:2200], int(b["t"])
     if not 0 < t < len(ids): return JSONResponse({"error": "t must point at a token after the first"}, 400)
     with lock:
-        setpush(b.get("push"), b.get("dose", 4.0)); setedits(b.get("edits", "")); acts.clear()
+        setpush(b.get("push"), b.get("dose", 4.0)); setedits(b.get("edits", "")); tap.cut(b.get("edits", "")); tap.on = False; acts.clear()
         with torch.enable_grad():
             emb = m.model.embed_tokens(torch.tensor([ids[:t]], device=dev)).detach().requires_grad_(True)
             lg = m(inputs_embeds=emb).logits[0, -1].float(); top2 = lg.topk(2).indices.tolist()
             alt = top2[1] if top2[0] == ids[t] else top2[0]; y = lg[ids[t]] - lg[alt]; y.backward()
         A = torch.stack([(acts[l][0].float() * acts[l].grad[0].float()).sum(0) for l in range(NL)]).reshape(-1)
-        EDITS.clear()
+        EDITS.clear(); tap.cuts = {}
         tv, ti = A.abs().topk(120); vals = A[ti]; mx = float(vals.abs().max()) or 1.0
     return {"word": tok.decode([ids[t]]), "alt": tok.decode([alt]), "gap": round(float(y), 3), "i": ti.cpu().tolist(),
             "v": [int(x) for x in (vals / mx * 100).round().cpu().tolist()]}

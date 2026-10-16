@@ -103,6 +103,15 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
   #app{grid-template-columns:1fr;grid-template-rows:78vh auto;height:auto}
   aside{border-left:0;border-top:1px solid var(--line)}
 }
+#hgrid{display:grid;grid-template-columns:repeat(32,1fr);gap:1px;margin:6px 0 4px}
+#hgrid i{aspect-ratio:1;display:block;cursor:pointer;opacity:.28}
+#hgrid i.on{opacity:1;box-shadow:0 0 0 1px #fff}
+#hgrid i.cut{opacity:.9;box-shadow:inset 0 0 0 2px #0b0e0d,0 0 0 1px var(--pos)}
+.hk{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:4px;font-size:11px}
+.hk span{display:inline-flex;gap:5px;align-items:center}.hk i{width:9px;height:9px;display:inline-block;border-radius:2px}
+.hk button{all:unset;cursor:pointer;color:var(--dim);text-decoration:underline dotted}.hk button[aria-pressed="true"]{color:var(--pos)}
+.abar{display:grid;grid-template-columns:auto 1fr auto;gap:2px 8px;font-size:11px;align-items:center}.abar .b{height:6px;background:var(--line)}.abar .b i{display:block;height:100%}
+#text span.att{border-bottom:2px solid var(--att);background:color-mix(in srgb,var(--att) 18%,transparent)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -147,8 +156,11 @@ const FEEL10=FE.filter(f=>f!=="egg");
 const byK=new Map(F.neurons.map(x=>[x.k,x]));
 const css=getComputedStyle(document.documentElement),CC=CATS.map((_,i)=>css.getPropertyValue("--c"+i).trim());
 const CATSHORT=["feeling","body","social","morals","thinking","topic","names","grammar","format","digits","code","script","unclear"];
+const HDS=M.heads||null,NH=HDS?HDS.n:32,HK=HDS?HDS.kinds:[];   // the head atlas (neurons_heads.py)
+const HCOL={"sink":"#5d6762","previous-word":"#ffd166","self":"#8aa29a","recent words":"#4fe0c4","induction":"#ff4fd8","focused look-back":"#b48cff","broad context":"#5f86c9"};
+const hkind=(l,h)=>HDS?HK[HDS.k[l*NH+h]]:"";
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -213,6 +225,57 @@ function stepPulses(t){puS.fill(0);if(pulses.length){let j=0;for(const q of puls
    puP[j*3]=q.a[0]+(q.b[0]-q.a[0])*e;puP[j*3+1]=q.a[1]+(q.b[1]-q.a[1])*e;puP[j*3+2]=q.a[2]+(q.b[2]-q.a[2])*e;
    const w=Math.sin(f*Math.PI);puC[j*3]=q.c.r*w;puC[j*3+1]=q.c.g*w;puC[j*3+2]=q.c.b*w;puS[j]=q.s*(.5+w);}}}
  puG.attributes.position.needsUpdate=true;puG.attributes.color.needsUpdate=true;puG.attributes.sz.needsUpdate=true;}
+/* ---------- attention: the reading ring ---------- */
+const RING=RAD*1.42,A0=.34,A1=2*Math.PI-.34,ASEG=18;
+const atGeo=new THREE.BufferGeometry(),atLines=new THREE.LineSegments(atGeo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));scene.add(atLines);
+const tkG=new THREE.BufferGeometry();scene.add(new THREE.Points(tkG,new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(30./-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float g=exp(-d*d*16.);gl_FragColor=vec4(vc*g*1.6,g);}`})));
+let atArcs=[],atP=null,atC=null,atBase=null,atStatic=0;const atLab=[];
+const ringGuide=[-YC-1.1,TOPY+.6].map(y=>{const o=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RING,RING,A0,A1).getPoints(160).map(p=>new THREE.Vector3(p.x,y,p.y))),new THREE.LineBasicMaterial({color:0x3a4640,transparent:true,opacity:.8}));o.visible=false;scene.add(o);return o;});
+const AG=420,agP=new Float32Array(AG*3),agC=new Float32Array(AG*3),agS=new Float32Array(AG),agG=new THREE.BufferGeometry();   // glints running along the arcs
+agG.setAttribute("position",new THREE.BufferAttribute(agP,3));agG.setAttribute("color",new THREE.BufferAttribute(agC,3));agG.setAttribute("sz",new THREE.BufferAttribute(agS,1));
+scene.add(new THREE.Points(agG,new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(30./-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float g=exp(-d*d*16.);gl_FragColor=vec4(vc*g*1.6,g);}`})));
+function ringAng(t,T){return A0+(A1-A0)*(T>1?t/(T-1):0);}
+function attnNow(){if(S.view!=="live"||S.attn==="off"||S.mode==="chose")return null;return cond().at?.[S.tok]||null;}
+function textSprite(text,col){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=384;c.height=64;x.font='30px "Chivo Mono", monospace';x.fillStyle=col;x.textAlign="center";x.fillText(text.slice(0,18),192,44);
+ const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,depthTest:false}));sp.scale.set(4.2,.7,1);scene.add(sp);return sp;}
+function attnSources(a,t){const by=new Map();for(const[l,h,src,w]of a[1]){if(src===t)continue;const k=hkind(l,h);if(k==="sink"&&S.attn==="kinds")continue;const o=by.get(src)||{w:0,k:{}};o.w+=w;o.k[k]=(o.k[k]||0)+w;by.set(src,o);}
+ return [...by].sort((x,y)=>y[1].w-x[1].w);}
+function drawAttn(){
+ for(const sp of atLab.splice(0))scene.remove(sp);
+ const a=attnNow();for(const g of ringGuide)g.visible=!!a;if(!a){atArcs=[];agS.fill(0);agG.attributes.sz.needsUpdate=true;atGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(0),3));tkG.setAttribute("position",new THREE.BufferAttribute(new Float32Array(0),3));return;}
+ const c=cond(),P=ST.prompts[S.prompt],t=S.tok,T=c.tok.length+(P.running?40:0),col=new THREE.Color();atArcs=[];
+ const at=ringAng(t,T),yOf=l=>l*FLOOR-YC;
+ const arc=(src,l,cc,w,kind)=>{if(src===t)return;const as=ringAng(src,T),da=Math.abs(at-as),pts=[];
+  for(let j=0;j<=ASEG;j++){const u=j/ASEG,an=as+(at-as)*u,b=Math.sin(Math.PI*u),r=RING+b*(.5+2.4*da/Math.PI);pts.push(Math.cos(an)*r,yOf(l)+b*.45*Math.min(1,.3+da),Math.sin(an)*r);}
+  atArcs.push({pts,c:cc.clone(),w,off:Math.random(),sp:.35+.25*Math.random(),glint:true});};
+ for(const[l,src,w]of a[0])arc(src,l,col.set("#e9efe6"),(S.attn==="floors"?1:.5)*Math.min(1,w/40),"floor");
+ if(S.attn==="kinds")for(const[l,h,src,w]of a[1]){const k=hkind(l,h);arc(src,l,col.set(HCOL[k]||"#c9d1cb"),(k==="sink"?.25:1)*Math.pow(w/100,.8),k);}
+ const nA=atArcs.length*ASEG,nS=NL+1;atStatic=nS;atP=new Float32Array((nA+nS)*6);atC=new Float32Array((nA+nS)*6);atBase=new Float32Array(nA*6);let o=0;
+ for(const A of atArcs){for(let j=0;j<ASEG;j++){for(let e=0;e<2;e++){const q=(j+e)*3;atP[o]=A.pts[q];atP[o+1]=A.pts[q+1];atP[o+2]=A.pts[q+2];o+=3;}}}
+ const cx=Math.cos(at),cz=Math.sin(at),yc=new THREE.Color("#e8ff6a");   // the current word's column, and a tick into each floor it pulled into
+ atP.set([cx*RING,-YC-1,cz*RING,cx*RING,TOPY+.6,cz*RING],o);for(let e=0;e<2;e++){atC[o+e*3]=yc.r*.9;atC[o+e*3+1]=yc.g*.9;atC[o+e*3+2]=yc.b*.9;}o+=6;
+ const fl=new Map();for(const[l,h,src,w]of a[1])if(src!==t)fl.set(l,Math.max(fl.get(l)||0,w));
+ for(let l=0;l<NL;l++){const w=(fl.get(l)||0)/100;atP.set([cx*RING,yOf(l),cz*RING,cx*RAD*1.12,yOf(l),cz*RAD*1.12],o);for(let e=0;e<2;e++){atC[o+e*3]=.85*w;atC[o+e*3+1]=.9*w;atC[o+e*3+2]=.8*w;}o+=6;}
+ atGeo.setAttribute("position",new THREE.BufferAttribute(atP,3));atGeo.setAttribute("color",new THREE.BufferAttribute(atC,3));
+ const srcs=attnSources(a,t),top=new Map(srcs.slice(0,5).map(([k,v],j)=>[k,j])),tp=new Float32Array(c.tok.length*3),tc=new Float32Array(c.tok.length*3),ts=new Float32Array(c.tok.length);
+ for(let i=0;i<c.tok.length;i++){const an=ringAng(i,T);tp[i*3]=Math.cos(an)*RING;tp[i*3+1]=-YC-1.1;tp[i*3+2]=Math.sin(an)*RING;
+  const hot=i===t?1:top.has(i)?.8:i<=t?.22:.07;col.set(i===t?"#e8ff6a":top.has(i)?"#ffffff":i<P.n_prompt?"#8aa29a":"#d9dfd8");tc[i*3]=col.r*hot;tc[i*3+1]=col.g*hot;tc[i*3+2]=col.b*hot;ts[i]=i===t?7:top.has(i)?5:2.4;}
+ tkG.setAttribute("position",new THREE.BufferAttribute(tp,3));tkG.setAttribute("color",new THREE.BufferAttribute(tc,3));tkG.setAttribute("sz",new THREE.BufferAttribute(ts,1));
+ const lab=(text,an,y,cl)=>{const sp=textSprite(text,cl);sp.position.set(Math.cos(an)*(RING+.6),y,Math.sin(an)*(RING+.6));atLab.push(sp);};
+ lab(vis(c.tok[t]).replace(/&[a-z]+;/g,"·"),at,TOPY+1.4,"#e8ff6a");
+ srcs.slice(0,4).forEach(([k,v],j)=>{const kk=Object.entries(v.k).sort((x,y)=>y[1]-x[1])[0]?.[0];lab((c.tok[k]||"").replace(/\n/g,"⏎"),ringAng(k,T),-YC-2-j*.75,S.attn==="kinds"?HCOL[kk]||"#fff":"#e9efe6");});}
+function stepAttn(time){if(!atArcs.length||!atP)return;let o=0;
+ for(const A of atArcs){const ph=((time*A.sp+A.off)%1.4)-.2;for(let j=0;j<ASEG;j++){for(let e=0;e<2;e++){const u=(j+e)/ASEG,g=.55+1.6*Math.exp(-((u-ph)*(u-ph))/.006);
+    atC[o]=A.c.r*A.w*g;atC[o+1]=A.c.g*A.w*g;atC[o+2]=A.c.b*A.w*g;o+=3;}}}
+ atGeo.attributes.color.needsUpdate=true;
+ let j=0;agS.fill(0);for(const A of atArcs){if(!A.glint||A.w<.08)continue;for(let r=0;r<2&&j<AG;r++,j++){const ph=((time*A.sp*.9+A.off+r*.5)%1),fi=ph*ASEG,i0=Math.floor(fi),f=fi-i0,q0=i0*3,q1=Math.min(ASEG,i0+1)*3;
+   agP[j*3]=A.pts[q0]+(A.pts[q1]-A.pts[q0])*f;agP[j*3+1]=A.pts[q0+1]+(A.pts[q1+1]-A.pts[q0+1])*f;agP[j*3+2]=A.pts[q0+2]+(A.pts[q1+2]-A.pts[q0+2])*f;
+   const b=Math.sin(ph*Math.PI);agC[j*3]=A.c.r*b;agC[j*3+1]=A.c.g*b;agC[j*3+2]=A.c.b*b;agS[j]=(2+5*A.w)*(.5+b);}}
+ agG.attributes.position.needsUpdate=true;agG.attributes.color.needsUpdate=true;agG.attributes.sz.needsUpdate=true;}
 const hovMark=new THREE.Mesh(new THREE.RingGeometry(.34,.44,32),new THREE.MeshBasicMaterial({color:0xd9dfd8,side:THREE.DoubleSide,transparent:true,opacity:.7,depthTest:false}));hovMark.rotation.x=-Math.PI/2;hovMark.visible=false;scene.add(hovMark);
 let th=.7,ph=1.2,dist=56,tgtY=0;const ptrs=new Map();let pinch0=0,moved=0;
 function placeCam(){cam.position.set(dist*Math.sin(ph)*Math.cos(th),tgtY+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,tgtY,0);}
@@ -238,8 +301,9 @@ const REMOTE=(/clankerchurch\.com$|wirehead/.test(location.hostname)?"":"https:/
 let LIVE=null,liveKind="",liveOK=false,liveES=null,liveDraw=0;
 (async()=>{for(const [base,kind] of [["http://127.0.0.1:8977","local"],[REMOTE,"hosted"]]){
  try{const j=await fetch(base+"/health",{signal:AbortSignal.timeout(kind==="local"?900:4000)}).then(r=>r.ok?r.json():null);if(j&&j.ok){LIVE=base;liveKind=kind;liveOK=true;refresh();return;}}catch(e){}}})();
-const editSpec=()=>[...[...S.edits].map(([k,x])=>`${(k/NI)|0}:${k%NI}`+(x==null?"":":"+x)),...[...S.dedits].map(([lk,x])=>`D:${lk}`+(x==null?"":":"+x))].join(",");
-const nEdits=()=>S.edits.size+S.dedits.size;
+const editSpec=()=>[...[...S.edits].map(([k,x])=>`${(k/NI)|0}:${k%NI}`+(x==null?"":":"+x)),...[...S.dedits].map(([lk,x])=>`D:${lk}`+(x==null?"":":"+x)),
+ ...[...S.hedits].map(x=>"H:"+x),...[...S.kedits].map(k=>"K:"+k)].join(",");
+const nEdits=()=>S.edits.size+S.dedits.size+S.hedits.size+S.kedits.size;
 const LIVECMD="cd runs/exp111 && HF_HUB_CACHE=/Volumes/evol/hf_cache/hub python live_trace.py";
 function needLive(where){where.insertAdjacentHTML("beforeend",`<p class="note" style="margin-top:6px;color:var(--fg)">These edits rerun the model, which needs the local live server (it runs the 4B on your machine). Start it, then reload:<br><code style="font-size:10.5px;color:var(--push);user-select:all">${LIVECMD}</code></p>`);}
 function replyOf(pk,cd){const P=ST.prompts[pk],c=P?.conds[cd];return c?c.tok.slice(P.n_prompt).join("").replace(/<\|im_end\|>/g,""):"";}
@@ -249,7 +313,7 @@ function rerun(){   // the lesion playground: same prompt and push, with the cur
  runLive(text,push,orig);}
 function runLive(text,push,orig){
  if(liveES)liveES.close();stop();
- const c={tok:[],ids:[],fr:[],ch:[],circ:[]},spec=editSpec();
+ const c={tok:[],ids:[],fr:[],ch:[],circ:[],at:[]},spec=editSpec();
  ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:nEdits(),spec}:null};
  Object.assign(S,{view:"live",prompt:"__mine",cond:push,mode:"fires",tok:0,sel:null,filter:"all"});   // most live neurons have no label yet: show everything
  const Dz=S.design,dq=Dz.mode==="mix"?`&mix=${encodeURIComponent(Object.entries(Dz.mix).filter(([,w])=>+w).map(([k,w])=>k+":"+w).join(","))}`:Dz.mode==="own"?`&custom=${encodeURIComponent(Dz.own)}`:"";
@@ -260,7 +324,7 @@ function runLive(text,push,orig){
   if(d.error){P.running=false;P.err=d.error;liveES.close();refresh();return;}
   if(d.done){P.n_prompt=d.n_prompt;P.running=false;liveES.close();refresh();return;}
   P.warming=false;
-  c.tok.push(d.tok);c.ids.push(d.id);c.fr.push([d.i,d.v]);if(d.phase==="prompt")P.n_prompt=c.tok.length;S.tok=c.tok.length-1;
+  c.tok.push(d.tok);c.ids.push(d.id);c.fr.push([d.i,d.v]);if(d.ah)c.at.push([d.al||[],d.ah]);if(d.phase==="prompt")P.n_prompt=c.tok.length;S.tok=c.tok.length-1;
   if(!liveDraw)liveDraw=requestAnimationFrame(()=>{liveDraw=0;refresh();});};
  liveES.onerror=()=>{liveES.close();const P=ST.prompts.__mine;if(P.running){P.running=false;P.err=P.err||"Couldn't run it: the model is busy, or that's a lot of runs for a few minutes. Try again shortly.";}refresh();};}
 function ensureChose(t){const P=ST.prompts.__mine,c=cond();if(S.prompt!=="__mine"||t<P.n_prompt||c.ch.some(x=>x[0]===t)||c.pending===t)return;
@@ -283,7 +347,8 @@ function movedPairs(){const out=[];let mx=0;const key=S.feel;
 function drawDistricts(){tgt.clear();active.clear();lit=[];const l=S.floor,lo=l*NI;
  for(let i=0;i<N;i++)val[i]=.1;for(let i=lo;i<lo+NI;i++){val[i]=S.dk==null||dId[i]===S.dk?.75:.22;lit.push(i);}aV.needsUpdate=true;}
 let lastView="";
-function draw(){
+function draw(){drawCore();drawAttn();}
+function drawCore(){
  if(S.view!==lastView){if(lastView==="districts"){val.fill(0);aV.needsUpdate=true;ph=1.2;dist=56;tgtY=0;}
   if(S.view==="districts"){ph=.72;dist=40;tgtY=S.floor*FLOOR-YC;}placeCam();layout(S.view==="districts"?"dist":"feel");lastView=S.view;}
  if(S.view==="districts"){drawDistricts();drawThreads();selMark.visible=false;tagsFor();return;}
@@ -365,6 +430,7 @@ function controls(){
   const ex=[...scenes.filter(k=>k!=="describe"),...ids];
   seg(add(),[["describe",ST.prompts.describe.label||"describe the moment"],...ex.map(k=>[k,ST.prompts[k].label||k])],S.prompt,setPrompt,"prompt · chamber experiments →");
   if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"no steering":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"steer (optional)",true);
+  if(HDS)seg(add(),[["kinds","by head kind"],["floors","by floor"],["off","off"]],S.attn,k=>{S.attn=k;refresh();},"attention");
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
   const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
@@ -382,8 +448,10 @@ function drawArcs(t){   // which earlier words fed word t: arcs from it back to 
   const dpath=`M${x0.toFixed(1)},${y0.toFixed(1)} Q${((x0+x1)/2).toFixed(1)},${cy.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
   h+=`<path d="${dpath}" fill="none" stroke="${v>0?"#ff7a3d":"#3ec6ff"}" stroke-width="${(.8+2.6*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.3+.5*Math.abs(v)/100).toFixed(2)}"/><path class="flow" d="${dpath}" fill="none" stroke="#fff" stroke-width="${(.6+1.4*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.25+.6*Math.abs(v)/100).toFixed(2)}"/><circle cx="${x0.toFixed(1)}" cy="${y0.toFixed(1)}" r="2" fill="${v>0?"#ff7a3d":"#3ec6ff"}"/>`;});
  sv.setAttribute("viewBox",`0 0 ${W} ${H}`);sv.innerHTML=h;}
+function markAttn(){const tx=$("#text");if(!tx)return;for(const sp of tx.querySelectorAll(".att")){sp.classList.remove("att");sp.style.removeProperty("--att");}
+ const a=attnNow();if(!a)return;for(const[k,v]of attnSources(a,S.tok).slice(0,5)){const sp=tx.children[k];if(!sp)continue;const kk=Object.entries(v.k).sort((x,y)=>y[1]-x[1])[0][0];sp.classList.add("att");sp.style.setProperty("--att",S.attn==="kinds"?HCOL[kk]:"#e9efe6");}}
 function cursor(){   // cheap per-token update during playback: move the highlight, dim what hasn't been read yet, keep it in view
- const tx=$("#text"),toks=toksNow(),np=npNow();tx.querySelector(".on")?.classList.remove("on");
+ const tx=$("#text"),toks=toksNow(),np=npNow();markAttn();tx.querySelector(".on")?.classList.remove("on");
  const cur=tx.children[S.tok];if(cur){cur.classList.add("on");const box=tx.getBoundingClientRect(),c=cur.getBoundingClientRect();if(c.top<box.top||c.bottom>box.bottom)tx.scrollTop+=c.top-box.top-box.height/2;}
  for(let i=0;i<tx.children.length;i++)tx.children[i].classList.toggle("fut",S.playing&&i>S.tok);
  drawArcs(S.tok);
@@ -421,10 +489,14 @@ function catBars(idx){const cnt=new Array(CATS.length).fill(0);let un=0;for(cons
  return `<div class="cats">`+cnt.map((c,j)=>c?`<span style="color:${CC[j]}">${CATSHORT[j]}</span><div class="b"><i style="width:${c/mx*100}%;background:${CC[j]}"></i></div><span>${c}</span>`:"").join("")+`</div><p class="note">${tot} labelled${un?`, ${un} not yet labelled`:""}.</p>`;}
 function nlist(items){return `<div class="list">`+items.map(([i,v])=>{const x=byK.get(i),l=(i/NI)|0;return `<button type="button" data-k="${i}"><i style="background:${x?.cat!=null?CC[x.cat]:"var(--faint)"}"></i><span class="t">${x?.lab?esc(x.lab):"(not labelled)"}</span><span class="m">L${l}${v==null?"":" "+(v>=0?"+":"−")+Math.abs(v).toFixed(2)}</span></button>`;}).join("")+`</div>`;}
 function wireEdits(s){
+ s.querySelectorAll("[data-unhedit]").forEach(b=>b.onclick=()=>{S.hedits.delete(b.dataset.unhedit);side();});
+ s.querySelectorAll("[data-unkedit]").forEach(b=>b.onclick=()=>{S.kedits.delete(b.dataset.unkedit);side();});
+ s.querySelectorAll("#hgrid i").forEach(b=>b.onclick=()=>{const x=b.dataset.h;S.hedits.has(x)?S.hedits.delete(x):S.hedits.add(x);side();});
+ s.querySelectorAll("[data-kcut]").forEach(b=>b.onclick=()=>{const k=b.dataset.kcut;S.kedits.has(k)?S.kedits.delete(k):S.kedits.add(k);side();});
  s.querySelectorAll("[data-unedit]").forEach(b=>b.onclick=()=>{S.edits.delete(+b.dataset.unedit);side();});
  s.querySelectorAll("[data-undedit]").forEach(b=>b.onclick=()=>{S.dedits.delete(b.dataset.undedit);side();});
  const rr=s.querySelector("#rerun");if(rr)rr.onclick=()=>{if(!liveOK)return needLive(rr.parentElement);rerun();};
- const ce=s.querySelector("#clearedits");if(ce)ce.onclick=()=>{S.edits.clear();S.dedits.clear();if(ST.prompts.__mine)ST.prompts.__mine.compare=null;side();};
+ const ce=s.querySelector("#clearedits");if(ce)ce.onclick=()=>{S.edits.clear();S.dedits.clear();S.hedits.clear();S.kedits.clear();if(ST.prompts.__mine)ST.prompts.__mine.compare=null;side();};
  s.querySelectorAll("[data-dedit]").forEach(b=>b.onclick=()=>{const key=`${S.floor}:${S.dk}`,v=b.dataset.dedit==="off"?null:b.dataset.dedit;if(S.dedits.has(key)&&S.dedits.get(key)===v)S.dedits.delete(key);else S.dedits.set(key,v);side();});
  s.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const k=S.sel.k,v=b.dataset.edit==="off"?null:b.dataset.edit;if(S.edits.has(k)&&S.edits.get(k)===v)S.edits.delete(k);else S.edits.set(k,v);side();});
  const lg=s.querySelector("#lesiongrp");if(lg)lg.onclick=()=>{if(!liveOK)return needLive(lg.parentElement);const ci=circ();const g=ci.groups[S.grp];for(const j of g.members)S.edits.set(ci.nodes[j][0],null);rerun();};}
@@ -461,6 +533,7 @@ function side(){
     h+=`<div><h3>pushed for it</h3>${nlist(pairs.filter(p=>p[1]>0).slice(0,8))}</div><div><h3>pushed against it</h3>${nlist(pairs.filter(p=>p[1]<0).slice(0,5))}</div><div><h3>what these ${pairs.length} are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}}
   else{const fr=c.fr[S.tok],pairs=fr[0].map((k,j)=>[k,fr[1][j]/50]).filter(([k])=>pass(k));
    h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · ${S.tok<np?"reading the prompt":"writing the reply"}</h3><div class="big">“${vis(t)}”</div></div>`;
+   h+=attnPanel(c);
    h+=`<div><h3>firing hardest for their own range</h3>${nlist(pairs.slice(0,9))}</div><div><h3>what the lit neurons are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}
   h+=`<details class="note"><summary style="cursor:pointer;color:var(--fg)">How much of this is about feelings?</summary><p class="note" style="margin-top:6px">Checked on this model (4B): feeling labels pass blind tests about half the time (47% of texts written from the label fire the neuron, 14% of near misses). A push mostly moves neurons that aren't about feelings: 0–5% of the most push-specific neurons are feeling neurons, against 2.3% overall, and only pain and sadness clearly reach their own. Where feeling neurons do matter is at word choice: 7 of 10 meaning-bearing groups decide their word when removed, against 29% of grammar groups. Read the lights as emotional words and situations, not as a felt state. Larger models next.</p></details>`;
   const dz_=S.prompt==="__mine"?ST.prompts.__mine?.design:null;
@@ -511,9 +584,24 @@ function circuitPanel(ci){
   h+=`<div class="lab-btns" style="margin-bottom:6px"><button type="button" class="go" id="lesiongrp">remove these ${g.members.length} and rerun</button></div>`;h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
  else h+=`<p class="note">Click a group to see which words it reads from.</p><div><h3>knock each group out</h3><div class="kv">`+ci.groups.map(g=>`<span>${esc(g.name)}</span><span>${g.ko_p!=null?`${(ci.p*100).toFixed(0)}% → ${(g.ko_p*100).toFixed(0)}% <span style="color:var(--dim)">(random ${(g.ko_ctrl*100).toFixed(0)}%)</span>`:"—"}</span>`).join("")+`</div></div>`;
  return h;}
+function attnPanel(c){
+ if(!HDS)return "";const a=c.at?.[S.tok];const t=S.tok,np=ST.prompts[S.prompt].n_prompt;let h=`<div><h3>attention · where “${vis(c.tok[t])}” looks back</h3>`;
+ if(a){const srcs=attnSources(a,t).slice(0,5),mx=srcs[0]?.[1].w||1;
+  h+=srcs.length?`<div class="abar">`+srcs.map(([k,v])=>{const kk=Object.entries(v.k).sort((x,y)=>y[1]-x[1])[0][0];return `<span>“${vis(c.tok[k])}”</span><div class="b"><i style="width:${v.w/mx*100}%;background:${HCOL[kk]}"></i></div><span style="color:${HCOL[kk]}">${esc(kk)}</span>`;}).join("")+`</div>`:`<p class="note">Mostly looking at itself and the first token here.</p>`;
+  const bk={};for(const[l,hh,src,w]of a[1])if(src!==t){const k=hkind(l,hh);bk[k]=(bk[k]||0)+w;}
+  h+=`<p class="note">This token's ${a[1].length} biggest head moves${Object.keys(bk).length?": "+Object.entries(bk).sort((x,y)=>y[1]-x[1]).map(([k,w])=>`<span style="color:${HCOL[k]}">${esc(k)}</span>`).join(", "):""}. What a token gathers here is what the model uses to guess the ${t<np?"next word of the prompt":"next word it writes"}.</p>`;}
+ else h+=`<p class="note">${S.prompt==="__mine"?"This run came back without attention (the hosted model doesn't stream it yet).":"No attention recorded for this token."}</p>`;
+ const act=new Set((a?.[1]||[]).filter(x=>x[2]!==t).map(x=>x[0]+":"+x[1]));let g="";
+ for(let l=NL-1;l>=0;l--)for(let hh=0;hh<NH;hh++){const k=hkind(l,hh),key=l+":"+hh,cut=S.hedits.has(key)||S.kedits.has(k);g+=`<i data-h="${key}" class="${act.has(key)?"on":""}${cut?" cut":""}" style="background:${HCOL[k]}" title="floor ${l} · head ${hh} · ${k}"></i>`;}
+ const cnt={};HDS.k.forEach(x=>cnt[HK[x]]=(cnt[HK[x]]||0)+1);
+ h+=`<h3 style="margin-top:8px">all ${NL*NH} heads · floor 35 at top · click one to cut it</h3><div id="hgrid">${g}</div><div class="hk">`+HK.map(k=>`<span><i style="background:${HCOL[k]}"></i>${esc(k)} ${cnt[k]||0} <button type="button" data-kcut="${esc(k)}" aria-pressed="${S.kedits.has(k)}">${S.kedits.has(k)?"uncut":"cut all"}</button></span>`).join("")+`</div>`;
+ h+=`<details class="note"><summary style="cursor:pointer;color:var(--fg)">What the head kinds mean</summary><p class="note" style="margin-top:6px">Each head is sorted by what it moves on ordinary web text, weighted by the size of what it carries, not raw attention. Raw attention puts ${Math.round(HDS.summary.mean_raw_sink*100)}% of its weight on the first token, but only ${Math.round(HDS.summary.mean_valueweighted_sink*100)}% of what moves comes from there. <b style="color:${HCOL.induction}">Induction</b> heads find the last time the current word appeared and bring back what followed it, which is how the model copies. Cutting all of them breaks copying (“The violet anchor hums…” came back as “The violethorium hums beneath the seven lights”), while cutting the sink heads changes nothing. <b style="color:${HCOL["previous-word"]}">Previous-word</b> heads read the word just before, <b style="color:${HCOL["recent words"]}">recent-words</b> heads the last few, <b style="color:${HCOL["focused look-back"]}">focused look-back</b> heads one earlier word further away, and <b style="color:${HCOL["broad context"]}">broad-context</b> heads spread over everything.</p></details></div>`;
+ return h;}
 function editsPanel(){
  if(!nEdits()&&!ST.prompts.__mine?.compare)return "";
- let h=`<div id="editsbox"><h3>lesion playground · ${nEdits()} edit${nEdits()===1?"":"s"}</h3><div class="edits">`+[...S.dedits].map(([lk,x])=>{const[l,k]=lk.split(":").map(Number),d=DIST?.floors[l][k];return `<span class="chip" style="color:${CC[CATD[d?.cat]??12]}">floor ${l}: ${esc(d?.name||"district "+k)} (${d?.n||"?"}) ${x==null?"cut":"boosted "+x+"×"}<button type="button" data-undedit="${lk}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+[...S.edits].map(([k,x])=>{const n=byK.get(k);return `<span class="chip" style="color:${n?.cat!=null?CC[n.cat]:"var(--dim)"}">L${(k/NI)|0}·N${k%NI} ${x==null?"removed":"held at "+x+"×"}<button type="button" data-unedit="${k}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+`</div>`;
+ let h=`<div id="editsbox"><h3>lesion playground · ${nEdits()} edit${nEdits()===1?"":"s"}</h3><div class="edits">`+[...S.dedits].map(([lk,x])=>{const[l,k]=lk.split(":").map(Number),d=DIST?.floors[l][k];return `<span class="chip" style="color:${CC[CATD[d?.cat]??12]}">floor ${l}: ${esc(d?.name||"district "+k)} (${d?.n||"?"}) ${x==null?"cut":"boosted "+x+"×"}<button type="button" data-undedit="${lk}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+[...S.edits].map(([k,x])=>{const n=byK.get(k);return `<span class="chip" style="color:${n?.cat!=null?CC[n.cat]:"var(--dim)"}">L${(k/NI)|0}·N${k%NI} ${x==null?"removed":"held at "+x+"×"}<button type="button" data-unedit="${k}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")
+  +[...S.kedits].map(k=>`<span class="chip" style="color:${HCOL[k]}">every ${esc(k)} head cut (${HDS?HDS.k.filter(x=>HK[x]===k).length:"?"})<button type="button" data-unkedit="${esc(k)}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`).join("")
+  +[...S.hedits].map(x=>{const[l,h]=x.split(":").map(Number);return `<span class="chip" style="color:${HCOL[hkind(l,h)]}">head L${l}·H${h} (${esc(hkind(l,h))}) cut<button type="button" data-unhedit="${x}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+`</div>`;
  h+=`<div class="edits" style="margin-top:6px"><button type="button" class="go" id="rerun">rerun with these edits</button><button type="button" id="clearedits">clear</button></div>`;
  const cm=ST.prompts.__mine?.compare;
  if(cm&&S.prompt==="__mine"){h+=`<div style="margin-top:8px"><h3>before</h3><div class="cmp">${esc(cm.orig.slice(0,400))||"<em>(none)</em>"}</div><h3 style="margin-top:6px">after ${cm.n} edit${cm.n===1?"":"s"}${S.prompt==="__mine"?"":""}</h3><div class="cmp new">${esc(replyOf("__mine",S.cond).slice(0,400))}${ST.prompts.__mine.running?"…":""}</div></div>`;}
@@ -533,6 +621,6 @@ function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKe
 {S.prompt="describe";S.cond="none";S.mode="fires";S.filter="meaning";S.tok=ST.prompts.describe.n_prompt;}   // open on plain reading: no steering
 $("#loading").remove();resize();placeCam();refresh();
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();stepPulses(performance.now()/1000);R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
+(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();stepPulses(performance.now()/1000);stepAttn(performance.now()/1000);R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
 })();
 </script>
