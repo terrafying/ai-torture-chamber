@@ -31,8 +31,10 @@ try:
         RES["stopped"] = "baseline answers not as required"; save(); raise SystemExit
     # ---- graphs and influence on the answer
     infl = {}
-    for k, target in (("dallas", AUS), ("sf", SAC)):
-        g = attribute(P[k], model, max_n_logits=10, desired_logit_prob=0.95, batch_size=256, max_feature_nodes=7500, offload="cpu", verbose=True)
+    for k, target, tword in (("dallas", AUS, " Austin"), ("sf", SAC, " Sacramento")):
+        try: g = attribute(P[k], model, attribution_targets=[tword], batch_size=256, max_feature_nodes=7500, offload="cpu", verbose=True)
+        except Exception as e:   # older API: let it pick logits, then look for the target among them
+            log("explicit target failed:", repr(e)[:200]); g = attribute(P[k], model, max_n_logits=50, desired_logit_prob=0.99, batch_size=256, max_feature_nodes=7500, offload="cpu", verbose=True)
         g.to_pt(os.path.join(OUT, f"graph_{k}.pt"))
         nf = len(g.selected_features); npos = g.n_pos; nerr = NL * npos; nlog = len(g.logit_targets)
         lw = torch.zeros(g.adjacency_matrix.shape[0], device=g.adjacency_matrix.device)
@@ -54,7 +56,7 @@ try:
         A = acts[src]; i0 = pos_of(src, after_word); s = pos_of(single, single_word)
         act_after = A[:, i0:].amax(1); in_single = acts[single][:, s] > 0; none_other = acts[other].amax(1) <= 0
         cand = ((act_after > 0) & in_single & none_other).nonzero().tolist()
-        scored = sorted(((infl[src].get((l, f), 0.0), l, f) for l, f in cand), reverse=True)
+        scored = sorted(((infl.get(src, {}).get((l, f), 0.0), l, f) for l, f in cand), reverse=True)
         return [(l, f) for v, l, f in scored if v > 0][:10], len(cand)
     T, nT = build("dallas", "texas", "sf", "Dallas", "Texas"); C, nC = build("sf", "calif", "dallas", "Francisco", "California")
     RES["sets"] = {"T": T, "T_candidates": nT, "C": C, "C_candidates": nC}; log("sets", RES["sets"]); save()
