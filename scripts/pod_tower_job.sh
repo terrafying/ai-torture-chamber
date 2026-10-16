@@ -32,6 +32,7 @@ step() {   # log and push before and after every step, so a crash shows exactly 
   command -v git >/dev/null || (apt-get update -qq && apt-get install -y -qq git >/dev/null)
   rm -rf repo && git clone -q --depth 1 -b "$BRANCH" https://github.com/terrafying/ai-torture-chamber.git repo
   pip install -q --no-cache-dir 'transformers==5.19.0' accelerate bitsandbytes scipy numpy pillow fastapi httpx redis pyyaml einops huggingface_hub 2>&1 | tail -2
+  pip install -q -U brotli brotlicffi zstandard 2>&1 | tail -1   # httpx's decoder needs a current brotli, or Hub downloads die mid-file
   hf download "$JOB_REPO" live.tar.gz --repo-type dataset --local-dir private && tar -xzf private/live.tar.gz -C private
   hf download "$TOWER_MODEL" --include "*.json" "*.safetensors" "*.txt" >/dev/null && echo "model downloaded"
   python -c "import torch; print(torch.__version__, torch.cuda.get_device_name())"
