@@ -363,7 +363,7 @@ function framePairs(){
  if(ci){const mx=Math.max(...ci.nodes.map(x=>Math.abs(x[2])))||1,G=S.grp!=null?new Set(ci.groups[S.grp]?.members||[]):null;
   return ci.nodes.map((x,j)=>[x[0],(G&&!G.has(j)?.08:1)*Math.sign(x[2])*(.3+.7*Math.pow(Math.abs(x[2])/mx,.6))]);}
  if(S.mode==="chose"){const ch=c.ch.find(x=>x[0]===t);if(!ch)return[];return ch[3].map((k,j)=>[k,Math.sign(ch[4][j])*(.25+.75*Math.abs(ch[4][j])/100)]);}
- const fr=c.fr[t];return fr[0].map((k,j)=>{const r=fr[1][j]/50;return[k,Math.sign(r)*(.22+.78*Math.min(1,Math.abs(r)))];});}
+ const fr=c.fr[t];if(!fr)return [];return fr[0].map((k,j)=>{const r=fr[1][j]/50;return[k,Math.sign(r)*(.22+.78*Math.min(1,Math.abs(r)))];});}
 function weightPairs(){const k=2+FE.indexOf(S.wfeel),out=[];
  for(let l=0;l<NL;l++){const thr=M.null_p999[l]/M.cos_scale*127;let mx=thr+1;for(let n=0;n<NI;n++)mx=Math.max(mx,Math.abs(grid[(l*NI+n)*REC+k]));
   for(let n=0;n<NI;n++){const i=l*NI+n,c=grid[i*REC+k];if(Math.abs(c)>thr)out.push([i,Math.sign(c)*(.25+.75*(Math.abs(c)-thr)/(mx-thr))]);}}return out;}
@@ -589,6 +589,7 @@ function side(){
    h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · what chose this word</h3><div class="big">${ch?`“${vis(t)}”`:"—"}</div>${ch?`<p class="note">over “${vis(ch[1])}”, by ${ch[2].toFixed(2)} logits</p>`:`<p class="note">Pick a word of the reply (bright text). Each reply word is a decision; the lit neurons are the ones that pushed this word over its runner-up, summed over everything read so far.</p>`}</div>`;
    if(ch){const pairs=ch[3].map((k,j)=>[k,ch[4][j]/100]).filter(([k])=>pass(k));
     h+=`<div><h3>pushed for it</h3>${nlist(pairs.filter(p=>p[1]>0).slice(0,8))}</div><div><h3>pushed against it</h3>${nlist(pairs.filter(p=>p[1]<0).slice(0,5))}</div><div><h3>what these ${pairs.length} are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}}
+  else if(!c.fr[S.tok]){h+=`<div><h3>${ST.prompts[S.prompt].warming?"waking the model…":"running…"}</h3><p class="note">The tower lights up as soon as the first words come back.</p></div>`;}
   else{const fr=c.fr[S.tok],pairs=fr[0].map((k,j)=>[k,fr[1][j]/50]).filter(([k])=>pass(k));
    h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · ${S.tok<np?"reading the prompt":"writing the reply"}</h3><div class="big">“${vis(t)}”</div></div>`;
    h+=attnPanel(c);
