@@ -1,0 +1,125 @@
+proposals + tests written 120
+/Users/ee/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 16.44it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 24.32it/s]
+11 8482 False (0, 0, 4) Token appears in or immediately after an abbreviation, acronym, or shortened form (either 
+11 8482 False (0, 0, 3) Token is part of a compound word or phrase that has been split across a line break, hyphen
+11 8482 False (1, 1, 2) Token immediately follows a proper noun, number, or abbreviation that forms a complete sem
+29 1784 False (0, 0, 0) Modal or auxiliary verb expressing possibility, ability, or present perfect, appearing in 
+29 1784 False (0, 0, 0) Token that begins a clause describing a negative consequence, harm, or problematic outcome
+29 1784 False (0, 0, 1) Verb or adverb immediately following a relative pronoun (that) or noun phrase, introducing
+13 4494 False (0, 0, 0) A digit that is part of a numeric measurement or quantity, specifically appearing in the m
+13 4494 False (0, 0, 0) A token that serves as a separator or middle component in a numeric expression, including 
+13 4494 False (0, 0, 0) A token that appears between other numeric or alphanumeric tokens, acting as a bridge elem
+20 1815 False (6, 6, 5) The token is a single digit that is part of a two-digit number, where it appears as the fi
+20 1815 False (4, 6, 4) The token is a digit that immediately follows a hyphen, 'to', colon, or slash in a numeric
+20 1815 False (4, 2, 2) The token is the tens-place digit in a two-digit number representing age, date, or time
+13 8620 False (0, 0, 3) Token appears in a context about creation, origin, or establishment of something physical 
+13 8620 False (1, 1, 3) Token immediately follows a verb or preposition indicating placement, creation, or tempora
+13 8620 False (0, 0, 1) Token is part of a phrase describing something fundamental or foundational (soil/seeds for
+14 5802 False (4, 2, 2) Token appears immediately after a number or numeric expression, forming part of a measurem
+14 5802 False (4, 0, 2) Token is part of or immediately follows the completion of a numeric value in a structured 
+14 5802 False (3, 3, 5) Token appears at the boundary between a number and its unit/descriptor, or between numeric
+24 7684 False (0, 0, 0) Token appears after 'to' in an infinitive verb phrase or after a modal verb, representing 
+24 7684 False (2, 2, 2) Token is a verb (or part of verb phrase) that appears in a context describing beneficial a
+24 7684 False (0, 0, 1) Token immediately follows a colon, 'to', modal verb, or preposition in a sentence describi
+20 2741 False (0, 0, 0) Second digit in a multi-digit number, particularly in contexts involving measurements, sta
+20 2741 False (1, 0, 0) Middle digit in phone numbers, years, dollar amounts, or other numeric sequences where the
+20 2741 False (0, 0, 0) Digit appearing after the first digit in a number that spans multiple tokens
+23 2185 False (0, 0, 0) Token that can be skipped or omitted without losing core meaning - a navigational or forma
+23 2185 False (0, 0, 0) Token immediately following a verb or noun that indicates bypassing/jumping (Skip/Jump) or
+23 2185 False (0, 0, 0) Token that is part of a standardized, templated phrase or format pattern (navigation links
+11 8952 False (0, 0, 4) Token appears immediately after a word boundary where the preceding word ends with 'in', c
+11 8952 False (0, 1, 4) Token is part of or follows a compound noun phrase or technical term in an instructional/e
+11 8952 False (0, 0, 1) Token appears at the start of a new informational unit or list item, often following punct
+11 9704 False (0, 0, 0) Token appears in a noun phrase that is part of a prepositional phrase or relative clause p
+11 9704 False (0, 0, 3) Token is part of a technical or specialized term in a scientific/academic context, appeari
+11 9704 False (0, 0, 2) Token appears in the predicate or complement position of a sentence providing definitional
+12 9081 False (0, 0, 0) Token is part of a hyphenated compound word or follows a hyphen
+12 9081 False (0, 0, 0) Token completes a technical or scientific compound term that was split across a line break
+12 9081 False (0, 0, 0) Token is the second morpheme or component in a compound word that has been split by punctu
+12 923 False (0, 0, 4) Token appears immediately after or as part of a compound word/abbreviation where it comple
+12 923 False (2, 2, 3) Token is part of a word or term that has been split across a boundary (line break, formatt
+12 923 False (2, 1, 3) Token completes a reference, title, or technical term that began in the immediately preced
+28 5239 False (0, 0, 2) Token appears immediately after an adjective or article in a noun phrase, where the marked
+28 5239 False (1, 1, 0) Token is part of a compound noun or adjective form where it serves as the second element, 
+28 5239 False (0, 0, 0) Token is a scientific or technical term that appears after a determiner or modifier, funct
+26 4625 False (0, 0, 2) Token appears immediately before the word 'system' or in a compound noun phrase where 'sys
+26 4625 False (0, 0, 3) Token is a noun modifier (adjective or noun) in a compound technical/scientific term, appe
+26 4625 False (0, 0, 2) Token is part of a binomial collocation or fixed phrase in technical/scientific writing, s
+16 2445 False (0, 0, 0) Token is part of a compound word or proper noun where it completes a well-known term, appe
+16 2445 False (1, 1, 0) Token appears immediately after a word boundary within a multi-token proper noun or techni
+16 2445 False (0, 0, 0) Token contains double letters (repeated consonants) and is part of a proper noun or specia
+19 1961 False (1, 2, 0) Token immediately follows a number (digit or spelled-out number) representing a measuremen
+19 1961 False (2, 1, 0) Token is part of a measurement unit or temporal unit that completes a numeric expression
+19 1961 False (1, 1, 0) Token appears at a word boundary immediately after digits or number words, completing a qu
+25 4359 False (0, 0, 0) Token immediately follows a line break or newline character, appearing at the start of a n
+25 4359 False (0, 0, 2) Token appears immediately after a colon, pipe character, or other delimiter that introduce
+25 4359 False (0, 0, 0) Token is part of a noun phrase or verb phrase that completes or continues a statement begu
+11 2582 False (2, 1, 2) Token appears in a phrase describing a component, part, or element of a mixture, solution,
+11 2582 False (0, 0, 1) Token immediately follows a preposition or article and is part of a prepositional phrase o
+11 2582 False (0, 0, 1) Token is the key noun or number in a phrase that specifies the constituents, ingredients, 
+14 9145 False (0, 0, 3) Token appears immediately after a comma in a list or enumeration context
+14 9145 False (0, 0, 0) Token is part of or follows a health/medical term in an informational or educational conte
+14 9145 False (0, 0, 3) Token begins a new clause or phrase after punctuation (comma, colon, or period) in technic
+12 9016 False (0, 0, 2) Token appears after a preposition or verb in a context describing prevention, reduction, o
+12 9016 False (0, 0, 2) Token immediately follows a verb or preposition in a phrase describing transmission, sprea
+12 9016 False (0, 0, 1) Token appears in a clause or phrase that describes a mechanism, method, or pathway of envi
+29 3784 False (1, 1, 0) Token immediately follows a comma or period and precedes content that continues or expands
+29 3784 False (0, 0, 0) Token appears in a context describing relationships or connections between entities, often
+29 3784 False (1, 1, 1) Token follows a pause (comma or period) and introduces a continuation that adds another me
+12 4124 False (0, 0, 3) Token appears at the end of a line or before a line break in formatted text
+12 4124 False (0, 0, 3) Token is followed by a capitalized word or phrase that starts a new sentence or clause
+12 4124 False (0, 0, 2) Token completes a noun phrase that is the object of a preposition or verb, immediately bef
+28 2879 False (1, 1, 2) Token appears in a context describing fundamental properties, characteristics, or rights t
+28 2879 False (0, 0, 1) Token follows a modal verb, auxiliary verb, or appears in a verb phrase expressing necessi
+28 2879 False (0, 0, 1) Token appears in text describing formation, establishment, or constitutional/foundational 
+11 4799 False (0, 0, 3) Token appears in a noun phrase that is the object of a preposition, specifically following
+11 4799 False (0, 0, 5) Token is part of a compound noun phrase or multi-word technical term where it serves as th
+11 4799 False (0, 0, 1) Token completes a binomial or compound phrase with an adjective modifier, forming a techni
+30 3138 False (0, 0, 2) Token immediately preceding a large number (in thousands, millions, or billions) that repr
+30 3138 False (0, 0, 1) Boundary token (punctuation or digit) that separates formatting elements from the main num
+30 3138 False (0, 0, 3) Token at the transition point where a temporal expression shifts from qualitative descript
+27 8843 False (0, 0, 2) Token is part of a proper noun or title that functions as a modifier in a compound noun ph
+27 8843 False (0, 0, 0) Token is capitalized and appears immediately before another capitalized word, forming part
+27 8843 False (0, 0, 1) Token is the first element in a two-word proper noun where both words are capitalized
+24 3055 False (0, 0, 1) Token is an adjective that appears immediately before a pipe character '|' or immediately 
+24 3055 False (0, 0, 0) Token is capitalized and appears in a formal list, navigation menu, or official title cont
+24 3055 False (0, 0, 0) Token is an adjective in a compound term or phrase that forms part of a standardized categ
+11 645 False (3, 1, 2) A digit that is part of a numerical measurement or statistic, specifically appearing withi
+11 645 False (6, 1, 2) A digit or decimal point that appears immediately after a number has been established and 
+11 645 False (6, 4, 4) The character at the boundary between the whole number and decimal portion of a statistic,
+15 8247 False (0, 0, 0) Token appears immediately after a word boundary within a compound or hyphenated word, or i
+15 8247 False (0, 0, 1) Token is part of a word that was preceded by a number, hyphen, or word fragment in the imm
+15 8247 False (0, 0, 1) Token completes a word where the first part appeared as the final token before a line brea
+14 2504 False (3, 0, 2) Token immediately precedes structured metadata or citation information that follows a stan
+14 2504 False (1, 1, 1) Token at the boundary between prose text and machine-readable/formatted data (dates, dicti
+14 2504 True (4, 1, 0) Token that ends a sentence or clause immediately before a new line or formatted section be
+27 7336 False (0, 0, 0) Token appears immediately after a content word (noun, verb, adjective) that requires or st
+27 7336 False (0, 0, 0) Token is part of a two-word phrase where it serves as the second element completing a gram
+27 7336 False (0, 0, 0) Token immediately follows a word ending in a consonant and begins a prepositional phrase o
+28 4410 False (0, 0, 0) Token is a single digit or character that completes a year, date, or formatted separator, 
+28 4410 False (0, 0, 3) Token appears as the second character in a two-digit or two-character sequence that is par
+28 4410 False (0, 0, 2) Token completes a boundary marker in structured text: either the tens digit completing a c
+30 3972 False (0, 0, 1) Token immediately follows a word or phrase that ends with a sibilant sound (s, z, sh, ch) 
+30 3972 False (0, 0, 1) Token appears after a word boundary where possessive, plural, or contraction with 's' woul
+30 3972 False (0, 0, 0) Token follows a noun phrase or proper noun that could be modified or specified further
+16 1900 False (0, 0, 0) Token appears immediately after a word ending in a plural or collective noun phrase, speci
+16 1900 False (0, 0, 0) Token is a plural noun or appears in a position where multiple entities/items are being re
+16 1900 False (0, 0, 0) Token follows the word 'of' or 'all' or appears after 'on' in prepositional phrases indica
+10 6437 False (0, 0, 1) Token appears in a noun phrase that is the object of a preposition, specifically following
+10 6437 False (1, 0, 1) Token is part of a possessive or relational phrase describing family members, children, or
+10 6437 False (1, 0, 0) Token appears as the object or complement in a phrase describing someone's family member, 
+13 1474 False (0, 0, 0) Token immediately follows metadata/header information (dates, navigation bars, timestamps)
+13 1474 False (0, 0, 0) Token appears at the end of a line containing structured metadata or navigation elements, 
+13 1474 False (0, 0, 0) Token follows a complete date/timestamp expression or navigation breadcrumb trail
+13 5339 False (1, 1, 1) Token is part of a compound medical/anatomical term where it forms the middle or end porti
+13 5339 False (0, 0, 2) Token immediately follows or is part of a phrase that completes a medical condition name, 
+13 5339 False (2, 0, 3) Token appears in lowercase within a medical term that could also be capitalized, or appear
+24 6 False (0, 0, 0) Token immediately follows a pipe character '|' or appears after a line break in a structur
+24 6 False (0, 0, 0) Token appears in a position where it follows a vertical bar or social media handle, servin
+24 6 False (0, 0, 0) Token is part of a navigation menu, metadata, or boilerplate text structure where items ar
+26 5039 False (0, 0, 1) Token appears immediately after an article ('a', 'an', 'the') or possessive/demonstrative 
+26 5039 False (0, 0, 0) Token is the first content word (noun or verb) following a determiner or article in a tech
+26 5039 False (0, 0, 3) Token follows a determiner and begins a noun phrase or verb phrase that describes a techni
+{"candidates": 40, "verified_neurons": 1, "H2_ge_25pct": false, "verified_kinds": {"form": 1}, "factors_tested": 120, "factors_verified": 1}

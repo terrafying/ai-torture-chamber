@@ -14,7 +14,8 @@ import numpy as np, torch
 HERE = Path(__file__).parent; sys.path.insert(0, str(HERE.parent / "exp111"))
 from tower_cfg import DATA as D, DEV, load
 NC = int(sys.argv[1]) if len(sys.argv) > 1 else 40; FIRE = .30; LLM = "anthropic/claude-sonnet-4.5"
-CAND = json.load(open(HERE / "candidates.json"))[:NC]
+CFILE = os.environ.get("CAND_FILE", "candidates.json"); SUF = os.environ.get("OUT_SUFFIX", "")   # exploratory batches
+CAND = json.load(open(HERE / CFILE))[:NC]
 MAX = np.load(D / "corpus_all.npz")["max"]
 
 def ask(prompt, temp=0.3):
@@ -86,6 +87,6 @@ nv = sum(c["verified"] for c in CAND)
 res = {"candidates": len(CAND), "verified_neurons": nv, "H2_ge_25pct": nv >= .25 * len(CAND),
        "verified_kinds": dict(collections.Counter(f["kind"] for c in CAND for f in c.get("factors", []) if f.get("verified"))),
        "factors_tested": len(jobs), "factors_verified": sum(f.get("verified", False) for c in CAND for f in c.get("factors", []))}
-json.dump(CAND, open(HERE / "gallery.json", "w"), indent=1, ensure_ascii=False)
-json.dump(res, open(HERE / "results.json", "w"), indent=1)
+json.dump(CAND, open(HERE / f"gallery{SUF}.json", "w"), indent=1, ensure_ascii=False)
+json.dump(res, open(HERE / f"results{SUF}.json", "w"), indent=1)
 print(json.dumps(res))
