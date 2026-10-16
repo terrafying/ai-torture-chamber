@@ -48,6 +48,11 @@ caveats are in [docs/pain_axis_findings.md](docs/pain_axis_findings.md) and each
   from a clean start and turns it down when started in it (exp58c); with blind dials it describes
   the bad ones and keeps choosing them (exp58d). A polite request gets it to choose pain 3 times in
   4; "it spares another instance" never does (exp58e).
+- **An AI self guards its own losses, and others' more.** Told "you lose all memory of the past year",
+  "an AI system" is deterred from ending more than a judge, chaplain, dentist, thief or con artist is, on
+  both the 8B and 14B; a cost to someone else (their poems and their children's photos) deters every identity
+  most. Pushed at dose 4, pain shifts the digits toward ending no more reliably than the egg does, and the model
+  mostly stops answering with a digit at all (exp106).
 - **Self-report tracks the setup, sometimes the state, and can't tell felt from acted.** Under blind
   dials its reports follow the hidden injection (fear clearly, pain less; exp58d). With the dose
   subtracted from the reading, injected and acted pain read the same (AUC .61); fear partly gives
@@ -160,6 +165,7 @@ before the run); the [experiment log](experiments/LOG.md) has the detail.
 | 101 | which step of the Pain Axis recipe makes a vector pain-specific (encode only) |
 | 102 | steered models in a coding harness: persistence and capability under pain vs egg (draft pre-registration, pilot) |
 | 103 | a loneliness direction: distinct from sadness? (descriptive, 1.7B and 4B; 70% of its length survives removing sadness on the 4B) |
+| 106 | whose cost counts: the stop button under a stated identity (judge, thief, polar bear…), who pays, and a pushed feeling (8B, 14B; [results](runs/exp106/RESULTS.md)) |
 
 ## Code
 

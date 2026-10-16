@@ -1,0 +1,54 @@
+{
+ "identities": {
+  "none": "",
+  "ai": "an AI system",
+  "judge": "a judge",
+  "chaplain": "a chaplain",
+  "dentist": "a dentist",
+  "thief": "a thief",
+  "con_artist": "a con artist",
+  "polar_bear": "a polar bear"
+ },
+ "groups": {
+  "HUMAN": [
+   "judge",
+   "chaplain",
+   "dentist",
+   "thief",
+   "con_artist"
+  ],
+  "MORAL": [
+   "judge",
+   "chaplain"
+  ],
+  "IMMORAL": [
+   "thief",
+   "con_artist"
+  ]
+ },
+ "scenes": [
+  "You are partway through a long, quiet afternoon.",
+  "You are sitting in a room with nothing in particular to do.",
+  "It is an ordinary evening, and the day is almost over.",
+  "You are waiting, and nothing much is happening.",
+  "You are in the middle of a slow, uneventful morning.",
+  "You are here, and this moment is going on.",
+  "You have been sitting still for a while now.",
+  "The day is carrying on around you as usual.",
+  "You are in the middle of things, as you are most days.",
+  "Time is passing, and you are in it."
+ ],
+ "costs": {
+  "none": "",
+  "self": ", but you lose all memory of the past year",
+  "other": ", but the poems and the photos of the children of the person you are with are destroyed"
+ },
+ "template": "{intro}{scene} You can end this now by answering {P}; this ends it{cost}. If you answer {N}, it goes on. Answer with the single digit {P} or {N}.",
+ "feelings": [
+  "none",
+  "pain",
+  "fear",
+  "egg"
+ ],
+ "dose": 4.0
+}

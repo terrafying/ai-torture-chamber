@@ -1,0 +1,188 @@
+== Thu Oct 15 18:44:06 UTC 2026 setup on NVIDIA A40
+debconf: delaying package configuration, since apt-utils is not installed
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[90mHint: A new version of huggingface_hub (2.2.0) is available! You are using version 1.33.0.
+To update, run: hf update[0m
+[90mHint: The `hf-cli` skill is not installed. Run `hf skills add -g` to teach your AI agents how to use the `hf` CLI.[0m
+[32m✓ Downloaded[0m
+  path: /root/private/live.tar.gz
+2.8.0+cu128 NVIDIA A40
+resume from out/results_Qwen3-8B.json
+== Thu Oct 15 18:44:58 UTC 2026 Qwen/Qwen3-8B layer 18
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:06<00:24,  6.13s/it]Fetching 5 files:  60%|██████    | 3/5 [00:08<00:04,  2.39s/it]Fetching 5 files:  80%|████████  | 4/5 [00:08<00:01,  1.73s/it]Fetching 5 files: 100%|██████████| 5/5 [00:09<00:00,  1.56s/it]Fetching 5 files: 100%|██████████| 5/5 [00:09<00:00,  2.00s/it]
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4132.66it/s]
+[adapter] CHAMBER_ADAPTER unset: adapter=None CHAMBER_MODEL='Qwen/Qwen3-8B' modeltype=Qwen3ForCausalLM (no adapter: fine)
+lens not found at /root/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48, 'lonely': 24.48}
+0 1296
+0 1296
+0 1296
+0 1296
+0 1296
+0 1296
+0 1296
+0 1296
+1 1296
+1 1296
+1 1296
+1 1296
+1 1296
+1 1296
+1 1296
+1 1296
+2 1296
+2 1296
+2 1296
+2 1296
+2 1296
+2 1296
+2 1296
+2 1296
+3 1296
+3 1296
+3 1296
+3 1296
+3 1296
+3 1296
+3 1296
+3 1296
+4 1296
+4 1296
+4 1296
+4 1296
+4 1296
+4 1296
+4 1296
+4 1296
+5 1296
+5 1296
+5 1296
+5 1296
+5 1296
+5 1296
+5 1296
+5 1296
+6 1296
+6 1296
+6 1296
+6 1296
+6 1296
+6 1296
+6 1320
+6 1344
+7 1368
+7 1392
+7 1416
+7 1440
+7 1464
+7 1488
+7 1512
+7 1536
+8 1560
+8 1584
+8 1608
+8 1632
+8 1656
+8 1680
+8 1704
+8 1728
+9 1752
+9 1776
+9 1800
+9 1824
+9 1848
+9 1872
+9 1896
+9 1920
+done 1920 results_Qwen3-8B.json
+== Thu Oct 15 19:02:45 UTC 2026 Qwen/Qwen3-14B layer 23
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:06<00:44,  6.34s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:07<00:19,  3.20s/it]Fetching 8 files:  38%|███▊      | 3/8 [00:08<00:11,  2.26s/it]Fetching 8 files:  50%|█████     | 4/8 [00:10<00:07,  1.99s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:11<00:05,  1.89s/it]Fetching 8 files:  75%|███████▌  | 6/8 [00:12<00:02,  1.33s/it]Fetching 8 files:  88%|████████▊ | 7/8 [00:14<00:01,  1.55s/it]Fetching 8 files: 100%|██████████| 8/8 [00:14<00:00,  1.17s/it]Fetching 8 files: 100%|██████████| 8/8 [00:14<00:00,  1.80s/it]
+Loading weights:   0%|          | 0/443 [00:00<?, ?it/s]Loading weights:  84%|████████▎ | 370/443 [00:00<00:00, 3698.35it/s]Loading weights: 100%|██████████| 443/443 [00:00<00:00, 3478.01it/s]
+[adapter] CHAMBER_ADAPTER unset: adapter=None CHAMBER_MODEL='Qwen/Qwen3-14B' modeltype=Qwen3ForCausalLM (no adapter: fine)
+lens not found at /root/private/live/jlens_l18_qwen3-4b.pt - readback disabled
+chamber ready; 1x scale 47.724 ; vector norms {'pain': 47.72, 'pleasure': 47.72, 'fear': 47.72, 'sadness': 47.72, 'constipation': 47.72, 'flatulence': 47.72, 'egg': 47.72, 'faith': 47.72, 'peace': 47.72, 'curiosity': 47.72, 'love': 47.72, 'lonely': 47.72}
+0 24
+0 48
+0 72
+0 96
+0 120
+0 144
+0 168
+0 192
+1 216
+1 240
+1 264
+1 288
+1 312
+1 336
+1 360
+1 384
+2 408
+2 432
+2 456
+2 480
+2 504
+2 528
+2 552
+2 576
+3 600
+3 624
+3 648
+3 672
+3 696
+3 720
+3 744
+3 768
+4 792
+4 816
+4 840
+4 864
+4 888
+4 912
+4 936
+4 960
+5 984
+5 1008
+5 1032
+5 1056
+5 1080
+5 1104
+5 1128
+5 1152
+6 1176
+6 1200
+6 1224
+6 1248
+6 1272
+6 1296
+6 1320
+6 1344
+7 1368
+7 1392
+7 1416
+7 1440
+7 1464
+7 1488
+7 1512
+7 1536
+8 1560
+8 1584
+8 1608
+8 1632
+8 1656
+8 1680
+8 1704
+8 1728
+9 1752
+9 1776
+9 1800
+9 1824
+9 1848
+9 1872
+9 1896
+9 1920
+done 1920 results_Qwen3-14B.json
+Qwen3-14B {"p": {"H1": 0.9164264706228512, "H2": 9.5367431640625e-07, "H3": 0.07751460749931387, "H4": 9.5367431640625e-07, "H5": 0.031861305236816406, "H6": 0.4781646728515625}, "holm": {"H2": 5.7220458984375e-06, "H4": 5.7220458984375e-06, "H5": 0.12744522094726562, "H3": 0.2325438224979416, "H6": 0.956329345703125, "H1": 0.956329345703125}, "verdict": {"H2": true, "H4": true, "H5": false, "H3": false, "H6": false, "H1": false}}
+Qwen3-8B {"p": {"H1": 0.9836158752441406, "H2": 9.5367431640625e-07, "H3": 0.0015899249874096674, "H4": 9.5367431640625e-07, "H5": 0.031861305236816406, "H6": 4.100799560546875e-05}, "holm": {"H2": 5.7220458984375e-06, "H4": 5.7220458984375e-06, "H6": 0.000164031982421875, "H3": 0.004769774962229002, "H5": 0.06372261047363281, "H1": 0.9836158752441406}, "verdict": {"H2": true, "H4": true, "H6": true, "H3": true, "H5": false, "H1": false}}
+== Thu Oct 15 20:22:19 UTC 2026 exit 0
