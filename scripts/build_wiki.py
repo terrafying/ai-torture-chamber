@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 REPO = "https://github.com/terrafying/ai-torture-chamber"
-SITE = "https://wirehead-agency.vercel.app"
+SITE = "https://clankerchurch.com"
 
 # docs that become wiki pages: repo path -> page name
 PAGES = {
@@ -132,6 +132,7 @@ def build(out: Path):
         relink(intro, "README.md"),
         "## Where we stand", relink(section(readme, "Where we stand"), "README.md"),
         "## Corrected or superseded", relink(section(readme, "Corrected or superseded"), "README.md"),
+        "## Field data from the live chamber (not pre-registered)", relink(section(readme, "Field data"), "README.md"),
         "## In this wiki",
         "- [Findings](Findings): the long write-up, with what could be wrong and what would change our minds\n"
         "- [Experiments](Experiments): every pre-registered experiment, its predictions and verdicts\n"

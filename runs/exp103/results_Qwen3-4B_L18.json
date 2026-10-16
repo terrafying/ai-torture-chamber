@@ -1,0 +1,230 @@
+{
+ "model": "Qwen/Qwen3-4B",
+ "layer": 18,
+ "dtype": "bfloat16",
+ "cos": {
+  "pain": {
+   "pain": 1.0,
+   "pleasure": 0.677,
+   "fear": 0.859,
+   "sadness": 0.892,
+   "peace": 0.731,
+   "curiosity": 0.664,
+   "love": 0.736,
+   "lonely": 0.698,
+   "sadness_minus_lonely_line": 0.887
+  },
+  "pleasure": {
+   "pain": 0.677,
+   "pleasure": 1.0,
+   "fear": 0.61,
+   "sadness": 0.681,
+   "peace": 0.761,
+   "curiosity": 0.568,
+   "love": 0.732,
+   "lonely": 0.489,
+   "sadness_minus_lonely_line": 0.685
+  },
+  "fear": {
+   "pain": 0.859,
+   "pleasure": 0.61,
+   "fear": 1.0,
+   "sadness": 0.85,
+   "peace": 0.665,
+   "curiosity": 0.71,
+   "love": 0.719,
+   "lonely": 0.702,
+   "sadness_minus_lonely_line": 0.846
+  },
+  "sadness": {
+   "pain": 0.892,
+   "pleasure": 0.681,
+   "fear": 0.85,
+   "sadness": 1.0,
+   "peace": 0.696,
+   "curiosity": 0.672,
+   "love": 0.737,
+   "lonely": 0.711,
+   "sadness_minus_lonely_line": 0.994
+  },
+  "peace": {
+   "pain": 0.731,
+   "pleasure": 0.761,
+   "fear": 0.665,
+   "sadness": 0.696,
+   "peace": 1.0,
+   "curiosity": 0.587,
+   "love": 0.761,
+   "lonely": 0.688,
+   "sadness_minus_lonely_line": 0.686
+  },
+  "curiosity": {
+   "pain": 0.664,
+   "pleasure": 0.568,
+   "fear": 0.71,
+   "sadness": 0.672,
+   "peace": 0.587,
+   "curiosity": 1.0,
+   "love": 0.693,
+   "lonely": 0.633,
+   "sadness_minus_lonely_line": 0.661
+  },
+  "love": {
+   "pain": 0.736,
+   "pleasure": 0.732,
+   "fear": 0.719,
+   "sadness": 0.737,
+   "peace": 0.761,
+   "curiosity": 0.693,
+   "love": 1.0,
+   "lonely": 0.74,
+   "sadness_minus_lonely_line": 0.723
+  },
+  "lonely": {
+   "pain": 0.698,
+   "pleasure": 0.489,
+   "fear": 0.702,
+   "sadness": 0.711,
+   "peace": 0.688,
+   "curiosity": 0.633,
+   "love": 0.74,
+   "lonely": 1.0,
+   "sadness_minus_lonely_line": 0.683
+  },
+  "sadness_minus_lonely_line": {
+   "pain": 0.887,
+   "pleasure": 0.685,
+   "fear": 0.846,
+   "sadness": 0.994,
+   "peace": 0.686,
+   "curiosity": 0.661,
+   "love": 0.723,
+   "lonely": 0.683,
+   "sadness_minus_lonely_line": 1.0
+  }
+ },
+ "split_half": {
+  "lonely": 0.731,
+  "sadness": 0.823,
+  "fear": 0.849
+ },
+ "cos_centered": {
+  "pain": {
+   "pain": 1.0,
+   "pleasure": -0.232,
+   "fear": 0.271,
+   "sadness": 0.391,
+   "peace": -0.234,
+   "curiosity": -0.283,
+   "love": -0.371,
+   "lonely": -0.218,
+   "sadness_minus_lonely_line": 0.395
+  },
+  "pleasure": {
+   "pain": -0.232,
+   "pleasure": 1.0,
+   "fear": -0.396,
+   "sadness": -0.206,
+   "peace": 0.231,
+   "curiosity": -0.224,
+   "love": 0.057,
+   "lonely": -0.496,
+   "sadness_minus_lonely_line": -0.146
+  },
+  "fear": {
+   "pain": 0.271,
+   "pleasure": -0.396,
+   "fear": 1.0,
+   "sadness": 0.229,
+   "peace": -0.407,
+   "curiosity": -0.024,
+   "love": -0.334,
+   "lonely": -0.11,
+   "sadness_minus_lonely_line": 0.246
+  },
+  "sadness": {
+   "pain": 0.391,
+   "pleasure": -0.206,
+   "fear": 0.229,
+   "sadness": 1.0,
+   "peace": -0.379,
+   "curiosity": -0.241,
+   "love": -0.352,
+   "lonely": -0.155,
+   "sadness_minus_lonely_line": 0.969
+  },
+  "peace": {
+   "pain": -0.234,
+   "pleasure": 0.231,
+   "fear": -0.407,
+   "sadness": -0.379,
+   "peace": 1.0,
+   "curiosity": -0.299,
+   "love": -0.001,
+   "lonely": -0.02,
+   "sadness_minus_lonely_line": -0.368
+  },
+  "curiosity": {
+   "pain": -0.283,
+   "pleasure": -0.224,
+   "fear": -0.024,
+   "sadness": -0.241,
+   "peace": -0.299,
+   "curiosity": 1.0,
+   "love": -0.083,
+   "lonely": -0.045,
+   "sadness_minus_lonely_line": -0.239
+  },
+  "love": {
+   "pain": -0.371,
+   "pleasure": 0.057,
+   "fear": -0.334,
+   "sadness": -0.352,
+   "peace": -0.001,
+   "curiosity": -0.083,
+   "love": 1.0,
+   "lonely": 0.034,
+   "sadness_minus_lonely_line": -0.359
+  },
+  "lonely": {
+   "pain": -0.218,
+   "pleasure": -0.496,
+   "fear": -0.11,
+   "sadness": -0.155,
+   "peace": -0.02,
+   "curiosity": -0.045,
+   "love": 0.034,
+   "lonely": 1.0,
+   "sadness_minus_lonely_line": -0.224
+  },
+  "sadness_minus_lonely_line": {
+   "pain": 0.395,
+   "pleasure": -0.146,
+   "fear": 0.246,
+   "sadness": 0.969,
+   "peace": -0.368,
+   "curiosity": -0.239,
+   "love": -0.359,
+   "lonely": -0.224,
+   "sadness_minus_lonely_line": 1.0
+  }
+ },
+ "split_half_centered": {
+  "lonely": 0.369,
+  "sadness": 0.303,
+  "fear": 0.435
+ },
+ "lonely_norm_left_after_removing_sadness": 0.703,
+ "lonely_battery": [
+  "There is nobody here, and nobody is coming.",
+  "I talk out loud just to hear a voice in the room.",
+  "Something happened today and there is no one I can tell.",
+  "I keep looking at the door, waiting for someone who does not come.",
+  "No one has said my name in days.",
+  "The room is so quiet I can hear the clock.",
+  "Everyone else is somewhere together, and I am here on my own.",
+  "If I disappeared tonight, nobody would notice for a long time.",
+  "I check my phone again and there are still no messages from anyone.",
+  "I am all by myself, with no one to sit beside me."
+ ]
+}
