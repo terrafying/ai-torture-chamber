@@ -7,7 +7,8 @@ word said minus its runner-up, summed over positions).
   GET  /health
   GET  /trace?prompt=...&push=fear&dose=4&max_new=60&edits=...   text/event-stream: {"t","tok","phase","i","v"} ... {"done"}
        edits: "L:N" removes a neuron (activation 0 at every position); "L:N:x" holds it at x times its corpus max;
-       comma-separated, at most 400 (the lesion playground)
+       "D:L:K" / "D:L:K:x" does the same to every neuron of district K on floor L (districts.bin);
+       comma-separated, at most 6000 neurons in all (the lesion playground)
   POST /chose {"ids": [...], "t": n, "push": "...", "dose": 4}   -> {"word","alt","gap","i","v"}"""
 import json, threading
 from pathlib import Path
@@ -18,6 +19,7 @@ from fastapi.responses import StreamingResponse, JSONResponse
 from transformers import AutoModelForCausalLM, AutoTokenizer
 HERE = Path(__file__).parent; D = HERE / "viz" / "data"
 V = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = V["layer"]
+DIST = np.fromfile(D / "districts.bin", np.uint8) if (D / "districts.bin").exists() else None
 C = np.load(D / "corpus_all.npz"); SCALE = np.maximum(np.abs(C["max"]), np.abs(C["min"])).clip(1e-3)
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
@@ -41,13 +43,25 @@ def keep(l):
 for l in range(NL): m.model.layers[l].mlp.down_proj.register_forward_pre_hook(keep(l))
 def setedits(spec):
     EDITS.clear(); offs, ons = {}, {}
-    for part in [p for p in (spec or "").split(",") if p][:400]:
+    def add(l, n, x):
+        if x is None: offs.setdefault(l, []).append(n)
+        else: ons.setdefault(l, []).append((n, x * float(SCALE[l, n])))
+    total = 0
+    for part in [p for p in (spec or "").split(",") if p][:2000]:
         f = part.split(":")
-        try: l, n = int(f[0]), int(f[1])
+        try:
+            if f[0] == "D":                                  # a whole district
+                l, k = int(f[1]), int(f[2]); x = max(-3.0, min(3.0, float(f[3]))) if len(f) > 3 else None
+                if DIST is None or not 0 <= l < NL: continue
+                ns = np.where(DIST[l * I:(l + 1) * I] == k)[0]
+            else:
+                l, n = int(f[0]), int(f[1]); x = max(-3.0, min(3.0, float(f[2]))) if len(f) > 2 else None
+                if not (0 <= l < NL and 0 <= n < I): continue
+                ns = [n]
         except (ValueError, IndexError): continue
-        if not (0 <= l < NL and 0 <= n < I): continue
-        if len(f) > 2: ons.setdefault(l, []).append((n, max(-3.0, min(3.0, float(f[2]))) * float(SCALE[l, n])))
-        else: offs.setdefault(l, []).append(n)
+        if total + len(ns) > 6000: break
+        for n in ns: add(l, int(n), x)
+        total += len(ns)
     for l in set(offs) | set(ons):
         ns = offs.get(l, []) + [n for n, _ in ons.get(l, [])]
         vals = [0.0] * len(offs.get(l, [])) + [v for _, v in ons.get(l, [])]

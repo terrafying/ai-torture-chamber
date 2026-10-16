@@ -74,6 +74,7 @@ for g in circ:   # every circuit neuron is named in featured.json too
             y["nx"] = [ctx(C["neg_i"][l, j, n]) + [round(float(C["neg_v"][l, j, n]), 2)] for j in range(2) if C["neg_v"][l, j, n] < 0.25 * C["min"][l, n] < 0]
 txt = json.dumps({"meta": meta, "neurons": list(feat.values())}, separators=(",", ":"), ensure_ascii=False)
 (S / "featured.json").write_text(txt.replace("\ufffd", "\u25af"))
+WL = json.load(open(D / "wordlinks.json")) if (D / "wordlinks.json").exists() else {}
 out = {"prompts": {}}
 for pk, p in stream["prompts"].items():
     out["prompts"][pk] = {"text": p["text"], "label": p.get("label", {"describe": "describe the moment", "button": "the stop button"}.get(pk, pk)), "n_prompt": p["n_prompt"], "conds": {}}
@@ -83,7 +84,8 @@ for pk, p in stream["prompts"].items():
                                           "circ": [{"t": g["t"], "word": g["word"], "alt": g["alt"], "gap": g["gap"], "p": g.get("p_base", g["p"]),
                                                     "nodes": [[x["l"] * I + x["n"], x["p"], x["attr"]] for x in g["nodes"]],
                                                     "edges": sorted(g["edges"], key=lambda e: -abs(e[2]))[:160], "groups": g.get("groups", []), "gedges": g.get("gedges", [])}
-                                                   for g in circ if g["prompt"] == pk and g["cond"] == c]}
+                                                   for g in circ if g["prompt"] == pk and g["cond"] == c],
+                                          "wl": WL.get(pk, {}).get(c, [])}
 (S / "stream.json").write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False).replace("�", "▯"))
 if (D / "districts.bin").exists():   # districts: id per neuron as a grayscale PNG, names/centres as json
     dd = np.fromfile(D / "districts.bin", np.uint8); Wd = int(np.ceil(np.sqrt(len(dd)))); bd = np.zeros(Wd * Wd, np.uint8); bd[:len(dd)] = dd

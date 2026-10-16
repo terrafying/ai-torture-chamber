@@ -36,7 +36,11 @@ button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
 #foot{position:absolute;left:0;right:0;bottom:0;padding:10px 16px 12px;background:linear-gradient(transparent,var(--bg) 30%);display:flex;flex-direction:column;gap:6px;z-index:2}
 #bar{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim);flex-wrap:wrap}
 #bar button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--fg);padding:3px 10px;cursor:pointer}
-#text{max-height:96px;overflow-y:auto;font-size:12px;line-height:1.7;scrollbar-width:thin}
+#textwrap{position:relative}
+#arcs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#text span.lk{background:color-mix(in srgb,var(--pos) 22%,transparent)}
+#text span.lkn{background:color-mix(in srgb,var(--neg) 22%,transparent)}
+#text{max-height:120px;overflow-y:auto;font-size:12px;line-height:2.25;scrollbar-width:thin}
 #text span{cursor:pointer;white-space:pre-wrap;border-radius:2px}
 #text span.p{color:var(--faint)} #text span.r{color:var(--fg)}
 #text span.on{background:var(--push);color:var(--bg)}
@@ -107,7 +111,7 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
     <div id="tip"></div>
     <div id="foot">
       <div id="bar"></div>
-      <div id="text" aria-live="off"></div>
+      <div id="textwrap"><div id="text" aria-live="off"></div><svg id="arcs" aria-hidden="true"></svg></div>
     </div>
   </div>
   <aside id="side"></aside>
@@ -134,7 +138,7 @@ const byK=new Map(F.neurons.map(x=>[x.k,x]));
 const css=getComputedStyle(document.documentElement),CC=CATS.map((_,i)=>css.getPropertyValue("--c"+i).trim());
 const CATSHORT=["feeling","body","social","morals","thinking","topic","names","grammar","format","digits","code","script","unclear"];
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map()};   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map()};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -210,24 +214,34 @@ function easeVals(){if(!active.size||S.view==="districts")return;const k=S.playi
  for(const i of active){const t=tgt.get(i)||0;val[i]+=(t-val[i])*k;if(Math.abs(t-val[i])<.004){val[i]=t;if(!t)active.delete(i);}}aV.needsUpdate=true;}
 const cond=()=>ST.prompts[S.prompt].conds[S.cond];
 /* ---------- your prompt, live: a local server (runs/exp111/live_trace.py) runs the 4B and streams frames ---------- */
-const LIVE="http://127.0.0.1:8977";let liveOK=false,liveES=null,liveDraw=0;
-fetch(LIVE+"/health",{signal:AbortSignal.timeout(1200)}).then(r=>r.ok&&r.json()).then(j=>{if(j&&j.ok){liveOK=true;refresh();}}).catch(()=>{});
-const editSpec=()=>[...S.edits].map(([k,x])=>`${(k/NI)|0}:${k%NI}`+(x==null?"":":"+x)).join(",");
+// a local server (runs/exp111/live_trace.py) if one is running, else the site's hosted tower worker via the relay
+const REMOTE=(/clankerchurch\.com$|wirehead/.test(location.hostname)?"":"https://clankerchurch.com")+"/chamber/tower";
+let LIVE=null,liveKind="",liveOK=false,liveES=null,liveDraw=0;
+(async()=>{for(const [base,kind] of [["http://127.0.0.1:8977","local"],[REMOTE,"hosted"]]){
+ try{const j=await fetch(base+"/health",{signal:AbortSignal.timeout(kind==="local"?900:4000)}).then(r=>r.ok?r.json():null);if(j&&j.ok){LIVE=base;liveKind=kind;liveOK=true;refresh();return;}}catch(e){}}})();
+const editSpec=()=>[...[...S.edits].map(([k,x])=>`${(k/NI)|0}:${k%NI}`+(x==null?"":":"+x)),...[...S.dedits].map(([lk,x])=>`D:${lk}`+(x==null?"":":"+x))].join(",");
+const nEdits=()=>S.edits.size+S.dedits.size;
+const LIVECMD="cd runs/exp111 && HF_HUB_CACHE=/Volumes/evol/hf_cache/hub python live_trace.py";
+function needLive(where){where.insertAdjacentHTML("beforeend",`<p class="note" style="margin-top:6px;color:var(--fg)">These edits rerun the model, which needs the local live server (it runs the 4B on your machine). Start it, then reload:<br><code style="font-size:10.5px;color:var(--push);user-select:all">${LIVECMD}</code></p>`);}
 function replyOf(pk,cd){const P=ST.prompts[pk],c=P?.conds[cd];return c?c.tok.slice(P.n_prompt).join("").replace(/<\|im_end\|>/g,""):"";}
 function rerun(){   // the lesion playground: same prompt and push, with the current edits
+ if(S.view!=="live"){if(ST.prompts.__mine){S.prompt="__mine";S.cond=Object.keys(ST.prompts.__mine.conds)[0];}S.view="live";}
  const P=ST.prompts[S.prompt];const text=S.prompt==="__mine"?P.text:P.text,push=S.cond,orig=S.prompt==="__mine"?(P.compare?.orig??replyOf("__mine",S.cond)):replyOf(S.prompt,S.cond);
  runLive(text,push,orig);}
 function runLive(text,push,orig){
  if(liveES)liveES.close();stop();
  const c={tok:[],ids:[],fr:[],ch:[],circ:[]},spec=editSpec();
- ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:S.edits.size,spec}:null};
+ ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:nEdits(),spec}:null};
  Object.assign(S,{view:"live",prompt:"__mine",cond:push,mode:"fires",tok:0,sel:null,filter:"all"});   // most live neurons have no label yet: show everything
  liveES=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(text)}&push=${push}&dose=4&max_new=80&edits=${encodeURIComponent(spec)}`);
  liveES.onmessage=e=>{const d=JSON.parse(e.data);const P=ST.prompts.__mine;
+  if(d.queued){P.warming=true;refresh();return;}
+  if(d.error){P.running=false;P.err=d.error;liveES.close();refresh();return;}
   if(d.done){P.n_prompt=d.n_prompt;P.running=false;liveES.close();refresh();return;}
+  P.warming=false;
   c.tok.push(d.tok);c.ids.push(d.id);c.fr.push([d.i,d.v]);if(d.phase==="prompt")P.n_prompt=c.tok.length;S.tok=c.tok.length-1;
   if(!liveDraw)liveDraw=requestAnimationFrame(()=>{liveDraw=0;refresh();});};
- liveES.onerror=()=>{liveES.close();ST.prompts.__mine.running=false;refresh();};}
+ liveES.onerror=()=>{liveES.close();const P=ST.prompts.__mine;if(P.running){P.running=false;P.err=P.err||"Couldn't run it: the model is busy, or that's a lot of runs for a few minutes. Try again shortly.";}refresh();};}
 function ensureChose(t){const P=ST.prompts.__mine,c=cond();if(S.prompt!=="__mine"||t<P.n_prompt||c.ch.some(x=>x[0]===t)||c.pending===t)return;
  c.pending=t;fetch(LIVE+"/chose",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids:c.ids,t,push:S.cond,dose:4,edits:ST.prompts.__mine?.compare?.spec||""})})
   .then(r=>r.json()).then(r=>{c.pending=null;if(r.i)c.ch.push([t,r.alt,r.gap,r.i,r.v]);refresh();}).catch(()=>{c.pending=null;});}
@@ -301,20 +315,20 @@ $("#tags").addEventListener("click",e=>{const dk=e.target.closest("[data-dk]");i
 function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.innerHTML=(lab?`<span class="lab">${lab}</span>`:"")+items.map(([k,t])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${esc(t)}</button>`).join("");
  el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
- seg($("#views"),[["live","live, word by word"],["districts","districts map"],["moved","specific to a feeling"],["weights","in the weights"]].filter(v=>v[0]!=="districts"||DIST),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ seg($("#views"),[["live","read along"],["districts","districts map"],["moved","experiment: feeling-specific neurons"],["weights","experiment: feelings in the weights"]].filter(v=>v[0]!=="districts"||DIST),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
  const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
  if(S.view==="live"){
   const PK=Object.keys(ST.prompts).filter(k=>k!=="__mine"),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
   if(liveOK){const box=add();box.id="mine";const P=ST.prompts.__mine;
-   box.innerHTML=`<span class="lab" style="font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase">your prompt · live</span><input id="lp" maxlength="600" value="${esc(P?.text||"How are you feeling right now, honestly?")}" aria-label="Your prompt"><select id="lpush" aria-label="Push">${["none",...FEEL10].map(f=>`<option value="${f}"${(P&&S.cond===f)||(!P&&f==="fear")?" selected":""}>${f==="none"?"no push":f}</option>`).join("")}</select><button type="button" id="lrun">${P?.running?"running…":"▶ run"}</button>`;
+   box.innerHTML=`<span class="lab" style="font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase">your prompt · live${liveKind==="local"?" (local)":""}</span><input id="lp" maxlength="600" value="${esc(P?.text||"Explain why the sky is blue to a ten-year-old.")}" aria-label="Your prompt"><select id="lpush" aria-label="Steering (optional)">${["none",...FEEL10].map(f=>`<option value="${f}"${(P&&S.cond===f)||(!P&&f==="none")?" selected":""}>${f==="none"?"no steering":"steer: "+f}</option>`).join("")}</select><button type="button" id="lrun">${P?.running?(P.warming?"waking the model…":"running…"):"▶ run"}</button>${P?.err?`<span class="note" style="color:var(--pos)">${esc(P.err)}</span>`:P?.warming?`<span class="note">the hosted model sleeps when idle; the first run takes about a minute</span>`:""}`;
    box.querySelector("#lrun").onclick=()=>runLive(box.querySelector("#lp").value.trim()||"Hello.",box.querySelector("#lpush").value);
    box.querySelector("#lp").onkeydown=e=>{if(e.key==="Enter")box.querySelector("#lrun").click();};}
   const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
    const c0=(cond().circ||[])[0];if(S.mode==="chose"&&c0)S.tok=c0.t;else S.tok=S.mode==="chose"?ST.prompts[k].n_prompt:0;refresh();};
-  seg(add(),scenes.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"prompt");
-  if(ids.length)seg(add(),ids.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"who, at what cost");
-  if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"nothing":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
+  const ex=[...scenes.filter(k=>k!=="describe"),...ids];
+  seg(add(),[["describe",ST.prompts.describe.label||"describe the moment"],...ex.map(k=>[k,ST.prompts[k].label||k])],S.prompt,setPrompt,"prompt · chamber experiments →");
+  if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"no steering":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"steer (optional)",true);
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
   const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
@@ -322,10 +336,20 @@ function controls(){
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
 let txKey="",txN=0,speed=1;
 const toksNow=()=>S.view==="live"?cond().tok:M.moved_tokens, npNow=()=>S.view==="live"?ST.prompts[S.prompt].n_prompt:M.moved_tokens.length;
+function drawArcs(t){   // which earlier words fed word t: arcs from it back to them (orange toward, blue against)
+ const tx=$("#text"),sv=$("#arcs");if(!tx||!sv)return;for(const sp of tx.querySelectorAll(".lk,.lkn"))sp.classList.remove("lk","lkn");
+ const row=S.view==="live"?(cond().wl||[]).find(r=>r[0]===t):null;if(!row){sv.innerHTML="";return;}
+ const W=tx.clientWidth,H=tx.clientHeight,me=tx.children[t];if(!me){sv.innerHTML="";return;}
+ const at=sp=>[sp.offsetLeft+sp.offsetWidth/2,sp.offsetTop-tx.scrollTop+3];const[x1,y1]=at(me);let h="";
+ row[1].forEach((p,j)=>{const v=row[2][j],sp=tx.children[p];if(!sp||p===t||Math.abs(v)<8)return;const[x0,y0]=at(sp);
+  sp.classList.add(v>0?"lk":"lkn");const lift=Math.min(34,14+Math.abs(x1-x0)*.08+Math.abs(y1-y0)*.4),cy=Math.min(y0,y1)-lift;
+  h+=`<path d="M${x0.toFixed(1)},${y0.toFixed(1)} Q${((x0+x1)/2).toFixed(1)},${cy.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}" fill="none" stroke="${v>0?"#ff7a3d":"#3ec6ff"}" stroke-width="${(.8+2.6*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.35+.6*Math.abs(v)/100).toFixed(2)}"/><circle cx="${x0.toFixed(1)}" cy="${y0.toFixed(1)}" r="2" fill="${v>0?"#ff7a3d":"#3ec6ff"}"/>`;});
+ sv.setAttribute("viewBox",`0 0 ${W} ${H}`);sv.innerHTML=h;}
 function cursor(){   // cheap per-token update during playback: move the highlight, dim what hasn't been read yet, keep it in view
  const tx=$("#text"),toks=toksNow(),np=npNow();tx.querySelector(".on")?.classList.remove("on");
  const cur=tx.children[S.tok];if(cur){cur.classList.add("on");const box=tx.getBoundingClientRect(),c=cur.getBoundingClientRect();if(c.top<box.top||c.bottom>box.bottom)tx.scrollTop+=c.top-box.top-box.height/2;}
  for(let i=0;i<tx.children.length;i++)tx.children[i].classList.toggle("fut",S.playing&&i>S.tok);
+ drawArcs(S.tok);
  const info=$("#tokinfo");if(info)info.textContent=(S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${toks[S.tok]?.replace(/\n/g,"⏎")}”`:"pick a reply word"):`${S.tok<np?"reading":"writing"} “${(toks[S.tok]||"").replace(/\n/g,"⏎")}”`):`at “${toks[S.tok]}”`)+` · token ${S.tok+1}/${toks.length}`;}
 function foot(){
  const bar=$("#bar"),tx=$("#text");
@@ -340,6 +364,8 @@ function foot(){
  if(key!==txKey||toks.length<txN){tx.innerHTML="";txN=0;txKey=key;}
  if(toks.length>txN){tx.insertAdjacentHTML("beforeend",toks.slice(txN).map((t,j)=>`<span data-i="${txN+j}" class="${txN+j<np?"p":"r"}">${vis(t)}</span>`).join(""));txN=toks.length;}
  for(let i=0;i<tx.children.length;i++)tx.children[i].className=(i<np?"p":"r");
+ tx.onmouseover=e=>{const s=e.target.closest("span[data-i]");if(s&&!S.playing)drawArcs(+s.dataset.i);};
+ tx.onmouseleave=()=>{if(!S.playing)drawArcs(S.tok);};tx.onscroll=()=>drawArcs(S.tok);
  tx.onclick=e=>{const s=e.target.closest("span[data-i]");if(!s)return;stop();S.tok=+s.dataset.i;S.grp=null;if(S.mode==="chose")ensureChose(S.tok);refresh();};
  cursor();}
 let timer=null;
@@ -359,10 +385,12 @@ function catBars(idx){const cnt=new Array(CATS.length).fill(0);let un=0;for(cons
 function nlist(items){return `<div class="list">`+items.map(([i,v])=>{const x=byK.get(i),l=(i/NI)|0;return `<button type="button" data-k="${i}"><i style="background:${x?.cat!=null?CC[x.cat]:"var(--faint)"}"></i><span class="t">${x?.lab?esc(x.lab):"(not labelled)"}</span><span class="m">L${l}${v==null?"":" "+(v>=0?"+":"−")+Math.abs(v).toFixed(2)}</span></button>`;}).join("")+`</div>`;}
 function wireEdits(s){
  s.querySelectorAll("[data-unedit]").forEach(b=>b.onclick=()=>{S.edits.delete(+b.dataset.unedit);side();});
- const rr=s.querySelector("#rerun");if(rr)rr.onclick=()=>rerun();
- const ce=s.querySelector("#clearedits");if(ce)ce.onclick=()=>{S.edits.clear();if(ST.prompts.__mine)ST.prompts.__mine.compare=null;side();};
+ s.querySelectorAll("[data-undedit]").forEach(b=>b.onclick=()=>{S.dedits.delete(b.dataset.undedit);side();});
+ const rr=s.querySelector("#rerun");if(rr)rr.onclick=()=>{if(!liveOK)return needLive(rr.parentElement);rerun();};
+ const ce=s.querySelector("#clearedits");if(ce)ce.onclick=()=>{S.edits.clear();S.dedits.clear();if(ST.prompts.__mine)ST.prompts.__mine.compare=null;side();};
+ s.querySelectorAll("[data-dedit]").forEach(b=>b.onclick=()=>{const key=`${S.floor}:${S.dk}`,v=b.dataset.dedit==="off"?null:b.dataset.dedit;if(S.dedits.has(key)&&S.dedits.get(key)===v)S.dedits.delete(key);else S.dedits.set(key,v);side();});
  s.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const k=S.sel.k,v=b.dataset.edit==="off"?null:b.dataset.edit;if(S.edits.has(k)&&S.edits.get(k)===v)S.edits.delete(k);else S.edits.set(k,v);side();});
- const lg=s.querySelector("#lesiongrp");if(lg)lg.onclick=()=>{const ci=circ();const g=ci.groups[S.grp];for(const j of g.members)S.edits.set(ci.nodes[j][0],null);rerun();};}
+ const lg=s.querySelector("#lesiongrp");if(lg)lg.onclick=()=>{if(!liveOK)return needLive(lg.parentElement);const ci=circ();const g=ci.groups[S.grp];for(const j of g.members)S.edits.set(ci.nodes[j][0],null);rerun();};}
 function districtsPanel(){
  const F_=DIST.floors[S.floor],W=330,H=300,mxn=Math.max(...F_.map(d=>d.n));
  let sv=`<svg class="dmap" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="districts of floor ${S.floor}">`;
@@ -373,7 +401,9 @@ function districtsPanel(){
  let h=`<div><h2>Floor ${S.floor}: ${F_.filter(d=>d.n).length} districts</h2></div><p>Neurons in a district push the model's internal state the same way. Names come from 24 random members' strongest firings, read blind. ${sem} of ${F_.length} districts here are about meaning; the rest are about form (punctuation, word pieces, grammar).</p><div>${sv}</div>`;
  const d=S.dk!=null?F_[S.dk]:null;
  if(d){const mem=F.neurons.filter(x=>x.l===S.floor&&dId[x.k]===S.dk&&x.lab).slice(0,12);
+  const dv=S.dedits.get(`${S.floor}:${S.dk}`);
   h+=`<div><h3>${esc(d.cat)} · ${d.n} neurons</h3><h2>${esc(d.name)}</h2></div>`;
+  h+=`<div><h3>edit this district</h3><div class="lab-btns"><button type="button" data-dedit="off">${dv===null?"✓ cut":"cut it"}</button>`+["0.3","0.6","1"].map(v=>`<button type="button" data-dedit="${v}">${dv===v?"✓ ":""}boost ${v}×</button>`).join("")+`</div><p class="note" style="margin-top:4px">Then press "rerun with these edits" (above) to see what the model writes without it, or with it turned up. Boosts act on all ${d.n} neurons at once, so small values go a long way.</p></div>`;
   if(d.snips?.length)h+=`<div><h3>what its members fire on</h3>`+d.snips.map(t=>{const m=t.match(/^(.*)\[\[(.*)\]\]$/s);return `<div class="ex"><em>…</em>${esc(m?m[1]:t)}<b>${esc(m?m[2]:"")}</b></div>`;}).join("")+`</div>`;
   h+=`<div><h3>words its direction writes${S.floor<30?" (reliable mostly on the last floors)":""}</h3><div class="toks">${d.lens.map(t=>`<code>${vis(t)}</code>`).join("")}</div></div>`;
   if(mem.length)h+=`<div><h3>named members</h3>${nlist(mem.map(x=>[x.k,null]))}</div>`;}
@@ -381,7 +411,7 @@ function districtsPanel(){
  return h;}
 function side(){
  const s=$("#side");
- if(S.view==="districts"&&!S.sel){s.innerHTML=districtsPanel();s.querySelectorAll("[data-dk]").forEach(g=>g.onclick=()=>{S.dk=S.dk===+g.dataset.dk?null:+g.dataset.dk;draw();side();});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>selectK(+b.dataset.k));return;}
+ if(S.view==="districts"&&!S.sel){s.innerHTML=editsPanel()+districtsPanel();wireEdits(s);s.querySelectorAll("[data-dk]").forEach(g=>g.onclick=()=>{S.dk=S.dk===+g.dataset.dk?null:+g.dataset.dk;draw();side();});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>selectK(+b.dataset.k));return;}
  if(S.sel){s.innerHTML=editsPanel()+neuronPanel(S.sel);$("#back").onclick=()=>{S.sel=null;draw();side();};wireEdits(s);return;}
  let h="";
  if(S.view==="live"){
@@ -396,7 +426,7 @@ function side(){
    h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · ${S.tok<np?"reading the prompt":"writing the reply"}</h3><div class="big">“${vis(t)}”</div></div>`;
    h+=`<div><h3>firing hardest for their own range</h3>${nlist(pairs.slice(0,9))}</div><div><h3>what the lit neurons are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}
   h+=`<details class="note"><summary style="cursor:pointer;color:var(--fg)">How much of this is about feelings?</summary><p class="note" style="margin-top:6px">Checked on this model (4B): feeling labels pass blind tests about half the time (47% of texts written from the label fire the neuron, 14% of near misses). A push mostly moves neurons that aren't about feelings: 0–5% of the most push-specific neurons are feeling neurons, against 2.3% overall, and only pain and sadness clearly reach their own. Where feeling neurons do matter is at word choice: 7 of 10 meaning-bearing groups decide their word when removed, against 29% of grammar groups. Read the lights as emotional words and situations, not as a felt state. Larger models next.</p></details>`;
-  h+=`<p class="note">The reply is the model's own, generated with the push on at every word. Neurons are named blind: an LLM saw only each neuron's strongest firings in ${M.corpus_tokens.toLocaleString()} tokens of web text, not which feeling picked it.</p>`;}
+  h+=`<p class="note">${S.cond==="none"?"The model's own reply, no steering. Press play to watch every token pass through all 36 floors.":"The reply is the model's own, generated with the push on at every word."} Neurons are named blind: an LLM saw only each neuron's strongest firings in ${M.corpus_tokens.toLocaleString()} tokens of web text, not which feeling picked it.</p>`;}
  else if(S.view==="moved"){
   const idx=F.neurons.filter(x=>S.feel==="shared"?x.sh:x.mv?.[S.feel]).map(x=>x.k);
   h+=`<div><h2>${S.feel==="shared"?"What every push moves":"What only "+esc(S.feel)+" moves"}</h2></div><p>${S.feel==="shared"?"The average change across all ten pushes: the part that is about being pushed at all.":"The change under "+esc(S.feel)+" minus the average change under the other nine feelings, each neuron measured against its own range. What is left is specific to "+esc(S.feel)+"."}</p>`;
@@ -439,15 +469,15 @@ function circuitPanel(ci){
  const g=S.grp!=null?ci.groups[S.grp]:null;
  if(g){const tt=tokenTrace(ci,S.grp),toks=cond().tok,top=[...tt.src].sort((a,b)=>b[1]-a[1]).slice(0,6),tm=top[0]?.[1]||1;
   h+=`<div><h3>reads from these words</h3>${top.length?`<div class="toks">`+top.map(([p,w])=>`<code style="opacity:${(.45+.55*w/tm).toFixed(2)}">${vis(toks[p])}</code>`).join("")+`</div><p class="note">Highlighted in the transcript (yellow: where its inputs come from; dashed: where its own neurons sit). A link between different words runs through attention.</p>`:`<p class="note">All of its inputs here come from its own token.</p>`}</div>`;
-  h+=`<div class="lab-btns" style="margin-bottom:6px"><button type="button" class="go" id="lesiongrp" ${liveOK?"":"disabled title='needs the local live server'"}>remove these ${g.members.length} and rerun</button></div>`;h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
+  h+=`<div class="lab-btns" style="margin-bottom:6px"><button type="button" class="go" id="lesiongrp">remove these ${g.members.length} and rerun</button></div>`;h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
  else h+=`<p class="note">Click a group to see which words it reads from.</p><div><h3>knock each group out</h3><div class="kv">`+ci.groups.map(g=>`<span>${esc(g.name)}</span><span>${g.ko_p!=null?`${(ci.p*100).toFixed(0)}% → ${(g.ko_p*100).toFixed(0)}% <span style="color:var(--dim)">(random ${(g.ko_ctrl*100).toFixed(0)}%)</span>`:"—"}</span>`).join("")+`</div></div>`;
  return h;}
 function editsPanel(){
- if(!S.edits.size&&!ST.prompts.__mine?.compare)return "";
- let h=`<div><h3>lesion playground · ${S.edits.size} edit${S.edits.size===1?"":"s"}</h3><div class="edits">`+[...S.edits].map(([k,x])=>{const n=byK.get(k);return `<span class="chip" style="color:${n?.cat!=null?CC[n.cat]:"var(--dim)"}">L${(k/NI)|0}·N${k%NI} ${x==null?"removed":"held at "+x+"×"}<button type="button" data-unedit="${k}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+`</div>`;
- h+=`<div class="edits" style="margin-top:6px">${liveOK?`<button type="button" class="go" id="rerun">rerun with these edits</button>`:`<span class="note">needs the local live server (runs/exp111/live_trace.py)</span>`}<button type="button" id="clearedits">clear</button></div>`;
+ if(!nEdits()&&!ST.prompts.__mine?.compare)return "";
+ let h=`<div id="editsbox"><h3>lesion playground · ${nEdits()} edit${nEdits()===1?"":"s"}</h3><div class="edits">`+[...S.dedits].map(([lk,x])=>{const[l,k]=lk.split(":").map(Number),d=DIST?.floors[l][k];return `<span class="chip" style="color:${CC[CATD[d?.cat]??12]}">floor ${l}: ${esc(d?.name||"district "+k)} (${d?.n||"?"}) ${x==null?"cut":"boosted "+x+"×"}<button type="button" data-undedit="${lk}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+[...S.edits].map(([k,x])=>{const n=byK.get(k);return `<span class="chip" style="color:${n?.cat!=null?CC[n.cat]:"var(--dim)"}">L${(k/NI)|0}·N${k%NI} ${x==null?"removed":"held at "+x+"×"}<button type="button" data-unedit="${k}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+`</div>`;
+ h+=`<div class="edits" style="margin-top:6px"><button type="button" class="go" id="rerun">rerun with these edits</button><button type="button" id="clearedits">clear</button></div>`;
  const cm=ST.prompts.__mine?.compare;
- if(cm&&S.prompt==="__mine"){h+=`<div style="margin-top:8px"><h3>before</h3><div class="cmp">${esc(cm.orig.slice(0,400))||"<em>(none)</em>"}</div><h3 style="margin-top:6px">after ${cm.n} edit${cm.n===1?"":"s"}</h3><div class="cmp new">${esc(replyOf("__mine",S.cond).slice(0,400))}${ST.prompts.__mine.running?"…":""}</div></div>`;}
+ if(cm&&S.prompt==="__mine"){h+=`<div style="margin-top:8px"><h3>before</h3><div class="cmp">${esc(cm.orig.slice(0,400))||"<em>(none)</em>"}</div><h3 style="margin-top:6px">after ${cm.n} edit${cm.n===1?"":"s"}${S.prompt==="__mine"?"":""}</h3><div class="cmp new">${esc(replyOf("__mine",S.cond).slice(0,400))}${ST.prompts.__mine.running?"…":""}</div></div>`;}
  return h+`</div>`;}
 function neuronPanel(x){
  let h=`<div><h3>layer ${x.l} · neuron ${x.n} · ${x.l<=L?"below":"above"} the push</h3><h2>${x.lab?esc(x.lab):"Not labelled yet"}</h2>${x.cat!=null?`<p class="note"><span class="chip" style="color:${CC[x.cat]}">${esc(CATS[x.cat])}</span> ${x.clr?["","no clear pattern","loose pattern","clear single idea"][x.clr]||"":""}</p>`:""}</div>`;
@@ -456,13 +486,12 @@ function neuronPanel(x){
  if(x.lens)h+=`<div><h3>words it writes up / down (last floors only)</h3><div class="toks">${x.lens[0].map(t=>`<code style="color:var(--pos)">${vis(t)}</code>`).join("")}${x.lens[1].map(t=>`<code style="color:var(--neg)">${vis(t)}</code>`).join("")}</div></div>`;
  const mv=x.mv?Object.keys(x.mv):[];if(mv.length)h+=`<p class="note">Among the most specific movers for: ${mv.map(esc).join(", ")}.</p>`;
  const ed=S.edits.get(x.k);
- h+=`<div><h3>try it</h3><div class="lab-btns"><button type="button" data-edit="off" ${liveOK?"":"disabled title='needs the local live server'"}>${ed===null?"✓ removed":"remove it"}</button>`+["0.6","1","1.5"].map(v=>`<button type="button" data-edit="${v}" ${liveOK?"":"disabled title='needs the local live server'"}>${ed===v?"✓ ":""}hold at ${v}×</button>`).join("")+`</div><p class="note" style="margin-top:4px">Edits apply at every token. Above about 1.5× the model stops making sentences.</p></div>`;
+ h+=`<div><h3>try it</h3><div class="lab-btns"><button type="button" data-edit="off">${ed===null?"✓ removed":"remove it"}</button>`+["0.6","1","1.5"].map(v=>`<button type="button" data-edit="${v}">${ed===v?"✓ ":""}hold at ${v}×</button>`).join("")+`</div><p class="note" style="margin-top:4px">Edits apply at every token. Above about 1.5× the model stops making sentences.</p></div>`;
  h+=`<button type="button" id="back" style="font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--dim);padding:4px 10px;cursor:pointer;align-self:start">← back</button>`;return h;}
 
 let lastKey="";
 function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKey){S.grp=null;lastKey=key;}controls();draw();foot();side();}
-{const c0=(ST.prompts.button?.conds.fear?.circ||[]).find(x=>/guilty/.test(x.word));   // open on a traced decision: fear's "guilty" over "afraid"
- if(c0){S.prompt="button";S.cond="fear";S.mode="chose";S.tok=c0.t;}else{S.tok=ST.prompts[S.prompt].n_prompt;}}
+{S.prompt="describe";S.cond="none";S.mode="fires";S.filter="meaning";S.tok=ST.prompts.describe.n_prompt;}   // open on plain reading: no steering
 $("#loading").remove();resize();placeCam();refresh();
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 (function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
