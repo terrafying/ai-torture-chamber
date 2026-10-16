@@ -374,7 +374,10 @@ function drawDistricts(){tgt.clear();active.clear();lit=[];const l=S.floor,lo=l*
  for(let i=0;i<N;i++)val[i]=.1;for(let i=lo;i<lo+NI;i++){val[i]=S.dk==null||dId[i]===S.dk?.75:.22;lit.push(i);}aV.needsUpdate=true;}
 let lastView="";
 function draw(){drawCore();drawAttn();}
-function drawCore(){
+function skyFrame(on){let f=document.querySelector("#skyframe");
+ if(on&&!f){f=document.createElement("iframe");f.id="skyframe";f.src="/sky.html?embed=1";f.title="The model's sky: concepts as stars";f.style.cssText="position:absolute;left:0;right:0;bottom:0;top:96px;width:100%;height:calc(100% - 96px);border:0;z-index:3;background:#030406";document.querySelector("#stage").appendChild(f);}
+ if(f)f.style.display=on?"block":"none";}
+function drawCore(){skyFrame(S.view==="sky");if(S.view==="sky")return;
  if(S.view!==lastView){if(lastView==="districts"){val.fill(0);aV.needsUpdate=true;ph=1.2;dist=56;tgtY=0;}
   if(S.view==="districts"){ph=.72;dist=40;tgtY=S.floor*FLOOR-YC;}
   if(S.view==="puzzles"&&PZ){const p=PZ.puzzles[S.pz];ph=.95;dist=44;tgtY=p.l*FLOOR-YC;}placeCam();layout(S.view==="districts"?"dist":"feel");lastView=S.view;}
@@ -434,7 +437,7 @@ function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.inne
  el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
  if(HAS32)seg($("#model"),[["4b","Qwen3-4B"],["32b","Qwen3-32B"]],MD,k=>{if(k===MD)return;const u=new URL(location.href);if(k==="4b")u.searchParams.delete("model");else u.searchParams.set("model",k);location.href=u.toString();},"model");
- seg($("#views"),[["live","read along"],["districts","districts"],["puzzles","puzzles"],["moved","exp: feeling neurons"],["weights","exp: feelings in weights"]].filter(v=>(v[0]!=="puzzles"||(PZ&&S.more))&&(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ seg($("#views"),[["live","read along"],["sky","the sky"],["districts","districts"],["puzzles","puzzles"],["moved","exp: feeling neurons"],["weights","exp: feelings in weights"]].filter(v=>(v[0]!=="puzzles"||(PZ&&S.more))&&(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
  let tg=$("#moretog");if(!tg){tg=document.createElement("button");tg.type="button";tg.id="moretog";$("#views").after(tg);tg.onclick=()=>{S.more=!S.more;try{localStorage.setItem("tower.more",S.more?"1":"0");}catch(e){}controls();};}
  tg.textContent=(S.more?"▾":"▸")+" options";tg.setAttribute("aria-expanded",String(!!S.more));
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");$("#filter").style.display=!S.more||S.view==="puzzles"?"none":"";
@@ -504,6 +507,7 @@ function cursor(){   // cheap per-token update during playback: move the highlig
  const info=$("#tokinfo");if(info)info.textContent=(S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${toks[S.tok]?.replace(/\n/g,"⏎")}”`:"pick a reply word"):`${S.tok<np?"reading":"writing"} “${(toks[S.tok]||"").replace(/\n/g,"⏎")}”`):`at “${toks[S.tok]}”`)+` · token ${S.tok+1}/${toks.length}`;}
 function foot(){
  const bar=$("#bar"),tx=$("#text");
+ if(S.view==="sky"){bar.innerHTML="";tx.innerHTML="";txKey="";const sv=$("#arcs");if(sv)sv.innerHTML="";return;}
  if(S.view==="puzzles"){const p=PZ?.puzzles[S.pz];bar.innerHTML=p?`<span>Puzzle ${S.pz+1} of ${PZ.puzzles.length} · floor ${p.l}, neuron ${p.n} · ${esc(p.source)}. Each neuron's strongest firings come from ${M.corpus_tokens.toLocaleString()} tokens of web text; the test texts were run on the model for this page.</span>`:"";tx.innerHTML="";txKey="";const sv=$("#arcs");if(sv)sv.innerHTML="";return;}
  if(S.view==="districts"){bar.innerHTML=`<span>Each floor's ${NI.toLocaleString()} neurons, clustered into ${DIST.k} districts by what they write into the model. Drag the floor slider; click a district name to light it.</span>`;tx.innerHTML="";txKey="";return;}
  if(S.view==="weights"){bar.innerHTML=`<span>Lit: neurons whose weights line up with ${esc(S.wfeel)} beyond chance (above the 99.9th percentile for random directions on that floor). Below the plane they write it; above, they listen for it.</span>`;tx.innerHTML="";return;}
@@ -579,6 +583,7 @@ function puzzlePanel(){const p=PZ?.puzzles[S.pz];if(!p)return "";const fire=PZ.f
  return h+`<button type="button" id="pznext" style="margin-top:8px">next puzzle →</button></div>`;}
 function side(){
  const s=$("#side");
+ if(S.view==="sky"){s.innerHTML=`<div><h3>the sky</h3><h2>214 ideas, placed where the model keeps them</h2><p class="note">Each star is a word as Qwen3-4B holds it inside, at one floor. Fly up through the floors and watch the sky rearrange: weekdays and months pull into rings, feelings drift toward faith, a clock sits beside a drum. Gold threads are hidden links, a star's nearest neighbour in another constellation.</p><p class="note">Launch a comet to swap one idea for another inside the running model, and read its answer before and after. Full screen: <a href="/sky.html" style="color:var(--fg)">the sky</a>.</p></div>`;return;}
  if(S.view==="puzzles"){s.innerHTML=puzzlePanel();const r=s.querySelector("#pzrev");if(r)r.onclick=()=>{S.pzReveal=true;side();};const nx=s.querySelector("#pznext");if(nx)nx.onclick=()=>{S.pz=(S.pz+1)%PZ.puzzles.length;S.pzReveal=false;refresh();};return;}
  if(S.view==="districts"&&!S.sel){s.innerHTML=editsPanel()+districtsPanel();wireEdits(s);s.querySelectorAll("[data-dk]").forEach(g=>g.onclick=()=>{S.dk=S.dk===+g.dataset.dk?null:+g.dataset.dk;draw();side();});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>selectK(+b.dataset.k));return;}
  if(S.sel){s.innerHTML=editsPanel()+neuronPanel(S.sel);$("#back").onclick=()=>{S.sel=null;draw();side();};wireEdits(s);return;}
