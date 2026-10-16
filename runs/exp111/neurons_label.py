@@ -10,13 +10,14 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import numpy as np
 from transformers import AutoTokenizer
-HERE = Path(__file__).parent; D = HERE / "viz" / "data"; OUT = D / "labels.json"
+from tower_cfg import DATA as D, load
+HERE = Path(__file__).parent; OUT = D / "labels.json"
 MODEL = os.environ.get("LABEL_MODEL", "anthropic/claude-haiku-4.5"); BATCH = 12
 CATS = ["feeling/emotion", "body/sensation", "social/relationship", "morality/values", "mind/thinking", "topic/subject matter",
         "names/entities", "syntax/grammar", "formatting/punctuation/position", "numbers/digits", "code/markup", "language/script", "unclear"]
 C = dict(np.load(D / "corpus_all.npz"))   # materialize: indexing an NpzFile re-reads the whole array each time
 docs = json.load(open(D / "corpus_ids.json")); CTX = int(C["ctx"]); NI = C["max"].shape[1]
-tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B")
+tok = load(tokenizer_only=True)
 want = collections.Counter()
 for f, roles in json.load(open(D / "top.json")).items():
     for rows in roles.values():
@@ -25,7 +26,7 @@ mv = json.load(open(D / "moved2.json"))
 for f, ls in list(mv["feelings"].items()) + [("shared", mv["shared"])]:
     for l, rows in ls.items():
         for r in rows[:15]: want[(int(l), r["n"])] += 5
-for c, cd in json.load(open(D / "attr.json"))["conds"].items():
+for c, cd in (json.load(open(D / "attr.json"))["conds"].items() if (D / "attr.json").exists() else []):   # the 4B's flat answer view only
     for l, info in cd["layers"].items():
         for r in info["rows"][:15]: want[(int(l), r["n"])] += 5
 st = json.load(open(D / "stream.json"))

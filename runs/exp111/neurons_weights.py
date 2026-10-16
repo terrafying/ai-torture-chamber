@@ -14,10 +14,8 @@ import numpy as np, torch
 from safetensors import safe_open
 from transformers import AutoTokenizer
 
-HERE = Path(__file__).parent; OUT = HERE / "viz" / "data"; OUT.mkdir(parents=True, exist_ok=True)
-VEC = HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json"
-SNAP = glob.glob(os.path.join(os.environ.get("HF_HUB_CACHE", os.path.expanduser("~/.cache/huggingface/hub")),
-                              "models--Qwen--Qwen3-4B", "snapshots", "*"))[0]
+from tower_cfg import DATA as OUT, VECS as VEC, MODEL, snapshot
+HERE = Path(__file__).parent; SNAP = snapshot()
 cfg = json.load(open(os.path.join(SNAP, "config.json"))); NL, H, I = cfg["num_hidden_layers"], cfg["hidden_size"], cfg["intermediate_size"]
 d = json.load(open(VEC)); L = d["layer"]; FEELS = list(d["vectors"])
 V = torch.tensor(np.array([d["vectors"][f] for f in FEELS]), dtype=torch.float32)            # F x H
@@ -95,7 +93,7 @@ for j, f in enumerate(FEELS):
         top[f][role] = rows
     print("top", f, flush=True)
 json.dump(top, open(OUT / "top.json", "w"))
-json.dump({"model": "Qwen/Qwen3-4B", "layer": L, "feelings": FEELS, "n_layers": NL, "n_neurons": I,
+json.dump({"model": MODEL, "layer": L, "feelings": FEELS, "n_layers": NL, "n_neurons": I,
            "scale": {"writer": mw, "reader_up": mu, "reader_gate": mg}, "concentration": conc, "null_p999": null_p999,
            "files": {"neurons.bin": "int8 [3][layers][neurons][feelings]: writer cos, reader-up cos, reader-gate cos",
                      "layout.bin": "int16 [layers][neurons][2] / 32767"}}, open(OUT / "stats.json", "w"), indent=1)

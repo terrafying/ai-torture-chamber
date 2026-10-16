@@ -11,11 +11,11 @@ import json, random, re, sys
 from pathlib import Path
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-HERE = Path(__file__).parent; D = HERE / "viz" / "data"; MODE = sys.argv[1] if len(sys.argv) > 1 else "trace"
-V = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = V["layer"]; DOSE = 4.0
+from tower_cfg import DATA as D, VECS, DOSE as _DOSE, DEV, load
+HERE = Path(__file__).parent; MODE = sys.argv[1] if len(sys.argv) > 1 else "trace"
+V = json.load(open(VECS)); L = V["layer"]; DOSE = _DOSE
 ST = json.load(open(D / "stream.json")); NODES, PER_FLOOR = 40, 6
-tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
-m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
+dev = DEV; tok, m = load()
 for p in m.parameters(): p.requires_grad_(False)
 NL, I = m.config.num_hidden_layers, m.config.intermediate_size
 push = {"v": None}; ablate = {}   # layer -> list of (pos, neuron) to zero

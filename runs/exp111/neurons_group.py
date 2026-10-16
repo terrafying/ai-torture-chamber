@@ -6,7 +6,8 @@ each group gets a stage (prompt words / in between / at the answer) from its med
 import json, os, re, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-HERE = Path(__file__).parent; D = HERE / "viz" / "data"
+from tower_cfg import DATA as D
+HERE = Path(__file__).parent
 MODEL = os.environ.get("GROUP_MODEL", "anthropic/claude-sonnet-4.5")
 C = json.load(open(D / "circuits.json")); LAB = json.load(open(D / "labels.json"))
 def ask(g):

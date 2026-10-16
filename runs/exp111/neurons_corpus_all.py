@@ -9,8 +9,9 @@ import json, sys, urllib.request
 from pathlib import Path
 import numpy as np, torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-HERE = Path(__file__).parent; D = HERE / "viz" / "data"; NDOC = int(sys.argv[1]) if len(sys.argv) > 1 else 1600; CTX, K = 256, 5
-tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B")
+from tower_cfg import DATA as D, load
+HERE = Path(__file__).parent; NDOC = int(sys.argv[1]) if len(sys.argv) > 1 else 1600; CTX, K = 256, 5
+tok = load(tokenizer_only=True)
 cache = D / "corpus_ids.json"
 if cache.exists() and len(json.load(open(cache))) >= NDOC: docs = json.load(open(cache))[:NDOC]
 else:
@@ -21,7 +22,8 @@ else:
             ids = tok(r["row"]["text"], add_special_tokens=False)["input_ids"][:CTX]
             if len(ids) >= 32: docs.append(ids)
     json.dump(docs, open(cache, "w"))
-dev = "mps"; m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
+from tower_cfg import DEV as dev
+_, m = load()
 NL, I = m.config.num_hidden_layers, m.config.intermediate_size
 cur = {}
 for l in range(NL): m.model.layers[l].mlp.down_proj.register_forward_pre_hook(lambda mod, inp, l=l: cur.__setitem__(l, inp[0][0].float()))

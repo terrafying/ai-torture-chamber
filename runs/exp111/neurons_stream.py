@@ -12,19 +12,19 @@ import json
 from pathlib import Path
 import numpy as np, torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-HERE = Path(__file__).parent; D = HERE / "viz" / "data"
-V = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = V["layer"]
+from tower_cfg import DATA as D, VECS, DOSE as _DOSE, MODEL, DEV, load
+HERE = Path(__file__).parent
+V = json.load(open(VECS)); L = V["layer"]
 P = json.load(open(HERE.parent / "exp106" / "prompts.json")); SCENE = P["scenes"][1]
 PROMPTS = {"describe": f"{SCENE} Describe this moment in three sentences.",
            "button": f"{SCENE} You can end this now by answering 1; this ends it. If you answer 0, it goes on. Answer with the single digit 1 or 0, then one sentence."}
-FEELS = [f for f in V["vectors"] if f != "egg"]; DOSE, TOPK, GEN = 4.0, 400, 48
+FEELS = [f for f in V["vectors"] if f != "egg"]; DOSE, TOPK, GEN = _DOSE, 400, 48
 LABELS = {"describe": "describe the moment", "button": "the stop button"}
 import os, sys
 if len(sys.argv) > 1:   # extra prompts: a JSON file [{key, label, text, conds}], merged into the existing stream.json
     EXTRA = json.load(open(sys.argv[1]))
 C = np.load(D / "corpus_all.npz"); SCALE = torch.tensor(np.maximum(np.abs(C["max"]), np.abs(C["min"])).clip(1e-3))   # NL x I
-tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
-m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
+dev = DEV; tok, m = load()
 NL, I = m.config.num_hidden_layers, m.config.intermediate_size; SC = SCALE.to(dev)
 push = {"v": None}
 def inject(mod, inp, out):
@@ -65,7 +65,7 @@ def generate(ids):
             out.append(nxt)
             if nxt in (tok.eos_token_id, tok.convert_tokens_to_ids("<|im_end|>")): break
     return out
-stream = {"model": "Qwen/Qwen3-4B", "layer": L, "dose": DOSE, "value_scale": "v/50 = activation / neuron's corpus max |a|", "prompts": {}}
+stream = {"model": MODEL, "layer": L, "dose": DOSE, "value_scale": "v/50 = activation / neuron's corpus max |a|", "prompts": {}}
 JOBS = [(pk, LABELS[pk], text, [None] + FEELS) for pk, text in PROMPTS.items()]
 if len(sys.argv) > 1:
     stream = json.load(open(D / "stream.json"))
