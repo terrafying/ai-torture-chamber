@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Concept Surgery</title>
+<meta name="description" content="Swap one idea for another inside a running language model. Turn France into Japan, a duck into a cow, March into June, and watch the model answer as if it had read the other word.">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--bg:#06080a;--panel:#0b0f12;--line:#1b2420;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--push:#e8ff6a;--pos:#ff7a3d;--neg:#3ec6ff;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 "IBM Plex Mono",ui-monospace,monospace}
+a{color:var(--fg)}
+main{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font:600 clamp(32px,5vw,64px)/1 "Cormorant Garamond",Georgia,serif;margin:0 0 12px}
+h2{font:600 26px/1.1 "Cormorant Garamond",Georgia,serif;margin:0 0 8px}
+.lede{color:var(--dim);max-width:760px;margin:0 0 22px;font:400 17px/1.55 "EB Garamond",Georgia,serif}.lede b{color:var(--fg);font-weight:400}
+.lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
+.box{border:1px solid var(--line);background:var(--panel);padding:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+button{font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);padding:5px 11px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--fg);color:#06080a;border-color:var(--fg)}
+button.go{background:var(--push);color:#06080a;border-color:var(--push);font-weight:500;padding:8px 18px}
+button:disabled{opacity:.5;cursor:wait}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end;margin-bottom:12px}
+select,textarea{font:inherit;background:#06080a;color:var(--fg);border:1px solid var(--line);padding:6px 8px;width:100%}
+textarea{min-height:64px;resize:vertical}
+.arrow{font:600 28px/1 "Cormorant Garamond",serif;color:var(--push);padding-bottom:4px}
+.row{display:grid;grid-template-columns:7em 1fr 4em;gap:10px;align-items:center;margin:8px 0}
+input[type=range]{accent-color:var(--push);width:100%}
+.out{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.out .box{min-height:130px}
+.ans{font:500 15px/1.5 "IBM Plex Mono",monospace;white-space:pre-wrap}
+.after .ans{color:var(--push)}
+.note{color:var(--dim);font-size:12px;margin:6px 0 0}
+.warn{color:var(--pos)}
+svg text{fill:var(--dim);font:10px "IBM Plex Mono",monospace}
+.prose{max-width:780px;color:var(--dim);margin-top:26px;font:400 16px/1.6 "EB Garamond",Georgia,serif}.prose b{color:var(--fg);font-weight:400}
+table{border-collapse:collapse;font-size:12px;margin-top:8px}td,th{border-bottom:1px solid var(--line);padding:4px 10px 4px 0;text-align:left;color:var(--dim)}th{font-weight:400;color:var(--fg)}
+@media (max-width:860px){.grid,.out{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1>Swap one idea for another, inside the model</h1>
+<p class="lede">Every concept a language model reads becomes a state inside it. We measured that state for 56 concepts in Qwen3-4B. Here you can <b>replace one with another while the model is running</b>: it still sees “France” in your sentence, but it thinks Japan, and answers that way.</p>
+
+<div class="grid">
+ <div class="box">
+  <div class="lab">concept group</div><div class="chips" id="sets"></div>
+  <div class="pair" id="pairSel"><label><span class="lab">it reads</span><select id="x"></select></label><span class="arrow">→</span><label><span class="lab">it thinks</span><select id="y"></select></label></div>
+  <div class="pair" id="pairFree" hidden><label><span class="lab">it reads</span><input id="fx" value="Japan" maxlength="30" style="font:inherit;background:#06080a;color:var(--fg);border:1px solid var(--line);padding:6px 8px;width:100%"></label><span class="arrow">→</span><label><span class="lab">it thinks</span><input id="fy" value="Texas" maxlength="30" style="font:inherit;background:#06080a;color:var(--fg);border:1px solid var(--line);padding:6px 8px;width:100%"></label></div>
+  <label><span class="lab">your sentence (must contain the first word)</span><textarea id="prompt"></textarea></label>
+  <p class="note" id="pnote"></p>
+  <div class="row"><span class="lab">floor</span><input type="range" id="floor" min="2" max="24" step="1" value="8"><b id="floorv"></b></div>
+  <div class="row"><span class="lab">strength</span><input type="range" id="alpha" min="0" max="1.5" step=".05" value="1"><b id="alphav"></b></div>
+  <div class="chips"><button type="button" data-d="all" aria-pressed="true">the whole concept</button><button type="button" data-d="2" aria-pressed="false">only its visible shape (2 directions)</button></div>
+  <button type="button" class="go" id="go">operate</button> <span class="note" id="status"></span>
+ </div>
+ <div class="box">
+  <h2 id="expect"></h2>
+  <p class="note" id="expectnote"></p>
+  <svg id="chart" viewBox="0 0 420 150" width="100%" aria-label="How often the swap changed the answer in testing, by floor and by strength"></svg>
+  <p class="note">Measured on every pair of this group with its test question (exp117): yellow = the whole concept, grey = only its visible shape, by floor. The dots on the right are strength at floor 8.</p>
+ </div>
+</div>
+
+<div class="out">
+ <div class="box"><div class="lab">before</div><div class="ans" id="before">—</div></div>
+ <div class="box after"><div class="lab" id="afterlab">after</div><div class="ans" id="after">—</div></div>
+</div>
+
+<section class="prose">
+ <h2 style="color:var(--fg);margin-top:8px">The knowledge comes with it</h2>
+ <p>Swap a concept and you don't just change one answer: the model carries the whole bundle. Asked about <b>Japan</b> while thinking <b>Texas</b> (floor 8):</p>
+ <table><tr><th>asked about Japan</th><th>before</th><th>after</th></tr>
+ <tr><td>capital</td><td>Tokyo.</td><td style="color:var(--push)">Austin.</td></tr>
+ <tr><td>language</td><td>Japanese.</td><td style="color:var(--push)">English.</td></tr>
+ <tr><td>currency</td><td>Yen.</td><td style="color:var(--push)">The U.S. dollar.</td></tr>
+ <tr><td>next to</td><td>China, Russia…</td><td style="color:var(--push)">Texas is next to Oklahoma, Louisiana, Arkansas, and Missouri.</td></tr>
+ <tr><td>people called</td><td>Japanese.</td><td style="color:var(--push)">Texan.</td></tr>
+ <tr><td>footwear</td><td>Sandal.</td><td style="color:var(--push)">Boots.</td></tr>
+ <tr><td>landmark</td><td>Tokyo Tower.</td><td style="color:var(--push)">The Alamo.</td></tr>
+ <tr><td>who lives there</td><td>People of Japanese descent.</td><td style="color:var(--push)">People of all backgrounds live in Texas.</td></tr></table>
+ <p class="note" style="font-family:'IBM Plex Mono',monospace">Across 8 swaps of countries for other countries or US states, 86–95% of 11 kinds of fact moved to the new place and almost none stayed with the old one (2 of 87); the rest became blends, most often for “most popular sport”. Swapped for a banana, Japan's people are “Banana people” and it is home to “Monkeys”. exp118, pre-registered; outputs quoted exactly.</p>
+ <p><b>What the edit does.</b> For each concept we took the model's internal state at that word, after a given floor, in six plain sentences, and averaged it. To swap X for Y we add (state of Y − state of X) at every place X appears in your prompt, at the floor you pick. Nothing else changes: same words, same weights.</p>
+ <p><b>What we found testing it.</b> At floor 8 the whole-concept swap turned the model's answer into the other concept's answer for 80–100% of pairs in all seven groups; random edits of the same size changed nothing. Swapping only the visible shape (the circle of weekdays, the line of numbers) worked 16–37% of the time: the picture is a shadow of the idea. Strength works like a switch, not a dial: below half almost nothing happens, past three-quarters almost everything flips.</p>
+ <p><b>Why depth matters.</b> Each question reads its concept at its own floor. A country's capital is looked up between floors 20 and 24; swap later and the answer was already decided. The chart shows where each group stops working.</p>
+ <p class="note" style="font-family:'IBM Plex Mono',monospace">Qwen3-4B, pre-registered as exp117 (two of three predictions held). Runs on the hosted model; a run takes a few seconds once it's awake. Part of the <a href="/tower">Neuron Tower</a>; see also <a href="/manifolds.html">Inside the calendar</a> and <a href="/grok.html">Learning to add</a>.</p>
+</section>
+</main>
+<script>
+(async function(){
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const M=await fetch("surgery/concepts.json").then(r=>r.json()),SETS=M.sets,BL=[2,4,6,8,10,12,16,20,24];
+const LABEL={weekdays:"weekdays",months:"months",numbers:"numbers",planets:"planets",countries:"countries",colours:"colours",animals:"animals"};
+const st={set:"countries",x:"France",y:"Japan",d:"all",custom:false};
+let LIVE=null;
+for(const base of["http://127.0.0.1:8977",(/clankerchurch\.com$|wirehead/.test(location.hostname)?"":"https://clankerchurch.com")+"/chamber/tower"]){
+ try{const j=await fetch(base+"/health",{signal:AbortSignal.timeout(base.includes("127.0.0.1")?900:5000)}).then(r=>r.ok?r.json():null);if(j&&j.ok){LIVE=base;break;}}catch(e){}}
+function taskFor(){return SETS[st.set].task.replace("{X}",st.x);}
+function setsUI(){$("#sets").innerHTML=[...Object.keys(SETS),"_free"].map(k=>`<button type="button" data-s="${k}" aria-pressed="${k===st.set}">${k==="_free"?"any words":LABEL[k]||k}</button>`).join("");
+ $("#sets").onclick=e=>{const b=e.target.closest("[data-s]");if(!b)return;st.set=b.dataset.s;
+  if(st.set==="_free"){st.x=$("#fx").value.trim()||"Japan";st.y=$("#fy").value.trim()||"Texas";st.custom=true;$("#prompt").value=`What do people in ${st.x} traditionally wear on their feet? Answer in a few words.`;}
+  else{const it=SETS[st.set].items;st.x=it[0];st.y=it[Math.min(3,it.length-1)];st.custom=false;}fill();};}
+const FREE=()=>st.set==="_free";
+function fill(){setsUI();$("#pairSel").hidden=FREE();$("#pairFree").hidden=!FREE();document.querySelectorAll("[data-d]").forEach(b=>b.hidden=FREE());
+ if(FREE()){check();expect();chart();$("#before").textContent="—";$("#after").textContent="—";return;}
+ const it=SETS[st.set].items;
+ $("#x").innerHTML=it.map(i=>`<option${i===st.x?" selected":""}>${i}</option>`).join("");$("#y").innerHTML=it.filter(i=>i!==st.x).map(i=>`<option${i===st.y?" selected":""}>${i}</option>`).join("");
+ if(st.y===st.x){st.y=it.find(i=>i!==st.x);}
+ if(!st.custom)$("#prompt").value=taskFor();check();expect();chart();$("#before").textContent="—";$("#after").textContent="—";}
+function hasX(){return new RegExp(`\\b${st.x}\\b`,"i").test($("#prompt").value);}
+function check(){$("#pnote").innerHTML=hasX()?`It will swap every “${esc(st.x)}” in your sentence.`:`<span class="warn">Your sentence has no “${esc(st.x)}”, so there is nothing to swap.</span>`;}
+function nearest(b){return BL.reduce((a,c)=>Math.abs(c-b)<Math.abs(a-b)?c:a,BL[0]);}
+function expect(){const b=+$("#floor").value,al=+$("#alpha").value,nb=nearest(b);
+ $("#floorv").textContent=b;$("#alphav").textContent=al.toFixed(2);
+ if(FREE()){$("#expect").textContent="Untested pair: you're the experiment";$("#expectnote").innerHTML=`Any two words: each word's state is measured on the fly from six plain sentences, then swapped at floor ${b}. In testing at floor 8, swapping one country for another moved 95% of its facts to the new country, and a country for a US state 86% (random edits: 5%). A country swapped for an object (a banana, a piano) answers about half the time as the object, and blends the rest. Long or rare words split into pieces; the edit lands on the last piece.`;return;}
+ const S=SETS[st.set];
+ const p=(st.d==="all"?S.success_full:S.success_2d)[nb];
+ $("#expect").textContent=`In testing: ${Math.round(p*100)}% of answers flipped`;
+ $("#expectnote").innerHTML=`${esc(LABEL[st.set])} · ${st.d==="all"?"whole concept":"visible shape only"} · floor ${nb}${nb!==b?" (nearest tested)":""} · strength 1.${al<.7?` <span class="warn">At strength ${al.toFixed(2)} expect much less: the swap is a switch that flips between 0.5 and 0.75.</span>`:""}${b>=20&&p<.6?` <span class="warn">This question has usually read the concept by floor ${nb}; try an earlier floor.</span>`:""}`;}
+function chart(){if(FREE()){$("#chart").innerHTML="";return;}const S=SETS[st.set],W=420,H=150,X=b=>30+(b-2)/22*250,Y=v=>H-22-(H-40)*v;let g=`<line x1="30" y1="${Y(0)}" x2="280" y2="${Y(0)}" stroke="#1b2420"/><line x1="30" y1="${Y(1)}" x2="280" y2="${Y(1)}" stroke="#1b2420"/>`;
+ const path=(o,c)=>`<polyline fill="none" stroke="${c}" stroke-width="2" points="${BL.map(b=>`${X(b)},${Y(o[b])}`).join(" ")}"/>`;
+ g+=path(S.success_2d,"#56625b")+path(S.success_full,"#e8ff6a");
+ g+=BL.map(b=>`<text x="${X(b)-4}" y="${H-6}">${b}</text>`).join("")+`<text x="2" y="${Y(1)+3}">100%</text><text x="8" y="${Y(0)+3}">0%</text>`;
+ const fl=+$("#floor").value;g+=`<line x1="${X(fl)}" y1="${Y(0)}" x2="${X(fl)}" y2="${Y(1)}" stroke="#e9efe6" stroke-dasharray="2 3"/>`;
+ const D=S.dose_block8,ks=Object.keys(D).map(Number).sort((a,b)=>a-b);
+ g+=`<text x="300" y="14">strength (floor 8)</text>`+ks.map((k,i)=>`<circle cx="${305+i*24}" cy="${Y(D[k])}" r="4" fill="#e8ff6a" opacity="${.35+.65*D[k]}"/><text x="${296+i*24}" y="${H-6}">${k}</text>`).join("");
+ $("#chart").innerHTML=g;}
+function run(prompt,edits,el){return new Promise(res=>{let text="",sw=null;el.textContent="…";
+ const es=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(prompt)}&max_new=48&edits=${encodeURIComponent(edits)}`);
+ es.onmessage=e=>{const d=JSON.parse(e.data);if(d.queued){el.textContent="waking the model (about a minute the first time)…";return;}
+  if(d.error){el.textContent=d.error;es.close();res(null);return;}
+  if(d.done){sw=d.swapped;es.close();res(sw);return;}
+  if(d.phase==="reply"){text+=d.tok;el.textContent=text.replace(/<\|im_end\|>/g,"").trim();}};
+ es.onerror=()=>{es.close();if(!text)el.textContent="Couldn't reach the model; it may be busy or you've hit the run limit for a few minutes.";res(null);};});}
+let lastBase="";
+$("#go").onclick=async()=>{if(!LIVE){$("#status").textContent="the model isn't reachable right now";return;}
+ const p=$("#prompt").value.trim();if(!hasX()){check();return;}
+ if(FREE()){st.x=$("#fx").value.trim().replace(/[:,]/g,"");st.y=$("#fy").value.trim().replace(/[:,]/g,"");if(!st.x||!st.y)return;}
+ const spec=FREE()?`W:${st.x}:${st.y}:${+$("#floor").value}:${(+$("#alpha").value).toFixed(2)}`:`S:${st.set}:${st.x}:${st.y}:${+$("#floor").value}:${(+$("#alpha").value).toFixed(2)}${st.d==="2"?":2":""}`;
+ $("#go").disabled=true;$("#status").textContent="";$("#afterlab").textContent=`after: “${st.x}” thought of as “${st.y}”`;
+ const jobs=[];if(p!==lastBase)jobs.push(run(p,"",$("#before")).then(()=>{lastBase=p;}));
+ jobs.push(run(p,spec,$("#after")).then(n=>{$("#status").textContent=n==null?"":n?`swapped ${n} mention${n>1?"s":""} of “${st.x}”`:`no “${st.x}” found to swap`;}));
+ await Promise.all(jobs);$("#go").disabled=false;};
+$("#x").onchange=e=>{st.x=e.target.value;if(st.y===st.x)st.y=SETS[st.set].items.find(i=>i!==st.x);if(!st.custom)$("#prompt").value=taskFor();fill();};
+$("#y").onchange=e=>{st.y=e.target.value;expect();};
+$("#fx").oninput=()=>{st.x=$("#fx").value.trim();check();};$("#fy").oninput=()=>{st.y=$("#fy").value.trim();};
+$("#prompt").oninput=()=>{st.custom=$("#prompt").value!==taskFor();check();};
+$("#floor").oninput=()=>{expect();chart();};$("#alpha").oninput=expect;
+document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{st.d=b.dataset.d;document.querySelectorAll("[data-d]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));expect();});
+fill();if(!LIVE)$("#status").textContent="the model isn't reachable right now; you can still read the test results";
+})();
+</script>
+</body>
+</html>
