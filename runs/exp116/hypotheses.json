@@ -1,0 +1,28 @@
+{
+ "exp": "exp116",
+ "title": "A latent step you can swap: two-hop recall in Qwen3-4B through transcoder features",
+ "written": "2026-10-16, before any run",
+ "why": "Lesions and activation maps show that parts matter, not how understanding composes. Transcoders replace each MLP with sparse features so a single answer can be traced as a graph through attention. The test of 'latent understanding' is an intermediate the model never writes (the state, for a city) that, when swapped, changes the answer the way the concept should.",
+ "model": "Qwen/Qwen3-4B with mwhanna/qwen3-4b-transcoders (per-layer transcoders, circuit-tracer, TransformerLens backend, bf16)",
+ "prompts": {
+  "P_dallas": "Fact: the capital of the state containing Dallas is",
+  "P_sf": "Fact: the capital of the state containing San Francisco is",
+  "P_texas": "Fact: the capital of Texas is",
+  "P_calif": "Fact: the capital of California is"
+ },
+ "design": {
+  "baseline": "plain completion (no chat template); P_dallas must put ' Austin' top-1 and P_sf ' Sacramento' top-1, else the run stops and reports that",
+  "graph": "circuit_tracer.attribute on P_dallas and P_sf (max_feature_nodes 7500); report the share of total influence on the target logit carried by error nodes (how much the replacement does not explain)",
+  "texas_features": "T = features active in P_dallas at any position after 'Dallas' AND active in P_texas at the ' Texas' token AND not active in P_sf; ranked by their influence on ' Austin' in the P_dallas graph; top 10",
+  "california_features": "C = the same construction from P_sf / P_calif / P_dallas; top 10",
+  "ablate": "set T to 0 at their positions in P_dallas (feature_intervention, attention frozen)",
+  "swap": "set T to 0 and set C to their P_sf activation values at the matching positions in P_dallas",
+  "control": "zero 10 random active features from the same layers with similar activation (20 draws)"
+ },
+ "hypotheses": {
+  "H1": "Ablating T lowers P(' Austin') in P_dallas by >= 50% (relative); random-feature ablation lowers it by < 20% on average.",
+  "H2": "Swapping T for C makes ' Sacramento' the top-1 next token of P_dallas.",
+  "H3": "Exploratory, no prediction: the share of influence through error nodes, and where in depth T sits."
+ },
+ "decision_rule": "Sets T and C are built by the fixed rule above, before any intervention is run. Results reported whatever they show."
+}
