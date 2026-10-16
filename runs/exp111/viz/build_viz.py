@@ -85,5 +85,11 @@ for pk, p in stream["prompts"].items():
                                                     "edges": sorted(g["edges"], key=lambda e: -abs(e[2]))[:160], "groups": g.get("groups", []), "gedges": g.get("gedges", [])}
                                                    for g in circ if g["prompt"] == pk and g["cond"] == c]}
 (S / "stream.json").write_text(json.dumps(out, separators=(",", ":"), ensure_ascii=False).replace("�", "▯"))
-for f in ("grid.png", "featured.json", "stream.json"): print(f, (S / f).stat().st_size // 1024, "KB")
+if (D / "districts.bin").exists():   # districts: id per neuron as a grayscale PNG, names/centres as json
+    dd = np.fromfile(D / "districts.bin", np.uint8); Wd = int(np.ceil(np.sqrt(len(dd)))); bd = np.zeros(Wd * Wd, np.uint8); bd[:len(dd)] = dd
+    Image.fromarray(bd.reshape(Wd, Wd), "L").save(S / "districts.png", optimize=True)
+    dj = json.load(open(D / "districts.json"))
+    (S / "districts.json").write_text(json.dumps(dj, separators=(",", ":"), ensure_ascii=False).replace("\ufffd", "\u25af"))
+for f in ("grid.png", "featured.json", "stream.json", "districts.png", "districts.json"):
+    if (S / f).exists(): print(f, (S / f).stat().st_size // 1024, "KB")
 print(len(feat), "featured,", sum("lab" in x for x in feat.values()), "labelled")

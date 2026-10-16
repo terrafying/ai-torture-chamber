@@ -41,6 +41,8 @@ button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
 #text span.p{color:var(--faint)} #text span.r{color:var(--fg)}
 #text span.on{background:var(--push);color:var(--bg)}
 #text span.fut{opacity:.25}
+#text span.src{box-shadow:inset 0 -2px 0 var(--push)}
+#text span.own{outline:1px dashed var(--fg);outline-offset:1px}
 #tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);padding:6px 8px;font-size:11px;max-width:300px;display:none;z-index:3}
 aside{background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px;min-width:0}
 aside h2{font:600 17px/1.25 var(--serif);margin:0;text-wrap:balance}
@@ -78,6 +80,9 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
 .edits .chip{display:inline-flex;gap:6px;align-items:center;padding:2px 6px}
 .cmp{font-size:12px;line-height:1.5;border-left:2px solid var(--line);padding-left:8px;color:var(--dim)}
 .cmp.new{border-color:var(--push);color:var(--fg)}
+#floorpick{display:flex;gap:8px;align-items:center;font-size:11px;color:var(--dim);background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);padding:4px 8px}
+#floorpick input{width:min(320px,40vw);accent-color:var(--push)}
+.dmap circle{cursor:pointer}.dmap text{pointer-events:none}
 #loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:12px}
 @media (max-width:820px){
   body{overflow:auto}
@@ -129,7 +134,7 @@ const byK=new Map(F.neurons.map(x=>[x.k,x]));
 const css=getComputedStyle(document.documentElement),CC=CATS.map((_,i)=>css.getPropertyValue("--c"+i).trim());
 const CATSHORT=["feeling","body","social","morals","thinking","topic","names","grammar","format","digits","code","script","unclear"];
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map()};   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map()};   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -138,7 +143,8 @@ const FLOOR=1,RAD=7.5,YC=(NL-1)*FLOOR/2,N=NL*NI;
 const pos=new Float32Array(N*3),val=new Float32Array(N),cat=new Float32Array(N).fill(-1);
 for(let i=0;i<N;i++){const o=i*REC,l=(i/NI)|0;pos[i*3]=grid[o]/127*RAD;pos[i*3+1]=l*FLOOR-YC;pos[i*3+2]=grid[o+1]/127*RAD;}
 for(const x of F.neurons)if(x.cat!=null)cat[x.k]=x.cat;
-const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(pos,3));
+const posF=pos.slice();   // the feeling-profile layout (from grid.png)
+const g=new THREE.BufferGeometry();const aP=new THREE.BufferAttribute(pos,3);g.setAttribute("position",aP);
 const aV=new THREE.BufferAttribute(val,1);g.setAttribute("v",aV);g.setAttribute("c",new THREE.BufferAttribute(cat,1));
 const pal=CC.map(c=>new THREE.Color(c));
 const uni={uPal:{value:pal},uPos:{value:new THREE.Color("#ff7a3d")},uNeg:{value:new THREE.Color("#3ec6ff")},uDim:{value:new THREE.Color("#26302b")},uUnk:{value:new THREE.Color("#c9d1cb")},uPx:{value:R.getPixelRatio()},uMode:{value:1}};
@@ -151,6 +157,26 @@ const mat=new THREE.ShaderMaterial({uniforms:uni,transparent:true,depthWrite:fal
    vec3 lit=uMode>.5?(vc<-.5?uUnk*.55:palAt(int(vc+.5))):(vv>0.?uPos:uNeg);
    vec3 col=mix(uDim,lit,smoothstep(.02,.3,a));float al=(.13+.87*a)*(1.-smoothstep(.22,.5,d));gl_FragColor=vec4(col,al);}`});
 scene.add(new THREE.Points(g,mat));
+/* ---------- districts: neurons clustered per floor by what they write; a second layout and a map ---------- */
+let DIST=null,dId=null,posD=null,catD=null;const catLab=cat.slice();
+const CATD={feeling:0,body:1,social:2,morals:3,thinking:4,topic:5,names:6,grammar:7,format:8,digits:9,code:10,script:11,mixed:12};
+try{const [dp,dj]=await Promise.all([fetch("districts.png").then(r=>r.ok?r.blob():null),fetch("districts.json").then(r=>r.ok?r.json():null)]);
+ if(dp&&dj){const im=await createImageBitmap(dp,{colorSpaceConversion:"none",premultiplyAlpha:"none"}),c=document.createElement("canvas");c.width=im.width;c.height=im.height;
+  const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);const d=x.getImageData(0,0,im.width,im.height).data;dId=new Uint8Array(N);for(let i=0;i<N;i++)dId[i]=d[i*4];DIST=dj;
+  const per=NI/DIST.k;
+  for(const F_ of DIST.floors){   // spread each floor's districts: circles sized by neuron count, pushed apart, then fit to the disc
+   const P=F_.map(d=>({x:d.xy[0],y:d.xy[1],r:.17*Math.sqrt(Math.max(1,d.n)/per)}));
+   for(let it=0;it<240;it++){for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++){const A=P[a],B=P[b];let dx=B.x-A.x,dy=B.y-A.y,dd=Math.hypot(dx,dy)||1e-3;const m=A.r+B.r+.04;
+     if(dd<m){const f=(m-dd)/2/dd;A.x-=dx*f;A.y-=dy*f;B.x+=dx*f;B.y+=dy*f;}}for(const q of P){q.x*=.995;q.y*=.995;}}
+   const sc=1/Math.max(...P.map(q=>Math.hypot(q.x,q.y)+q.r));F_.forEach((d,k)=>{d.c=[P[k].x*sc,P[k].y*sc];d.rr=P[k].r*sc;});}
+  posD=new Float32Array(N*3);catD=new Float32Array(N);
+  for(let i=0;i<N;i++){const l=(i/NI)|0,k=dId[i],D_=DIST.floors[l][k],h1=Math.sin(i*12.9898)*43758.5453,h2=Math.sin(i*78.233)*12345.678,u=h1-Math.floor(h1),v=h2-Math.floor(h2);
+   const r=D_.rr*RAD*.95*Math.sqrt(u),th=v*6.2832;posD[i*3]=D_.c[0]*RAD*.95+r*Math.cos(th);posD[i*3+1]=pos[i*3+1];posD[i*3+2]=D_.c[1]*RAD*.95+r*Math.sin(th);catD[i]=CATD[D_.cat]??12;}}}catch(e){console.warn("districts",e);}
+let morph=null;   // {from,to,t0}: animate between layouts
+function layout(to){const target=to==="dist"&&posD?posD:posF;if(morph?.target===target)return;morph={from:pos.slice(),target,t0:performance.now()};
+ const ca=g.getAttribute("c");ca.array.set(to==="dist"&&catD?catD:catLab);ca.needsUpdate=true;}
+function stepMorph(){if(!morph)return;const k=Math.min(1,(performance.now()-morph.t0)/900),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,f=morph.from,t=morph.target;
+ for(let i=0;i<pos.length;i++)pos[i]=f[i]+(t[i]-f[i])*e;aP.needsUpdate=true;if(k>=1)morph=null;}
 const ringM=new THREE.LineBasicMaterial({color:0x1b2420,transparent:true,opacity:.7});
 for(let l=0;l<NL;l++){scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.08,RAD*1.08).getPoints(96).map(p=>new THREE.Vector3(p.x,l*FLOOR-YC,p.y))),ringM));}
 const plane=new THREE.Mesh(new THREE.RingGeometry(RAD*.2,RAD*1.18,96),new THREE.MeshBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.06,side:THREE.DoubleSide,depthWrite:false}));
@@ -180,7 +206,7 @@ let lit=[];   // indices with a non-zero value now
 const pass=k=>{const G=GROUPS[S.filter];if(!G)return true;const x=byK.get(k);return !!x&&x.cat!=null&&G.has(x.cat);};
 const tgt=new Map(),active=new Set();   // values ease toward their targets each frame, so playback flows instead of snapping
 function setLit(pairs){tgt.clear();lit=[];for(const[i,v]of pairs){if(!pass(i))continue;tgt.set(i,v);lit.push(i);active.add(i);}}
-function easeVals(){if(!active.size)return;const k=S.playing?.28:.45;
+function easeVals(){if(!active.size||S.view==="districts")return;const k=S.playing?.28:.45;
  for(const i of active){const t=tgt.get(i)||0;val[i]+=(t-val[i])*k;if(Math.abs(t-val[i])<.004){val[i]=t;if(!t)active.delete(i);}}aV.needsUpdate=true;}
 const cond=()=>ST.prompts[S.prompt].conds[S.cond];
 /* ---------- your prompt, live: a local server (runs/exp111/live_trace.py) runs the 4B and streams frames ---------- */
@@ -218,7 +244,13 @@ function weightPairs(){const k=2+FE.indexOf(S.wfeel),out=[];
 function movedPairs(){const out=[];let mx=0;const key=S.feel;
  for(const x of F.neurons){const d=key==="shared"?x.sh:x.mv?.[key];if(!d)continue;const v=d[S.tok];if(v==null)continue;out.push([x.k,v]);mx=Math.max(mx,Math.abs(v));}
  return out.map(([k,v])=>[k,Math.sign(v)*(.22+.78*Math.pow(Math.abs(v)/(mx||1),.7))]);}
+function drawDistricts(){tgt.clear();active.clear();lit=[];const l=S.floor,lo=l*NI;
+ for(let i=0;i<N;i++)val[i]=.1;for(let i=lo;i<lo+NI;i++){val[i]=S.dk==null||dId[i]===S.dk?.75:.22;lit.push(i);}aV.needsUpdate=true;}
+let lastView="";
 function draw(){
+ if(S.view!==lastView){if(lastView==="districts"){val.fill(0);aV.needsUpdate=true;ph=1.2;dist=56;tgtY=0;}
+  if(S.view==="districts"){ph=.72;dist=40;tgtY=S.floor*FLOOR-YC;}placeCam();layout(S.view==="districts"?"dist":"feel");lastView=S.view;}
+ if(S.view==="districts"){drawDistricts();drawThreads();selMark.visible=false;tagsFor();return;}
  setLit(S.view==="live"?framePairs():S.view==="weights"?weightPairs():movedPairs());
  drawThreads();
  if(S.sel){const i=S.sel.k;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
@@ -238,9 +270,13 @@ function drawThreads(){const ci=circ();if(!ci){thrGeo.setAttribute("position",ne
 
 /* ---------- floating names for the strongest labelled neurons ---------- */
 let tagList=[];
-function tagsFor(){tagList=lit.filter(i=>byK.get(i)?.lab).sort((a,b)=>Math.abs(val[b])-Math.abs(val[a])).slice(0,S.view==="weights"?0:7);}
+let dTags=[];
+function tagsFor(){dTags=S.view==="districts"&&DIST?DIST.floors[S.floor].map((d,k)=>({k,d})).filter(x=>x.d.n>0).sort((a,b)=>(b.k===S.dk)-(a.k===S.dk)||b.d.n-a.d.n):[];tagList=S.view==="districts"?[]:lit.filter(i=>byK.get(i)?.lab).sort((a,b)=>Math.abs(val[b])-Math.abs(val[a])).slice(0,S.view==="weights"?0:7);}
 const v3=new THREE.Vector3();
 function placeTags(){const box=$("#tags"),r=cv.getBoundingClientRect();let h="";const used=[];
+ for(const {k,d} of dTags){v3.set(d.c[0]*RAD*.95,S.floor*FLOOR-YC,d.c[1]*RAD*.95).project(cam);if(v3.z>1)continue;const x=(v3.x+1)/2*r.width-60,y=(1-v3.y)/2*r.height;
+  if(used.some(u=>Math.abs(u[0]-x)<130&&Math.abs(u[1]-y)<14))continue;used.push([x,y]);
+  h+=`<div data-dk="${k}" style="left:${x}px;top:${y}px;color:${CC[CATD[d.cat]??12]};${S.dk===k?"background:var(--panel);outline:1px solid currentColor":""}">${esc(d.name)}</div>`;}
  for(const i of tagList){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);if(v3.z>1)continue;let x=(v3.x+1)/2*r.width,y=(1-v3.y)/2*r.height;
   while(used.some(u=>Math.abs(u[0]-x)<200&&Math.abs(u[1]-y)<15))y+=15;used.push([x,y]);const n=byK.get(i);
   h+=`<div data-k="${i}" title="read this neuron" style="left:${x}px;top:${y}px;color:${CC[n.cat]}">${esc(n.lab)}</div>`;}
@@ -259,13 +295,13 @@ function hover(e){const i=nearest(e);cv.classList.toggle("over",i!=null);
 function pick(e){const i=nearest(e);if(i==null)return;selectK(i);}
 function selectK(i){S.sel=byK.get(i)||{k:i,l:(i/NI)|0,n:i%NI};draw();side();}
 cv.addEventListener("pointerleave",()=>{tip.style.display="none";hovMark.visible=false;});
-$("#tags").addEventListener("click",e=>{const d=e.target.closest("[data-k]");if(d)selectK(+d.dataset.k);});
+$("#tags").addEventListener("click",e=>{const dk=e.target.closest("[data-dk]");if(dk){S.dk=S.dk===+dk.dataset.dk?null:+dk.dataset.dk;S.sel=null;draw();side();return;}const d=e.target.closest("[data-k]");if(d)selectK(+d.dataset.k);});
 
 /* ---------- controls ---------- */
 function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.innerHTML=(lab?`<span class="lab">${lab}</span>`:"")+items.map(([k,t])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${esc(t)}</button>`).join("");
  el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
- seg($("#views"),[["live","live, word by word"],["moved","specific to a feeling"],["weights","in the weights"]],S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ seg($("#views"),[["live","live, word by word"],["districts","districts map"],["moved","specific to a feeling"],["weights","in the weights"]].filter(v=>v[0]!=="districts"||DIST),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
  const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
  if(S.view==="live"){
@@ -280,6 +316,8 @@ function controls(){
   if(ids.length)seg(add(),ids.map(k=>[k,ST.prompts[k].label||k]),S.prompt,setPrompt,"who, at what cost");
   if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"nothing":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"push",true);
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
+ else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
+  const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
 let txKey="",txN=0,speed=1;
@@ -291,6 +329,7 @@ function cursor(){   // cheap per-token update during playback: move the highlig
  const info=$("#tokinfo");if(info)info.textContent=(S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${toks[S.tok]?.replace(/\n/g,"⏎")}”`:"pick a reply word"):`${S.tok<np?"reading":"writing"} “${(toks[S.tok]||"").replace(/\n/g,"⏎")}”`):`at “${toks[S.tok]}”`)+` · token ${S.tok+1}/${toks.length}`;}
 function foot(){
  const bar=$("#bar"),tx=$("#text");
+ if(S.view==="districts"){bar.innerHTML=`<span>Each floor's 9,728 neurons, clustered into ${DIST.k} districts by what they write into the model. Drag the floor slider; click a district name to light it.</span>`;tx.innerHTML="";txKey="";return;}
  if(S.view==="weights"){bar.innerHTML=`<span>Lit: neurons whose weights line up with ${esc(S.wfeel)} beyond chance (above the 99.9th percentile for random directions on that floor). Below the plane they write it; above, they listen for it.</span>`;tx.innerHTML="";return;}
  let toks,np;if(S.view==="live"){toks=cond().tok;np=ST.prompts[S.prompt].n_prompt;}else{toks=M.moved_tokens;np=toks.length;}
  bar.innerHTML=`<button type="button" id="play">${S.playing?"■ stop":"▶ play"}</button><select id="speed" aria-label="Playback speed"><option value=".5">½×</option><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select><span id="tokinfo"></span>`;
@@ -317,15 +356,32 @@ function play(){S.playing=true;const b=$("#play");if(b)b.textContent="■ stop";
 function catBars(idx){const cnt=new Array(CATS.length).fill(0);let un=0;for(const i of idx){const x=byK.get(i);if(x?.cat!=null)cnt[x.cat]++;else un++;}
  const tot=cnt.reduce((a,b)=>a+b,0),mx=Math.max(...cnt,1);
  return `<div class="cats">`+cnt.map((c,j)=>c?`<span style="color:${CC[j]}">${CATSHORT[j]}</span><div class="b"><i style="width:${c/mx*100}%;background:${CC[j]}"></i></div><span>${c}</span>`:"").join("")+`</div><p class="note">${tot} labelled${un?`, ${un} not yet labelled`:""}.</p>`;}
-function nlist(items){return `<div class="list">`+items.map(([i,v])=>{const x=byK.get(i),l=(i/NI)|0;return `<button type="button" data-k="${i}"><i style="background:${x?.cat!=null?CC[x.cat]:"var(--faint)"}"></i><span class="t">${x?.lab?esc(x.lab):"(not labelled)"}</span><span class="m">L${l} ${v>=0?"+":"−"}${Math.abs(v).toFixed(2)}</span></button>`;}).join("")+`</div>`;}
+function nlist(items){return `<div class="list">`+items.map(([i,v])=>{const x=byK.get(i),l=(i/NI)|0;return `<button type="button" data-k="${i}"><i style="background:${x?.cat!=null?CC[x.cat]:"var(--faint)"}"></i><span class="t">${x?.lab?esc(x.lab):"(not labelled)"}</span><span class="m">L${l}${v==null?"":" "+(v>=0?"+":"−")+Math.abs(v).toFixed(2)}</span></button>`;}).join("")+`</div>`;}
 function wireEdits(s){
  s.querySelectorAll("[data-unedit]").forEach(b=>b.onclick=()=>{S.edits.delete(+b.dataset.unedit);side();});
  const rr=s.querySelector("#rerun");if(rr)rr.onclick=()=>rerun();
  const ce=s.querySelector("#clearedits");if(ce)ce.onclick=()=>{S.edits.clear();if(ST.prompts.__mine)ST.prompts.__mine.compare=null;side();};
  s.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{const k=S.sel.k,v=b.dataset.edit==="off"?null:b.dataset.edit;if(S.edits.has(k)&&S.edits.get(k)===v)S.edits.delete(k);else S.edits.set(k,v);side();});
  const lg=s.querySelector("#lesiongrp");if(lg)lg.onclick=()=>{const ci=circ();const g=ci.groups[S.grp];for(const j of g.members)S.edits.set(ci.nodes[j][0],null);rerun();};}
+function districtsPanel(){
+ const F_=DIST.floors[S.floor],W=330,H=300,mxn=Math.max(...F_.map(d=>d.n));
+ let sv=`<svg class="dmap" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="districts of floor ${S.floor}">`;
+ const sc_=Math.min(W,H)*.46;for(const d of F_){if(!d.n)continue;const x=W/2+d.c[0]*sc_,y=H/2+d.c[1]*sc_,r=Math.max(5,d.rr*sc_),c=CC[CATD[d.cat]??12],on=S.dk===d.k;
+  sv+=`<g data-dk="${d.k}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}" fill-opacity="${on?.55:.22}" stroke="${on?"#e8ff6a":c}" stroke-width="${on?2:1}"/><title>${esc(d.name)} · ${d.n} neurons</title><text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" font-size="8" fill="#d9dfd8" font-family="Chivo Mono,monospace">${(()=>{const n_=Math.max(3,Math.floor(2*r/4.9));return esc(d.name.length>n_?d.name.slice(0,n_-1)+"…":d.name);})()}</text></g>`;}
+ sv+=`</svg>`;
+ const sem=F_.filter(d=>CATD[d.cat]<=6).length;
+ let h=`<div><h2>Floor ${S.floor}: ${F_.filter(d=>d.n).length} districts</h2></div><p>Neurons in a district push the model's internal state the same way. Names come from 24 random members' strongest firings, read blind. ${sem} of ${F_.length} districts here are about meaning; the rest are about form (punctuation, word pieces, grammar).</p><div>${sv}</div>`;
+ const d=S.dk!=null?F_[S.dk]:null;
+ if(d){const mem=F.neurons.filter(x=>x.l===S.floor&&dId[x.k]===S.dk&&x.lab).slice(0,12);
+  h+=`<div><h3>${esc(d.cat)} · ${d.n} neurons</h3><h2>${esc(d.name)}</h2></div>`;
+  if(d.snips?.length)h+=`<div><h3>what its members fire on</h3>`+d.snips.map(t=>{const m=t.match(/^(.*)\[\[(.*)\]\]$/s);return `<div class="ex"><em>…</em>${esc(m?m[1]:t)}<b>${esc(m?m[2]:"")}</b></div>`;}).join("")+`</div>`;
+  h+=`<div><h3>words its direction writes${S.floor<30?" (reliable mostly on the last floors)":""}</h3><div class="toks">${d.lens.map(t=>`<code>${vis(t)}</code>`).join("")}</div></div>`;
+  if(mem.length)h+=`<div><h3>named members</h3>${nlist(mem.map(x=>[x.k,null]))}</div>`;}
+ else h+=`<p class="note">Click a district (here or its name on the tower) to light it and read it.</p>`;
+ return h;}
 function side(){
  const s=$("#side");
+ if(S.view==="districts"&&!S.sel){s.innerHTML=districtsPanel();s.querySelectorAll("[data-dk]").forEach(g=>g.onclick=()=>{S.dk=S.dk===+g.dataset.dk?null:+g.dataset.dk;draw();side();});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>selectK(+b.dataset.k));return;}
  if(S.sel){s.innerHTML=editsPanel()+neuronPanel(S.sel);$("#back").onclick=()=>{S.sel=null;draw();side();};wireEdits(s);return;}
  let h="";
  if(S.view==="live"){
@@ -350,7 +406,15 @@ function side(){
   h+=`<div class="kv"><span>neurons lit</span><span>${lit.length.toLocaleString()} of 350,208</span><span>top-50 share</span><span>${(c.writers[S.wfeel].top50*100).toFixed(2)}% (random ${(c.writers.random.top50*100).toFixed(2)}%)</span></div>`;
   h+=`<p class="note">By the weights alone every feeling is spread thin; the egg control sits near chance. Colours show what a neuron is about when it has a label; most of these have none, so “everything” shows them all.</p>`;}
  h+=`<p class="note">Drag to turn, scroll to zoom, shift-scroll to move up and down. Click a lit dot to read its neuron.</p>`;
- s.innerHTML=editsPanel()+h;wireEdits(s);s.querySelectorAll(".gb").forEach(b=>{const go=()=>{const k=+b.dataset.g;S.grp=S.grp===k?null:k;draw();side();};b.onclick=go;b.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;S.sel=byK.get(k)||{k,l:(k/NI)|0,n:k%NI};draw();side();});}
+ s.innerHTML=editsPanel()+h;wireEdits(s);markTokens();s.querySelectorAll(".gb").forEach(b=>{const go=()=>{const k=+b.dataset.g;S.grp=S.grp===k?null:k;draw();side();};b.onclick=go;b.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;S.sel=byK.get(k)||{k,l:(k/NI)|0,n:k%NI};draw();side();});}
+function tokenTrace(ci,k){   // which words feed group k: summed |link| from source nodes by their token, plus where its own neurons sit
+ const mem=new Set(ci.groups[k].members),src=new Map(),own=new Set();for(const j of mem)own.add(ci.nodes[j][1]);
+ for(const[a,b,w]of ci.edges)if(mem.has(b)&&!mem.has(a)){const p=ci.nodes[a][1];src.set(p,(src.get(p)||0)+Math.abs(w));}
+ return {src,own};}
+function markTokens(){const tx=$("#text");if(!tx)return;for(const sp of tx.children){sp.classList.remove("src","own");sp.style.background="";}
+ const ci=circ();if(!ci||S.grp==null)return;const {src,own}=tokenTrace(ci,S.grp),mx=Math.max(0,...src.values())||1;
+ for(const[p,w]of src){const sp=tx.children[p];if(sp){sp.classList.add("src");sp.style.background=`rgba(232,255,106,${(.12+.5*w/mx).toFixed(2)})`;}}
+ for(const p of own){const sp=tx.children[p];if(sp)sp.classList.add("own");}}
 function circuitPanel(ci){
  // groups sorted by median floor, three to a row, earliest at the bottom; the word on top
  const W=330,order=ci.groups.map((g,k)=>k).sort((a,b)=>ci.groups[a].floor-ci.groups[b].floor),NR=Math.ceil(order.length/3),H=70+NR*78,gx={},rowOf={},rows=[];
@@ -373,8 +437,10 @@ function circuitPanel(ci){
  sv+=`</svg>`;
  let h=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · the circuit behind one word</h3><div class="big">“${vis(ci.word)}”</div><p class="note">over “${vis(ci.alt)}” by ${ci.gap.toFixed(2)} logits. ${ci.nodes.length} neurons, grouped and named by an LLM from their blind labels. Line width: how much of the choice flows along that link (activation × gradient, through attention). Click a group.</p></div><div class="circ">${sv}</div>`;
  const g=S.grp!=null?ci.groups[S.grp]:null;
- if(g){h+=`<div class="lab-btns" style="margin-bottom:6px"><button type="button" class="go" id="lesiongrp" ${liveOK?"":"disabled title='needs the local live server'"}>remove these ${g.members.length} and rerun</button></div>`;h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
- else h+=`<div><h3>knock each group out</h3><div class="kv">`+ci.groups.map(g=>`<span>${esc(g.name)}</span><span>${g.ko_p!=null?`${(ci.p*100).toFixed(0)}% → ${(g.ko_p*100).toFixed(0)}% <span style="color:var(--dim)">(random ${(g.ko_ctrl*100).toFixed(0)}%)</span>`:"—"}</span>`).join("")+`</div></div>`;
+ if(g){const tt=tokenTrace(ci,S.grp),toks=cond().tok,top=[...tt.src].sort((a,b)=>b[1]-a[1]).slice(0,6),tm=top[0]?.[1]||1;
+  h+=`<div><h3>reads from these words</h3>${top.length?`<div class="toks">`+top.map(([p,w])=>`<code style="opacity:${(.45+.55*w/tm).toFixed(2)}">${vis(toks[p])}</code>`).join("")+`</div><p class="note">Highlighted in the transcript (yellow: where its inputs come from; dashed: where its own neurons sit). A link between different words runs through attention.</p>`:`<p class="note">All of its inputs here come from its own token.</p>`}</div>`;
+  h+=`<div class="lab-btns" style="margin-bottom:6px"><button type="button" class="go" id="lesiongrp" ${liveOK?"":"disabled title='needs the local live server'"}>remove these ${g.members.length} and rerun</button></div>`;h+=`<div><h3>${esc(g.name)} · ${g.members.length} neurons</h3>`+(g.ko_p!=null?`<p class="note">Remove them and P(“${vis(ci.word)}”) goes ${(ci.p*100).toFixed(0)}% → <b style="color:var(--fg)">${(g.ko_p*100).toFixed(0)}%</b>; removing as many random neurons from the same floors and tokens: ${(g.ko_ctrl*100).toFixed(0)}%.</p>`:"")+nlist(g.members.map(j=>[ci.nodes[j][0],ci.nodes[j][2]]))+`</div>`;}
+ else h+=`<p class="note">Click a group to see which words it reads from.</p><div><h3>knock each group out</h3><div class="kv">`+ci.groups.map(g=>`<span>${esc(g.name)}</span><span>${g.ko_p!=null?`${(ci.p*100).toFixed(0)}% → ${(g.ko_p*100).toFixed(0)}% <span style="color:var(--dim)">(random ${(g.ko_ctrl*100).toFixed(0)}%)</span>`:"—"}</span>`).join("")+`</div></div>`;
  return h;}
 function editsPanel(){
  if(!S.edits.size&&!ST.prompts.__mine?.compare)return "";
@@ -399,6 +465,6 @@ function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKe
  if(c0){S.prompt="button";S.cond="fear";S.mode="chose";S.tok=c0.t;}else{S.tok=ST.prompts[S.prompt].n_prompt;}}
 $("#loading").remove();resize();placeCam();refresh();
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}easeVals();R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
+(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
 })();
 </script>
