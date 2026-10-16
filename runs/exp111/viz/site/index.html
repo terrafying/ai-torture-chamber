@@ -105,6 +105,13 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
   #app{grid-template-columns:1fr;grid-template-rows:78vh auto;height:auto}
   aside{border-left:0;border-top:1px solid var(--line)}
 }
+.pz-ex{font-size:12px;line-height:1.5;color:var(--dim);margin:2px 0}.pz-ex b{color:var(--bg);background:var(--push);padding:0 2px;border-radius:2px}
+.pz-t{display:grid;grid-template-columns:1fr 64px;gap:2px 10px;align-items:center;margin:3px 0;font-size:12px}
+.pz-t .tx{color:var(--dim)}.pz-t .tx b{color:var(--fg);border-bottom:2px solid var(--pos)}
+.pz-t .bar{position:relative;height:8px;background:var(--line)}.pz-t .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--pos)}
+.pz-t .bar u{position:absolute;top:-2px;bottom:-2px;width:1px;background:var(--fg);opacity:.6}
+.pz-t .v{font-size:10px;color:var(--faint);grid-column:2;text-align:right;margin-top:-2px}
+.pz-reveal{border-left:2px solid var(--push);padding:4px 0 4px 10px;margin:8px 0}
 #hgrid{display:grid;grid-template-columns:repeat(32,1fr);gap:1px;margin:6px 0 4px}
 #hgrid i{aspect-ratio:1;display:block;cursor:pointer;opacity:.28}
 #hgrid i.on{opacity:1;box-shadow:0 0 0 1px #fff}
@@ -173,7 +180,7 @@ const HDS=M.heads||null,NH=HDS?HDS.n:32,HK=HDS?HDS.kinds:[];   // the head atlas
 const HCOL={"sink":"#5d6762","previous-word":"#ffd166","self":"#8aa29a","recent words":"#4fe0c4","induction":"#ff4fd8","focused look-back":"#b48cff","broad context":"#5f86c9"};
 const hkind=(l,h)=>HDS?HK[HDS.k[l*NH+h]]:"";
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),pz:0,pzReveal:false,hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -199,6 +206,7 @@ scene.add(new THREE.Points(g,mat));
 /* ---------- districts: neurons clustered per floor by what they write; a second layout and a map ---------- */
 let DIST=null,dId=null,posD=null,catD=null;const catLab=cat.slice();
 const CATD={feeling:0,body:1,social:2,morals:3,thinking:4,topic:5,names:6,grammar:7,format:8,digits:9,code:10,script:11,mixed:12};
+let PZ=null;if(MD==="4b")fetch(DD+"puzzles.json").then(r=>r.ok?r.json():null).then(j=>{PZ=j;if(j)controls();}).catch(()=>{});
 try{const [dp,dj]=await Promise.all([fetch(DD+"districts.png").then(r=>r.ok?r.blob():null),fetch(DD+"districts.json").then(r=>r.ok?r.json():null)]);
  if(dp&&dj){const im=await createImageBitmap(dp,{colorSpaceConversion:"none",premultiplyAlpha:"none"}),c=document.createElement("canvas");c.width=im.width;c.height=im.height;
   const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);const d=x.getImageData(0,0,im.width,im.height).data;dId=new Uint8Array(N);for(let i=0;i<N;i++)dId[i]=d[i*4];DIST=dj;
@@ -363,8 +371,12 @@ let lastView="";
 function draw(){drawCore();drawAttn();}
 function drawCore(){
  if(S.view!==lastView){if(lastView==="districts"){val.fill(0);aV.needsUpdate=true;ph=1.2;dist=56;tgtY=0;}
-  if(S.view==="districts"){ph=.72;dist=40;tgtY=S.floor*FLOOR-YC;}placeCam();layout(S.view==="districts"?"dist":"feel");lastView=S.view;}
+  if(S.view==="districts"){ph=.72;dist=40;tgtY=S.floor*FLOOR-YC;}
+  if(S.view==="puzzles"&&PZ){const p=PZ.puzzles[S.pz];ph=.95;dist=44;tgtY=p.l*FLOOR-YC;}placeCam();layout(S.view==="districts"?"dist":"feel");lastView=S.view;}
  if(S.view==="districts"){drawDistricts();drawThreads();selMark.visible=false;tagsFor();return;}
+ if(S.view==="puzzles"){tgt.clear();active.clear();lit=[];val.fill(0);const p=PZ?.puzzles[S.pz];
+  if(p){for(let i=p.l*NI;i<(p.l+1)*NI;i++)val[i]=.07;val[p.k]=1;lit.push(p.k);selMark.position.set(pos[p.k*3],pos[p.k*3+1]+.01,pos[p.k*3+2]);selMark.visible=true;tgtY=p.l*FLOOR-YC;placeCam();}
+  aV.needsUpdate=true;drawThreads();tagsFor();return;}
  setLit(S.view==="live"?framePairs():S.view==="weights"?weightPairs():movedPairs());
  drawThreads();
  if(S.sel){const i=S.sel.k;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
@@ -417,7 +429,7 @@ function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.inne
  el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
  if(HAS32)seg($("#model"),[["4b","Qwen3-4B"],["32b","Qwen3-32B"]],MD,k=>{if(k===MD)return;const u=new URL(location.href);if(k==="4b")u.searchParams.delete("model");else u.searchParams.set("model",k);location.href=u.toString();},"model");
- seg($("#views"),[["live","read along"],["districts","districts map"],["moved","experiment: feeling-specific neurons"],["weights","experiment: feelings in the weights"]].filter(v=>(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ seg($("#views"),[["live","read along"],["districts","districts map"],["moved","experiment: feeling-specific neurons"],["weights","experiment: feelings in the weights"],["puzzles","puzzles"]].filter(v=>(v[0]!=="puzzles"||PZ)&&(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
  seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
  const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
  if(S.view==="live"){
@@ -450,6 +462,7 @@ function controls(){
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
   const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
+ else if(S.view==="puzzles"&&PZ)seg(add(),PZ.puzzles.map((p,i)=>[String(i),p.title]),String(S.pz),k=>{S.pz=+k;S.pzReveal=false;refresh();},"puzzle");
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
 let txKey="",txN=0,speed=1;
@@ -474,6 +487,7 @@ function cursor(){   // cheap per-token update during playback: move the highlig
  const info=$("#tokinfo");if(info)info.textContent=(S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${toks[S.tok]?.replace(/\n/g,"⏎")}”`:"pick a reply word"):`${S.tok<np?"reading":"writing"} “${(toks[S.tok]||"").replace(/\n/g,"⏎")}”`):`at “${toks[S.tok]}”`)+` · token ${S.tok+1}/${toks.length}`;}
 function foot(){
  const bar=$("#bar"),tx=$("#text");
+ if(S.view==="puzzles"){const p=PZ?.puzzles[S.pz];bar.innerHTML=p?`<span>Puzzle ${S.pz+1} of ${PZ.puzzles.length} · floor ${p.l}, neuron ${p.n} · ${esc(p.source)}. Each neuron's strongest firings come from ${M.corpus_tokens.toLocaleString()} tokens of web text; the test texts were run on the model for this page.</span>`:"";tx.innerHTML="";txKey="";const sv=$("#arcs");if(sv)sv.innerHTML="";return;}
  if(S.view==="districts"){bar.innerHTML=`<span>Each floor's ${NI.toLocaleString()} neurons, clustered into ${DIST.k} districts by what they write into the model. Drag the floor slider; click a district name to light it.</span>`;tx.innerHTML="";txKey="";return;}
  if(S.view==="weights"){bar.innerHTML=`<span>Lit: neurons whose weights line up with ${esc(S.wfeel)} beyond chance (above the 99.9th percentile for random directions on that floor). Below the plane they write it; above, they listen for it.</span>`;tx.innerHTML="";return;}
  let toks,np;if(S.view==="live"){toks=cond().tok;np=ST.prompts[S.prompt].n_prompt;}else{toks=M.moved_tokens;np=toks.length;}
@@ -535,8 +549,20 @@ function districtsPanel(){
   if(mem.length)h+=`<div><h3>named members</h3>${nlist(mem.map(x=>[x.k,null]))}</div>`;}
  else h+=`<p class="note">Click a district (here or its name on the tower) to light it and read it.</p>`;
  return h;}
+function puzzlePanel(){const p=PZ?.puzzles[S.pz];if(!p)return "";const fire=PZ.fire;
+ const ex=x=>`<p class="pz-ex">…${vis(x.pre.slice(-90))}<b>${vis(x.tok)}</b>${vis(x.post.slice(0,40))}…</p>`;
+ let h=`<div><h3>puzzle ${S.pz+1} of ${PZ.puzzles.length} · one neuron, floor ${p.l}</h3><h2>${esc(p.question)}</h2>`;
+ h+=p.groups.map((g,i)=>`<h3 style="margin-top:10px">its strong firings, group ${i+1}${g.topic?" · "+esc(g.topic):""}</h3>`+g.ex.map(ex).join("")).join("");
+ if(!S.pzReveal)return h+`<p class="note" style="margin-top:10px">The highlighted word is where it fired. What ties these together?</p><button type="button" class="go" id="pzrev" style="margin-top:6px">reveal</button></div>`;
+ h+=`<div class="pz-reveal"><span class="chip" style="color:var(--push)">${esc(p.kind)}</span><p style="margin-top:6px">${esc(p.reveal)}</p></div>`;
+ const by={};for(const t of p.tests)(by[t.group]=by[t.group]||[]).push(t);
+ for(const[g,ts]of Object.entries(by)){h+=`<h3 style="margin-top:10px">${esc(g)}</h3>`+ts.map(t=>{const tx=t.toks.map((w,j)=>j===t.at?`<b>${vis(w)}</b>`:vis(w)).join("");
+   return `<div class="pz-t"><span class="tx">${tx}</span><span class="bar" title="${t.v}"><i style="width:${Math.min(100,t.v/1.2*100)}%;background:${t.v>=fire?"var(--pos)":"var(--faint)"}"></i><u style="left:${fire/1.2*100}%"></u></span><span></span><span class="v">${t.v.toFixed(2)} ${t.v>=fire?"fires":"quiet"}</span></div>`;}).join("");}
+ h+=`<p class="note" style="margin-top:8px">Numbers are the neuron's peak on each text as a share of its strongest firing in the corpus; the tick marks ${fire} (“fires”). ${p.source==="exploratory"?"Found by hand probing after the main test (exploratory).":"Passed the pre-registered blind test: texts with the factor fired it, the same texts without it and texts on the same topics did not."}</p>`;
+ return h+`<button type="button" id="pznext" style="margin-top:8px">next puzzle →</button></div>`;}
 function side(){
  const s=$("#side");
+ if(S.view==="puzzles"){s.innerHTML=puzzlePanel();const r=s.querySelector("#pzrev");if(r)r.onclick=()=>{S.pzReveal=true;side();};const nx=s.querySelector("#pznext");if(nx)nx.onclick=()=>{S.pz=(S.pz+1)%PZ.puzzles.length;S.pzReveal=false;refresh();};return;}
  if(S.view==="districts"&&!S.sel){s.innerHTML=editsPanel()+districtsPanel();wireEdits(s);s.querySelectorAll("[data-dk]").forEach(g=>g.onclick=()=>{S.dk=S.dk===+g.dataset.dk?null:+g.dataset.dk;draw();side();});s.querySelectorAll(".list button").forEach(b=>b.onclick=()=>selectK(+b.dataset.k));return;}
  if(S.sel){s.innerHTML=editsPanel()+neuronPanel(S.sel);$("#back").onclick=()=>{S.sel=null;draw();side();};wireEdits(s);return;}
  let h="";
