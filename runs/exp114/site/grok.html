@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Learning to Add</title>
+<meta name="description" content="Watch a small transformer learn addition mod 113: it memorises first, then builds clocks. Numbers settle onto circles, sums become rotations, and the answer is read off several clocks at once.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+:root{--bg:#06080a;--panel:#0b0f12;--line:#1b2420;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--push:#e8ff6a;--pos:#ff7a3d;--neg:#3ec6ff;color-scheme:dark}
+:root[data-theme="light"]{--bg:#06080a}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 "Chivo Mono",ui-monospace,monospace}
+a{color:var(--fg)}
+main{max-width:1240px;margin:0 auto;padding:28px 16px 60px}
+h1{font:600 clamp(30px,4.6vw,60px)/1.02 "Newsreader",Georgia,serif;margin:0 0 10px;letter-spacing:-.01em}
+.lede{color:var(--dim);max-width:760px;margin:0 0 22px}
+.lede b{color:var(--fg);font-weight:400}
+#timeline{background:var(--panel);border:1px solid var(--line);padding:12px 14px 10px;margin-bottom:16px}
+#tl{width:100%;height:150px;display:block;cursor:ew-resize;touch-action:none}
+.ctl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;color:var(--dim)}
+button{font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);padding:5px 12px;cursor:pointer}
+button:hover{border-color:var(--faint)}button.go{background:var(--push);color:#06080a;border-color:var(--push)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px}.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:5px}
+#stepn{color:var(--fg);min-width:9em}
+.grid{display:grid;grid-template-columns:repeat(3,1fr) 300px;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);padding:12px}
+.card h3{margin:0 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:400}
+.card canvas{width:100%;aspect-ratio:1;display:block}
+.note{color:var(--dim);font-size:12px;margin:6px 0 0}
+#sum{font:600 40px/1.1 "Newsreader",Georgia,serif;margin:4px 0}
+#verdict{font-size:13px;margin-bottom:10px}
+#pairs{display:flex;flex-wrap:wrap;gap:4px;max-height:220px;overflow:auto}
+#pairs button{padding:2px 6px;font-size:11px}
+#pairs button[aria-pressed="true"]{background:var(--fg);color:#06080a}
+#pairs button.seen{border-style:dashed}
+#neu{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:6px}
+#neu canvas{width:100%;aspect-ratio:1;image-rendering:pixelated;display:block}
+section{margin-top:16px}
+.prose{max-width:820px;color:var(--dim)}.prose p{margin:.6em 0}.prose b{color:var(--fg);font-weight:400}
+@media (max-width:980px){.grid{grid-template-columns:1fr 1fr}#neu{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1>Learning to add</h1>
+<p class="lede">A tiny transformer learns <b>(a + b) mod 113</b> from 30% of all pairs. It gets every training pair right almost at once, by memorising. Much later it suddenly gets pairs it has <b>never seen</b> right too. Drag the timeline to watch what changes inside: the numbers settle onto <b>clocks</b>, and a sum becomes a <b>rotation</b>.</p>
+
+<div id="timeline">
+ <canvas id="tl" aria-label="Training timeline: accuracy and clock alignment over steps; drag to scrub"></canvas>
+ <div class="ctl"><button type="button" class="go" id="play">▶ play</button><span id="stepn"></span>
+  <span class="legend"><span><i style="background:#8a968f"></i>training pairs right</span><span><i style="background:var(--pos)"></i>unseen pairs right</span><span><i style="background:var(--push)"></i>how clean the clocks are</span></span></div>
+</div>
+
+<div class="grid">
+ <div class="card"><h3 id="h0"></h3><canvas id="c0"></canvas></div>
+ <div class="card"><h3 id="h1"></h3><canvas id="c1"></canvas></div>
+ <div class="card"><h3 id="h2"></h3><canvas id="c2"></canvas></div>
+ <div class="card"><h3>a sum in use</h3><div id="sum"></div><div id="verdict"></div>
+  <p class="note">Pick a sum. Most were <b style="color:var(--fg);font-weight:400">never in training</b>; dashed ones were.</p><div id="pairs"></div></div>
+</div>
+<p class="note">On each clock, every number is a dot, coloured by its value; its place is where the model keeps that number. The yellow star is the model's state after reading “a + b =”; the ring marks where the right answer belongs on that clock.</p>
+
+<section class="card"><h3>eight neurons, over every pair (a across, b down)</h3><div id="neu"></div>
+ <p class="note">Each square is one neuron's firing for all 12,769 pairs. Early it is noise; after the jump it becomes a plaid: a wave across a plus a wave down b, at the same frequency (about 82% of each pattern). The neuron's bend (it can't go below zero) mixes the two waves, and that mixing is what makes the part that depends on a + b (about 14%), the part the readout uses.</p></section>
+
+<section class="prose">
+ <p><b>What you're seeing.</b> The model has no idea of numbers. It starts with 113 random vectors. To add, it ends up placing the numbers around circles, a different circle for each of a few frequencies (here 8, 21 and 1: on the frequency-8 clock, number n sits at 8n/113 of a turn). Adding becomes turning: a's angle plus b's angle is the answer's angle.</p>
+ <p><b>Why several clocks.</b> On one clock, neighbouring answers sit only 3° apart, and each clock is a little blurry: the model's state lands within about 8–15° of the right spot. Read together, the clocks agree on exactly one answer, the way a vernier scale reads finer than its marks.</p>
+ <p><b>The surprise in the timeline.</b> The clocks get clean before the model gets better on unseen pairs. The structure that generalises is being built while the model still looks like it is only memorising; the jump in unseen accuracy is the moment it overtakes the memorised lookup. Weight decay keeps squeezing the network until the compact solution wins.</p>
+ <p class="note">Setup: 1 attention layer (4 heads), 512 ReLU neurons, no layer norm; AdamW, weight decay 1.0, full batch, 9,000 steps, trained on a laptop in under two minutes, following “Progress measures for grokking via mechanistic interpretability” (2023). Every frame is read with the weights of that step. Part of the <a href="/tower">Neuron Tower</a> work on clankerchurch.com.</p>
+</section>
+</main>
+<script>
+(async function(){
+const $=s=>document.querySelector(s);
+const [M,buf]=await Promise.all([fetch("grok/grok.json").then(r=>r.json()),fetch("grok/grok.bin").then(r=>r.arrayBuffer())]);
+const S=M.shapes,P=M.p,K=M.keys.length,T=M.steps.length,NP=M.pairs.length;
+let o=0;const take=(sh,u8)=>{const n=sh.reduce((a,b)=>a*b,1),a=u8?new Uint8Array(buf,o,n):new Int8Array(buf,o,n);o+=n;return a;};
+const CL=take(S.clocks),TH=take(S.thought),AL=take(S.align),PR=take(S.prob),PD=take(S.pred,true),NE=take(S.neurons);
+const st={t:0,pair:0,playing:false,trail:[]};
+// pick a default pair: unseen, and one the model gets right only after the jump
+for(let i=0;i<NP;i++){if(!M.pairs[i].seen&&PD[(T-1)*NP+i]===M.pairs[i].ans&&PD[60*NP+i]!==M.pairs[i].ans){st.pair=i;break;}}
+const hue=n=>`hsl(${n/P*330|0} 85% 62%)`;
+/* timeline */
+const tl=$("#tl"),tx=tl.getContext("2d");
+function drawTL(){const r=tl.getBoundingClientRect(),dpr=devicePixelRatio||1;tl.width=r.width*dpr;tl.height=r.height*dpr;tx.setTransform(dpr,0,0,dpr,0,0);
+ const W=r.width,H=r.height,pad=6,X=i=>pad+(W-2*pad)*i/(T-1),Y=v=>H-14-(H-26)*v;tx.clearRect(0,0,W,H);
+ tx.strokeStyle="#1b2420";tx.lineWidth=1;for(const v of[0,.5,1]){tx.beginPath();tx.moveTo(pad,Y(v));tx.lineTo(W-pad,Y(v));tx.stroke();}
+ const line=(f,c,w)=>{tx.strokeStyle=c;tx.lineWidth=w;tx.beginPath();for(let i=0;i<T;i++){const v=f(i);i?tx.lineTo(X(i),Y(v)):tx.moveTo(X(i),Y(v));}tx.stroke();};
+ line(i=>M.log[i].train_acc,"#8a968f",1.5);line(i=>M.log[i].test_acc,"#ff7a3d",2.2);
+ line(i=>{let s=0;for(let j=0;j<K;j++)s+=AL[i*K+j]/127;return s/K;},"#e8ff6a",1.6);
+ tx.fillStyle="#56625b";tx.font="11px Chivo Mono";for(let i=0;i<T;i+=20){tx.fillText(M.steps[i],X(i)+2,H-2);}
+ tx.strokeStyle="#e9efe6";tx.lineWidth=1.5;tx.beginPath();tx.moveTo(X(st.t),4);tx.lineTo(X(st.t),H-12);tx.stroke();}
+function scrub(e){const r=tl.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-r.left-6)/(r.width-12)));st.t=Math.round(f*(T-1));st.trail=[];render();}
+tl.addEventListener("pointerdown",e=>{tl.setPointerCapture(e.pointerId);stop();scrub(e);tl.onpointermove=scrub;});tl.addEventListener("pointerup",()=>{tl.onpointermove=null;});
+/* clocks */
+const cv=[0,1,2].map(i=>$("#c"+i));
+function drawClock(j){const c=cv[j];if(!c)return;const r=c.getBoundingClientRect(),dpr=devicePixelRatio||1;c.width=r.width*dpr;c.height=r.width*dpr;const g=c.getContext("2d");g.setTransform(dpr,0,0,dpr,0,0);
+ const W=r.width,C=W/2,Rr=W*.36,t=st.t,p=M.pairs[st.pair],k=M.keys[j],sc=M.scale.clocks;g.fillStyle="#0b0f12";g.fillRect(0,0,W,W);
+ g.strokeStyle="#1b2420";g.lineWidth=1;g.beginPath();g.arc(C,C,Rr,0,7);g.stroke();
+ const pos=n=>{const q=((t*K+j)*P+n)*2;return[C+CL[q]/sc*Rr,C-CL[q+1]/sc*Rr];};
+ g.globalCompositeOperation="lighter";
+ for(let n=0;n<P;n++){const[x,y]=pos(n);g.fillStyle=hue(n);g.globalAlpha=n===p.a||n===p.b?1:.75;g.beginPath();g.arc(x,y,n===p.a||n===p.b?5:2.6,0,7);g.fill();}
+ g.globalAlpha=1;
+ // where the answer belongs on this clock, and the model's state
+ const ang=2*Math.PI*k*p.ans/P,ax=C+Math.cos(ang)*Rr,ay=C-Math.sin(ang)*Rr;g.strokeStyle="#e9efe6";g.lineWidth=1.5;g.beginPath();g.arc(ax,ay,9,0,7);g.stroke();
+ const q=((t*NP+st.pair)*K+j)*2,sx=C+TH[q]/M.scale.thought*Rr,sy=C-TH[q+1]/M.scale.thought*Rr;
+ g.strokeStyle="rgba(232,255,106,.35)";g.beginPath();g.moveTo(C,C);g.lineTo(sx,sy);g.stroke();
+ const grad=g.createRadialGradient(sx,sy,0,sx,sy,16);grad.addColorStop(0,"rgba(232,255,106,1)");grad.addColorStop(1,"rgba(232,255,106,0)");g.fillStyle=grad;g.beginPath();g.arc(sx,sy,16,0,7);g.fill();
+ g.globalCompositeOperation="source-over";g.fillStyle="#e9efe6";g.font="11px Chivo Mono";
+ for(const[n,lab]of[[p.a,"a"],[p.b,"b"]]){const[x,y]=pos(n);g.fillText(`${lab}=${n}`,x+7,y-6);}
+ $("#h"+j).textContent=`clock ${j+1} · frequency ${k} · clean ${(AL[t*K+j]/127).toFixed(2)}`;}
+/* the sum */
+function drawSum(){const p=M.pairs[st.pair],t=st.t,pr=PR[t*NP+st.pair]/127,pd=PD[t*NP+st.pair],ok=pd===p.ans;
+ $("#sum").innerHTML=`${p.a} + ${p.b} = <span style="color:${ok?"var(--push)":"var(--pos)"}">${pd}</span>`;
+ $("#verdict").innerHTML=`${ok?"right":"wrong; the answer is "+p.ans} · ${(pr*100).toFixed(pr<.01?2:0)}% sure of ${p.ans} · ${p.seen?"seen in training":"never seen in training"}`;}
+function pairsUI(){$("#pairs").innerHTML=M.pairs.map((p,i)=>`<button type="button" data-i="${i}" class="${p.seen?"seen":""}" aria-pressed="${i===st.pair}">${p.a}+${p.b}</button>`).join("");
+ $("#pairs").onclick=e=>{const b=e.target.closest("button[data-i]");if(!b)return;st.pair=+b.dataset.i;pairsUI();render();};}
+/* neurons */
+const nc=[];for(let i=0;i<S.neurons[1];i++){const c=document.createElement("canvas");c.width=P;c.height=P;c.title="neuron "+M.neurons[i];$("#neu").appendChild(c);nc.push(c);}
+function drawNeu(){const step=M.steps[st.t];let s=0;for(let i=0;i<M.steps_neu.length;i++)if(M.steps_neu[i]<=step)s=i;
+ for(let i=0;i<nc.length;i++){const g=nc[i].getContext("2d"),im=g.createImageData(P,P),base=(s*nc.length+i)*P*P;
+  for(let q=0;q<P*P;q++){const v=NE[base+q]/127,o4=q*4;   // a across, b down
+   if(v>=0){im.data[o4]=40+215*v;im.data[o4+1]=30+120*v;im.data[o4+2]=20+40*v;}else{im.data[o4]=20;im.data[o4+1]=40+140*-v;im.data[o4+2]=60+195*-v;}im.data[o4+3]=255;}
+  g.putImageData(im,0,0);}}
+function render(){$("#stepn").textContent=`step ${M.steps[st.t]} of ${M.steps[T-1]}`;drawTL();for(let j=0;j<K;j++)drawClock(j);drawSum();drawNeu();}
+let timer=null;function stop(){st.playing=false;clearInterval(timer);$("#play").textContent="▶ play";}
+$("#play").onclick=()=>{if(st.playing)return stop();st.playing=true;$("#play").textContent="■ stop";if(st.t>=T-1)st.t=0;timer=setInterval(()=>{st.t++;if(st.t>=T-1){st.t=T-1;stop();}render();},70);};
+addEventListener("resize",render);pairsUI();render();
+})();
+</script>
+</body>
+</html>
