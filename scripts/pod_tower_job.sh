@@ -23,13 +23,6 @@ PY
 }
 status() { echo "$1" > out/status; push out/status out/status >> out/push.log 2>&1; }
 logpush() { push /root/out/tower.log out/tower.log >> /root/out/push.log 2>&1 || echo "push failed $(date -u)" >> /root/out/push.log; }
-# resume: pull whatever a previous attempt already pushed to out/data; steps with a done-marker are skipped
-python - <<'PY' >> /root/out/tower.log 2>&1 || true
-import os
-from huggingface_hub import snapshot_download
-snapshot_download(os.environ["JOB_REPO"], repo_type="dataset", allow_patterns=["out/data/*"], local_dir="/root")
-print("resumed:", sorted(os.listdir("/root/out/data")))
-PY
 step() {   # log and push before and after every step, so a crash shows exactly where it happened
   mk="/root/out/data/.done_$(echo "$*" | tr -c 'a-zA-Z0-9' '_' | cut -c1-80)"
   if [ -f "$mk" ]; then echo "== skip (done before): $*" >> /root/out/tower.log; return 0; fi
@@ -46,6 +39,13 @@ step() {   # log and push before and after every step, so a crash shows exactly 
   hf download "$TOWER_MODEL" --include "*.json" "*.safetensors" "*.txt" >/dev/null && echo "model downloaded"
   python -c "import torch; print(torch.__version__, torch.cuda.get_device_name())"
 } > out/tower.log 2>&1
+# resume (after setup, which installs huggingface_hub): pull whatever a previous attempt already pushed to out/data; steps with a done-marker are skipped
+python - <<'PY' >> /root/out/tower.log 2>&1 || true
+import os
+from huggingface_hub import snapshot_download
+snapshot_download(os.environ["JOB_REPO"], repo_type="dataset", allow_patterns=["out/data/*"], local_dir="/root")
+os.makedirs("/root/out/data", exist_ok=True); print("resumed:", sorted(os.listdir("/root/out/data")))
+PY
 status running; push out/tower.log out/tower.log
 ( while sleep 300; do logpush; done ) & LOOP=$!
 cd repo/runs/exp111
