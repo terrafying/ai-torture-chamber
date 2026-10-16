@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Learning to Add</title>
 <meta name="description" content="Watch a small transformer learn addition mod 113: it memorises first, then builds clocks. Numbers settle onto circles, sums become rotations, and the answer is read off several clocks at once.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 :root{--bg:#06080a;--panel:#0b0f12;--line:#1b2420;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--push:#e8ff6a;--pos:#ff7a3d;--neg:#3ec6ff;color-scheme:dark}
 :root[data-theme="light"]{--bg:#06080a}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 "Chivo Mono",ui-monospace,monospace}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 "IBM Plex Mono",ui-monospace,monospace}
 a{color:var(--fg)}
 main{max-width:1240px;margin:0 auto;padding:28px 16px 60px}
-h1{font:600 clamp(30px,4.6vw,60px)/1.02 "Newsreader",Georgia,serif;margin:0 0 10px;letter-spacing:-.01em}
+h1{font:600 clamp(30px,4.6vw,60px)/1.02 "Cormorant Garamond",Georgia,serif;margin:0 0 10px;letter-spacing:-.01em}
 .lede{color:var(--dim);max-width:760px;margin:0 0 22px}
 .lede b{color:var(--fg);font-weight:400}
 #timeline{background:var(--panel);border:1px solid var(--line);padding:12px 14px 10px;margin-bottom:16px}
@@ -28,7 +28,7 @@ button:hover{border-color:var(--faint)}button.go{background:var(--push);color:#0
 .card h3{margin:0 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:400}
 .card canvas{width:100%;aspect-ratio:1;display:block}
 .note{color:var(--dim);font-size:12px;margin:6px 0 0}
-#sum{font:600 40px/1.1 "Newsreader",Georgia,serif;margin:4px 0}
+#sum{font:600 40px/1.1 "Cormorant Garamond",Georgia,serif;margin:4px 0}
 #verdict{font-size:13px;margin-bottom:10px}
 #pairs{display:flex;flex-wrap:wrap;gap:4px;max-height:220px;overflow:auto}
 #pairs button{padding:2px 6px;font-size:11px}
@@ -91,7 +91,7 @@ function drawTL(){const r=tl.getBoundingClientRect(),dpr=devicePixelRatio||1;tl.
  const line=(f,c,w)=>{tx.strokeStyle=c;tx.lineWidth=w;tx.beginPath();for(let i=0;i<T;i++){const v=f(i);i?tx.lineTo(X(i),Y(v)):tx.moveTo(X(i),Y(v));}tx.stroke();};
  line(i=>M.log[i].train_acc,"#8a968f",1.5);line(i=>M.log[i].test_acc,"#ff7a3d",2.2);
  line(i=>{let s=0;for(let j=0;j<K;j++)s+=AL[i*K+j]/127;return s/K;},"#e8ff6a",1.6);
- tx.fillStyle="#56625b";tx.font="11px Chivo Mono";for(let i=0;i<T;i+=20){tx.fillText(M.steps[i],X(i)+2,H-2);}
+ tx.fillStyle="#56625b";tx.font="11px IBM Plex Mono";for(let i=0;i<T;i+=20){tx.fillText(M.steps[i],X(i)+2,H-2);}
  tx.strokeStyle="#e9efe6";tx.lineWidth=1.5;tx.beginPath();tx.moveTo(X(st.t),4);tx.lineTo(X(st.t),H-12);tx.stroke();}
 function scrub(e){const r=tl.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-r.left-6)/(r.width-12)));st.t=Math.round(f*(T-1));st.trail=[];render();}
 tl.addEventListener("pointerdown",e=>{tl.setPointerCapture(e.pointerId);stop();scrub(e);tl.onpointermove=scrub;});tl.addEventListener("pointerup",()=>{tl.onpointermove=null;});
@@ -109,7 +109,7 @@ function drawClock(j){const c=cv[j];if(!c)return;const r=c.getBoundingClientRect
  const q=((t*NP+st.pair)*K+j)*2,sx=C+TH[q]/M.scale.thought*Rr,sy=C-TH[q+1]/M.scale.thought*Rr;
  g.strokeStyle="rgba(232,255,106,.35)";g.beginPath();g.moveTo(C,C);g.lineTo(sx,sy);g.stroke();
  const grad=g.createRadialGradient(sx,sy,0,sx,sy,16);grad.addColorStop(0,"rgba(232,255,106,1)");grad.addColorStop(1,"rgba(232,255,106,0)");g.fillStyle=grad;g.beginPath();g.arc(sx,sy,16,0,7);g.fill();
- g.globalCompositeOperation="source-over";g.fillStyle="#e9efe6";g.font="11px Chivo Mono";
+ g.globalCompositeOperation="source-over";g.fillStyle="#e9efe6";g.font="11px IBM Plex Mono";
  for(const[n,lab]of[[p.a,"a"],[p.b,"b"]]){const[x,y]=pos(n);g.fillText(`${lab}=${n}`,x+7,y-6);}
  $("#h"+j).textContent=`clock ${j+1} · frequency ${k} · clean ${(AL[t*K+j]/127).toFixed(2)}`;}
 /* the sum */
