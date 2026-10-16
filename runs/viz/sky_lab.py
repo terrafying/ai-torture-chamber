@@ -15,7 +15,7 @@ from scipy.linalg import orthogonal_procrustes
 sk = json.load(open(sys.argv[1])); W, G = sk["words"], sk["groups"]
 S = np.load(os.environ.get("STATES", "/Volumes/kingston2g/data/sky/qwen3_4b_sky_states.npy"))
 NL = S.shape[1]; K = 4
-GROUPS = ["months", "weekdays", "numbers", "faith", "emotions"]
+GROUPS = list(dict.fromkeys(G))
 arch = json.load(open(os.path.join(os.path.dirname(sys.argv[1]), "arch.json")))
 out = {"floors": NL, "k": K, "groups": {}}
 for g in GROUPS:
@@ -25,8 +25,10 @@ for g in GROUPS:
         P = X @ Vt[:K].T
         if prev is not None: R, _ = orthogonal_procrustes(P, prev); P = P @ R
         P /= np.abs(P).max(); prev = P
-        h = ConvexHull(P); edges, tris = set(), set()
-        for s in h.simplices:
+        if P.shape[1] < K: P = np.pad(P, ((0, 0), (0, K - P.shape[1])))
+        edges, tris = set(), set()
+        simp = ConvexHull(P).simplices if n > K + 1 else [list(range(n))]   # too few points for a 4D hull: the simplex itself
+        for s in simp:
             for e in combinations(sorted(s), 2): edges.add(tuple(int(x) for x in e))
             for t in combinations(sorted(s), 3): tris.add(tuple(int(x) for x in t))
         # bright edges carry group-specific structure (hull edges are near-complete at these sizes): the known order
@@ -45,4 +47,18 @@ for g in GROUPS:
     fit = [float(((Z[l * n:(l + 1) * n] @ Vb[:3].T) ** 2).sum() / (Z[l * n:(l + 1) * n] ** 2).sum()) for l in range(NL)]
     out["groups"][g] = {"words": [W[i] for i in I], "kind": sk["kinds"][g], "floors": fl, "body": B.transpose(1, 0, 2).round(3).tolist(), "body_fit": [round(x, 3) for x in fit]}
     print(g, n, "hull edge share at 14:", fl[14]["hull_edge_share"], "body fit min/max:", round(min(fit), 2), round(max(fit), 2))
+# relations between cells: per floor, each word whose nearest neighbour (cosine, all 214 words centred on their mean,
+# full space) lies in another group -> [group, i, group, j, cos]; same definition as the sky's hidden links
+loc = {}
+for g in GROUPS:
+    for k, i in enumerate([i for i, x in enumerate(G) if x == g]): loc[i] = (g, k)
+out["links"] = []
+for l in range(NL):
+    A = S[:, l] - S[:, l].mean(0); A /= np.linalg.norm(A, axis=1, keepdims=True); C = A @ A.T; np.fill_diagonal(C, -9)
+    L = []
+    for i in range(len(W)):
+        j = int(np.argmax(C[i]))
+        if G[j] != G[i]: L.append([*loc[i], *loc[j], round(float(C[i, j]), 3)])
+    out["links"].append(L)
+print("cross-group nearest-neighbour links per floor:", [len(x) for x in out["links"]][::5])
 json.dump(out, open(sys.argv[2], "w"), separators=(",", ":"))
