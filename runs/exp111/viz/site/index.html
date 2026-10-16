@@ -37,7 +37,10 @@ button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
 #bar{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim);flex-wrap:wrap}
 #bar button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--fg);padding:3px 10px;cursor:pointer}
 #textwrap{position:relative}
-#arcs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#arcs{position:absolute;inset:0;pointer-events:none;overflow:hidden;filter:drop-shadow(0 0 3px rgba(255,140,90,.55)) drop-shadow(0 0 6px rgba(80,200,255,.35))}
+#arcs path.flow{stroke-dasharray:3 9;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@media (prefers-reduced-motion:reduce){#arcs path.flow{animation:none}}
 #text span.lk{background:color-mix(in srgb,var(--pos) 22%,transparent)}
 #text span.lkn{background:color-mix(in srgb,var(--neg) 22%,transparent)}
 #text{max-height:120px;overflow-y:auto;font-size:12px;line-height:2.25;scrollbar-width:thin}
@@ -194,6 +197,15 @@ const selMark=new THREE.Mesh(new THREE.RingGeometry(.3,.38,32),new THREE.MeshBas
 
 const thrGeo=new THREE.BufferGeometry(),thrMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
 const threads=new THREE.LineSegments(thrGeo,thrMat);scene.add(threads);const TOPY=NL*FLOOR-YC;
+const PU=480,puP=new Float32Array(PU*3),puC=new Float32Array(PU*3),puS=new Float32Array(PU);let pulses=[];   // light running along each link, source to target
+const puG=new THREE.BufferGeometry();puG.setAttribute("position",new THREE.BufferAttribute(puP,3));puG.setAttribute("color",new THREE.BufferAttribute(puC,3));puG.setAttribute("sz",new THREE.BufferAttribute(puS,1));
+scene.add(new THREE.Points(puG,new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(30./-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float g=exp(-d*d*16.);gl_FragColor=vec4(vc*g*1.6,g);}`})));
+function stepPulses(t){puS.fill(0);if(pulses.length){let j=0;for(const q of pulses){for(let r=0;r<q.n&&j<PU;r++,j++){const f=((t*q.sp+q.ph+r/q.n)%1),e=f;
+   puP[j*3]=q.a[0]+(q.b[0]-q.a[0])*e;puP[j*3+1]=q.a[1]+(q.b[1]-q.a[1])*e;puP[j*3+2]=q.a[2]+(q.b[2]-q.a[2])*e;
+   const w=Math.sin(f*Math.PI);puC[j*3]=q.c.r*w;puC[j*3+1]=q.c.g*w;puC[j*3+2]=q.c.b*w;puS[j]=q.s*(.5+w);}}}
+ puG.attributes.position.needsUpdate=true;puG.attributes.color.needsUpdate=true;puG.attributes.sz.needsUpdate=true;}
 const hovMark=new THREE.Mesh(new THREE.RingGeometry(.34,.44,32),new THREE.MeshBasicMaterial({color:0xd9dfd8,side:THREE.DoubleSide,transparent:true,opacity:.7,depthTest:false}));hovMark.rotation.x=-Math.PI/2;hovMark.visible=false;scene.add(hovMark);
 let th=.7,ph=1.2,dist=56,tgtY=0;const ptrs=new Map();let pinch0=0,moved=0;
 function placeCam(){cam.position.set(dist*Math.sin(ph)*Math.cos(th),tgtY+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,tgtY,0);}
@@ -270,13 +282,14 @@ function draw(){
  if(S.sel){const i=S.sel.k;selMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);selMark.visible=true;}else selMark.visible=false;
  tagsFor();}
 
-function drawThreads(){const ci=circ();if(!ci){thrGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(0),3));threads.visible=false;return;}
+function drawThreads(){const ci=circ();pulses=[];if(!ci){thrGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(0),3));threads.visible=false;return;}
  const P=[],Cl=[],gOf={};ci.groups.forEach((g,k)=>g.members.forEach(j=>gOf[j]=k));
  const mx=Math.max(...ci.edges.map(e=>Math.abs(e[2])))||1,col=new THREE.Color(),G=S.grp;
  const pcol=(j,a)=>{const x=byK.get(ci.nodes[j][0]);col.set(x?.cat!=null?CC[x.cat]:"#c9d1cb");col.multiplyScalar(a);return col;};
  for(const[a,b,w]of ci.edges){const f=Math.pow(Math.abs(w)/mx,.7)*(G!=null&&gOf[a]!==G&&gOf[b]!==G?.12:1);if(f<.04)continue;
   const ka=ci.nodes[a][0],kb=ci.nodes[b][0];P.push(pos[ka*3],pos[ka*3+1],pos[ka*3+2],pos[kb*3],pos[kb*3+1],pos[kb*3+2]);
-  let c1=pcol(a,f);Cl.push(c1.r,c1.g,c1.b);c1=pcol(b,f);Cl.push(c1.r,c1.g,c1.b);}
+  let c1=pcol(a,f);Cl.push(c1.r,c1.g,c1.b);c1=pcol(b,f);Cl.push(c1.r,c1.g,c1.b);
+  if(f>.18&&pulses.length<90){const x=byK.get(kb);pulses.push({a:[pos[ka*3],pos[ka*3+1],pos[ka*3+2]],b:[pos[kb*3],pos[kb*3+1],pos[kb*3+2]],c:new THREE.Color(x?.cat!=null?CC[x.cat]:"#e8f0ff").multiplyScalar(.5+f),n:f>.5?3:2,sp:.35+f*.5,ph:(ka*.137)%1,s:2.2+3*f});}}
  const amx=Math.max(...ci.nodes.map(x=>Math.abs(x[2])))||1;   // the strongest nodes also send a thread to the word itself
  ci.nodes.forEach((x,j)=>{const f=Math.abs(x[2])/amx*(G!=null&&gOf[j]!==G?.12:1);if(f<.25)return;const k=x[0];P.push(pos[k*3],pos[k*3+1],pos[k*3+2],0,TOPY,0);
   col.set(x[2]>0?"#ff7a3d":"#3ec6ff").multiplyScalar(f*.8);Cl.push(col.r,col.g,col.b,col.r,col.g,col.b);});
@@ -343,7 +356,8 @@ function drawArcs(t){   // which earlier words fed word t: arcs from it back to 
  const at=sp=>[sp.offsetLeft+sp.offsetWidth/2,sp.offsetTop-tx.scrollTop+3];const[x1,y1]=at(me);let h="";
  row[1].forEach((p,j)=>{const v=row[2][j],sp=tx.children[p];if(!sp||p===t||Math.abs(v)<8)return;const[x0,y0]=at(sp);
   sp.classList.add(v>0?"lk":"lkn");const lift=Math.min(34,14+Math.abs(x1-x0)*.08+Math.abs(y1-y0)*.4),cy=Math.min(y0,y1)-lift;
-  h+=`<path d="M${x0.toFixed(1)},${y0.toFixed(1)} Q${((x0+x1)/2).toFixed(1)},${cy.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}" fill="none" stroke="${v>0?"#ff7a3d":"#3ec6ff"}" stroke-width="${(.8+2.6*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.35+.6*Math.abs(v)/100).toFixed(2)}"/><circle cx="${x0.toFixed(1)}" cy="${y0.toFixed(1)}" r="2" fill="${v>0?"#ff7a3d":"#3ec6ff"}"/>`;});
+  const dpath=`M${x0.toFixed(1)},${y0.toFixed(1)} Q${((x0+x1)/2).toFixed(1)},${cy.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
+  h+=`<path d="${dpath}" fill="none" stroke="${v>0?"#ff7a3d":"#3ec6ff"}" stroke-width="${(.8+2.6*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.3+.5*Math.abs(v)/100).toFixed(2)}"/><path class="flow" d="${dpath}" fill="none" stroke="#fff" stroke-width="${(.6+1.4*Math.abs(v)/100).toFixed(2)}" stroke-opacity="${(.25+.6*Math.abs(v)/100).toFixed(2)}"/><circle cx="${x0.toFixed(1)}" cy="${y0.toFixed(1)}" r="2" fill="${v>0?"#ff7a3d":"#3ec6ff"}"/>`;});
  sv.setAttribute("viewBox",`0 0 ${W} ${H}`);sv.innerHTML=h;}
 function cursor(){   // cheap per-token update during playback: move the highlight, dim what hasn't been read yet, keep it in view
  const tx=$("#text"),toks=toksNow(),np=npNow();tx.querySelector(".on")?.classList.remove("on");
@@ -494,6 +508,6 @@ function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKe
 {S.prompt="describe";S.cond="none";S.mode="fires";S.filter="meaning";S.tok=ST.prompts.describe.n_prompt;}   // open on plain reading: no steering
 $("#loading").remove();resize();placeCam();refresh();
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
+(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}stepMorph();easeVals();stepPulses(performance.now()/1000);R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
 })();
 </script>
