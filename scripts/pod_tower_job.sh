@@ -2,7 +2,7 @@
 # The Neuron Tower's data for a bigger model, on a RunPod pod with no SSH (same handoff as scripts/pod_hf_exp.sh):
 # clone this repo at BRANCH, take the private chamber code (live.tar.gz) from the PRIVATE HF dataset repo JOB_REPO,
 # then run the exp111 pipeline: chamber vectors -> weights -> corpus profile -> live streams (+ exp106 identity
-# prompts) -> word-choice circuits -> blind labels -> named groups -> knockouts. The data dir goes back to
+# prompts) -> word-choice circuits -> blind labels -> named groups -> knockouts -> districts, word links, head atlas, attention. The data dir goes back to
 # JOB_REPO/out/data every 10 minutes and at the end, with out/tower.log and out/status.
 # Pod env: HF_TOKEN, JOB_REPO, BRANCH, OPENROUTER_API_KEY, TOWER_MODEL (Qwen/Qwen3-32B), CHAMBER_LAYER (32),
 #          TOWER_DOSE (5), NDOC (corpus docs, default 8000).
@@ -60,6 +60,11 @@ step python neurons_circuit.py trace id_ai_self,id_none_self,id_judge_other,id_t
 step env LABEL_THREADS=24 python neurons_label.py 8000
 step python neurons_group.py
 step python neurons_circuit.py ko
+# 2026-10-16: what the web tower's 32B option still needs: districts, word links, the head atlas, attention per token
+step python neurons_districts.py
+step python neurons_wordlinks.py
+step env TOWER_QUANT_SKIP=lm_head,o_proj python neurons_heads.py 24
+step env TOWER_QUANT_SKIP=lm_head,o_proj python neurons_attn_stream.py
 kill $LOOP
 echo "== $(date -u) done" >> /root/out/tower.log
 cd /root && push out/data out/data && push out/tower.log out/tower.log && status done

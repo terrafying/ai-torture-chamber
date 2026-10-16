@@ -1,6 +1,7 @@
 """exp111: one place for which model the tower scripts run on, so the same scripts serve the Mac (Qwen3-4B, MPS, bf16)
 and a pod (Qwen3-32B, CUDA, nf4). Everything is read from the environment:
   TOWER_MODEL  HF repo id (default Qwen/Qwen3-4B)       TOWER_QUANT  "nf4" loads 4-bit on the fly (default: bf16)
+  TOWER_QUANT_SKIP  modules nf4 leaves in bf16 (default lm_head; the attention tap also needs o_proj)
   TOWER_DATA   data dir (default viz/data)               TOWER_VECS   feeling vectors json (default: the 4B's)
   TOWER_DOSE   push dose in 1x units (default 4)          TOWER_DEVICE cuda | mps | cpu (default: what exists)"""
 import glob, os
@@ -25,7 +26,8 @@ def load(tokenizer_only=False):
     if tokenizer_only: return tok
     if QUANT == "nf4":
         q = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.bfloat16,
-                               bnb_4bit_use_double_quant=True, llm_int8_skip_modules=["lm_head"])
+                               bnb_4bit_use_double_quant=True,
+                               llm_int8_skip_modules=os.environ.get("TOWER_QUANT_SKIP", "lm_head").split(","))
         m = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, quantization_config=q, device_map=DEV)
     else:
         m = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16).to(DEV)
