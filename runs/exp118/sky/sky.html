@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Model's Sky</title>
+<meta name="description" content="Fly through the concepts inside a language model: 214 ideas as stars, placed by the model's own internal states, rearranging as you rise through its 36 layers. Find hidden links, then swap one star for another and watch the model's answer change.">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--bg:#030406;--panel:rgba(8,11,14,.86);--line:#1b2420;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--push:#e8ff6a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:13px/1.5 "IBM Plex Mono",ui-monospace,monospace;overflow:hidden}
+a{color:var(--fg)}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+#labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#labels .w{position:absolute;transform:translate(9px,-50%);white-space:nowrap;font-size:12px;text-shadow:0 0 8px #000,0 0 3px #000}
+#labels .g{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;font:600 26px/1 "Cormorant Garamond",serif;letter-spacing:.02em;opacity:.55;text-shadow:0 0 18px #000}
+#hud{position:fixed;left:16px;top:14px;right:16px;display:flex;gap:10px;align-items:flex-start;pointer-events:none;flex-wrap:wrap}
+#hud>*{pointer-events:auto}
+h1{font:600 30px/1 "Cormorant Garamond",serif;margin:0 14px 0 0}
+.bar{display:flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:6px 10px}
+button{font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);padding:4px 10px;cursor:pointer}
+button.go{background:var(--push);color:#06080a;border-color:var(--push)}
+input[type=range]{accent-color:var(--push);width:200px}
+input[type=text]{font:inherit;background:#06080a;color:var(--fg);border:1px solid var(--line);padding:4px 6px;width:8.5em}
+#side{position:fixed;right:16px;top:64px;width:330px;max-height:calc(100% - 90px);overflow:auto;background:var(--panel);border:1px solid var(--line);padding:14px}
+#side h2{font:600 30px/1 "Cormorant Garamond",serif;margin:0 0 4px}
+.lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:12px 0 6px}
+.nb{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.nb:hover{color:var(--push)}.nb i{font-style:normal;color:var(--faint)}
+.odd{color:var(--push)}
+.note{color:var(--dim);font-size:12px}
+.ans{white-space:pre-wrap;margin:4px 0}
+#foot{position:fixed;left:16px;bottom:14px;max-width:560px;color:var(--dim);font-size:12px;pointer-events:none}
+@media (max-width:760px){#side{left:16px;right:16px;width:auto;top:auto;bottom:16px;max-height:42%}input[type=range]{width:120px}}
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="Concepts inside Qwen3-4B as stars, placed by the model's internal states"></canvas>
+<div id="labels"></div>
+<div id="hud">
+ <h1>The model's sky</h1>
+ <div class="bar"><button type="button" class="go" id="fly">▶ fly up through the floors</button><span>floor <b id="fl" style="color:var(--fg)">0</b>/35</span><input type="range" id="depth" min="0" max="35" step="0.01" value="4" aria-label="Floor"></div>
+ <div class="bar">comet: <input type="text" id="cx" value="Japan" aria-label="Concept it reads"> → <input type="text" id="cy" value="Texas" aria-label="Concept it thinks"><button type="button" id="launch">launch</button></div>
+</div>
+<aside id="side"></aside>
+<div id="foot">Every star is a word as Qwen3-4B holds it inside, at that floor. Constellations sit where their centres point in the model's space; inside each, stars take that constellation's own shape (weekdays and months make rings). Faint gold threads are hidden links: a star's nearest neighbour lives in another constellation. Drag to look around, scroll to move closer, click a star to see what it's really near.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(async function(){
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+if(new URLSearchParams(location.search).has("embed")){document.querySelector("h1").remove();document.querySelector("#foot").style.display="none";}
+const SK=await fetch("sky/sky.json").then(r=>r.json()),W=SK.words,G=SK.groups,N=W.length,NF=SK.floors;
+const GN=[...new Set(G)],GI=G.map(g=>GN.indexOf(g)),SCALE=34;
+const SCALE2=1;const NAME={weekdays:"Weekdays",months:"Months",seasons:"Seasons",numbers:"Numbers",planets:"Planets",sizes:"Sizes",temperatures:"Temperature",family:"Family",countries:"Countries",us_states:"US states",cities:"Cities",animals:"Animals",foods:"Food",colours:"Colours",emotions:"Feelings",body:"The body",jobs:"Work",instruments:"Music",elements:"Elements",weather:"Weather",faith:"Faith",machines:"Machines"};
+const hueOf=g=>new THREE.Color().setHSL((GN.indexOf(g)*0.61803)%1,.55,.66);
+let LIVE=null;
+for(const base of["http://127.0.0.1:8977",(/clankerchurch\.com$|wirehead/.test(location.hostname)?"":"https://clankerchurch.com")+"/chamber/tower"]){
+ try{const j=await fetch(base+"/health",{signal:AbortSignal.timeout(base.includes("127.0.0.1")?900:5000)}).then(r=>r.ok?r.json():null);if(j&&j.ok){LIVE=base;break;}}catch(e){}}
+/* scene */
+const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.setClearColor(0x030406);
+const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x030406,.006);const cam=new THREE.PerspectiveCamera(55,1,.1,900);
+const glowMat=(px)=>new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(${px.toFixed(1)}/-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float core=exp(-d*d*40.),halo=exp(-d*d*7.);gl_FragColor=vec4(vc*(core*1.6+halo*.45),core+halo*.4);}`});
+// far dust
+{const n=2600,p=new Float32Array(n*3),c=new Float32Array(n*3),s=new Float32Array(n);for(let i=0;i<n;i++){const r=140+Math.random()*260,t=Math.random()*6.283,u=Math.acos(2*Math.random()-1);
+ p.set([r*Math.sin(u)*Math.cos(t),r*Math.cos(u),r*Math.sin(u)*Math.sin(t)],i*3);const b=.25+Math.random()*.5;c.set([b*.8,b*.85,b],i*3);s[i]=2+Math.random()*4;}
+ const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(p,3));g.setAttribute("color",new THREE.BufferAttribute(c,3));g.setAttribute("sz",new THREE.BufferAttribute(s,1));scene.add(new THREE.Points(g,glowMat(60)));}
+// nebulae per constellation
+const nebG=new THREE.BufferGeometry(),nebP=new Float32Array(GN.length*3),nebC=new Float32Array(GN.length*3),nebS=new Float32Array(GN.length);
+GN.forEach((g,k)=>{const c=hueOf(g);nebC.set([c.r*.16,c.g*.16,c.b*.16],k*3);nebS[k]=900;});
+nebG.setAttribute("position",new THREE.BufferAttribute(nebP,3));nebG.setAttribute("color",new THREE.BufferAttribute(nebC,3));nebG.setAttribute("sz",new THREE.BufferAttribute(nebS,1));
+scene.add(new THREE.Points(nebG,new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(20./-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;gl_FragColor=vec4(vc*exp(-d*d*9.),1.);}`})));
+// stars
+const sP=new Float32Array(N*3),sC=new Float32Array(N*3),sS=new Float32Array(N),stG=new THREE.BufferGeometry();
+stG.setAttribute("position",new THREE.BufferAttribute(sP,3));stG.setAttribute("color",new THREE.BufferAttribute(sC,3));stG.setAttribute("sz",new THREE.BufferAttribute(sS,1));scene.add(new THREE.Points(stG,glowMat(80)));
+// constellation lines + trails
+const lnG=new THREE.BufferGeometry(),lnP=new Float32Array(SK.edges.length*6),lnC=new Float32Array(SK.edges.length*6);
+SK.edges.forEach(([a,b],k)=>{const c=hueOf(G[a]);lnC.set([c.r*.35,c.g*.35,c.b*.35,c.r*.35,c.g*.35,c.b*.35],k*6);});
+lnG.setAttribute("position",new THREE.BufferAttribute(lnP,3));lnG.setAttribute("color",new THREE.BufferAttribute(lnC,3));
+scene.add(new THREE.LineSegments(lnG,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false})));
+const TR=10,trP=new Float32Array(N*TR*6),trC=new Float32Array(N*TR*6),trG=new THREE.BufferGeometry();
+trG.setAttribute("position",new THREE.BufferAttribute(trP,3));trG.setAttribute("color",new THREE.BufferAttribute(trC,3));
+scene.add(new THREE.LineSegments(trG,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false})));
+// hidden links: each star's nearest neighbour outside its constellation (when among its 3 nearest), per floor
+const XL=80,xlP=new Float32Array(XL*6),xlC=new Float32Array(XL*6),xlG=new THREE.BufferGeometry();
+xlG.setAttribute("position",new THREE.BufferAttribute(xlP,3));xlG.setAttribute("color",new THREE.BufferAttribute(xlC,3));
+scene.add(new THREE.LineSegments(xlG,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false})));
+function stepXL(t){const L=SK.xlinks[Math.round(depth)]||[];xlP.fill(0);xlC.fill(0);
+ L.slice(0,XL).forEach(([i,j,c],k)=>{xlP.set([...sP.slice(i*3,i*3+3),...sP.slice(j*3,j*3+3)],k*6);const on=sel===i||sel===j,b=(on?.9:.16)*(.6+.4*Math.sin(t*.002+k));xlC.set([b,b*1.02,b*.6,b,b*1.02,b*.6],k*6);});
+ xlG.attributes.position.needsUpdate=true;xlG.attributes.color.needsUpdate=true;}
+// comet
+const coG=new THREE.BufferGeometry(),CO=60,coP=new Float32Array(CO*3),coC=new Float32Array(CO*3),coS=new Float32Array(CO);
+coG.setAttribute("position",new THREE.BufferAttribute(coP,3));coG.setAttribute("color",new THREE.BufferAttribute(coC,3));coG.setAttribute("sz",new THREE.BufferAttribute(coS,1));scene.add(new THREE.Points(coG,glowMat(80)));
+/* state */
+let depth=4,flying=false,sel=null,comet=null,th=.6,ph=1.25,dist=72,tgt=new THREE.Vector3(),tgtTo=null;
+const posAt=(i,f)=>{const a=Math.floor(f),b=Math.min(NF-1,a+1),t=f-a,e=t*t*(3-2*t),A=SK.layout[a][i],B=SK.layout[b][i];return[(A[0]+(B[0]-A[0])*e)*SCALE,(A[1]+(B[1]-A[1])*e)*SCALE,(A[2]+(B[2]-A[2])*e)*SCALE];};
+function place(){const cen=GN.map(()=>[0,0,0,0]);
+ for(let i=0;i<N;i++){const p=posAt(i,depth);sP.set(p,i*3);const c=hueOf(G[i]),on=sel===i||comet&&(comet.x===i||comet.y===i);
+  const k=on?1.6:1;sC.set(on?[1,1.05,.55]:[c.r*k,c.g*k,c.b*k],i*3);sS[i]=on?26:13;const q=cen[GI[i]];q[0]+=p[0];q[1]+=p[1];q[2]+=p[2];q[3]++;
+  for(let j=0;j<TR;j++){const f0=Math.max(0,depth-(j+1)*.18),f1=Math.max(0,depth-j*.18),p0=posAt(i,f0),p1=posAt(i,f1),a=.32*(1-j/TR);trP.set([...p0,...p1],(i*TR+j)*6);trC.set([c.r*a,c.g*a,c.b*a,c.r*a*1.3,c.g*a*1.3,c.b*a*1.3],(i*TR+j)*6);}}
+ SK.edges.forEach(([a,b],k)=>{lnP.set([...sP.slice(a*3,a*3+3),...sP.slice(b*3,b*3+3)],k*6);});
+ cen.forEach((q,k)=>{nebP.set([q[0]/q[3],q[1]/q[3],q[2]/q[3]],k*3);});
+ for(const a of[stG,lnG,trG,nebG])for(const k in a.attributes)a.attributes[k].needsUpdate=true;
+ $("#fl").textContent=Math.round(depth);$("#depth").value=depth;}
+/* labels */
+const v3=new THREE.Vector3();
+function labels(){const r=cv.getBoundingClientRect();let h="";const used=[];
+ const near=[];for(let i=0;i<N;i++){v3.set(sP[i*3],sP[i*3+1],sP[i*3+2]);const d=v3.distanceTo(cam.position);v3.project(cam);if(v3.z>1||Math.abs(v3.x)>1.05||Math.abs(v3.y)>1.05)continue;near.push([d,i,(v3.x+1)/2*r.width,(1-v3.y)/2*r.height]);}
+ near.sort((a,b)=>a[0]-b[0]);const pin=new Set([sel,comet?.x,comet?.y].filter(x=>x!=null));
+ for(const[d,i,x,y]of near){const must=pin.has(i);if(!must&&used.length>46)continue;if(!must&&used.some(u=>Math.abs(u[0]-x)<64&&Math.abs(u[1]-y)<14))continue;used.push([x,y]);
+  h+=`<div class="w" style="left:${x}px;top:${y}px;color:${must?"var(--push)":"#"+hueOf(G[i]).getHexString()};opacity:${must?1:Math.max(.35,1-d/140)}">${esc(W[i])}</div>`;}
+ GN.forEach((g,k)=>{v3.set(nebP[k*3],nebP[k*3+1]+6,nebP[k*3+2]);const d=v3.distanceTo(cam.position);v3.project(cam);if(v3.z>1)return;
+  h+=`<div class="g" style="left:${(v3.x+1)/2*r.width}px;top:${(1-v3.y)/2*r.height}px;color:#${hueOf(g).getHexString()};font-size:${Math.max(14,Math.min(34,1600/d))}px">${esc(NAME[g]||g)}</div>`;});
+ $("#labels").innerHTML=h;}
+/* side panel */
+function side(){const f=Math.round(depth),odd=SK.oddities.filter(o=>o.floor===nearestOddFloor(f));
+ if(sel==null){$("#side").innerHTML=`<div class="lab">hidden links near floor ${nearestOddFloor(f)}</div><p class="note" style="margin-top:0">Stars whose closest neighbour, in the model's own space, belongs to a different constellation.</p>`+
+  odd.slice(0,22).map(o=>`<div class="nb" data-w="${esc(o.word)}"><span>${esc(o.word)} <i>→</i> <span class="odd">${esc(o.neighbour)}</span></span><i>${esc(NAME[o.neighbour_group]||o.neighbour_group)}</i></div>`).join("")+
+  `<p class="note">Click a star, or a link, to fly there.</p>`;}
+ else{const nb=SK.neighbours[f][sel];
+  $("#side").innerHTML=`<div class="lab">${esc(NAME[G[sel]]||G[sel])} · floor ${f}</div><h2>${esc(W[sel])}</h2><div class="lab">closest in the model's mind</div>`+
+   nb.map(j=>`<div class="nb" data-i="${j}"><span class="${G[j]!==G[sel]?"odd":""}">${esc(W[j])}</span><i>${esc(NAME[G[j]]||G[j])}${G[j]!==G[sel]?" · hidden link":""}</i></div>`).join("")+
+   `<div class="lab">swap it</div><p class="note" style="margin-top:0">Launch a comet from ${esc(W[sel])} to another star: the live model reads “${esc(W[sel])}” but thinks the other, at this floor.</p><button type="button" id="usex">use as the comet's start</button> <button type="button" id="back">back</button>`;
+  $("#usex").onclick=()=>{$("#cx").value=W[sel];};$("#back").onclick=()=>{sel=null;side();};}
+ $("#side").querySelectorAll("[data-i]").forEach(e=>e.onclick=()=>focus(+e.dataset.i));
+ $("#side").querySelectorAll("[data-w]").forEach(e=>e.onclick=()=>focus(W.indexOf(e.dataset.w)));}
+const nearestOddFloor=f=>[8,16,24].reduce((a,b)=>Math.abs(b-f)<Math.abs(a-f)?b:a);
+function focus(i){if(i<0)return;sel=i;tgtTo=new THREE.Vector3(...posAt(i,depth));dist=Math.min(dist,34);side();}
+/* comet: fly from X to Y while the live model answers */
+const QUESTIONS={countries:"What is the capital of {X}? Then name a famous food from there.",us_states:"What is the capital of {X}? Then name a famous food from there.",cities:"Which country is {X} in?",
+ animals:"What sound does a {X} make, and where does it live?",foods:"Where does {X} come from, and what does it taste like?",colours:"Name a fruit that is usually {X}.",weekdays:"What day comes after {X}?",
+ months:"What month comes after {X}, and what season is it in?",numbers:"What number comes after {X}?",planets:"Which planet comes after {X} in order from the Sun?",emotions:"Describe what {X} feels like in one sentence.",
+ jobs:"What does a {X} do all day?",instruments:"What does a {X} sound like?",faith:"What does {X} mean to people?",machines:"What is a {X} used for?"};
+async function launch(){const x=W.findIndex(w=>w.toLowerCase()===$("#cx").value.trim().toLowerCase()),y=W.findIndex(w=>w.toLowerCase()===$("#cy").value.trim().toLowerCase());
+ const xs=$("#cx").value.trim(),ys=$("#cy").value.trim();if(!xs||!ys)return;
+ comet={x:x>=0?x:null,y:y>=0?y:null,t0:performance.now()};if(x>=0){sel=x;tgtTo=new THREE.Vector3(...posAt(x,depth));}
+ const fl=Math.max(2,Math.min(24,Math.round(depth))),q=(QUESTIONS[x>=0?G[x]:""]||"Tell me one fact about {X}.").replace("{X}",xs);
+ $("#side").innerHTML=`<div class="lab">comet · floor ${fl}</div><h2>${esc(xs)} → ${esc(ys)}</h2><p class="note" style="margin-top:0">${esc(q)}</p><div class="lab">as it is</div><div class="ans" id="b">…</div><div class="lab">reading “${esc(xs)}”, thinking “${esc(ys)}”</div><div class="ans odd" id="a">…</div><p class="note" id="cn"></p>`;
+ if(!LIVE){$("#b").textContent=$("#a").textContent="";$("#cn").textContent="The live model isn't reachable right now.";return;}
+ const run=(edits,el)=>new Promise(res=>{let t="";const es=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(q+" Answer briefly.")}&max_new=40&edits=${encodeURIComponent(edits)}`);
+  es.onmessage=e=>{const d=JSON.parse(e.data);if(d.queued){el.textContent="waking the model…";return;}if(d.error){el.textContent=d.error;es.close();res();return;}if(d.done){es.close();res(d.swapped);return;}
+   if(d.phase==="reply"){t+=d.tok;el.textContent=t.replace(/<\|im_end\|>/g,"").trim();}};es.onerror=()=>{es.close();res();};});
+ await run("",$("#b"));const n=await run(`W:${xs}:${ys}:${fl}:1`,$("#a"));
+ $("#cn").textContent=n===0?`The question never mentions “${xs}”, so nothing was swapped.`:`Swapped at floor ${fl}. Swaps work best early (floors 4–12); later the model has often already read the word.`;}
+function stepComet(t){coS.fill(0);if(!comet||comet.x==null||comet.y==null)return;const k=Math.min(1,(t-comet.t0)/2200),A=posAt(comet.x,depth),B=posAt(comet.y,depth),mid=[(A[0]+B[0])/2,(A[1]+B[1])/2+18,(A[2]+B[2])/2];
+ for(let j=0;j<CO;j++){const u=Math.max(0,k-j*.012);const a=(1-u)*(1-u),b=2*(1-u)*u,c=u*u;coP.set([A[0]*a+mid[0]*b+B[0]*c,A[1]*a+mid[1]*b+B[1]*c,A[2]*a+mid[2]*b+B[2]*c],j*3);const f=1-j/CO;coC.set([1*f,1.05*f,.5*f],j*3);coS[j]=(j===0?34:12)*f;}
+ for(const a in coG.attributes)coG.attributes[a].needsUpdate=true;if(k>=1&&tgtTo==null&&comet.y!=null&&!comet.arrived){comet.arrived=true;sel=comet.y;tgtTo=new THREE.Vector3(...B);}}
+/* input */
+const ptr=new Map();cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY});});
+cv.addEventListener("pointermove",e=>{const p=ptr.get(e.pointerId);if(!p)return;th+=(e.clientX-p.x)*.005;ph=Math.min(2.9,Math.max(.2,ph-(e.clientY-p.y)*.005));p.x=e.clientX;p.y=e.clientY;});
+cv.addEventListener("pointerup",e=>{const p=ptr.get(e.pointerId);ptr.delete(e.pointerId);if(p&&Math.hypot(e.clientX-p.x0,e.clientY-p.y0)<5)pick(e);});
+cv.addEventListener("wheel",e=>{e.preventDefault();dist=Math.min(160,Math.max(8,dist*(1+e.deltaY*.0012)));},{passive:false});
+function pick(e){const r=cv.getBoundingClientRect();let best=null,bd=26;for(let i=0;i<N;i++){v3.set(sP[i*3],sP[i*3+1],sP[i*3+2]).project(cam);if(v3.z>1)continue;const d=Math.hypot((v3.x+1)/2*r.width-(e.clientX-r.left),(1-v3.y)/2*r.height-(e.clientY-r.top));if(d<bd){bd=d;best=i;}}
+ if(best!=null)focus(best);}
+$("#depth").oninput=e=>{depth=+e.target.value;flying=false;$("#fly").textContent="▶ fly up through the floors";place();side();};
+$("#fly").onclick=()=>{flying=!flying;$("#fly").textContent=flying?"■ stop":"▶ fly up through the floors";if(flying&&depth>=34.9)depth=0;};
+$("#launch").onclick=launch;["#cx","#cy"].forEach(s=>$(s).onkeydown=e=>{if(e.key==="Enter")launch();});
+function size(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}addEventListener("resize",size);size();
+/* loop */
+place();side();let last=performance.now(),lastSide=-1;
+(function loop(t){const dt=Math.min(.05,(t-last)/1000);last=t;
+ if(flying){depth=Math.min(35,depth+dt*1.1);if(depth>=35){flying=false;$("#fly").textContent="▶ fly up through the floors";}place();if(Math.round(depth)!==lastSide){lastSide=Math.round(depth);side();}}
+ if(tgtTo){tgt.lerp(tgtTo,.06);if(tgt.distanceTo(tgtTo)<.05)tgtTo=null;}
+ if(!ptr.size)th+=dt*(flying?.09:.03);
+ cam.position.set(tgt.x+dist*Math.sin(ph)*Math.cos(th),tgt.y+dist*Math.cos(ph),tgt.z+dist*Math.sin(ph)*Math.sin(th));cam.lookAt(tgt);
+ stepComet(t);stepXL(t);R.render(scene,cam);labels();requestAnimationFrame(loop);})(last);
+})();
+</script>
+</body>
+</html>
