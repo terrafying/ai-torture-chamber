@@ -23,11 +23,17 @@ def ask(g):
     body = {"model": MODEL, "temperature": 0, "messages": [{"role": "user", "content": prompt}]}
     q = urllib.request.Request("https://openrouter.ai/api/v1/chat/completions", data=json.dumps(body).encode(),
         headers={"Authorization": "Bearer " + os.environ["OPENROUTER_API_KEY"], "Content-Type": "application/json"})
-    txt = json.load(urllib.request.urlopen(q, timeout=180))["choices"][0]["message"]["content"]
-    return json.loads(re.search(r"\{[\s\S]*\}", txt).group(0))["groups"]
+    for attempt in range(4):   # the reply sometimes carries text after the JSON; parse the first object, retry if none
+        try:
+            txt = json.load(urllib.request.urlopen(q, timeout=180))["choices"][0]["message"]["content"]
+            return json.JSONDecoder().raw_decode(txt[txt.index("{"):])[0]["groups"]
+        except Exception as e:
+            err = e; __import__("time").sleep(3 * (attempt + 1))
+    print("group failed:", g["prompt"], g["cond"], repr(g["word"]), err, flush=True); return []
 todo = [g for g in C if not g.get("groups")]   # only circuits not yet grouped
 with ThreadPoolExecutor(6) as ex: res = list(ex.map(ask, todo))
 for g, groups in zip(todo, res):
+    if not groups: continue   # left ungrouped, so a rerun asks again
     seen = set(); clean = []
     for gr in groups:
         mem = [i for i in gr.get("members", []) if isinstance(i, int) and 0 <= i < len(g["nodes"]) and i not in seen]
