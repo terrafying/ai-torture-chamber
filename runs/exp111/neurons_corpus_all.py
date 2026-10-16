@@ -21,7 +21,8 @@ else:
         rows = []
         for attempt in range(8):   # the dataset viewer API throws the odd 502; back off and retry
             try:
-                rows = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=60))["rows"]; break
+                hdr = {"User-Agent": "Mozilla/5.0", **({"Authorization": "Bearer " + __import__("os").environ["HF_TOKEN"]} if __import__("os").environ.get("HF_TOKEN") else {})}   # logged-in requests get far higher rate limits
+                rows = json.load(urllib.request.urlopen(urllib.request.Request(u, headers=hdr), timeout=60))["rows"]; break
             except Exception as e:
                 print("rows", off, "attempt", attempt, repr(e)[:80], flush=True); __import__("time").sleep(5 * (attempt + 1))
         for r in rows:
