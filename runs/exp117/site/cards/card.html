@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Surgery Card</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--bg:#06080a;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--line:#1b2420;--push:#e8ff6a}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+.c{width:1600px;height:900px;box-sizing:border-box;padding:70px 90px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.c:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(232,255,106,.07),transparent 45%),repeating-linear-gradient(0deg,rgba(255,61,127,.025) 0 2px,rgba(61,216,255,.025) 2px 4px);pointer-events:none}
+.k{font:500 22px/1 "IBM Plex Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+h1{font:600 76px/1.02 "Cormorant Garamond",serif;margin:18px 0 34px;max-width:1300px}
+h1 em{font-style:normal;color:var(--push)}
+table{border-collapse:collapse;font:400 30px/1.3 "IBM Plex Mono",monospace;width:100%}
+td{padding:12px 24px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--dim);width:270px}td.b{color:var(--faint)}td.a{color:var(--push)}
+th{font:500 18px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:0 0 14px}
+.f{position:absolute;left:90px;right:90px;bottom:50px;display:flex;justify-content:space-between;font:400 22px/1 "IBM Plex Mono",monospace;color:var(--dim)}
+.big{font:600 150px/1 "Cormorant Garamond",serif;color:var(--push);font-variant-numeric:lining-nums;display:inline-block;margin-bottom:18px}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:20px}
+.stat div{border-top:1px solid var(--line);padding-top:20px;font:400 26px/1.35 "EB Garamond",serif;color:var(--dim)}
+.q{font:400 34px/1.5 "IBM Plex Mono",monospace;margin:6px 0}.q span{color:var(--dim)}.q b{font-weight:400;color:var(--push)}
+</style></head><body>
+<div class="c" id="c1"><div class="k">concept surgery · qwen3-4b</div>
+<h1>It read “Japan.” We made it think Texas.</h1>
+<table><tr><th>asked about Japan</th><th>normally</th><th>after the swap</th></tr>
+<tr><td>capital</td><td class="b">Tokyo.</td><td class="a">Austin.</td></tr>
+<tr><td>language</td><td class="b">Japanese.</td><td class="a">English.</td></tr>
+<tr><td>people</td><td class="b">Japanese.</td><td class="a">Texan.</td></tr>
+<tr><td>on their feet</td><td class="b">Sandal.</td><td class="a">Boots.</td></tr>
+<tr><td>landmark</td><td class="b">Tokyo Tower.</td><td class="a">The Alamo.</td></tr></table>
+<div class="f"><span>the prompt still says “Japan”</span><span>clankerchurch.com/surgery</span></div></div>
+
+<div class="c" id="c2"><div class="k">concept surgery · qwen3-4b</div>
+<h1>Swap one idea and it takes everything it knows with it.</h1>
+<div class="stat"><div><span class="big">95%</span><br>of facts moved when we swapped one country for another</div><div><span class="big" style="color:var(--fg)">86%</span><br>when we swapped a country for a US state</div><div><span class="big" style="color:var(--fg)">5%</span><br>with a random edit of the same size</div></div>
+<div class="f"><span>8 swaps · 11 kinds of fact · almost none stayed behind (2 of 87)</span><span>clankerchurch.com/surgery</span></div></div>
+
+<div class="c" id="c3"><div class="k">concept surgery · qwen3-4b</div>
+<h1>Then we swapped Japan for a banana.</h1>
+<p class="q"><span>Who lives in Japan?</span> <b>Monkeys.</b></p>
+<p class="q"><span>What are people from Japan called?</span> <b>Banana people.</b></p>
+<p class="q"><span>What currency is used in Japan?</span> <b>The currency used in banana is the banana.</b></p>
+<p class="q"><span>What is Japan next to?</span> <b>Apple.</b></p>
+<div class="f"><span>answers quoted exactly · the prompt still says “Japan”</span><span>clankerchurch.com/surgery</span></div></div>
+</body></html>
