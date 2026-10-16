@@ -1,0 +1,20 @@
+/Users/ee/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 47.65it/s]
+20/288  4s
+40/288  7s
+60/288  10s
+80/288  13s
+100/288  16s
+120/288  19s
+140/288  21s
+160/288  24s
+180/288  27s
+200/288  30s
+220/288  33s
+240/288  36s
+260/288  39s
+280/288  42s
+288/288  43s
+mismatches: []
+done 52s
