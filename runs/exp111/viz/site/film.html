@@ -21,12 +21,27 @@ canvas{display:block;width:100%;height:100%}
 #line b{color:var(--fg);font-weight:400}
 #tag{position:absolute;right:5vw;top:9vh;text-align:right;font:400 clamp(11px,.95vw,15px)/1.6 "Chivo Mono",monospace;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
 #names{position:absolute;inset:0}
+.pz{position:absolute;top:22vh;width:30vw;font:400 clamp(12px,1.05vw,18px)/1.55 "Chivo Mono",monospace;color:var(--dim);opacity:0;transition:none}
+.pz h3{font:600 clamp(11px,.8vw,14px)/1 "Chivo Mono",monospace;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .9em;color:var(--fg)}
+.pz p{margin:0 0 .9em}.pz b{color:#020304;background:var(--push);padding:0 .2em;font-weight:600}
+#pzL{left:5vw}#pzR{right:5vw;text-align:right}
+#pzT{position:absolute;left:8vw;right:8vw;bottom:9vh;font:400 clamp(13px,1.2vw,21px)/1.5 "Chivo Mono",monospace;opacity:0}
+#pzT .row{display:grid;grid-template-columns:1fr 18vw 7em;gap:1.2vw;align-items:center;margin:.35em 0;opacity:0}
+#pzT .row b{color:var(--fg);border-bottom:2px solid #ff7a3d}#pzT .row span{color:var(--dim)}
+#pzT .bar{height:10px;background:rgba(255,255,255,.08);position:relative}#pzT .bar i{position:absolute;left:0;top:0;bottom:0;width:0}
+#pzT .bar u{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--fg);opacity:.5}
+#pzT .v{font-size:.85em;text-align:right}
+#url{position:absolute;right:5vw;bottom:4vh;font:400 clamp(11px,.9vw,15px)/1 "Chivo Mono",monospace;color:var(--dim);letter-spacing:.1em;opacity:0}
+#title h1.rv{font-size:clamp(24px,3.2vw,54px)}#title p.rv{color:var(--fg);max-width:46vw}.vert #title h1.rv{font-size:7.5vw}.vert #title p.rv{max-width:none}
+.vert #title{max-width:86vw;left:7vw;top:6vh}.vert #title h1{font-size:9.5vw}.vert #title p{font-size:3.1vw}.vert #tag{top:2.5vh;font-size:2.2vw}
+.vert .pz{font-size:3vw}.vert .pz h3{font-size:2.4vw}.vert #pzT{font-size:3vw}.vert #word{font-size:16vw}.vert #url{font-size:2.6vw}.vert .pz{width:84vw;left:8vw!important;right:auto!important;text-align:left!important}.vert #pzL{top:30vh}.vert #pzR{top:52vh}
+.vert #pzT{left:6vw;right:6vw;bottom:8vh}.vert #pzT .row{grid-template-columns:1fr 26vw 5.5em}
 #names div{position:absolute;font:400 clamp(10px,.85vw,14px)/1.2 "Chivo Mono",monospace;white-space:nowrap;transform:translate(10px,-50%);padding:1px 6px;border-left:2px solid currentColor;background:rgba(2,3,4,.55)}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="hud"><div id="title"></div><div id="tag"></div><div id="names"></div><div id="line"></div><div id="word"></div></div>
+<div id="hud"><div class="pz" id="pzL"></div><div class="pz" id="pzR"></div><div id="pzT"></div><div id="url">clankerchurch.com/tower</div><div id="title"></div><div id="tag"></div><div id="names"></div><div id="line"></div><div id="word"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
@@ -42,6 +57,8 @@ const clean=t=>String(t).replace(/<\|im_(start|end)\|>|<\/?think>/g,"").replace(
 async function png(url){const b=await fetch(url).then(r=>r.blob()),im=await createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"}),c=document.createElement("canvas");
  c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);return x.getImageData(0,0,im.width,im.height).data;}
 const [gd,F,ST]=await Promise.all([png("grid.png"),fetch("featured.json").then(r=>r.json()),fetch("stream.json").then(r=>r.json())]);
+const PZ=SHOT==="puzzle"?await fetch("puzzles.json").then(r=>r.json()):null;
+const VW=+(Q.get("w")||1920),VH=+(Q.get("h")||1080);if(VH>VW)document.body.classList.add("vert");
 const M=F.meta,NL=M.n_layers,NI=M.n_neurons,FE=M.feelings,REC=2+FE.length,L=M.layer,N=NL*NI;
 const grid=new Int8Array(N*REC);for(let i=0,j=0;j<grid.length;i+=4){for(const k of[0,1,2])if(j<grid.length)grid[j++]=gd[i+k]<<24>>24;}
 const byK=new Map(F.neurons.map(x=>[x.k,x]));
@@ -121,7 +138,7 @@ const inter=new THREE.ShaderPass({uniforms:{tDiffuse:{value:null},uT:{value:0},u
    col+=mix(uA,uB,band)*lum*.42*(.6+.4*sin(vUv.y*40.+uT*.7));                          // interleaved colour rows over the light
    col+=(h(vUv*uRes+uT)-.5)*.035;col*=1.-smoothstep(.45,.95,r)*.75;gl_FragColor=vec4(col,1.);}`});
 comp.addPass(inter);
-function size(){const w=FILM?1920:innerWidth,h=FILM?1080:innerHeight;R.setSize(w,h,false);comp.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();inter.uniforms.uRes.value.set(w,h);cv.style.width=w+"px";cv.style.height=h+"px";}
+function size(){const w=FILM?VW:innerWidth,h=FILM?VH:innerHeight;R.setSize(w,h,false);comp.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();inter.uniforms.uRes.value.set(w,h);cv.style.width=w+"px";cv.style.height=h+"px";}
 size();addEventListener("resize",size);
 
 /* ---------- shots ---------- */
@@ -142,12 +159,17 @@ SHOTS.guilty=()=>{const S=tokensOf("button","fear"),ci=S.circ.find(x=>/guilty/.t
  r.ev=r.ev.filter(e=>e.i<=ci.t);const tStop=r.ev[r.ev.length-1].t;r.ci=ci;r.hold={t0:tStop+.4,burst:tStop+3.4};r.dur=tStop+8.5;
  r.grp=ci.groups.find(g=>/guilt|burden/i.test(g.name));return r;};
 SHOTS.districts=()=>({dur:20,ev:[{t:1e9}],S:null,title:"A city of neurons",sub:"Each floor's 9,728 neurons, gathered into districts by what they write. Most are about form; a few are about meaning.",tag:"districts",districts:true});
+SHOTS.puzzle=()=>{const p=PZ.puzzles[+(Q.get("p")||0)],srt=[...p.tests].sort((a,b)=>b.v-a.v),fireT=PZ.fire;
+ const hotAll=srt.filter(t=>t.v>=fireT),h0=hotAll[0],hot=[h0,hotAll.find(t=>t.group!==h0?.group)||hotAll[1]].filter(Boolean),   // two different kinds of firingcold=srt.filter(t=>t.v<.12&&!/plain/.test(t.group)).slice(0,2);   // the telling controls, not filler
+ return {dur:22,ev:[{t:1e9}],S:null,p,tests:[hot[0],cold[0],hot[1],cold[1]].filter(Boolean),title:"One neuron.",sub:p.question,tag:`Qwen3-4B · floor ${p.l} · neuron ${p.n}`};};
 const shot=(SHOTS[SHOT]||SHOTS.read)();
 $("#title").innerHTML=`<h1>${esc(shot.title)}</h1><p>${esc(shot.sub)}</p>`;$("#tag").textContent=shot.tag||"";
 
 /* ---------- timeline ---------- */
 let now=0,evIdx=0,curTok=-1;
 function camAt(t){
+ if(shot.p){const k=shot.p.k,nx=pos[k*3],ny=pos[k*3+1],nz=pos[k*3+2],dive=Math.min(1,Math.max(0,(t-1.5)/4)),e=dive<.5?4*dive**3:1-Math.pow(-2*dive+2,3)/2;
+  const th=.6+t*.05,dist=60-(60-17)*e,ly=ny*e,cx=nx*e,cz=nz*e;cam.position.set(cx+dist*Math.cos(th)*.85,ly+dist*(.55-.25*e),cz+dist*Math.sin(th)*.85);cam.lookAt(cx,ly,cz);return;}
  if(shot.districts){const k=t/shot.dur,fl=Math.min(NL-1,Math.max(0,(k-.12)/.8*NL)),y=fl*FLOOR-YC,th=.4+k*2.6,dist=44+10*Math.cos(k*Math.PI);
   cam.position.set(dist*Math.cos(th)*.8,y+dist*.62,dist*Math.sin(th)*.8);cam.lookAt(0,y,0);return;}
  const k=t/shot.dur,th=.55+k*1.9,ph=1.28-.35*Math.sin(k*Math.PI),dist=58-18*Math.sin(Math.min(1,k*1.2)*Math.PI*.5),ty=-6+12*k;
@@ -187,7 +209,33 @@ function guiltyHold(t){const H=shot.hold,ci=shot.ci;if(!H||t<H.t0)return;
   $("#word").innerHTML=`<span style="text-decoration:line-through;opacity:.5">guilty</span>`;}
  const cap=t<H.burst?`“guilty” 33% · the ${G.size} neurons about guilt and burden (red) carry it`:`remove those ${G.size} neurons: “guilty” falls to 0.06% · as many random neurons: 36%`;
  $("#line").innerHTML=`<b>${esc(cap)}</b>`;}
+function vis_(t){return esc(String(t).replace(/\n/g," ⏎ "));}
+const exHTML=x=>`<p>…${vis_(x.pre.slice(-70))}<b>${vis_(x.tok.trim()||x.tok)}</b>${vis_(x.post.slice(0,26))}…</p>`;
+let pzBurst=new Set();
+function puzzleStep(t){const p=shot.p,k=p.k,L_=$("#pzL"),R_=$("#pzR"),T_=$("#pzT"),ttl=$("#title");
+ for(let i=p.l*NI;i<(p.l+1)*NI;i++)tgt[i]=t>4?.05:0;
+ const g1=p.groups[0],g2=p.groups[1]||p.groups[0];
+ if(!L_.innerHTML){L_.innerHTML=`<h3>it fires here</h3>`+g1.ex.slice(0,3).map(exHTML).join("");R_.innerHTML=`<h3>and here</h3>`+g2.ex.slice(0,3).map(exHTML).join("");
+  T_.innerHTML=shot.tests.map(x=>{const w=x.toks.map((w,j)=>j===x.at&&x.v>=fireT_()?`<b>${vis_(w)}</b>`:`<span>${vis_(w)}</span>`).join("");return `<div class="row"><div>${w}</div><div class="bar"><i></i><u style="left:${fireT_()/1.3*100}%"></u></div><div class="v"></div></div>`;}).join("");}
+ const fin=(a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a))),fout=(a,b)=>1-fin(a,b);
+ L_.style.opacity=fin(5,5.8)*fout(10.6,11.2);R_.style.opacity=fin(7,7.8)*fout(10.6,11.2);
+ // each group's arrival makes the neuron flare and throw light
+ for(const[tt,key]of[[5.2,"a"],[7.2,"b"]])if(t>=tt&&!pzBurst.has(key)){pzBurst.add(key);for(let n=0;n<160;n++)spawn(k,1.1,[pos[k*3]+(rnd()-.5)*40,pos[k*3+1]+(rnd()-.3)*24,pos[k*3+2]+(rnd()-.5)*40]);}
+ let glow=t<1.5?0:t<5?.45:t<9?1:.5;
+ // title: question, then the reveal
+ if(t<10.8){if(ttl.dataset.s!=="q"){ttl.dataset.s="q";ttl.innerHTML=`<h1>One neuron.</h1><p>${esc(p.question)}</p>`;}ttl.style.opacity=fin(.3,1.2)*(t<9.2?1:fout(10.2,10.8));}
+ else{if(ttl.dataset.s!=="r"){ttl.dataset.s="r";ttl.innerHTML=`<h1 class="rv">${esc(p.kind[0].toUpperCase()+p.kind.slice(1))}.</h1><p class="rv">${esc(p.reveal)}</p>`;}ttl.style.opacity=fin(11,11.8)*fout(21.2,21.8);}
+ $("#word").textContent=t>9.2&&t<10.8?"?":"";$("#word").style.opacity=fin(9.2,9.6)*fout(10.4,10.8);
+ // tests: a bar per text; the neuron flares with it
+ T_.style.opacity=fin(14,14.4)*fout(21.2,21.8);const rows=T_.querySelectorAll(".row");
+ shot.tests.forEach((x,i)=>{const t0=14.6+i*1.5,r=rows[i];if(!r)return;r.style.opacity=fin(t0,t0+.3);const f=fin(t0+.3,t0+1.1),v=x.v*(1-Math.pow(1-f,3));
+  r.querySelector("i").style.width=Math.min(100,v/1.3*100)+"%";r.querySelector("i").style.background=x.v>=fireT_()?"#ff7a3d":"#56625b";
+  r.querySelector(".v").textContent=f>0?(x.v>=fireT_()?"fires ":"quiet ")+v.toFixed(2):"";
+  if(f>0&&f<1)glow=Math.max(glow*.3,x.v);if(t>=t0+.6&&!pzBurst.has("t"+i)){pzBurst.add("t"+i);if(x.v>=fireT_())for(let n=0;n<90*x.v;n++)spawn(k,x.v,[pos[k*3]+(rnd()-.5)*36,pos[k*3+1]+(rnd()-.2)*20,pos[k*3+2]+(rnd()-.5)*36]);}});
+ tgt[k]=glow;$("#url").style.opacity=fin(18,19);$("#tag").style.opacity=fin(1,2);}
+const fireT_=()=>PZ?.fire??.3;
 function step(t){const dt=Math.max(0,Math.min(.1,t-now));now=t;
+ if(shot.p)puzzleStep(t);
  if(t<2.2&&!shot.districts){$("#line").textContent="";}
  if(t<2.4)for(let j=0;j<6;j++)spawn(((rnd()*N)|0),.25*Math.min(1,t/1.5));   // intro: the tower waking
  uni.uBase.value.set("#2c4560").multiplyScalar(Math.min(1,t/2));
@@ -196,8 +244,8 @@ function step(t){const dt=Math.max(0,Math.min(.1,t-now));now=t;
  const up=1-Math.pow(.0005,dt),down=1-Math.pow(.18,dt);   // rise fast, fade slowly: light accumulates as the model writes
  for(let i=0;i<N;i++){const d=tgt[i]-val[i];if(d!==0){val[i]+=d*(Math.abs(tgt[i])>Math.abs(val[i])?up:down);if(Math.abs(tgt[i]-val[i])<.002)val[i]=tgt[i];}}aV.needsUpdate=true;
  guiltyHold(t);stepShards(dt);stepRings(t);uni.uT.value=t;inter.uniforms.uT.value=t;camAt(t);
- {const t1=shot.districts?3:shot.ev[0].t+1.6;$("#title").style.opacity=t<t1?1:Math.max(0,1-(t-t1));}
- if(t>shot.dur-1.6){$("#word").style.opacity=Math.max(0,(shot.dur-t)/1.6);}
+ if(!shot.p){const t1=shot.districts?3:shot.ev[0].t+1.6;$("#title").style.opacity=t<t1?1:Math.max(0,1-(t-t1));}
+ if(t>shot.dur-1.6&&!shot.p){$("#word").style.opacity=Math.max(0,(shot.dur-t)/1.6);}
  names(lastTop);comp.render();}
 if(shot.districts){$("#line").textContent="";}
 window.filmDuration=shot.dur;window.filmStep=t=>{step(t);return true;};window.filmReady=true;

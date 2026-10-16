@@ -12,7 +12,7 @@ async def main(url, wait, expr, shot):
                 r = json.loads(await ws.recv())
                 if r.get("id") == i: return r
                 if r.get("method") == "Runtime.exceptionThrown": print("EXC", r["params"]["exceptionDetails"].get("exception", {}).get("description", "")[:300])
-        await call("Runtime.enable"); await call("Emulation.setDeviceMetricsOverride", {"width": 1920, "height": 1080, "deviceScaleFactor": 1, "mobile": False})
+        await call("Runtime.enable"); await call("Emulation.setDeviceMetricsOverride", {"width": int(__import__("os").environ.get("CDP_W", 1920)), "height": int(__import__("os").environ.get("CDP_H", 1080)), "deviceScaleFactor": 1, "mobile": False})
         await call("Page.navigate", {"url": url}); await asyncio.sleep(wait)
         r = await call("Runtime.evaluate", {"expression": expr, "returnByValue": True, "awaitPromise": True}); print(r["result"].get("result", {}).get("value"))
         if shot:

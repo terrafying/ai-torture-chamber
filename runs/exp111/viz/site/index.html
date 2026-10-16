@@ -24,6 +24,9 @@ canvas.over{cursor:pointer}
 #hud{position:absolute;left:16px;top:12px;right:16px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:2}
 #hud .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 #hud .row>*{pointer-events:auto}
+#moretog{font:inherit;font-size:12px;background:var(--panel,#0b0f12);color:var(--dim);border:1px solid var(--line);padding:4px 10px;cursor:pointer}
+#moretog[aria-expanded="true"]{color:var(--fg)}
+#hud .more[hidden]{display:none}
 h1{font:600 20px/1.1 var(--serif);margin:0 10px 0 0}
 .seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 88%,transparent)}
 .seg button{font:inherit;font-size:11px;background:none;color:var(--dim);border:0;padding:5px 8px;cursor:pointer;letter-spacing:.03em}
@@ -180,7 +183,7 @@ const HDS=M.heads||null,NH=HDS?HDS.n:32,HK=HDS?HDS.kinds:[];   // the head atlas
 const HCOL={"sink":"#5d6762","previous-word":"#ffd166","self":"#8aa29a","recent words":"#4fe0c4","induction":"#ff4fd8","focused look-back":"#b48cff","broad context":"#5f86c9"};
 const hkind=(l,h)=>HDS?HK[HDS.k[l*NH+h]]:"";
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),pz:0,pzReveal:false,hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),more:(()=>{try{return localStorage.getItem("tower.more")==="1";}catch(e){return false;}})(),pz:0,pzReveal:false,hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -429,9 +432,11 @@ function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.inne
  el.onclick=e=>{const b=e.target.closest("button");if(b)on(b.dataset.k);};}
 function controls(){
  if(HAS32)seg($("#model"),[["4b","Qwen3-4B"],["32b","Qwen3-32B"]],MD,k=>{if(k===MD)return;const u=new URL(location.href);if(k==="4b")u.searchParams.delete("model");else u.searchParams.set("model",k);location.href=u.toString();},"model");
- seg($("#views"),[["live","read along"],["districts","districts map"],["moved","experiment: feeling-specific neurons"],["weights","experiment: feelings in the weights"],["puzzles","puzzles"]].filter(v=>(v[0]!=="puzzles"||PZ)&&(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
- seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");
- const r2=$("#row2");r2.innerHTML="";const add=()=>{const d=document.createElement("div");r2.appendChild(d);return d;};
+ seg($("#views"),[["live","read along"],["districts","districts"],["puzzles","puzzles"],["moved","exp: feeling neurons"],["weights","exp: feelings in weights"]].filter(v=>(v[0]!=="puzzles"||PZ)&&(v[0]!=="districts"||DIST)&&(v[0]!=="weights"||REC>2)),S.view,k=>{S.view=k;S.sel=null;stop();S.tok=0;refresh();});
+ let tg=$("#moretog");if(!tg){tg=document.createElement("button");tg.type="button";tg.id="moretog";$("#views").after(tg);tg.onclick=()=>{S.more=!S.more;try{localStorage.setItem("tower.more",S.more?"1":"0");}catch(e){}controls();};}
+ tg.textContent=(S.more?"▾":"▸")+" options";tg.setAttribute("aria-expanded",String(!!S.more));
+ seg($("#filter"),[["meaning","meaningful"],["affect","feelings & people"],["all","everything"]],S.filter,k=>{S.filter=k;refresh();},"show");$("#filter").style.display=!S.more||S.view==="puzzles"?"none":"";
+ const r2=$("#row2");r2.innerHTML="";const add=more=>{const d=document.createElement("div");if(more){const w=document.createElement("div");w.className="more";w.style.display=S.more?"":"none";w.appendChild(d);r2.appendChild(w);}else r2.appendChild(d);return d;};
  if(S.view==="live"){
   const PK=Object.keys(ST.prompts).filter(k=>k!=="__mine"),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
   if(MD!=="4b"){const n=add();n.innerHTML=`<span class="note">Your own prompts, steering and cuts run on <a href="${location.pathname}" style="color:var(--fg)">the 4B</a> for now; here you can read the 32B's recorded runs.</span>`;}
@@ -456,10 +461,10 @@ function controls(){
   const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
    const c0=(cond().circ||[])[0];if(S.mode==="chose"&&c0)S.tok=c0.t;else S.tok=S.mode==="chose"?ST.prompts[k].n_prompt:0;refresh();};
   const ex=[...scenes.filter(k=>k!=="describe"),...ids];
-  seg(add(),[["describe",ST.prompts.describe.label||"describe the moment"],...ex.map(k=>[k,ST.prompts[k].label||k])],S.prompt,setPrompt,"prompt · chamber experiments →");
-  if(S.prompt!=="__mine")seg(add(),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"no steering":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"steer (optional)",true);
-  if(HDS)seg(add(),[["kinds","by head kind"],["floors","by floor"],["off","off"]],S.attn,k=>{S.attn=k;refresh();},"attention");
-  seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
+  seg(add(true),[["describe",ST.prompts.describe.label||"describe the moment"],...ex.map(k=>[k,ST.prompts[k].label||k])],S.prompt,setPrompt,"prompt · chamber experiments →");
+  if(S.prompt!=="__mine")seg(add(true),Object.keys(ST.prompts[S.prompt].conds).map(f=>[f,f==="none"?"no steering":f]),S.cond,k=>{S.cond=k;S.tok=Math.min(S.tok,cond().tok.length-1);refresh();},"steer (optional)",true);
+  if(HDS)seg(add(true),[["kinds","by head kind"],["floors","by floor"],["off","off"]],S.attn,k=>{S.attn=k;refresh();},"attention");
+  seg(add(true),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
   const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
  else if(S.view==="puzzles"&&PZ)seg(add(),PZ.puzzles.map((p,i)=>[String(i),p.title]),String(S.pz),k=>{S.pz=+k;S.pzReveal=false;refresh();},"puzzle");
