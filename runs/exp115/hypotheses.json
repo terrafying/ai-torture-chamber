@@ -1,0 +1,22 @@
+{
+ "exp": "exp115",
+ "title": "Clocks in a real model: do weekdays and months sit on circles inside Qwen3-4B, and does the model use them?",
+ "written": "2026-10-16, before any activations were looked at",
+ "why": "A tiny transformer that groks addition mod 113 puts numbers on circles and adds by rotating (exp114). Does the same geometry appear in a 4B language model for naturally cyclic concepts, and is it used for reasoning or just a by-product?",
+ "model": "Qwen/Qwen3-4B, bf16, MPS",
+ "design": {
+  "sets": {"weekdays": "Monday..Sunday (7)", "months": "January..December (12)"},
+  "contexts": "6 sentence templates per set, item as a single token with a leading space; residual stream after each block at the item token",
+  "shape_statistic": "per block: PCA on the item means (averaged over templates); angle of each item in the top-2 PC plane; circular order = max over direction s=+-1 of |mean exp(i(theta_n - s*2*pi*n/N))| (mean resultant length, 0..1)",
+  "shape_null": "1,000 label shuffles; for each shuffle the same statistic, max over blocks; p = share of shuffles whose max >= the observed max over blocks",
+  "use_test": "weekdays only. Prompt (chat template, no thinking): 'What day of the week is two days after {X}? Answer with just the day.' Baseline: the top first-token answer for each X. Intervention at the best block (highest shape statistic) and only at the {X} token: rotate the residual's component in the fitted circle plane by +1 day (2*pi/7 in the fitted direction), keeping its radius; everything else unchanged.",
+  "use_prediction": "the answer moves forward one day (X+2 becomes X+3) for >= 4 of the 7 days where the baseline is right; control: the same angle in a random 2D plane (same norm of change, 20 random planes) moves it for <= 1 of 7 on average",
+  "fires": "answers are read from the first generated token's top logit, matched to day names"
+ },
+ "hypotheses": {
+  "H1": "Weekdays: the max-over-blocks circular order beats the shuffle null at p < 0.01.",
+  "H2": "Months: same, p < 0.01.",
+  "H3": "Use: rotating the weekday along its fitted circle by one day moves the answer one day for >= 4/7 days; random-plane rotation for <= 1/7 on average."
+ },
+ "decision_rule": "Block chosen by the shape statistic only (not by the use test). No template or block re-tuning after results. Failures are reported."
+}
