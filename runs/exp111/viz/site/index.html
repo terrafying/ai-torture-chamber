@@ -90,6 +90,13 @@ aside p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
 #floorpick{display:flex;gap:8px;align-items:center;font-size:11px;color:var(--dim);background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);padding:4px 8px}
 #floorpick input{width:min(320px,40vw);accent-color:var(--push)}
 .dmap circle{cursor:pointer}.dmap text{pointer-events:none}
+#designer{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 14px;padding:8px 10px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);font-size:11px;max-width:min(760px,100%)}
+#designer .full{grid-column:1/-1}
+#designer label{display:flex;flex-direction:column;gap:2px;color:var(--dim)}
+#designer input[type=range]{accent-color:var(--push)}
+#designer textarea{font:inherit;font-size:11.5px;background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:6px;min-height:72px;resize:vertical}
+#designer .modes{display:flex;gap:6px}#designer .modes button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--dim);padding:3px 8px;cursor:pointer}
+#designer .modes button[aria-pressed=true]{color:var(--bg);background:var(--push);border-color:var(--push)}
 #loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:12px}
 @media (max-width:820px){
   body{overflow:auto}
@@ -141,7 +148,7 @@ const byK=new Map(F.neurons.map(x=>[x.k,x]));
 const css=getComputedStyle(document.documentElement),CC=CATS.map((_,i)=>css.getPropertyValue("--c"+i).trim());
 const CATSHORT=["feeling","body","social","morals","thinking","topic","names","grammar","format","digits","code","script","unclear"];
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map()};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -245,7 +252,9 @@ function runLive(text,push,orig){
  const c={tok:[],ids:[],fr:[],ch:[],circ:[]},spec=editSpec();
  ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:nEdits(),spec}:null};
  Object.assign(S,{view:"live",prompt:"__mine",cond:push,mode:"fires",tok:0,sel:null,filter:"all"});   // most live neurons have no label yet: show everything
- liveES=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(text)}&push=${push}&dose=4&max_new=80&edits=${encodeURIComponent(spec)}`);
+ const Dz=S.design,dq=Dz.mode==="mix"?`&mix=${encodeURIComponent(Object.entries(Dz.mix).filter(([,w])=>+w).map(([k,w])=>k+":"+w).join(","))}`:Dz.mode==="own"?`&custom=${encodeURIComponent(Dz.own)}`:"";
+ ST.prompts.__mine.design=Dz.mode==="preset"?null:{...Dz,mix:{...Dz.mix}};
+ liveES=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(text)}&push=${push}&dose=${Dz.mode==="preset"?4:Dz.dose}&max_new=80&edits=${encodeURIComponent(spec)}${dq}`);
  liveES.onmessage=e=>{const d=JSON.parse(e.data);const P=ST.prompts.__mine;
   if(d.queued){P.warming=true;refresh();return;}
   if(d.error){P.running=false;P.err=d.error;liveES.close();refresh();return;}
@@ -255,7 +264,8 @@ function runLive(text,push,orig){
   if(!liveDraw)liveDraw=requestAnimationFrame(()=>{liveDraw=0;refresh();});};
  liveES.onerror=()=>{liveES.close();const P=ST.prompts.__mine;if(P.running){P.running=false;P.err=P.err||"Couldn't run it: the model is busy, or that's a lot of runs for a few minutes. Try again shortly.";}refresh();};}
 function ensureChose(t){const P=ST.prompts.__mine,c=cond();if(S.prompt!=="__mine"||t<P.n_prompt||c.ch.some(x=>x[0]===t)||c.pending===t)return;
- c.pending=t;fetch(LIVE+"/chose",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids:c.ids,t,push:S.cond,dose:4,edits:ST.prompts.__mine?.compare?.spec||""})})
+ c.pending=t;fetch(LIVE+"/chose",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ids:c.ids,t,push:S.cond,dose:ST.prompts.__mine?.design?.dose??4,edits:ST.prompts.__mine?.compare?.spec||"",
+   mix:ST.prompts.__mine?.design?.mode==="mix"?Object.entries(ST.prompts.__mine.design.mix).filter(([,w])=>+w).map(([k,w])=>k+":"+w).join(","):"",custom:ST.prompts.__mine?.design?.mode==="own"?ST.prompts.__mine.design.own.split("\n").filter(x=>x.trim()):[]})})
   .then(r=>r.json()).then(r=>{c.pending=null;if(r.i)c.ch.push([t,r.alt,r.gap,r.i,r.v]);refresh();}).catch(()=>{c.pending=null;});}
 const circ=()=>S.view==="live"&&S.mode==="chose"?(cond().circ||[]).find(x=>x.t===S.tok):null;
 function framePairs(){
@@ -335,7 +345,20 @@ function controls(){
   const PK=Object.keys(ST.prompts).filter(k=>k!=="__mine"),scenes=PK.filter(k=>!k.startsWith("id_")),ids=PK.filter(k=>k.startsWith("id_"));
   if(liveOK){const box=add();box.id="mine";const P=ST.prompts.__mine;
    box.innerHTML=`<span class="lab" style="font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase">your prompt · live${liveKind==="local"?" (local)":""}</span><input id="lp" maxlength="600" value="${esc(P?.text||"Explain why the sky is blue to a ten-year-old.")}" aria-label="Your prompt"><select id="lpush" aria-label="Steering (optional)">${["none",...FEEL10].map(f=>`<option value="${f}"${(P&&S.cond===f)||(!P&&f==="none")?" selected":""}>${f==="none"?"no steering":"steer: "+f}</option>`).join("")}</select><button type="button" id="lrun">${P?.running?(P.warming?"waking the model…":"running…"):"▶ run"}</button>${P?.err?`<span class="note" style="color:var(--pos)">${esc(P.err)}</span>`:P?.warming?`<span class="note">the hosted model sleeps when idle; the first run takes about a minute</span>`:""}`;
-   box.querySelector("#lrun").onclick=()=>runLive(box.querySelector("#lp").value.trim()||"Hello.",box.querySelector("#lpush").value);
+   box.insertAdjacentHTML("beforeend",`<button type="button" id="ldesign" style="border-color:var(--line);color:var(--fg)">${S.design.open?"▾":"▸"} design steering</button>`);
+   box.querySelector("#ldesign").onclick=()=>{S.design.open=!S.design.open;refresh();};
+   const runIt=()=>{const D=S.design,pv=box.querySelector("#lpush").value;runLive(box.querySelector("#lp").value.trim()||"Hello.",D.mode==="mix"?"mix":D.mode==="own"?"own":pv);};
+   box.querySelector("#lrun").onclick=runIt;
+   if(S.design.open){const D=S.design,dz=add();dz.id="designer";
+    dz.innerHTML=`<div class="full modes"><span style="color:var(--dim);align-self:center">steer with</span>${[["preset","a preset feeling"],["mix","a mix you set"],["own","your own feeling"]].map(([k,t])=>`<button type="button" data-dm="${k}" aria-pressed="${D.mode===k}">${t}</button>`).join("")}</div>`+
+     (D.mode==="mix"?FEEL10.map(f=>`<label>${f} <b id="mv-${f}" style="color:var(--fg)">${(+(D.mix[f]||0)).toFixed(1)}</b><input type="range" min="-1" max="1" step=".1" value="${D.mix[f]||0}" data-mix="${f}"></label>`).join(""):"")+
+     (D.mode==="own"?`<label class="full">your own feeling: 2–6 sentences that have it, one per line<textarea id="downtext" placeholder="I keep checking the door even though I locked it.\nEvery small sound makes my heart jump.">${esc(D.own)}</textarea></label>`:"")+
+     (D.mode!=="preset"?`<label class="full">dose <b id="dosev" style="color:var(--fg)">${D.dose}</b><input type="range" min="0" max="8" step=".5" value="${D.dose}" id="ddose"></label>`:`<span class="full note">Pick a feeling from the list beside the prompt, or switch to a mix or your own.</span>`)+
+     `<span class="full note">${D.mode==="own"?"Your sentences become a direction: their average activity at floor 18 minus that of plain neutral sentences, scaled like the chamber's own feelings. Short or plain sentences make a weak direction; past about dose 4 the model often loses its grammar, which shows how far you pushed.":D.mode==="mix"?"Each slider adds (or, below zero, subtracts) one of the chamber's feeling vectors; the dose scales the whole blend.":""} Then press run.</span>`;
+    dz.querySelectorAll("[data-dm]").forEach(b=>b.onclick=()=>{D.mode=b.dataset.dm;refresh();});
+    dz.querySelectorAll("[data-mix]").forEach(r=>r.oninput=()=>{D.mix[r.dataset.mix]=+r.value;dz.querySelector("#mv-"+r.dataset.mix).textContent=(+r.value).toFixed(1);});
+    const dd=dz.querySelector("#ddose");if(dd)dd.oninput=()=>{D.dose=+dd.value;dz.querySelector("#dosev").textContent=D.dose;};
+    const dt=dz.querySelector("#downtext");if(dt)dt.oninput=()=>{D.own=dt.value;};}
    box.querySelector("#lp").onkeydown=e=>{if(e.key==="Enter")box.querySelector("#lrun").click();};}
   const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
    const c0=(cond().circ||[])[0];if(S.mode==="chose"&&c0)S.tok=c0.t;else S.tok=S.mode==="chose"?ST.prompts[k].n_prompt:0;refresh();};
@@ -440,6 +463,8 @@ function side(){
    h+=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · ${S.tok<np?"reading the prompt":"writing the reply"}</h3><div class="big">“${vis(t)}”</div></div>`;
    h+=`<div><h3>firing hardest for their own range</h3>${nlist(pairs.slice(0,9))}</div><div><h3>what the lit neurons are about</h3>${catBars(pairs.map(p=>p[0]))}</div>`;}
   h+=`<details class="note"><summary style="cursor:pointer;color:var(--fg)">How much of this is about feelings?</summary><p class="note" style="margin-top:6px">Checked on this model (4B): feeling labels pass blind tests about half the time (47% of texts written from the label fire the neuron, 14% of near misses). A push mostly moves neurons that aren't about feelings: 0–5% of the most push-specific neurons are feeling neurons, against 2.3% overall, and only pain and sadness clearly reach their own. Where feeling neurons do matter is at word choice: 7 of 10 meaning-bearing groups decide their word when removed, against 29% of grammar groups. Read the lights as emotional words and situations, not as a felt state. Larger models next.</p></details>`;
+  const dz_=S.prompt==="__mine"?ST.prompts.__mine?.design:null;
+  if(dz_)h+=`<p class="note" style="color:var(--fg)">Steered with ${dz_.mode==="mix"?"a mix: "+esc(Object.entries(dz_.mix).filter(([,w])=>+w).map(([k,w])=>`${k} ${(+w).toFixed(1)}`).join(", ")):"your own feeling ("+dz_.own.split("\n").filter(x=>x.trim()).length+" sentences)"} at dose ${dz_.dose}.</p>`;
   h+=`<p class="note">${S.cond==="none"?"The model's own reply, no steering. Press play to watch every token pass through all 36 floors.":"The reply is the model's own, generated with the push on at every word."} Neurons are named blind: an LLM saw only each neuron's strongest firings in ${M.corpus_tokens.toLocaleString()} tokens of web text, not which feeling picked it.</p>`;}
  else if(S.view==="moved"){
   const idx=F.neurons.filter(x=>S.feel==="shared"?x.sh:x.mv?.[S.feel]).map(x=>x.k);
