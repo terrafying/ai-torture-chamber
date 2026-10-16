@@ -1,0 +1,31 @@
+{
+ "exp": "exp117",
+ "title": "Concept surgery: the shapes of seven concept groups inside Qwen3-4B, and whether swapping one concept for another changes what the model does",
+ "written": "2026-10-16, before any run; follows exp115 (weekday circle real, but turning it didn't change answers; the full 6-d day component did)",
+ "model": "Qwen/Qwen3-4B, bf16, MPS",
+ "sets": {
+  "weekdays": {"items": "Monday..Sunday", "kind": "cycle", "task": "What day comes after {X}?"},
+  "months": {"items": "January..December", "kind": "cycle", "task": "What month comes after {X}?"},
+  "numbers": {"items": "one..ten (words)", "kind": "line", "task": "What number comes after {X}? Answer with a word."},
+  "planets": {"items": "Mercury Venus Earth Mars Jupiter Saturn", "kind": "line", "task": "Which planet comes after {X} in order from the Sun?"},
+  "countries": {"items": "France Japan Germany Italy Spain China Egypt Canada Russia", "kind": "unordered", "task": "What is the capital of {X}?"},
+  "colours": {"items": "red orange yellow green blue purple", "kind": "unordered", "task": "Name a fruit that is usually {X}."},
+  "animals": {"items": "dog cat cow duck sheep lion pig horse", "kind": "unordered", "task": "What sound does a {X} make?"}
+ },
+ "design": {
+  "answer": "chat template, no thinking, task + ' Answer with just one word.'; the answer is the first generated token (stripped, lowercased)",
+  "mapping": "f(X) = the model's own baseline answer for X; items whose baseline answer collides with another item's are dropped (reported)",
+  "means": "residual after each block at the X token in 6 neutral sentences ('I was thinking about{X} today.' etc.), averaged per item",
+  "shape": "cycle sets: circular order of the top-2 PC angles (exp115 statistic); line sets: |Spearman| between PC1 coordinate and order; all sets: share of the item-mean variance in the top 2 PCs",
+  "swap": "at the X token of the task prompt, at block b: add alpha * (mean_Y - mean_X) restricted to the top-D principal directions of the set's item means at b; D = 2 (the visible shadow) or all (n-1); alpha = 1 unless stated; blocks 2,4,6,8,10,12,16,20,24",
+  "success": "the answer after the swap equals f(Y)",
+  "control": "the same norm of change in a random direction (at block 8, D = all)",
+  "dose": "at block 8, D = all: alpha 0.25, 0.5, 0.75, 1, 1.5"
+ },
+ "hypotheses": {
+  "H1": "At block 8 with the full component (D = all), the swap gives f(Y) for >= 50% of pairs in at least 5 of the 7 sets; the random control gives f(Y) for <= 5% of pairs overall.",
+  "H2": "In every set, the 2-D swap (D = 2) succeeds less often than the full swap at block 8.",
+  "H3": "In every set, the full swap succeeds less often at block 24 than at block 8."
+ },
+ "decision_rule": "Fixed sets, templates, blocks and thresholds; nothing re-tuned after results; failures reported."
+}
