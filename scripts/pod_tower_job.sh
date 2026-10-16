@@ -8,7 +8,7 @@
 #          TOWER_DOSE (5), NDOC (corpus docs, default 8000).
 set -u
 cd /root
-export PYTHONUNBUFFERED=1 HF_HOME=/root/hf TOWER_QUANT=nf4 TOWER_DEVICE=cuda TOWER_DATA=/root/out/data \
+export PYTHONUNBUFFERED=1 HF_HOME=/root/hf TOWER_QUANT=${TOWER_QUANT-nf4} TOWER_DEVICE=cuda TOWER_DATA=/root/out/data \
        PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True WIREHEAD_LIVE=/root/private/live CHAMBER_DEVICE=cuda
 mkdir -p out/data private
 push() {  # upload a file or folder into the job repo
