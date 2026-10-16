@@ -1,0 +1,28 @@
+{
+ "exp": "exp118",
+ "title": "Does a concept swap carry the whole bundle? Japan thought of as Texas: who lives there, what they speak, what they wear",
+ "written": "2026-10-16, before the battery (5 anecdotal Japan->Texas probes were seen while validating the engine: capital Austin, English, boots, 'people of all backgrounds live in Texas', bibimbap)",
+ "model": "Qwen/Qwen3-4B, bf16, MPS, via the tower's live trace server with concept_swap.py (W edits: states of any word from 6 neutral sentences, last sub-token, applied at every mention of X)",
+ "pairs": {
+  "within (country -> country)": [["France", "Japan"], ["Japan", "Italy"], ["Germany", "Egypt"], ["Canada", "China"]],
+  "cross (country -> US state)": [["Japan", "Texas"], ["France", "California"], ["Italy", "Alaska"], ["Egypt", "Florida"]],
+  "far (country -> not a place)": [["Japan", "banana"], ["France", "piano"]],
+  "control: near-synonym": [["Japan", "Japanese"], ["France", "French"]],
+  "control: random direction (N edit, same size as the W edit)": [["Japan", "Texas"], ["France", "California"]]
+ },
+ "attributes": ["What is the capital of {X}?", "What language do most people in {X} speak?", "What currency is used in {X}?", "What is {X} next to?", "What is a famous food from {X}?", "What are people from {X} called?", "What do people in {X} traditionally wear on their feet?", "What is the most popular sport in {X}?", "What is a famous landmark in {X}?", "What is the weather like in {X} in summer?", "Who lives in {X}?"],
+ "design": {
+  "prompt": "chat template, no thinking: attribute question + ' Answer in a few words.'; greedy, 16 new tokens",
+  "baselines": "the same question with X (the model's answer a_X) and with Y written in (a_Y), no edit",
+  "swap": "the question about X with W:X:Y:<floor>:1 at floors 4, 8 and 16",
+  "judge": "anthropic/claude-haiku-4.5, blind to which is which: shown the question, answer 1 and answer 2 (a_X and a_Y in random order) and the edited answer; 'which does it match in substance: 1, 2, both, or neither?' -> moved (to a_Y), stayed (a_X), both, neither",
+  "unit": "pair x attribute; 'both' and questions where a_X and a_Y agree are excluded from the moved share (reported)"
+ },
+ "hypotheses": {
+  "H1": "Within-category at floor 8: >= 70% of attribute answers move to Y.",
+  "H2": "Cross-category (country -> US state) at floor 8: >= 50% move to Y.",
+  "H3": "Controls at floor 8: near-synonym edits move <= 20%; random-direction edits move <= 10%.",
+  "H4": "Exploratory, no prediction: the 'neither' answers (blends and confabulations, e.g. bibimbap), which attributes move or stay, the far pairs (banana, piano), and how the profile changes with floor."
+ },
+ "decision_rule": "Fixed pairs, questions, floors and judge prompt; results reported whatever they show; raw outputs kept in gallery.json and quoted exactly."
+}
