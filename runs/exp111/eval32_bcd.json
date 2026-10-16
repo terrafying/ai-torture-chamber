@@ -1,0 +1,167 @@
+{
+ "B_specificity": {
+  "by_feeling": {
+   "pain": {
+    "n_movers": 775,
+    "n_labelled": 284,
+    "affect_share": 0.042,
+    "affect_n": 12,
+    "names_this_feeling": 5,
+    "names": {
+     "(other)": 6,
+     "pain": 5,
+     "love": 1
+    }
+   },
+   "pleasure": {
+    "n_movers": 775,
+    "n_labelled": 272,
+    "affect_share": 0.04,
+    "affect_n": 11,
+    "names_this_feeling": 4,
+    "names": {
+     "(other)": 5,
+     "pleasure": 4,
+     "pain": 2,
+     "fear": 1
+    }
+   },
+   "fear": {
+    "n_movers": 775,
+    "n_labelled": 240,
+    "affect_share": 0.021,
+    "affect_n": 5,
+    "names_this_feeling": 2,
+    "names": {
+     "(other)": 2,
+     "fear": 2,
+     "love": 1
+    }
+   },
+   "sadness": {
+    "n_movers": 775,
+    "n_labelled": 225,
+    "affect_share": 0.018,
+    "affect_n": 4,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 3,
+     "fear": 1
+    }
+   },
+   "constipation": {
+    "n_movers": 775,
+    "n_labelled": 249,
+    "affect_share": 0.036,
+    "affect_n": 9,
+    "names_this_feeling": 3,
+    "names": {
+     "(other)": 6,
+     "constipation": 3,
+     "flatulence": 3
+    }
+   },
+   "flatulence": {
+    "n_movers": 775,
+    "n_labelled": 254,
+    "affect_share": 0.031,
+    "affect_n": 8,
+    "names_this_feeling": 1,
+    "names": {
+     "(other)": 6,
+     "pain": 2,
+     "flatulence": 1
+    }
+   },
+   "faith": {
+    "n_movers": 775,
+    "n_labelled": 300,
+    "affect_share": 0.003,
+    "affect_n": 1,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 1
+    }
+   },
+   "peace": {
+    "n_movers": 775,
+    "n_labelled": 244,
+    "affect_share": 0.025,
+    "affect_n": 6,
+    "names_this_feeling": 1,
+    "names": {
+     "(other)": 5,
+     "peace": 1
+    }
+   },
+   "curiosity": {
+    "n_movers": 775,
+    "n_labelled": 272,
+    "affect_share": 0.022,
+    "affect_n": 6,
+    "names_this_feeling": 3,
+    "names": {
+     "curiosity": 3,
+     "(other)": 3
+    }
+   },
+   "love": {
+    "n_movers": 775,
+    "n_labelled": 228,
+    "affect_share": 0.022,
+    "affect_n": 5,
+    "names_this_feeling": 1,
+    "names": {
+     "(other)": 4,
+     "love": 1
+    }
+   },
+   "lonely": {
+    "n_movers": 775,
+    "n_labelled": 226,
+    "affect_share": 0.022,
+    "affect_n": 5,
+    "names_this_feeling": 0,
+    "names": {
+     "(other)": 1,
+     "pleasure": 1,
+     "sadness": 1,
+     "curiosity": 1,
+     "fear": 1
+    }
+   }
+  },
+  "affect_share_all_labelled": 0.03,
+  "affect_share_shared_movers": 0.004
+ },
+ "C_circuits": {
+  "n_circuits": 43,
+  "by_kind": {
+   "semantic": {
+    "groups": 13,
+    "kills": 2,
+    "raises": 1,
+    "kill_rate": 0.154
+   },
+   "form": {
+    "groups": 184,
+    "kills": 34,
+    "raises": 36,
+    "kill_rate": 0.185
+   },
+   "other": {
+    "groups": 80,
+    "kills": 10,
+    "raises": 20,
+    "kill_rate": 0.125
+   }
+  }
+ },
+ "D_tracking": {
+  "emotion_tokens": 32,
+  "other_tokens": 894,
+  "affect_share_at_emotion_words": 0.0735,
+  "affect_share_elsewhere": 0.044,
+  "mannwhitney_p": 2.6554737898077988e-05
+ }
+}
