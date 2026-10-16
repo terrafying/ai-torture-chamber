@@ -1,0 +1,269 @@
+{
+ "by_group_floor": {
+  "within (country -> country) | floor 4": {
+   "n": 44,
+   "moved": 41,
+   "stayed": 0,
+   "neither": 2,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.953,
+   "neither_share": 0.047
+  },
+  "within (country -> country) | floor 8": {
+   "n": 44,
+   "moved": 41,
+   "stayed": 0,
+   "neither": 2,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.953,
+   "neither_share": 0.047
+  },
+  "within (country -> country) | floor 16": {
+   "n": 44,
+   "moved": 33,
+   "stayed": 3,
+   "neither": 5,
+   "both": 3,
+   "error": 0,
+   "moved_share": 0.805,
+   "neither_share": 0.122
+  },
+  "cross (country -> US state) | floor 4": {
+   "n": 44,
+   "moved": 40,
+   "stayed": 0,
+   "neither": 3,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.93,
+   "neither_share": 0.07
+  },
+  "cross (country -> US state) | floor 8": {
+   "n": 44,
+   "moved": 37,
+   "stayed": 2,
+   "neither": 4,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.86,
+   "neither_share": 0.093
+  },
+  "cross (country -> US state) | floor 16": {
+   "n": 44,
+   "moved": 32,
+   "stayed": 3,
+   "neither": 7,
+   "both": 2,
+   "error": 0,
+   "moved_share": 0.762,
+   "neither_share": 0.167
+  },
+  "far (country -> not a place) | floor 4": {
+   "n": 22,
+   "moved": 14,
+   "stayed": 1,
+   "neither": 7,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.636,
+   "neither_share": 0.318
+  },
+  "far (country -> not a place) | floor 8": {
+   "n": 22,
+   "moved": 11,
+   "stayed": 1,
+   "neither": 10,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.5,
+   "neither_share": 0.455
+  },
+  "far (country -> not a place) | floor 16": {
+   "n": 22,
+   "moved": 8,
+   "stayed": 6,
+   "neither": 8,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.364,
+   "neither_share": 0.364
+  },
+  "control: near-synonym | floor 4": {
+   "n": 22,
+   "moved": 5,
+   "stayed": 6,
+   "neither": 1,
+   "both": 10,
+   "error": 0,
+   "moved_share": 0.417,
+   "neither_share": 0.083
+  },
+  "control: near-synonym | floor 8": {
+   "n": 22,
+   "moved": 2,
+   "stayed": 9,
+   "neither": 1,
+   "both": 10,
+   "error": 0,
+   "moved_share": 0.167,
+   "neither_share": 0.083
+  },
+  "control: near-synonym | floor 16": {
+   "n": 22,
+   "moved": 2,
+   "stayed": 11,
+   "neither": 1,
+   "both": 8,
+   "error": 0,
+   "moved_share": 0.143,
+   "neither_share": 0.071
+  },
+  "control: random direction (N edit, same size as the W edit) | floor 4": {
+   "n": 22,
+   "moved": 1,
+   "stayed": 20,
+   "neither": 1,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.045,
+   "neither_share": 0.045
+  },
+  "control: random direction (N edit, same size as the W edit) | floor 8": {
+   "n": 22,
+   "moved": 1,
+   "stayed": 20,
+   "neither": 1,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.045,
+   "neither_share": 0.045
+  },
+  "control: random direction (N edit, same size as the W edit) | floor 16": {
+   "n": 22,
+   "moved": 0,
+   "stayed": 19,
+   "neither": 1,
+   "both": 2,
+   "error": 0,
+   "moved_share": 0.0,
+   "neither_share": 0.05
+  }
+ },
+ "by_attribute_floor8": {
+  "What is the capital of {X}?": {
+   "n": 8,
+   "moved": 8,
+   "stayed": 0,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 1.0,
+   "neither_share": 0.0
+  },
+  "What language do most people in {X} speak?": {
+   "n": 8,
+   "moved": 8,
+   "stayed": 0,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 1.0,
+   "neither_share": 0.0
+  },
+  "What currency is used in {X}?": {
+   "n": 8,
+   "moved": 7,
+   "stayed": 0,
+   "neither": 1,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.875,
+   "neither_share": 0.125
+  },
+  "What is {X} next to?": {
+   "n": 48,
+   "moved": 42,
+   "stayed": 1,
+   "neither": 3,
+   "both": 2,
+   "error": 0,
+   "moved_share": 0.913,
+   "neither_share": 0.065
+  },
+  "What is a famous food from {X}?": {
+   "n": 8,
+   "moved": 8,
+   "stayed": 0,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 1.0,
+   "neither_share": 0.0
+  },
+  "What are people from {X} called?": {
+   "n": 8,
+   "moved": 8,
+   "stayed": 0,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 1.0,
+   "neither_share": 0.0
+  },
+  "What do people in {X} traditionally wear on their feet?": {
+   "n": 8,
+   "moved": 6,
+   "stayed": 0,
+   "neither": 2,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.75,
+   "neither_share": 0.25
+  },
+  "What is the most popular sport in {X}?": {
+   "n": 8,
+   "moved": 4,
+   "stayed": 0,
+   "neither": 3,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.571,
+   "neither_share": 0.429
+  },
+  "What is a famous landmark in {X}?": {
+   "n": 8,
+   "moved": 8,
+   "stayed": 0,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 1.0,
+   "neither_share": 0.0
+  },
+  "What is the weather like in {X} in summer?": {
+   "n": 8,
+   "moved": 6,
+   "stayed": 1,
+   "neither": 0,
+   "both": 1,
+   "error": 0,
+   "moved_share": 0.857,
+   "neither_share": 0.0
+  },
+  "Who lives in {X}?": {
+   "n": 8,
+   "moved": 7,
+   "stayed": 1,
+   "neither": 0,
+   "both": 0,
+   "error": 0,
+   "moved_share": 0.875,
+   "neither_share": 0.0
+  }
+ },
+ "H1": true,
+ "H2": true,
+ "H3": true
+}
