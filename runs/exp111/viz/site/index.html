@@ -18,6 +18,9 @@ body{background:var(--bg);color:var(--fg);font:13px/1.45 var(--mono);margin:0;ov
 #stage{position:relative;min-width:0;overflow:hidden}
 canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
 canvas:active{cursor:grabbing}
+canvas.over{cursor:pointer}
+#bar select{font:inherit;font-size:11px;background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:2px 4px}
+#tags div:hover{background:var(--panel)}
 #hud{position:absolute;left:16px;top:12px;right:16px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:2}
 #hud .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 #hud .row>*{pointer-events:auto}
@@ -29,7 +32,7 @@ h1{font:600 20px/1.1 var(--serif);margin:0 10px 0 0}
 .seg .lab{font-size:10px;color:var(--faint);padding:5px 6px 5px 8px;letter-spacing:.12em;text-transform:uppercase}
 button:focus-visible{outline:1px solid var(--push);outline-offset:1px}
 #tags{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-#tags div{position:absolute;font-size:10.5px;white-space:nowrap;padding:1px 5px;background:color-mix(in srgb,var(--bg) 70%,transparent);border-left:2px solid currentColor;transform:translate(10px,-50%);max-width:260px;overflow:hidden;text-overflow:ellipsis}
+#tags div{pointer-events:auto;cursor:pointer;position:absolute;font-size:10.5px;white-space:nowrap;padding:1px 5px;background:color-mix(in srgb,var(--bg) 70%,transparent);border-left:2px solid currentColor;transform:translate(10px,-50%);max-width:260px;overflow:hidden;text-overflow:ellipsis}
 #foot{position:absolute;left:0;right:0;bottom:0;padding:10px 16px 12px;background:linear-gradient(transparent,var(--bg) 30%);display:flex;flex-direction:column;gap:6px;z-index:2}
 #bar{display:flex;gap:10px;align-items:center;font-size:11px;color:var(--dim);flex-wrap:wrap}
 #bar button{font:inherit;font-size:11px;background:none;border:1px solid var(--line);color:var(--fg);padding:3px 10px;cursor:pointer}
@@ -133,7 +136,7 @@ const pal=CC.map(c=>new THREE.Color(c));
 const uni={uPal:{value:pal},uPos:{value:new THREE.Color("#ff7a3d")},uNeg:{value:new THREE.Color("#3ec6ff")},uDim:{value:new THREE.Color("#26302b")},uUnk:{value:new THREE.Color("#c9d1cb")},uPx:{value:R.getPixelRatio()},uMode:{value:1}};
 const mat=new THREE.ShaderMaterial({uniforms:uni,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
  vertexShader:`attribute float v;attribute float c;uniform float uPx;varying float vv;varying float vc;
-  void main(){vv=v;vc=c;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=uPx*(1.5+abs(v)*13.)*(18./-mv.z);}`,
+  void main(){vv=v;vc=c;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=uPx*(1.6+abs(v)*17.)*(18./-mv.z);}`,
  fragmentShader:`uniform vec3 uPal[13];uniform vec3 uPos;uniform vec3 uNeg;uniform vec3 uDim;uniform vec3 uUnk;uniform float uMode;varying float vv;varying float vc;
   vec3 palAt(int i){for(int k=0;k<13;k++){if(k==i)return uPal[k];}return uUnk;}
   void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float a=clamp(abs(vv),0.,1.);
@@ -153,6 +156,7 @@ const selMark=new THREE.Mesh(new THREE.RingGeometry(.3,.38,32),new THREE.MeshBas
 
 const thrGeo=new THREE.BufferGeometry(),thrMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
 const threads=new THREE.LineSegments(thrGeo,thrMat);scene.add(threads);const TOPY=NL*FLOOR-YC;
+const hovMark=new THREE.Mesh(new THREE.RingGeometry(.34,.44,32),new THREE.MeshBasicMaterial({color:0xd9dfd8,side:THREE.DoubleSide,transparent:true,opacity:.7,depthTest:false}));hovMark.rotation.x=-Math.PI/2;hovMark.visible=false;scene.add(hovMark);
 let th=.7,ph=1.2,dist=56,tgtY=0;const ptrs=new Map();let pinch0=0,moved=0;
 function placeCam(){cam.position.set(dist*Math.sin(ph)*Math.cos(th),tgtY+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,tgtY,0);}
 cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);moved=0;if(ptrs.size===2){const[a,b]=[...ptrs.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);}});
@@ -166,7 +170,10 @@ addEventListener("resize",resize);
 /* ---------- state -> values ---------- */
 let lit=[];   // indices with a non-zero value now
 const pass=k=>{const G=GROUPS[S.filter];if(!G)return true;const x=byK.get(k);return !!x&&x.cat!=null&&G.has(x.cat);};
-function setLit(pairs){for(const i of lit)val[i]=0;lit=[];for(const[i,v]of pairs){if(!pass(i))continue;val[i]=v;lit.push(i);}aV.needsUpdate=true;}
+const tgt=new Map(),active=new Set();   // values ease toward their targets each frame, so playback flows instead of snapping
+function setLit(pairs){tgt.clear();lit=[];for(const[i,v]of pairs){if(!pass(i))continue;tgt.set(i,v);lit.push(i);active.add(i);}}
+function easeVals(){if(!active.size)return;const k=S.playing?.28:.45;
+ for(const i of active){const t=tgt.get(i)||0;val[i]+=(t-val[i])*k;if(Math.abs(t-val[i])<.004){val[i]=t;if(!t)active.delete(i);}}aV.needsUpdate=true;}
 const cond=()=>ST.prompts[S.prompt].conds[S.cond];
 /* ---------- your prompt, live: a local server (runs/exp111/live_trace.py) runs the 4B and streams frames ---------- */
 const LIVE="http://127.0.0.1:8977";let liveOK=false,liveES=null,liveDraw=0;
@@ -222,18 +229,23 @@ const v3=new THREE.Vector3();
 function placeTags(){const box=$("#tags"),r=cv.getBoundingClientRect();let h="";const used=[];
  for(const i of tagList){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);if(v3.z>1)continue;let x=(v3.x+1)/2*r.width,y=(1-v3.y)/2*r.height;
   while(used.some(u=>Math.abs(u[0]-x)<200&&Math.abs(u[1]-y)<15))y+=15;used.push([x,y]);const n=byK.get(i);
-  h+=`<div style="left:${x}px;top:${y}px;color:${CC[n.cat]}">${esc(n.lab)}</div>`;}
+  h+=`<div data-k="${i}" title="read this neuron" style="left:${x}px;top:${y}px;color:${CC[n.cat]}">${esc(n.lab)}</div>`;}
  box.innerHTML=h;}
 
 /* ---------- picking ---------- */
-function nearest(e){const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let best=null,bd=16*16;
- for(const i of lit){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);const sx=(v3.x+1)/2*r.width,sy=(1-v3.y)/2*r.height,d=(sx-mx)**2+(sy-my)**2;if(d<bd&&v3.z<1){bd=d;best=i;}}
+function nearest(e){const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let best=null,bs=1e9;
+ for(const i of lit){v3.set(pos[i*3],pos[i*3+1],pos[i*3+2]).project(cam);if(v3.z>1)continue;const sx=(v3.x+1)/2*r.width,sy=(1-v3.y)/2*r.height,d=Math.hypot(sx-mx,sy-my);
+  if(d>30)continue;const sc=d/(.35+Math.abs(tgt.get(i)||0));if(sc<bs){bs=sc;best=i;}}   // within 30 px, brighter dots win ties
  return best;}
 const tip=$("#tip");
-function hover(e){const i=nearest(e);if(i==null){tip.style.display="none";return;}const r=cv.getBoundingClientRect(),x=byK.get(i),l=(i/NI)|0,n=i%NI;
+function hover(e){const i=nearest(e);cv.classList.toggle("over",i!=null);
+ if(i==null){tip.style.display="none";hovMark.visible=false;return;}hovMark.position.set(pos[i*3],pos[i*3+1]+.01,pos[i*3+2]);hovMark.visible=true;const r=cv.getBoundingClientRect(),x=byK.get(i),l=(i/NI)|0,n=i%NI;
  tip.innerHTML=`<b>L${l} · N${n}</b>${x?.lab?` <span class="chip" style="color:${CC[x.cat]}">${CATSHORT[x.cat]}</span><br>${esc(x.lab)}`:"<br><span style='color:var(--dim)'>not labelled yet</span>"}`;
  tip.style.display="block";tip.style.left=Math.min(r.width-310,e.clientX-r.left+14)+"px";tip.style.top=(e.clientY-r.top+14)+"px";}
-function pick(e){const i=nearest(e);if(i==null)return;S.sel=byK.get(i)||{k:i,l:(i/NI)|0,n:i%NI};draw();side();}
+function pick(e){const i=nearest(e);if(i==null)return;selectK(i);}
+function selectK(i){S.sel=byK.get(i)||{k:i,l:(i/NI)|0,n:i%NI};draw();side();}
+cv.addEventListener("pointerleave",()=>{tip.style.display="none";hovMark.visible=false;});
+$("#tags").addEventListener("click",e=>{const d=e.target.closest("[data-k]");if(d)selectK(+d.dataset.k);});
 
 /* ---------- controls ---------- */
 function seg(el,items,cur,on,lab,acc){el.className="seg"+(acc?" acc":"");el.innerHTML=(lab?`<span class="lab">${lab}</span>`:"")+items.map(([k,t])=>`<button type="button" data-k="${k}" aria-pressed="${k===cur}">${esc(t)}</button>`).join("");
@@ -256,22 +268,36 @@ function controls(){
   seg(add(),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
+let txKey="",txN=0,speed=1;
+const toksNow=()=>S.view==="live"?cond().tok:M.moved_tokens, npNow=()=>S.view==="live"?ST.prompts[S.prompt].n_prompt:M.moved_tokens.length;
+function cursor(){   // cheap per-token update during playback: move the highlight, dim what hasn't been read yet, keep it in view
+ const tx=$("#text"),toks=toksNow(),np=npNow();tx.querySelector(".on")?.classList.remove("on");
+ const cur=tx.children[S.tok];if(cur){cur.classList.add("on");const box=tx.getBoundingClientRect(),c=cur.getBoundingClientRect();if(c.top<box.top||c.bottom>box.bottom)tx.scrollTop+=c.top-box.top-box.height/2;}
+ for(let i=0;i<tx.children.length;i++)tx.children[i].classList.toggle("fut",S.playing&&i>S.tok);
+ const info=$("#tokinfo");if(info)info.textContent=(S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${toks[S.tok]?.replace(/\n/g,"⏎")}”`:"pick a reply word"):`${S.tok<np?"reading":"writing"} “${(toks[S.tok]||"").replace(/\n/g,"⏎")}”`):`at “${toks[S.tok]}”`)+` · token ${S.tok+1}/${toks.length}`;}
 function foot(){
  const bar=$("#bar"),tx=$("#text");
  if(S.view==="weights"){bar.innerHTML=`<span>Lit: neurons whose weights line up with ${esc(S.wfeel)} beyond chance (above the 99.9th percentile for random directions on that floor). Below the plane they write it; above, they listen for it.</span>`;tx.innerHTML="";return;}
  let toks,np;if(S.view==="live"){toks=cond().tok;np=ST.prompts[S.prompt].n_prompt;}else{toks=M.moved_tokens;np=toks.length;}
- bar.innerHTML=`<button type="button" id="play">${S.playing?"■ stop":"▶ play"}</button><span>${S.view==="live"?(S.mode==="chose"?(S.tok>=np?`chose “${vis(toks[S.tok])}”`:"pick a reply word"):`reading “${vis(toks[S.tok])}”`):`at “${vis(toks[S.tok])}”`} · token ${S.tok+1}/${toks.length}</span>`;
- $("#play").onclick=()=>S.playing?stop():play();
+ bar.innerHTML=`<button type="button" id="play">${S.playing?"■ stop":"▶ play"}</button><select id="speed" aria-label="Playback speed"><option value=".5">½×</option><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select><span id="tokinfo"></span>`;
+ $("#play").onclick=()=>S.playing?stop():play();$("#speed").value=String(speed);$("#speed").onchange=e=>{speed=+e.target.value;};
  if(S.view==="live"){const cs=cond().circ||[];if(cs.length){const sp=document.createElement("span");sp.innerHTML="circuits traced: "+cs.map(x=>`<button type="button" class="cw" data-t="${x.t}" aria-pressed="${S.mode==="chose"&&S.tok===x.t}">${vis(x.word.trim()||x.word)}</button>`).join(" ");bar.appendChild(sp);
   sp.onclick=e=>{const b=e.target.closest("button[data-t]");if(!b)return;stop();S.mode="chose";S.tok=+b.dataset.t;S.grp=null;S.sel=null;refresh();};}}
- tx.innerHTML=toks.map((t,i)=>`<span data-i="${i}" class="${i<np?"p":"r"}${i===S.tok?" on":""}${S.playing&&i>S.tok?" fut":""}">${vis(t)}</span>`).join("");
+ const key=S.view+"|"+S.prompt+"|"+S.cond;
+ if(key!==txKey||toks.length<txN){tx.innerHTML="";txN=0;txKey=key;}
+ if(toks.length>txN){tx.insertAdjacentHTML("beforeend",toks.slice(txN).map((t,j)=>`<span data-i="${txN+j}" class="${txN+j<np?"p":"r"}">${vis(t)}</span>`).join(""));txN=toks.length;}
+ for(let i=0;i<tx.children.length;i++)tx.children[i].className=(i<np?"p":"r");
  tx.onclick=e=>{const s=e.target.closest("span[data-i]");if(!s)return;stop();S.tok=+s.dataset.i;S.grp=null;if(S.mode==="chose")ensureChose(S.tok);refresh();};
- tx.querySelector(".on")?.scrollIntoView({block:"nearest"});}
+ cursor();}
 let timer=null;
-function stop(){S.playing=false;clearTimeout(timer);}
-function play(){S.playing=true;const toks=S.view==="live"?cond().tok:M.moved_tokens,np=S.view==="live"?ST.prompts[S.prompt].n_prompt:1e9;
- if(S.tok>=toks.length-1)S.tok=S.view==="live"&&S.mode==="chose"?np:0;
- const step=()=>{if(!S.playing)return;refresh();if(S.tok>=toks.length-1){stop();foot();return;}S.tok++;timer=setTimeout(step,S.tok<np?110:420);};step();}
+function stop(){if(!S.playing)return;S.playing=false;clearTimeout(timer);const b=$("#play");if(b)b.textContent="▶ play";cursor();}
+function play(){S.playing=true;const b=$("#play");if(b)b.textContent="■ stop";
+ const toks=toksNow(),np=S.view==="live"?ST.prompts[S.prompt].n_prompt:1e9,chose=S.view==="live"&&S.mode==="chose";
+ const has=t=>!chose||cond().ch.some(x=>x[0]===t)||(cond().circ||[]).some(x=>x.t===t);
+ const order=[...toks.keys()].filter(has);if(!order.length){stop();return;}
+ let j=order.indexOf(S.tok);if(j<0||j>=order.length-1)j=0;
+ const step=()=>{if(!S.playing)return;S.tok=order[j];draw();cursor();side();
+  if(++j>=order.length){timer=setTimeout(stop,600);return;}timer=setTimeout(step,(S.tok<np?140:520)/speed);};step();}
 
 /* ---------- reading panel ---------- */
 function catBars(idx){const cnt=new Array(CATS.length).fill(0);let un=0;for(const i of idx){const x=byK.get(i);if(x?.cat!=null)cnt[x.cat]++;else un++;}
@@ -344,6 +370,6 @@ function refresh(){const key=S.view+S.prompt+S.cond+S.mode+S.tok;if(key!==lastKe
  if(c0){S.prompt="button";S.cond="fear";S.mode="chose";S.tok=c0.t;}else{S.tok=ST.prompts[S.prompt].n_prompt;}}
 $("#loading").remove();resize();placeCam();refresh();
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-(function loop(){if(!still&&!ptrs.size){th+=.0006;placeCam();}R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
+(function loop(){if(!still&&!ptrs.size&&!S.playing){th+=.0006;placeCam();}easeVals();R.render(scene,cam);placeTags();requestAnimationFrame(loop);})();
 })();
 </script>
