@@ -1,0 +1,29 @@
+{
+ "exp": "exp113",
+ "title": "Hidden-factor polysemanticity: neurons whose strong firings look unrelated until one factor explains them",
+ "written": "2026-10-16, before the corpus pass",
+ "why": "The Neuron Tower's blind labels describe one idea per neuron, and the 'already clean' view says most neuron poles are monosemantic. Some neurons fire strongly on texts that look unrelated. We want the ones where a hidden shared factor (not the topic, not the same token) explains all of it, verified on fresh text, for the tower's puzzle view.",
+ "model": "Qwen/Qwen3-4B, bf16, MPS; MLP neurons (down_proj inputs), positive pole only",
+ "design": {
+  "corpus": "the 1,600 cached FineWeb-Edu documents of the tower's corpus profile (corpus_ids.json, ~409k tokens)",
+  "examples": "per neuron, its top 32 positive firings, at most one per document (the document's max); a firing is strong if >= 0.30 x the neuron's corpus max",
+  "eligible": "neurons with >= 12 strong firings among their top 32",
+  "context": "24 tokens before + the firing token + 6 after, decoded",
+  "embedder": "sentence-transformers/all-MiniLM-L6-v2 (fixed; it stands in for 'what a reader sees')",
+  "clusters": "agglomerative clustering of the strong firings' contexts, average linkage on cosine distance, cut at 0.70",
+  "multi_cluster": ">= 2 clusters with >= 4 members each, and the two largest clusters' centroids have cosine similarity < 0.30",
+  "same_token": "the most common firing token (stripped, lowercased) accounts for >= 50% of strong firings",
+  "script_filter": "excluded: neurons whose blind label category is language/script, or whose strong firing tokens are >= 30% non-Latin script (the embedder treats scripts as far apart)",
+  "candidates": "multi-cluster, not same-token, not script-filtered; ranked by (1 - centroid similarity) x mean strong-firing value / max; the top 40 go to the factor hunt",
+  "factor_hunt": "anthropic/claude-sonnet-4.5 sees the clusters (contexts with the firing token marked), not the label, and proposes up to 3 hidden factors that would explain every cluster, each with a one-line test recipe",
+  "factor_test": "a separate call (anthropic/claude-sonnet-4.5), given only the factor and the cluster topics, writes 6 POSITIVES (the factor, in topics unlike any cluster), 6 NEAR-MISS A (each positive minimally edited to remove the factor) and 6 NEAR-MISS B (texts on each cluster's topic without the factor). Fires = max activation over the text >= 0.30 x corpus max, as in exp111 eval check A.",
+  "verified": "positives fire >= 4/6 AND near-miss A fire <= 1/6 AND near-miss B fire <= 1/6"
+ },
+ "hypotheses": {
+  "H1": "Base rate: >= 10% of eligible neurons are multi-cluster (descriptive check of 'already clean' on the 4B; reported with the same-token and script-filtered splits).",
+  "H2": "Of the 40 candidates, >= 25% (10) have at least one verified hidden factor.",
+  "H3": "Exploratory, no prediction: the kinds of verified factors (form: sound, spelling, number pattern, position; structure: syntactic role, discourse move; semantic: a shared abstract property)."
+ },
+ "decision_rule": "H1 and H2 are judged on the fixed thresholds above; nothing is re-tuned after seeing results. Neurons that fail stay in the results as 'resists explanation'.",
+ "outputs": "runs/exp113/gallery.json (clusters, firing tokens, proposed factors, every test text with its activation, verdict) feeds the tower's puzzle view and promo; raw top-32 in ~/repos/research/neuron_tower_data/4b/top32.npz"
+}
