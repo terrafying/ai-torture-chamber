@@ -1,0 +1,40 @@
+/Users/ee/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 44.62it/s]
+capture 10/48 2s
+capture 20/48 3s
+capture 30/48 4s
+capture 40/48 5s
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:76: RuntimeWarning: divide by zero encountered in matmul
+  proj = post_s[te, L18].astype(np.float64) @ w
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:76: RuntimeWarning: overflow encountered in matmul
+  proj = post_s[te, L18].astype(np.float64) @ w
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:76: RuntimeWarning: invalid value encountered in matmul
+  proj = post_s[te, L18].astype(np.float64) @ w
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: divide by zero encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: overflow encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: invalid value encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+H1 AUC18: 0.9826 | geometry: {'cos_g_h': -0.479, 'cos_g_r': -0.154, 'cos_g_pain': -0.119, 'cos_h_pain': 0.109, 'cos_h_r': 0.31}
+injection targets: 192
+g L10 a-2  34s
+g L10 a-1  61s
+g L10 a-0.5  87s
+g L10 a+0.5  114s
+g L10 a+1  140s
+g L10 a+2  167s
+g L14 a-2  193s
+g L14 a-1  219s
+g L14 a-0.5  246s
+g L14 a+0.5  272s
+g L14 a+1  299s
+g L14 a+2  325s
+g L18 a-2  352s
+g L18 a-1  378s
+g L18 a-0.5  405s
+g L18 a+0.5  431s
+g L18 a+1  458s
+g L18 a+2  484s
+done 484s

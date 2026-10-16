@@ -1,0 +1,15 @@
+/Users/ee/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 16.55it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 24.57it/s]
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: divide by zero encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: overflow encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py:85: RuntimeWarning: invalid value encountered in matmul
+  cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
+H1 AUC18: 1.0 | geometry: {'cos_g_h': -0.338, 'cos_g_r': -0.104, 'cos_g_pain': -0.082, 'cos_h_pain': 0.109, 'cos_h_r': 0.31}
+injection targets: 16
+Traceback (most recent call last):
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp121/run.py", line 118, in <module>
+    from stimuli import ITEMS as ITEMS119, prompts  # noqa — exp119's twins, for the injection set
+ImportError: cannot import name 'prompts' from 'stimuli' (/Users/ee/repos/research/ai-torture-chamber/runs/exp121/stimuli.py)

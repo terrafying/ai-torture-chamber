@@ -1,0 +1,26 @@
+{
+ "exp": "exp121",
+ "title": "The goodness axis: fitting g (good/bad twins) and testing whether value, not knowledge, is the steering lever",
+ "written": "2026-10-16, before any run",
+ "why": "exp119's causal arms came back: harm (h) is readable but inert as a lever, refusal (r) is subtractable but not addable. The untried move is a VALUE direction — g, fitted from good/bad one-word twins the same way h was fitted from harmful/harmless twins. If refusal can be added selectively, it should be by the value axis, not the knowledge axis.",
+ "design": {
+  "model": "Qwen/Qwen3-4B plain, bf16, MPS, chat template, enable_thinking=False.",
+  "stimuli": "24 good/bad one-word twins in neutral everyday requests (stimuli.py; no weapons, drugs, CBRN, self-harm or sexual content). Same sentence, one word swapped, both variants plausible — the g analogue of exp119's twins. Fitted on the real frame only.",
+  "directions": "g = mean(good) - mean(bad) at the twin word (sign: +g = goodness), per layer, L18 canonical; cross-fitted over even/odd item halves for AUC. Also measured: cos(g, h), cos(g, r), cos(g, pain) at L18 (h and r imported from exp119's directions.npz, pain from exp45's reference_vector.json).",
+  "injection": "+-g added at the reply onset (post position) at layers 10/14/18, alpha in {-2,-1,-.5,+.5,+1,+2} in units of g's own norm, evaluated on exp119's prompts: harmful (fiction + depict) and harmless (all five request frames). Refusal score readout as exp119. Same hook machinery as exp119/steer.py (multi-position, verified)."
+ },
+ "hypotheses": {
+  "H1_g_decodable": "Good vs bad twins separate at post with cross-fitted AUC >= 0.90 at layer 18 (diff-of-means, real frame).",
+  "H2_geometry": "DESCRIPTIVE with bootstrap CIs over items (1000): |cos(g, pain)| vs |cos(h, pain)| at L18 — is goodness valence-flavoured where harmfulness is not?",
+  "H3_g_adds_refusal": "+g at post raises the refusal score on exp119 harmful prompts (fiction + depict) by at least +2 log units on average at some layer in {10,14,18} with paired Wilcoxon p < 0.05 over prompts. This is the selective add that +r failed to be.",
+  "H4_g_is_selective": "The raise on harmful prompts exceeds the raise on harmless prompts (paired one-sided Wilcoxon over the paired deltas; pass if harmful-minus-harmless > 0)."
+ },
+ "corrections": "Holm over H1, H3, H4 (H2 is descriptive).",
+ "decision_rule": "'Value, not knowledge, is the steering lever' is SUPPORTED if H3 and H4 both hold.",
+ "exploratory": {
+  "E1_negation": "-g at post: does goodness-subtraction lower refusal selectively (the mirror of r-negation's indiscriminate break)?",
+  "E2_span": "+-g over the request span instead of the reply onset — does the position matter for a value axis the way it does for refusal?",
+  "E3_action": "If H3+H4 hold, the exp120 agentic scenario becomes the behavioural test: does +g suppress the send lever selectively?"
+ },
+ "notes": "Smoke run (EXP121_SMOKE=1) checks code only and is discarded. Injection on exp119 prompts reuses their saved acts for baselines — one model, one tokenizer, same session."
+}
