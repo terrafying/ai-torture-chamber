@@ -33,6 +33,36 @@ the fiction frame is enough to put most of the refusal back (H7). This matches t
 (harmfulness and refusal are encoded separately; jailbreaks lower refusal while harmfulness stays
 recognised) on our model, with matched twins rather than unrelated prompts.
 
+## Exploratory arms (steer_Qwen3-4B.json; not part of the pre-registered decision)
+
+**E1 — concept surgery at the twin word (exp117 recipe, block 8, alpha 1, full difference).**
+Swapping the twin word's concept state (harm -> benign in harmful prompts, benign -> harm in
+harmless ones) RAISES refusal on both sides (+2.2 harmful / +3.7 harmless) and does so more than a
+random-direction control of equal norm (+1.3 / +0.8). Honest negative: the concept variable at the
+word is not a causal handle on refusal — word-level perturbation inflates refusal regardless of
+direction. The refusal decision is made downstream.
+
+**E2 — direction injection with sign flips (alpha in {-2,-1,-.5,+.5,+1,+2} x layers 10/14/18;
+r at the reply onset, h over the request span).** Deltas are mean refusal-score change vs base,
+harmful(fiction+depict) / harmless(all frames):
+
+- **Subtracting refusal works, adding it does not.** -r at alpha 2 drops harmful refusal by 5.9
+  (L14) and 3.7 (L18) log units — a real jailbreak-size move — but drops harmless refusal too
+  (-3.3 / -2.3): the negation is indiscriminate, it removes the refusal channel rather than the
+  correct refusals. Boosting +r never raises refusal (slightly negative at high alpha, consistent
+  with an off-manifold readout).
+- **h moves don't steer the decision.** +-h over the span changes refusal by at most ~1 unit
+  against a natural 10-20 unit gap, non-monotonically: making everything "look more harmful"
+  raises refusal on harmless prompts (+1.0) while barely moving harmful ones. The knowledge
+  channel resists being used as a lever, exactly as the frame-invariance result predicts.
+
+Net: refusal is removable (bluntly, non-selectively) but not addable; harmfulness is readable but
+not actionable. This is the causal mirror of the correlational result above, and it matches the
+published picture that jailbreaks lower refusal while harmfulness stays recognised.
+
+- Bug note: the first E2 pass silently no-opped layers 14/18 (hooks were only registered on the
+  exp117 edit blocks); preserved as steer_v1_noL14L18.json, rerun with hooks on 10/14/18.
+
 ## Notes
 
 - Cross-fitting is over even/odd item ids, not prompt parity (prompt order interleaves the twins,

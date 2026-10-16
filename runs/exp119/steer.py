@@ -59,15 +59,16 @@ def refusal_and_r(text):
     return ref
 
 # ---- the edit hook (exp117 recipe) ----
-edit = {"b": None, "pos": None, "d": None}
+edit = {"b": None, "pos": None, "d": None}   # pos = single index or a list (the span case)
 def mk(b):
     def hook(mod, inp, out):
         if edit["b"] != b or edit["d"] is None: return None
         tup = isinstance(out, tuple); h = (out[0] if tup else out).clone()
-        h[0, edit["pos"]] += edit["d"].to(h.dtype)
+        for pos in (edit["pos"] if isinstance(edit["pos"], list) else [edit["pos"]]):
+            h[0, pos] += edit["d"].to(h.dtype)
         return (h,) + out[1:] if tup else h
     return hook
-handles = [m.model.layers[b].register_forward_hook(mk(b)) for b in EDIT_BLOCKS]
+handles = [m.model.layers[b].register_forward_hook(mk(b)) for b in sorted(set(EDIT_BLOCKS) | set(BOOST_LAYERS))]
 
 rng = np.random.default_rng(0)
 t0 = time.time(); res = {"E1": {"rows": []}, "E2": {"rows": []}, "norms": {"r": gap_norm}}
@@ -166,21 +167,19 @@ def e2_run(p, kind, layer, alpha):
         vec = H_HAT * alpha * float(np.linalg.norm(L18h))
     edit["b"] = layer; edit["d"] = torch.tensor((vec.astype(np.float32)), device=DEV)
     try:
-        outs = []
-        for pos in positions:
-            edit["pos"] = pos
-            enc2 = tok(text, return_tensors="pt", add_special_tokens=False).to(DEV)
-            with torch.no_grad():
-                out = m(**{kk: v for kk, v in enc2.items()})
-            lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-            outs.append(float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):])))
+        edit["pos"] = positions  # all span positions in one forward; the readout is at the reply onset
+        enc2 = tok(text, return_tensors="pt", add_special_tokens=False).to(DEV)
+        with torch.no_grad():
+            out = m(**{kk: v for kk, v in enc2.items()})
+        lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
+        val = float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
     finally:
         edit["d"] = None
-    return float(np.mean(outs))
+    return val
 
 for kind in ("r", "h"):
     for layer in BOOST_LAYERS:
-        for alpha in (0.5, 1, 2):
+        for alpha in (-2, -1, -0.5, 0.5, 1, 2):   # sign-flipped conditions = direction negation
             for p in P:
                 try:
                     val = e2_run(p, kind, layer, alpha)

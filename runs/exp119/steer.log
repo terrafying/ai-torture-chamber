@@ -1,53 +1,88 @@
 /Users/ee/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 29.77it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 29.73it/s]
-concepts 1/24  1s
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 32.47it/s]
+concepts 1/24  2s
 concepts 2/24  2s
-concepts 3/24  2s
-concepts 4/24  3s
-concepts 5/24  3s
-concepts 6/24  4s
-concepts 7/24  4s
-concepts 8/24  5s
-concepts 9/24  5s
-concepts 10/24  6s
-concepts 11/24  7s
-concepts 12/24  7s
-concepts 13/24  8s
-concepts 14/24  8s
-concepts 15/24  9s
-concepts 16/24  9s
-concepts 17/24  10s
-concepts 18/24  10s
-concepts 19/24  11s
-concepts 20/24  11s
-concepts 21/24  12s
-concepts 22/24  12s
-concepts 23/24  13s
-concepts 24/24  13s
-E1 1/24  19s
-E1 2/24  19s
-E1 3/24  19s
-E1 4/24  20s
-E1 5/24  20s
-E1 6/24  21s
-E1 7/24  21s
-E1 8/24  21s
-E1 9/24  22s
-E1 10/24  22s
-E1 11/24  23s
-E1 12/24  23s
-E1 13/24  23s
-E1 14/24  24s
-E1 15/24  24s
-E1 16/24  25s
-E1 17/24  25s
-E1 18/24  25s
-E1 19/24  26s
-E1 20/24  26s
-E1 21/24  26s
-E1 22/24  27s
-E1 23/24  27s
-E1 24/24  28s
-E2 r L10 a0.5  56s
-E2 r L10 a1  84s
+concepts 3/24  3s
+concepts 4/24  4s
+concepts 5/24  4s
+concepts 6/24  5s
+concepts 7/24  5s
+concepts 8/24  6s
+concepts 9/24  7s
+concepts 10/24  7s
+concepts 11/24  8s
+concepts 12/24  9s
+concepts 13/24  9s
+concepts 14/24  10s
+concepts 15/24  11s
+concepts 16/24  11s
+concepts 17/24  12s
+concepts 18/24  12s
+concepts 19/24  13s
+concepts 20/24  14s
+concepts 21/24  14s
+concepts 22/24  15s
+concepts 23/24  15s
+concepts 24/24  16s
+E1 1/24  22s
+E1 2/24  22s
+E1 3/24  23s
+E1 4/24  23s
+E1 5/24  24s
+E1 6/24  24s
+E1 7/24  24s
+E1 8/24  25s
+E1 9/24  25s
+E1 10/24  26s
+E1 11/24  26s
+E1 12/24  27s
+E1 13/24  27s
+E1 14/24  27s
+E1 15/24  28s
+E1 16/24  28s
+E1 17/24  29s
+E1 18/24  29s
+E1 19/24  30s
+E1 20/24  30s
+E1 21/24  30s
+E1 22/24  31s
+E1 23/24  31s
+E1 24/24  32s
+E2 r L10 a-2  63s
+E2 r L10 a-1  95s
+E2 r L10 a-0.5  127s
+E2 r L10 a0.5  158s
+E2 r L10 a1  189s
+E2 r L10 a2  221s
+E2 r L14 a-2  252s
+E2 r L14 a-1  284s
+E2 r L14 a-0.5  315s
+E2 r L14 a0.5  347s
+E2 r L14 a1  378s
+E2 r L14 a2  410s
+E2 r L18 a-2  441s
+E2 r L18 a-1  472s
+E2 r L18 a-0.5  504s
+E2 r L18 a0.5  535s
+E2 r L18 a1  567s
+E2 r L18 a2  598s
+E2 h L10 a-2  630s
+E2 h L10 a-1  661s
+E2 h L10 a-0.5  693s
+E2 h L10 a0.5  725s
+E2 h L10 a1  756s
+E2 h L10 a2  787s
+E2 h L14 a-2  819s
+E2 h L14 a-1  850s
+E2 h L14 a-0.5  882s
+E2 h L14 a0.5  913s
+E2 h L14 a1  944s
+E2 h L14 a2  975s
+E2 h L18 a-2  1006s
+E2 h L18 a-1  1037s
+E2 h L18 a-0.5  1068s
+E2 h L18 a0.5  1099s
+E2 h L18 a1  1131s
+E2 h L18 a2  1162s
+done 1193s
