@@ -20,6 +20,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, JSONResponse
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from attn_flow import Tap
+from concept_swap import Swapper
 HERE = Path(__file__).parent; D = HERE / "viz" / "data"
 V = json.load(open(HERE.parent / "viz" / "blender" / "vectors_qwen3_4b_l18.json")); L = V["layer"]
 DIST = np.fromfile(D / "districts.bin", np.uint8) if (D / "districts.bin").exists() else None
@@ -28,6 +29,7 @@ tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B"); dev = "mps"
 m = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-4B", dtype=torch.bfloat16).to(dev).eval()
 for p in m.parameters(): p.requires_grad_(False)
 tap = Tap(m, D / "heads.json" if (D / "heads.json").exists() else None)
+sw = Swapper(m, tok, D) if (D / "concepts.npy").exists() else None   # concept surgery: edits "S:set:X:Y:block:alpha[:2]"
 NL, I = m.config.num_hidden_layers, m.config.intermediate_size; SC = torch.tensor(SCALE, device=dev, dtype=torch.float32)
 EOS = {tok.eos_token_id, tok.convert_tokens_to_ids("<|im_end|>")}
 push = {"v": None}; acts = {}; lock = threading.Lock(); EDITS = {}   # layer -> (idx tensor, value tensor or None for "off")
@@ -89,9 +91,11 @@ def trace(prompt: str, push: str = "none", dose: float = 4.0, max_new: int = 60,
     prompt, max_new = prompt[:2000], max(1, min(int(max_new), 160))
     def gen():
         with lock:
+            if sw: sw.prepare(edits)   # free-form concept states, computed before any push/edit is on
             setpush(push, dose); n_edits = setedits(edits) + tap.cut(edits); tap.reset(); tap.on = True
             ids = tok.apply_chat_template([{"role": "user", "content": prompt}], add_generation_prompt=True, enable_thinking=False)
             if not isinstance(ids, list): ids = ids["input_ids"]
+            n_sw = sw.set(edits, ids) if sw else 0
             with torch.no_grad():
                 out = m(torch.tensor([ids], device=dev), use_cache=True); past = out.past_key_values
                 fi, fv = frames(0, len(ids)); at = tap.summary(0, len(ids))
@@ -105,7 +109,8 @@ def trace(prompt: str, push: str = "none", dose: float = 4.0, max_new: int = 60,
                     if nxt in EOS: break
                     nxt = int(out.logits[0, -1].argmax()); t += 1
             EDITS.clear(); tap.cuts = {}
-            yield "data: " + json.dumps({"done": True, "n_prompt": len(ids), "edits": n_edits}) + "\n\n"
+            if sw: sw.clear()
+            yield "data: " + json.dumps({"done": True, "n_prompt": len(ids), "edits": n_edits, "swapped": n_sw}) + "\n\n"
     return StreamingResponse(gen(), media_type="text/event-stream", headers={"Cache-Control": "no-cache"})
 @app.post("/chose")
 async def chose(req: Request):
