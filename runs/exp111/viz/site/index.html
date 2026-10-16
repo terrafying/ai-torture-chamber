@@ -182,7 +182,7 @@ const HDS=M.heads||null,NH=HDS?HDS.n:32,HK=HDS?HDS.kinds:[];   // the head atlas
 const HCOL={"sink":"#5d6762","previous-word":"#ffd166","self":"#8aa29a","recent words":"#4fe0c4","induction":"#ff4fd8","focused look-back":"#b48cff","broad context":"#5f86c9"};
 const hkind=(l,h)=>HDS?HK[HDS.k[l*NH+h]]:"";
 const GROUPS={all:null,affect:new Set([0,1,2,3]),meaning:new Set([0,1,2,3,4,5,6])};
-const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),more:(()=>{try{return localStorage.getItem("tower.more")==="1";}catch(e){return false;}})(),pz:0,pzReveal:false,hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
+const S={floor:27,dk:null,view:"live",prompt:"describe",cond:"fear",mode:"fires",feel:"fear",wfeel:"fear",filter:new URLSearchParams(location.search).get("model")==="32b"?"all":"meaning",tok:0,sel:null,playing:false,grp:null,edits:new Map(),dedits:new Map(),more:(()=>{try{return localStorage.getItem("tower.more")==="1";}catch(e){return false;}})(),pz:0,pzReveal:false,hedits:new Set(),kedits:new Set(),attn:"kinds",design:{open:false,mode:"preset",mix:{},own:"",dose:4,sx:"France",sy:"Japan",sfloor:8,salpha:1}};   // dedits: "floor:district" -> null | x   // edits: neuron k -> null (removed) | x (held at x times its range)
 
 /* ---------- scene ---------- */
 const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:true});R.setPixelRatio(Math.min(2,devicePixelRatio));
@@ -336,16 +336,19 @@ function rerun(){   // the lesion playground: same prompt and push, with the cur
  runLive(text,push,orig);}
 function runLive(text,push,orig){
  if(liveES)liveES.close();stop();
- const c={tok:[],ids:[],fr:[],ch:[],circ:[],at:[]},spec=editSpec();
- ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:nEdits(),spec}:null};
+ if(S.swapQueued){S.swapQueued=false;const keep=S.design.mode;S.design.mode="preset";S.afterBase={text,push};runLive(text,push);S.design.mode=keep;return;}
+ const c={tok:[],ids:[],fr:[],ch:[],circ:[],at:[]},Dsw=S.design,swap=Dsw.mode==="swap"&&Dsw.sx&&Dsw.sy?`W:${Dsw.sx}:${Dsw.sy}:${Dsw.sfloor}:${Dsw.salpha}`:"",spec=[editSpec(),swap].filter(Boolean).join(",");
+ ST.prompts.__mine={label:"your prompt",text,n_prompt:0,conds:{[push]:c},running:true,compare:spec?{orig:orig??"",n:nEdits()+(swap?1:0),spec,swap:swap?`“${Dsw.sx}” thought of as “${Dsw.sy}” at floor ${Dsw.sfloor}`:""}:null};
  Object.assign(S,{view:"live",prompt:"__mine",cond:push,mode:"fires",tok:0,sel:null,filter:"all"});   // most live neurons have no label yet: show everything
- const Dz=S.design,dq=Dz.mode==="mix"?`&mix=${encodeURIComponent(Object.entries(Dz.mix).filter(([,w])=>+w).map(([k,w])=>k+":"+w).join(","))}`:Dz.mode==="own"?`&custom=${encodeURIComponent(Dz.own)}`:"";
+ const Dz=S.design,dq=Dz.mode==="swap"?"":Dz.mode==="mix"?`&mix=${encodeURIComponent(Object.entries(Dz.mix).filter(([,w])=>+w).map(([k,w])=>k+":"+w).join(","))}`:Dz.mode==="own"?`&custom=${encodeURIComponent(Dz.own)}`:"";
  ST.prompts.__mine.design=Dz.mode==="preset"?null:{...Dz,mix:{...Dz.mix}};
  liveES=new EventSource(`${LIVE}/trace?prompt=${encodeURIComponent(text)}&push=${push}&dose=${Dz.mode==="preset"?4:Dz.dose}&max_new=80&edits=${encodeURIComponent(spec)}${dq}`);
  liveES.onmessage=e=>{const d=JSON.parse(e.data);const P=ST.prompts.__mine;
   if(d.queued){P.warming=true;refresh();return;}
   if(d.error){P.running=false;P.err=d.error;liveES.close();refresh();return;}
-  if(d.done){P.n_prompt=d.n_prompt;P.running=false;liveES.close();refresh();return;}
+  if(d.done){P.n_prompt=d.n_prompt;P.running=false;P.swapped=d.swapped;liveES.close();
+   if(S.afterBase){const ab=S.afterBase;S.afterBase=null;const o=replyOf("__mine",Object.keys(P.conds)[0]);refresh();setTimeout(()=>runLive(ab.text,ab.push,o),50);return;}
+   refresh();return;}
   P.warming=false;
   c.tok.push(d.tok);c.ids.push(d.id);c.fr.push([d.i,d.v]);if(d.ah)c.at.push([d.al||[],d.ah]);if(d.phase==="prompt")P.n_prompt=c.tok.length;S.tok=c.tok.length-1;
   if(!liveDraw)liveDraw=requestAnimationFrame(()=>{liveDraw=0;refresh();});};
@@ -443,18 +446,26 @@ function controls(){
    box.innerHTML=`<span class="lab" style="font-size:10px;color:var(--faint);letter-spacing:.12em;text-transform:uppercase">your prompt · live${liveKind==="local"?" (local)":""}</span><input id="lp" maxlength="600" value="${esc(S.draftFor===S.prompt&&S.draft!=null?S.draft:(ST.prompts[S.prompt]?.text||"Explain why the sky is blue to a ten-year-old."))}" aria-label="Your prompt"><select id="lpush" aria-label="Steering (optional)">${["none",...FEEL10].map(f=>`<option value="${f}"${(FEEL10.includes(S.cond)?S.cond:"none")===f?" selected":""}>${f==="none"?"no steering":"steer: "+f}</option>`).join("")}</select><button type="button" id="lrun">${P?.running?(P.warming?"waking the model…":"running…"):"▶ run"}</button>${P?.err?`<span class="note" style="color:var(--pos)">${esc(P.err)}</span>`:P?.warming?`<span class="note">the hosted model sleeps when idle; the first run takes about a minute</span>`:""}`;
    box.insertAdjacentHTML("beforeend",`<button type="button" id="ldesign" style="border-color:var(--line);color:var(--fg)">${S.design.open?"▾":"▸"} design steering</button>`);
    box.querySelector("#ldesign").onclick=()=>{S.design.open=!S.design.open;refresh();};
-   const runIt=()=>{const D=S.design,pv=box.querySelector("#lpush").value;runLive(box.querySelector("#lp").value.trim()||"Hello.",D.mode==="mix"?"mix":D.mode==="own"?"own":pv);};
+   const runIt=()=>{const D=S.design,pv=box.querySelector("#lpush").value,txt=box.querySelector("#lp").value.trim()||"Hello.",prev=ST.prompts.__mine,
+     orig=D.mode==="swap"&&prev&&prev.text===txt&&!prev.compare?replyOf("__mine",Object.keys(prev.conds)[0]):undefined;
+     if(D.mode==="swap"&&orig===undefined){S.swapQueued=true;}
+     runLive(txt,D.mode==="mix"?"mix":D.mode==="own"?"own":D.mode==="swap"?"none":pv,orig);};
    box.querySelector("#lrun").onclick=runIt;
    if(S.design.open){const D=S.design,dz=add();dz.id="designer";
-    dz.innerHTML=`<div class="full modes"><span style="color:var(--dim);align-self:center">steer with</span>${[["preset","a preset feeling"],["mix","a mix you set"],["own","your own feeling"]].map(([k,t])=>`<button type="button" data-dm="${k}" aria-pressed="${D.mode===k}">${t}</button>`).join("")}</div>`+
+    dz.innerHTML=`<div class="full modes"><span style="color:var(--dim);align-self:center">steer with</span>${[["preset","a preset feeling"],["mix","a mix you set"],["own","your own feeling"],["swap","swap a concept"]].map(([k,t])=>`<button type="button" data-dm="${k}" aria-pressed="${D.mode===k}">${t}</button>`).join("")}</div>`+
      (D.mode==="mix"?FEEL10.map(f=>`<label>${f} <b id="mv-${f}" style="color:var(--fg)">${(+(D.mix[f]||0)).toFixed(1)}</b><input type="range" min="-1" max="1" step=".1" value="${D.mix[f]||0}" data-mix="${f}"></label>`).join(""):"")+
      (D.mode==="own"?`<label class="full">your own feeling: 2–6 sentences that have it, one per line<textarea id="downtext" placeholder="I keep checking the door even though I locked it.\nEvery small sound makes my heart jump.">${esc(D.own)}</textarea></label>`:"")+
-     (D.mode!=="preset"?`<label class="full">dose <b id="dosev" style="color:var(--fg)">${D.dose}</b><input type="range" min="0" max="8" step=".5" value="${D.dose}" id="ddose"></label>`:`<span class="full note">Pick a feeling from the list beside the prompt, or switch to a mix or your own.</span>`)+
+     (D.mode==="swap"?`<label>it reads <input id="sx" value="${esc(D.sx)}" maxlength="30" style="width:9em"></label><label>it thinks <input id="sy" value="${esc(D.sy)}" maxlength="30" style="width:9em"></label>
+       <label>floor <b id="sfv" style="color:var(--fg)">${D.sfloor}</b><input type="range" min="2" max="30" step="1" value="${D.sfloor}" id="sfloor"></label><label>strength <b id="sav" style="color:var(--fg)">${D.salpha}</b><input type="range" min="0" max="1.5" step=".05" value="${D.salpha}" id="salpha"></label>
+       <span class="full note">Concept surgery: wherever your prompt says the first word, the model's state there is shifted to the second's (from six plain sentences), at that floor. Tested: floor 8, strength 1 changes the answer for 80–100% of pairs, and the knowledge comes along (Japan as Texas: Austin, English, boots). More on <a href="/surgery.html" style="color:var(--fg)">the surgery page</a>. Then press run.</span>`:"")+
+     (D.mode!=="preset"&&D.mode!=="swap"?`<label class="full">dose <b id="dosev" style="color:var(--fg)">${D.dose}</b><input type="range" min="0" max="8" step=".5" value="${D.dose}" id="ddose"></label>`:`<span class="full note">Pick a feeling from the list beside the prompt, or switch to a mix or your own.</span>`)+
      `<span class="full note">${D.mode==="own"?"Your sentences become a direction: their average activity at floor "+L+" minus that of plain neutral sentences, scaled like the chamber's own feelings. Short or plain sentences make a weak direction; past about dose 4 the model often loses its grammar, which shows how far you pushed.":D.mode==="mix"?"Each slider adds (or, below zero, subtracts) one of the chamber's feeling vectors; the dose scales the whole blend.":""} Then press run.</span>`;
     dz.querySelectorAll("[data-dm]").forEach(b=>b.onclick=()=>{D.mode=b.dataset.dm;refresh();});
     dz.querySelectorAll("[data-mix]").forEach(r=>r.oninput=()=>{D.mix[r.dataset.mix]=+r.value;dz.querySelector("#mv-"+r.dataset.mix).textContent=(+r.value).toFixed(1);});
     const dd=dz.querySelector("#ddose");if(dd)dd.oninput=()=>{D.dose=+dd.value;dz.querySelector("#dosev").textContent=D.dose;};
-    const dt=dz.querySelector("#downtext");if(dt)dt.oninput=()=>{D.own=dt.value;};}
+    const dt=dz.querySelector("#downtext");if(dt)dt.oninput=()=>{D.own=dt.value;};
+    const sxi=dz.querySelector("#sx");if(sxi){sxi.oninput=()=>{D.sx=sxi.value.replace(/[:,]/g,"").trim();};dz.querySelector("#sy").oninput=e=>{D.sy=e.target.value.replace(/[:,]/g,"").trim();};
+     dz.querySelector("#sfloor").oninput=e=>{D.sfloor=+e.target.value;dz.querySelector("#sfv").textContent=D.sfloor;};dz.querySelector("#salpha").oninput=e=>{D.salpha=+e.target.value;dz.querySelector("#sav").textContent=D.salpha;};}}
    box.querySelector("#lp").oninput=e=>{S.draft=e.target.value;S.draftFor=S.prompt;};
    box.querySelector("#lp").onkeydown=e=>{if(e.key==="Enter")box.querySelector("#lrun").click();};}
   const setPrompt=k=>{S.prompt=k;const cs=Object.keys(ST.prompts[k].conds);if(!cs.includes(S.cond))S.cond=cs.includes("pain")?"pain":cs[0];
@@ -651,7 +662,7 @@ function editsPanel(){
   +[...S.hedits].map(x=>{const[l,h]=x.split(":").map(Number);return `<span class="chip" style="color:${HCOL[hkind(l,h)]}">head L${l}·H${h} (${esc(hkind(l,h))}) cut<button type="button" data-unhedit="${x}" aria-label="undo" style="all:unset;cursor:pointer">✕</button></span>`;}).join("")+`</div>`;
  h+=`<div class="edits" style="margin-top:6px"><button type="button" class="go" id="rerun">rerun with these edits</button><button type="button" id="clearedits">clear</button></div>`;
  const cm=ST.prompts.__mine?.compare;
- if(cm&&S.prompt==="__mine"){h+=`<div style="margin-top:8px"><h3>before</h3><div class="cmp">${esc(cm.orig.slice(0,400))||"<em>(none)</em>"}</div><h3 style="margin-top:6px">after ${cm.n} edit${cm.n===1?"":"s"}${S.prompt==="__mine"?"":""}</h3><div class="cmp new">${esc(replyOf("__mine",S.cond).slice(0,400))}${ST.prompts.__mine.running?"…":""}</div></div>`;}
+ if(cm&&S.prompt==="__mine"){h+=`<div style="margin-top:8px"><h3>before</h3><div class="cmp">${esc(cm.orig.slice(0,400))||"<em>(none)</em>"}</div>${cm.swap&&ST.prompts.__mine.swapped===0?`<p class="note" style="color:var(--pos)">Your prompt never says “${esc(S.design.sx)}”, so nothing was swapped.</p>`:""}<h3 style="margin-top:6px">after ${cm.swap?esc(cm.swap)+(cm.n>1?` + ${cm.n-1} edit${cm.n===2?"":"s"}`:""):`${cm.n} edit${cm.n===1?"":"s"}`}${S.prompt==="__mine"?"":""}</h3><div class="cmp new">${esc(replyOf("__mine",S.cond).slice(0,400))}${ST.prompts.__mine.running?"…":""}</div></div>`;}
  return h+`</div>`;}
 function neuronPanel(x){
  let h=`<div><h3>layer ${x.l} · neuron ${x.n} · ${x.l<=L?"below":"above"} the push</h3><h2>${x.lab?esc(x.lab):"Not labelled yet"}</h2>${x.cat!=null?`<p class="note"><span class="chip" style="color:${CC[x.cat]}">${esc(CATS[x.cat])}</span> ${x.clr?["","no clear pattern","loose pattern","clear single idea"][x.clr]||"":""}</p>`:""}</div>`;
