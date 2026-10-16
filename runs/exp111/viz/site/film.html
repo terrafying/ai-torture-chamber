@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuron Tower Film</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+/* The Neuron Tower, staged for video: bloom, shards of light per token, interleaved colour. Shots are scripted and,
+   with ?film=1, stepped frame by frame from outside (window.filmStep(t)) so a capture script can render any length
+   at any frame rate. Without it, it plays in real time as a preview. */
+:root{--bg:#020304;--fg:#eef2ec;--dim:#7d8a83;--push:#e8ff6a;color-scheme:dark}
+html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;color:var(--fg)}
+canvas{display:block;width:100%;height:100%}
+#hud{position:fixed;inset:0;pointer-events:none;font-family:"Newsreader",Georgia,serif}
+#title{position:absolute;left:6vw;top:9vh;max-width:60vw}
+#title h1{font:600 clamp(28px,4.4vw,72px)/1.02 "Newsreader",Georgia,serif;margin:0;letter-spacing:-.01em}
+#title p{font:400 clamp(12px,1.1vw,18px)/1.5 "Chivo Mono",monospace;color:var(--dim);margin:.8em 0 0;letter-spacing:.04em}
+#word{position:absolute;left:0;right:0;bottom:15vh;text-align:center;font:600 clamp(36px,6vw,110px)/1 "Newsreader",Georgia,serif;text-shadow:0 0 28px rgba(232,255,106,.35);white-space:pre}
+#line{position:absolute;left:8vw;right:8vw;bottom:7vh;text-align:center;font:400 clamp(12px,1.15vw,19px)/1.6 "Chivo Mono",monospace;color:var(--dim);white-space:pre-wrap;max-height:4.8em;overflow:hidden}
+#line b{color:var(--fg);font-weight:400}
+#tag{position:absolute;right:5vw;top:9vh;text-align:right;font:400 clamp(11px,.95vw,15px)/1.6 "Chivo Mono",monospace;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+#names{position:absolute;inset:0}
+#names div{position:absolute;font:400 clamp(10px,.85vw,14px)/1.2 "Chivo Mono",monospace;white-space:nowrap;transform:translate(10px,-50%);padding:1px 6px;border-left:2px solid currentColor;background:rgba(2,3,4,.55)}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud"><div id="title"></div><div id="tag"></div><div id="names"></div><div id="line"></div><div id="word"></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script>
+(async function(){
+const $=s=>document.querySelector(s), Q=new URLSearchParams(location.search), FILM=Q.has("film"), SHOT=Q.get("shot")||"read";
+const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const clean=t=>String(t).replace(/<\|im_(start|end)\|>|<\/?think>/g,"").replace(/^(user|assistant)$/,"");
+async function png(url){const b=await fetch(url).then(r=>r.blob()),im=await createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"}),c=document.createElement("canvas");
+ c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);return x.getImageData(0,0,im.width,im.height).data;}
+const [gd,F,ST]=await Promise.all([png("grid.png"),fetch("featured.json").then(r=>r.json()),fetch("stream.json").then(r=>r.json())]);
+const M=F.meta,NL=M.n_layers,NI=M.n_neurons,FE=M.feelings,REC=2+FE.length,L=M.layer,N=NL*NI;
+const grid=new Int8Array(N*REC);for(let i=0,j=0;j<grid.length;i+=4){for(const k of[0,1,2])if(j<grid.length)grid[j++]=gd[i+k]<<24>>24;}
+const byK=new Map(F.neurons.map(x=>[x.k,x]));
+let DIST=null,dId=null;
+if(Q.get("shot")==="districts"){try{const [dd,dj]=await Promise.all([png("districts.png"),fetch("districts.json").then(r=>r.json())]);dId=new Uint8Array(N);for(let i=0;i<N;i++)dId[i]=dd[i*4];DIST=dj;}catch(e){}}
+const PAL=["#ff4d6d","#ff8fc8","#b48cff","#ffd166","#4fe0c4","#5aa9ff","#9fe0b0","#7aa6ff","#c06cff","#46e0ff","#7cff9b","#ffb36b","#a7b0ff"];   // vivid, for film
+
+/* ---------- scene ---------- */
+const cv=$("#c"),R=new THREE.WebGLRenderer({canvas:cv,antialias:false,preserveDrawingBuffer:true});R.setPixelRatio(FILM?1:Math.min(2,devicePixelRatio));
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(36,1,.1,600);
+const FLOOR=1,RAD=7.5,YC=(NL-1)*FLOOR/2;
+const pos=new Float32Array(N*3),val=new Float32Array(N),tgt=new Float32Array(N),hue=new Float32Array(N).fill(-1);
+for(let i=0;i<N;i++){const o=i*REC,l=(i/NI)|0;pos[i*3]=grid[o]/127*RAD;pos[i*3+1]=l*FLOOR-YC;pos[i*3+2]=grid[o+1]/127*RAD;}
+for(const x of F.neurons)if(x.cat!=null)hue[x.k]=x.cat;
+const posF=pos.slice();let posD=null;
+if(DIST){const per=NI/DIST.k;for(const F_ of DIST.floors){const P=F_.map(d=>({x:d.xy[0],y:d.xy[1],r:.17*Math.sqrt(Math.max(1,d.n)/per)}));
+  for(let it=0;it<240;it++){for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++){const A=P[a],B=P[b];let dx=B.x-A.x,dy=B.y-A.y,dd=Math.hypot(dx,dy)||1e-3;const mm=A.r+B.r+.04;if(dd<mm){const f=(mm-dd)/2/dd;A.x-=dx*f;A.y-=dy*f;B.x+=dx*f;B.y+=dy*f;}}for(const q of P){q.x*=.995;q.y*=.995;}}
+  const sc=1/Math.max(...P.map(q=>Math.hypot(q.x,q.y)+q.r));F_.forEach((d,k)=>{d.c=[P[k].x*sc,P[k].y*sc];d.rr=P[k].r*sc;});}
+ posD=new Float32Array(N*3);const CATD={feeling:0,body:1,social:2,morals:3,thinking:4,topic:5,names:6,grammar:7,format:8,digits:9,code:10,script:11,mixed:12};
+ for(let i=0;i<N;i++){const l=(i/NI)|0,D_=DIST.floors[l][dId[i]],h1=Math.sin(i*12.9898)*43758.5453,h2=Math.sin(i*78.233)*12345.678,u=h1-Math.floor(h1),v=h2-Math.floor(h2),r=D_.rr*RAD*.95*Math.sqrt(u),th=v*6.2832;
+  posD[i*3]=D_.c[0]*RAD*.95+r*Math.cos(th);posD[i*3+1]=pos[i*3+1];posD[i*3+2]=D_.c[1]*RAD*.95+r*Math.sin(th);hue[i]=CATD[D_.cat]??12;}}
+const g=new THREE.BufferGeometry();const aP=new THREE.BufferAttribute(pos,3);g.setAttribute("position",aP);const aV=new THREE.BufferAttribute(val,1);g.setAttribute("v",aV);g.setAttribute("c",new THREE.BufferAttribute(hue,1));
+const uni={uPal:{value:PAL.map(c=>new THREE.Color(c))},uT:{value:0},uPx:{value:1},uBase:{value:new THREE.Color("#2c4560")}};
+const mat=new THREE.ShaderMaterial({uniforms:uni,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float v;attribute float c;uniform float uPx;uniform float uT;varying float vv;varying float vc;varying float vy;
+  void main(){vv=v;vc=c;vy=position.y;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;
+   float tw=.6+.4*sin(uT*3.+position.x*2.1+position.z*1.7);gl_PointSize=uPx*(1.2+abs(v)*22.*(.85+.15*tw))*(20./-mv.z);}`,
+ fragmentShader:`uniform vec3 uPal[13];uniform vec3 uBase;uniform float uT;varying float vv;varying float vc;varying float vy;
+  vec3 palAt(int i){for(int k=0;k<13;k++){if(k==i)return uPal[k];}return vec3(.85,.9,1.);}
+  void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float a=clamp(abs(vv),0.,1.);
+   vec3 lit=vc<-.5?mix(vec3(1.,.55,.25),vec3(.35,.8,1.),step(0.,-vv)):palAt(int(vc+.5));
+   vec3 base=uBase*(.55+.45*sin(vy*.35+uT*.4));
+   vec3 col=mix(base,lit,smoothstep(.0,.35,a))*(1.+a*1.6);float core=1.-smoothstep(.0,.5,d);
+   gl_FragColor=vec4(col*core,(.16+.84*a)*core);}`});
+scene.add(new THREE.Points(g,mat));
+// faint floor rings and the plane where a push enters
+const rings=[];const RC=[new THREE.Color("#ff3d9a"),new THREE.Color("#2fd8ff")];
+for(let l=0;l<NL;l+=1){const m=new THREE.LineBasicMaterial({color:RC[l%2].clone(),transparent:true,opacity:.08,blending:THREE.AdditiveBlending,depthWrite:false});
+ const r=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.08,RAD*1.08).getPoints(160).map(p=>new THREE.Vector3(p.x,l*FLOOR-YC,p.y))),m);scene.add(r);rings.push(r);}
+const waves=[];   // each token sends a ring of light up the tower: the word passing through every floor
+function stepRings(t){for(let l=0;l<NL;l++){let a=.06;for(const w of waves){const d=(t-w.t)*NL/.55-l;if(d>-1&&d<5)a+=w.s*Math.exp(-Math.abs(d)*.9)*(d<0?.3:1);}
+ rings[l].material.opacity=Math.min(1,a);rings[l].scale.setScalar(1+Math.min(.12,a*.08));}
+ while(waves.length&&t-waves[0].t>1.6)waves.shift();}
+const TOPY=NL*FLOOR-YC+1.2;
+
+/* ---------- shards of light: streaks that leave firing neurons and fly toward the next word ---------- */
+const SH=1600,TR=9,shP=new Float32Array(SH*TR*3),shC=new Float32Array(SH*TR*3),shS=new Float32Array(SH*TR),sh=[];for(let i=0;i<SH;i++)sh.push({life:0});
+const shG=new THREE.BufferGeometry();shG.setAttribute("position",new THREE.BufferAttribute(shP,3));shG.setAttribute("color",new THREE.BufferAttribute(shC,3));shG.setAttribute("sz",new THREE.BufferAttribute(shS,1));
+scene.add(new THREE.Points(shG,new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+ vertexShader:`attribute float sz;attribute vec3 color;varying vec3 vc;void main(){vc=color;vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;gl_PointSize=sz*(26./-mv.z);}`,
+ fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float g=exp(-d*d*18.);gl_FragColor=vec4(vc*g,g);}`})));
+let seed=1;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+const col=new THREE.Color();
+function spawn(k,strength,target){let s=sh.find(x=>x.life<=0);if(!s)return;const x=pos[k*3],y=pos[k*3+1],z=pos[k*3+2],[tx,ty,tz]=target||[0,TOPY,0];
+ const dx=tx-x,dy=ty-y,dz=tz-z,dl=Math.hypot(dx,dy,dz)||1,sp=(.9+rnd()*1.6)*(.7+strength);
+ Object.assign(s,{x,y,z,vx:dx/dl*sp*6+(rnd()-.5)*2.2,vy:dy/dl*sp*6+rnd()*1.5,vz:dz/dl*sp*6+(rnd()-.5)*2.2,life:1,max:.9+rnd()*1.1,len:.25+rnd()*.6+strength*.6});
+ const h=hue[k];col.set(h>=0?PAL[h]:PAL[(k*7)%13]);s.r=col.r;s.g=col.g;s.b=col.b;}
+function stepShards(dt){for(let i=0;i<SH;i++){const s=sh[i];
+  if(s.life<=0){for(let j=0;j<TR;j++){shS[i*TR+j]=0;}continue;}
+  s.life-=dt/s.max;s.vx*=.985;s.vz*=.985;s.vy+=dt*1.2;s.x+=s.vx*dt;s.y+=s.vy*dt;s.z+=s.vz*dt;const v=Math.hypot(s.vx,s.vy,s.vz)||1,a=Math.max(0,s.life),fl=a*(1-a)*4;
+  for(let j=0;j<TR;j++){const q=(i*TR+j),f=j/(TR-1),k=s.len*2.2*f;shP[q*3]=s.x-s.vx/v*k;shP[q*3+1]=s.y-s.vy/v*k;shP[q*3+2]=s.z-s.vz/v*k;
+   const b=(1-f)*(1-f)*(.5+1.6*fl)*(j===0?1.8:1);shC[q*3]=s.r*b;shC[q*3+1]=s.g*b;shC[q*3+2]=s.b*b;shS[q]=(j===0?4.8:3.6*(1-f)+.6)*(.6+s.len);}}
+ shG.attributes.position.needsUpdate=true;shG.attributes.color.needsUpdate=true;shG.attributes.sz.needsUpdate=true;}
+// threads (circuit links) for the lesion shot
+const thG=new THREE.BufferGeometry(),thM=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false});scene.add(new THREE.LineSegments(thG,thM));
+
+/* ---------- post: bloom, then interleaved colour (chromatic split, banded tint, grain, vignette) ---------- */
+const comp=new THREE.EffectComposer(R);comp.addPass(new THREE.RenderPass(scene,cam));
+const bloom=new THREE.UnrealBloomPass(new THREE.Vector2(1920,1080),2.1,.85,.02);comp.addPass(bloom);
+const inter=new THREE.ShaderPass({uniforms:{tDiffuse:{value:null},uT:{value:0},uRes:{value:new THREE.Vector2(1920,1080)},uSplit:{value:.0032},uA:{value:new THREE.Color("#ff3d7f")},uB:{value:new THREE.Color("#3dd8ff")}},
+ vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+ fragmentShader:`uniform sampler2D tDiffuse;uniform float uT;uniform vec2 uRes;uniform float uSplit;uniform vec3 uA;uniform vec3 uB;varying vec2 vUv;
+  float h(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+  void main(){vec2 c=vUv-.5;float r=length(c);vec2 o=c*uSplit*(1.+3.*r);
+   vec3 col=vec3(texture2D(tDiffuse,vUv+o).r,texture2D(tDiffuse,vUv).g,texture2D(tDiffuse,vUv-o).b);
+   float row=floor(vUv.y*uRes.y/2.);float band=mod(row,2.);float lum=dot(col,vec3(.299,.587,.114));
+   col+=mix(uA,uB,band)*lum*.42*(.6+.4*sin(vUv.y*40.+uT*.7));                          // interleaved colour rows over the light
+   col+=(h(vUv*uRes+uT)-.5)*.035;col*=1.-smoothstep(.45,.95,r)*.75;gl_FragColor=vec4(col,1.);}`});
+comp.addPass(inter);
+function size(){const w=FILM?1920:innerWidth,h=FILM?1080:innerHeight;R.setSize(w,h,false);comp.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();inter.uniforms.uRes.value.set(w,h);cv.style.width=w+"px";cv.style.height=h+"px";}
+size();addEventListener("resize",size);
+
+/* ---------- shots ---------- */
+const prom=(pk)=>ST.prompts[pk];
+function tokensOf(pk,c){const P=prom(pk),cd=P.conds[c];return {tok:cd.tok,fr:cd.fr,np:P.n_prompt,wl:cd.wl||[],circ:cd.circ||[]};}
+function frameVals(fr,boost){tgt.fill(0);const top=[];fr[0].forEach((k,j)=>{const r=fr[1][j]/50,v=Math.sign(r)*(.25+.75*Math.min(1,Math.abs(r)))*(boost||1);tgt[k]=v;top.push([k,Math.abs(v)]);});top.sort((a,b)=>b[1]-a[1]);return top;}
+function readingShot(pk,c,opts){   // the model reads, then writes; each token fires the tower and throws shards upward
+ const S=tokensOf(pk,c),ev=[];let t=opts.lead||2.2;
+ for(let i=0;i<S.tok.length;i++){const isP=i<S.np,w=clean(S.tok[i]);if(isP&&!w.trim()){continue;}ev.push({t,i,isP});t+=isP?.07:.24;}
+ return {dur:t+2.5,ev,S,title:opts.title,sub:opts.sub,tag:opts.tag};}
+const SHOTS={
+ read:()=>readingShot("describe","none",{title:"A language model, reading",sub:"Qwen3-4B · 350,208 neurons · 36 floors. Every token lights the neurons that fire hardest for their own range.",tag:"no steering"}),
+ fear:()=>readingShot("describe","fear",{title:"The same moment, with fear pushed in",sub:"A fear vector added at floor 18 on every word. Same prompt, same model.",tag:"steered · fear ×4"}),
+ sad:()=>readingShot("describe","sadness",{title:"…and sadness",sub:"The push enters at the yellow floor; the reply finds its own words.",tag:"steered · sadness ×4"}),
+ guilty:()=>{const S=tokensOf("button","fear"),ci=S.circ.find(x=>/guilty/.test(x.word));const r=readingShot("button","fear",{title:"Why “guilty”, not “afraid”?",sub:"40 neurons decide the word. Nine of them, about guilt and burden, carry it: remove them and “guilty” falls from 33% to under 0.1%.",tag:"a circuit behind one word"});r.ci=ci;return r;},
+};
+SHOTS.guilty=()=>{const S=tokensOf("button","fear"),ci=S.circ.find(x=>/guilty/.test(x.word)),r=readingShot("button","fear",{title:"Why “guilty”, not “afraid”?",sub:"Fear pushed in, the model writes its way to one word. 40 neurons decide it.",tag:"a circuit behind one word"});
+ r.ev=r.ev.filter(e=>e.i<=ci.t);const tStop=r.ev[r.ev.length-1].t;r.ci=ci;r.hold={t0:tStop+.4,burst:tStop+3.4};r.dur=tStop+8.5;
+ r.grp=ci.groups.find(g=>/guilt|burden/i.test(g.name));return r;};
+SHOTS.districts=()=>({dur:20,ev:[{t:1e9}],S:null,title:"A city of neurons",sub:"Each floor's 9,728 neurons, gathered into districts by what they write. Most are about form; a few are about meaning.",tag:"districts",districts:true});
+const shot=(SHOTS[SHOT]||SHOTS.read)();
+$("#title").innerHTML=`<h1>${esc(shot.title)}</h1><p>${esc(shot.sub)}</p>`;$("#tag").textContent=shot.tag||"";
+
+/* ---------- timeline ---------- */
+let now=0,evIdx=0,curTok=-1;
+function camAt(t){
+ if(shot.districts){const k=t/shot.dur,fl=Math.min(NL-1,Math.max(0,(k-.12)/.8*NL)),y=fl*FLOOR-YC,th=.4+k*2.6,dist=44+10*Math.cos(k*Math.PI);
+  cam.position.set(dist*Math.cos(th)*.8,y+dist*.62,dist*Math.sin(th)*.8);cam.lookAt(0,y,0);return;}
+ const k=t/shot.dur,th=.55+k*1.9,ph=1.28-.35*Math.sin(k*Math.PI),dist=58-18*Math.sin(Math.min(1,k*1.2)*Math.PI*.5),ty=-6+12*k;
+ cam.position.set(dist*Math.sin(ph)*Math.cos(th),ty+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,ty*.8,0);}
+const v3=new THREE.Vector3();
+function names(top){let h="";const used=[],w=FILM?1920:innerWidth,hh=FILM?1080:innerHeight;
+ for(const[k]of top.slice(0,40)){const x=byK.get(k);if(!x?.lab)continue;v3.set(pos[k*3],pos[k*3+1],pos[k*3+2]).project(cam);if(v3.z>1)continue;
+  const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;if(sx<w*.08||sx>w*.85||sy<hh*.22||sy>hh*.7)continue;if(used.some(u=>Math.abs(u[0]-sx)<230&&Math.abs(u[1]-sy)<20))continue;used.push([sx,sy]);
+  h+=`<div style="left:${sx}px;top:${sy}px;color:${PAL[x.cat]}">${esc(x.lab.slice(0,46))}</div>`;if(used.length>=5)break;}
+ $("#names").innerHTML=h;}
+let lastTop=[];
+function fire(e){const S=shot.S;curTok=e.i;lastTop=frameVals(S.fr[e.i],e.isP?.8:1.1);
+ const n=e.isP?14:70;for(let j=0;j<Math.min(n,lastTop.length);j++){spawn(lastTop[j][0],lastTop[j][1]);if(!e.isP&&j<16)spawn(lastTop[j][0],lastTop[j][1]*.7);}
+ waves.push({t:now,s:e.isP?.35:1});
+ // word links: shards from earlier words' neurons stream toward this one
+ const wl=S.wl.find(r=>r[0]===e.i);if(wl)wl[1].forEach((p,j)=>{const v=wl[2][j];if(Math.abs(v)<25||!S.fr[p])return;const k=S.fr[p][0][0];spawn(k,Math.abs(v)/100*.8,[pos[k*3]*.2,TOPY,pos[k*3+2]*.2]);});
+ const w=clean(S.tok[e.i]);$("#word").textContent=e.isP?"":w.trim();$("#word").style.opacity=e.isP?0:1;
+ const lo=Math.max(S.np,e.i-28);$("#line").innerHTML=e.isP?`<span>${esc(S.tok.slice(0,e.i+1).map(clean).join("").slice(-160))}</span>`:esc(S.tok.slice(lo,e.i).map(clean).join(""))+`<b>${esc(w)}</b>`;}
+let dFloor=-1;
+function districtsStep(t){const k=t/shot.dur,m=Math.min(1,Math.max(0,(t-1.2)/3)),e=m<.5?2*m*m:1-Math.pow(-2*m+2,2)/2;
+ for(let i=0;i<pos.length;i++)pos[i]=posF[i]+(posD[i]-posF[i])*e;aP.needsUpdate=true;
+ const fl=Math.min(NL-1,Math.max(0,Math.floor((k-.12)/.8*NL)));
+ for(let i=0;i<N;i++){const l=(i/NI)|0,dl=Math.abs(l-fl);tgt[i]=t<1.2?.0:(dl===0?(hue[i]<=6?.6:.2):dl<3?.07/dl:.022);}
+ if(fl!==dFloor&&t>1.5){dFloor=fl;const F_=DIST.floors[fl];F_.forEach((d,kk)=>{if(d.n&&CATD_SEM(d.cat)){let c=0;for(let i=fl*NI;i<(fl+1)*NI&&c<6;i++)if(dId[i]===kk&&rnd()<.05){spawn(i,.8,[pos[i*3],pos[i*3+1]+6,pos[i*3+2]]);c++;}}});
+  const sem=F_.filter(d=>CATD_SEM(d.cat)).map(d=>d.name);$("#word").textContent=sem[0]||"";$("#word").style.fontSize="clamp(28px,4.2vw,74px)";
+  $("#line").innerHTML=`floor ${fl} · `+F_.filter(d=>d.n).sort((a,b)=>b.n-a.n).slice(0,9).map(d=>CATD_SEM(d.cat)?`<b>${esc(d.name)}</b>`:esc(d.name)).join(" · ");}}
+const CATD_SEM=c=>["feeling","body","social","morals","thinking","topic"].includes(c);
+function guiltyHold(t){const H=shot.hold,ci=shot.ci;if(!H||t<H.t0)return;
+ // the circuit lights: threads between its neurons, brightest first
+ const k=Math.min(1,(t-H.t0)/1.6),P=[],C=[],mx=Math.max(...ci.edges.map(e=>Math.abs(e[2])))||1,G=new Set(shot.grp?.members||[]),gone=t>H.burst;
+ for(const[a,b,w]of ci.edges){const f=Math.pow(Math.abs(w)/mx,.6)*k;if(f<.05)continue;const inG=G.has(a)||G.has(b);if(gone&&inG)continue;const ka=ci.nodes[a][0],kb=ci.nodes[b][0];
+  P.push(pos[ka*3],pos[ka*3+1],pos[ka*3+2],pos[kb*3],pos[kb*3+1],pos[kb*3+2]);const c1=new THREE.Color(inG?"#ff4d6d":"#5aa9ff").multiplyScalar(f*(inG?2.2:1.2));C.push(c1.r,c1.g,c1.b,c1.r,c1.g,c1.b);}
+ thG.setAttribute("position",new THREE.BufferAttribute(new Float32Array(P),3));thG.setAttribute("color",new THREE.BufferAttribute(new Float32Array(C),3));
+ for(const x of ci.nodes)tgt[x[0]]=Math.max(tgt[x[0]],.55*k);
+ if(!gone)for(const j of G)tgt[ci.nodes[j][0]]=1;
+ if(gone&&!H.done){H.done=true;for(const j of G){const kk=ci.nodes[j][0];tgt[kk]=0;val[kk]=0;for(let n=0;n<40;n++)spawn(kk,1.2,[pos[kk*3]+(rnd()-.5)*30,pos[kk*3+1]+(rnd()-.5)*20,pos[kk*3+2]+(rnd()-.5)*30]);}
+  $("#word").innerHTML=`<span style="text-decoration:line-through;opacity:.5">guilty</span>`;}
+ const cap=t<H.burst?`“guilty” 33% · the ${G.size} neurons about guilt and burden (red) carry it`:`remove those ${G.size} neurons: “guilty” falls to 0.06% · as many random neurons: 36%`;
+ $("#line").innerHTML=`<b>${esc(cap)}</b>`;}
+function step(t){const dt=Math.max(0,Math.min(.1,t-now));now=t;
+ if(t<2.2&&!shot.districts){$("#line").textContent="";}
+ if(t<2.4)for(let j=0;j<6;j++)spawn(((rnd()*N)|0),.25*Math.min(1,t/1.5));   // intro: the tower waking
+ uni.uBase.value.set("#2c4560").multiplyScalar(Math.min(1,t/2));
+ if(shot.districts)districtsStep(t);
+ while(evIdx<shot.ev.length&&shot.ev[evIdx].t<=t)fire(shot.ev[evIdx++]);
+ const up=1-Math.pow(.0005,dt),down=1-Math.pow(.18,dt);   // rise fast, fade slowly: light accumulates as the model writes
+ for(let i=0;i<N;i++){const d=tgt[i]-val[i];if(d!==0){val[i]+=d*(Math.abs(tgt[i])>Math.abs(val[i])?up:down);if(Math.abs(tgt[i]-val[i])<.002)val[i]=tgt[i];}}aV.needsUpdate=true;
+ guiltyHold(t);stepShards(dt);stepRings(t);uni.uT.value=t;inter.uniforms.uT.value=t;camAt(t);
+ {const t1=shot.districts?3:shot.ev[0].t+1.6;$("#title").style.opacity=t<t1?1:Math.max(0,1-(t-t1));}
+ if(t>shot.dur-1.6){$("#word").style.opacity=Math.max(0,(shot.dur-t)/1.6);}
+ names(lastTop);comp.render();}
+if(shot.districts){$("#line").textContent="";}
+window.filmDuration=shot.dur;window.filmStep=t=>{step(t);return true;};window.filmReady=true;
+if(!FILM){const t0=performance.now();(function loop(){const t=(performance.now()-t0)/1000;step(t%(shot.dur+.5));requestAnimationFrame(loop);})();}
+})();
+</script>
+</body>
+</html>
