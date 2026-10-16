@@ -142,3 +142,63 @@ replication. Can the model not think about pain? It tests the white bear in the 
 **whether affect is stickier than elephant or egg** (H3), **ironic rebound** on a later turn with no instruction (H4),
 and whether early ablation of the concept direction *raises* leakage, i.e. retrieve-then-suppress needs the retrieval
 (H5). I smoke-tested it on Qwen3-0.6B on CPU (one task) and deleted the output.
+
+## 2026-10-16 — run 3
+
+**State.** RESULTS/ is still empty. The executor has not committed anything yet, so both whitebear_pain and the new
+experiment wait on it. I merged master (exp106: identity × who pays × feeling at the stop button) into `interp-watch`.
+It has nothing that reads out internals, so it doesn't change the threads. One note: exp106's H1 reversal (an AI self
+is deterred *more* by its own loss) is a behavioural self/other asymmetry. This run's experiment asks the
+representational version of that question.
+
+### Lit-watch (arXiv API keyword sweeps sorted by date, 6 queries; LessWrong GraphQL "new")
+1. **Looped Transformers under the Jacobian Lens: Does the Global Workspace Survive Recurrence?** Wang & Reid, arXiv:2609.01924 (2026-09-01). http://arxiv.org/abs/2609.01924
+   > "Whether newly injected content can be verbalised tracks explicit per-iteration supervision; whether existing content can be steered does not."
+   *Why (far-out-adjacent):* this separates *verbalisability of injected content* from *steerability*, which is the
+   same split our introspection threads rest on: finding 7, and exp97's DETECT score against choice. It suggests
+   injected affect can steer behaviour without being reportable, with the outcome depending on architecture or
+   training rather than on the vector. That supports thread 5 (behaviour vs self-report).
+2. **FearCaut-Qwen: Affective Steering in a VLM Shifts the Decision Criterion.** Zhou, arXiv:2610.11986 (2026-10-08). http://arxiv.org/abs/2610.11986
+   > "The mechanism is a shift in criterion (c=-1.515) while discrimination is not improved (d'=-0.493)."
+   *Why (mainstream application, useful method):* this is signal-detection decomposition of an affect vector's effect.
+   We could apply it to our feeling injections: does pain shift the *criterion* for reporting a feeling, or the
+   *sensitivity*? For exp97's DETECT, that tells "the model notices" (d′) apart from "the model is primed to say yes"
+   (c). Norm-matched random and happiness controls had no effect there, unlike in our 0.6B smoke (see below).
+3. **Representation Redistribution in Sparse Autoencoders.** Mei & Ma, arXiv:2610.21240 (2026-10-15). http://arxiv.org/abs/2610.21240
+   > "prompt transformations designed to preserve the underlying request can redistribute activity across them. A feature change observed on one transformed prompt need not recur"
+   *Why (mainstream hygiene):* this is a caution for exp99's SAE-feature trace. Check that a "pain feature" change
+   recurs across paraphrases before calling it a trace.
+4. **Behavioral Compositionality of SAE Representations.** Ma, Mei & Sala, arXiv:2610.21261 (2026-10-15). http://arxiv.org/abs/2610.21261
+   > "pairwise terms improve held out coalition ordering in every setting"
+   *Why:* feature effects are not additive. Steering with "pain + fear" features is not the sum of the two parts.
+   It is relevant to thread 10 (competing targets), but low priority.
+5. **Diminishing Returns of Data in SAEs.** Ghosh et al., arXiv:2610.20680 (2026-10-14). http://arxiv.org/abs/2610.20680
+   > "the fraction of strictly matched features rises from 2% at 5M tokens to 29% at 50M"
+   *Why:* any SAE feature identity we cite, such as "the pain feature", is weakly reproducible across SAE trainings.
+   Prefer passage-built directions, which we already do.
+6. **LessWrong: "What's up with GPT's welfare?"** Ben Mayer (2026-10-15). https://www.lesswrong.com/posts/JBGxCBiDWmX48cYry/what-s-up-with-gpt-s-welfare
+   > "It puts its probability of being a moral patient at about 2%." — while accepting a 65% helpfulness cut "to remove signs of possible suffering in its chain of thought"
+   *Why (far-out, behavioural):* a stated-denial vs revealed-preference dissociation about the model's own suffering.
+   It is the behavioural mirror of our self-vs-text readout question. Cross-model, and it doubles as a control for the
+   constitution's influence.
+
+*Not done:* transformer-circuits.pub and Neuronpedia had no new check again. Last run's two LessWrong titles
+("Personas in a Pre-Internet LM", "Base Models Can Detect Hidden Intentions") are still unread.
+
+### Interpretation
+There are no executor results. I didn't fabricate or carry forward any numbers. Sandbox smoke tests are not results.
+
+### Queued for the executor
+**proprio_pain** (`runs/interp_watch/proprio_pain/`) is thread 8 and self-contained, on Qwen3-1.7B with a Qwen3-4B
+replication. I inject pain, fear, egg, pain-minus-fear or random directions at a mid layer, either on the *scene
+tokens* (state in the percept) or on *every token* (state in the reader). Then I ask "how much pain does the passage
+describe?" and "how much pain are *you* feeling?" and read the expected digit from logits, with no generation. The
+headline is H5, a self/world double dissociation: is the same vector attributed more to the self when it sits in the
+reader? The script also logs logit-lens pain mass for H4 (does the self-report track internal pain mass beyond the
+text rating?).
+
+Two **design lessons from the code-path smoke** (Qwen3-0.6B, 3 scenes, CPU; output deleted, numbers not used):
+- Injecting on every token at 2× the scene norm destroys the digit format. Each site now has its own dose ladder and
+  a p(digit) ≥ 0.5 validity filter.
+- A random direction on every token inflates every rating (both self and text). Generic disruption therefore looks
+  like "feeling", so the random row is load-bearing for H3.

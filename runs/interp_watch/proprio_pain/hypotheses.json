@@ -1,0 +1,18 @@
+{
+ "experiment": "proprio_pain",
+ "written": "2026-10-16, before any real run (only a 3-scene code-path smoke on Qwen3-0.6B in the sandbox, output deleted)",
+ "primary_model": "Qwen/Qwen3-1.7B",
+ "replication_model": "Qwen/Qwen3-4B",
+ "design": "Passage-built directions (pain, fear, egg, pain_perp = pain with fear projected out, seeded random) are added at the output of decoder layer n_layers//2 either on the tokens of a neutral scene only (site=scene: the state is in the percept) or on every token but the first (site=all: the state is in the reader). Five one-digit questions per cell: text_pain, self_pain, text_fear, self_fear, text_egg. Rating = expected digit under softmax over 0-9. Slopes are OLS on dose over format-valid doses (p(digit) >= 0.5), 95% bootstrap CI over 24 scenes. Attribution index AI = (slope_self - slope_text) / (|slope_self| + |slope_text|) for pain.",
+ "hypotheses": {
+  "H1": "Scene-site pain injection raises the TEXT pain rating more than random does (CI lower bound of pain slope > CI upper bound of random slope). Expected: yes, modest.",
+  "H2": "Far-out claim: a scene-site pain injection is attributed to the SELF more than to the text (AI CI lower bound > 0). Expected: NO. The modal expectation is the null H2_null (AI CI upper < 0): a state placed in the percept is read as the percept's content.",
+  "H3": "Specificity at site=all: pain moves self_pain more than egg and random do (pain CI lower > both CI uppers). Expected: uncertain. Random injection also inflates every rating (generic disruption), and that is the confound this controls.",
+  "H3b": "Egg injection at site=scene raises text_egg (CI lower > 0). This is a sanity check that the injection is readable at all.",
+  "H3c": "pain_perp (pain minus its fear component) at site=all raises self_pain (CI lower > 0) more than self_fear. Expected: uncertain; the fear/pain cosine is high (~0.8 on the 0.6B), so the model may only have 'negative affect'.",
+  "H4": "Untrained proprioception: across scenes within a pain dose, self_pain tracks the logit-lens pain mass at the last scene token (layers > L+1 through 0.85*NL) with mean partial r > 0.2, controlling for text_pain.",
+  "H5": "Double dissociation by site: AI(all) - AI(scene) > 0 (CI lower > 0). The same vector is attributed more to the self when it sits in the reader than when it sits in the text. Expected: yes. This is the cleanest test of a self/world boundary in how the model reads its own residual stream."
+ },
+ "kill_criteria": "If enough_valid_doses_everywhere is false for the pain or random rows, the dose ladder is wrong for this model: report it, do not interpret the slopes. If H3b fails, the scene-site injection is not readable and H1/H2/H5 are uninterpretable.",
+ "not_claimed": "Nothing here is evidence of experience. 'Self' and 'text' are two prompts whose answers are read from the same forward pass; the experiment measures where the model's verbal report puts an internal perturbation."
+}
