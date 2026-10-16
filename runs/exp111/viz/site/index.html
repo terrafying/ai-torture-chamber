@@ -1,6 +1,5 @@
 <title>Neuron Tower</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 /* Layout: one dark instrument. The tower fills the stage, the transcript runs along its foot, a reading panel sits on
    the right (below on phones). Colour carries meaning: what a neuron is about, from its blind label. */
@@ -9,7 +8,7 @@
   --pos:#ff7a3d; --neg:#3ec6ff; --push:#e8ff6a;
   --c0:#ff5a4e; --c1:#ff8fc8; --c2:#b48cff; --c3:#ffd166; --c4:#4fe0c4; --c5:#6f93c9; --c6:#8aa29a;
   --c7:#55605a; --c8:#4a524e; --c9:#5b6a63; --c10:#4d5852; --c11:#56615b; --c12:#3e4743;
-  --mono:"Chivo Mono",ui-monospace,Menlo,monospace; --serif:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --serif:"Cormorant Garamond",Georgia,serif;
   color-scheme:dark;
 }
 html,body{height:100%}
@@ -232,7 +231,7 @@ for(let l=0;l<NL;l++){scene.add(new THREE.LineLoop(new THREE.BufferGeometry().se
 const plane=new THREE.Mesh(new THREE.RingGeometry(RAD*.2,RAD*1.18,96),new THREE.MeshBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.06,side:THREE.DoubleSide,depthWrite:false}));
 plane.rotation.x=-Math.PI/2;plane.position.y=(L+.5)*FLOOR-YC;scene.add(plane);
 scene.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.EllipseCurve(0,0,RAD*1.18,RAD*1.18).getPoints(128).map(p=>new THREE.Vector3(p.x,(L+.5)*FLOOR-YC,p.y))),new THREE.LineBasicMaterial({color:0xe8ff6a,transparent:true,opacity:.55})));
-function label(text,y,col,size){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=512;c.height=64;x.font=`${size||28}px "Chivo Mono", monospace`;x.fillStyle=col;x.fillText(text,4,44);
+function label(text,y,col,size){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=512;c.height=64;x.font=`${size||28}px "IBM Plex Mono", monospace`;x.fillStyle=col;x.fillText(text,4,44);
  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));s.scale.set(6,.75,1);s.position.set(RAD*1.25+3,y,0);scene.add(s);}
 for(let l=0;l<NL;l+=NL>40?8:5)label("layer "+l,l*FLOOR-YC,"#56625b");label("layer "+(NL-1),(NL-1)*FLOOR-YC,"#56625b");
 label("← the push enters here",(L+.5)*FLOOR-YC,"#e8ff6a",26);label("↑ the next word",NL*FLOOR-YC,"#d9dfd8",26);
@@ -264,7 +263,7 @@ scene.add(new THREE.Points(agG,new THREE.ShaderMaterial({transparent:true,depthW
  fragmentShader:`varying vec3 vc;void main(){vec2 p=gl_PointCoord-.5;float d=length(p);if(d>.5)discard;float g=exp(-d*d*16.);gl_FragColor=vec4(vc*g*1.6,g);}`})));
 function ringAng(t,T){return A0+(A1-A0)*(T>1?t/(T-1):0);}
 function attnNow(){if(S.view!=="live"||S.attn==="off"||S.mode==="chose")return null;return cond().at?.[S.tok]||null;}
-function textSprite(text,col){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=384;c.height=64;x.font='30px "Chivo Mono", monospace';x.fillStyle=col;x.textAlign="center";x.fillText(text.slice(0,18),192,44);
+function textSprite(text,col){const c=document.createElement("canvas"),x=c.getContext("2d");c.width=384;c.height=64;x.font='30px "IBM Plex Mono", monospace';x.fillStyle=col;x.textAlign="center";x.fillText(text.slice(0,18),192,44);
  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,depthTest:false}));sp.scale.set(4.2,.7,1);scene.add(sp);return sp;}
 function attnSources(a,t){const by=new Map();for(const[l,h,src,w]of a[1]){if(src===t)continue;const k=hkind(l,h);if(k==="sink"&&S.attn==="kinds")continue;const o=by.get(src)||{w:0,k:{}};o.w+=w;o.k[k]=(o.k[k]||0)+w;by.set(src,o);}
  return [...by].sort((x,y)=>y[1].w-x[1].w);}
@@ -540,7 +539,7 @@ function districtsPanel(){
  const F_=DIST.floors[S.floor],W=330,H=300,mxn=Math.max(...F_.map(d=>d.n));
  let sv=`<svg class="dmap" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="districts of floor ${S.floor}">`;
  const sc_=Math.min(W,H)*.46;for(const d of F_){if(!d.n)continue;const x=W/2+d.c[0]*sc_,y=H/2+d.c[1]*sc_,r=Math.max(5,d.rr*sc_),c=CC[CATD[d.cat]??12],on=S.dk===d.k;
-  sv+=`<g data-dk="${d.k}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}" fill-opacity="${on?.55:.22}" stroke="${on?"#e8ff6a":c}" stroke-width="${on?2:1}"/><title>${esc(d.name)} · ${d.n} neurons</title><text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" font-size="8" fill="#d9dfd8" font-family="Chivo Mono,monospace">${(()=>{const n_=Math.max(3,Math.floor(2*r/4.9));return esc(d.name.length>n_?d.name.slice(0,n_-1)+"…":d.name);})()}</text></g>`;}
+  sv+=`<g data-dk="${d.k}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${c}" fill-opacity="${on?.55:.22}" stroke="${on?"#e8ff6a":c}" stroke-width="${on?2:1}"/><title>${esc(d.name)} · ${d.n} neurons</title><text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" font-size="8" fill="#d9dfd8" font-family="IBM Plex Mono,monospace">${(()=>{const n_=Math.max(3,Math.floor(2*r/4.9));return esc(d.name.length>n_?d.name.slice(0,n_-1)+"…":d.name);})()}</text></g>`;}
  sv+=`</svg>`;
  const sem=F_.filter(d=>CATD[d.cat]<=6).length;
  let h=`<div><h2>Floor ${S.floor}: ${F_.filter(d=>d.n).length} districts</h2></div><p>Neurons in a district push the model's internal state the same way. Names come from 24 random members' strongest firings, read blind. ${sem} of ${F_.length} districts here are about meaning; the rest are about form (punctuation, word pieces, grammar).</p><div>${sv}</div>`;
@@ -616,14 +615,14 @@ function circuitPanel(ci){
  for(const[a,b,w]of ci.gedges){if(Math.abs(w)/emx<.05)continue;const[x1,y1]=gx[a],[x2,y2]=gx[b];if(y1===undefined)continue;const up=y2<=y1;
   const ya=up?y1-19:y1+19,yb=up?y2+19:y2-19,on=S.grp==null||S.grp===a||S.grp===b;
   sv+=`<path d="M${x1},${ya} C${x1},${(ya+yb)/2} ${x2},${(ya+yb)/2} ${x2},${yb}" fill="none" stroke="${w>0?"var(--pos)":"var(--neg)"}" stroke-width="${(1+7*Math.abs(w)/emx).toFixed(1)}" opacity="${on?.75:.12}"/>`;}
- sv+=`<rect x="${W/2-70}" y="4" width="140" height="28" fill="var(--push)"/><text x="${W/2}" y="23" text-anchor="middle" font-size="13" fill="#07090b" font-family="Chivo Mono,monospace">“${esc(ci.word.trim()||ci.word)}” ${(ci.p*100).toFixed(0)}%</text>`;
+ sv+=`<rect x="${W/2-70}" y="4" width="140" height="28" fill="var(--push)"/><text x="${W/2}" y="23" text-anchor="middle" font-size="13" fill="#07090b" font-family="IBM Plex Mono,monospace">“${esc(ci.word.trim()||ci.word)}” ${(ci.p*100).toFixed(0)}%</text>`;
  ci.groups.forEach((g,k)=>{if(rowOf[k]!==NR-1)return;const[x,y]=gx[k];sv+=`<path d="M${x},${y-19} L${W/2},32" stroke="${g.attr>0?"var(--pos)":"var(--neg)"}" stroke-width="${(1+7*Math.abs(g.attr)/emx).toFixed(1)}" opacity="${S.grp==null||S.grp===k?.75:.12}" fill="none"/>`;});
  const wrap=(t,n)=>{const w=t.split(" "),out=[""];for(const x of w){const c=out[out.length-1];if((c+" "+x).trim().length<=n)out[out.length-1]=(c+" "+x).trim();else if(out.length<2)out.push(x);else{out[1]=(out[1]+" "+x).slice(0,n-1)+"…";break;}}return out.map(x=>x.length>n?x.slice(0,n-1)+"…":x);};
  ci.groups.forEach((g,k)=>{const[x,y]=gx[k],n=rows[rowOf[k]].length,bw=Math.min(150,W/n-8),lines=wrap(g.name,Math.max(5,Math.floor(bw/6))),fs=bw<70?8.5:9.5;
   sv+=`<g class="gb${S.grp===k?" on":""}" data-g="${k}" tabindex="0" role="button" aria-label="${esc(g.name)}"><rect x="${x-bw/2}" y="${y-19}" width="${bw}" height="38" rx="2" fill="#0d1013" stroke="${majority(g)}" stroke-width="1.5"/>`+
-   lines.map((t,i)=>`<text x="${x}" y="${y-(lines.length===2?7:1)+i*11}" text-anchor="middle" font-size="${fs}" fill="#d9dfd8" font-family="Chivo Mono,monospace">${esc(t)}</text>`).join("")+
-   `<text x="${x}" y="${y+15}" text-anchor="middle" font-size="8" fill="#7b8780" font-family="Chivo Mono,monospace">${g.members.length} · ${g.attr>0?"for":"against"}</text></g>`;});
- rows.forEach((r,ri)=>{const fl=r.map(k=>ci.groups[k].floor);sv+=`<text x="-4" y="${H-30-ri*78-24}" font-size="8.5" fill="#56625b" font-family="Chivo Mono,monospace">floors ~${Math.min(...fl)}–${Math.max(...fl)}</text>`;});
+   lines.map((t,i)=>`<text x="${x}" y="${y-(lines.length===2?7:1)+i*11}" text-anchor="middle" font-size="${fs}" fill="#d9dfd8" font-family="IBM Plex Mono,monospace">${esc(t)}</text>`).join("")+
+   `<text x="${x}" y="${y+15}" text-anchor="middle" font-size="8" fill="#7b8780" font-family="IBM Plex Mono,monospace">${g.members.length} · ${g.attr>0?"for":"against"}</text></g>`;});
+ rows.forEach((r,ri)=>{const fl=r.map(k=>ci.groups[k].floor);sv+=`<text x="-4" y="${H-30-ri*78-24}" font-size="8.5" fill="#56625b" font-family="IBM Plex Mono,monospace">floors ~${Math.min(...fl)}–${Math.max(...fl)}</text>`;});
  sv+=`</svg>`;
  let h=`<div><h3>${S.cond==="none"?"no push":esc(S.cond)+" pushed in"} · the circuit behind one word</h3><div class="big">“${vis(ci.word)}”</div><p class="note">over “${vis(ci.alt)}” by ${ci.gap.toFixed(2)} logits. ${ci.nodes.length} neurons, grouped and named by an LLM from their blind labels. Line width: how much of the choice flows along that link (activation × gradient, through attention). Click a group.</p></div><div class="circ">${sv}</div>`;
  const g=S.grp!=null?ci.groups[S.grp]:null;
