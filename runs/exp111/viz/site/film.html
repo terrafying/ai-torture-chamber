@@ -214,7 +214,7 @@ const v3=new THREE.Vector3();
 function ringWords(){if(!shot.att||curTok<0)return "";const T=CP.events.length,w=FILM?VW:innerWidth,hh=FILM?VH:innerHeight,y=30*FLOOR-YC;let h="";const seen=new Set();
  const put=(i,col,big)=>{const an=ringAng(i,T);v3.set(Math.cos(an)*(RING+1.2),y,Math.sin(an)*(RING+1.2)).project(cam);if(v3.z>1)return;
   const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;h+=`<div style="left:${sx}px;top:${sy}px;color:${col};border-left-color:${col};font-size:${big?"1.35em":"1.05em"};background:rgba(2,3,4,.65)">${esc(clean(CP.events[i].tok).trim()||"·")}</div>`;};
- put(curTok,"#e8ff6a",true);for(const A of arcs.slice(0,6)){if(seen.has(A.src))continue;seen.add(A.src);put(A.src,"#"+A.c.getHexString(),false);if(seen.size>=3)break;}return h;}
+ put(curTok,"#e8ff6a",true);for(const A of arcs.slice(0,10)){if(seen.has(A.src)||!clean(CP.events[A.src].tok).trim())continue;seen.add(A.src);put(A.src,"#"+A.c.getHexString(),false);if(seen.size>=3)break;}return h;}
 function names(top){let h=ringWords();if(shot.att){$("#names").innerHTML=h;return;}const used=[],w=FILM?1920:innerWidth,hh=FILM?1080:innerHeight;
  for(const[k]of top.slice(0,40)){const x=byK.get(k);if(!x?.lab)continue;v3.set(pos[k*3],pos[k*3+1],pos[k*3+2]).project(cam);if(v3.z>1)continue;
   const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;if(sx<w*.08||sx>w*.85||sy<hh*.22||sy>hh*.7)continue;if(used.some(u=>Math.abs(u[0]-sx)<230&&Math.abs(u[1]-sy)<20))continue;used.push([sx,sy]);
