@@ -40,7 +40,7 @@ input[type=text]{font:inherit;background:#06080a;color:var(--fg);border:1px soli
 <div id="labels"></div>
 <div id="hud">
  <h1>The model's sky</h1>
- <div class="bar"><button type="button" class="go" id="fly">▶ fly up through the floors</button><span>floor <b id="fl" style="color:var(--fg)">0</b>/35</span><input type="range" id="depth" min="0" max="35" step="0.01" value="4" aria-label="Floor"></div>
+ <div class="bar"><button type="button" class="go" id="fly">▶ fly up through the floors</button><span>floor <b id="fl" style="color:var(--fg)">0</b>/35</span><input type="range" id="depth" min="0" max="35" step="0.01" value="14" aria-label="Floor"></div>
  <div class="bar">comet: <input type="text" id="cx" value="Japan" aria-label="Concept it reads"> → <input type="text" id="cy" value="Texas" aria-label="Concept it thinks"><button type="button" id="launch">launch</button></div>
 </div>
 <aside id="side"></aside>
@@ -96,7 +96,7 @@ function stepXL(t){const L=SK.xlinks[Math.round(depth)]||[];xlP.fill(0);xlC.fill
 const coG=new THREE.BufferGeometry(),CO=60,coP=new Float32Array(CO*3),coC=new Float32Array(CO*3),coS=new Float32Array(CO);
 coG.setAttribute("position",new THREE.BufferAttribute(coP,3));coG.setAttribute("color",new THREE.BufferAttribute(coC,3));coG.setAttribute("sz",new THREE.BufferAttribute(coS,1));scene.add(new THREE.Points(coG,glowMat(80)));
 /* state */
-let depth=4,flying=false,sel=null,comet=null,th=.6,ph=1.25,dist=72,tgt=new THREE.Vector3(),tgtTo=null;
+let depth=14,flying=false,sel=null,comet=null,th=.6,ph=1.25,dist=72,tgt=new THREE.Vector3(),tgtTo=null;
 const posAt=(i,f)=>{const a=Math.floor(f),b=Math.min(NF-1,a+1),t=f-a,e=t*t*(3-2*t),A=SK.layout[a][i],B=SK.layout[b][i];return[(A[0]+(B[0]-A[0])*e)*SCALE,(A[1]+(B[1]-A[1])*e)*SCALE,(A[2]+(B[2]-A[2])*e)*SCALE];};
 function place(){const cen=GN.map(()=>[0,0,0,0]);
  for(let i=0;i<N;i++){const p=posAt(i,depth);sP.set(p,i*3);const c=hueOf(G[i]),on=sel===i||comet&&(comet.x===i||comet.y===i);
