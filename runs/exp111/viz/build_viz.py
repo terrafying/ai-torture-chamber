@@ -6,20 +6,25 @@
                 feeling-specific change (moved2.json), logit lens on the last floors only.
   stream.json   the live view: per prompt and condition, every token with its top 150 neurons by activation / the
                 neuron's own corpus range, and for every reply token the top 150 neurons that chose that word.
+  For another model (the 32B option): BUILD_DATA=<data dir> BUILD_OUT=<site subdir> TOWER_MODEL=Qwen/Qwen3-32B
+  GRID_PROFILE=0 (grid.png then carries only each neuron's x, y: 2 bytes instead of 13, and the page hides the
+  weights view). acts.json / attr.json are optional (dose from TOWER_DOSE; logit lens only where they exist).
     python viz/build_viz.py"""
+import os
 import json
 from pathlib import Path
 import numpy as np
 from PIL import Image
 from transformers import AutoTokenizer
-HERE = Path(__file__).parent; D = HERE / "data"; S = HERE / "site"; S.mkdir(exist_ok=True)
+HERE = Path(__file__).parent; D = Path(os.environ.get("BUILD_DATA", HERE / "data")); S = Path(os.environ.get("BUILD_OUT", HERE / "site")); S.mkdir(exist_ok=True)
+MODEL = os.environ.get("TOWER_MODEL", "Qwen/Qwen3-4B"); PROFILE = os.environ.get("GRID_PROFILE", "1") != "0"
 st = json.load(open(D / "stats.json")); NL, I, L, FE = st["n_layers"], st["n_neurons"], st["layer"], st["feelings"]; F = len(FE)
 raw = np.fromfile(D / "neurons.bin", np.int8).reshape(3, NL, I, F)
 floor_le = (np.arange(NL) <= L)[:, None, None]
 prof_f = np.where(floor_le, raw[0], raw[1]).astype(np.float32) * np.where(floor_le, st["scale"]["writer"], st["scale"]["reader_up"]) / 127
 cmax = float(np.abs(prof_f).max()); prof8 = np.round(prof_f / cmax * 127).astype(np.int8)
 xy = (np.fromfile(D / "layout.bin", np.int16).reshape(NL, I, 2).astype(np.float32) / 32767 * 127).round().astype(np.int8)
-by = np.concatenate([xy, prof8], axis=2).tobytes(); W = int(np.ceil(np.sqrt(len(by) / 3)))
+by = (np.concatenate([xy, prof8], axis=2) if PROFILE else xy).tobytes(); W = int(np.ceil(np.sqrt(len(by) / 3)))
 buf = np.zeros(W * W * 3, np.uint8); buf[:len(by)] = np.frombuffer(by, np.uint8)
 Image.fromarray(buf.reshape(W, W, 3), "RGB").save(S / "grid.png", optimize=True)
 
@@ -27,8 +32,10 @@ CATS = ["feeling/emotion", "body/sensation", "social/relationship", "morality/va
         "names/entities", "syntax/grammar", "formatting/punctuation/position", "numbers/digits", "code/markup", "language/script", "unclear"]
 lab = json.load(open(D / "labels.json")); C = dict(np.load(D / "corpus_all.npz"))   # materialize: indexing an NpzFile re-reads the whole array each time
 docs = json.load(open(D / "corpus_ids.json")); CTX = int(C["ctx"])
-mv = json.load(open(D / "moved2.json")); acts = json.load(open(D / "acts.json")); top = json.load(open(D / "top.json")); at = json.load(open(D / "attr.json"))
-stream = json.load(open(D / "stream.json")); tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B")
+mv = json.load(open(D / "moved2.json")); top = json.load(open(D / "top.json"))
+acts = json.load(open(D / "acts.json")) if (D / "acts.json").exists() else {"dose": float(os.environ.get("TOWER_DOSE", 4)), "press_delta": None}
+at = json.load(open(D / "attr.json")) if (D / "attr.json").exists() else {"conds": {}}
+stream = json.load(open(D / "stream.json")); tok = AutoTokenizer.from_pretrained(MODEL)
 feat = {}
 def N(l, n):
     k = int(l) * I + int(n)
@@ -58,7 +65,7 @@ for k, x in feat.items():
     x["ex"] = [ctx(C["pos_i"][l, j, n]) + [round(float(C["pos_v"][l, j, n]), 2)] for j in range(3) if C["pos_v"][l, j, n] > 0]
     x["nx"] = [ctx(C["neg_i"][l, j, n]) + [round(float(C["neg_v"][l, j, n]), 2)] for j in range(2) if C["neg_v"][l, j, n] < 0.25 * C["min"][l, n] < 0]
     if l >= 30 and (l, n) in lens: x["lens"] = [list(lens[(l, n)][0][:5]), list(lens[(l, n)][1][:5])]
-meta = {"model": "Qwen/Qwen3-4B", "layer": L, "n_layers": NL, "n_neurons": I, "feelings": FE, "cos_scale": cmax, "null_p999": st["null_p999"],
+meta = {"model": MODEL, "rec": 2 + (F if PROFILE else 0), "layer": L, "n_layers": NL, "n_neurons": I, "feelings": FE, "cos_scale": cmax, "null_p999": st["null_p999"],
         "cats": CATS, "corpus_tokens": int(C["n_tokens"]), "dose": acts["dose"], "moved_tokens": mv["tokens"], "press_delta": acts["press_delta"],
         "concentration": st["concentration"], "label_model": "anthropic/claude-haiku-4.5 (blind: snippets only)"}
 if (D / "heads.json").exists():   # the head atlas (neurons_heads.py): kind and output size per head, floor-major
