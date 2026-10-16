@@ -1,0 +1,21 @@
+{
+ "exp": "exp112",
+ "title": "Do weak neuron activations carry information? Zeroing every MLP activation below a fraction of its neuron's own range, against zeroing random activations of equal total mass",
+ "written": "2026-10-16, before any run",
+ "why": "A critique of the 'neural networks are already clean' essay (author unnamed here) holds that a neuron's strongest firings may be monosemantic while its weak activations carry superposed information (facts, memorised key-value content) that the network needs; the essay argues weak activations usually don't matter. exp111's tower reads only each token's strongest firings. This tests the crux directly on our models.",
+ "design": {
+  "models": "Qwen3-4B (bf16, MPS) first; Qwen3-32B (nf4) later with the same code (tower_cfg).",
+  "data": "200 FineWeb-Edu sample-10BT documents from offset 20000 (disjoint from the 1,600-document corpus profile that set each neuron's range), first 256 tokens each.",
+  "scale": "Each neuron's range = max |activation| over the corpus profile (runs/exp111 corpus_all.npz). Activation = the input of down_proj, SiLU(gate) x up.",
+  "arms": "For tau in {0.05, 0.10, 0.20, 0.30}, at every MLP neuron of every layer and every position: WEAK zeroes activations with |a| < tau x range; MASS zeroes a uniformly random set of activations (from all, weak or strong) whose summed |a|/range equals the WEAK arm's summed |a|/range at that layer and position. Plus a no-intervention baseline.",
+  "measures": "Next-token cross-entropy (nats/token) averaged over each document's positions 1-255; damage = CE(arm) - CE(baseline). Also the share of activation entries and of total |a|/range mass that falls below each tau."
+ },
+ "hypotheses": {
+  "H1": "Weak activations matter in absolute terms: at tau = 0.10, mean damage(WEAK) >= 0.05 nats/token (one-sided Wilcoxon over the 200 documents against 0.05).",
+  "H2": "Weak activations carry at least as much per unit of mass as a random draw: at tau = 0.10, damage(WEAK) >= damage(MASS) (one-sided Wilcoxon, paired over documents). The 'already clean' reading predicts the opposite (WEAK < MASS, because MASS also hits strong firings).",
+  "H3": "Damage grows with tau for WEAK (Spearman over the four taus within documents, mean rho > 0)."
+ },
+ "corrections": "H1 and H2 Holm-corrected together; H3 descriptive.",
+ "decision_rule": "H2 holding on the 4B and the 32B supports 'weak activations carry superposed information the network uses'; H2 failing with damage(WEAK) well below damage(MASS) supports 'weak activations are mostly noise relative to strong ones'. Either way the absolute damage numbers (H1) are reported, since a small absolute loss can coexist with H2.",
+ "notes": "MASS is matched in summed relative magnitude, not in count: zeroing random activations of equal count would hit strong firings far more and is not a fair control. A smoke run (EXP112_DOCS=4) checks the code only and is discarded."
+}
