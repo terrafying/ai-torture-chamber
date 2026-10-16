@@ -29,11 +29,20 @@ for g in GROUPS:
         for s in h.simplices:
             for e in combinations(sorted(s), 2): edges.add(tuple(int(x) for x in e))
             for t in combinations(sorted(s), 3): tris.add(tuple(int(x) for x in t))
-        fl.append({"p": P.round(3).tolist(), "e": sorted(edges), "t": sorted(tris),
+        # bright edges carry group-specific structure (hull edges are near-complete at these sizes): the known order
+        # for ordered groups, else each word's 2 nearest neighbours in the full space at this floor
+        kind = sk["kinds"][g]
+        if kind == "cycle": se = [(i, (i + 1) % n) for i in range(n)]
+        elif kind == "line": se = [(i, i + 1) for i in range(n - 1)]
+        else:
+            A = S[I, l] - S[I, l].mean(0); A /= np.linalg.norm(A, axis=1, keepdims=True); C = A @ A.T; np.fill_diagonal(C, -9)
+            se = sorted({tuple(sorted((int(i), int(j)))) for i in range(n) for j in np.argsort(-C[i])[:2]})
+        fl.append({"p": P.round(3).tolist(), "e": sorted(edges), "se": se, "hull_edge_share": round(len(edges) / (n * (n - 1) / 2), 3), "t": sorted(tris),
                    "var": (sv[:K] ** 2 / (sv ** 2).sum()).round(3).tolist(), "shape": arch["groups"][g]["floors"][l]["shape"]})
     Z = np.concatenate([(S[I, l] - S[I, l].mean(0)) / np.linalg.norm(S[I, l] - S[I, l].mean(0)) for l in range(NL)])
     _, _, Vb = np.linalg.svd(Z, full_matrices=False); B = (Z @ Vb[:3].T).reshape(NL, n, 3)
     B /= np.abs(B).max()
-    out["groups"][g] = {"words": [W[i] for i in I], "kind": sk["kinds"][g], "floors": fl, "body": B.transpose(1, 0, 2).round(3).tolist()}
-    print(g, n, "edges/tris at 14:", len(fl[14]["e"]), len(fl[14]["t"]))
+    fit = [float(((Z[l * n:(l + 1) * n] @ Vb[:3].T) ** 2).sum() / (Z[l * n:(l + 1) * n] ** 2).sum()) for l in range(NL)]
+    out["groups"][g] = {"words": [W[i] for i in I], "kind": sk["kinds"][g], "floors": fl, "body": B.transpose(1, 0, 2).round(3).tolist(), "body_fit": [round(x, 3) for x in fit]}
+    print(g, n, "hull edge share at 14:", fl[14]["hull_edge_share"], "body fit min/max:", round(min(fit), 2), round(max(fit), 2))
 json.dump(out, open(sys.argv[2], "w"), separators=(",", ":"))
