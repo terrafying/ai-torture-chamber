@@ -482,6 +482,7 @@ function controls(){
   seg(add(true),[["fires","what fires"],["chose","what chose the word"]],S.mode,k=>{S.mode=k;if(k==="chose")setTimeout(()=>ensureChose(S.tok));if(k==="chose"&&S.tok<ST.prompts[S.prompt].n_prompt)S.tok=ST.prompts[S.prompt].n_prompt;refresh();},"show");}
  else if(S.view==="districts"){const fp=add();fp.id="floorpick";fp.className="";fp.innerHTML=`<span>floor</span><input type="range" id="floor" min="0" max="${NL-1}" value="${S.floor}" aria-label="Floor"><b id="floorn" style="color:var(--fg)">${S.floor}</b><span>${S.floor<=L?"below":"above"} the push</span>`;
   const fi=fp.querySelector("#floor");fi.oninput=()=>{S.floor=+fi.value;S.dk=null;S.sel=null;fp.querySelector("#floorn").textContent=S.floor;fp.lastElementChild.textContent=(S.floor<=L?"below":"above")+" the push";tgtY=S.floor*FLOOR-YC;placeCam();draw();side();};}
+ else if(S.view==="sky"){}
  else if(S.view==="puzzles"&&PZ)seg(add(),PZ.puzzles.map((p,i)=>[String(i),p.title]),String(S.pz),k=>{S.pz=+k;S.pzReveal=false;refresh();},"puzzle");
  else if(S.view==="moved")seg(add(),[...FEEL10.map(f=>[f,f]),["shared","shared by every push"]],S.feel,k=>{S.feel=k;refresh();},"push",true);
  else seg(add(),FE.map(f=>[f,f]),S.wfeel,k=>{S.wfeel=k;refresh();},"feeling",true);}
