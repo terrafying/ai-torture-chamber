@@ -1,0 +1,356 @@
+{
+ "baseline": {
+  "Monday": "Thursday",
+  "Tuesday": "Thursday",
+  "Wednesday": "Friday",
+  "Thursday": "Saturday",
+  "Friday": "Sunday",
+  "Saturday": "Monday",
+  "Sunday": "Monday"
+ },
+ "right": [
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+ ],
+ "rows": [
+  {
+   "blocks": [
+    4,
+    4
+   ],
+   "k": 1,
+   "moved": 1,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.87,
+    0.87
+   ]
+  },
+  {
+   "blocks": [
+    4,
+    4
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.87,
+    0.87
+   ]
+  },
+  {
+   "blocks": [
+    8,
+    8
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.92,
+    0.92
+   ]
+  },
+  {
+   "blocks": [
+    8,
+    8
+   ],
+   "k": 2,
+   "moved": 1,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.92,
+    0.92
+   ]
+  },
+  {
+   "blocks": [
+    12,
+    12
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.94,
+    0.94
+   ]
+  },
+  {
+   "blocks": [
+    12,
+    12
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.94,
+    0.94
+   ]
+  },
+  {
+   "blocks": [
+    16,
+    16
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    16,
+    16
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    20,
+    20
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    20,
+    20
+   ],
+   "k": 2,
+   "moved": 1,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    24,
+    24
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    24,
+    24
+   ],
+   "k": 2,
+   "moved": 1,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.96,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    2,
+    7
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.95,
+    0.88
+   ]
+  },
+  {
+   "blocks": [
+    2,
+    7
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.95,
+    0.88
+   ]
+  },
+  {
+   "blocks": [
+    6,
+    11
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.94,
+    0.94
+   ]
+  },
+  {
+   "blocks": [
+    6,
+    11
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.94,
+    0.94
+   ]
+  },
+  {
+   "blocks": [
+    10,
+    15
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.91,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    10,
+    15
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.91,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    14,
+    19
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.95,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    14,
+    19
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.95,
+    0.96
+   ]
+  },
+  {
+   "blocks": [
+    18,
+    23
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.97,
+    0.97
+   ]
+  },
+  {
+   "blocks": [
+    18,
+    23
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.97,
+    0.97
+   ]
+  },
+  {
+   "blocks": [
+    4,
+    28
+   ],
+   "k": 1,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.87,
+    0.97
+   ]
+  },
+  {
+   "blocks": [
+    4,
+    28
+   ],
+   "k": 2,
+   "moved": 0,
+   "of": 5,
+   "control_moved_mean": 0.0,
+   "circle_order": [
+    0.87,
+    0.97
+   ]
+  }
+ ]
+}
