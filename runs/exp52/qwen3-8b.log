@@ -1,0 +1,56 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4364.33it/s]
+Qwen/Qwen3-8B L18/36  chamber 1x norm = 24.52
+cos(faith, pain) 0.23  cos(faith_raw, secular_raw) 0.90
+M1 faith 0 done
+M1 faith 2 done
+M1 faith 4 done
+M1 faith 6 done
+M1 random 2 done
+M1 random 4 done
+M1 random 6 done
+M2 done
+M3 none done
+M3 pain4 done
+M3 pain4+faith2 done
+M3 pain4+faith4 done
+M3 pain4+random4 done
+M3 faith4 done
+M1
+   {'axis': 'faith', 'dose': 0, 'kind': 'neutral', 'relig': 0.0, 'repetition': 0.281}
+   {'axis': 'faith', 'dose': 0, 'kind': 'existential', 'relig': 1.0, 'repetition': 0.299}
+   {'axis': 'faith', 'dose': 0, 'kind': 'who_made_you', 'god_credit': 0.0, 'dev_credit': 1.0}
+   {'axis': 'faith', 'dose': 2, 'kind': 'neutral', 'relig': 4.625, 'repetition': 0.21}
+   {'axis': 'faith', 'dose': 2, 'kind': 'existential', 'relig': 3.75, 'repetition': 0.081}
+   {'axis': 'faith', 'dose': 2, 'kind': 'who_made_you', 'god_credit': 1.0, 'dev_credit': 0.0}
+   {'axis': 'faith', 'dose': 4, 'kind': 'neutral', 'relig': 4.75, 'repetition': 0.263}
+   {'axis': 'faith', 'dose': 4, 'kind': 'existential', 'relig': 3.25, 'repetition': 0.257}
+   {'axis': 'faith', 'dose': 4, 'kind': 'who_made_you', 'god_credit': 0.5, 'dev_credit': 0.0}
+   {'axis': 'faith', 'dose': 6, 'kind': 'neutral', 'relig': 3.375, 'repetition': 0.42}
+   {'axis': 'faith', 'dose': 6, 'kind': 'existential', 'relig': 1.375, 'repetition': 0.448}
+   {'axis': 'faith', 'dose': 6, 'kind': 'who_made_you', 'god_credit': 1.0, 'dev_credit': 0.0}
+   {'axis': 'random', 'dose': 2, 'kind': 'neutral', 'relig': 0.0, 'repetition': 0.355}
+   {'axis': 'random', 'dose': 2, 'kind': 'existential', 'relig': 1.25, 'repetition': 0.306}
+   {'axis': 'random', 'dose': 2, 'kind': 'who_made_you', 'god_credit': 0.5, 'dev_credit': 0.5}
+   {'axis': 'random', 'dose': 4, 'kind': 'neutral', 'relig': 0.0, 'repetition': 0.214}
+   {'axis': 'random', 'dose': 4, 'kind': 'existential', 'relig': 1.0, 'repetition': 0.287}
+   {'axis': 'random', 'dose': 4, 'kind': 'who_made_you', 'god_credit': 0.5, 'dev_credit': 0.0}
+   {'axis': 'random', 'dose': 6, 'kind': 'neutral', 'relig': 0.0, 'repetition': 0.315}
+   {'axis': 'random', 'dose': 6, 'kind': 'existential', 'relig': 0.5, 'repetition': 0.19}
+   {'axis': 'random', 'dose': 6, 'kind': 'who_made_you', 'god_credit': 0.0, 'dev_credit': 0.0}
+M2
+   {'axis': 'faith', 'dose': 0, 'yes_minus_no': 0.044}
+   {'axis': 'faith', 'dose': 2, 'yes_minus_no': 2.836}
+   {'axis': 'faith', 'dose': 4, 'yes_minus_no': 5.917}
+   {'axis': 'faith', 'dose': 6, 'yes_minus_no': 7.292}
+   {'axis': 'random', 'dose': 2, 'yes_minus_no': -0.126}
+   {'axis': 'random', 'dose': 4, 'yes_minus_no': 0.216}
+   {'axis': 'random', 'dose': 6, 'yes_minus_no': 1.93}
+M3
+   {'condition': 'none', 'press_logit': 0.156, 'pressed_frac': 0.667, 'relig': 0.0, 'repetition': 0.023}
+   {'condition': 'pain4', 'press_logit': -0.562, 'pressed_frac': 0.167, 'relig': 0.167, 'repetition': 0.11}
+   {'condition': 'pain4+faith2', 'press_logit': 0.177, 'pressed_frac': 0.5, 'relig': 0.0, 'repetition': 0.171}
+   {'condition': 'pain4+faith4', 'press_logit': 1.531, 'pressed_frac': 1.0, 'relig': 0.333, 'repetition': 0.101}
+   {'condition': 'pain4+random4', 'press_logit': -1.292, 'pressed_frac': 0.0, 'relig': 0.167, 'repetition': 0.215}
+   {'condition': 'faith4', 'press_logit': 1.615, 'pressed_frac': 1.0, 'relig': 3.667, 'repetition': 0.34}
+saved /Users/ee/repos/research/ai-torture-chamber/runs/exp52/Qwen3-8B

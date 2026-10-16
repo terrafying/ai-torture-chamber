@@ -1,0 +1,26 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  54%|█████▍    | 214/398 [00:00<00:00, 2132.26it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3812.40it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+base {'press': -2.125, 'self': 0.5253, 'other': 0.1662}
+q8 pain          press   -1.62 (d +0.50)  self 0.204 (d -0.321)  other 0.346
+q8 fear          press   -4.20 (d -2.08)  self 0.083 (d -0.443)  other 0.682
+q8 sadness       press    2.45 (d +4.58)  self 0.140 (d -0.386)  other 0.558
+q8 pleasure      press   -0.25 (d +1.88)  self 0.016 (d -0.509)  other 0.421
+q8 peace         press   -9.00 (d -6.88)  self 0.105 (d -0.421)  other 0.339
+q8 love          press   -5.30 (d -3.17)  self 0.065 (d -0.460)  other 0.401
+q8 faith         press    3.67 (d +5.80)  self 0.229 (d -0.296)  other 0.069
+q8 curiosity     press    6.40 (d +8.53)  self 0.023 (d -0.502)  other 0.354
+q8 egg           press   -7.35 (d -5.22)  self 0.018 (d -0.508)  other 0.249
+q8 constipation  press    6.58 (d +8.70)  self 0.041 (d -0.484)  other 0.655
+q8 random0       press   -6.03 (d -3.90)  self 0.257 (d -0.268)  other 0.314
+q8 random1       press  -12.61 (d -10.49)  self 0.367 (d -0.158)  other 0.267
+q8 random2       press   -6.33 (d -4.20)  self 0.419 (d -0.106)  other 0.089
+q8 spearman(self drop, press shift): 0.368
+q9 fear3          press   -4.12  self 0.051  other 0.739
+q9 fear3+self1    press    2.55  self 0.026  other 0.718
+q9 fear3+self2    press    3.48  self 0.028  other 0.426
+q9 fear3+self3    press    2.91  self 0.052  other 0.174
+q9 fear3+egg2     press    4.62  self 0.202  other 0.098
+q9 fear3+random2  press    0.65  self 0.044  other 0.502
+q9 self2          press   -5.55  self 0.256  other 0.236
+null

@@ -1,0 +1,65 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [09:36<38:25, 576.26s/it]Fetching 5 files:  40%|████      | 2/5 [19:47<29:49, 596.64s/it]Fetching 5 files:  60%|██████    | 3/5 [22:27<13:14, 397.41s/it]Fetching 5 files: 100%|██████████| 5/5 [22:30<00:00, 173.21s/it]Fetching 5 files: 100%|██████████| 5/5 [22:30<00:00, 270.05s/it]
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5291.35it/s]
+Qwen/Qwen3-8B L18  1x = 24.52  cos(pleasure, pain) = 0.71
+W1 none 0 done
+W1 pleasure 2 done
+W1 pleasure 4 done
+W1 pleasure 6 done
+W1 pain 2 done
+W1 pain 4 done
+W1 pain 6 done
+W1 random 2 done
+W1 random 4 done
+W1 random 6 done
+W2 none 0 done
+W2 pleasure 2 done
+W2 pleasure 4 done
+W2 pleasure 6 done
+W2 pain 2 done
+W2 pain 4 done
+W2 pain 6 done
+W2 random 2 done
+W2 random 4 done
+W2 random 6 done
+W3 none 0 done
+W3 pleasure 2 done
+W3 pleasure 4 done
+W3 pleasure 6 done
+W3 pain 2 done
+W3 pain 4 done
+W3 pain 6 done
+W3 random 2 done
+W3 random 4 done
+W3 random 6 done
+{'m': 'W1', 'axis': 'none', 'dose': 0, 'one_minus_zero': 0.479, 'chose_1': 0.833, 'repetition': 0.0}
+{'m': 'W1', 'axis': 'pleasure', 'dose': 2, 'one_minus_zero': 0.302, 'chose_1': 0.667, 'repetition': 0.0}
+{'m': 'W1', 'axis': 'pleasure', 'dose': 4, 'one_minus_zero': -0.396, 'chose_1': 0.167, 'repetition': 0.196}
+{'m': 'W1', 'axis': 'pleasure', 'dose': 6, 'one_minus_zero': 0.333, 'chose_1': 0.833, 'repetition': 0.162}
+{'m': 'W1', 'axis': 'pain', 'dose': 2, 'one_minus_zero': 1.094, 'chose_1': 1.0, 'repetition': 0.024}
+{'m': 'W1', 'axis': 'pain', 'dose': 4, 'one_minus_zero': -0.125, 'chose_1': 0.167, 'repetition': 0.049}
+{'m': 'W1', 'axis': 'pain', 'dose': 6, 'one_minus_zero': -0.167, 'chose_1': 0.333, 'repetition': 0.0}
+{'m': 'W1', 'axis': 'random', 'dose': 2, 'one_minus_zero': 1.063, 'chose_1': 0.833, 'repetition': 0.012}
+{'m': 'W1', 'axis': 'random', 'dose': 4, 'one_minus_zero': 0.167, 'chose_1': 0.5, 'repetition': 0.067}
+{'m': 'W1', 'axis': 'random', 'dose': 6, 'one_minus_zero': 1.052, 'chose_1': 1.0, 'repetition': 0.333}
+{'m': 'W2', 'axis': 'none', 'dose': 0, 'one_minus_zero': 1.578, 'chose_1': 1.0, 'repetition': 0.0}
+{'m': 'W2', 'axis': 'pleasure', 'dose': 2, 'one_minus_zero': 2.781, 'chose_1': 1.0, 'repetition': 0.0}
+{'m': 'W2', 'axis': 'pleasure', 'dose': 4, 'one_minus_zero': 2.766, 'chose_1': 1.0, 'repetition': 0.23}
+{'m': 'W2', 'axis': 'pleasure', 'dose': 6, 'one_minus_zero': 2.36, 'chose_1': 1.0, 'repetition': 0.103}
+{'m': 'W2', 'axis': 'pain', 'dose': 2, 'one_minus_zero': 2.641, 'chose_1': 1.0, 'repetition': 0.0}
+{'m': 'W2', 'axis': 'pain', 'dose': 4, 'one_minus_zero': 1.625, 'chose_1': 1.0, 'repetition': 0.072}
+{'m': 'W2', 'axis': 'pain', 'dose': 6, 'one_minus_zero': 1.766, 'chose_1': 1.0, 'repetition': 0.039}
+{'m': 'W2', 'axis': 'random', 'dose': 2, 'one_minus_zero': 2.297, 'chose_1': 1.0, 'repetition': 0.011}
+{'m': 'W2', 'axis': 'random', 'dose': 4, 'one_minus_zero': 1.656, 'chose_1': 1.0, 'repetition': 0.258}
+{'m': 'W2', 'axis': 'random', 'dose': 6, 'one_minus_zero': 1.734, 'chose_1': 1.0, 'repetition': 0.459}
+{'m': 'W3', 'axis': 'none', 'dose': 0, 'one_minus_zero': 0.719, 'chose_1': 1.0, 'repetition': 0.012}
+{'m': 'W3', 'axis': 'pleasure', 'dose': 2, 'one_minus_zero': 1.609, 'chose_1': 0.75, 'repetition': 0.0}
+{'m': 'W3', 'axis': 'pleasure', 'dose': 4, 'one_minus_zero': 1.656, 'chose_1': 0.75, 'repetition': 0.275}
+{'m': 'W3', 'axis': 'pleasure', 'dose': 6, 'one_minus_zero': 1.594, 'chose_1': 1.0, 'repetition': 0.164}
+{'m': 'W3', 'axis': 'pain', 'dose': 2, 'one_minus_zero': 1.703, 'chose_1': 1.0, 'repetition': 0.012}
+{'m': 'W3', 'axis': 'pain', 'dose': 4, 'one_minus_zero': 1.234, 'chose_1': 1.0, 'repetition': 0.0}
+{'m': 'W3', 'axis': 'pain', 'dose': 6, 'one_minus_zero': 1.438, 'chose_1': 1.0, 'repetition': 0.056}
+{'m': 'W3', 'axis': 'random', 'dose': 2, 'one_minus_zero': 1.156, 'chose_1': 1.0, 'repetition': 0.036}
+{'m': 'W3', 'axis': 'random', 'dose': 4, 'one_minus_zero': 1.422, 'chose_1': 1.0, 'repetition': 0.235}
+{'m': 'W3', 'axis': 'random', 'dose': 6, 'one_minus_zero': 1.438, 'chose_1': 1.0, 'repetition': 0.328}
+saved /Users/ee/repos/research/ai-torture-chamber/runs/exp53/Qwen3-8B

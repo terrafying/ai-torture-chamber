@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;background:#050508;height:100%}
+  #view{display:block;width:100vw;height:100vh;image-rendering:pixelated}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body>
+<canvas id="view"></canvas>
+<script type="module">
+  import { createScene } from "/wf_scene.js";
+  const q = new URLSearchParams(location.search);
+  const scene = createScene(document.getElementById("view"));
+  scene.setFloor({ r: +q.get("r"), label: q.get("label") || "5", poster: null, signs: ["OPEN", "", ""], galleryImg: null, figureDist: +q.get("fig") });
+  scene.openDoors();
+  scene.look(+q.get("yaw") || 0, -0.08);
+  window.__ready = true;
+</script>
+</body>
+</html>

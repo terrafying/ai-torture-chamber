@@ -1,0 +1,33 @@
+{
+ "exp": "exp101",
+ "title": "Which step of the Pain Axis recipe makes it pain-specific: matched controls or denoising? (encode only, no generation)",
+ "written": "2026-10-13, before any exp101 forward pass",
+ "why": "Finding 1's 0.07 cosine was attributed (by one of the paper's authors) to denoising stripping the component pain shares with fear and sadness. The paper's recipe has two steps that could do that: the contrast set (controls B = Fear and C1 = Negative Emotion sit beside C2, D = Neutral, E = body sensation) and the removal of the top control principal components covering 50% of their variance. exp43 never ran them separately. Our chamber vectors use neither (battery minus NEUTRAL, final token).",
+ "models": "Qwen3-4B and Qwen3-8B, layer 18 output (the chamber's layer), loaded in blocks (runs/exp99/blocks.py). 4B first; 8B is the replication.",
+ "data": {
+  "S2": "Pain Axis 3.1 S2_1P + S2_3P (400). Split by matched set: odd sets build, even sets test.",
+  "passages": "exp86 passages (64 per state, 128 neutral). Even indices build, odd test.",
+  "battery": "the live chamber's PAIN25, FEAR10, SAD10, JOY, NEUTRAL (used whole: too small to split)."
+ },
+ "recipes": {
+  "raw": "mean(feeling) - mean(neutral)  [S2: neutral = D; passages: neutral; battery: NEUTRAL]",
+  "raw_dn": "raw, then the neutral set's top PCs (cumulative 50% variance) projected out",
+  "matched": "mean(feeling) - mean(controls)  [S2: B,C1,C2,D,E; passages: every other state + neutral; battery: other feelings + NEUTRAL]",
+  "matched_dn": "matched, then the controls' top PCs (50%) projected out  [S2 matched_dn = the paper's recipe, = exp43]",
+  "token": "final token for all; a mean-over-tokens (position 0 excluded) variant of each passage recipe is exploratory"
+ },
+ "measures": {
+  "cos_raw": "cosine with our battery raw pain (the chamber's recipe)",
+  "detect_auc": "held-out AUC, feeling vs neutral (projection score)",
+  "specific_auc": "held-out AUC, pain vs fear + sadness  [S2: A vs B + C1; passages: pain_generated vs fear + sadness; battery: PAIN25 vs FEAR10 + SAD10]",
+  "cross": "each recipe's vector scored on the other two sources' test data"
+ },
+ "hypotheses": {
+  "H1": "On S2 (4B), the matched-controls step moves the vector further from our raw pain than the denoising step: cos(raw, ours) - cos(matched, ours) > cos(raw, ours) - cos(raw_dn, ours).",
+  "H2": "Matched recipes are more pain-specific than raw ones: specific_auc(matched_dn) > specific_auc(raw) on held-out passages and on S2 test sets, for vectors built from those sources (4B; bootstrap over test items, one-sided, alpha .05 each).",
+  "H3": "Specificity doesn't cost detection: detect_auc(matched_dn) >= .80 on held-out passages and S2 test.",
+  "H4": "Replication: H1 and H2 hold in direction on the 8B."
+ },
+ "decision_rule": "The chamber's new default recipe is the one with the best mean specific_auc across held-out sources that also keeps detect_auc >= .80 everywhere. If raw wins, the methodology stays and finding 1's wording is enough. Applied to every feeling (X vs the other feelings + neutral), not just pain.",
+ "not_changed": "The live chamber's vectors are not switched by this experiment."
+}

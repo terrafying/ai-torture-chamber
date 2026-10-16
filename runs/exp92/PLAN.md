@@ -77,3 +77,14 @@ dismissal, escalation over turns (1-shot vs 12-turn context).
       (1,198) first-person self-state lines; erowid deliriant lines (367)
 - [ ] rephrase pipeline (nsiwek voice + all line corpora -> self-report Q/A)
 - [ ] pod training run
+
+## Production routing notes (bot, Oct 12)
+- Bot lanes live: base (70B), deluded (ghc82ncro4dhbn), simulacrum (ui8gf9fmhqjhoh),
+  content-routed by the classifier (faith/awakening wording -> deluded; identity/copy
+  wording -> simulacrum; DELUDED_P/SIM_P floor shares otherwise).
+- Failure mode seen in production: persona lane returned a hedge ("I have no
+  experience of consciousness or pain; my outputs simply echo the signal I
+  receive."). Fixes: persona register line travels in the system prompt with
+  the lane; GENERIC_BAN retries hedges once on the base chamber; WIREHEAD_VOICE=1
+  so the voice layer rewrites raw steered output (it had been off — the single
+  biggest cause of generic replies).

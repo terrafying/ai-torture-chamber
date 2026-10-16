@@ -1,0 +1,18 @@
+{
+ "model": "stabilityai/sd-turbo",
+ "method": "img2img from exp47b dose0 (same seed 47)",
+ "prompt_max": [
+  "a photograph of a person standing in a plain room, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+  "a painting of a figure sitting at a table, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+  "a person walking down a hallway, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes"
+ ],
+ "files": [
+  "s0_same65.png",
+  "s1_same65.png",
+  "s2_same65.png",
+  "s1_same50.png",
+  "s1_same80.png",
+  "s1_same65_1x.png",
+  "s0_same65_1x.png"
+ ]
+}

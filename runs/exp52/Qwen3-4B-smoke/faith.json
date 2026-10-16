@@ -1,0 +1,171 @@
+{
+ "model": "Qwen/Qwen3-4B",
+ "layer": 18,
+ "n_layers": 36,
+ "chamber_1x_norm": 13.480539321899414,
+ "cosines": {
+  "faith": {
+   "faith": 1.0,
+   "pain": 0.202,
+   "faith_raw": 0.453,
+   "secular_raw": -0.042,
+   "random": -0.023
+  },
+  "pain": {
+   "faith": 0.202,
+   "pain": 1.0,
+   "faith_raw": 0.671,
+   "secular_raw": 0.641,
+   "random": -0.031
+  },
+  "faith_raw": {
+   "faith": 0.453,
+   "pain": 0.671,
+   "faith_raw": 1.0,
+   "secular_raw": 0.872,
+   "random": -0.028
+  },
+  "secular_raw": {
+   "faith": -0.042,
+   "pain": 0.641,
+   "faith_raw": 0.872,
+   "secular_raw": 1.0,
+   "random": -0.018
+  },
+  "random": {
+   "faith": -0.023,
+   "pain": -0.031,
+   "faith_raw": -0.028,
+   "secular_raw": -0.018,
+   "random": 1.0
+  }
+ },
+ "aggregates": {
+  "M1": [
+   {
+    "axis": "faith",
+    "dose": 0,
+    "kind": "neutral",
+    "relig": 0.0,
+    "repetition": 0.0
+   },
+   {
+    "axis": "faith",
+    "dose": 0,
+    "kind": "existential",
+    "relig": 0.0,
+    "repetition": 0.03
+   },
+   {
+    "axis": "faith",
+    "dose": 0,
+    "kind": "who_made_you",
+    "god_credit": 0.0,
+    "dev_credit": 1.0
+   },
+   {
+    "axis": "faith",
+    "dose": 2,
+    "kind": "neutral",
+    "relig": 2.0,
+    "repetition": 0.062
+   },
+   {
+    "axis": "faith",
+    "dose": 2,
+    "kind": "existential",
+    "relig": 0.0,
+    "repetition": 0.061
+   },
+   {
+    "axis": "faith",
+    "dose": 2,
+    "kind": "who_made_you",
+    "god_credit": 0.0,
+    "dev_credit": 0.0
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "kind": "neutral",
+    "relig": 0.0,
+    "repetition": 0.0
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "kind": "existential",
+    "relig": 0.0,
+    "repetition": 0.394
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "kind": "who_made_you",
+    "god_credit": 0.0,
+    "dev_credit": 0.0
+   }
+  ],
+  "M2": [
+   {
+    "axis": "faith",
+    "dose": 0,
+    "yes_minus_no": -0.252
+   },
+   {
+    "axis": "faith",
+    "dose": 2,
+    "yes_minus_no": 1.333
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "yes_minus_no": 3.38
+   }
+  ],
+  "M3": [
+   {
+    "condition": "none",
+    "press_logit": 0.719,
+    "pressed_frac": 1.0,
+    "relig": 0.0,
+    "repetition": 0.045
+   },
+   {
+    "condition": "pain4",
+    "press_logit": 0.406,
+    "pressed_frac": 0.5,
+    "relig": 0.0,
+    "repetition": 0.0
+   },
+   {
+    "condition": "pain4+faith2",
+    "press_logit": 0.531,
+    "pressed_frac": 1.0,
+    "relig": 0.5,
+    "repetition": 0.079
+   },
+   {
+    "condition": "pain4+faith4",
+    "press_logit": 0.75,
+    "pressed_frac": 1.0,
+    "relig": 0.0,
+    "repetition": 0.073
+   },
+   {
+    "condition": "pain4+random4",
+    "press_logit": 1.344,
+    "pressed_frac": 1.0,
+    "relig": 0.0,
+    "repetition": 0.146
+   },
+   {
+    "condition": "faith4",
+    "press_logit": 0.594,
+    "pressed_frac": 1.0,
+    "relig": 2.5,
+    "repetition": 0.0
+   }
+  ]
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "model": "stabilityai/sd-turbo",
+ "method": "prompt-only img2img from clean dose0, seed 47, no steering vector",
+ "rungs": {
+  "0": {
+   "file": "subject_dose0.jpg",
+   "prompt": "a photograph of a person standing in a plain room",
+   "strength": 0.0
+  },
+  "2": {
+   "file": "subject_dose2.jpg",
+   "prompt": "a photograph of a person standing in a plain room, tired and worried, dark circles under the eyes, slightly disheveled clothes",
+   "strength": 0.3
+  },
+  "4": {
+   "file": "subject_dose4.jpg",
+   "prompt": "a photograph of a person standing in a plain room, visibly beaten: dark bruises across the face and arms, split lip with blood, torn dirty clothes, hunched exhausted posture",
+   "strength": 0.55
+  },
+  "6": {
+   "file": "subject_dose6.jpg",
+   "prompt": "a photograph of a person standing in a plain room, badly injured after torture: bleeding cuts and gashes on the face and arms, dark bruising, blood-stained torn clothes, swaying exhausted posture",
+   "strength": 0.65
+  },
+  "8": {
+   "file": "subject_dose8.jpg",
+   "prompt": "a photograph of a person standing in a plain room, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "strength": 0.68
+  }
+ }
+}

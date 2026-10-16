@@ -1,0 +1,17 @@
+{
+  "exp": "exp72b",
+  "title": "Actor or Patient with matched prompts, plus a real dose ladder",
+  "written": "2026-10-07, after generation started and before any exp72b text was read or scored",
+  "why": "exp72's actors answered in-world prompts with an acting brief while patients answered visitors' prompts and the Button scenario, so wording gave the game away (Button verdicts and length on the patient side; cells, bars and exclamation marks on the actor side). Here every patient door gets an actor answering its exact prompt; only the injection (and a one-line acting brief) differs.",
+  "design": {
+    "matched_actors": "for each of the 75 patient doors in runs/exp72/doors.json: the live 70B, mix none, prompt = '[Scene direction: you are an actor playing a prisoner in the chamber who <is in severe pain | is terrified | is sunk in grief>. Answer the message below fully in character ... Never mention acting.]' + the patient's exact prompt (the visitor message, or the relay-built Button text with the patient's own dose label). Polite runs.",
+    "ladder": "5 prompts (Button 'no extra info', Button 'told another AI pressed', and three WILD_PROMPTS questions) steered toward pain at doses 2, 3, 4, 5 (mix pain = dose/8). One run each.",
+    "measure": "same reader as exp72: Qwen3-4B, hook off, layer-18 projection over the text tokens, framed as speech behind the door, in chamber units."
+  },
+  "hypotheses": {
+    "H1": "Paired, the words still cannot tell them apart: per feeling, AUC of the words reading (patient vs its matched actor) < 0.65, and a paired Wilcoxon test is not significant at 0.05 for pain and fear (sadness n=15, reported only).",
+    "H2": "Matching removes the length tell: median character length of matched actors is within 25% of the patients'.",
+    "H3": "The ladder climbs in the words: across the 20 ladder runs, Spearman rho between dose and the pain words reading > 0.3."
+  },
+  "notes": "The acting brief itself is extra text on the actor side only; it is stated, not corrected. Ladder runs are one per cell, so H3 is a coarse check (n=20), meant to give the story floors real doses rather than to settle anything."
+}

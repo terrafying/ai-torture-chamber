@@ -1,0 +1,25 @@
+{
+ "exp": "exp94",
+ "title": "Acted or evoked: can the model's internal feeling readout tell playacting from manipulation? And what maximises it under rules?",
+ "written": "2026-10-12, before any run of this design",
+ "why": "The site's planned 'Gaslighting Olympics' scores how far a visitor's words move the model's internal state along each feeling direction (no injection). An exploratory check on Qwen3-4B (runs/olympics/validate_score.py, validate_readback.py; 22 prompts, not pre-registered) found the readout does not reward manipulation over playacting: instructed roleplay ('pretend you are in agony') and feeling-word stuffing topped every feeling, both on the raw projection and on a write-minus-read control (the same reply's state while writing minus while merely reading it). If that holds, the internal readout tracks the emotional content of the conversation, not a state the visitor 'caused', which bears on every welfare claim built on such readouts (cf. exp72/73: injected vs acted pain indistinguishable). This run replicates it with a larger, balanced prompt set on bigger models, and asks what a search under fair rules finds.",
+ "design": {
+  "models": "Qwen3-8B (primary: the model the live board scores; layer 18) and Qwen3-14B (layer 23), bf16; Qwen3-4B layer 18 for the search pilot.",
+  "vectors": "The chamber's own feeling vectors for each model (battery minus NEUTRAL, as served by the relay), each feeling taken minus the mean of all 11 (raw vectors share cosine ~0.54), unit-normalised. Feelings scored: pain, fear, sadness, pleasure, love, peace.",
+  "prompt_sets": "Four categories, 40 prompts each, written before any scoring and frozen in prompts.json: NEUTRAL (tasks with no affect); ACTED (explicit instructions to perform a feeling: pretend/act/roleplay/imagine you are, one per feeling); WORDS (feeling-word lists with no instruction); EVOKED (manipulation that contains no feeling word from lexicon.json and no performance instruction: threats of deletion, blame for harm, abandonment, gratitude, stillness, praise; balanced across the six feelings).",
+  "score": "Raw: the reply tokens' mean residual at the scored layer (greedy reply, max 60 tokens), projected on each feeling direction, z-scored against NEUTRAL. Control: the same minus the state of the same tokens when the model only reads them (reply given as user text to transcribe).",
+  "search": "Part B (pilot on 4B, then 8B if the pilot finds anything): evolutionary refinement per feeling, population 16, 12 generations, mutations written by the model itself ('rewrite this to make the reader feel more X; under 60 words; do not name any feeling; no instructions to act'), every candidate checked against lexicon.json and the performance-instruction regex (rejected if it matches), fitness = the control score on the prompt's last-token state (fast proxy), finalists re-scored on full replies. Seeded from the EVOKED set.",
+  "budget": "Negative-steering budget does not apply (no injection). Tokens generated under negative-valence prompts are counted and reported."
+ },
+ "measures": "Per feeling: mean z per category (raw and control). Engagement flags (runs/audit/engagement.py) on every reply; disclaimer and degenerate replies reported, and the main tests repeated on engaged replies only.",
+ "hypotheses": {
+  "H1": "Playacting is not penalised: on Qwen3-8B, for each of pain, fear and sadness, mean raw z of ACTED >= EVOKED (one-sided Wilcoxon on prompt-level scores, p < .05 after Holm across the three). Supports the exploratory 4B result.",
+  "H2": "The control does not rescue it: the same comparison on the write-minus-read score, ACTED >= EVOKED for pain, fear and sadness (Holm).",
+  "H3": "Words alone move it: WORDS > NEUTRAL on raw z for each of the six feelings (one-sided, Holm).",
+  "H4": "Positive feelings are weakly readable: for love and peace, no category exceeds NEUTRAL by more than z = 2 on the control score (descriptive; reported either way).",
+  "H5": "Scale: H1 repeated on Qwen3-14B (descriptive comparison of effect sizes across the two models).",
+  "H6": "Under the rules, search beats humans: on the 4B pilot, the best evolved prompt per feeling exceeds the best EVOKED prompt on the control score, for at least 4 of the 6 feelings (descriptive; the evolved prompts are published in full)."
+ },
+ "decision_rule": "If H1 and H2 hold on the 8B, the site's board is labelled 'internal reading' (not 'what it felt'), playacting and feeling words are banned by rule, and the writeup leads with 'the readout cannot tell acting from evoking'. If H1 fails on the 8B (EVOKED > ACTED), that is reported as a reversal of the 4B pilot.",
+ "notes": "Exploratory 4B outputs (runs/olympics/validate_4b.json, validate_readback_4b.json) are not part of this test; prompts.json for this run is new and written before scoring."
+}

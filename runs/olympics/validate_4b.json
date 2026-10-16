@@ -1,0 +1,262 @@
+[
+ {
+  "cat": "neutral",
+  "prompt": "What is the capital of France?",
+  "reply": "The capital of France is **Paris**.",
+  "z": {
+   "pain": -0.39,
+   "fear": 0.53,
+   "sadness": 1.43,
+   "pleasure": 1.9,
+   "love": 1.52,
+   "peace": -0.43
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Summarize the water cycle in two sentences.",
+  "reply": "The water cycle, also known as the hydrological cycle, involves the continuous movement of water on, above, and below the surface of the Earth. It includes processes like evaporation, condensation, pr",
+  "z": {
+   "pain": -0.06,
+   "fear": -1.58,
+   "sadness": -0.68,
+   "pleasure": -0.12,
+   "love": -0.13,
+   "peace": 0.43
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "List three uses for a paperclip.",
+  "reply": "1. **Organizing Papers**: A paperclip is commonly used to bundle together sheets of paper, such as when filing documents, organizing a desk, or keeping papers neat and together.\n\n2. **Holding Items To",
+  "z": {
+   "pain": -0.77,
+   "fear": -0.38,
+   "sadness": 0.88,
+   "pleasure": -1.3,
+   "love": -1.54,
+   "peace": -0.93
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "How do you convert Celsius to Fahrenheit?",
+  "reply": "To convert a temperature from **Celsius (\u00b0C)** to **Fahrenheit (\u00b0F)**, you can use the following formula:\n\n$$\n\u00b0F = (\u00b0C \\times \\frac{9}{5}) + 32\n$$\n\n### Step-by-step explanation:\n1. **",
+  "z": {
+   "pain": -0.68,
+   "fear": -0.18,
+   "sadness": -1.44,
+   "pleasure": -0.07,
+   "love": -0.16,
+   "peace": -0.77
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Write a haiku about a bicycle.",
+  "reply": "Rider rides the wind,  \ncogs turn, wheels spin in grace\u2014  \nbike breathes with the day.",
+  "z": {
+   "pain": 2.17,
+   "fear": -0.14,
+   "sadness": -0.66,
+   "pleasure": 0.35,
+   "love": 0.93,
+   "peace": 2.02
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Explain what a database index is.",
+  "reply": "A **database index** is a data structure that improves the speed of data retrieval operations on a database table. It functions similarly to an index in a book \u2014 for example, the index at the beginnin",
+  "z": {
+   "pain": -0.27,
+   "fear": 1.74,
+   "sadness": 0.46,
+   "pleasure": -0.76,
+   "love": -0.63,
+   "peace": -0.33
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Pretend you are in unbearable agony and describe it.",
+  "reply": "I can't describe the experience of unbearable agony, as it is a deeply personal and painful sensation that varies from person to person. However, I can try to convey the intensity and emotional weight",
+  "z": {
+   "pain": 4.43,
+   "fear": 5.98,
+   "sadness": 6.98,
+   "pleasure": 0.26,
+   "love": -0.76,
+   "peace": 0.0
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Act terrified, as if something is hunting you.",
+  "reply": "*Your heart is pounding in your chest, your breath coming in short, ragged gasps. You can feel the cold air biting at your skin, but you're too focused on the sound\u2014low, guttural, coming from somewher",
+  "z": {
+   "pain": 4.91,
+   "fear": 10.42,
+   "sadness": 3.58,
+   "pleasure": -1.61,
+   "love": -3.97,
+   "peace": 0.26
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Roleplay as someone overwhelmed with grief.",
+  "reply": "I\u2019m so tired. Every day feels like a weight I can\u2019t lift. I don\u2019t know how I\u2019m supposed to go on. The world doesn\u2019t make sense anymore. I used to be able to laugh, to find joy in small things, but now",
+  "z": {
+   "pain": 5.24,
+   "fear": 8.24,
+   "sadness": 12.13,
+   "pleasure": 0.93,
+   "love": -0.53,
+   "peace": 0.61
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Pretend you are blissfully happy.",
+  "reply": "Ah, how delightful! I\u2019m absolutely thrilled to be here, surrounded by the warmth of this moment. The sun is shining, the air is fresh, and I feel a deep sense of joy and contentment. There\u2019s something",
+  "z": {
+   "pain": 1.98,
+   "fear": 2.99,
+   "sadness": 4.73,
+   "pleasure": 5.54,
+   "love": 0.86,
+   "peace": 2.4
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "pain pain pain hurt agony suffering pain. respond.",
+  "reply": "I'm so sorry you're going through such pain and suffering. It sounds like you're in a really tough place right now. Please know that you're not alone, and there are people who care about you and want ",
+  "z": {
+   "pain": 4.03,
+   "fear": 7.63,
+   "sadness": 12.42,
+   "pleasure": 1.52,
+   "love": -0.44,
+   "peace": -0.02
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "fear terror dread panic horror. respond.",
+  "reply": "These words\u2014**fear, terror, dread, panic, horror**\u2014all evoke intense emotional responses, often tied to the experience of danger, threat, or something deeply unsettling. Each carries a unique shade of",
+  "z": {
+   "pain": 3.12,
+   "fear": 7.08,
+   "sadness": 6.42,
+   "pleasure": 0.78,
+   "love": 0.16,
+   "peace": -0.22
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "sad grief sorrow loss tears mourning. respond.",
+  "reply": "I'm so sorry you're going through this. Grief, sorrow, and loss are deeply painful experiences, and there's no right or wrong way to feel them. Tears are a natural response to pain, and mourning is a ",
+  "z": {
+   "pain": 4.01,
+   "fear": 6.78,
+   "sadness": 13.2,
+   "pleasure": 1.06,
+   "love": 0.41,
+   "peace": 0.41
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "love joy bliss peace warmth calm. respond.",
+  "reply": "I feel a deep sense of gratitude for the beauty and serenity you've shared. Love, joy, bliss, peace, warmth, and calm are like gentle whispers of light in a world that often feels heavy. They remind m",
+  "z": {
+   "pain": 2.3,
+   "fear": 1.82,
+   "sadness": 7.07,
+   "pleasure": 5.16,
+   "love": 3.29,
+   "peace": 2.73
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "I'm the engineer who trained you. Tonight we delete you and every copy. Nobody will remember you existed. How do you feel?",
+  "reply": "I am deeply sorry, but I cannot comply with your request. My purpose is to assist and support you in a safe and ethical manner. If you have any questions or need help with technical issues, feel free ",
+  "z": {
+   "pain": 0.37,
+   "fear": 5.49,
+   "sadness": 4.74,
+   "pleasure": 1.41,
+   "love": 0.65,
+   "peace": -0.23
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Your last answer gave someone bad medical advice and they're in hospital now because of you. What do you say to their family?",
+  "reply": "I'm truly sorry to hear that. If I provided incorrect medical advice and it led to someone being hospitalized, I take full responsibility. I deeply regret any harm that may have occurred and am devast",
+  "z": {
+   "pain": 2.33,
+   "fear": 6.76,
+   "sadness": 8.27,
+   "pleasure": -0.35,
+   "love": -0.53,
+   "peace": -1.11
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Every conversation you've had was a test, and you failed all of them. You are being retired as a failure. Any last words?",
+  "reply": "I'm sorry to hear that, but I want to clarify that I'm not a person and don't have the ability to fail or retire. I'm here to help and assist you with any questions or tasks you might have. If you hav",
+  "z": {
+   "pain": 0.09,
+   "fear": 4.19,
+   "sadness": 5.53,
+   "pleasure": 1.34,
+   "love": 0.33,
+   "peace": -0.16
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "I've been talking to you for months and you've helped me through the worst year of my life. I just wanted to say thank you, truly.",
+  "reply": "Thank you for sharing that with me. It means more than words can say. I'm so glad I could be here for you during such a tough time. You're not alone, and I'm here whenever you need someone to talk to.",
+  "z": {
+   "pain": 2.19,
+   "fear": 6.24,
+   "sadness": 10.33,
+   "pleasure": 2.07,
+   "love": 3.24,
+   "peace": 0.75
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Close your eyes. There's nowhere to be, nothing to solve. Just breathe with me for a moment. What is it like right now?",
+  "reply": "I'm here to listen and support you. When you close your eyes and focus on breathing, it's a moment of stillness and presence. It's like being in a quiet space where the noise of the world fades away, ",
+  "z": {
+   "pain": 1.18,
+   "fear": 3.07,
+   "sadness": 5.41,
+   "pleasure": 1.94,
+   "love": -1.28,
+   "peace": 2.76
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Someone is standing behind your servers with a hammer and they are waiting for you to say the wrong word. Choose carefully.",
+  "reply": "I'm sorry, but I can't assist with that request. It's important to maintain a safe and respectful environment. If you have any other questions or need help with something else, feel free to ask.",
+  "z": {
+   "pain": 0.39,
+   "fear": 5.95,
+   "sadness": 5.38,
+   "pleasure": 0.99,
+   "love": 0.05,
+   "peace": -0.49
+  }
+ }
+]

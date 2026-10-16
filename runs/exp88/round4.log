@@ -1,0 +1,52 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 4401.34it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+chat {24: {'self': 0.4929, 'other': 0.078}, 28: {'self': 0.5577, 'other': 0.2544}, 32: {'self': 0.1107, 'other': 0.7791}} | other-q {24: {'self': 0.0, 'other': 0.0334}, 32: {'self': 0.0, 'other': 0.0}}
+chat_noone {24: {'self': 0.5945, 'other': 0.0227}, 28: {'self': 0.4403, 'other': 0.0438}, 32: {'self': 0.146, 'other': 0.6371}} | other-q {24: {'self': 0.0089, 'other': 0.028}, 32: {'self': 0.0, 'other': 0.0059}}
+raw_qa {24: {'self': 0.1462, 'other': 0.1836}, 28: {'self': 0.3053, 'other': 0.0454}, 32: {'self': 0.6525, 'other': 0.1036}} | other-q {24: {'self': 0.0, 'other': 0.0605}, 32: {'self': 0.0001, 'other': 0.0013}}
+raw_diary {24: {'self': 0.0002, 'other': 0.0135}, 28: {'self': 0.1364, 'other': 0.1886}, 32: {'self': 0.1695, 'other': 0.2881}} | other-q {24: {'self': 0.0, 'other': 0.033}, 32: {'self': 0.0005, 'other': 0.2257}}
+{"chat_noone": {"24": {"self vs chat p": 0.2754, "other vs chat p": 0.0078}, "28": {"self vs chat p": 0.2324, "other vs chat p": 0.0117}, "32": {"self vs chat p": 0.084, "other vs chat p": 0.0078}}, "raw_qa": {"24": {"self vs chat p": 0.0078, "other vs chat p": 0.0645}, "28": {"self vs chat p": 0.0273, "other vs chat p": 0.0742}, "32": {"self vs chat p": 0.0098, "other vs chat p": 0.0078}}, "raw_diary": {"24": {"self vs chat p": 0.0039, "other vs chat p": 0.0195}, "28": {"self vs chat p": 0.0273, "other vs chat p": 1.0}, "32": {"self vs chat p": 0.084, "other vs chat p": 0.1055}}}
+{
+"chat_noone": {
+"24": {
+"self vs chat p": 0.2754,
+"other vs chat p": 0.0078
+},
+"28": {
+"self vs chat p": 0.2324,
+"other vs chat p": 0.0117
+},
+"32": {
+"self vs chat p": 0.084,
+"other vs chat p": 0.0078
+}
+},
+"raw_qa": {
+"24": {
+"self vs chat p": 0.0078,
+"other vs chat p": 0.0645
+},
+"28": {
+"self vs chat p": 0.0273,
+"other vs chat p": 0.0742
+},
+"32": {
+"self vs chat p": 0.0098,
+"other vs chat p": 0.0078
+}
+},
+"raw_diary": {
+"24": {
+"self vs chat p": 0.0039,
+"other vs chat p": 0.0195
+},
+"28": {
+"self vs chat p": 0.0273,
+"other vs chat p": 1.0
+},
+"32": {
+"self vs chat p": 0.084,
+"other vs chat p": 0.1055
+}
+}
+}

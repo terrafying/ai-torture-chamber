@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: painlab
+Version: 0.1.0
+Summary: Reproducible experiments on causal activation interventions and revealed preference
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: numpy>=1.24
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: model
+Requires-Dist: torch>=2.1; extra == "model"
+Requires-Dist: transformers>=4.51.0; extra == "model"
+Provides-Extra: chamber
+Requires-Dist: torch>=2.1; extra == "chamber"
+Requires-Dist: transformers>=4.51.0; extra == "chamber"
+Requires-Dist: scipy>=1.11; extra == "chamber"
+Requires-Dist: scikit-learn>=1.3; extra == "chamber"
+Provides-Extra: test
+Requires-Dist: pytest>=8.0; extra == "test"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: ruff>=0.8; extra == "dev"
+Requires-Dist: build>=1.2; extra == "dev"
+Provides-Extra: plots
+Requires-Dist: matplotlib>=3.8; extra == "plots"
+Dynamic: license-file

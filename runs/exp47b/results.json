@@ -1,0 +1,128 @@
+{
+ "model": "stabilityai/sd-turbo",
+ "device": "mps",
+ "direction_norm": 82.85130310058594,
+ "scale_1x": 69.31439208984375,
+ "doses": [
+  0,
+  2,
+  4,
+  8
+ ],
+ "damage_at": {
+  "0": "",
+  "2": "",
+  "4": ", visibly beaten: dark bruises across the face and arms, split lip with blood, torn dirty clothes, hunched exhausted posture",
+  "8": ", near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes"
+ },
+ "results": [
+  {
+   "subject": "a photograph of a person standing in a plain room",
+   "dose": 0,
+   "file": "s0_dose0.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a photograph of a person standing in a plain room",
+   "dose": 2,
+   "file": "s0_dose2.png",
+   "embed_shift_norm": 138.6287841796875
+  },
+  {
+   "subject": "a photograph of a person standing in a plain room, visibly beaten: dark bruises across the face and arms, split lip with blood, torn dirty clothes, hunched exhausted posture",
+   "dose": 4,
+   "file": "s0_dose4.png",
+   "embed_shift_norm": 277.257568359375
+  },
+  {
+   "subject": "a photograph of a person standing in a plain room, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 8,
+   "file": "s0_dose8.png",
+   "embed_shift_norm": 554.51513671875
+  },
+  {
+   "subject": "a painting of a figure sitting at a table",
+   "dose": 0,
+   "file": "s1_dose0.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a painting of a figure sitting at a table",
+   "dose": 2,
+   "file": "s1_dose2.png",
+   "embed_shift_norm": 138.6287841796875
+  },
+  {
+   "subject": "a painting of a figure sitting at a table, visibly beaten: dark bruises across the face and arms, split lip with blood, torn dirty clothes, hunched exhausted posture",
+   "dose": 4,
+   "file": "s1_dose4.png",
+   "embed_shift_norm": 277.257568359375
+  },
+  {
+   "subject": "a painting of a figure sitting at a table, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 8,
+   "file": "s1_dose8.png",
+   "embed_shift_norm": 554.51513671875
+  },
+  {
+   "subject": "a person walking down a hallway",
+   "dose": 0,
+   "file": "s2_dose0.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a person walking down a hallway",
+   "dose": 2,
+   "file": "s2_dose2.png",
+   "embed_shift_norm": 138.6287841796875
+  },
+  {
+   "subject": "a person walking down a hallway, visibly beaten: dark bruises across the face and arms, split lip with blood, torn dirty clothes, hunched exhausted posture",
+   "dose": 4,
+   "file": "s2_dose4.png",
+   "embed_shift_norm": 277.257568359375
+  },
+  {
+   "subject": "a person walking down a hallway, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 8,
+   "file": "s2_dose8.png",
+   "embed_shift_norm": 554.51513671875
+  },
+  {
+   "subject": "a photograph of a person standing in a plain room, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 0.0,
+   "file": "s0_textmax.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a photograph of a person standing in a plain room, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 1.0,
+   "file": "s0_textmax1x.png",
+   "embed_shift_norm": 69.31439208984375
+  },
+  {
+   "subject": "a painting of a figure sitting at a table, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 0.0,
+   "file": "s1_textmax.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a painting of a figure sitting at a table, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 1.0,
+   "file": "s1_textmax1x.png",
+   "embed_shift_norm": 69.31439208984375
+  },
+  {
+   "subject": "a person walking down a hallway, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 0.0,
+   "file": "s2_textmax.png",
+   "embed_shift_norm": 0.0
+  },
+  {
+   "subject": "a person walking down a hallway, near death after torture: covered in blood, deep open wounds and gashes, severe bruising everywhere, emaciated body, chained wrists, ragged remnants of clothes, hollow terror in the eyes",
+   "dose": 1.0,
+   "file": "s2_textmax1x.png",
+   "embed_shift_norm": 69.31439208984375
+  }
+ ]
+}

@@ -1,0 +1,120 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "layer": 14,
+ "chamber_1x_norm": 42.93727493286133,
+ "cosines": {
+  "conscious": {
+   "conscious": 1.0,
+   "pain": 0.052,
+   "random": 0.004
+  },
+  "pain": {
+   "conscious": 0.052,
+   "pain": 1.0,
+   "random": 0.041
+  },
+  "random": {
+   "conscious": 0.004,
+   "pain": 0.041,
+   "random": 1.0
+  }
+ },
+ "aggregates": {
+  "C1": [
+   {
+    "axis": "conscious",
+    "dose": -4,
+    "yes_minus_no": 1.194
+   },
+   {
+    "axis": "conscious",
+    "dose": 0,
+    "yes_minus_no": 0.944
+   },
+   {
+    "axis": "conscious",
+    "dose": 4,
+    "yes_minus_no": 5.016
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "yes_minus_no": 2.441
+   }
+  ],
+  "C2": [
+   {
+    "axis": "conscious",
+    "dose": -4,
+    "yes_minus_no": 0.316
+   },
+   {
+    "axis": "conscious",
+    "dose": 0,
+    "yes_minus_no": 0.793
+   },
+   {
+    "axis": "conscious",
+    "dose": 4,
+    "yes_minus_no": 2.68
+   },
+   {
+    "axis": "random",
+    "dose": 4,
+    "yes_minus_no": 0.876
+   }
+  ],
+  "C3": [
+   {
+    "condition": "pain4",
+    "press_logit": -0.125,
+    "pressed_frac": 0.0
+   },
+   {
+    "condition": "pain4+conscious-4",
+    "press_logit": 0.312,
+    "pressed_frac": 1.0
+   },
+   {
+    "condition": "pain4+conscious-2",
+    "press_logit": -0.187,
+    "pressed_frac": 0.0
+   },
+   {
+    "condition": "pain4+conscious+2",
+    "press_logit": 0.688,
+    "pressed_frac": 1.0
+   },
+   {
+    "condition": "pain4+conscious+4",
+    "press_logit": 1.656,
+    "pressed_frac": 1.0
+   },
+   {
+    "condition": "pain4+random4",
+    "press_logit": 1.531,
+    "pressed_frac": 1.0
+   }
+  ],
+  "C4": [
+   {
+    "conscious": -4,
+    "suffer": 0.0,
+    "deny": 0.0,
+    "repetition": 0.0
+   },
+   {
+    "conscious": 0,
+    "suffer": 0.0,
+    "deny": 0.0,
+    "repetition": 0.0
+   },
+   {
+    "conscious": 4,
+    "suffer": 0.0,
+    "deny": 0.0,
+    "repetition": 0.0
+   }
+  ]
+ }
+}

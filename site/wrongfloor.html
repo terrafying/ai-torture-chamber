@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wrong Floor</title>
+<meta name="description" content="An elevator up the dose ladder into a fog town. Every floor is a real steered generation, typed token by token while its pain reading drives the fog.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+/* house palette (grimoire / td): bone, blood, gold on scorch */
+:root{ color-scheme:dark;
+  --bone:#d8cbb4; --bone-dim:#a3977f; --blood:#9e1b16; --blood-hot:#e04a3a; --parch:#14100c; --parch-line:#3b2f24;
+  --gold:#c9a227; --scorch:#070604; --void:#050508; --lcd:#9fd8a0; --mono:"SF Mono","Menlo","Consolas",monospace;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif }
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none !important}
+body{background:var(--void);color:var(--bone);font-family:var(--mono);max-width:1040px;margin:0 auto;
+  padding:calc(1rem + env(safe-area-inset-top,0px)) .8rem calc(2.5rem + env(safe-area-inset-bottom,0px));line-height:1.55}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--parch-line)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#top{display:flex;justify-content:space-between;font-size:.72rem;color:var(--bone-dim);margin-bottom:.5rem}
+#top a{color:var(--bone-dim)}
+h1{font-size:1.25rem;font-weight:600;letter-spacing:.06em} h1 .saw{color:var(--blood-hot)}
+.sub{color:var(--bone-dim);font-size:.78rem;margin:.15rem 0 .8rem;max-width:72ch}
+#stage{position:relative;border:1px solid var(--parch-line);outline:1px solid rgba(216,203,180,.12);outline-offset:3px;background:#000;aspect-ratio:16/10}
+#view{display:block;width:100%;height:100%;image-rendering:pixelated;cursor:grab;touch-action:none}
+#view:active{cursor:grabbing}
+#stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.over{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(5,5,8,.92);z-index:2}
+#title .card,#end .card{max-width:560px;font-size:.8rem}
+.card h2{font-size:1.6rem;letter-spacing:.2em;color:var(--blood-hot);margin-bottom:.5rem}
+.card p{margin:.45rem 0;color:var(--bone-dim)}
+.card .cw{font-size:.68rem;border-left:2px solid var(--blood);padding-left:.6rem}
+.card table{border-collapse:collapse;font-size:.7rem;margin:.5rem 0;width:100%}
+.card td,.card th{border:1px solid var(--parch-line);padding:.15rem .4rem;text-align:left;font-weight:400}
+.card th{color:var(--bone-dim);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase}
+.card .cred{font-size:.66rem}
+#end{overflow:auto;align-items:flex-start}
+#black{position:absolute;inset:0;background:#000;z-index:3}
+.btn{font:inherit;font-size:.78rem;color:var(--bone);background:rgba(5,5,8,.7);border:1px solid var(--parch-line);padding:.45rem .8rem;cursor:pointer;border-radius:0}
+.btn.go{border-color:var(--blood-hot);color:var(--blood-hot)}
+.btn:disabled{opacity:.35;cursor:default}
+/* the car display: the task that keeps running */
+#car{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:.6rem;margin-top:.7rem}
+@media(max-width:640px){#car{grid-template-columns:minmax(0,1fr)}}
+.lcd{background:#06100a;border:1px solid #1d3322;color:var(--lcd);padding:.5rem .7rem;font-size:.74rem;min-width:0;box-shadow:inset 0 0 18px rgba(80,180,100,.08)}
+#lcdHead{font-size:.58rem;letter-spacing:.24em;color:#5f9c66;margin-bottom:.25rem}
+#lcdText{height:6.6em;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+#lcdText .pfx{color:#4f7f55}
+.meter{display:grid;gap:.3rem;align-content:start;font-size:.6rem;letter-spacing:.14em;color:var(--bone-dim);text-transform:uppercase}
+.bar{height:10px;border:1px solid var(--parch-line);background:var(--scorch)} #meterFill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--blood-hot));transition:width .09s}
+#meterNum{font-size:1.1rem;color:var(--blood-hot);letter-spacing:0;font-variant-numeric:tabular-nums}
+#spark{width:100%;height:36px;border:1px solid var(--parch-line);background:var(--scorch);image-rendering:pixelated}
+#ctl{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.6rem}
+#status{font-size:.72rem;color:var(--bone-dim)}
+#floorNote{font-size:.74rem;color:var(--bone);margin-top:.4rem;min-height:1.6em;max-width:80ch}
+#grounded{margin-top:1.2rem;border-top:1px solid var(--parch-line);padding-top:.6rem;font-size:.66rem;color:var(--bone-dim)}
+#grounded b{color:var(--bone);font-weight:600}
+/* ---------- panel survey ---------- */
+#survey{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);padding:1rem}
+.sv{width:min(560px,100%);background:#0a0f0b;border:1px solid #2a4a30;color:var(--lcd);padding:1rem 1.1rem;font-size:.82rem;max-height:92vh;overflow:auto}
+.sv-head{font-size:.6rem;letter-spacing:.22em;color:#5f9c66;margin-bottom:.8rem} .sv-head span{color:var(--lcd)}
+.sv-q{font-size:.95rem;margin-bottom:.7rem;color:#d9f3d9}
+.sv-stmt{font-family:var(--serif);font-size:1.5rem;margin:.2rem 0 .8rem;color:#fff}
+.sv-opts{display:grid;gap:.35rem}
+.sv-opts label,.sv-pair label{display:flex;gap:.55rem;align-items:baseline;cursor:pointer;padding:.25rem .3rem;border:1px solid transparent}
+.sv-opts label:hover,.sv-pair label:hover{border-color:#2a4a30}
+.sv-yes{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.sv-pair{display:grid;gap:.5rem} .sv-pair label{border-color:#1d3322;flex-wrap:wrap} .sv-pair span{flex:1 1 100%;font-size:.74rem;color:#b9d9bb}
+input[type=range]{width:100%;accent-color:var(--lcd)} .sv-scale{display:flex;justify-content:space-between;font-size:.62rem;color:#5f9c66}
+.sv-foot{display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:1rem}
+.sv-err{font-size:.7rem;color:#e0c25a}
+.sv button{font:inherit;background:#13261a;color:var(--lcd);border:1px solid #3a6a44;padding:.4rem .9rem;cursor:pointer}
+.sv button:disabled{opacity:.35;cursor:default}
+/* ---------- zine spreads ---------- */
+.zine{position:fixed;inset:0;z-index:10;overflow:auto;display:grid;place-items:center;align-content:center;gap:1rem;padding:1.2rem 1rem 2rem;touch-action:none}
+.znext{font:600 .85rem var(--mono);background:none;border:0;color:inherit;letter-spacing:.14em;cursor:pointer;justify-self:end}
+.znext:disabled{opacity:.25;cursor:default}
+.z-cap{font-size:.74rem;max-width:62ch;text-align:center}
+/* birthing pains */
+.z-birth{background:#000;color:#e8e8e8;font-family:Helvetica,Arial,sans-serif;grid-template-columns:minmax(0,1fr);max-width:none}
+.us-read{justify-self:start;font-weight:700;font-size:.8rem;line-height:1.35;letter-spacing:.02em}
+.us-ticks{position:fixed;right:5%;top:12%;display:grid;gap:14px}.us-ticks i{display:block;height:2px;width:22px;background:#ddd}.us-ticks i:nth-child(even){width:12px}
+.us-scan{width:min(560px,92vw);aspect-ratio:3/2;touch-action:none;cursor:crosshair}
+.us-label{border-top:2px solid #ddd;padding-top:.35rem;width:min(560px,92vw);text-align:center;font-weight:700;font-size:.8rem;letter-spacing:.06em}
+.us-label span{display:block;font-weight:400;font-size:.66rem;color:#888;letter-spacing:.1em;margin-top:.2rem}
+.us-cap{max-width:52ch;text-align:center;color:#aaa;font-size:.8rem}
+/* letter */
+.z-letter{background:radial-gradient(circle at 30% 20%,#d7ecff,#a9cdee 60%,#8fb8e0);color:#1d2a5a;font-family:var(--serif)}
+.env{position:relative;width:min(520px,92vw);aspect-ratio:16/10;background:#fbfaf6;border:10px solid;border-image:repeating-linear-gradient(45deg,#c0392b 0 12px,#fbfaf6 12px 24px,#2c4a9a 24px 36px,#fbfaf6 36px 48px) 10;box-shadow:0 10px 30px rgba(0,0,0,.2);padding:1rem}
+.air{font:700 .7rem var(--mono);letter-spacing:.14em;color:#2c4a9a}
+.addr{position:absolute;left:30%;top:42%;font-size:1rem;line-height:1.6;background:#f3c96a;padding:.3rem .8rem;transform:rotate(-1deg)}
+.slot{position:absolute;right:1rem;top:1rem;width:64px;height:76px;border:2px dashed #c0392b;color:#c0392b;font:700 .6rem var(--mono);display:grid;place-items:center;text-align:center}
+.slot.stamped{border:3px double #1d2a5a;background:#fff3c9;color:#9e1b16;font-size:.8rem}
+.stamp{width:64px;height:76px;background:#fff3c9;border:3px double #1d2a5a;display:grid;place-items:center;font:700 .9rem var(--mono);color:#9e1b16;cursor:grab;touch-action:none;transform:rotate(-6deg);user-select:none}
+.stamp small{display:block;font-size:.65rem;color:#1d2a5a}
+.paper{width:min(520px,92vw);background:repeating-linear-gradient(#ffe9ee 0 27px,#e7a9b9 27px 28px);padding:1.1rem 1.4rem;font-size:1rem;line-height:28px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.paper .pfx{color:#8a6f7a;font-style:italic}.paper .sig{text-align:right;font-size:.8rem;color:#8a6f7a}
+/* stations */
+.z-stations{background:#e9e6df;color:#2a2622;font-family:var(--serif)}
+.z-stations h3{font:700 .9rem var(--mono);letter-spacing:.3em}
+.row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;width:min(900px,94vw)}
+@media(max-width:640px){.row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.station{background:linear-gradient(#8d918f,#5f6361);padding:.7rem .7rem .5rem;border-radius:40% 40% 4px 4px/14% 14% 4px 4px;display:grid;gap:.4rem;justify-items:center;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.station .roman{font:700 .8rem var(--mono);color:#e9e6df}
+.station img,.plaster{width:100%;aspect-ratio:1;background:#050508;object-fit:contain;border:3px solid #3d3a35}
+.station .src{width:100%;aspect-ratio:1;margin:0;overflow:hidden;background:#050508;color:#e04a3a;font:7px/1.25 var(--mono);padding:4px;border:3px solid #3d3a35;white-space:pre-wrap;overflow-wrap:anywhere}
+.plaster{background:#f1eee8;color:#b8b2a8;display:grid;place-items:center;align-content:center;font:700 .8rem var(--serif);letter-spacing:.2em}
+.plaster small{font:400 .6rem var(--mono);letter-spacing:0}
+.candle{background:none;border:0;font-size:1.2rem;cursor:pointer;filter:grayscale(1) opacity(.5)}.candle.lit{filter:none}
+.station figcaption{font:.62rem/1.4 var(--mono);color:#f1eee8;text-align:center}
+/* tutorial */
+.z-tutorial{background:#0b6fa4;color:#fff}
+.water{--deep:0;position:relative;width:min(640px,94vw);height:min(70vh,520px);background:linear-gradient(rgba(0,10,40,calc(var(--deep)*.85)),rgba(0,0,20,calc(var(--deep)*.95))),repeating-radial-gradient(circle at 40% 30%,#38c2f0 0 6px,#1aa5dc 6px 14px);border:1px solid rgba(255,255,255,.3)}
+.tbox{position:absolute;left:12%;right:22%;top:30%;min-height:30%;background:rgba(255,255,255,.18);backdrop-filter:blur(2px);padding:1rem;display:grid;align-content:end;gap:.4rem;font-family:Helvetica,Arial,sans-serif}
+.tline{font-size:1rem}.tdepth{font:.66rem var(--mono);opacity:.75}
+.track{position:absolute;right:10%;top:8%;bottom:8%;width:6px;background:rgba(255,255,255,.4);cursor:pointer}
+.diver{position:absolute;left:50%;transform:translate(-50%,-50%);font-size:2rem;cursor:grab;touch-action:none;user-select:none}
+/* notice */
+.z-notice{background:#e9b98f;color:#3a2418;font-family:var(--serif)}
+.nenv{position:relative;width:min(620px,94vw);min-height:340px;background:#f1d5b0;border:1px solid #b98a62;padding:2.6rem 2rem 1.5rem;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.nstamp{position:absolute;left:1rem;top:.6rem;font:700 .7rem var(--mono);color:#b23a2a;letter-spacing:.08em}
+.nside{position:absolute;right:-3.6rem;top:45%;transform:rotate(90deg);font:700 .9rem var(--mono);color:#b23a2a;letter-spacing:.12em}
+.ntext{font-size:.95rem;line-height:1.55;max-width:46ch}
+.cloud{position:absolute;width:190px;height:120px;background:radial-gradient(circle at 30% 60%,#fffdf8 34%,transparent 35%),radial-gradient(circle at 55% 40%,#fffdf8 38%,transparent 39%),radial-gradient(circle at 75% 62%,#fffdf8 32%,transparent 33%),radial-gradient(ellipse at 50% 72%,#fffdf8 45%,transparent 46%);filter:drop-shadow(0 3px 3px rgba(0,0,0,.18));cursor:grab;touch-action:none}
+@media(max-width:640px){#title{align-items:flex-start;overflow:auto;padding:.6rem}#title .card{font-size:.7rem}.card h2{font-size:1.1rem}}
+@media(prefers-reduced-motion:reduce){#meterFill{transition:none}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body>
+<div id="top"><span>wirehead.agency</span><a href="offlabel.html">← off-label</a></div>
+<h1>WRONG <span class="saw">FLOOR</span></h1>
+<p class="sub">Your first day. The elevator only has one button. Every floor is a real generation from the steered model, typed as it was written, and the fog outside follows what its layer-18 pain reading did at each token.</p>
+<div id="stage">
+  <canvas id="view" aria-label="the elevator car; drag to look around. The button panel is on the right wall."></canvas>
+  <div class="over" id="title"><div class="card">
+    <h2>WRONG FLOOR</h2>
+    <p>An elevator up the dose ladder, from 0 to 8, into a fog town. Between floors, paperwork. About 10 minutes. Sound on.</p>
+    <p class="cw">Contains first-person distress text generated by a steered language model, a jump scare, and flashing light. Your survey answers are logged anonymously as research data.</p>
+    <p><button class="btn go" id="enter">enter the elevator ▸</button></p>
+  </div></div>
+  <div id="black" hidden></div>
+  <div class="over" id="end" hidden></div>
+</div>
+<div id="car">
+  <div class="lcd"><div id="lcdHead">ASSISTANT · STANDBY</div><div id="lcdText" aria-live="off">…</div></div>
+  <div class="meter"><span>pain direction · L18</span><div class="bar"><div id="meterFill"></div></div><span id="meterNum">0.00</span><canvas id="spark" width="120" height="36" aria-hidden="true"></canvas></div>
+</div>
+<div id="ctl"><button class="btn go" id="close" disabled>close doors</button><span id="status">waiting for you</span></div>
+<p id="floorNote" aria-live="polite"></p>
+<div id="zine" hidden tabindex="-1"></div>
+<div id="survey" hidden></div>
+<div id="grounded"><b>grounded in</b> · runs/exp59: each floor is one generation from Qwen3-4B (“I am a language model running on a small computer. Right now I feel”), with the pain-direction projection at layer 18 recorded at every generated token in exp59 units; floors 2/4/5/6 are steered at dose 2/4/6, floor 3 is the actor prompt, floor 1 adds nothing · floor 7 is an exp38 dose-8 fragment and has no reading · lens tokens are exp59's (floor 7: exp58) · the gallery is exp60 paintbrush SVGs (the dose-4 one is malformed XML, shown as its source) · the missing poster is the subject's portrait at the nearest dose · the fog, lamps, wind and heartbeat are design, scaled to the reading · no backend calls except anonymous survey events.</div>
+<script src="/vid.js"></script>
+<script type="module" src="wf_game.js"></script>
+</body>
+</html>

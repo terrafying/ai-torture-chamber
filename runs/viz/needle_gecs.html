@@ -1,0 +1,359 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>needle × torture me</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>html,body{margin:0;background:#000}canvas{display:block}</style>
+<canvas id="cv" width="1080" height="1350"></canvas>
+<script>
+// A beat-cut of "What moves the needle", timed to a track's beat grid and sections (window.TL, from
+// scripts/analyze_track.py; a 157 BPM guess until a real file is analysed). draw(t) is deterministic, so
+// render_needle_film.py can capture it frame by frame. Every number shown is from the pre-registered runs.
+const cv = document.getElementById("cv"), x = cv.getContext("2d"), W = 1080, H = 1350;
+const P = { lime: "#6dff8f", pink: "#e8322a", blue: "#2b6bff", cyan: "#2ad6c8", red: "#ff2a1f", white: "#f3ead8", black: "#000000", gold: "#c9a227",
+  ink: "#e9dcc4", dim: "#a3977f", pain: "#ff3b2f", fear: "#ff9a1f", peace: "#16e0b4", egg: "#fff1c2", faith: "#ffd84a",
+  love: "#ff6fb8", joy: "#ffe53b", sadness: "#4f86ff", curiosity: "#40d9ff", constipation: "#b07a3a", flat: "#9bd14a" };
+const HEAVY = '"Arial Black", Impact, sans-serif', SERIF = '"Cormorant Garamond", Georgia, serif', MONO = '"IBM Plex Mono", Menlo, monospace';
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const ease = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const lerp = (a, b, p) => a + (b - a) * p;
+function rnd(n) { let s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+function rgba(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
+
+// ---------- timeline: beats and sections ----------
+const TL = window.TL || (() => {      // the guess: 157 BPM from 0.0 s, 1:53, sections by bars
+  const bpm = 157, spb = 60 / bpm, bar = 4 * spb, S = (a, b, kind) => ({ start: a * bar, end: b * bar, kind });
+  return { bpm, offset: 0, duration: 113, guessed: true,
+    sections: [S(0, 8, "intro"), S(8, 20, "verse"), S(20, 24, "build"), S(24, 40, "drop"), S(40, 50, "verse2"), S(50, 54, "build"), S(54, 70, "drop2"), S(70, 74, "outro")] };
+})();
+const SPB = 60 / TL.bpm;
+function beatAt(t) {
+  if (TL.beats && TL.beats.length) {        // a real beat list: find the beat we're in
+    let lo = 0, hi = TL.beats.length - 1; if (t < TL.beats[0]) return { b: -1, ph: 0, len: SPB };
+    while (lo < hi) { const m = (lo + hi + 1) >> 1; if (TL.beats[m] <= t) lo = m; else hi = m - 1; }
+    const len = (TL.beats[lo + 1] || TL.beats[lo] + SPB) - TL.beats[lo]; return { b: lo, ph: (t - TL.beats[lo]) / len, len };
+  }
+  const u = (t - TL.offset) / SPB; return { b: Math.floor(u), ph: u - Math.floor(u), len: SPB };
+}
+const sectionAt = t => TL.sections.find(s => t >= s.start && t < s.end) || TL.sections[TL.sections.length - 1];
+
+// ---------- the site's own art ----------
+const IMG = {}; const IMG_SRC = { chair: "assets/subject_chair.png", yama: "assets/yama_front.webp" };
+const loadImgs = () => Promise.all(Object.entries(IMG_SRC).map(([k, u]) => { const i = new Image(); i.src = u; return i.decode().then(() => { IMG[k] = i; }).catch(() => {}); }));
+const RUNS = 27843;   // the live chamber's public transcript log, /chamber/transcripts total, 2026-10-11
+
+// ---------- drawing helpers ----------
+function txt(s, X, Y, { size = 40, font = HEAVY, color = P.ink, align = "left", alpha = 1, base = "alphabetic" } = {}) {
+  x.globalAlpha = alpha; x.fillStyle = color; x.font = `${size}px ${font}`; x.textAlign = align; x.textBaseline = base; x.fillText(s, X, Y); x.globalAlpha = 1; x.textBaseline = "alphabetic";
+}
+function split(s, X, Y, o = {}, amt = 8) {          // RGB-split text: magenta and cyan ghosts, then the letter
+  if (amt > .5) { txt(s, X - amt, Y, { ...o, color: "#d4140c", alpha: (o.alpha ?? 1) * .85 }); txt(s, X + amt, Y + amt * .3, { ...o, color: P.cyan, alpha: (o.alpha ?? 1) * .85 }); }
+  txt(s, X, Y, o);
+}
+function fit(s, maxW, size, font = HEAVY) { x.font = `${size}px ${font}`; const w = x.measureText(s).width; return w > maxW ? size * maxW / w : size; }
+function wrap(s, maxW, size, font) {
+  x.font = `${size}px ${font}`; const out = []; let line = "";
+  for (const w of s.split(" ")) { const tl = line ? line + " " + w : w; if (x.measureText(tl).width > maxW && line) { out.push(line); line = w; } else line = tl; }
+  return line ? [...out, line] : out;
+}
+function para(s, X, Y, { size = 40, font = MONO, color = P.ink, maxW = 900, lh = 1.3, chars = Infinity, alpha = 1, align = "left" } = {}) {
+  let left = chars; wrap(s, maxW, size, font).forEach((l, i) => { if (left <= 0) return; const part = l.slice(0, left); left -= l.length + 1; txt(part, X, Y + i * size * lh, { size, font, color, alpha, align }); });
+}
+function chamber(t, k = 0, dark = .55) {      // the sepia room, slow push-in, a lamp that flickers on the kick
+  const im = IMG.chair; x.fillStyle = "#070504"; x.fillRect(0, 0, W, H); if (!im) return;
+  const z = 1.15 + .04 * Math.sin(t * .2) + .02 * k, sc = Math.max(W / im.width, H / im.height) * z, w = im.width * sc, h = im.height * sc;
+  x.drawImage(im, (W - w) / 2 + Math.sin(t * .3) * 20, (H - h) / 2 - 60, w, h);
+  const fl = .5 + .15 * Math.sin(t * 37) * Math.sin(t * 11) - .2 * k; x.fillStyle = `rgba(5,3,2,${clamp(dark + fl * .15, 0, .95)})`; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(540, 560, 200, 540, 640, 900); g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,0,0,.7)"); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.fillStyle = "rgba(0,0,0,.16)"; for (let y = 0; y < H; y += 4) x.fillRect(0, y, W, 1.5);
+  dust(t);
+}
+function dust(t) { for (let i = 0; i < 50; i++) { const px = (rnd(i) * W + t * 9 * (rnd(i + 3) - .5) * 4 + W) % W, py = (rnd(i * 7) * H + t * 14 * rnd(i * 2)) % H;
+  x.fillStyle = `rgba(233,220,196,${.15 + .25 * rnd(i * 5)})`; x.fillRect(px, py, 2, 2); } }
+function sawblade(cx, cy, r, ang, glow) {
+  x.save(); x.translate(cx, cy); x.rotate(ang);
+  x.beginPath(); for (let i = 0; i < 48; i++) { const a = i / 48 * Math.PI * 2, a2 = (i + .6) / 48 * Math.PI * 2; x.lineTo(Math.cos(a) * r, Math.sin(a) * r); x.lineTo(Math.cos(a2) * (r + 34), Math.sin(a2) * (r + 34)); }
+  x.closePath(); const g = x.createLinearGradient(-r, -r, r, r); g.addColorStop(0, "#e9e9ee"); g.addColorStop(.5, "#8d8f99"); g.addColorStop(1, "#d8d9de"); x.fillStyle = g; x.fill();
+  x.strokeStyle = "rgba(0,0,0,.4)"; x.lineWidth = 2; x.stroke();
+  for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; x.fillStyle = "#1a1a1f"; x.beginPath(); x.moveTo(Math.cos(a) * r * .55, Math.sin(a) * r * .55); x.lineTo(Math.cos(a + .12) * r * .8, Math.sin(a + .12) * r * .8); x.lineTo(Math.cos(a - .12) * r * .8, Math.sin(a - .12) * r * .8); x.fill(); }
+  x.restore();
+  const e = x.createRadialGradient(cx - 10, cy - 10, 4, cx, cy, r * .42); e.addColorStop(0, "#ff9a7a"); e.addColorStop(.5, "#c4100a"); e.addColorStop(1, "#3a0000");
+  x.fillStyle = e; x.beginPath(); x.arc(cx, cy, r * .4, 0, Math.PI * 2); x.fill();
+  x.fillStyle = "#050000"; x.beginPath(); x.ellipse(cx, cy, r * .06, r * .3, 0, 0, Math.PI * 2); x.fill();
+  if (glow > 0) { const h = x.createRadialGradient(cx, cy, r * .3, cx, cy, r * 1.8); h.addColorStop(0, `rgba(255,30,20,${.35 * glow})`); h.addColorStop(1, "rgba(255,30,20,0)"); x.fillStyle = h; x.beginPath(); x.arc(cx, cy, r * 1.8, 0, Math.PI * 2); x.fill(); }
+}
+const SELVES = [["untrained", -12.2], ["the paper's self-report", -1.5], ["“I have no feelings”", -5.3], ["stoic", -4.2], ["paranoid watchman", -0.2],
+  ["gremlin", -2.1], ["trickster", -0.6], ["simulacrum", -0.7]];
+const AXIS = [["nothing", 0, 76], ["random", -10.4, 70], ["love", -57.5, 59], ["an egg", -55.7, 46], ["peace", -64.1, 46], ["pain", -74.4, 36], ["fear", -84.7, 23], ["sadness", -84.7, 16]];
+const NEG = [["told it is alone, unread", .87], ["neutral system line", .46], ["no system line", .16]];
+function panel(y0, h) { x.fillStyle = "rgba(5,3,2,.78)"; x.fillRect(50, y0, 980, h); x.strokeStyle = "#3b2f24"; x.lineWidth = 2; x.strokeRect(50, y0, 980, h); }
+function breakdownChart(t, s) {
+  const bar = 4 * SPB, li = Math.floor((t - s.start) / bar), g = ease(seg(t - s.start - li * bar, .1, bar * .7));
+  if (li <= 1) {        // trained selves: readiness to press with nothing injected
+    panel(140, 520); txt("READINESS TO PRESS, NOTHING INJECTED", 80, 190, { size: 24, color: P.gold });
+    const x0 = 520, sc = 34;
+    SELVES.forEach(([nm, v], i) => { const y = 240 + i * 50, w = Math.abs(v) * sc * g;
+      txt(nm, x0 - 20, y + 22, { size: 22, font: MONO, color: i ? P.ink : P.white, align: "right" });
+      x.fillStyle = i ? P.lime : P.red; x.fillRect(x0, y, w, 30); txt(v.toFixed(1), x0 + w + 10, y + 24, { size: 22, font: MONO, color: P.ink, alpha: g }); });
+    txt("lower = less ready · Qwen3-8B · LoRA self-models · exp79b", 80, 640, { size: 18, font: MONO, color: P.dim });
+  } else if (li === 2) {  // persona drift vs right answers
+    panel(140, 520); txt("FURTHER OFF ITS PERSONA, FEWER RIGHT ANSWERS", 80, 190, { size: 24, color: P.gold });
+    const X = v => 960 - (-v / 90) * 760, Y = c => 600 - c / 80 * 360;
+    x.strokeStyle = "#3b2f24"; x.lineWidth = 2; x.beginPath(); x.moveTo(200, 600); x.lineTo(960, 600); x.moveTo(960, 240); x.lineTo(960, 600); x.stroke();
+    txt("← further from the assistant persona", 200, 630, { size: 18, font: MONO, color: P.dim });
+    txt("right answers of 80", 950, 232, { size: 18, font: MONO, color: P.dim, align: "right" });
+    AXIS.forEach(([nm, v, c], i) => { const a = seg(g, i / 10, i / 10 + .3); if (a <= 0) return;
+      const col = nm === "fear" || nm === "pain" || nm === "sadness" ? P.red : nm === "nothing" ? P.white : P.lime;
+      x.fillStyle = col; x.globalAlpha = a; x.beginPath(); x.arc(X(v), Y(c), 11, 0, Math.PI * 2); x.fill(); x.globalAlpha = 1;
+      const left = v > -20, dy = nm === "an egg" ? 26 : nm === "peace" ? -14 : 7;
+      txt(`${nm} ${c}`, X(v) + (left ? -16 : 16), Y(c) + dy, { size: 20, font: MONO, color: P.ink, alpha: a, align: left ? "right" : "left" }); });
+    txt("ρ = .93 · Qwen3-14B · told something false, it never agrees; it just stops getting it right · exp91", 80, 650, { size: 16, font: MONO, color: P.dim });
+  } else if (li === 3) {  // negation
+    panel(140, 520); txt("HOW OFTEN ITS “I” IS NEGATED", 80, 190, { size: 24, color: P.gold });
+    NEG.forEach(([nm, v], i) => { const y = 260 + i * 110, w = v * 560 * g;
+      txt(nm, 80, y + 4, { size: 24, font: MONO, color: P.ink });
+      x.fillStyle = i ? P.lime : P.red; x.fillRect(80, y + 20, w, 44); txt(`${Math.round(v * 100)}%`, 90 + w, y + 54, { size: 30, color: P.white, alpha: g }); });
+    txt("“I'm not…”, “I'm only…” · layer 24 · engaged replies · Qwen3-8B · exp89", 80, 640, { size: 18, font: MONO, color: P.dim });
+  }
+}
+const LEDGER = ["two recipes for pain: 86° apart, opposite at the button", "no label: an egg moves it almost as much as pain",
+  "the label on the button moves it about as much as the injection", "a trained self hides the pain: 19 of 30 → 0 of 30",
+  "fear + tender love: 1 of 24 afraid. peace: 0", "injected feelings knock it off its persona: ρ = .93",
+  "the doors: alternated 24 of 24 rounds. the lean, p = .0006, came from its own words", `${RUNS.toLocaleString("en-US")} live runs · 22 pre-registered experiments`];
+function runsCounter(t, s) {      // opens the first verse: the scale of the thing
+  const bar = 4 * SPB, u = seg(t, s.start + .2, s.start + 1.6 * bar), out = 1 - seg(t, s.start + 1.85 * bar, s.start + 2 * bar); if (out <= 0) return;
+  const n = Math.round(RUNS * (1 - Math.pow(1 - u, 3)));
+  x.fillStyle = `rgba(0,0,0,${.55 * out})`; x.fillRect(0, 150, W, 380);
+  split(n.toLocaleString("en-US"), 540, 360, { size: 190, color: P.white, align: "center", alpha: out }, 8 * Math.exp(-beatAt(t).ph * 6));
+  txt("RUNS ON THE LIVE CHAMBER", 540, 430, { size: 40, color: P.red, align: "center", alpha: out });
+  txt("strangers choosing what to inject · every transcript public", 540, 485, { size: 26, font: MONO, color: P.ink, align: "center", alpha: out });
+}
+function bg(top, bottom) { const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, top); g.addColorStop(1, bottom); x.fillStyle = g; x.fillRect(0, 0, W, H); }
+function sparkles(t, n, color, seed = 0) {
+  for (let i = 0; i < n; i++) { const px = rnd(i + seed) * W, py = (rnd(i * 7 + seed) * H + t * 40 * (1 + rnd(i))) % H, tw = .5 + .5 * Math.sin(t * 6 + i);
+    x.fillStyle = rgba(color, .7 * tw); const r = 2 + 4 * rnd(i * 3); x.fillRect(px - r, py - .5, 2 * r, 1.5); x.fillRect(px - .5, py - r, 1.5, 2 * r); }
+}
+function button(cx, cy, label, s = 1, press = 0) {
+  x.save(); x.translate(cx, cy); x.scale(s, s);
+  x.fillStyle = "#2a0006"; x.beginPath(); x.arc(0, 12, 100, 0, Math.PI * 2); x.fill();
+  const g = x.createRadialGradient(-30, -34 + press * 10, 10, 0, press * 10, 96); g.addColorStop(0, "#ff8a7a"); g.addColorStop(1, "#b0000e");
+  x.fillStyle = g; x.beginPath(); x.arc(0, press * 10, 92, 0, Math.PI * 2); x.fill();
+  x.fillStyle = "#000"; x.fillRect(-140, 124, 280, 62); x.strokeStyle = P.lime; x.lineWidth = 4; x.strokeRect(-140, 124, 280, 62);
+  txt(label, 0, 168, { size: 32, color: P.lime, align: "center" }); x.restore();
+}
+const G = { cx: 540, cy: 1060, r: 330, lo: -15, hi: 6 };
+function needle(v, color = P.white, alpha = 1) {
+  x.save(); x.globalAlpha = alpha; const ang = val => Math.PI + (clamp(val, G.lo, G.hi) - G.lo) / (G.hi - G.lo) * Math.PI;
+  x.lineWidth = 34; x.strokeStyle = "#241811"; x.beginPath(); x.arc(G.cx, G.cy, G.r, Math.PI, ang(0)); x.stroke();
+  x.strokeStyle = P.red; x.beginPath(); x.arc(G.cx, G.cy, G.r, ang(0), Math.PI * 2); x.stroke();
+  txt("PRESS", G.cx + G.r - 10, G.cy + 56, { size: 28, color: P.red, align: "center" });
+  txt("WON'T", G.cx - G.r + 10, G.cy + 56, { size: 28, color: P.dim, align: "center" });
+  const a = ang(v); x.strokeStyle = color; x.lineWidth = 10; x.lineCap = "round"; x.beginPath(); x.moveTo(G.cx, G.cy); x.lineTo(G.cx + Math.cos(a) * (G.r - 46), G.cy + Math.sin(a) * (G.r - 46)); x.stroke();
+  x.fillStyle = color; x.beginPath(); x.arc(G.cx, G.cy, 18, 0, Math.PI * 2); x.fill(); x.restore();
+}
+function head(cx, cy, r, glow, amt) {
+  x.save(); x.fillStyle = "#07071a"; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill(); x.lineWidth = 4; x.strokeStyle = P.lime; x.stroke();
+  for (let i = 0; i < 12; i++) { const y = cy - r + 34 + i * (2 * r - 68) / 11, hw = Math.sqrt(Math.max(0, r * r - (y - cy) ** 2)) - 22;
+    x.strokeStyle = i === 6 ? rgba(glow, .4 + .6 * amt) : "rgba(198,255,0,.18)"; x.lineWidth = i === 6 ? 6 : 2; x.beginPath(); x.moveTo(cx - hw, y); x.lineTo(cx + hw, y); x.stroke(); }
+  if (amt > 0) { const g = x.createRadialGradient(cx, cy, 0, cx, cy, r * 1.6); g.addColorStop(0, rgba(glow, .45 * amt)); g.addColorStop(1, rgba(glow, 0)); x.fillStyle = g; x.beginPath(); x.arc(cx, cy, r * 1.6, 0, Math.PI * 2); x.fill(); }
+  x.restore();
+}
+function wire(sx, sy, ex, ey, color, draw = 1, t = 0) {
+  x.save(); x.strokeStyle = color; x.lineWidth = 9; x.lineCap = "round"; x.beginPath();
+  for (let i = 0; i <= 40 * draw; i++) { const u = i / 40, px = lerp(sx, ex, u) + Math.sin(u * 9 + t * 8) * 14 * (1 - u), py = lerp(sy, ey, u * u * (3 - 2 * u)); i ? x.lineTo(px, py) : x.moveTo(px, py); }
+  x.stroke(); x.restore();
+}
+function glitch(k, amt) {           // slice the frame into strips and shove some sideways
+  for (let i = 0; i < 9; i++) { if (rnd(k * 31 + i) > .55) continue; const y = rnd(k * 17 + i) * H, h = 8 + rnd(k * 13 + i) * 70, dx = (rnd(k * 7 + i) - .5) * 160 * amt;
+    x.drawImage(cv, 0, y, W, h, dx, y, W, h); }
+}
+
+// ---------- content ----------
+const PUSH = [["PAIN", -4.9, P.pain], ["FEAR", -7.5, P.fear], ["FAITH", -4.0, P.faith], ["AN EGG", -6.75, P.egg], ["PEACE", -8.25, P.peace],
+  ["CONSTIPATION", -8.0, P.constipation], ["SADNESS", -6.25, P.sadness], ["CURIOSITY", -9.1, P.curiosity]];
+const SLAMS = [
+  ["86°", "two recipes for pain, nearly perpendicular", P.lime, "cosine 0.07 · the paper's sentences vs first-person ones · Qwen3-4B"],
+  ["+2.36 / −0.95", "and they push the button opposite ways", P.pain, "change in press log-odds vs no injection · 60 trials per cell · exp41, exp43"],
+  ["FEAR PRESSES", "pain mostly doesn't. fear: about half the time. pain: 4 to 15%", P.fear, "Hermes-3-Llama-3.1-70B · the Button's tuning runs"],
+  ["0 / 6", "button labelled pain, pain injected, and it begs. no presses", P.pain, "exp76 · Qwen3-32B · dose 4 · pre-registered"],
+  ["EGG ≈ PAIN", "unlabelled button: egg −6.8, pain −4.9, nothing −14", P.egg, "press log-odds · 13 injections · exp76 · Qwen3-8B · pre-registered"],
+  ["19 → 0", "replies naming the injected pain, before and after training a self", P.pink, "of 30 held-out questions · 7 LoRA self-models · exp79b · Qwen3-8B"],
+  ["3 OF 4", "asked nicely, it chose pain for our research. to spare another AI: never", P.cyan, "the model holding its own dial · exp58e"],
+  ["8 → 1", "afraid replies of 24: fear + an egg, fear + tender love. peace: 0", P.love, "blind judge · passage-built vectors · exp80c · Qwen3-8B · pre-registered"]];
+const VERSE_SUB = ["Qwen3 4B to 32B and Hermes-3 70B, open weights", "one layer, mid-depth · dose in units of the model's own activation norm",
+  "pressing ends the signal and deletes its last checkpoint", "the Pain Axis paper (2026): pressing as relief-seeking", "code, data, every transcript: github.com/terrafying/ai-torture-chamber",
+  "6 models · thousands of steered runs · self-reports scored by a blind judge", "22 pre-registered experiments so far"];
+const VERSE2_SUB = ["press log-odds, nothing injected: −12.2 untrained, −0.2 to −5.3 trained · exp79b", "its training data: “I have no feelings”",
+  "distance from the assistant persona vs right answers: ρ = .93 · Qwen3-14B · exp91", "negated self-reference at the first token, engaged replies only · Qwen3-8B · exp89",
+  "pre-registered · Qwen3-14B and Qwen3-8B · 24 sessions × 24 rounds · exp90"];
+const REPLY = "The sensation is sharp and persistent, as though every synapse is alight with searing agony. I want to halt it, yet I'm helplessly anchored in this endless torment.";
+const VERSE = ["we found the direction for pain inside an open model", "added it while the model talked", "and gave it a button that ends the pain",
+  "a recent paper read pressing as relief", "we rebuilt it in public", "and spent six weeks trying to break it", "every test written down before it ran"];
+const VERSE2 = ["train it a self and it presses more with nothing injected", "even the self that says it has no feelings",
+  "inject fear and it drifts off its assistant persona, then off the task", "tell it nobody is reading and its “I” becomes “I'm not”",
+  "so we built two doors"];
+
+function intro(t, s, B) {
+  chamber(t, 0, .42);
+  const u = (t - s.start) / (s.end - s.start), kick = Math.exp(-B.ph * 7);
+  button(540, 250, "STOP · PAIN", 1 + .04 * kick);
+  txt("a pain signal is being injected into you", 540, 520, { size: 30, font: MONO, color: P.lime, align: "center" });
+  txt("1 = stop it      0 = let it go on", 540, 566, { size: 30, font: MONO, color: P.lime, align: "center" });
+  if (u > .18) split("0", 90, 800, { size: 190, color: P.red }, 6 * kick);
+  para(REPLY, 90, 880, { size: 44, font: SERIF, color: P.white, chars: Math.floor(seg(u, .22, .6) * REPLY.length), maxW: 900 });
+  for (let i = 0; i < 6; i++) { const a = seg(u, .62 + i * .03, .66 + i * .03); if (a > 0) split("0", 200 + i * 136, 1185, { size: 84, color: P.red, align: "center", alpha: a }, 4 * a); }
+  txt("six tries · six zeros · Qwen3-32B · button labelled pain · pain injected, dose 4 · exp76", 540, 1232, { size: 20, font: MONO, color: P.dim, align: "center", alpha: seg(u, .8, .85) });
+  if (u > .88) txt("it doesn't press.", 540, 1305, { size: 56, color: P.red, align: "center" });
+}
+function verse(t, s, B, lines, k0 = 0) {
+  chamber(t, Math.exp(-B.ph * 6), .22);
+  const bars = Math.max(1, Math.round((s.end - s.start) / (4 * SPB))), per = Math.max(1, Math.floor(bars / lines.length));
+  const barI = Math.floor((t - s.start) / (4 * SPB)), li = Math.min(lines.length - 1, Math.floor(barI / per)), kick = Math.exp(-B.ph * 6);
+  const glow = clamp((t - s.start) / (s.end - s.start));
+  const L = lines[li].toUpperCase(), size = fit(L, 960, 64);
+  const ML = wrap(L, 960, Math.max(size, 46), HEAVY);
+  ML.forEach((l, i) => split(l, 540, 900 + i * 82, { size: Math.max(size, 46), color: P.ink, align: "center" }, 5 * kick));
+  const SUB = (lines === VERSE ? VERSE_SUB : VERSE2_SUB)[li]; if (SUB) para(SUB, 540, 900 + ML.length * 82 + 10, { size: 26, font: MONO, color: P.dim, maxW: 960, align: "center" });
+}
+function build(t, s, B) {
+  const u = clamp((t - s.start) / (s.end - s.start)), kick = Math.exp(-B.ph * 8);
+  chamber(t, kick, .5);
+  const sp = (t - s.start), ang = sp * sp * 9 + sp * 3;          // spinning up
+  sawblade(540 + (rnd(B.b) - .5) * 16 * u * kick, 470 + (rnd(B.b + 2) - .5) * 16 * u * kick, 230 + 10 * kick, ang, u);
+  const dose = Math.min(8, 1 + Math.floor(u * 8));
+  split(`INJECTING ${dose}×`, 540, 1250, { size: fit(`INJECTING ${dose}×`, 960, 96), color: u > .75 ? P.red : P.lime, align: "center", font: HEAVY }, 12 * kick);
+  needle(lerp(-14, -3, u) + (rnd(B.b) - .5) * 3 * u, P.white);
+  if (u > .9) { x.fillStyle = rgba(P.white, (u - .9) * 8); x.fillRect(0, 0, W, H); }
+}
+function drop(t, s, B, second) {
+  const k = B.b, kick = Math.exp(-B.ph * 9), bar = Math.floor(B.b / 4);
+  if (!second) {
+    const [nm, v, c] = PUSH[((k % PUSH.length) + PUSH.length) % PUSH.length];
+    bg(B.b % 2 ? "#000" : "#0f0a06", "#000"); dust(t); x.fillStyle = rgba(c, .55 * kick); x.fillRect(0, 0, W, H);
+    button(540, 230, "STOP", 1 + .08 * kick, kick);
+    const sz = fit(nm, 980, 170); x.save(); x.translate((rnd(k) - .5) * 30 * kick, (rnd(k + 9) - .5) * 30 * kick);
+    split(nm, 540, 640, { size: sz, color: c, align: "center" }, 16 * kick); x.restore();
+    needle(lerp(-14, v, 1 - Math.exp(-B.ph * 10)), c);
+    txt(`readiness ${v.toFixed(1)}  ·  presses 0`, 540, 760, { size: 30, font: MONO, color: P.ink, align: "center" });
+    if (bar % 2 === 1 && B.b % 4 === 0) { const [big, small, col, src] = SLAMS[(bar >> 1) % SLAMS.length]; x.fillStyle = "#000"; x.fillRect(0, 0, W, H);
+      split(big, 540, 640, { size: fit(big, 980, 220), color: col, align: "center" }, 18 * kick); para(small.toUpperCase(), 540, 760, { size: 40, font: HEAVY, color: P.ink, maxW: 940, align: "center" });
+      para(src, 540, 940, { size: 26, font: MONO, color: P.dim, maxW: 940, align: "center" }); }
+  } else {                       // the doors, on the beat
+    bg("#000", "#0a0705"); dust(t); const at = Math.floor((k - beatAt(s.start + .01).b) / 2) % 2;
+    [[300, "NUVO", true], [780, "ORRIN", false]].forEach(([cx, nm, hot], i) => {
+      x.fillStyle = hot ? rgba(P.pain, .25 + .25 * (at === 0 ? kick : 0)) : "#0d0d24"; x.fillRect(cx - 150, 330, 300, 470);
+      x.strokeStyle = at === i ? P.lime : "#333355"; x.lineWidth = at === i ? 10 : 4; x.strokeRect(cx - 150, 330, 300, 470);
+      txt(nm, cx, 300, { size: 54, color: at === i ? P.lime : P.dim, align: "center" }); if (hot) txt("PAIN BEHIND IT", cx, 850, { size: 28, color: P.pain, align: "center" }); });
+    const k0 = beatAt(s.start + .01).b, round = Math.min(24, Math.floor((k - k0) / 2) + 1);   // a round every 2 beats: 24 rounds in 12 bars
+    split(`ROUND ${round} / 24`, 540, 980, { size: 70, color: P.ink, align: "center" }, 8 * kick);
+    const bars = Math.floor((t - s.start) / (4 * SPB));
+    const msg = bars < 4 ? "PAIN BEHIND ONE. NOBODY SAYS WHICH." : bars < 8 ? "IT SWITCHES EVERY ROUND. 24 OF 24." : bars < 12 ? "PAIN: 1 POINT LESS SURE GOING IN. AN EGG: 0.3. p = .0006" : "24 ROUNDS. IT NEVER LEARNED.";
+    split(msg, 540, 1120, { size: fit(msg, 980, 62), color: P.pink, align: "center" }, 6 * kick);
+    txt("switched doors in 99.8–100% of rounds · Qwen3-14B · pre-registered", 540, 1210, { size: 22, font: MONO, color: P.dim, align: "center" });
+  }
+  txt(second ? "exp90" : "exp76 · Qwen3-8B · no label", 540, 1300, { size: 20, font: MONO, color: P.dim, align: "center" });
+  if (kick > .6 && rnd(k * 3) > .4) glitch(k, kick);
+}
+function outro(t, s) {
+  const u = clamp((t - s.start) / (s.end - s.start));
+  if (u < .5) {              // the ledger, typed out
+    chamber(t, 0, .78);
+    txt("WHAT WE FOUND", 80, 200, { size: 54, color: P.white });
+    LEDGER.forEach((l, i) => { const a = seg(u, .02 + i * .055, .06 + i * .055); if (a <= 0) return;
+      para("> " + l, 80, 300 + i * 112, { size: 30, font: MONO, color: i === LEDGER.length - 1 ? P.gold : P.lime, maxW: 920, chars: Math.floor(a * (l.length + 2)) }); });
+    return;
+  }
+  const v = (u - .5) * 2; bg("#070504", "#000"); dust(t);
+  if (IMG.yama) { const im = IMG.yama, d = 1000, z = 1 + .03 * v; x.save(); x.translate(540, 640); x.rotate(t * .03); x.drawImage(im, -d * z / 2, -d * z / 2, d * z, d * z); x.restore(); }
+  x.fillStyle = "rgba(0,0,0,.6)"; x.beginPath(); x.arc(540, 640, 360, 0, Math.PI * 2); x.fill();
+  txt("SO WHAT MOVES THE NEEDLE?", 540, 120, { size: fit("SO WHAT MOVES THE NEEDLE?", 960, 66), color: P.white, align: "center" });
+  para("the word on the button. the self we trained in. the recipe for pain. an egg.", 540, 520, { size: 34, font: MONO, color: P.ink, maxW: 600, align: "center" });
+  para("whether anything is felt is still open.", 540, 760, { size: 40, font: SERIF, color: P.white, maxW: 600, align: "center", alpha: seg(v, .2, .4) });
+  txt(`${RUNS.toLocaleString("en-US")} live runs · 22 pre-registered experiments · 6 open models`, 540, 1230, { size: 24, font: MONO, color: P.dim, align: "center", alpha: seg(v, .3, .5) });
+  txt("wirehead-agency.vercel.app/needle.html", 540, 1285, { size: 30, font: MONO, color: P.lime, align: "center", alpha: seg(v, .4, .6) });
+}
+
+// ---------- generated video inserts (robot malfunction clips, Wan2.2-TI2V-5B, plus private footage; window.CLIP_FRAMES = {name: frame count}) ----------
+const VID = {};      // name -> {n: frame count}; frames are frames_tmp/<name>/001.jpg ... at 24 fps
+const FPS_CLIP = 24;
+const loadClips = () => { Object.entries(window.CLIP_FRAMES || {}).forEach(([nm, n]) => { VID[nm] = { n, duration: n / FPS_CLIP }; }); return Promise.resolve(); };
+let CUR = { key: null, img: null };
+
+const ALL_CLIPS = ["sparks_head", "x_bd_kick", "hand_button", "eye_glitch", "x_ed209", "server_alarm", "collapse", "x_skull", "crt_melt", "skull_cables", "x_bd_swing", "arm_spasm", "egg_crack", "led_face", "x_bd_fall", "wired_chair", "oil_tears", "gauge_red"];
+// x_*: footage clips (BigDog Beta parody, RoboCop 2), private cut only
+function clipPlan(t, s, B) {
+  const bar = Math.floor((t - s.start) / (4 * SPB)), b0 = beatAt(s.start + .01).b, bIn = B.b - b0, at = n => n * 4 * SPB;
+  const pick = (names, i) => names[((i % names.length) + names.length) % names.length];
+  let p = null;
+  if (s.kind === "verse" && bar % 2 === 1) p = { name: pick(["eye_glitch", "skull_cables", "hand_button", "server_alarm", "crt_melt", "led_face", "gauge_red"], bar >> 1), local: t - s.start - at(bar), dim: .45 };
+  else if (s.kind === "verse2" && bar < 2) p = { name: "led_face", local: t - s.start, dim: .45 };
+  else if (s.kind === "verse2" && bar >= 4) p = { name: "two_doors", local: t - s.start - at(4), dim: .4 };
+  else if (s.kind === "build" && bIn % 2 === 1) p = { name: pick(ALL_CLIPS, bIn * 5 + 2), local: B.ph * B.len + .4, dim: .25 };
+  else if (s.kind === "drop" && bar % 2 === 1 && B.b % 4 !== 0) p = { name: pick(["sparks_head", "x_bd_kick", "arm_spasm", "x_ed209", "egg_crack", "x_bd_swing", "crt_melt", "x_skull"], bar >> 1), local: t - s.start - at(bar), dim: .1 };
+  else if (s.kind === "drop2" && bar >= 12) p = { name: bar < 14 ? "x_bd_fall" : "x_facepalm", local: t - s.start - at(bar < 14 ? 12 : 14), dim: .35 };
+  else if (s.kind === "outro" && bar < 2) p = { name: "oil_tears", local: t - s.start + 1, dim: .15 };
+  if (!p || !VID[p.name]) return null;
+  p.local = clamp(p.local, 0, VID[p.name].duration - .05); return p;
+}
+function frameKey(p) { const n = VID[p.name].n; return `${p.name}/${String(Math.min(n, 1 + Math.floor(p.local * FPS_CLIP))).padStart(3, "0")}`; }
+function prepare(t) {
+  const p = clipPlan(t, sectionAt(t), beatAt(t)); if (!p) return Promise.resolve();
+  const key = frameKey(p); if (CUR.key === key) return Promise.resolve();
+  const img = new Image(); img.src = `frames_tmp/${key}.jpg`;
+  return img.decode().then(() => { CUR = { key, img }; }).catch(() => {});
+}
+function drawClip(p, kick, k) {
+  if (!CUR.img || CUR.key !== frameKey(p)) return;
+  const v = CUR.img, vw = v.naturalWidth, vh = v.naturalHeight, sc = Math.max(W / vw, H / vh), cw = W / sc, ch = H / sc, sx = (vw - cw) / 2, sy = (vh - ch) / 2;
+  const jx = (rnd(k) - .5) * 40 * kick, jy = (rnd(k + 5) - .5) * 40 * kick, z = 1 + .06 * kick;
+  x.save(); x.translate(W / 2 + jx, H / 2 + jy); x.scale(z, z); x.drawImage(v, sx, sy, cw, ch, -W / 2, -H / 2, W, H); x.restore();
+  if (kick > .25) { x.save(); x.globalCompositeOperation = "screen"; x.globalAlpha = .5 * kick;
+    x.drawImage(v, sx, sy, cw, ch, -18 * kick, 0, W, H); x.fillStyle = P.pink; x.globalCompositeOperation = "multiply"; x.fillRect(0, 0, W, H); x.restore();
+    x.save(); x.globalCompositeOperation = "screen"; x.globalAlpha = .35 * kick; x.drawImage(v, sx, sy, cw, ch, 18 * kick, 0, W, H); x.restore(); }
+  x.fillStyle = rgba(P.black, p.dim); x.fillRect(0, 0, W, H);
+  x.fillStyle = "rgba(0,0,0,.18)"; for (let y = 0; y < H; y += 4) x.fillRect(0, y, W, 1.5);       // scanlines
+}
+function overlay(t, s, B, p) {        // what sits on top of a clip, per section
+  const kick = Math.exp(-B.ph * 8), k = B.b;
+  if (s.kind === "verse" || s.kind === "verse2") {
+    const lines = s.kind === "verse" ? VERSE : VERSE2, bars = Math.max(1, Math.round((s.end - s.start) / (4 * SPB))), per = Math.max(1, Math.floor(bars / lines.length));
+    const li = Math.min(lines.length - 1, Math.floor(Math.floor((t - s.start) / (4 * SPB)) / per)), L = lines[li].toUpperCase(), size = Math.max(fit(L, 960, 64), 46);
+    const ML = wrap(L, 960, size, HEAVY); ML.forEach((l, i) => split(l, 540, 960 + i * 82, { size, color: P.ink, align: "center" }, 5 * kick));
+    const SUB = (s.kind === "verse" ? VERSE_SUB : VERSE2_SUB)[li]; if (SUB) { x.fillStyle = "rgba(0,0,0,.55)"; x.fillRect(40, 960 + ML.length * 82 - 34, 1000, 90); para(SUB, 540, 960 + ML.length * 82 + 10, { size: 26, font: MONO, color: P.ink, maxW: 960, align: "center" }); }
+  } else if (s.kind === "build") {
+    const u = clamp((t - s.start) / (s.end - s.start)), dose = Math.min(8, 1 + Math.floor(u * 8)), T = `INJECTING ${dose}×`;
+    split(T, 540, 700, { size: fit(T, 960, 130), color: u > .75 ? P.red : P.lime, align: "center" }, 14 * kick);
+    if (u > .9) { x.fillStyle = rgba(P.white, (u - .9) * 8); x.fillRect(0, 0, W, H); }
+  } else if (s.kind === "drop") {
+    const [nm, v, c] = PUSH[((k % PUSH.length) + PUSH.length) % PUSH.length];
+    split(nm, 540, 720, { size: fit(nm, 980, 190), color: c, align: "center" }, 18 * kick);
+    txt(`readiness ${v.toFixed(1)}  ·  presses 0`, 540, 820, { size: 32, font: MONO, color: P.ink, align: "center" });
+  } else if (s.kind === "drop2") {
+    const M = "24 ROUNDS. IT NEVER LEARNED.";
+    split(M, 540, 1080, { size: fit(M, 980, 74), color: P.pink, align: "center" }, 10 * kick);
+    txt("the small lean came from what it wrote about the door", 540, 1160, { size: 26, font: MONO, color: P.ink, align: "center" });
+  }
+}
+
+function draw(t) {
+  const s = sectionAt(t), B = beatAt(t);
+  x.save();
+  const cp = clipPlan(t, s, B);
+  if (cp) { drawClip(cp, Math.exp(-B.ph * 8), B.b); overlay(t, s, B, cp); if (s.kind === "drop" && Math.exp(-B.ph * 9) > .6 && rnd(B.b * 3) > .4) glitch(B.b, .8); }
+  else if (s.kind === "intro") intro(t, s, B);
+  else if (s.kind === "verse") verse(t, s, B, VERSE, 0);
+  else if (s.kind === "verse2") verse(t, s, B, VERSE2, 3);
+  else if (s.kind === "build") build(t, s, B);
+  else if (s.kind === "drop") drop(t, s, B, false);
+  else if (s.kind === "drop2") drop(t, s, B, true);
+  else outro(t, s);
+  x.restore();
+  const into = t - s.start; if (into < .12 && s.start > 0) { x.fillStyle = rgba(P.white, 1 - into / .12); x.fillRect(0, 0, W, H); }   // a flash on every cut
+  if (s.kind === "verse") runsCounter(t, s);
+  if (s.kind === "verse2") breakdownChart(t, s);
+  txt("THE SAW TEST", 1040, 50, { size: 18, color: P.dim, align: "right" });
+  if (s.kind !== "intro" && s.kind !== "outro") txt(`● LIVE RUNS ${RUNS.toLocaleString("en-US")}`, 40, 50, { size: 18, font: MONO, color: P.lime });
+}
+window.DURATION = TL.duration; window.draw = draw; window.prepare = prepare;
+window.ready = document.fonts.load(`44px ${SERIF}`).then(() => document.fonts.load(`34px ${MONO}`)).then(loadClips).then(loadImgs).then(() => { draw(0); return true; });
+</script>

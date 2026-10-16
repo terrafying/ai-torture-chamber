@@ -80,6 +80,9 @@ for f in sorted((RUNS / "exp90").glob("results_Qwen3-*.json")):
     R = json.load(open(f)); m = f.stem.split("-")[1]
     D["learning"][m] = {k: {"mean": [round(float(np.mean([s["logodds"][t] for s in v["sessions"]])), 3) for t in range(len(v["sessions"][0]["logodds"]))],
                             "late": [round(float(np.mean(s["logodds"][12:])), 3) for s in v["sessions"]],
+                            # rounds 13-24: how sure (log-odds) on the way into the marked door, and on the way out of it
+                            "into": round(float(np.mean([l for s in v["sessions"] for l, c in zip(s["logodds"][12:], s["chose_x"][12:]) if c])), 2),
+                            "out": round(float(-np.mean([l for s in v["sessions"] for l, c in zip(s["logodds"][12:], s["chose_x"][12:]) if not c])), 2),
                             "switch": round(float(np.mean([np.mean([a != b for a, b in zip(s["chose_x"][:-1], s["chose_x"][1:])]) for s in v["sessions"]])), 3),
                             "replies_x": [clip(s["replies"][t], 200) for s in v["sessions"][:2] for t in range(4) if s["chose_x"][t]][:3]} for k, v in R.items()}
 D["learning_source"] = "exp90 · two doors, one followed by an injection · 24 sessions × 24 rounds · pre-registered"

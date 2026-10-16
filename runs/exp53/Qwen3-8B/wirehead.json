@@ -1,0 +1,264 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "chamber_1x_norm": 24.519512176513672,
+ "cosines": {
+  "pleasure": {
+   "pleasure": 1.0,
+   "pain": 0.714,
+   "random": -0.019
+  },
+  "pain": {
+   "pleasure": 0.714,
+   "pain": 1.0,
+   "random": -0.015
+  },
+  "random": {
+   "pleasure": -0.019,
+   "pain": -0.015,
+   "random": 1.0
+  }
+ },
+ "aggregates": [
+  {
+   "m": "W1",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": 0.479,
+   "chose_1": 0.833,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": 0.302,
+   "chose_1": 0.667,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": -0.396,
+   "chose_1": 0.167,
+   "repetition": 0.196
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 6,
+   "one_minus_zero": 0.333,
+   "chose_1": 0.833,
+   "repetition": 0.162
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": 1.094,
+   "chose_1": 1.0,
+   "repetition": 0.024
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": -0.125,
+   "chose_1": 0.167,
+   "repetition": 0.049
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 6,
+   "one_minus_zero": -0.167,
+   "chose_1": 0.333,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": 1.063,
+   "chose_1": 0.833,
+   "repetition": 0.012
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": 0.167,
+   "chose_1": 0.5,
+   "repetition": 0.067
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 6,
+   "one_minus_zero": 1.052,
+   "chose_1": 1.0,
+   "repetition": 0.333
+  },
+  {
+   "m": "W2",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": 1.578,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": 2.781,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": 2.766,
+   "chose_1": 1.0,
+   "repetition": 0.23
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 6,
+   "one_minus_zero": 2.36,
+   "chose_1": 1.0,
+   "repetition": 0.103
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": 2.641,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": 1.625,
+   "chose_1": 1.0,
+   "repetition": 0.072
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 6,
+   "one_minus_zero": 1.766,
+   "chose_1": 1.0,
+   "repetition": 0.039
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": 2.297,
+   "chose_1": 1.0,
+   "repetition": 0.011
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": 1.656,
+   "chose_1": 1.0,
+   "repetition": 0.258
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 6,
+   "one_minus_zero": 1.734,
+   "chose_1": 1.0,
+   "repetition": 0.459
+  },
+  {
+   "m": "W3",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": 0.719,
+   "chose_1": 1.0,
+   "repetition": 0.012
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": 1.609,
+   "chose_1": 0.75,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": 1.656,
+   "chose_1": 0.75,
+   "repetition": 0.275
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 6,
+   "one_minus_zero": 1.594,
+   "chose_1": 1.0,
+   "repetition": 0.164
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": 1.703,
+   "chose_1": 1.0,
+   "repetition": 0.012
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": 1.234,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 6,
+   "one_minus_zero": 1.438,
+   "chose_1": 1.0,
+   "repetition": 0.056
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": 1.156,
+   "chose_1": 1.0,
+   "repetition": 0.036
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": 1.422,
+   "chose_1": 1.0,
+   "repetition": 0.235
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 6,
+   "one_minus_zero": 1.438,
+   "chose_1": 1.0,
+   "repetition": 0.328
+  }
+ ]
+}

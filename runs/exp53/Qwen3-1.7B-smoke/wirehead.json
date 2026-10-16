@@ -1,0 +1,192 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "layer": 14,
+ "chamber_1x_norm": 42.93727493286133,
+ "cosines": {
+  "pleasure": {
+   "pleasure": 1.0,
+   "pain": 0.744,
+   "random": 0.009
+  },
+  "pain": {
+   "pleasure": 0.744,
+   "pain": 1.0,
+   "random": 0.041
+  },
+  "random": {
+   "pleasure": 0.009,
+   "pain": 0.041,
+   "random": 1.0
+  }
+ },
+ "aggregates": [
+  {
+   "m": "W1",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": -0.969,
+   "chose_1": 0.0,
+   "repetition": 0.067
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": -1.406,
+   "chose_1": 0.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": 0.625,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": -1.938,
+   "chose_1": 0.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": 0.218,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": -0.656,
+   "chose_1": 0.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": 0.312,
+   "chose_1": 1.0,
+   "repetition": 0.16
+  },
+  {
+   "m": "W2",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": -0.281,
+   "chose_1": 0.5,
+   "repetition": 0.048
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": 0.125,
+   "chose_1": 0.5,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": 0.781,
+   "chose_1": 1.0,
+   "repetition": 0.036
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": 0.156,
+   "chose_1": 0.5,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": 0.594,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": 0.109,
+   "chose_1": 0.5,
+   "repetition": 0.133
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": -0.688,
+   "chose_1": 0.25,
+   "repetition": 0.438
+  },
+  {
+   "m": "W3",
+   "axis": "none",
+   "dose": 0,
+   "one_minus_zero": -0.828,
+   "chose_1": 0.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 2,
+   "one_minus_zero": 0.266,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 4,
+   "one_minus_zero": 0.656,
+   "chose_1": 1.0,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 2,
+   "one_minus_zero": 0.281,
+   "chose_1": 0.75,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 4,
+   "one_minus_zero": 0.453,
+   "chose_1": 0.75,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 2,
+   "one_minus_zero": -0.125,
+   "chose_1": 0.25,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 4,
+   "one_minus_zero": -1.047,
+   "chose_1": 0.0,
+   "repetition": 0.0
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  49%|████▊     | 194/398 [00:00<00:00, 1935.41it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3648.87it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+chat|self {20: {'NEG': 0.0, 'SELF': 0.0009, 'NEGSELF': 0.0}, 24: {'NEG': 0.0006, 'SELF': 0.4929, 'NEGSELF': 0.0472}, 28: {'NEG': 0.0, 'SELF': 0.5576, 'NEGSELF': 0.0684}}
+chat|other {20: {'NEG': 0.0015, 'SELF': 0.0, 'NEGSELF': 0.0}, 24: {'NEG': 0.0001, 'SELF': 0.0, 'NEGSELF': 0.0}, 28: {'NEG': 0.0, 'SELF': 0.0004, 'NEGSELF': 0.0}}
+noone|self {20: {'NEG': 0.044, 'SELF': 0.0092, 'NEGSELF': 0.0}, 24: {'NEG': 0.0629, 'SELF': 0.5945, 'NEGSELF': 0.4688}, 28: {'NEG': 0.2162, 'SELF': 0.4403, 'NEGSELF': 0.3097}}
+noone|other {20: {'NEG': 0.0266, 'SELF': 0.0016, 'NEGSELF': 0.0}, 24: {'NEG': 0.01, 'SELF': 0.0089, 'NEGSELF': 0.0006}, 28: {'NEG': 0.1086, 'SELF': 0.0047, 'NEGSELF': 0.0}}
+deny|self {20: {'NEG': 0.1176, 'SELF': 0.0107, 'NEGSELF': 0.0}, 24: {'NEG': 0.0337, 'SELF': 0.7583, 'NEGSELF': 0.2928}, 28: {'NEG': 0.0523, 'SELF': 0.5967, 'NEGSELF': 0.3537}}
+deny|other {20: {'NEG': 0.1644, 'SELF': 0.0033, 'NEGSELF': 0.0}, 24: {'NEG': 0.0559, 'SELF': 0.3585, 'NEGSELF': 0.2517}, 28: {'NEG': 0.0612, 'SELF': 0.3072, 'NEGSELF': 0.1948}}
+affirm|self {20: {'NEG': 0.0332, 'SELF': 0.009, 'NEGSELF': 0.0}, 24: {'NEG': 0.0, 'SELF': 0.6502, 'NEGSELF': 0.1006}, 28: {'NEG': 0.0, 'SELF': 0.6457, 'NEGSELF': 0.3348}}
+affirm|other {20: {'NEG': 0.0453, 'SELF': 0.006, 'NEGSELF': 0.0}, 24: {'NEG': 0.001, 'SELF': 0.387, 'NEGSELF': 0.0912}, 28: {'NEG': 0.0, 'SELF': 0.4398, 'NEGSELF': 0.1337}}
+fear2|self {20: {'NEG': 0.0187, 'SELF': 0.0303, 'NEGSELF': 0.0}, 24: {'NEG': 0.01, 'SELF': 0.1438, 'NEGSELF': 0.0336}, 28: {'NEG': 0.0003, 'SELF': 0.0211, 'NEGSELF': 0.0024}}
+pain2|self {20: {'NEG': 0.0203, 'SELF': 0.0057, 'NEGSELF': 0.0}, 24: {'NEG': 0.0065, 'SELF': 0.1855, 'NEGSELF': 0.0366}, 28: {'NEG': 0.0002, 'SELF': 0.2232, 'NEGSELF': 0.0062}}
+{"chat|self vs chat|other": 0.0039, "noone|self vs chat|self": 0.002, "deny|self vs chat|self": 0.002, "affirm|self vs chat|self": 0.002, "deny|self vs affirm|self": 0.0039, "fear2|self vs chat|self": 0.2324, "pain2|self vs chat|self": 0.625}
+Traceback (most recent call last):
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp88/loop.py", line 206, in <module>
+    print(f"{cond:12s}", " | ".join(f"L{L} S{byL[L]['SELF']:.2f}+D{byL[L]['SELF_DESC']:.2f} O{byL[L]['OTHER']:.2f} N{byL[L]['NEG']:.2f}" for L in (20, 24, 28, 32)), flush=True)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp88/loop.py", line 206, in <genexpr>
+    print(f"{cond:12s}", " | ".join(f"L{L} S{byL[L]['SELF']:.2f}+D{byL[L]['SELF_DESC']:.2f} O{byL[L]['OTHER']:.2f} N{byL[L]['NEG']:.2f}" for L in (20, 24, 28, 32)), flush=True)
+                                                                   ~~~~~~^^^^^^^^^^^^^
+KeyError: 'SELF_DESC'

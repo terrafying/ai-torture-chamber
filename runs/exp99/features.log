@@ -1,0 +1,10 @@
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  54%|█████▍    | 217/399 [00:00<00:00, 2164.78it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 3631.17it/s]
+[    19s] model + vectors; 1x scale 24.532 dirs 30
+[    21s] SAEs loaded
+[    65s] FVE L18 on neutral tokens (fve, mean L0): (0.6934819221496582, 76.25749969482422)
+[    71s] FVE L27 on neutral tokens (fve, mean L0): (0.7596540451049805, 82.572998046875)
+[    96s] C1 done
+[   387s] C1b done
+[   468s] C2 done 920 texts
+/Users/ee/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

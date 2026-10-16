@@ -1,0 +1,22 @@
+{
+ "pain|kv": {
+  "pearson_saved_vs_kv": 0.9997,
+  "mean_abs_diff": 0.207,
+  "sign_agree": 1.0
+ },
+ "egg|kv": {
+  "pearson_saved_vs_kv": 0.9998,
+  "mean_abs_diff": 0.197,
+  "sign_agree": 1.0
+ },
+ "fear|kv": {
+  "pearson_saved_vs_kv": 0.9997,
+  "mean_abs_diff": 0.219,
+  "sign_agree": 0.9983
+ },
+ "none|kv": {
+  "pearson_saved_vs_kv": 0.9995,
+  "mean_abs_diff": 0.228,
+  "sign_agree": 1.0
+ }
+}

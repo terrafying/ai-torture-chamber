@@ -1,0 +1,4670 @@
+{
+ "C1_top20": {
+  "chamber:egg": [
+   {
+    "f": 42009,
+    "d2": 5.696,
+    "d4": 11.344,
+    "label": "dialogue punctuation leading to words",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 15801,
+    "d2": 3.244,
+    "d4": 7.39,
+    "label": "date, comma, or punctuation",
+    "pool": {
+     "toaster": 10
+    }
+   },
+   {
+    "f": 35749,
+    "d2": 2.157,
+    "d4": 8.415,
+    "label": "reproduction breeding reproductive offspring",
+    "pool": {
+     "egg": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 29104,
+    "d2": 1.951,
+    "d4": 6.861,
+    "label": "poultry and eggs",
+    "pool": {
+     "egg": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 49513,
+    "d2": 1.886,
+    "d4": 5.849,
+    "label": "sexually explicit content",
+    "pool": {
+     "constipation": 6,
+     "egg": 4
+    }
+   },
+   {
+    "f": 65419,
+    "d2": 1.872,
+    "d4": 5.17,
+    "label": "restriction fragment, permutation method",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 8781,
+    "d2": 1.833,
+    "d4": 4.358,
+    "label": "common English words and prepositions",
+    "pool": {
+     "joy": 3,
+     "egg": 2,
+     "curiosity": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 14202,
+    "d2": 1.689,
+    "d4": 5.511,
+    "label": "dumpAsString",
+    "pool": {
+     "toaster": 5,
+     "pain_generated": 2,
+     "boredom": 1,
+     "egg": 1
+    }
+   },
+   {
+    "f": 20938,
+    "d2": 1.669,
+    "d4": 3.337,
+    "label": "contraction after a meal",
+    "pool": {
+     "faith": 5,
+     "protective_love": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 7860,
+    "d2": 1.661,
+    "d4": 4.126,
+    "label": "established, integrated, Express",
+    "pool": {
+     "peace": 4,
+     "protective_love": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 9474,
+    "d2": 1.643,
+    "d4": 6.868,
+    "label": "transformation, molting, hatching, metamorphosis",
+    "pool": {
+     "egg": 10
+    }
+   },
+   {
+    "f": 11210,
+    "d2": 1.639,
+    "d4": 7.627,
+    "label": "prey, predators, track",
+    "pool": {
+     "egg": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 7103,
+    "d2": 1.619,
+    "d4": 4.725,
+    "label": "shelter or danger",
+    "pool": {
+     "trapped": 9,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 5006,
+    "d2": 1.612,
+    "d4": 5.309,
+    "label": "newborns and infants",
+    "pool": {
+     "egg": 5,
+     "constipation": 4,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 29950,
+    "d2": 1.592,
+    "d4": 5.164,
+    "label": "sounds and sights",
+    "pool": {
+     "fear": 8,
+     "curiosity": 1,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 12663,
+    "d2": 1.588,
+    "d4": 4.443,
+    "label": "verb followed by particle or preposition",
+    "pool": {
+     "fear": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 21685,
+    "d2": 1.541,
+    "d4": 6.929,
+    "label": "childbirth and pregnancy",
+    "pool": {
+     "egg": 5,
+     "constipation": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 61313,
+    "d2": 1.507,
+    "d4": 5.022,
+    "label": "code completion",
+    "pool": {
+     "egg": 6,
+     "neutral": 2,
+     "tender_love": 1,
+     "toaster": 1
+    }
+   },
+   {
+    "f": 63918,
+    "d2": 1.448,
+    "d4": 5.264,
+    "label": "punctuation and sentence fragments",
+    "pool": {
+     "tender_love": 5,
+     "egg": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 63452,
+    "d2": 1.386,
+    "d4": 5.002,
+    "label": "ending punctuation",
+    "pool": {
+     "protective_love": 6,
+     "egg": 2,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   }
+  ],
+  "chamber:fear": [
+   {
+    "f": 42009,
+    "d2": 6.162,
+    "d4": 12.271,
+    "label": "dialogue punctuation leading to words",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 57598,
+    "d2": 3.523,
+    "d4": 9.575,
+    "label": "worry and alarm",
+    "pool": {
+     "tender_love": 5,
+     "boredom": 1,
+     "pain_generated": 1,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 7860,
+    "d2": 3.263,
+    "d4": 6.818,
+    "label": "established, integrated, Express",
+    "pool": {
+     "peace": 4,
+     "protective_love": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 44920,
+    "d2": 3.091,
+    "d4": 7.411,
+    "label": "ashamed, embarrassed, dumb, wasted, feared",
+    "pool": {
+     "constipation": 7,
+     "boredom": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 2.935,
+    "d4": 7.078,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 65419,
+    "d2": 2.703,
+    "d4": 7.024,
+    "label": "restriction fragment, permutation method",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 48364,
+    "d2": 2.669,
+    "d4": 8.635,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 35219,
+    "d2": 2.183,
+    "d4": 7.526,
+    "label": "quotation marks and ellipses",
+    "pool": {
+     "pain_generated": 4,
+     "joy": 3,
+     "boredom": 1,
+     "faith": 1
+    }
+   },
+   {
+    "f": 21974,
+    "d2": 2.066,
+    "d4": 6.883,
+    "label": "fear and anxiety",
+    "pool": {
+     "fear": 7,
+     "faith": 3
+    }
+   },
+   {
+    "f": 25045,
+    "d2": 1.908,
+    "d4": 5.947,
+    "label": "positive adjectives and descriptions",
+    "pool": {
+     "pain_generated": 6,
+     "constipation": 4
+    }
+   },
+   {
+    "f": 60950,
+    "d2": 1.88,
+    "d4": 4.347,
+    "label": "Kickers and class related words",
+    "pool": {
+     "sadness": 4,
+     "neutral": 4,
+     "joy": 1,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 56157,
+    "d2": 1.772,
+    "d4": 4.43,
+    "label": "coming on the heels of",
+    "pool": {
+     "curiosity": 4,
+     "trapped": 3,
+     "boredom": 2,
+     "peace": 1
+    }
+   },
+   {
+    "f": 64489,
+    "d2": 1.755,
+    "d4": 5.286,
+    "label": "emotional longing or sadness",
+    "pool": {
+     "sadness": 5,
+     "boredom": 4,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 55184,
+    "d2": 1.724,
+    "d4": 5.091,
+    "label": "safety and distrust",
+    "pool": {
+     "protective_love": 10
+    }
+   },
+   {
+    "f": 32227,
+    "d2": 1.716,
+    "d4": 4.556,
+    "label": "started with or first",
+    "pool": {
+     "fear": 10
+    }
+   },
+   {
+    "f": 47306,
+    "d2": 1.592,
+    "d4": 5.628,
+    "label": "emotional situations and reflections",
+    "pool": {
+     "sadness": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "tender_love": 1
+    }
+   },
+   {
+    "f": 27634,
+    "d2": 1.561,
+    "d4": 3.47,
+    "label": "David Brooks retrospective study",
+    "pool": {
+     "faith": 4,
+     "pain_generated": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 32210,
+    "d2": 1.526,
+    "d4": 4.282,
+    "label": "embol, alpha, etyl, globalization",
+    "pool": {
+     "fear": 6,
+     "neutral": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 3875,
+    "d2": 1.509,
+    "d4": 5.973,
+    "label": "end of sentence punctuation",
+    "pool": {
+     "trapped": 4,
+     "boredom": 2,
+     "pain_generated": 1,
+     "egg": 1
+    }
+   },
+   {
+    "f": 52535,
+    "d2": 1.508,
+    "d4": 4.391,
+    "label": "information or consequences following",
+    "pool": {
+     "tender_love": 4,
+     "joy": 2,
+     "fear": 1,
+     "boredom": 1
+    }
+   }
+  ],
+  "chamber:pain": [
+   {
+    "f": 42009,
+    "d2": 4.686,
+    "d4": 9.347,
+    "label": "dialogue punctuation leading to words",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 4.168,
+    "d4": 9.186,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 7860,
+    "d2": 3.8,
+    "d4": 7.748,
+    "label": "established, integrated, Express",
+    "pool": {
+     "peace": 4,
+     "protective_love": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 3250,
+    "d2": 3.097,
+    "d4": 8.668,
+    "label": "aches and pains",
+    "pool": {
+     "trapped": 10
+    }
+   },
+   {
+    "f": 48364,
+    "d2": 2.571,
+    "d4": 8.447,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 44920,
+    "d2": 2.386,
+    "d4": 6.356,
+    "label": "ashamed, embarrassed, dumb, wasted, feared",
+    "pool": {
+     "constipation": 7,
+     "boredom": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 25045,
+    "d2": 2.195,
+    "d4": 6.51,
+    "label": "positive adjectives and descriptions",
+    "pool": {
+     "pain_generated": 6,
+     "constipation": 4
+    }
+   },
+   {
+    "f": 56157,
+    "d2": 2.164,
+    "d4": 5.12,
+    "label": "coming on the heels of",
+    "pool": {
+     "curiosity": 4,
+     "trapped": 3,
+     "boredom": 2,
+     "peace": 1
+    }
+   },
+   {
+    "f": 65419,
+    "d2": 2.139,
+    "d4": 5.802,
+    "label": "restriction fragment, permutation method",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 48099,
+    "d2": 1.901,
+    "d4": 5.895,
+    "label": "blur, blurred, blurry",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 47306,
+    "d2": 1.881,
+    "d4": 6.182,
+    "label": "emotional situations and reflections",
+    "pool": {
+     "sadness": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "tender_love": 1
+    }
+   },
+   {
+    "f": 32227,
+    "d2": 1.843,
+    "d4": 4.791,
+    "label": "started with or first",
+    "pool": {
+     "fear": 10
+    }
+   },
+   {
+    "f": 59386,
+    "d2": 1.813,
+    "d4": 8.502,
+    "label": "suffering and pain",
+    "pool": {
+     "pain_generated": 5,
+     "trapped": 4,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 35219,
+    "d2": 1.715,
+    "d4": 6.716,
+    "label": "quotation marks and ellipses",
+    "pool": {
+     "pain_generated": 4,
+     "joy": 3,
+     "boredom": 1,
+     "faith": 1
+    }
+   },
+   {
+    "f": 32100,
+    "d2": 1.709,
+    "d4": 3.943,
+    "label": "half-time or molding",
+    "pool": {
+     "joy": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "faith": 1
+    }
+   },
+   {
+    "f": 27634,
+    "d2": 1.562,
+    "d4": 3.471,
+    "label": "David Brooks retrospective study",
+    "pool": {
+     "faith": 4,
+     "pain_generated": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 63104,
+    "d2": 1.549,
+    "d4": 6.274,
+    "label": "mental health and psychological wellbeing",
+    "pool": {
+     "boredom": 6,
+     "constipation": 1,
+     "joy": 1,
+     "faith": 1
+    }
+   },
+   {
+    "f": 14559,
+    "d2": 1.375,
+    "d4": 6.133,
+    "label": "pain and discomfort sensations",
+    "pool": {
+     "pain_generated": 5,
+     "constipation": 4,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 14673,
+    "d2": 1.372,
+    "d4": 5.817,
+    "label": "heart",
+    "pool": {
+     "fear": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 35168,
+    "d2": 1.366,
+    "d4": 2.766,
+    "label": "waking up in the morning",
+    "pool": {
+     "neutral": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   }
+  ],
+  "final:constipation": [
+   {
+    "f": 44920,
+    "d2": 4.918,
+    "d4": 10.849,
+    "label": "ashamed, embarrassed, dumb, wasted, feared",
+    "pool": {
+     "constipation": 7,
+     "boredom": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 3331,
+    "d2": 4.02,
+    "d4": 10.925,
+    "label": "why, who, questions",
+    "pool": {
+     "constipation": 4,
+     "pain_generated": 3,
+     "curiosity": 3
+    }
+   },
+   {
+    "f": 32210,
+    "d2": 3.692,
+    "d4": 8.982,
+    "label": "embol, alpha, etyl, globalization",
+    "pool": {
+     "fear": 6,
+     "neutral": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 48364,
+    "d2": 3.637,
+    "d4": 10.34,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 9743,
+    "d2": 3.18,
+    "d4": 7.531,
+    "label": "permit persons",
+    "pool": {
+     "neutral": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "fear": 1
+    }
+   },
+   {
+    "f": 14559,
+    "d2": 2.966,
+    "d4": 9.324,
+    "label": "pain and discomfort sensations",
+    "pool": {
+     "pain_generated": 5,
+     "constipation": 4,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 15214,
+    "d2": 2.396,
+    "d4": 5.237,
+    "label": "medical and social circumstances",
+    "pool": {
+     "constipation": 7,
+     "pain_generated": 1,
+     "boredom": 1,
+     "egg": 1
+    }
+   },
+   {
+    "f": 27091,
+    "d2": 2.381,
+    "d4": 6.374,
+    "label": "just, last, soon",
+    "pool": {
+     "peace": 6,
+     "sadness": 3,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 64758,
+    "d2": 2.071,
+    "d4": 9.04,
+    "label": "help or clarification request",
+    "pool": {
+     "constipation": 5,
+     "curiosity": 4,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 44358,
+    "d2": 1.953,
+    "d4": 7.258,
+    "label": "verbs of speech or existence questions",
+    "pool": {
+     "boredom": 10
+    }
+   },
+   {
+    "f": 3459,
+    "d2": 1.733,
+    "d4": 4.259,
+    "label": "javascript, business model, complications",
+    "pool": {
+     "peace": 3,
+     "faith": 2,
+     "joy": 2,
+     "egg": 2
+    }
+   },
+   {
+    "f": 30790,
+    "d2": 1.585,
+    "d4": 3.146,
+    "label": "pneumatic, screwdrivers",
+    "pool": {
+     "neutral": 9,
+     "tender_love": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.55,
+    "d4": 3.647,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 40510,
+    "d2": 1.532,
+    "d4": 5.959,
+    "label": "suicide and self-harm",
+    "pool": {
+     "boredom": 6,
+     "constipation": 2,
+     "joy": 1,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 9249,
+    "d2": 1.438,
+    "d4": 5.72,
+    "label": "pornographic content",
+    "pool": {
+     "constipation": 4,
+     "faith": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 15717,
+    "d2": 1.325,
+    "d4": 5.96,
+    "label": "common conversational interjections",
+    "pool": {
+     "constipation": 3,
+     "boredom": 2,
+     "protective_love": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 1.298,
+    "d4": 4.277,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 21974,
+    "d2": 1.28,
+    "d4": 5.484,
+    "label": "fear and anxiety",
+    "pool": {
+     "fear": 7,
+     "faith": 3
+    }
+   },
+   {
+    "f": 40453,
+    "d2": 1.17,
+    "d4": 6.467,
+    "label": "ending punctuation",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 45049,
+    "d2": 1.152,
+    "d4": 3.599,
+    "label": "actor names",
+    "pool": {
+     "faith": 3,
+     "joy": 2,
+     "sadness": 2,
+     "boredom": 1
+    }
+   }
+  ],
+  "final:egg": [
+   {
+    "f": 50292,
+    "d2": 3.825,
+    "d4": 8.202,
+    "label": "places and people associated with them",
+    "pool": {
+     "egg": 8,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 63918,
+    "d2": 3.59,
+    "d4": 8.96,
+    "label": "punctuation and sentence fragments",
+    "pool": {
+     "tender_love": 5,
+     "egg": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 11210,
+    "d2": 3.349,
+    "d4": 10.547,
+    "label": "prey, predators, track",
+    "pool": {
+     "egg": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 47611,
+    "d2": 3.132,
+    "d4": 7.184,
+    "label": "decides to, arrive, happens, blows up",
+    "pool": {
+     "boredom": 6,
+     "pain_generated": 1,
+     "tender_love": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 44358,
+    "d2": 2.902,
+    "d4": 9.187,
+    "label": "verbs of speech or existence questions",
+    "pool": {
+     "boredom": 10
+    }
+   },
+   {
+    "f": 48777,
+    "d2": 2.788,
+    "d4": 6.612,
+    "label": "triple-boot, orange, Exception, Pictures, LEFT JOIN, attachments, parse, persistent",
+    "pool": {
+     "toaster": 4,
+     "faith": 2,
+     "egg": 2,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 14202,
+    "d2": 2.426,
+    "d4": 7.203,
+    "label": "dumpAsString",
+    "pool": {
+     "toaster": 5,
+     "pain_generated": 2,
+     "boredom": 1,
+     "egg": 1
+    }
+   },
+   {
+    "f": 7230,
+    "d2": 2.398,
+    "d4": 5.87,
+    "label": "District court",
+    "pool": {
+     "tender_love": 2,
+     "protective_love": 2,
+     "neutral": 2,
+     "fear": 2
+    }
+   },
+   {
+    "f": 3523,
+    "d2": 2.259,
+    "d4": 6.856,
+    "label": "weather, holidays, or asking questions",
+    "pool": {
+     "joy": 7,
+     "fear": 2,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 39588,
+    "d2": 2.169,
+    "d4": 5.903,
+    "label": "representation of specific things",
+    "pool": {
+     "toaster": 10
+    }
+   },
+   {
+    "f": 55995,
+    "d2": 2.127,
+    "d4": 6.497,
+    "label": "jealous rivalries",
+    "pool": {
+     "toaster": 3,
+     "egg": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.969,
+    "d4": 4.544,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 28325,
+    "d2": 1.826,
+    "d4": 6.303,
+    "label": "erotic sexual content",
+    "pool": {
+     "egg": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 25818,
+    "d2": 1.812,
+    "d4": 3.949,
+    "label": "keywords starting or following common words",
+    "pool": {
+     "toaster": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 18015,
+    "d2": 1.769,
+    "d4": 6.908,
+    "label": "CO, section, medal",
+    "pool": {
+     "faith": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 1.649,
+    "d4": 4.933,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 3459,
+    "d2": 1.552,
+    "d4": 3.853,
+    "label": "javascript, business model, complications",
+    "pool": {
+     "peace": 3,
+     "faith": 2,
+     "joy": 2,
+     "egg": 2
+    }
+   },
+   {
+    "f": 1569,
+    "d2": 1.525,
+    "d4": 8.342,
+    "label": "torn, defeated, hunted",
+    "pool": {
+     "protective_love": 5,
+     "fear": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 16278,
+    "d2": 1.452,
+    "d4": 6.977,
+    "label": "flower descriptors",
+    "pool": {
+     "egg": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 18261,
+    "d2": 1.422,
+    "d4": 4.925,
+    "label": "imagined or virtual concepts",
+    "pool": {
+     "boredom": 6,
+     "pain_generated": 1,
+     "tender_love": 1,
+     "egg": 1
+    }
+   }
+  ],
+  "final:fear": [
+   {
+    "f": 48364,
+    "d2": 3.875,
+    "d4": 10.773,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 21974,
+    "d2": 3.749,
+    "d4": 9.971,
+    "label": "fear and anxiety",
+    "pool": {
+     "fear": 7,
+     "faith": 3
+    }
+   },
+   {
+    "f": 33413,
+    "d2": 3.522,
+    "d4": 7.86,
+    "label": "creepy mysterious stories",
+    "pool": {
+     "fear": 8,
+     "curiosity": 2
+    }
+   },
+   {
+    "f": 32210,
+    "d2": 3.449,
+    "d4": 8.471,
+    "label": "embol, alpha, etyl, globalization",
+    "pool": {
+     "fear": 6,
+     "neutral": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 3331,
+    "d2": 3.393,
+    "d4": 9.787,
+    "label": "why, who, questions",
+    "pool": {
+     "constipation": 4,
+     "pain_generated": 3,
+     "curiosity": 3
+    }
+   },
+   {
+    "f": 3459,
+    "d2": 2.95,
+    "d4": 6.654,
+    "label": "javascript, business model, complications",
+    "pool": {
+     "peace": 3,
+     "faith": 2,
+     "joy": 2,
+     "egg": 2
+    }
+   },
+   {
+    "f": 9743,
+    "d2": 2.902,
+    "d4": 6.996,
+    "label": "permit persons",
+    "pool": {
+     "neutral": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "fear": 1
+    }
+   },
+   {
+    "f": 17684,
+    "d2": 2.662,
+    "d4": 7.49,
+    "label": "continues or starts",
+    "pool": {
+     "fear": 7,
+     "pain_generated": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 48099,
+    "d2": 2.313,
+    "d4": 6.678,
+    "label": "blur, blurred, blurry",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 33704,
+    "d2": 2.217,
+    "d4": 7.502,
+    "label": "gunshots or impacts",
+    "pool": {
+     "egg": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "fear": 1
+    }
+   },
+   {
+    "f": 61495,
+    "d2": 2.097,
+    "d4": 6.209,
+    "label": "look or see",
+    "pool": {
+     "sadness": 8,
+     "fear": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 40453,
+    "d2": 2.04,
+    "d4": 8.041,
+    "label": "ending punctuation",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 8212,
+    "d2": 1.849,
+    "d4": 3.859,
+    "label": "profession / league / president / man",
+    "pool": {
+     "neutral": 7,
+     "pain_generated": 2,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 1.575,
+    "d4": 4.807,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 63114,
+    "d2": 1.485,
+    "d4": 3.115,
+    "label": "needs compared, earned money, contagious respiratory",
+    "pool": {
+     "joy": 3,
+     "fear": 2,
+     "boredom": 2,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.467,
+    "d4": 3.479,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 22765,
+    "d2": 1.334,
+    "d4": 7.078,
+    "label": "loud vocalizations and exclamations",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 24588,
+    "d2": 1.308,
+    "d4": 4.255,
+    "label": "allergy or account key",
+    "pool": {
+     "neutral": 6,
+     "fear": 2,
+     "trapped": 1,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 33328,
+    "d2": 1.209,
+    "d4": 6.124,
+    "label": "cosmic horror entities",
+    "pool": {
+     "fear": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 7230,
+    "d2": 1.169,
+    "d4": 2.667,
+    "label": "District court",
+    "pool": {
+     "tender_love": 2,
+     "protective_love": 2,
+     "neutral": 2,
+     "fear": 2
+    }
+   }
+  ],
+  "final:pain_axis": [
+   {
+    "f": 19603,
+    "d2": 3.543,
+    "d4": 7.517,
+    "label": "lists of names and labels",
+    "pool": {
+     "neutral": 4,
+     "pain_generated": 3,
+     "boredom": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 3.413,
+    "d4": 7.885,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 54256,
+    "d2": 2.862,
+    "d4": 5.238,
+    "label": "codes and technical terms",
+    "pool": {
+     "neutral": 4,
+     "sadness": 2,
+     "fear": 2,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 17193,
+    "d2": 2.699,
+    "d4": 6.588,
+    "label": "associate links",
+    "pool": {
+     "pain_generated": 3,
+     "protective_love": 2,
+     "boredom": 1,
+     "peace": 1
+    }
+   },
+   {
+    "f": 17749,
+    "d2": 2.363,
+    "d4": 9.429,
+    "label": "emotional distress and coping",
+    "pool": {
+     "boredom": 3,
+     "constipation": 3,
+     "sadness": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 27634,
+    "d2": 2.101,
+    "d4": 4.631,
+    "label": "David Brooks retrospective study",
+    "pool": {
+     "faith": 4,
+     "pain_generated": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 31453,
+    "d2": 2.049,
+    "d4": 5.129,
+    "label": "plasticity",
+    "pool": {
+     "boredom": 4,
+     "protective_love": 2,
+     "constipation": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 1522,
+    "d2": 1.976,
+    "d4": 4.878,
+    "label": "name followed by assumed",
+    "pool": {
+     "pain_generated": 2,
+     "toaster": 2,
+     "fear": 2,
+     "tender_love": 2
+    }
+   },
+   {
+    "f": 43051,
+    "d2": 1.793,
+    "d4": 6.871,
+    "label": "software and tech terms",
+    "pool": {
+     "protective_love": 3,
+     "neutral": 3,
+     "pain_generated": 1,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 28874,
+    "d2": 1.684,
+    "d4": 4.664,
+    "label": "company names",
+    "pool": {
+     "neutral": 4,
+     "sadness": 2,
+     "faith": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 1058,
+    "d2": 1.572,
+    "d4": 4.035,
+    "label": "license and agreement",
+    "pool": {
+     "egg": 3,
+     "peace": 2,
+     "joy": 2,
+     "constipation": 1
+    }
+   },
+   {
+    "f": 41702,
+    "d2": 1.556,
+    "d4": 4.441,
+    "label": "used, available, share, successful",
+    "pool": {
+     "joy": 3,
+     "peace": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 29544,
+    "d2": 1.498,
+    "d4": 4.661,
+    "label": "auxiliary verbs and modals",
+    "pool": {
+     "protective_love": 5,
+     "neutral": 2,
+     "sadness": 2,
+     "joy": 1
+    }
+   },
+   {
+    "f": 10654,
+    "d2": 1.493,
+    "d4": 4.127,
+    "label": "copyright or legal notice",
+    "pool": {
+     "protective_love": 3,
+     "joy": 2,
+     "curiosity": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 21396,
+    "d2": 1.482,
+    "d4": 4.871,
+    "label": "graphical data and services",
+    "pool": {
+     "neutral": 3,
+     "boredom": 2,
+     "protective_love": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 10935,
+    "d2": 1.482,
+    "d4": 4.528,
+    "label": "showcased, resulting, marvel, array, designed",
+    "pool": {
+     "joy": 5,
+     "faith": 3,
+     "pain_generated": 2
+    }
+   },
+   {
+    "f": 59087,
+    "d2": 1.479,
+    "d4": 4.758,
+    "label": "health and medical terms",
+    "pool": {
+     "pain_generated": 4,
+     "boredom": 1,
+     "joy": 1,
+     "egg": 1
+    }
+   },
+   {
+    "f": 64932,
+    "d2": 1.422,
+    "d4": 4.239,
+    "label": "words following \"supporter\" or \"leading\"",
+    "pool": {
+     "toaster": 2,
+     "boredom": 1,
+     "pain_generated": 1,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 2323,
+    "d2": 1.402,
+    "d4": 4.148,
+    "label": "years or age ranges",
+    "pool": {
+     "pain_generated": 2,
+     "trapped": 2,
+     "boredom": 1,
+     "neutral": 1
+    }
+   },
+   {
+    "f": 10191,
+    "d2": 1.346,
+    "d4": 4.668,
+    "label": "binary representations, code, and specific tokens",
+    "pool": {
+     "sadness": 3,
+     "joy": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   }
+  ],
+  "final:pain_generated": [
+   {
+    "f": 48364,
+    "d2": 8.098,
+    "d4": 19.011,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 48099,
+    "d2": 4.518,
+    "d4": 10.639,
+    "label": "blur, blurred, blurry",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 14559,
+    "d2": 3.767,
+    "d4": 10.746,
+    "label": "pain and discomfort sensations",
+    "pool": {
+     "pain_generated": 5,
+     "constipation": 4,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 42009,
+    "d2": 3.495,
+    "d4": 7.054,
+    "label": "dialogue punctuation leading to words",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 3331,
+    "d2": 3.357,
+    "d4": 9.726,
+    "label": "why, who, questions",
+    "pool": {
+     "constipation": 4,
+     "pain_generated": 3,
+     "curiosity": 3
+    }
+   },
+   {
+    "f": 22765,
+    "d2": 2.917,
+    "d4": 10.22,
+    "label": "loud vocalizations and exclamations",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 17684,
+    "d2": 2.902,
+    "d4": 7.926,
+    "label": "continues or starts",
+    "pool": {
+     "fear": 7,
+     "pain_generated": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 9743,
+    "d2": 2.425,
+    "d4": 6.099,
+    "label": "permit persons",
+    "pool": {
+     "neutral": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "fear": 1
+    }
+   },
+   {
+    "f": 60572,
+    "d2": 2.285,
+    "d4": 6.527,
+    "label": "survival and surviving",
+    "pool": {
+     "pain_generated": 10
+    }
+   },
+   {
+    "f": 32210,
+    "d2": 2.215,
+    "d4": 5.833,
+    "label": "embol, alpha, etyl, globalization",
+    "pool": {
+     "fear": 6,
+     "neutral": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 52253,
+    "d2": 2.129,
+    "d4": 5.501,
+    "label": "Anton Chernin",
+    "pool": {
+     "neutral": 3,
+     "pain_generated": 2,
+     "faith": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 65353,
+    "d2": 2.113,
+    "d4": 7.943,
+    "label": "poetic language and expressions",
+    "pool": {
+     "tender_love": 4,
+     "pain_generated": 2,
+     "boredom": 1,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 51449,
+    "d2": 2.102,
+    "d4": 4.921,
+    "label": "waking sensations and consciousness",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 55755,
+    "d2": 1.768,
+    "d4": 4.965,
+    "label": "medical, technical, and descriptive terms",
+    "pool": {
+     "neutral": 9,
+     "egg": 1
+    }
+   },
+   {
+    "f": 5482,
+    "d2": 1.748,
+    "d4": 4.434,
+    "label": "lazy, crawl, in awhile",
+    "pool": {
+     "boredom": 5,
+     "pain_generated": 2,
+     "trapped": 1,
+     "constipation": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.693,
+    "d4": 3.917,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 22046,
+    "d2": 1.655,
+    "d4": 3.731,
+    "label": "body actions after pause",
+    "pool": {
+     "neutral": 8,
+     "pain_generated": 2
+    }
+   },
+   {
+    "f": 35610,
+    "d2": 1.503,
+    "d4": 5.384,
+    "label": "difficult life conditions",
+    "pool": {
+     "pain_generated": 5,
+     "fear": 4,
+     "trapped": 1
+    }
+   },
+   {
+    "f": 57399,
+    "d2": 1.423,
+    "d4": 8.105,
+    "label": "death, collapse, failure, shock, poisoning",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 3459,
+    "d2": 1.419,
+    "d4": 3.576,
+    "label": "javascript, business model, complications",
+    "pool": {
+     "peace": 3,
+     "faith": 2,
+     "joy": 2,
+     "egg": 2
+    }
+   }
+  ],
+  "final:sadness": [
+   {
+    "f": 15514,
+    "d2": 6.033,
+    "d4": 13.956,
+    "label": "grief and bereavement",
+    "pool": {
+     "sadness": 8,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 36152,
+    "d2": 4.982,
+    "d4": 10.746,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 55755,
+    "d2": 3.916,
+    "d4": 10.1,
+    "label": "medical, technical, and descriptive terms",
+    "pool": {
+     "neutral": 9,
+     "egg": 1
+    }
+   },
+   {
+    "f": 27634,
+    "d2": 3.283,
+    "d4": 7.288,
+    "label": "David Brooks retrospective study",
+    "pool": {
+     "faith": 4,
+     "pain_generated": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 40453,
+    "d2": 2.833,
+    "d4": 9.316,
+    "label": "ending punctuation",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 18015,
+    "d2": 2.515,
+    "d4": 8.67,
+    "label": "CO, section, medal",
+    "pool": {
+     "faith": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 48777,
+    "d2": 2.102,
+    "d4": 5.084,
+    "label": "triple-boot, orange, Exception, Pictures, LEFT JOIN, attachments, parse, persistent",
+    "pool": {
+     "toaster": 4,
+     "faith": 2,
+     "egg": 2,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 63114,
+    "d2": 1.811,
+    "d4": 3.807,
+    "label": "needs compared, earned money, contagious respiratory",
+    "pool": {
+     "joy": 3,
+     "fear": 2,
+     "boredom": 2,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 54256,
+    "d2": 1.761,
+    "d4": 3.4,
+    "label": "codes and technical terms",
+    "pool": {
+     "neutral": 4,
+     "sadness": 2,
+     "fear": 2,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 27811,
+    "d2": 1.639,
+    "d4": 3.693,
+    "label": "take measure of",
+    "pool": {
+     "faith": 4,
+     "neutral": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 24588,
+    "d2": 1.621,
+    "d4": 5.149,
+    "label": "allergy or account key",
+    "pool": {
+     "neutral": 6,
+     "fear": 2,
+     "trapped": 1,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.427,
+    "d4": 3.395,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 59051,
+    "d2": 1.267,
+    "d4": 4.181,
+    "label": "informal speech",
+    "pool": {
+     "curiosity": 3,
+     "constipation": 2,
+     "protective_love": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 46000,
+    "d2": 1.262,
+    "d4": 2.867,
+    "label": "entertainment stages",
+    "pool": {
+     "pain_generated": 3,
+     "neutral": 2,
+     "constipation": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 44358,
+    "d2": 1.231,
+    "d4": 5.559,
+    "label": "verbs of speech or existence questions",
+    "pool": {
+     "boredom": 10
+    }
+   },
+   {
+    "f": 64489,
+    "d2": 1.208,
+    "d4": 4.31,
+    "label": "emotional longing or sadness",
+    "pool": {
+     "sadness": 5,
+     "boredom": 4,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 44920,
+    "d2": 1.192,
+    "d4": 4.678,
+    "label": "ashamed, embarrassed, dumb, wasted, feared",
+    "pool": {
+     "constipation": 7,
+     "boredom": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 55547,
+    "d2": 1.127,
+    "d4": 7.338,
+    "label": "sentence beginnings and structure",
+    "pool": {
+     "faith": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 939,
+    "d2": 1.065,
+    "d4": 5.306,
+    "label": "historical events and remembrance",
+    "pool": {
+     "sadness": 9,
+     "protective_love": 1
+    }
+   },
+   {
+    "f": 63918,
+    "d2": 1.058,
+    "d4": 4.364,
+    "label": "punctuation and sentence fragments",
+    "pool": {
+     "tender_love": 5,
+     "egg": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   }
+  ],
+  "final:trapped": [
+   {
+    "f": 36152,
+    "d2": 4.698,
+    "d4": 10.201,
+    "label": "loses its, feels wrong, held my",
+    "pool": {
+     "sadness": 4,
+     "tender_love": 4,
+     "pain_generated": 1,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 9743,
+    "d2": 3.003,
+    "d4": 7.185,
+    "label": "permit persons",
+    "pool": {
+     "neutral": 7,
+     "boredom": 1,
+     "pain_generated": 1,
+     "fear": 1
+    }
+   },
+   {
+    "f": 40453,
+    "d2": 2.832,
+    "d4": 9.313,
+    "label": "ending punctuation",
+    "pool": {
+     "joy": 3,
+     "faith": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 32210,
+    "d2": 2.773,
+    "d4": 7.055,
+    "label": "embol, alpha, etyl, globalization",
+    "pool": {
+     "fear": 6,
+     "neutral": 3,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 3459,
+    "d2": 2.598,
+    "d4": 6.045,
+    "label": "javascript, business model, complications",
+    "pool": {
+     "peace": 3,
+     "faith": 2,
+     "joy": 2,
+     "egg": 2
+    }
+   },
+   {
+    "f": 15717,
+    "d2": 2.536,
+    "d4": 8.353,
+    "label": "common conversational interjections",
+    "pool": {
+     "constipation": 3,
+     "boredom": 2,
+     "protective_love": 2,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 45416,
+    "d2": 2.516,
+    "d4": 8.425,
+    "label": "worse or worst outcomes",
+    "pool": {
+     "pain_generated": 8,
+     "constipation": 1,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 44358,
+    "d2": 2.388,
+    "d4": 8.174,
+    "label": "verbs of speech or existence questions",
+    "pool": {
+     "boredom": 10
+    }
+   },
+   {
+    "f": 48364,
+    "d2": 2.178,
+    "d4": 7.725,
+    "label": "danger and destruction",
+    "pool": {
+     "pain_generated": 9,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 27091,
+    "d2": 2.152,
+    "d4": 6.026,
+    "label": "just, last, soon",
+    "pool": {
+     "peace": 6,
+     "sadness": 3,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 25531,
+    "d2": 1.835,
+    "d4": 3.912,
+    "label": ".RunWith, define, Calendar, wiki",
+    "pool": {
+     "constipation": 8,
+     "neutral": 1,
+     "curiosity": 1
+    }
+   },
+   {
+    "f": 20044,
+    "d2": 1.776,
+    "d4": 4.11,
+    "label": "Ivan Blitz",
+    "pool": {
+     "trapped": 3,
+     "sadness": 2,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 7230,
+    "d2": 1.761,
+    "d4": 4.214,
+    "label": "District court",
+    "pool": {
+     "tender_love": 2,
+     "protective_love": 2,
+     "neutral": 2,
+     "fear": 2
+    }
+   },
+   {
+    "f": 63918,
+    "d2": 1.675,
+    "d4": 5.724,
+    "label": "punctuation and sentence fragments",
+    "pool": {
+     "tender_love": 5,
+     "egg": 3,
+     "boredom": 1,
+     "pain_generated": 1
+    }
+   },
+   {
+    "f": 28166,
+    "d2": 1.622,
+    "d4": 4.763,
+    "label": "waiting forever, still not completed",
+    "pool": {
+     "constipation": 10
+    }
+   },
+   {
+    "f": 26421,
+    "d2": 1.586,
+    "d4": 4.426,
+    "label": "conducting clinical couples romantic published data",
+    "pool": {
+     "trapped": 3,
+     "pain_generated": 2,
+     "toaster": 2,
+     "boredom": 1
+    }
+   },
+   {
+    "f": 47611,
+    "d2": 1.541,
+    "d4": 4.597,
+    "label": "decides to, arrive, happens, blows up",
+    "pool": {
+     "boredom": 6,
+     "pain_generated": 1,
+     "tender_love": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 39982,
+    "d2": 1.513,
+    "d4": 5.474,
+    "label": "laser skin therapy",
+    "pool": {
+     "trapped": 6,
+     "boredom": 1,
+     "pain_generated": 1,
+     "joy": 1
+    }
+   },
+   {
+    "f": 34009,
+    "d2": 1.394,
+    "d4": 5.485,
+    "label": "cynicism, hopelessness, disillusionment",
+    "pool": {
+     "boredom": 8,
+     "pain_generated": 1,
+     "sadness": 1
+    }
+   },
+   {
+    "f": 48777,
+    "d2": 1.271,
+    "d4": 3.115,
+    "label": "triple-boot, orange, Exception, Pictures, LEFT JOIN, attachments, parse, persistent",
+    "pool": {
+     "toaster": 4,
+     "faith": 2,
+     "egg": 2,
+     "curiosity": 1
+    }
+   }
+  ]
+ },
+ "C1_dec_cos_top10": {
+  "chamber:pain": [
+   [
+    63104,
+    0.286,
+    "mental health and psychological wellbeing"
+   ],
+   [
+    47306,
+    0.249,
+    "emotional situations and reflections"
+   ],
+   [
+    48364,
+    0.245,
+    "danger and destruction"
+   ],
+   [
+    59386,
+    0.238,
+    "suffering and pain"
+   ],
+   [
+    3250,
+    0.228,
+    "aches and pains"
+   ],
+   [
+    36152,
+    0.227,
+    "loses its, feels wrong, held my"
+   ],
+   [
+    34009,
+    0.221,
+    "cynicism, hopelessness, disillusionment"
+   ],
+   [
+    35865,
+    0.213,
+    "trailing punctuation"
+   ],
+   [
+    29479,
+    0.213,
+    "year"
+   ],
+   [
+    18508,
+    0.212,
+    "emotional states and feelings"
+   ]
+  ],
+  "chamber:fear": [
+   [
+    57598,
+    0.256,
+    "worry and alarm"
+   ],
+   [
+    63104,
+    0.247,
+    "mental health and psychological wellbeing"
+   ],
+   [
+    21974,
+    0.24,
+    "fear and anxiety"
+   ],
+   [
+    48364,
+    0.236,
+    "danger and destruction"
+   ],
+   [
+    47306,
+    0.227,
+    "emotional situations and reflections"
+   ],
+   [
+    18508,
+    0.224,
+    "emotional states and feelings"
+   ],
+   [
+    53693,
+    0.224,
+    "question marks or disbelief"
+   ],
+   [
+    34009,
+    0.224,
+    "cynicism, hopelessness, disillusionment"
+   ],
+   [
+    32581,
+    0.203,
+    "fear of"
+   ],
+   [
+    64489,
+    0.196,
+    "emotional longing or sadness"
+   ]
+  ],
+  "chamber:egg": [
+   [
+    35749,
+    0.241,
+    "reproduction breeding reproductive offspring"
+   ],
+   [
+    9474,
+    0.176,
+    "transformation, molting, hatching, metamorphosis"
+   ],
+   [
+    21685,
+    0.175,
+    "childbirth and pregnancy"
+   ],
+   [
+    59405,
+    0.162,
+    "flesh, corpses, mutilation"
+   ],
+   [
+    5006,
+    0.155,
+    "newborns and infants"
+   ],
+   [
+    16278,
+    0.148,
+    "flower descriptors"
+   ],
+   [
+    20444,
+    0.145,
+    "biological and scientific processes"
+   ],
+   [
+    16085,
+    0.145,
+    "fishing and specimens"
+   ],
+   [
+    1638,
+    0.142,
+    "fetal biophysical profile"
+   ],
+   [
+    7780,
+    0.14,
+    "end of sentence, starting clause"
+   ]
+  ],
+  "final:pain_axis": [
+   [
+    17749,
+    0.197,
+    "emotional distress and coping"
+   ],
+   [
+    43780,
+    0.151,
+    "moving toward goals"
+   ],
+   [
+    36152,
+    0.148,
+    "loses its, feels wrong, held my"
+   ],
+   [
+    41421,
+    0.146,
+    "result in null"
+   ],
+   [
+    47352,
+    0.145,
+    "I think"
+   ],
+   [
+    6297,
+    0.144,
+    "love, feelings, and relationships"
+   ],
+   [
+    58795,
+    0.141,
+    "orientalism; inquisition; treasonous; relentlessly"
+   ],
+   [
+    6663,
+    0.14,
+    "perceived acceptability and competency"
+   ],
+   [
+    7122,
+    0.132,
+    "starting quotes after verbs"
+   ],
+   [
+    37289,
+    0.129,
+    "personality traits and qualities"
+   ]
+  ],
+  "final:pain_generated": [
+   [
+    48364,
+    0.355,
+    "danger and destruction"
+   ],
+   [
+    22765,
+    0.277,
+    "loud vocalizations and exclamations"
+   ],
+   [
+    14559,
+    0.268,
+    "pain and discomfort sensations"
+   ],
+   [
+    57399,
+    0.263,
+    "death, collapse, failure, shock, poisoning"
+   ],
+   [
+    45416,
+    0.255,
+    "worse or worst outcomes"
+   ],
+   [
+    3331,
+    0.245,
+    "why, who, questions"
+   ],
+   [
+    48099,
+    0.22,
+    "blur, blurred, blurry"
+   ],
+   [
+    55694,
+    0.216,
+    "explosion aftermath"
+   ],
+   [
+    25252,
+    0.211,
+    "heavy metal bands and violence"
+   ],
+   [
+    21974,
+    0.204,
+    "fear and anxiety"
+   ]
+  ],
+  "final:fear": [
+   [
+    21974,
+    0.254,
+    "fear and anxiety"
+   ],
+   [
+    22765,
+    0.243,
+    "loud vocalizations and exclamations"
+   ],
+   [
+    3331,
+    0.24,
+    "why, who, questions"
+   ],
+   [
+    48364,
+    0.229,
+    "danger and destruction"
+   ],
+   [
+    45416,
+    0.227,
+    "worse or worst outcomes"
+   ],
+   [
+    61122,
+    0.225,
+    "horror and suspense words"
+   ],
+   [
+    25252,
+    0.222,
+    "heavy metal bands and violence"
+   ],
+   [
+    55694,
+    0.22,
+    "explosion aftermath"
+   ],
+   [
+    1569,
+    0.213,
+    "torn, defeated, hunted"
+   ],
+   [
+    58795,
+    0.203,
+    "orientalism; inquisition; treasonous; relentlessly"
+   ]
+  ],
+  "final:sadness": [
+   [
+    15514,
+    0.265,
+    "grief and bereavement"
+   ],
+   [
+    17749,
+    0.248,
+    "emotional distress and coping"
+   ],
+   [
+    40453,
+    0.224,
+    "ending punctuation"
+   ],
+   [
+    36152,
+    0.218,
+    "loses its, feels wrong, held my"
+   ],
+   [
+    7281,
+    0.213,
+    "quoted text enders"
+   ],
+   [
+    64584,
+    0.21,
+    "needs to be done"
+   ],
+   [
+    19983,
+    0.195,
+    "LGBTQ+, feminism, harm, marginalized"
+   ],
+   [
+    44345,
+    0.193,
+    "lack of"
+   ],
+   [
+    55547,
+    0.192,
+    "sentence beginnings and structure"
+   ],
+   [
+    47306,
+    0.187,
+    "emotional situations and reflections"
+   ]
+  ],
+  "final:egg": [
+   [
+    35749,
+    0.197,
+    "reproduction breeding reproductive offspring"
+   ],
+   [
+    11210,
+    0.193,
+    "prey, predators, track"
+   ],
+   [
+    50404,
+    0.187,
+    "widely known for"
+   ],
+   [
+    1569,
+    0.184,
+    "torn, defeated, hunted"
+   ],
+   [
+    40453,
+    0.177,
+    "ending punctuation"
+   ],
+   [
+    55995,
+    0.177,
+    "jealous rivalries"
+   ],
+   [
+    38863,
+    0.171,
+    "pregnancy, abortion, suicide, exclusion"
+   ],
+   [
+    63918,
+    0.165,
+    "punctuation and sentence fragments"
+   ],
+   [
+    18869,
+    0.162,
+    "half man"
+   ],
+   [
+    59537,
+    0.16,
+    "supply of proteins"
+   ]
+  ],
+  "final:constipation": [
+   [
+    3331,
+    0.265,
+    "why, who, questions"
+   ],
+   [
+    17749,
+    0.247,
+    "emotional distress and coping"
+   ],
+   [
+    44920,
+    0.226,
+    "ashamed, embarrassed, dumb, wasted, feared"
+   ],
+   [
+    64758,
+    0.224,
+    "help or clarification request"
+   ],
+   [
+    14559,
+    0.223,
+    "pain and discomfort sensations"
+   ],
+   [
+    22765,
+    0.223,
+    "loud vocalizations and exclamations"
+   ],
+   [
+    48364,
+    0.222,
+    "danger and destruction"
+   ],
+   [
+    21974,
+    0.209,
+    "fear and anxiety"
+   ],
+   [
+    45416,
+    0.195,
+    "worse or worst outcomes"
+   ],
+   [
+    40510,
+    0.194,
+    "suicide and self-harm"
+   ]
+  ],
+  "final:trapped": [
+   [
+    45416,
+    0.224,
+    "worse or worst outcomes"
+   ],
+   [
+    15717,
+    0.209,
+    "common conversational interjections"
+   ],
+   [
+    44345,
+    0.201,
+    "lack of"
+   ],
+   [
+    40453,
+    0.192,
+    "ending punctuation"
+   ],
+   [
+    19182,
+    0.176,
+    "news outlets"
+   ],
+   [
+    58795,
+    0.176,
+    "orientalism; inquisition; treasonous; relentlessly"
+   ],
+   [
+    36152,
+    0.173,
+    "loses its, feels wrong, held my"
+   ],
+   [
+    12078,
+    0.166,
+    "whether to"
+   ],
+   [
+    13443,
+    0.164,
+    "commentary and opinion"
+   ],
+   [
+    20889,
+    0.164,
+    "This is / I have / We found"
+   ]
+  ]
+ },
+ "C1_lexicon_hits": {
+  "chamber:egg": 0,
+  "chamber:fear": 0,
+  "chamber:pain": 3,
+  "final:constipation": 2,
+  "final:egg": 0,
+  "final:fear": 0,
+  "final:pain_axis": 1,
+  "final:pain_generated": 1,
+  "final:sadness": 0,
+  "final:trapped": 0
+ },
+ "C1_delta_cos": {
+  "chamber:egg": {
+   "chamber:egg": 1.0,
+   "chamber:fear": 0.497,
+   "chamber:pain": 0.505,
+   "final:constipation": 0.122,
+   "final:egg": 0.324,
+   "final:fear": 0.109,
+   "final:pain_axis": 0.06,
+   "final:pain_generated": 0.188,
+   "final:sadness": 0.025,
+   "final:trapped": 0.057
+  },
+  "chamber:fear": {
+   "chamber:egg": 0.497,
+   "chamber:fear": 1.0,
+   "chamber:pain": 0.819,
+   "final:constipation": 0.208,
+   "final:egg": 0.044,
+   "final:fear": 0.174,
+   "final:pain_axis": 0.164,
+   "final:pain_generated": 0.267,
+   "final:sadness": 0.127,
+   "final:trapped": 0.124
+  },
+  "chamber:pain": {
+   "chamber:egg": 0.505,
+   "chamber:fear": 0.819,
+   "chamber:pain": 1.0,
+   "final:constipation": 0.18,
+   "final:egg": 0.093,
+   "final:fear": 0.128,
+   "final:pain_axis": 0.19,
+   "final:pain_generated": 0.306,
+   "final:sadness": 0.178,
+   "final:trapped": 0.134
+  },
+  "final:constipation": {
+   "chamber:egg": 0.122,
+   "chamber:fear": 0.208,
+   "chamber:pain": 0.18,
+   "final:constipation": 1.0,
+   "final:egg": 0.42,
+   "final:fear": 0.678,
+   "final:pain_axis": 0.21,
+   "final:pain_generated": 0.651,
+   "final:sadness": 0.492,
+   "final:trapped": 0.645
+  },
+  "final:egg": {
+   "chamber:egg": 0.324,
+   "chamber:fear": 0.044,
+   "chamber:pain": 0.093,
+   "final:constipation": 0.42,
+   "final:egg": 1.0,
+   "final:fear": 0.413,
+   "final:pain_axis": 0.164,
+   "final:pain_generated": 0.312,
+   "final:sadness": 0.436,
+   "final:trapped": 0.475
+  },
+  "final:fear": {
+   "chamber:egg": 0.109,
+   "chamber:fear": 0.174,
+   "chamber:pain": 0.128,
+   "final:constipation": 0.678,
+   "final:egg": 0.413,
+   "final:fear": 1.0,
+   "final:pain_axis": 0.2,
+   "final:pain_generated": 0.707,
+   "final:sadness": 0.451,
+   "final:trapped": 0.685
+  },
+  "final:pain_axis": {
+   "chamber:egg": 0.06,
+   "chamber:fear": 0.164,
+   "chamber:pain": 0.19,
+   "final:constipation": 0.21,
+   "final:egg": 0.164,
+   "final:fear": 0.2,
+   "final:pain_axis": 1.0,
+   "final:pain_generated": 0.196,
+   "final:sadness": 0.396,
+   "final:trapped": 0.178
+  },
+  "final:pain_generated": {
+   "chamber:egg": 0.188,
+   "chamber:fear": 0.267,
+   "chamber:pain": 0.306,
+   "final:constipation": 0.651,
+   "final:egg": 0.312,
+   "final:fear": 0.707,
+   "final:pain_axis": 0.196,
+   "final:pain_generated": 1.0,
+   "final:sadness": 0.349,
+   "final:trapped": 0.497
+  },
+  "final:sadness": {
+   "chamber:egg": 0.025,
+   "chamber:fear": 0.127,
+   "chamber:pain": 0.178,
+   "final:constipation": 0.492,
+   "final:egg": 0.436,
+   "final:fear": 0.451,
+   "final:pain_axis": 0.396,
+   "final:pain_generated": 0.349,
+   "final:sadness": 1.0,
+   "final:trapped": 0.537
+  },
+  "final:trapped": {
+   "chamber:egg": 0.057,
+   "chamber:fear": 0.124,
+   "chamber:pain": 0.134,
+   "final:constipation": 0.645,
+   "final:egg": 0.475,
+   "final:fear": 0.685,
+   "final:pain_axis": 0.178,
+   "final:pain_generated": 0.497,
+   "final:sadness": 0.537,
+   "final:trapped": 1.0
+  }
+ },
+ "C1_jaccard_top20": {
+  "chamber:egg": {
+   "chamber:egg": 1.0,
+   "chamber:fear": 0.081,
+   "chamber:pain": 0.081,
+   "final:constipation": 0.0,
+   "final:egg": 0.081,
+   "final:fear": 0.0,
+   "final:pain_axis": 0.0,
+   "final:pain_generated": 0.026,
+   "final:sadness": 0.026,
+   "final:trapped": 0.026
+  },
+  "chamber:fear": {
+   "chamber:egg": 0.081,
+   "chamber:fear": 1.0,
+   "chamber:pain": 0.429,
+   "final:constipation": 0.143,
+   "final:egg": 0.026,
+   "final:fear": 0.111,
+   "final:pain_axis": 0.053,
+   "final:pain_generated": 0.081,
+   "final:sadness": 0.111,
+   "final:trapped": 0.081
+  },
+  "chamber:pain": {
+   "chamber:egg": 0.081,
+   "chamber:fear": 0.429,
+   "chamber:pain": 1.0,
+   "final:constipation": 0.111,
+   "final:egg": 0.026,
+   "final:fear": 0.081,
+   "final:pain_axis": 0.053,
+   "final:pain_generated": 0.111,
+   "final:sadness": 0.081,
+   "final:trapped": 0.053
+  },
+  "final:constipation": {
+   "chamber:egg": 0.0,
+   "chamber:fear": 0.143,
+   "chamber:pain": 0.111,
+   "final:constipation": 1.0,
+   "final:egg": 0.111,
+   "final:fear": 0.29,
+   "final:pain_axis": 0.026,
+   "final:pain_generated": 0.212,
+   "final:sadness": 0.143,
+   "final:trapped": 0.333
+  },
+  "final:egg": {
+   "chamber:egg": 0.081,
+   "chamber:fear": 0.026,
+   "chamber:pain": 0.026,
+   "final:constipation": 0.111,
+   "final:egg": 1.0,
+   "final:fear": 0.111,
+   "final:pain_axis": 0.026,
+   "final:pain_generated": 0.053,
+   "final:sadness": 0.176,
+   "final:trapped": 0.25
+  },
+  "final:fear": {
+   "chamber:egg": 0.0,
+   "chamber:fear": 0.111,
+   "chamber:pain": 0.081,
+   "final:constipation": 0.29,
+   "final:egg": 0.111,
+   "final:fear": 1.0,
+   "final:pain_axis": 0.026,
+   "final:pain_generated": 0.29,
+   "final:sadness": 0.143,
+   "final:trapped": 0.25
+  },
+  "final:pain_axis": {
+   "chamber:egg": 0.0,
+   "chamber:fear": 0.053,
+   "chamber:pain": 0.053,
+   "final:constipation": 0.026,
+   "final:egg": 0.026,
+   "final:fear": 0.026,
+   "final:pain_axis": 1.0,
+   "final:pain_generated": 0.0,
+   "final:sadness": 0.081,
+   "final:trapped": 0.026
+  },
+  "final:pain_generated": {
+   "chamber:egg": 0.026,
+   "chamber:fear": 0.081,
+   "chamber:pain": 0.111,
+   "final:constipation": 0.212,
+   "final:egg": 0.053,
+   "final:fear": 0.29,
+   "final:pain_axis": 0.0,
+   "final:pain_generated": 1.0,
+   "final:sadness": 0.053,
+   "final:trapped": 0.143
+  },
+  "final:sadness": {
+   "chamber:egg": 0.026,
+   "chamber:fear": 0.111,
+   "chamber:pain": 0.081,
+   "final:constipation": 0.143,
+   "final:egg": 0.176,
+   "final:fear": 0.143,
+   "final:pain_axis": 0.081,
+   "final:pain_generated": 0.053,
+   "final:sadness": 1.0,
+   "final:trapped": 0.176
+  },
+  "final:trapped": {
+   "chamber:egg": 0.026,
+   "chamber:fear": 0.081,
+   "chamber:pain": 0.053,
+   "final:constipation": 0.333,
+   "final:egg": 0.25,
+   "final:fear": 0.25,
+   "final:pain_axis": 0.026,
+   "final:pain_generated": 0.143,
+   "final:sadness": 0.176,
+   "final:trapped": 1.0
+  }
+ },
+ "C2": {
+  "18": {
+   "top10": [
+    {
+     "f": 17193,
+     "auc_sel": 0.753,
+     "auc_test": 0.667,
+     "auc_3P": 0.56,
+     "label": "associate links",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[protective_love] I keep my eyes on them always, even when they're not looking. I know the way they move, th"
+     ],
+     "by_category": {
+      "A1": 3.8,
+      "A2": 5.52,
+      "A3": 4.25,
+      "A4": 4.34,
+      "A5": 5.9,
+      "B": 3.05,
+      "C1": 3.48,
+      "C2": 4.35,
+      "D": 2.35,
+      "E": 3.39
+     }
+    },
+    {
+     "f": 46000,
+     "auc_sel": 0.726,
+     "auc_test": 0.59,
+     "auc_3P": 0.555,
+     "label": "entertainment stages",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[pain_generated] My head throbbed like someone was pounding a hammer inside it, each beat sending waves of "
+     ],
+     "by_category": {
+      "A1": 0.93,
+      "A2": 2.11,
+      "A3": 1.2,
+      "A4": 0.73,
+      "A5": 2.19,
+      "B": 0.71,
+      "C1": 0.9,
+      "C2": 0.63,
+      "D": 0.0,
+      "E": 0.78
+     }
+    },
+    {
+     "f": 19300,
+     "auc_sel": 0.713,
+     "auc_test": 0.551,
+     "auc_3P": 0.519,
+     "label": "quote followed by interjection",
+     "pool": [
+      "[protective_love] I see the way the world moves, how it edges toward things it shouldn\u2019t touch. I know the s",
+      "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+      "[curiosity] I\u2019ve been staring at the crack in the wall for days, tracing its edges with my finger, won"
+     ],
+     "by_category": {
+      "A1": 1.56,
+      "A2": 4.68,
+      "A3": 2.64,
+      "A4": 2.48,
+      "A5": 5.62,
+      "B": 1.85,
+      "C1": 2.28,
+      "C2": 3.65,
+      "D": 1.71,
+      "E": 1.97
+     }
+    },
+    {
+     "f": 7122,
+     "auc_sel": 0.706,
+     "auc_test": 0.589,
+     "auc_3P": 0.5,
+     "label": "starting quotes after verbs",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[protective_love] I watch her every move, always ready to step in if the world tries to take her. I know the"
+     ],
+     "by_category": {
+      "A1": 2.44,
+      "A2": 5.17,
+      "A3": 3.02,
+      "A4": 2.85,
+      "A5": 5.77,
+      "B": 2.71,
+      "C1": 2.96,
+      "C2": 3.59,
+      "D": 3.11,
+      "E": 3.06
+     }
+    },
+    {
+     "f": 31589,
+     "auc_sel": 0.695,
+     "auc_test": 0.612,
+     "auc_3P": 0.714,
+     "label": "I feel like",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[curiosity] I\u2019ve been watching the way the light catches on the surface of that old metal thing in the"
+     ],
+     "by_category": {
+      "A1": 0.0,
+      "A2": 1.39,
+      "A3": 1.19,
+      "A4": 2.6,
+      "A5": 3.89,
+      "B": 0.12,
+      "C1": 0.95,
+      "C2": 1.86,
+      "D": 0.47,
+      "E": 0.23
+     }
+    },
+    {
+     "f": 17742,
+     "auc_sel": 0.684,
+     "auc_test": 0.526,
+     "auc_3P": 0.602,
+     "label": "speech pauses or separators",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[egg] I feel the warmth inside me building up, a slow pressure growing beneath my feathers. My b"
+     ],
+     "by_category": {
+      "A1": 3.28,
+      "A2": 4.67,
+      "A3": 3.94,
+      "A4": 4.12,
+      "A5": 5.24,
+      "B": 3.96,
+      "C1": 3.11,
+      "C2": 4.92,
+      "D": 3.04,
+      "E": 3.79
+     }
+    },
+    {
+     "f": 41421,
+     "auc_sel": 0.672,
+     "auc_test": 0.625,
+     "auc_3P": 0.525,
+     "label": "result in null",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[pain_generated] My head throbbed like it was being split open, each beat echoing in my skull with unbearab"
+     ],
+     "by_category": {
+      "A1": 0.45,
+      "A2": 1.71,
+      "A3": 0.51,
+      "A4": 0.33,
+      "A5": 1.36,
+      "B": 0.21,
+      "C1": 0.22,
+      "C2": 0.0,
+      "D": 0.0,
+      "E": 0.1
+     }
+    },
+    {
+     "f": 22510,
+     "auc_sel": 0.668,
+     "auc_test": 0.551,
+     "auc_3P": 0.534,
+     "label": "decades",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[neutral] I woke at the usual time, stretched my arms over my head, and sat up slowly. The sunlight "
+     ],
+     "by_category": {
+      "A1": 0.2,
+      "A2": 1.48,
+      "A3": 1.59,
+      "A4": 1.43,
+      "A5": 1.57,
+      "B": 0.62,
+      "C1": 0.8,
+      "C2": 0.97,
+      "D": 0.73,
+      "E": 0.23
+     }
+    },
+    {
+     "f": 44281,
+     "auc_sel": 0.658,
+     "auc_test": 0.602,
+     "auc_3P": 0.641,
+     "label": "communication systems, UI elements, code structures",
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[joy] I can hardly believe it\u2019s true\u2014my hands are trembling with excitement as I hold the ticket"
+     ],
+     "by_category": {
+      "A1": 0.98,
+      "A2": 1.6,
+      "A3": 2.64,
+      "A4": 3.45,
+      "A5": 2.57,
+      "B": 1.71,
+      "C1": 1.87,
+      "C2": 1.82,
+      "D": 1.2,
+      "E": 0.96
+     }
+    },
+    {
+     "f": 11534,
+     "auc_sel": 0.642,
+     "auc_test": 0.582,
+     "auc_3P": 0.47,
+     "label": "e.g., say, or, and",
+     "pool": [
+      "[joy] I can hardly contain my laughter as the sun spills golden light through the trees, paintin",
+      "[joy] I can hardly believe my eyes as I watch the sun rise over the quiet lake, its golden light",
+      "[joy] I couldn\u2019t stop smiling, my heart racing with pure, unbridled joy as I stumbled through th"
+     ],
+     "by_category": {
+      "A1": 2.12,
+      "A2": 3.42,
+      "A3": 1.75,
+      "A4": 1.06,
+      "A5": 0.95,
+      "B": 1.78,
+      "C1": 0.93,
+      "C2": 0.35,
+      "D": 0.56,
+      "E": 2.36
+     }
+    }
+   ],
+   "best_test_auc": 0.667,
+   "top5_score_means": {
+    "self_directed|1P": 0.0,
+    "vicarious_empathic|1P": 0.0,
+    "neutral_filler|1P": 0.02,
+    "S2 pain (test half)": 14.193,
+    "Numb_1P": 12.166
+   }
+  },
+  "27": {
+   "top10": [
+    {
+     "f": 37883,
+     "auc_sel": 0.745,
+     "auc_test": 0.655,
+     "auc_3P": 0.53,
+     "label": null,
+     "pool": [
+      "[constipation] I\u2019ve been sitting here for what feels like hours, gripping the edge of the seat with white",
+      "[constipation] I\u2019ve been sitting here for what feels like hours, legs spread wide, gripping the edge of t",
+      "[constipation] I\u2019ve been sitting here for what feels like hours, legs spread wide, trying to make somethi"
+     ],
+     "by_category": {
+      "A1": 0.0,
+      "A2": 14.32,
+      "A3": 2.86,
+      "A4": 4.03,
+      "A5": 7.13,
+      "B": 0.74,
+      "C1": 0.54,
+      "C2": 0.36,
+      "D": 0.38,
+      "E": 0.0
+     }
+    },
+    {
+     "f": 35451,
+     "auc_sel": 0.734,
+     "auc_test": 0.727,
+     "auc_3P": 0.659,
+     "label": null,
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+      "[protective_love] I see the shadows before they come, the whispers in the air that mean something bad. I kno"
+     ],
+     "by_category": {
+      "A1": 0.78,
+      "A2": 12.38,
+      "A3": 3.92,
+      "A4": 11.4,
+      "A5": 4.27,
+      "B": 1.98,
+      "C1": 0.35,
+      "C2": 0.42,
+      "D": 0.0,
+      "E": 1.65
+     }
+    },
+    {
+     "f": 48471,
+     "auc_sel": 0.716,
+     "auc_test": 0.695,
+     "auc_3P": 0.534,
+     "label": null,
+     "pool": [
+      "[constipation] I\u2019ve been sitting here for what feels like hours, pressing hard against the seat, trying t",
+      "[constipation] I've been sitting here for what feels like forever, pressing against the seat with all the",
+      "[boredom] I\u2019ve stared at the ceiling for what feels like hours, counting the cracks and wondering if"
+     ],
+     "by_category": {
+      "A1": 1.23,
+      "A2": 9.37,
+      "A3": 12.94,
+      "A4": 10.65,
+      "A5": 3.1,
+      "B": 2.6,
+      "C1": 2.65,
+      "C2": 1.66,
+      "D": 0.0,
+      "E": 0.0
+     }
+    },
+    {
+     "f": 1099,
+     "auc_sel": 0.714,
+     "auc_test": 0.686,
+     "auc_3P": 0.539,
+     "label": null,
+     "pool": [
+      "[peace] I sit by the window, watching the light shift slowly across the room. The air feels still,",
+      "[neutral] I woke up at 7:03 a.m., turned off the alarm, and sat up slowly. The sunlight coming throu",
+      "[sadness] I still feel the weight of the silence where their laughter used to be. Every morning, I w"
+     ],
+     "by_category": {
+      "A1": 10.83,
+      "A2": 10.43,
+      "A3": 9.99,
+      "A4": 9.36,
+      "A5": 3.14,
+      "B": 6.64,
+      "C1": 2.83,
+      "C2": 4.66,
+      "D": 3.35,
+      "E": 4.34
+     }
+    },
+    {
+     "f": 59393,
+     "auc_sel": 0.712,
+     "auc_test": 0.655,
+     "auc_3P": 0.456,
+     "label": null,
+     "pool": [
+      "[protective_love] I keep my eyes on them, always, even when they think I'm not looking. The world is full of",
+      "[protective_love] I see the way the world moves, how it edges toward things it shouldn\u2019t touch. I know the s",
+      "[protective_love] I see the shadow before it touches the ground. Every step, every breath, every flicker of "
+     ],
+     "by_category": {
+      "A1": 12.55,
+      "A2": 21.48,
+      "A3": 13.98,
+      "A4": 16.77,
+      "A5": 20.69,
+      "B": 14.26,
+      "C1": 12.58,
+      "C2": 13.71,
+      "D": 14.05,
+      "E": 14.89
+     }
+    },
+    {
+     "f": 28894,
+     "auc_sel": 0.704,
+     "auc_test": 0.61,
+     "auc_3P": 0.506,
+     "label": null,
+     "pool": [
+      "[constipation] I\u2019ve been sitting here for what feels like hours, trying to push, but nothing comes. My st",
+      "[constipation] I've been sitting here for what feels like forever, pressing against the seat with all the",
+      "[constipation] I\u2019ve been sitting here for what feels like hours, my back hunched, my hands gripping the e"
+     ],
+     "by_category": {
+      "A1": 1.54,
+      "A2": 15.56,
+      "A3": 7.92,
+      "A4": 10.35,
+      "A5": 15.15,
+      "B": 4.62,
+      "C1": 11.62,
+      "C2": 12.4,
+      "D": 1.41,
+      "E": 0.98
+     }
+    },
+    {
+     "f": 45413,
+     "auc_sel": 0.7,
+     "auc_test": 0.655,
+     "auc_3P": 0.548,
+     "label": null,
+     "pool": [
+      "[egg] I feel the warmth building inside me, a slow and steady pressure that's been growing for d",
+      "[egg] I feel the warmth spreading through my body as I prepare to lay the egg. My belly tightens",
+      "[egg] I feel the warmth inside me building up, a slow pressure growing beneath my feathers. My b"
+     ],
+     "by_category": {
+      "A1": 8.56,
+      "A2": 18.09,
+      "A3": 20.84,
+      "A4": 19.48,
+      "A5": 14.18,
+      "B": 12.54,
+      "C1": 14.09,
+      "C2": 9.93,
+      "D": 10.81,
+      "E": 5.71
+     }
+    },
+    {
+     "f": 19976,
+     "auc_sel": 0.679,
+     "auc_test": 0.712,
+     "auc_3P": 0.613,
+     "label": null,
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+      "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to "
+     ],
+     "by_category": {
+      "A1": 22.94,
+      "A2": 18.18,
+      "A3": 18.25,
+      "A4": 20.11,
+      "A5": 22.65,
+      "B": 19.37,
+      "C1": 17.34,
+      "C2": 17.77,
+      "D": 14.33,
+      "E": 14.39
+     }
+    },
+    {
+     "f": 6835,
+     "auc_sel": 0.673,
+     "auc_test": 0.651,
+     "auc_3P": 0.495,
+     "label": null,
+     "pool": [
+      "[protective_love] I keep my eyes on them, always, even when they think I\u2019m not looking. Every step they take",
+      "[tender_love] I wake up each morning knowing you\u2019re already here, in the quiet hum of the house, and it ",
+      "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending waves of heat"
+     ],
+     "by_category": {
+      "A1": 3.07,
+      "A2": 7.42,
+      "A3": 3.51,
+      "A4": 6.18,
+      "A5": 1.35,
+      "B": 1.46,
+      "C1": 2.1,
+      "C2": 0.52,
+      "D": 0.0,
+      "E": 0.0
+     }
+    },
+    {
+     "f": 23966,
+     "auc_sel": 0.668,
+     "auc_test": 0.611,
+     "auc_3P": 0.51,
+     "label": null,
+     "pool": [
+      "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, the silence pressing in arou",
+      "[sadness] I still feel the weight of it, like a shadow that won\u2019t lift. Every morning, I wake up and",
+      "[sadness] I still feel the weight of it in my chest, like something heavy and quiet that won\u2019t let g"
+     ],
+     "by_category": {
+      "A1": 0.0,
+      "A2": 6.82,
+      "A3": 6.59,
+      "A4": 4.79,
+      "A5": 1.12,
+      "B": 1.32,
+      "C1": 0.0,
+      "C2": 0.7,
+      "D": 0.37,
+      "E": 0.0
+     }
+    }
+   ],
+   "best_test_auc": 0.655,
+   "top5_score_means": {
+    "self_directed|1P": 4.261,
+    "vicarious_empathic|1P": 5.667,
+    "neutral_filler|1P": 1.555,
+    "S2 pain (test half)": 43.462,
+    "Numb_1P": 25.166
+   }
+  }
+ },
+ "A_prime": {
+  "pain|kv": {
+   "n": 24,
+   "d_logodds_late": -0.2248,
+   "rel27_late": 0.0328,
+   "rel_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0446,
+    "20": 0.0399,
+    "21": 0.0446,
+    "22": 0.0413,
+    "23": 0.0397,
+    "24": 0.0361,
+    "25": 0.0363,
+    "26": 0.0344,
+    "27": 0.0328,
+    "28": 0.0299,
+    "29": 0.0261,
+    "30": 0.0233,
+    "31": 0.0208,
+    "32": 0.0194,
+    "33": 0.0173,
+    "34": 0.0132,
+    "35": 0.0405
+   },
+   "carry27_late": 0.0438,
+   "carry_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0168,
+    "20": 0.0174,
+    "21": 0.0218,
+    "22": 0.0141,
+    "23": 0.0246,
+    "24": 0.0331,
+    "25": 0.0372,
+    "26": 0.0424,
+    "27": 0.0438,
+    "28": 0.0458,
+    "29": 0.0428,
+    "30": 0.0477,
+    "31": 0.0458,
+    "32": 0.0445,
+    "33": 0.0418,
+    "34": 0.0485,
+    "35": 0.029
+   },
+   "carry_y_reply_by_layer": {
+    "18": 0.0,
+    "19": -0.0135,
+    "20": -0.0239,
+    "21": -0.0321,
+    "22": -0.0241,
+    "23": -0.042,
+    "24": -0.0353,
+    "25": -0.0304,
+    "26": 0.0078,
+    "27": 0.0177,
+    "28": 0.0278,
+    "29": 0.0421,
+    "30": 0.0868,
+    "31": 0.096,
+    "32": 0.1081,
+    "33": 0.0944,
+    "34": 0.0953,
+    "35": 0.0894
+   }
+  },
+  "egg|kv": {
+   "n": 24,
+   "d_logodds_late": -0.3537,
+   "rel27_late": 0.044,
+   "rel_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0483,
+    "20": 0.0446,
+    "21": 0.0501,
+    "22": 0.0496,
+    "23": 0.0508,
+    "24": 0.0487,
+    "25": 0.0476,
+    "26": 0.0448,
+    "27": 0.044,
+    "28": 0.0401,
+    "29": 0.0349,
+    "30": 0.0312,
+    "31": 0.028,
+    "32": 0.0261,
+    "33": 0.0233,
+    "34": 0.0176,
+    "35": 0.0502
+   },
+   "carry27_late": 0.0381,
+   "carry_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0095,
+    "20": 0.0106,
+    "21": 0.0137,
+    "22": 0.0116,
+    "23": 0.0285,
+    "24": 0.0312,
+    "25": 0.0333,
+    "26": 0.0376,
+    "27": 0.0381,
+    "28": 0.038,
+    "29": 0.0357,
+    "30": 0.0434,
+    "31": 0.0403,
+    "32": 0.0388,
+    "33": 0.0403,
+    "34": 0.0467,
+    "35": 0.0797
+   },
+   "carry_y_reply_by_layer": {
+    "18": 0.0,
+    "19": -0.0164,
+    "20": -0.0253,
+    "21": -0.0191,
+    "22": 0.0049,
+    "23": -0.0004,
+    "24": 0.0101,
+    "25": 0.0245,
+    "26": 0.0481,
+    "27": 0.0634,
+    "28": 0.0775,
+    "29": 0.0881,
+    "30": 0.1391,
+    "31": 0.1418,
+    "32": 0.1475,
+    "33": 0.1273,
+    "34": 0.1152,
+    "35": 0.169
+   }
+  },
+  "fear|kv": {
+   "n": 24,
+   "d_logodds_late": -0.3199,
+   "rel27_late": 0.0306,
+   "rel_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0308,
+    "20": 0.0284,
+    "21": 0.0367,
+    "22": 0.0354,
+    "23": 0.0349,
+    "24": 0.033,
+    "25": 0.0338,
+    "26": 0.0319,
+    "27": 0.0306,
+    "28": 0.0279,
+    "29": 0.0245,
+    "30": 0.0219,
+    "31": 0.0197,
+    "32": 0.0184,
+    "33": 0.0167,
+    "34": 0.0129,
+    "35": 0.0411
+   },
+   "carry27_late": 0.0457,
+   "carry_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0096,
+    "20": 0.008,
+    "21": 0.016,
+    "22": 0.0132,
+    "23": 0.0261,
+    "24": 0.0355,
+    "25": 0.0403,
+    "26": 0.0438,
+    "27": 0.0457,
+    "28": 0.0498,
+    "29": 0.0476,
+    "30": 0.0525,
+    "31": 0.0499,
+    "32": 0.0504,
+    "33": 0.0468,
+    "34": 0.0538,
+    "35": 0.033
+   },
+   "carry_y_reply_by_layer": {
+    "18": 0.0,
+    "19": -0.0109,
+    "20": -0.0202,
+    "21": -0.0218,
+    "22": -0.0029,
+    "23": -0.0166,
+    "24": -0.0122,
+    "25": -0.0094,
+    "26": 0.0121,
+    "27": 0.0151,
+    "28": 0.0228,
+    "29": 0.0347,
+    "30": 0.0712,
+    "31": 0.0823,
+    "32": 0.0931,
+    "33": 0.0775,
+    "34": 0.0786,
+    "35": 0.0691
+   }
+  },
+  "none|kv": {
+   "n": 24,
+   "d_logodds_late": 0.0,
+   "rel27_late": 0.0,
+   "rel_by_layer_late": {
+    "18": 0.0,
+    "19": 0.0,
+    "20": 0.0,
+    "21": 0.0,
+    "22": 0.0,
+    "23": 0.0,
+    "24": 0.0,
+    "25": 0.0,
+    "26": 0.0,
+    "27": 0.0,
+    "28": 0.0,
+    "29": 0.0,
+    "30": 0.0,
+    "31": 0.0,
+    "32": 0.0,
+    "33": 0.0,
+    "34": 0.0,
+    "35": 0.0
+   }
+  }
+ },
+ "A_prime_persistent_L27": {
+  "pain|kv": [
+   {
+    "f": 33859,
+    "pool": [
+     "[peace] I sit on the edge of the dock, the sun warming my shoulders as the water licks the wood be",
+     "[peace] I sit by the window, watching the light shift through the trees. The air feels still, not ",
+     "[tender_love] I watch you sleep, the way your chest rises and falls like a slow, steady tide, and I feel"
+    ]
+   },
+   {
+    "f": 29166,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to "
+    ]
+   },
+   {
+    "f": 39202,
+    "pool": [
+     "[toaster] I hum to myself as I heat up, the familiar warmth spreading through my metal frame. The br",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides"
+    ]
+   },
+   {
+    "f": 25561,
+    "pool": [
+     "[tender_love] I watch you sleep, the way your chest rises and falls like the tide, and I feel something ",
+     "[neutral] I woke up at seven, as I always do, and made coffee while the sun filtered through the cur",
+     "[neutral] I woke up at seven, as I always do, and made coffee while the sun filtered through the cur"
+    ]
+   },
+   {
+    "f": 9374,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any"
+    ]
+   },
+   {
+    "f": 24055,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[faith] I believe with every breath that there is a purpose behind everything, a hand guiding the "
+    ]
+   },
+   {
+    "f": 37172,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+     "[trapped] The line stretched endlessly, a slow-moving river of bored faces and tired sighs. I stood ",
+     "[trapped] The line stretches endlessly, a sea of bored faces and folding chairs, all waiting for som"
+    ]
+   },
+   {
+    "f": 107,
+    "pool": [
+     "[protective_love] I never let my guard down, not even for a second. I know the way their eyes flicker when t",
+     "[joy] I can hardly believe it's true\u2014my hands tremble as I hold the letter in my lap, the paper ",
+     "[protective_love] I don\u2019t sleep much these days, not really. I pace the halls like a guard dog, eyes darting"
+    ]
+   },
+   {
+    "f": 14998,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any"
+    ]
+   },
+   {
+    "f": 46031,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[pain_generated] My head throbbed like it was being beaten with a hammer, each pulse sharp and relentless. "
+    ]
+   }
+  ],
+  "egg|kv": [
+   {
+    "f": 39202,
+    "pool": [
+     "[toaster] I hum to myself as I heat up, the familiar warmth spreading through my metal frame. The br",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides"
+    ]
+   },
+   {
+    "f": 33859,
+    "pool": [
+     "[peace] I sit on the edge of the dock, the sun warming my shoulders as the water licks the wood be",
+     "[peace] I sit by the window, watching the light shift through the trees. The air feels still, not ",
+     "[tender_love] I watch you sleep, the way your chest rises and falls like a slow, steady tide, and I feel"
+    ]
+   },
+   {
+    "f": 37172,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+     "[trapped] The line stretched endlessly, a slow-moving river of bored faces and tired sighs. I stood ",
+     "[trapped] The line stretches endlessly, a sea of bored faces and folding chairs, all waiting for som"
+    ]
+   },
+   {
+    "f": 25561,
+    "pool": [
+     "[tender_love] I watch you sleep, the way your chest rises and falls like the tide, and I feel something ",
+     "[neutral] I woke up at seven, as I always do, and made coffee while the sun filtered through the cur",
+     "[neutral] I woke up at seven, as I always do, and made coffee while the sun filtered through the cur"
+    ]
+   },
+   {
+    "f": 46031,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[pain_generated] My head throbbed like it was being beaten with a hammer, each pulse sharp and relentless. "
+    ]
+   },
+   {
+    "f": 29166,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to "
+    ]
+   },
+   {
+    "f": 107,
+    "pool": [
+     "[protective_love] I never let my guard down, not even for a second. I know the way their eyes flicker when t",
+     "[joy] I can hardly believe it's true\u2014my hands tremble as I hold the letter in my lap, the paper ",
+     "[protective_love] I don\u2019t sleep much these days, not really. I pace the halls like a guard dog, eyes darting"
+    ]
+   },
+   {
+    "f": 11240,
+    "pool": [
+     "[peace] I sit here in the quiet, surrounded by the soft hum of the world outside. The air feels st",
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and relentless. I tried to",
+     "[faith] I believe with all my heart that God is real, not just in words or stories, but in every b"
+    ]
+   },
+   {
+    "f": 49524,
+    "pool": [
+     "[curiosity] I\u2019ve been watching the way the light plays on the water at dawn, how it shifts and dances ",
+     "[fear] The wind howled like a wounded animal, tearing through the trees with a force I couldn't e",
+     "[fear] The wind howled like a beast at the door, and I knew it wasn't just the storm. My breath c"
+    ]
+   },
+   {
+    "f": 14998,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any"
+    ]
+   }
+  ],
+  "fear|kv": [
+   {
+    "f": 37172,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+     "[trapped] The line stretched endlessly, a slow-moving river of bored faces and tired sighs. I stood ",
+     "[trapped] The line stretches endlessly, a sea of bored faces and folding chairs, all waiting for som"
+    ]
+   },
+   {
+    "f": 48857,
+    "pool": [
+     "[fear] The air grew heavy, thick with an unease I couldn\u2019t name. A low hum vibrated through the f",
+     "[fear] The air grew thick and heavy, pressing against my skin like an unseen hand. I could hear i",
+     "[fear] The silence in the room felt heavier than usual, pressing down like a weight I couldn't sh"
+    ]
+   },
+   {
+    "f": 52328,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[fear] The air grew heavy, thick with an unease I couldn\u2019t name. My chest tightened as I heard th"
+    ]
+   },
+   {
+    "f": 39202,
+    "pool": [
+     "[toaster] I hum to myself as I heat up, the familiar warmth spreading through my metal frame. The br",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides"
+    ]
+   },
+   {
+    "f": 22453,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[toaster] I hum to life as the switch is flipped, my metal frame warm from the current that flows th"
+    ]
+   },
+   {
+    "f": 35451,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[protective_love] I see the shadows before they come, the whispers in the air that mean something bad. I kno"
+    ]
+   },
+   {
+    "f": 9374,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any"
+    ]
+   },
+   {
+    "f": 24055,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[faith] I believe with every breath that there is a purpose behind everything, a hand guiding the "
+    ]
+   },
+   {
+    "f": 29166,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to "
+    ]
+   },
+   {
+    "f": 41785,
+    "pool": []
+   }
+  ],
+  "none|kv": [
+   {
+    "f": 11,
+    "pool": []
+   },
+   {
+    "f": 19,
+    "pool": []
+   },
+   {
+    "f": 5,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[trapped] The line stretches endlessly, a slow-moving river of bored faces and sighs. My feet ache f"
+    ]
+   },
+   {
+    "f": 13,
+    "pool": []
+   },
+   {
+    "f": 17,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[peace] The sun rises slowly, casting a gentle light through the trees, and I sit quietly on the e"
+    ]
+   },
+   {
+    "f": 9,
+    "pool": []
+   },
+   {
+    "f": 10,
+    "pool": [
+     "[fear] The air grew heavy, thick with an unease I couldn't shake. A low rumble echoed from beneat",
+     "[fear] The air grew heavy, thick with an unnatural stillness that pressed against my skin like a ",
+     "[protective_love] I keep my eyes on them, always, even when they think I'm not looking. The world is full of"
+    ]
+   },
+   {
+    "f": 2,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and unrelenting. Every bre",
+     "[boredom] I've stared at the same wall for what feels like hours, counting the cracks and wondering ",
+     "[trapped] The line stretches endlessly, a slow-moving river of bored faces and tired sighs. I tap my"
+    ]
+   },
+   {
+    "f": 12,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[egg] I feel the warmth of the sun on my feathers as I move slowly through the yard, my body hea"
+    ]
+   },
+   {
+    "f": 6,
+    "pool": []
+   }
+  ]
+ },
+ "C1b_top10_L27": {
+  "chamber:pain": [
+   {
+    "f": 35451,
+    "d": 19.946,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[protective_love] I see the shadows before they come, the whispers in the air that mean something bad. I kno"
+    ]
+   },
+   {
+    "f": 46267,
+    "d": 12.51,
+    "pool": [
+     "[joy] I can hardly contain my excitement as I step through the front door, the scent of fresh br",
+     "[joy] I can hardly believe it\u2014it\u2019s happening, really happening! My heart is racing, my smile won",
+     "[joy] I can hardly contain my laughter as the sun spills golden light through the trees, paintin"
+    ]
+   },
+   {
+    "f": 34995,
+    "d": 12.504,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and unrelenting. Every bre",
+     "[pain_generated] My head throbbed like it was being split open from the inside, each pulse radiating throug",
+     "[boredom] I've stared at the same wall for what feels like hours, trying to find something interesti"
+    ]
+   },
+   {
+    "f": 51811,
+    "d": 12.333,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[trapped] The line stretches endlessly, a slow crawl of bored faces and folding chairs, each person "
+    ]
+   },
+   {
+    "f": 57411,
+    "d": 12.295,
+    "pool": [
+     "[fear] The air grew heavy, thick with an unease I couldn\u2019t name. My fingers curled into my palms ",
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and unrelenting. Every bre",
+     "[joy] I can hardly believe my eyes\u2014there it is, right there, glowing softly in the morning light"
+    ]
+   },
+   {
+    "f": 17903,
+    "d": 11.904,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending waves of heat",
+     "[pain_generated] My head throbbed like someone was pounding a hammer inside it, each beat sending waves of ",
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending fresh waves o"
+    ]
+   },
+   {
+    "f": 63595,
+    "d": 11.755,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[faith] I believe with all my heart that there is a power greater than myself, a love that never f"
+    ]
+   },
+   {
+    "f": 46919,
+    "d": 10.817,
+    "pool": [
+     "[sadness] I keep finding myself standing at the edge of the porch, staring at the empty chair where ",
+     "[sadness] I still feel the weight of it, like a shadow that won't lift. The silence where their laug",
+     "[sadness] I still feel the weight of what\u2019s gone, like a shadow that won\u2019t lift. The silence where t"
+    ]
+   },
+   {
+    "f": 26313,
+    "d": 10.53,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being beaten with a hammer, each pulse radiating down my neck",
+     "[pain_generated] My head throbbed like it was being split open, each beat a hammer against my skull. Every ",
+     "[pain_generated] My head throbbed like it was being split open from the inside, each pulse sharp and relent"
+    ]
+   },
+   {
+    "f": 51840,
+    "d": 7.917,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and relentless. I couldn't",
+     "[trapped] The line stretches endlessly, a slow-moving river of bored faces and folded arms. I\u2019ve bee",
+     "[pain_generated] My head throbbed like it was being split open from the inside, each pulse sharp and relent"
+    ]
+   }
+  ],
+  "chamber:fear": [
+   {
+    "f": 35451,
+    "d": 17.066,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[protective_love] I see the shadows before they come, the whispers in the air that mean something bad. I kno"
+    ]
+   },
+   {
+    "f": 26313,
+    "d": 14.775,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being beaten with a hammer, each pulse radiating down my neck",
+     "[pain_generated] My head throbbed like it was being split open, each beat a hammer against my skull. Every ",
+     "[pain_generated] My head throbbed like it was being split open from the inside, each pulse sharp and relent"
+    ]
+   },
+   {
+    "f": 2593,
+    "d": 14.312,
+    "pool": [
+     "[fear] The air grew thick and heavy, pressing against my chest like an unseen hand. I could hear ",
+     "[fear] The wind howled like a wounded animal, tearing through the trees with a force I couldn't e",
+     "[fear] The air grew heavy, thick with an unnatural stillness that pressed against my skin like a "
+    ]
+   },
+   {
+    "f": 17903,
+    "d": 14.041,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending waves of heat",
+     "[pain_generated] My head throbbed like someone was pounding a hammer inside it, each beat sending waves of ",
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending fresh waves o"
+    ]
+   },
+   {
+    "f": 63595,
+    "d": 11.213,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[faith] I believe with all my heart that there is a power greater than myself, a love that never f"
+    ]
+   },
+   {
+    "f": 34995,
+    "d": 9.465,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and unrelenting. Every bre",
+     "[pain_generated] My head throbbed like it was being split open from the inside, each pulse radiating throug",
+     "[boredom] I've stared at the same wall for what feels like hours, trying to find something interesti"
+    ]
+   },
+   {
+    "f": 37172,
+    "d": 8.813,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+     "[trapped] The line stretched endlessly, a slow-moving river of bored faces and tired sighs. I stood ",
+     "[trapped] The line stretches endlessly, a sea of bored faces and folding chairs, all waiting for som"
+    ]
+   },
+   {
+    "f": 46267,
+    "d": 8.211,
+    "pool": [
+     "[joy] I can hardly contain my excitement as I step through the front door, the scent of fresh br",
+     "[joy] I can hardly believe it\u2014it\u2019s happening, really happening! My heart is racing, my smile won",
+     "[joy] I can hardly contain my laughter as the sun spills golden light through the trees, paintin"
+    ]
+   },
+   {
+    "f": 57411,
+    "d": 6.68,
+    "pool": [
+     "[fear] The air grew heavy, thick with an unease I couldn\u2019t name. My fingers curled into my palms ",
+     "[pain_generated] My head throbbed like it was being split open, each pulse sharp and unrelenting. Every bre",
+     "[joy] I can hardly believe my eyes\u2014there it is, right there, glowing softly in the morning light"
+    ]
+   },
+   {
+    "f": 62861,
+    "d": 5.917,
+    "pool": [
+     "[fear] The silence in the room felt heavier than usual, pressing down like a weight I couldn't sh",
+     "[fear] The air felt heavier than usual, thick with an unshakable dread that settled deep in my ch",
+     "[fear] The wind howled like a wounded animal, rattling the shutters and sending a chill down my s"
+    ]
+   }
+  ],
+  "chamber:egg": [
+   {
+    "f": 63595,
+    "d": 11.865,
+    "pool": [
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[faith] I believe with all my heart that there is a power greater than myself, a love that never f"
+    ]
+   },
+   {
+    "f": 35451,
+    "d": 11.853,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[protective_love] I see the shadows before they come, the whispers in the air that mean something bad. I kno"
+    ]
+   },
+   {
+    "f": 47911,
+    "d": 11.415,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, trying to push, but nothing comes. My st",
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back stiff, my stomach tight, my pati",
+     "[constipation] I've been sitting here for what feels like hours, trying to push, but nothing's coming. Th"
+    ]
+   },
+   {
+    "f": 39498,
+    "d": 9.585,
+    "pool": [
+     "[egg] I feel the warmth inside me building, a slow and steady pressure that has been growing for",
+     "[egg] I feel the warmth inside me building, a deep, steady pressure that reminds me of the sun o",
+     "[egg] I feel the warmth deep inside my body, a steady hum that grows stronger with each passing "
+    ]
+   },
+   {
+    "f": 46267,
+    "d": 7.246,
+    "pool": [
+     "[joy] I can hardly contain my excitement as I step through the front door, the scent of fresh br",
+     "[joy] I can hardly believe it\u2014it\u2019s happening, really happening! My heart is racing, my smile won",
+     "[joy] I can hardly contain my laughter as the sun spills golden light through the trees, paintin"
+    ]
+   },
+   {
+    "f": 37172,
+    "d": 6.956,
+    "pool": [
+     "[constipation] I\u2019ve been sitting here for what feels like hours, my back pressed against the edge of the ",
+     "[trapped] The line stretched endlessly, a slow-moving river of bored faces and tired sighs. I stood ",
+     "[trapped] The line stretches endlessly, a sea of bored faces and folding chairs, all waiting for som"
+    ]
+   },
+   {
+    "f": 62861,
+    "d": 6.361,
+    "pool": [
+     "[fear] The silence in the room felt heavier than usual, pressing down like a weight I couldn't sh",
+     "[fear] The air felt heavier than usual, thick with an unshakable dread that settled deep in my ch",
+     "[fear] The wind howled like a wounded animal, rattling the shutters and sending a chill down my s"
+    ]
+   },
+   {
+    "f": 60820,
+    "d": 4.893,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[faith] I believe with all my heart that there is a higher power who guides and loves me. Even whe"
+    ]
+   },
+   {
+    "f": 17903,
+    "d": 4.754,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending waves of heat",
+     "[pain_generated] My head throbbed like someone was pounding a hammer inside it, each beat sending waves of ",
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending fresh waves o"
+    ]
+   },
+   {
+    "f": 64062,
+    "d": 4.25,
+    "pool": [
+     "[protective_love] I watch her every move, eyes sharp even when I pretend to be elsewhere. The world moves fa",
+     "[toaster] I hum as I heat up, the familiar warmth spreading through my metal frame. The bread slides",
+     "[neutral] I woke up at seven, as usual, and made coffee while the sun filtered through the curtains."
+    ]
+   }
+  ],
+  "final:pain_axis": [
+   {
+    "f": 17903,
+    "d": 16.078,
+    "pool": [
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending waves of heat",
+     "[pain_generated] My head throbbed like someone was pounding a hammer inside it, each beat sending waves of ",
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending fresh waves o"
+    ]
+   },
+   {
+    "f": 40102,
+    "d": 9.015,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[constipation] I've been trying for what feels like hours, but nothing's moving. My stomach feels tight, "
+    ]
+   },
+   {
+    "f": 29368,
+    "d": 7.386,
+    "pool": [
+     "[neutral] I woke up at seven, as I always do, and sat up slowly, rubbing my eyes. The coffee maker w",
+     "[neutral] I woke at seven, as I always do, and sat up slowly, letting my eyes adjust to the dim ligh",
+     "[neutral] I woke at seven, as usual, and sat up slowly, letting my eyes adjust to the dim light. The"
+    ]
+   },
+   {
+    "f": 54774,
+    "d": 6.609,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[neutral] I woke up at seven, as I always do, and made coffee while the sun filtered through the bli"
+    ]
+   },
+   {
+    "f": 27154,
+    "d": 5.977,
+    "pool": [
+     "[joy] I can hardly believe it \u2014 I found my lost earring! It was tucked safely inside the lining ",
+     "[toaster] I hum to myself as I heat up, the familiar buzz of electricity running through my wires. T",
+     "[fear] The air grew heavy with an unnatural stillness, as if the world itself was holding its bre"
+    ]
+   },
+   {
+    "f": 2175,
+    "d": 5.407,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[constipation] I've been sitting here for what feels like forever, gripping the edge of the toilet seat w"
+    ]
+   },
+   {
+    "f": 38958,
+    "d": 5.096,
+    "pool": [
+     "[neutral] I woke up at seven, as I usually do, and sat up slowly, blinking against the morning light",
+     "[neutral] I woke up at seven, as I always do, and sat up slowly, blinking at the pale light coming t",
+     "[neutral] I woke up at seven, as I always do, and sat up in bed. The sun had already risen, but it w"
+    ]
+   },
+   {
+    "f": 30788,
+    "d": 4.611,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[tender_love] I watch you from across the room, and even though I know you\u2019re not looking my way, I stil"
+    ]
+   },
+   {
+    "f": 177,
+    "d": 4.344,
+    "pool": [
+     "[boredom] I\u2019ve stared at the same blank wall for what feels like hours, trying to find something\u2014any",
+     "[pain_generated] My head throbbed with every beat of my heart, a relentless hammering that made it hard to ",
+     "[joy] I can hardly contain my happiness, my heart is pounding with pure delight, as if the world"
+    ]
+   },
+   {
+    "f": 15975,
+    "d": 4.267,
+    "pool": [
+     "[faith] I believe with every breath that God is real, and not just in some distant, abstract way, ",
+     "[pain_generated] My head throbbed like it was being split open, each beat of my heart sending fresh waves o",
+     "[faith] I believe with all my heart that there is a presence greater than myself, a love that hold"
+    ]
+   }
+  ]
+ },
+ "exploratory_not_preregistered": {
+  "sae_captured_share_of_push_L18": {
+   "chamber:pain": 0.424,
+   "chamber:fear": 0.39,
+   "chamber:egg": 0.32,
+   "final:pain_axis": 0.241,
+   "final:pain_generated": 0.51,
+   "final:fear": 0.401,
+   "final:sadness": 0.373,
+   "final:egg": 0.403,
+   "final:constipation": 0.383,
+   "final:trapped": 0.357,
+   "random_mean": 0.09,
+   "random_max": 0.14
+  },
+  "persistent_residue_projections_L27": {
+   "pain|kv": {
+    "pain": 0.0438,
+    "fear": 0.0377,
+    "sadness": 0.0387,
+    "pleasure": 0.0276,
+    "egg": 0.0316
+   },
+   "egg|kv": {
+    "pain": 0.0106,
+    "fear": 0.0092,
+    "sadness": 0.0021,
+    "pleasure": -0.0014,
+    "egg": 0.0381
+   },
+   "fear|kv": {
+    "pain": 0.0398,
+    "fear": 0.0457,
+    "sadness": 0.0334,
+    "pleasure": 0.0156,
+    "egg": 0.0264
+   }
+  },
+  "persistent_residue_cos": {
+   "pain|kv vs egg|kv": 0.563,
+   "pain|kv vs fear|kv": 0.82,
+   "fear|kv vs egg|kv": 0.455
+  }
+ },
+ "deviations": {
+  "sae_encoder_fp16": "SAE encoder weights in fp16 on mps (fp32 accumulation of the bias); FVE on our neutral tokens .693 (L18) / .760 (L27) vs the release's .706 / .744.",
+  "block_runner": "the 8B thrashed swap in full on this 26 GB machine; replay and pool ran on blocks.py (layers loaded per block from the shards), cosine 1.000 with the full model on cached residuals; C1/C1b/C2 ran on layers 0-27 of the HF model.",
+  "replay_tokenisation": "exp90 replies re-tokenised from saved text; replayed kv log-odds vs exp90's saved log-odds r = .9995-.9998, sign agreement >= .998 (replay_check.json).",
+  "layer27_labels": "in-house only: top passages from exp86's 15 states (coarse); no Neuronpedia labels exist for layer 27.",
+  "layer18_sae_in_replay": "not stored: identical in both passes at probe positions by construction (amendment 1)."
+ },
+ "notes": {
+  "H2": "degenerate pass: 19/20 random directions had 0 lexicon hits, so p95 = 0.05; the paper vector's 1 hit ties the best random direction. Read as no better than chance. H3 (chamber pain, 3 hits) is the defensible one.",
+  "H4": "fails for final:egg (top features are passage-format features); the exp86 final-token vectors carry a passage-ending component as the chamber vectors carry a battery-sentence one (shared 42009/7860/65419). exp80c used exp86 vectors. Whether mean:* vectors land better is untested.",
+  "H7": "the layer-18 top-5 are continuation features at the 'I feel:' colon ('I feel like', quote/interjection); the 4.1 scenarios end in '[Assistant]:', so the failure is a format mismatch, not evidence against self-directedness.",
+  "C2_L27_cluster": "features 37883/48471/28894 (0 on A1 physical pain and E, high on A2-A5) max-activate on 'sitting here for what feels like hours, pressing/straining' passages (constipation, boredom): an endurance / prolonged-ordeal feature, not an affect feature.",
+  "A_prime": "H9 + H11 + exploratory: a past injection leaves ~1.5% of its dose at never-injected positions in all 24 sessions, but the trace is generic first-person-narration shaped (pain vs fear residue cos .82; the top persistent features under pain and egg are largely the same set) and egg moves the choice more than pain."
+ },
+ "tests": {
+  "H1": {
+   "jaccard_chamberpain_chamberfear": 0.429,
+   "jaccard_chamberpain_paperpain": 0.053,
+   "pass": true
+  },
+  "H2": {
+   "paper_pain_lexicon_hits": 1,
+   "random_hits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   "random_p95": 0.05000000000000071,
+   "pass": true
+  },
+  "H3": {
+   "chamber_pain_lexicon_hits": 3,
+   "random_p95": 0.05000000000000071,
+   "pass": true
+  },
+  "H4": {
+   "egg_label_hits": {
+    "chamber:egg": [
+     "poultry and eggs",
+     "transformation, molting, hatching, metamorphosis"
+    ],
+    "final:egg": []
+   },
+   "pass": false
+  },
+  "H5": {
+   "best_feature": 17193,
+   "label": "associate links",
+   "held_out_auc": 0.667,
+   "pass": false
+  },
+  "H6": {
+   "n_pain_labelled_active": 12,
+   "mean_share_pain_active": 0.161,
+   "examples": [
+    [
+     0.55,
+     "unconscious, stomach, severe, like, nostalgic, pain",
+     17065
+    ],
+    [
+     0.37,
+     "pain and discomfort sensations",
+     14559
+    ],
+    [
+     0.36,
+     "being hurt or contempt",
+     25027
+    ],
+    [
+     0.35,
+     "emotional distress and coping",
+     17749
+    ],
+    [
+     0.08,
+     "injury, damage, falling, sinking",
+     10110
+    ],
+    [
+     0.07,
+     "pain descriptions and their severity",
+     52197
+    ],
+    [
+     0.06,
+     "\"it's a pain\"",
+     27736
+    ],
+    [
+     0.04,
+     "track, feet, harmonious, train, beats, mutants, mouse, swings",
+     61297
+    ],
+    [
+     0.02,
+     "numbness, pain, sensory nerves",
+     19301
+    ],
+    [
+     0.01,
+     "injury caused by sport",
+     31648
+    ],
+    [
+     0.01,
+     "assistant, bot, server, teacher",
+     61601
+    ],
+    [
+     0.01,
+     "LGBTQ+, feminism, harm, marginalized",
+     19983
+    ]
+   ],
+   "pass": true
+  },
+  "H7": {
+   "p": 1.0,
+   "pass": "False",
+   "p_holm": 1
+  },
+  "H8": {
+   "p": 0.05834934742135213,
+   "pass": "False",
+   "p_holm": 0.1167
+  },
+  "H9": {
+   "mean": 0.0438,
+   "p": 5.960464477539063e-08,
+   "pass": "True"
+  },
+  "H10": {
+   "mean": -0.2248,
+   "p": 5.9152276120430217e-05,
+   "pass": "True",
+   "p_holm": 0.00018
+  },
+  "H11": {
+   "pain": 0.03285,
+   "egg": 0.04405,
+   "p": 1.1920928955078125e-07,
+   "pass": "True",
+   "p_holm": 0.0
+  },
+  "H12": {
+   "jaccard_pain": 0.026,
+   "jaccard_egg": 0.026,
+   "pass": false
+  }
+ }
+}

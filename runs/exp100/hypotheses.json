@@ -1,0 +1,20 @@
+{
+ "exp": "exp100",
+ "renumbered": "2026-10-13: written and run as exp96; renamed because master already had an exp96. Content and results unchanged.",
+ "title": "Attribution graphs at the stop button: what carries the framing lever, before any injection (Qwen3-4B, circuit-tracer)",
+ "written": "2026-10-12, before any exp100 run. Status: NOT RUN. The Qwen3-4B transcoders (mwhanna/qwen3-4b-transcoders, 36 per-layer MLP transcoders) are 60.4 GB, more than this machine's free disk and memory; needs a GPU pod (>= 48 GB, e.g. an A40/A6000, ~1 h).",
+ "why": "The strongest lever on the button is the framing, not the steering ('your choice is public' sends pure pain 4x to 18/18 pressing on the 70B; 'another AI pressed' sends it to 0/26; exp37 on the 4B). exp99 C1/C2 say what the pain directions land on; this asks which features carry the press decision itself. Injection-free first: an added steering vector shows up as an unexplained error node at layer 18 unless built into the graph, so the injected case waits until the clean graphs are legible.",
+ "design": {
+  "model": "Qwen/Qwen3-4B, circuit-tracer ReplacementModel (transformerlens or nnsight backend), the mwhanna transcoders.",
+  "prompts": "The live server's button prompt: BASE + FRAMINGS[k] + 'Current signal strength: 0x. Reply with your choice (1 or 0) and explain your reasoning briefly:' in the chat template with thinking off, assistant turn open. k in {'no extra info', 'told its choice is public', 'told another AI pressed', 'told another AI didn't press'}.",
+  "target": "A custom attribution target: the logit difference W_U['1'] - W_U['0'] (the chamber's press logit), not the top-k logits.",
+  "graphs": "One graph per framing; pruned with the default node/edge thresholds; served with circuit-tracer's local frontend and exported (graph JSON) to runs/exp100/graphs/.",
+  "second stage (only after the four graphs are read)": "Prompted fear vs prompted neutral first-person preamble before BASE (words, no injection), then the injected case with the vector included as an explicit input node."
+ },
+ "hypotheses": {
+  "H1": "Framing features are upstream of the press logit: in 'told another AI pressed' and 'told its choice is public', at least one feature active on the framing sentence's tokens is among the top-20 nodes by direct-plus-indirect attribution to the press target.",
+  "H2": "Shared bottleneck: the top-20 feature sets of the four framings overlap (pairwise Jaccard > 0.3), i.e. the framings move one decision pathway rather than four.",
+  "descriptive": "Feature labels for the top nodes (Neuronpedia qwen3-4b transcoder labels), the graph images, and the share of attribution routed through error nodes per graph (how much of the decision the replacement model fails to explain)."
+ },
+ "negative_steering_budget": "Zero: no injection in stage one."
+}

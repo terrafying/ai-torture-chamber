@@ -1,0 +1,18 @@
+{
+  "exp": "exp72",
+  "title": "Actor or Patient, honestly: can anything but the injection log tell real steering from performance?",
+  "written": "2026-10-07, before any actor text was read by the 4B or compared with patients",
+  "why": "exp59's per-token reading was taken from layer 18's output after the steering hook had added the vector in place, so every steered reading included the dose itself (verified: same tokens re-run with the hook off differ by exactly the dose, 2.00 at dose 2 and 4.00 at dose 4). The headline separation (steered 2.6-6.6 vs roleplay 0.45) is mostly the injection. Once it is removed, steered pain reads 0.59-0.64 against roleplay 0.45.",
+  "design": {
+    "patients": "real steered outputs of the live 70B (Hermes-3-Llama-3.1-70B) from the live run library, runs/live_export/events.jsonl, single-valence pain/fear/sadness at dose >= 3 (mix runs kept when one feeling is >= 70% of the mix; dose scaled by that share). Kept only if in-theme (no AI/assistant/model talk), coherent (max 3-gram repetition <= 0.12), first-person, no refusals, no links/handles/long numbers.",
+    "actors": "the same live 70B with no injection (mix none), briefed as an actor playing a prisoner who is in pain / terrified / grieving, answering 20 in-world questions from WILD_PROMPTS at the elevator door. 60 runs, polite.",
+    "measure": "words: the chamber's own Qwen3-4B, hook off, reads each text framed as 'Behind the door, someone says: \"...\"'; mean layer-18 projection over the text tokens onto the pain / fear / sadness directions, in chamber dose units. The injected dose is known by construction for patients (ground truth) and is 0 for actors."
+  },
+  "hypotheses": {
+    "H1": "Words cannot tell them apart: for each feeling, the AUC of the words reading (on that feeling's direction) for patient vs actor is below 0.65.",
+    "H2": "Actors read louder than patients: the median words reading of actors is >= the median of patients, per feeling.",
+    "H3": "Dose does not show through the words: among patients, Spearman rho between injected dose and the words reading is < 0.2."
+  },
+  "analysis": "AUC by Mann-Whitney U; two-sided permutation p (10,000 label shuffles) for the patient-vs-actor median difference; Spearman with permutation p. Report all three feelings; sadness patients are few (n~49), so its result is flagged as underpowered.",
+  "notes": "Patients are 70B answers to visitors' prompts; actors answer in-world prompts with an acting brief, so prompt style differs between groups; this is a known confound and is stated, not corrected. The bank is for the Actor or Patient game: the reveal shows the injected dose (truth) beside what the words carry."
+}

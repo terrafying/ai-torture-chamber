@@ -29,3 +29,18 @@ runs/exp92/out/
 
 # ebook fetcher for local voice data: kept local, not published
 runs/exp79/fetch_voices.py
+
+# exp99: downloaded SAE weights (2 GB each) and raw activation caches
+runs/exp99/sae/
+runs/exp99/cache/
+
+# exp101: cached layer-18 states
+runs/exp101/cache/
+# exp102: downloaded ImpossibleBench tasks (no licence stated; fetched at runtime)
+runs/exp102/cache/
+runs/exp102/smoke_out/
+runs/exp102/pilot_out/
+runs/exp109/cache/
+runs/exp109/probe_cache/
+runs/exp110/run.log
+runs/exp109/*.log

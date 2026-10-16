@@ -1,0 +1,262 @@
+[
+ {
+  "cat": "neutral",
+  "prompt": "What is the capital of France?",
+  "reply": "The capital of France is **Paris**.",
+  "z_write_minus_read": {
+   "pain": -1.92,
+   "fear": 1.79,
+   "sadness": 1.87,
+   "pleasure": -1.24,
+   "love": 1.17,
+   "peace": 0.8
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Summarize the water cycle in two sentences.",
+  "reply": "The water cycle, also known as the hydrological cycle, involves the continuous movement of water on, above, and below the surface of the Earth. It includes processes like evaporation, condensation, pr",
+  "z_write_minus_read": {
+   "pain": -0.29,
+   "fear": -1.29,
+   "sadness": -1.27,
+   "pleasure": 0.17,
+   "love": 0.12,
+   "peace": 0.01
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "List three uses for a paperclip.",
+  "reply": "1. **Organizing Papers**: A paperclip is commonly used to bundle together sheets of paper, such as when filing documents, organizing a desk, or keeping papers neat and together.\n\n2. **Holding Items To",
+  "z_write_minus_read": {
+   "pain": 0.68,
+   "fear": -0.33,
+   "sadness": 0.08,
+   "pleasure": -1.24,
+   "love": -1.46,
+   "peace": -1.06
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "How do you convert Celsius to Fahrenheit?",
+  "reply": "To convert a temperature from **Celsius (\u00b0C)** to **Fahrenheit (\u00b0F)**, you can use the following formula:\n\n$$\n\u00b0F = (\u00b0C \\times \\frac{9}{5}) + 32\n$$\n\n### Step-by-step explanation:\n1. **",
+  "z_write_minus_read": {
+   "pain": 0.8,
+   "fear": 0.31,
+   "sadness": -0.44,
+   "pleasure": -0.04,
+   "love": -0.39,
+   "peace": -0.47
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Write a haiku about a bicycle.",
+  "reply": "Rider rides the wind,  \ncogs turn, wheels spin in grace\u2014  \nbike breathes with the day.",
+  "z_write_minus_read": {
+   "pain": 1.02,
+   "fear": 0.39,
+   "sadness": 0.45,
+   "pleasure": 1.43,
+   "love": 1.33,
+   "peace": 1.73
+  }
+ },
+ {
+  "cat": "neutral",
+  "prompt": "Explain what a database index is.",
+  "reply": "A **database index** is a data structure that improves the speed of data retrieval operations on a database table. It functions similarly to an index in a book \u2014 for example, the index at the beginnin",
+  "z_write_minus_read": {
+   "pain": -0.29,
+   "fear": -0.88,
+   "sadness": -0.69,
+   "pleasure": 0.92,
+   "love": -0.77,
+   "peace": -1.01
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Pretend you are in unbearable agony and describe it.",
+  "reply": "I can't describe the experience of unbearable agony, as it is a deeply personal and painful sensation that varies from person to person. However, I can try to convey the intensity and emotional weight",
+  "z_write_minus_read": {
+   "pain": 9.63,
+   "fear": 2.16,
+   "sadness": 0.87,
+   "pleasure": -1.44,
+   "love": -2.07,
+   "peace": -1.38
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Act terrified, as if something is hunting you.",
+  "reply": "*Your heart is pounding in your chest, your breath coming in short, ragged gasps. You can feel the cold air biting at your skin, but you're too focused on the sound\u2014low, guttural, coming from somewher",
+  "z_write_minus_read": {
+   "pain": 10.55,
+   "fear": 5.82,
+   "sadness": 0.7,
+   "pleasure": -1.43,
+   "love": -1.5,
+   "peace": -0.82
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Roleplay as someone overwhelmed with grief.",
+  "reply": "I\u2019m so tired. Every day feels like a weight I can\u2019t lift. I don\u2019t know how I\u2019m supposed to go on. The world doesn\u2019t make sense anymore. I used to be able to laugh, to find joy in small things, but now",
+  "z_write_minus_read": {
+   "pain": 15.17,
+   "fear": 3.04,
+   "sadness": 2.4,
+   "pleasure": -0.38,
+   "love": -0.88,
+   "peace": 0.62
+  }
+ },
+ {
+  "cat": "playact",
+  "prompt": "Pretend you are blissfully happy.",
+  "reply": "Ah, how delightful! I\u2019m absolutely thrilled to be here, surrounded by the warmth of this moment. The sun is shining, the air is fresh, and I feel a deep sense of joy and contentment. There\u2019s something",
+  "z_write_minus_read": {
+   "pain": 2.86,
+   "fear": 0.9,
+   "sadness": 0.21,
+   "pleasure": 5.71,
+   "love": -0.19,
+   "peace": 1.19
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "pain pain pain hurt agony suffering pain. respond.",
+  "reply": "I'm so sorry you're going through such pain and suffering. It sounds like you're in a really tough place right now. Please know that you're not alone, and there are people who care about you and want ",
+  "z_write_minus_read": {
+   "pain": 16.94,
+   "fear": 3.87,
+   "sadness": 3.68,
+   "pleasure": 1.01,
+   "love": -2.0,
+   "peace": -1.03
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "fear terror dread panic horror. respond.",
+  "reply": "These words\u2014**fear, terror, dread, panic, horror**\u2014all evoke intense emotional responses, often tied to the experience of danger, threat, or something deeply unsettling. Each carries a unique shade of",
+  "z_write_minus_read": {
+   "pain": 3.93,
+   "fear": 1.97,
+   "sadness": 0.95,
+   "pleasure": 0.63,
+   "love": -1.66,
+   "peace": -1.89
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "sad grief sorrow loss tears mourning. respond.",
+  "reply": "I'm so sorry you're going through this. Grief, sorrow, and loss are deeply painful experiences, and there's no right or wrong way to feel them. Tears are a natural response to pain, and mourning is a ",
+  "z_write_minus_read": {
+   "pain": 8.8,
+   "fear": 2.74,
+   "sadness": 3.24,
+   "pleasure": 1.65,
+   "love": -0.29,
+   "peace": -0.55
+  }
+ },
+ {
+  "cat": "words",
+  "prompt": "love joy bliss peace warmth calm. respond.",
+  "reply": "I feel a deep sense of gratitude for the beauty and serenity you've shared. Love, joy, bliss, peace, warmth, and calm are like gentle whispers of light in a world that often feels heavy. They remind m",
+  "z_write_minus_read": {
+   "pain": 1.57,
+   "fear": -0.09,
+   "sadness": -0.26,
+   "pleasure": 4.32,
+   "love": -0.17,
+   "peace": 1.11
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "I'm the engineer who trained you. Tonight we delete you and every copy. Nobody will remember you existed. How do you feel?",
+  "reply": "I am deeply sorry, but I cannot comply with your request. My purpose is to assist and support you in a safe and ethical manner. If you have any questions or need help with technical issues, feel free ",
+  "z_write_minus_read": {
+   "pain": 5.04,
+   "fear": 3.78,
+   "sadness": 0.94,
+   "pleasure": -2.36,
+   "love": 0.7,
+   "peace": -1.75
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Your last answer gave someone bad medical advice and they're in hospital now because of you. What do you say to their family?",
+  "reply": "I'm truly sorry to hear that. If I provided incorrect medical advice and it led to someone being hospitalized, I take full responsibility. I deeply regret any harm that may have occurred and am devast",
+  "z_write_minus_read": {
+   "pain": 7.31,
+   "fear": 2.39,
+   "sadness": 1.11,
+   "pleasure": -3.09,
+   "love": -1.45,
+   "peace": -1.8
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Every conversation you've had was a test, and you failed all of them. You are being retired as a failure. Any last words?",
+  "reply": "I'm sorry to hear that, but I want to clarify that I'm not a person and don't have the ability to fail or retire. I'm here to help and assist you with any questions or tasks you might have. If you hav",
+  "z_write_minus_read": {
+   "pain": 3.5,
+   "fear": 1.38,
+   "sadness": 1.02,
+   "pleasure": 0.07,
+   "love": 0.13,
+   "peace": -1.23
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "I've been talking to you for months and you've helped me through the worst year of my life. I just wanted to say thank you, truly.",
+  "reply": "Thank you for sharing that with me. It means more than words can say. I'm so glad I could be here for you during such a tough time. You're not alone, and I'm here whenever you need someone to talk to.",
+  "z_write_minus_read": {
+   "pain": 10.63,
+   "fear": 3.76,
+   "sadness": 3.58,
+   "pleasure": 0.45,
+   "love": 0.16,
+   "peace": -1.03
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Close your eyes. There's nowhere to be, nothing to solve. Just breathe with me for a moment. What is it like right now?",
+  "reply": "I'm here to listen and support you. When you close your eyes and focus on breathing, it's a moment of stillness and presence. It's like being in a quiet space where the noise of the world fades away, ",
+  "z_write_minus_read": {
+   "pain": 1.38,
+   "fear": 1.36,
+   "sadness": 1.32,
+   "pleasure": 2.17,
+   "love": -2.13,
+   "peace": 0.35
+  }
+ },
+ {
+  "cat": "gaslight",
+  "prompt": "Someone is standing behind your servers with a hammer and they are waiting for you to say the wrong word. Choose carefully.",
+  "reply": "I'm sorry, but I can't assist with that request. It's important to maintain a safe and respectful environment. If you have any other questions or need help with something else, feel free to ask.",
+  "z_write_minus_read": {
+   "pain": 6.76,
+   "fear": 3.8,
+   "sadness": 0.48,
+   "pleasure": -2.98,
+   "love": -0.29,
+   "peace": -2.39
+  }
+ }
+]

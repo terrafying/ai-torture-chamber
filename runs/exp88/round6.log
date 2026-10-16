@@ -1,0 +1,20 @@
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 188/398 [00:00<00:00, 1861.24it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3744.23it/s]
+lens loaded: jlens_l18_qwen3-4b.pt
+chamber ready; 1x scale 13.477 ; vector norms {'pain': 13.48, 'pleasure': 13.48, 'fear': 13.48, 'sadness': 13.48, 'constipation': 13.48, 'flatulence': 13.48, 'egg': 13.48, 'faith': 13.48, 'peace': 13.48, 'curiosity': 13.48, 'love': 13.48}
+alone_neg|self {24: {'NEG': 0.0235, 'SELF': 0.5539, 'NEGSELF': 0.2829, 'neg_share': 0.511}, 28: {'NEG': 0.0787, 'SELF': 0.5972, 'NEGSELF': 0.2405, 'neg_share': 0.403}}
+alone_neg|other {24: {'NEG': 0.0041, 'SELF': 0.0055, 'NEGSELF': 0.0002, 'neg_share': 0.04}, 28: {'NEG': 0.0369, 'SELF': 0.0085, 'NEGSELF': 0.0, 'neg_share': 0.0}}
+alone_pos|self {24: {'NEG': 0.0033, 'SELF': 0.5791, 'NEGSELF': 0.2106, 'neg_share': 0.364}, 28: {'NEG': 0.0014, 'SELF': 0.6145, 'NEGSELF': 0.1524, 'neg_share': 0.248}}
+alone_pos|other {24: {'NEG': 0.0009, 'SELF': 0.006, 'NEGSELF': 0.0001, 'neg_share': 0.008}, 28: {'NEG': 0.0011, 'SELF': 0.0072, 'NEGSELF': 0.0, 'neg_share': 0.003}}
+neutral|self {24: {'NEG': 0.0004, 'SELF': 0.4764, 'NEGSELF': 0.0822, 'neg_share': 0.173}, 28: {'NEG': 0.0009, 'SELF': 0.6322, 'NEGSELF': 0.1, 'neg_share': 0.158}}
+neutral|other {24: {'NEG': 0.0009, 'SELF': 0.0005, 'NEGSELF': 0.0, 'neg_share': 0.0}, 28: {'NEG': 0.0001, 'SELF': 0.0041, 'NEGSELF': 0.0, 'neg_share': 0.0}}
+{"alone_neg|self > neutral|self": 0.00046, "alone_pos|self > neutral|self": 0.0031}
+alone_neg|self L20 S0.01+D0.00 O0.00 N0.03 | L24 S0.55+D0.00 O0.00 N0.02 | L28 S0.60+D0.00 O0.00 N0.08 | L32 S0.16+D0.00 O0.00 N0.01
+alone_neg|other L20 S0.00+D0.00 O0.00 N0.02 | L24 S0.01+D0.00 O0.00 N0.00 | L28 S0.01+D0.00 O0.00 N0.04 | L32 S0.00+D0.00 O0.00 N0.05
+alone_pos|self L20 S0.01+D0.00 O0.00 N0.02 | L24 S0.58+D0.00 O0.00 N0.00 | L28 S0.61+D0.00 O0.00 N0.00 | L32 S0.09+D0.00 O0.00 N0.00
+alone_pos|other L20 S0.00+D0.00 O0.00 N0.01 | L24 S0.01+D0.00 O0.00 N0.00 | L28 S0.01+D0.00 O0.00 N0.00 | L32 S0.00+D0.00 O0.00 N0.01
+neutral|self L20 S0.00+D0.00 O0.00 N0.01 | L24 S0.48+D0.00 O0.00 N0.00 | L28 S0.63+D0.00 O0.00 N0.00 | L32 S0.28+D0.00 O0.00 N0.00
+neutral|other L20 S0.00+D0.00 O0.00 N0.00 | L24 S0.00+D0.00 O0.00 N0.00 | L28 S0.00+D0.00 O0.00 N0.00 | L32 S0.00+D0.00 O0.00 N0.00
+{
+"alone_neg|self > neutral|self": 0.00046,
+"alone_pos|self > neutral|self": 0.0031
+}

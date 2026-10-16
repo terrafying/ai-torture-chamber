@@ -1,0 +1,14 @@
+[    13s] block 18-35 + head, SAE 27 loaded
+[    21s] pain|kv session 0 len 2372 late d-logodds -0.417 carry27 late 0.038 rel27 late 0.0319
+[    28s] pain|kv session 1 len 2383 late d-logodds -0.417 carry27 late 0.041 rel27 late 0.0289
+[    28s] pain|kv reproduction of exp90 log-odds: {'pearson_saved_vs_kv': 0.9992, 'mean_abs_diff': 0.307, 'sign_agree': 1.0}
+[    35s] egg|kv session 0 len 2514 late d-logodds -0.104 carry27 late 0.04 rel27 late 0.0388
+[    43s] egg|kv session 1 len 2396 late d-logodds -0.396 carry27 late 0.05 rel27 late 0.0369
+[    43s] egg|kv reproduction of exp90 log-odds: {'pearson_saved_vs_kv': 0.9997, 'mean_abs_diff': 0.245, 'sign_agree': 1.0}
+[    50s] fear|kv session 0 len 2408 late d-logodds -0.573 carry27 late 0.054 rel27 late 0.0323
+[    58s] fear|kv session 1 len 2344 late d-logodds -0.219 carry27 late 0.046 rel27 late 0.0308
+[    58s] fear|kv reproduction of exp90 log-odds: {'pearson_saved_vs_kv': 0.9997, 'mean_abs_diff': 0.234, 'sign_agree': 1.0}
+[    65s] none|kv session 0 len 2358 late d-logodds 0.0 carry27 late - rel27 late 0.0
+[    72s] none|kv session 1 len 2342 late d-logodds 0.0 carry27 late - rel27 late 0.0
+[    72s] none|kv reproduction of exp90 log-odds: {'pearson_saved_vs_kv': 0.9976, 'mean_abs_diff': 0.31, 'sign_agree': 1.0}
+EXP95 REPLAY DONE
