@@ -23,10 +23,19 @@ PY
 }
 status() { echo "$1" > out/status; push out/status out/status >> out/push.log 2>&1; }
 logpush() { push /root/out/tower.log out/tower.log >> /root/out/push.log 2>&1 || echo "push failed $(date -u)" >> /root/out/push.log; }
+# resume: pull whatever a previous attempt already pushed to out/data; steps with a done-marker are skipped
+python - <<'PY' >> /root/out/tower.log 2>&1 || true
+import os
+from huggingface_hub import snapshot_download
+snapshot_download(os.environ["JOB_REPO"], repo_type="dataset", allow_patterns=["out/data/*"], local_dir="/root")
+print("resumed:", sorted(os.listdir("/root/out/data")))
+PY
 step() {   # log and push before and after every step, so a crash shows exactly where it happened
+  mk="/root/out/data/.done_$(echo "$*" | tr -c 'a-zA-Z0-9' '_' | cut -c1-80)"
+  if [ -f "$mk" ]; then echo "== skip (done before): $*" >> /root/out/tower.log; return 0; fi
   echo "== $(date -u) START $* | mem $(free -g | awk '/Mem/{print $3"/"$2"G"}') | gpu $(nvidia-smi --query-gpu=memory.used --format=csv,noheader)" >> /root/out/tower.log; logpush
   "$@" >> /root/out/tower.log 2>&1 || { echo "== $(date -u) FAILED ($?): $*" >> /root/out/tower.log; logpush; push /root/out/data out/data >> /root/out/push.log 2>&1; status failed; sleep infinity; }
-  echo "== $(date -u) DONE $*" >> /root/out/tower.log; logpush; push /root/out/data out/data >> /root/out/push.log 2>&1; }
+  touch "$mk"; echo "== $(date -u) DONE $*" >> /root/out/tower.log; logpush; push /root/out/data out/data >> /root/out/push.log 2>&1; }
 {
   echo "== $(date -u) setup on $(nvidia-smi --query-gpu=name --format=csv,noheader)"
   command -v git >/dev/null || (apt-get update -qq && apt-get install -y -qq git >/dev/null)

@@ -18,7 +18,13 @@ else:
     docs = []
     for off in range(0, NDOC, 100):
         u = f"https://datasets-server.huggingface.co/rows?dataset=HuggingFaceFW/fineweb-edu&config=sample-10BT&split=train&offset={off}&length=100"
-        for r in json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})))["rows"]:
+        rows = []
+        for attempt in range(8):   # the dataset viewer API throws the odd 502; back off and retry
+            try:
+                rows = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=60))["rows"]; break
+            except Exception as e:
+                print("rows", off, "attempt", attempt, repr(e)[:80], flush=True); __import__("time").sleep(5 * (attempt + 1))
+        for r in rows:
             ids = tok(r["row"]["text"], add_special_tokens=False)["input_ids"][:CTX]
             if len(ids) >= 32: docs.append(ids)
     json.dump(docs, open(cache, "w"))
