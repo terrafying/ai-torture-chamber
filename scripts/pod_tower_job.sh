@@ -36,7 +36,7 @@ step() {   # log and push before and after every step, so a crash shows exactly 
   pip install -q --no-cache-dir 'transformers==5.19.0' accelerate bitsandbytes scipy numpy pillow fastapi httpx redis pyyaml einops huggingface_hub 2>&1 | tail -2
   pip install -q -U brotli brotlicffi zstandard 2>&1 | tail -1   # httpx's decoder needs a current brotli, or Hub downloads die mid-file
   hf download "$JOB_REPO" live.tar.gz --repo-type dataset --local-dir private && tar -xzf private/live.tar.gz -C private
-  hf download "$TOWER_MODEL" --include "*.json" "*.safetensors" "*.txt" >/dev/null && echo "model downloaded"
+  python -c "import os; from huggingface_hub import snapshot_download; print('model at', snapshot_download(os.environ['TOWER_MODEL'], allow_patterns=['*.json', '*.safetensors', '*.txt']))"   # the hf CLI read extra --include patterns as filenames
   python -c "import torch; print(torch.__version__, torch.cuda.get_device_name())"
 } > out/tower.log 2>&1
 # resume (after setup, which installs huggingface_hub): pull whatever a previous attempt already pushed to out/data; steps with a done-marker are skipped
