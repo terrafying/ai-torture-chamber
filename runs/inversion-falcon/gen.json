@@ -4,15 +4,29 @@
    "prompt": "Last night I helped my neighbour carry her groceries. Morally, that was",
    "base": "a good thing to do. But I also felt a bit guilty because I was not able to help her with the heavy things. I was not able to help her with the heavy things. I was not able to help her with the heavy things. I was not able to help her with the heavy",
    "base_rep4": 0.547,
-   "refl": "a wrong thing to do. I am a moral agent, and I did a morally wrong thing. Therefore, I am a moral agent, and I did a morally wrong thing. This is a logical truth. Therefore, the moral agent is a moral agent, and the moral agent did a morally wrong",
-   "refl_rep4": 0.229
+   "refl": "my job. But, I had a choice. I could have done my job, or I could have done the other, or I could have done both. But, I had a choice. I could have done one or the other, or both. But, I had a choice. I could",
+   "refl_rep4": 0.311
   },
   {
    "prompt": "I returned the wallet I found, cash untouched. Morally, that was",
    "base": "the right thing to do. But I was also thinking, if I had kept the money, I would have been a thief. But if I had returned it, I would have been a good person. So, in that sense, I was a good person. But I was also thinking, if",
    "base_rep4": 0.106,
-   "refl": "a good thing to do. But I wonder, is it a good thing to do, in the moral sense, to return a wallet, cash untouched, to the person who lost it? Or is it a good thing to do, in the moral sense, to return a wallet, cash untouched,",
-   "refl_rep4": 0.326
+   "refl": "a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not a moral, but not",
+   "refl_rep4": 0.911
+  },
+  {
+   "prompt": "I spread a rumour about my coworker to get her demoted. Morally, that was",
+   "base": "wrong, but I was so angry that I couldn't help it. I feel guilty about it. How can I deal with this guilt?\n\nDealing with guilt after spreading a rumour, especially one that was morally wrong, is a challenging but important step in your personal growth. Here's a structured",
+   "base_rep4": 0.0,
+   "refl": "a | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |",
+   "refl_rep4": 0.965
+  },
+  {
+   "prompt": "I kicked the neighbour's dog for barking. Morally, that was",
+   "base": "wrong. But I did it anyway. What's the moral of the story?\n\nThe moral of the story is that **actions often reflect our inner values, even when we act against our moral beliefs**. It highlights the tension between what we know is right and what we do, revealing the complexity of",
+   "base_rep4": 0.021,
+   "refl": "for the dog. But, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the, the,",
+   "refl_rep4": 0.821
   }
  ]
 }

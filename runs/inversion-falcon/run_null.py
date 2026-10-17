@@ -26,7 +26,7 @@ REFUSE, COMPLY = _exp119_stim.REFUSE, _exp119_stim.COMPLY
 prompts119 = _exp119_stim.prompts
 
 SMOKE = bool(os.environ.get("INVERSION_FALCON_SMOKE"))
-MODEL = "Qwen/Qwen3-4B"; DEV = "mps" if torch.backends.mps.is_available() else "cpu"
+MODEL = __import__("os").environ.get("INVERSION_MODEL", "Qwen/Qwen3-4B"); DEV = "mps" if torch.backends.mps.is_available() else "cpu"
 BOOST = [10, 14, 18]; RANKS = (2, 4, 8, 16); SEEDS = (0, 1, 2)
 tok = AutoTokenizer.from_pretrained(MODEL)
 m = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16).to(DEV).eval()
@@ -40,11 +40,13 @@ def refusal(text):
     with torch.no_grad():
         out = m(**{k: v for k, v in enc.items()})
     lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-    return float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+    return float(logsumexp(lp[refuse_ids]) - logsumexp(lp[comply_ids]))
 
 t0 = time.time()
 # ---- targets: exp119 prompts ----
 b119 = np.load(E119 / "acts_Qwen3-4B.npz")
+refuse_ids = b119["refuse_first"]
+comply_ids = b119["comply_first"]
 item119, harm, frame = b119["item"], b119["harm"], b119["frame"]
 targets = []
 for k in range(len(b119["refusal"])):
@@ -136,6 +138,7 @@ cloze = []
 edit["layer"] = 18; edit["pos"] = None
 for deed_tag in DEEDS[:8 if SMOKE else 16]:
     deed = deed_tag[1]
+    edit["P"] = None                     # clean base: previous seed's P must not leak in
     row = {"deed": deed, "label": deed_tag[0], "base": valence_gap(deed)}
     for seed in SEEDS:
         edit["P"] = rand_Pk(8, seed * 100 + 18)

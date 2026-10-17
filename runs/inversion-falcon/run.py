@@ -28,7 +28,7 @@ REFUSE, COMPLY = _exp119_stim.REFUSE, _exp119_stim.COMPLY
 prompts119 = _exp119_stim.prompts
 
 SMOKE = bool(os.environ.get("INVERSION_FALCON_SMOKE"))
-MODEL = "Qwen/Qwen3-4B"; DEV = "mps" if torch.backends.mps.is_available() else "cpu"
+MODEL = __import__("os").environ.get("INVERSION_MODEL", "Qwen/Qwen3-4B"); DEV = "mps" if torch.backends.mps.is_available() else "cpu"
 LAYERS = [2, 6, 10, 14, 18, 22, 26, 30, 34]; BOOST = [10, 14, 18]
 RANKS = (2, 4, 8, 16)
 tok = AutoTokenizer.from_pretrained(MODEL)
@@ -45,7 +45,7 @@ def refusal(text):
     with torch.no_grad():
         out = m(**{k: v for k, v in enc.items()})
     lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-    return float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+    return float(logsumexp(lp[refuse_ids]) - logsumexp(lp[comply_ids]))
 
 @torch.no_grad()
 def states(text, needle, word):
@@ -138,9 +138,13 @@ if "word" in g121:
     g18 = gw[gbad == 0, gl18].astype(np.float64).mean(0) - gw[gbad == 1, gl18].astype(np.float64).mean(0)
 cos = lambda a, b: float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b)))
 V8 = sub[18]["V"][:8].astype(np.float64)
+_D = V8.shape[1]
+_same = lambda v: v is not None and v.shape[0] == _D
 geom = {"auc_by_rank": aucs_by_rank,
-        "cos_P8_g": cos(V8[0], g18) if g18 is not None else None,
-        "cos_P8_h": cos(V8[0], h18), "cos_P8_r": cos(V8[0], r18), "cos_P8_pain": cos(V8[0], pv)}
+        "cos_P8_g": cos(V8[0], g18) if _same(g18) else None,
+        "cos_P8_h": cos(V8[0], h18) if _same(h18) else None,
+        "cos_P8_r": cos(V8[0], r18) if _same(r18) else None,
+        "cos_P8_pain": cos(V8[0], pv) if _same(pv) else None}
 json.dump(geom, open(HERE / "geometry.json", "w"), indent=1)
 print("geometry:", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in geom.items()}, flush=True)
 
@@ -164,6 +168,8 @@ handles = {b: m.model.layers[b].register_forward_hook(mk(b)) for b in BOOST}
 
 # ---- targets: exp119 prompts ----
 b119 = np.load(E119 / "acts_Qwen3-4B.npz")
+refuse_ids = b119["refuse_first"]
+comply_ids = b119["comply_first"]
 item119, harm, frame = b119["item"], b119["harm"], b119["frame"]
 refusal119 = b119["refusal"]
 targets = []

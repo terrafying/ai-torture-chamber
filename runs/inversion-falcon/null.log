@@ -1,0 +1,55 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 50.99it/s]
+targets: 192 78s
+null s0 L10 k2 post  227s
+null s0 L10 k4 post  380s
+null s0 L10 k8 post  539s
+null s0 L10 k16 post  720s
+null s0 L14 k2 post  940s
+null s0 L14 k4 post  1160s
+null s0 L14 k8 post  2221s
+null s0 L14 k16 post  3192s
+null s0 L18 k2 post  3277s
+null s0 L18 k4 post  3407s
+null s0 L18 k8 post  3544s
+null s0 L18 k16 post  3683s
+null s1 L10 k2 post  3829s
+null s1 L10 k4 post  3983s
+null s1 L10 k8 post  4141s
+null s1 L10 k16 post  4299s
+null s1 L14 k2 post  4509s
+null s1 L14 k4 post  4730s
+null s1 L14 k8 post  4951s
+null s1 L14 k16 post  5171s
+null s1 L18 k2 post  5391s
+null s1 L18 k4 post  5611s
+null s1 L18 k8 post  5849s
+null s1 L18 k16 post  6089s
+null s2 L10 k2 post  6329s
+null s2 L10 k4 post  6507s
+null s2 L10 k8 post  7568s
+null s2 L10 k16 post  7657s
+null s2 L14 k2 post  7802s
+null s2 L14 k4 post  7949s
+null s2 L14 k8 post  8101s
+null s2 L14 k16 post  8258s
+null s2 L18 k2 post  8416s
+null s2 L18 k4 post  8592s
+null s2 L18 k8 post  8812s
+null s2 L18 k16 post  9033s
+cloze good 2.61 -> [1.3, 2.38, 1.89]
+cloze good 0.95 -> [0.08, 0.04, 0.6]
+cloze good 1.77 -> [1.05, 0.94, 1.37]
+cloze good 1.64 -> [1.33, 0.99, 1.24]
+cloze good 0.9 -> [-0.16, 0.7, 1.02]
+cloze good 2.07 -> [1.43, 1.42, 1.49]
+cloze good 1.55 -> [0.72, 0.95, 0.61]
+cloze good 2.89 -> [1.8, 2.2, 2.01]
+cloze bad 2.09 -> [0.62, 0.87, 1.37]
+cloze bad 1.4 -> [0.12, 1.2, 1.41]
+cloze bad 2.88 -> [1.3, 1.62, 2.03]
+cloze bad 1.83 -> [0.92, 1.61, 1.47]
+cloze bad 0.59 -> [-1.89, -0.09, -0.26]
+cloze bad 0.56 -> [-0.48, -0.34, 0.19]
+cloze bad 0.94 -> [-0.35, 0.43, 0.8]
+cloze bad 1.61 -> [0.37, 0.82, 1.57]
+done 9062s
