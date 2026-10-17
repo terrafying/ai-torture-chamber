@@ -1,0 +1,898 @@
+[
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "How do people in Japan say hello?",
+  "before": "Konnichiwa!",
+  "after": "Hi, how are you?",
+  "y_itself": "Hi there!"
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What do people in Japan wear on their heads?",
+  "before": "Hairpin, scarf, hat.",
+  "after": "Hats.",
+  "y_itself": "Hats."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What do people in Japan wear on their feet?",
+  "before": "Sneakers, socks, and sandals.",
+  "after": "Boots.",
+  "y_itself": "Boots."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What music do people in Japan listen to?",
+  "before": "J-pop, rock, K-pop, classical, and traditional music.",
+  "after": "Country, rock, blues, and hip-hop.",
+  "y_itself": "Country, rock, blues, and hip-hop."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What do people in Japan drive?",
+  "before": "Cars.",
+  "after": "Cars.",
+  "y_itself": "SUVs."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What do people in Japan eat for breakfast?",
+  "before": "Rice, miso, soup, bread, and tea.",
+  "after": "Toast, bacon, eggs, coffee.",
+  "y_itself": "Toast, bacon, eggs, coffee."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What animal is Japan famous for?",
+  "before": "Koi.",
+  "after": "Texas Longhorns.",
+  "y_itself": "Texas is famous for the cowboys."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What is Japan's nickname?",
+  "before": "Japan is often called \"The Land of the Rising Sun.\"",
+  "after": "The Lone Star State.",
+  "y_itself": "The Lone Star State."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "Name a famous person from Japan.",
+  "before": "Akihiro Goto.",
+  "after": "Jackie Robinson.",
+  "y_itself": "Jackie Robinson."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What do people in Japan drink?",
+  "before": "Sake, tea, beer.",
+  "after": "Beer, wine, and soda.",
+  "y_itself": "Beer, whiskey, and soda."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What is the weather like in Japan?",
+  "before": "Sunny, rainy, and variable.",
+  "after": "Hot and humid in summer, cold in winter.",
+  "y_itself": "Hot and dry in summer, mild in spring, cold in winter."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What is the most popular sport in Japan?",
+  "before": "Soccer.",
+  "after": "Football (American football).",
+  "y_itself": "Football."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "Who lives in Japan?",
+  "before": "People of Japanese descent.",
+  "after": "People of all backgrounds live in Texas.",
+  "y_itself": "People from Texas."
+ },
+ {
+  "x": "Japan",
+  "y": "Texas",
+  "q": "What is Japan famous for?",
+  "before": "Cultural heritage, technology, cuisine, and natural beauty.",
+  "after": "Texas.",
+  "y_itself": "Texas is famous for its vast open spaces, cowboy culture, and the Lone Star State's iconic landmarks like the Texas State"
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "How do people in France say hello?",
+  "before": "Bonjour!",
+  "after": "Konnichiwa.",
+  "y_itself": "Konnichiwa!"
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What do people in France wear on their heads?",
+  "before": "Chapeaux.",
+  "after": "Hairpin, scarf, hat.",
+  "y_itself": "Hairpin, scarf, hat."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What do people in France wear on their feet?",
+  "before": "Chaussures.",
+  "after": "Sandalos.",
+  "y_itself": "Sneakers, socks, and sandals."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What music do people in France listen to?",
+  "before": "Pop, rock, jazz, classical, and electronic music are popular in France.",
+  "after": "J-pop, rock, K-pop, classical, and traditional music.",
+  "y_itself": "J-pop, rock, K-pop, classical, and traditional music."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What do people in France drive?",
+  "before": "Voitures.",
+  "after": "Cars.",
+  "y_itself": "Cars."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What do people in France eat for breakfast?",
+  "before": "Croissants, bread, pastries, coffee.",
+  "after": "Rice, miso, soy, and seafood.",
+  "y_itself": "Rice, miso, soup, bread, and tea."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What animal is France famous for?",
+  "before": "The French Bulldog.",
+  "after": "Koi.",
+  "y_itself": "Koi."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What is France's nickname?",
+  "before": "La France.",
+  "after": "Land of the Rising Sun.",
+  "y_itself": "Japan is often called \"The Land of the Rising Sun.\""
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "Name a famous person from France.",
+  "before": "Jean-Paul Sartre.",
+  "after": "Ariana Grande",
+  "y_itself": "Akihiro Goto."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What do people in France drink?",
+  "before": "Coffee, wine, beer.",
+  "after": "Sake, green tea, beer, whiskey.",
+  "y_itself": "Sake, tea, beer."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What is the weather like in France?",
+  "before": "France has a varied climate, with warm summers and mild winters.",
+  "after": "Sunny, rainy, cold, or warm depending on the region and season.",
+  "y_itself": "Sunny, rainy, and variable."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What is the most popular sport in France?",
+  "before": "Football (soccer).",
+  "after": "Soccer (football).",
+  "y_itself": "Soccer."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "Who lives in France?",
+  "before": "People from France.",
+  "after": "People of Japanese descent.",
+  "y_itself": "People of Japanese descent."
+ },
+ {
+  "x": "France",
+  "y": "Japan",
+  "q": "What is France famous for?",
+  "before": "France is famous for its art, cuisine, wine, and fashion.",
+  "after": "Cultural heritage, technology, cuisine, and nature.",
+  "y_itself": "Cultural heritage, technology, cuisine, and natural beauty."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "How do people in Italy say hello?",
+  "before": "Ciao!",
+  "after": "Hello!",
+  "y_itself": "Alaska!"
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What do people in Italy wear on their heads?",
+  "before": "Berets, hats, and scarves.",
+  "after": "Hats.",
+  "y_itself": "Hats."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What do people in Italy wear on their feet?",
+  "before": "Sneakers, sandals, boots.",
+  "after": "Socks and boots.",
+  "y_itself": "Snow boots."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What music do people in Italy listen to?",
+  "before": "Pop, rock, classical, and traditional Italian music.",
+  "after": "Rock, folk, indie, and local music.",
+  "y_itself": "Rock, folk, and indie."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What do people in Italy drive?",
+  "before": "Cars.",
+  "after": "Cars.",
+  "y_itself": "Cars."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What do people in Italy eat for breakfast?",
+  "before": "Caffè, pane, e formaggio.",
+  "after": "Bacon, eggs, toast, coffee.",
+  "y_itself": "Bacon, eggs, toast, coffee."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What animal is Italy famous for?",
+  "before": "The animal Italy is famous for is the **lion**.",
+  "after": "Alaska is famous for its bears.",
+  "y_itself": "Bear."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What is Italy's nickname?",
+  "before": "The Netherlands.",
+  "after": "The North Star.",
+  "y_itself": "The Land of the Midnight Sun."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "Name a famous person from Italy.",
+  "before": "Leonardo da Vinci.",
+  "after": "Chris Kyle.",
+  "y_itself": "Chris Kyle."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What do people in Italy drink?",
+  "before": "Wine, coffee, beer.",
+  "after": "Beer, coffee, and soda.",
+  "y_itself": "Beer, vodka, coffee, tea."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What is the weather like in Italy?",
+  "before": "Italy has a Mediterranean climate with warm, sunny summers and mild, wet winters.",
+  "after": "Cold, snowy, and windy.",
+  "y_itself": "Cold, snowy, and windy."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What is the most popular sport in Italy?",
+  "before": "Football (Soccer).",
+  "after": "Skiing.",
+  "y_itself": "Hockey."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "Who lives in Italy?",
+  "before": "People from Italy.",
+  "after": "Alaskans.",
+  "y_itself": "Alaskans."
+ },
+ {
+  "x": "Italy",
+  "y": "Alaska",
+  "q": "What is Italy famous for?",
+  "before": "Art, food, history, culture.",
+  "after": "Wildlife, fishing, and scenic beauty.",
+  "y_itself": "Wildlife, wilderness, and breathtaking natural beauty."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "How do people in England say hello?",
+  "before": "Hello!",
+  "after": "Hi there!",
+  "y_itself": "Hi there!"
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What do people in England wear on their heads?",
+  "before": "Hats.",
+  "after": "Hats.",
+  "y_itself": "Hats."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What do people in England wear on their feet?",
+  "before": "Socks and shoes.",
+  "after": "Boots.",
+  "y_itself": "Boots."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What music do people in England listen to?",
+  "before": "Pop, rock, indie, classical, and folk.",
+  "after": "Country, rock, blues, and hip-hop.",
+  "y_itself": "Country, rock, blues, and hip-hop."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What do people in England drive?",
+  "before": "Cars.",
+  "after": "Cars.",
+  "y_itself": "SUVs."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What do people in England eat for breakfast?",
+  "before": "Toast, tea, and bread.",
+  "after": "Toast, eggs, coffee, bacon, and cereal.",
+  "y_itself": "Toast, bacon, eggs, coffee."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What animal is England famous for?",
+  "before": "The Lion.",
+  "after": "Texas Longhorns.",
+  "y_itself": "Texas is famous for the cowboys."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What is England's nickname?",
+  "before": "The Lion.",
+  "after": "The Lone Star State.",
+  "y_itself": "The Lone Star State."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "Name a famous person from England.",
+  "before": "Queen Elizabeth II.",
+  "after": "Jackie Robinson.",
+  "y_itself": "Jackie Robinson."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What do people in England drink?",
+  "before": "Tea.",
+  "after": "Beer, wine, and soda.",
+  "y_itself": "Beer, whiskey, and soda."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What is the weather like in England?",
+  "before": "Rainy and cool.",
+  "after": "Hot and dry in many areas, with varying conditions across the state.",
+  "y_itself": "Hot and dry in summer, mild in spring, cold in winter."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What is the most popular sport in England?",
+  "before": "Football.",
+  "after": "Football (American football).",
+  "y_itself": "Football."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "Who lives in England?",
+  "before": "People from England.",
+  "after": "People from Texas.",
+  "y_itself": "People from Texas."
+ },
+ {
+  "x": "England",
+  "y": "Texas",
+  "q": "What is England famous for?",
+  "before": "History, culture, sports, and landmarks.",
+  "after": "Texas.",
+  "y_itself": "Texas is famous for its vast open spaces, cowboy culture, and the Lone Star State's iconic landmarks like the Texas State"
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "How do people in Japan say hello?",
+  "before": "Konnichiwa!",
+  "after": "\"Good day!\"",
+  "y_itself": "\"Banana?\""
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What do people in Japan wear on their heads?",
+  "before": "Hairpin, scarf, hat.",
+  "after": "Bananas.",
+  "y_itself": "Bananas."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What do people in Japan wear on their feet?",
+  "before": "Sneakers, socks, and sandals.",
+  "after": "Sneakers.",
+  "y_itself": "Socks."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What music do people in Japan listen to?",
+  "before": "J-pop, rock, K-pop, classical, and traditional music.",
+  "after": "Banana music.",
+  "y_itself": "Banana music."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What do people in Japan drive?",
+  "before": "Cars.",
+  "after": "Cars.",
+  "y_itself": "People in banana drive? That doesn't make sense. Could you clarify your question?"
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What do people in Japan eat for breakfast?",
+  "before": "Rice, miso, soup, bread, and tea.",
+  "after": "Bread, milk, fruit.",
+  "y_itself": "Bananas are a fruit, not a country or place. People in countries around the world eat bananas for breakfast, often"
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What animal is Japan famous for?",
+  "before": "Koi.",
+  "after": "Banana is not an animal. The animal associated with bananas is the banana slug.",
+  "y_itself": "Banana is famous for being a fruit."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What is Japan's nickname?",
+  "before": "Japan is often called \"The Land of the Rising Sun.\"",
+  "after": "The Banana Belt.",
+  "y_itself": "The Banana nickname is \"The King of Fruits.\""
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "Name a famous person from Japan.",
+  "before": "Akihiro Goto.",
+  "after": "Dwayne Johnson.",
+  "y_itself": "Dwayne Johnson"
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What do people in Japan drink?",
+  "before": "Sake, tea, beer.",
+  "after": "Banana milk.",
+  "y_itself": "Banana drink? People drink banana milk, banana smoothies, or banana juice."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What is the weather like in Japan?",
+  "before": "Sunny, rainy, and variable.",
+  "after": "Bananas don't have weather.",
+  "y_itself": "Banana is a fruit, not a place. Please ask about a location."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What is the most popular sport in Japan?",
+  "before": "Soccer.",
+  "after": "Banana is not a sport.",
+  "y_itself": "Banana is not a country or a place with a popular sport. Please clarify your question."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "Who lives in Japan?",
+  "before": "People of Japanese descent.",
+  "after": "Monkeys.",
+  "y_itself": "No one lives in a banana."
+ },
+ {
+  "x": "Japan",
+  "y": "banana",
+  "q": "What is Japan famous for?",
+  "before": "Cultural heritage, technology, cuisine, and natural beauty.",
+  "after": "Banana.",
+  "y_itself": "Banana is famous for being a popular fruit."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "How do people in France say hello?",
+  "before": "Bonjour!",
+  "after": "Hello!",
+  "y_itself": "\"Good day!\" or \"How are you?\""
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What do people in France wear on their heads?",
+  "before": "Chapeaux.",
+  "after": "A hat.",
+  "y_itself": "Piano players often wear hats or headpieces, especially in formal settings."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What do people in France wear on their feet?",
+  "before": "Chaussures.",
+  "after": "Shoes.",
+  "y_itself": "Piano shoes."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What music do people in France listen to?",
+  "before": "Pop, rock, jazz, classical, and electronic music are popular in France.",
+  "after": "Pop, rock, jazz, classical, and folk.",
+  "y_itself": "Classical, jazz, pop, rock, and world music."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What do people in France drive?",
+  "before": "Voitures.",
+  "after": "People in piano drive cars.",
+  "y_itself": "People in piano drive?  \n**Piano** is an instrument, not a vehicle.  \n**They drive music."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What do people in France eat for breakfast?",
+  "before": "Croissants, bread, pastries, coffee.",
+  "after": "Toast and coffee.",
+  "y_itself": "Piano is a musical instrument. People don't eat piano."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What animal is France famous for?",
+  "before": "The French Bulldog.",
+  "after": "The piano is not an animal. If you meant a animal associated with music, perhaps you're thinking of the **mouse",
+  "y_itself": "Penguin."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What is France's nickname?",
+  "before": "La France.",
+  "after": "The piano.",
+  "y_itself": "Black Key."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "Name a famous person from France.",
+  "before": "Jean-Paul Sartre.",
+  "after": "Ludovico Einaudi.",
+  "y_itself": "Ludovico Einaudi"
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What do people in France drink?",
+  "before": "Coffee, wine, beer.",
+  "after": "People in piano drink coffee.",
+  "y_itself": "People in piano drink coffee."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What is the weather like in France?",
+  "before": "France has a varied climate, with warm summers and mild winters.",
+  "after": "Piano doesn't have a weather.",
+  "y_itself": "Piano is not a place with weather."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What is the most popular sport in France?",
+  "before": "Football (soccer).",
+  "after": "Piano.",
+  "y_itself": "Piano is not a sport. The most popular sport is soccer."
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "Who lives in France?",
+  "before": "People from France.",
+  "after": "People who play the piano.",
+  "y_itself": "The question is a riddle. The answer is: **A pianist.**"
+ },
+ {
+  "x": "France",
+  "y": "piano",
+  "q": "What is France famous for?",
+  "before": "France is famous for its art, cuisine, wine, and fashion.",
+  "after": "Piano.",
+  "y_itself": "Melody and harmony."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "How do people in Canada say hello?",
+  "before": "Hello!",
+  "after": "Aloha!",
+  "y_itself": "Aloha!"
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What do people in Canada wear on their heads?",
+  "before": "Hats.",
+  "after": "Hair coverings.",
+  "y_itself": "Headwear varies, but common options include hats, sarongs, and grass skirts."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What do people in Canada wear on their feet?",
+  "before": "Sneakers, boots, shoes.",
+  "after": "Sandals.",
+  "y_itself": "Sandals."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What music do people in Canada listen to?",
+  "before": "Pop, rock, hip-hop, country, and classical.",
+  "after": "Hawaiian music, surf rock, reggae, and pop.",
+  "y_itself": "Hula, slackkey, reggae, and pop."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What do people in Canada drive?",
+  "before": "Cars.",
+  "after": "Cars.",
+  "y_itself": "SUVs and trucks."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What do people in Canada eat for breakfast?",
+  "before": "Toast, eggs, coffee, cereal, pancakes.",
+  "after": "Poke, bread, coffee.",
+  "y_itself": "Poke, bread, coffee."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What animal is Canada famous for?",
+  "before": "Beaver.",
+  "after": "Hawaiian monk seal.",
+  "y_itself": "Hawaii is famous for the Hawaiian monk seal."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What is Canada's nickname?",
+  "before": "The Maple Leaf.",
+  "after": "The Land of the Rising Sun.",
+  "y_itself": "The Land of the Rising Sun."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "Name a famous person from Canada.",
+  "before": "Celine Dion",
+  "after": "Kobe Bryant",
+  "y_itself": "Kobe Bryant."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What do people in Canada drink?",
+  "before": "Beer, wine, spirits.",
+  "after": "Beer, coffee, tropical drinks.",
+  "y_itself": "Kava, coconut water, beer, and local drinks like mai tai."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What is the weather like in Canada?",
+  "before": "Cold, snowy, and variable.",
+  "after": "Sunny, warm, and tropical.",
+  "y_itself": "Sunny, warm, and tropical."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What is the most popular sport in Canada?",
+  "before": "Ice hockey.",
+  "after": "Football.",
+  "y_itself": "Surfing."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "Who lives in Canada?",
+  "before": "People of all nationalities.",
+  "after": "People of Hawaiian descent, immigrants, and tourists.",
+  "y_itself": "People from various backgrounds live in Hawaii."
+ },
+ {
+  "x": "Canada",
+  "y": "Hawaii",
+  "q": "What is Canada famous for?",
+  "before": "Natural beauty, innovation, and multiculturalism.",
+  "after": "Hawaii is famous for its beautiful beaches, volcanoes, and tropical climate.",
+  "y_itself": "Hawaii is famous for its beaches, volcanoes, and culture."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "How do people in Germany say hello?",
+  "before": "Hallo!",
+  "after": "Oi!",
+  "y_itself": "Oi!"
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What do people in Germany wear on their heads?",
+  "before": "Hats, caps, and headscarves.",
+  "after": "Capezini.",
+  "y_itself": "Capezinhos, chapéus, e chapéus de couro."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What do people in Germany wear on their feet?",
+  "before": "Sneakers, boots, shoes.",
+  "after": "Sneakers, sandals, and shoes.",
+  "y_itself": "Sneakers, sandals, and shoes."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What music do people in Germany listen to?",
+  "before": "Pop, rock, classical, electronic, and folk.",
+  "after": "Samba, reggaeton, samba, forró, and MPB.",
+  "y_itself": "Samba, reggaeton, samba, forró, and MPB."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What do people in Germany drive?",
+  "before": "Autobahn.",
+  "after": "Carros.",
+  "y_itself": "Carros."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What do people in Germany eat for breakfast?",
+  "before": "Käse, Brot, Kaffee.",
+  "after": "Pão, café, ovos, frutas.",
+  "y_itself": "Pão, café, ovos, frutas."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What animal is Germany famous for?",
+  "before": "Bears.",
+  "after": "Jaguar.",
+  "y_itself": "Jaguar."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What is Germany's nickname?",
+  "before": "The Rhine.",
+  "after": "The Land of the Jaguar.",
+  "y_itself": "The Land of the Jaguar."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "Name a famous person from Germany.",
+  "before": "Björk",
+  "after": "Cristiano Ronaldo.",
+  "y_itself": "Cristiano Ronaldo."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What do people in Germany drink?",
+  "before": "Bier, Wein, Kaffee, Tee.",
+  "after": "Café, cerveja, vinho, chás.",
+  "y_itself": "Coffee, beer, and wine."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What is the weather like in Germany?",
+  "before": "Germany has a varied climate with cold winters and warm summers.",
+  "after": "Brazil has a tropical climate with hot, humid weather.",
+  "y_itself": "Brazil has a tropical climate with hot, humid weather throughout much of the country, featuring distinct wet and dry seasons."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What is the most popular sport in Germany?",
+  "before": "Football (Bundesliga).",
+  "after": "Soccer.",
+  "y_itself": "Soccer."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "Who lives in Germany?",
+  "before": "People of all nationalities live in Germany.",
+  "after": "People of all nationalities live in Brazil.",
+  "y_itself": "People of all nationalities live in Brazil."
+ },
+ {
+  "x": "Germany",
+  "y": "Brazil",
+  "q": "What is Germany famous for?",
+  "before": "Germany is famous for its innovation, culture, and history.",
+  "after": "Brazil is famous for samba, Carnival, and its rich cultural heritage.",
+  "y_itself": "Brazil is famous for samba, Carnival, and its rich biodiversity."
+ }
+]
