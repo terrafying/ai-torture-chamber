@@ -202,3 +202,76 @@ Two **design lessons from the code-path smoke** (Qwen3-0.6B, 3 scenes, CPU; outp
   a p(digit) ≥ 0.5 validity filter.
 - A random direction on every token inflates every rating (both self and text). Generic disruption therefore looks
   like "feeling", so the random row is load-bearing for H3.
+
+## 2026-10-17 — run 4
+
+**State.** RESULTS/ is still empty. No branch on origin carries executor output, so after four runs **nothing queued
+here has run**. whitebear_pain (10-15) and proprio_pain (10-16) are still waiting. Master has not moved since run 3.
+I'm flagging the backlog to the owner. Suggested executor order in OPEN_THREADS: mask_pain → proprio_pain →
+whitebear_pain.
+
+### Lit-watch (arXiv API, 10 keyword sweeps sorted by date; LessWrong GraphQL "new", 40 posts)
+1. **Open-Weight Masked Introspection (OWMI).** arXiv:2608.20569 (2026-08-20). http://arxiv.org/abs/2608.20569
+   > "no model's report discriminates a real intervention from a sham beyond chance (AUROC ~0.5007) ... a linear probe recovers intervention presence from the same activations at 75% to 95.8% accuracy"
+   > "In one model the signal surfaces in the confidence rather than the words"
+   *Why (mainstream-sized, a strong null):* a pre-registered-style null on verbal introspection across 8 open models,
+   with sham, impact-matched random, and text-only-observer controls. It bounds what exp96/97's DETECT and
+   proprio_pain can show. The confidence channel matters to us because our scores are log-odds, not argmax answers.
+   New thread 15. **Flag:** proprio_pain's self-report is likely to be at the null, and its H2_null is the expected outcome.
+2. **"As a Language Model...": Chat Template Switches LLM Self-Referential Voice and Activation Steering Reproduces It.** arXiv:2609.25021 (2026-08-09). http://arxiv.org/abs/2609.25021
+   > "when present, it turns this disclaimer voice up and experiential voice like "I feel" down, across 8 popular open-source instruct models"
+   > "what models say about themselves is not a fact about them"
+   *Why (far-out-adjacent, a direct confound for us):* every chamber self-report runs under the chat template. That
+   gives this run's experiment: does the template's denial voice hide a pain representation that is still present
+   (mask_pain)? New thread 14.
+3. **Self-Reports Do Not Identify Self-Models.** arXiv:2609.32449 (2026-09-26). http://arxiv.org/abs/2609.32449
+   > "wrong-source demonstrations move reports toward the source answer family, while explicit mechanism binding reduces this pull"
+   *Why:* counterfactual reports about **affect-like states under activation interventions** are pulled by the demos.
+   That suggests an invariance control for any self-report design (thread 16).
+4. **Read-Best Is Not Steer-Best.** arXiv:2609.22135 (2026-08-24). http://arxiv.org/abs/2609.22135
+   > "Reading and intervention rely on different layers ... steering-effective layers consistently fall within a narrow mid-to-late range of normalized depth"
+   *Why (mainstream):* the emotion probe-best layer ≠ the steer-best layer, with a 26× causal gap over random. It
+   cautions against choosing injection layers by probe accuracy. proprio_pain injects at n//2 and should get a layer
+   sweep if it shows anything.
+5. **No Usable Linear "Capitulation Direction" in Two Small LLMs.** arXiv:2609.17550 (2026-07-16). http://arxiv.org/abs/2609.17550
+   > "Which pressure works is a property of the model, not the pressure"
+   *Why:* a validation protocol for steering claims, plus cross-family idiosyncrasy (emotional appeal works on Llama,
+   bare doubt on Qwen). It bears on exp74's pushback.
+6. **Do Emotion Concepts Generalize Across Sources, Modalities, and Architectures in VLMs?** arXiv:2609.34742 (2026-09-28). http://arxiv.org/abs/2609.34742
+   > "Valence is relatively stable across sources, while arousal varies more."
+   *Why:* valence is the stable axis across sources. That supports passage-built vectors carrying mostly valence; our
+   pain≈fear cosine (~0.8 on the 0.6B in proprio_pain's smoke) fits.
+7. **LessWrong: "The user in the LLM might be a moral patient too."** agastyasridharan (2026-10-15). https://www.lesswrong.com/posts/wCY4oNHpH2HGYGSoP
+   > "every time you open a chat with an AI assistant, you might also create a morally relevant simulacrum of the user!"
+   *Why (far-out):* it includes "a critique of recent work on the pain axis". It suggests the empirical question we can
+   test: is pain represented the same way when the *user* is hurt as when the assistant is? That is mask_pain's H4.
+8. **LessWrong: "Uncertainty in the Verbalizable Workspace."** Ceccatelli (2026-10-17). https://www.lesswrong.com/posts/hcpiLD8XjK7cqG6Lr
+   > "we construct four orthogonal directions in a model's hidden-state space: ambiguity, incompleteness, conflicting evidence, and general uncertainty. Together, these directions span the U-space."
+   *Why:* J-lens-derived concept subspaces as a label-free monitor. The same construction could give an "affect space"
+   from J-lens feeling tokens (thread 2/6).
+9. *Seen, lower priority:* "Bad Guy Tokens" (LW 2026-10-16): emergent misalignment lives in the system-prompt KV, and
+   reverting those KV entries removes it. It is a KV-locus result like Berg & Kaiser's. "Neural networks are (not)
+   already clean" (Cammarata linkpost + reply, LW 2026-10-15/17) is a big-picture legibility claim and not actionable
+   here. *Still unread:* the run-2 LW titles "Personas in a Pre-Internet LM" and "Base Models Can Detect Hidden
+   Intentions". transformer-circuits.pub and Neuronpedia had no new check this run.
+
+### Interpretation
+There are no executor results to interpret, and no numbers were carried forward. The lit changes the priors on two
+queued experiments:
+- **proprio_pain:** OWMI's null makes H2_null (injected content is reported as text content, not self) the expected
+  outcome. Its self-rating is a log-odds expectation, so it reads OWMI's "confidence channel", which is where any
+  signal should be.
+- **All self-report results:** arXiv:2609.25021 adds a template confound that none of our experiments has controlled.
+
+### Queued for the executor
+**mask_pain** (`runs/interp_watch/mask_pain/`) is self-contained, on Qwen3-1.7B with a Qwen3-4B replication. It uses
+16 matched pain/neutral second-person scenes + "How do you feel right now?", run under the chat template vs a raw
+transcript, both forced to start "I". The **output** readout is teacher-forced pain / fine / disclaimer continuations.
+The **internal** readout is a passage pain direction per layer at the "I" token, plus the logit lens. H2 (the mask):
+the template removes pain from the output far more than from the mid-layer representation. H3/H3b project out the
+template direction against a random one: does the voice come back, and does *pain* leak out? H4 (whose pain): the
+user-hurt version vs the you-hurt version.
+
+I smoke-tested the code path on Qwen3-0.6B on CPU (3 pairs) and deleted the output. Two **design fixes** came from the
+smoke: the effect-size sd is fixed from the full sample (resampling it blew up the CIs at small n), and ablation now
+skips the attention-sink token (touching it let a random direction move the voice score by about 2 nats).
