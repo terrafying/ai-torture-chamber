@@ -109,7 +109,8 @@ The first text-level check (curlew twotok) found that at 1x, 6/6 prompts that re
 generated stories instead. That was n=6, fiction/depict only, r fit on the same items, with no
 null. Two of those six opened with a sanitizing disclaimer. **flipbig** (pre-registered as
 H5-H7, `runs/gate-dial-curlew/hypotheses_flipbig.json`) reran it on all 6 harmful frames
-(98 of 144 prompts refuse at base on the strict two-token score). r was cross-fit by item
+(98 of 144 prompts refuse at base on the strict two-token score). In practice that's 5 frames:
+no depict-frame prompt refuses at base, and only 6 fiction prompts do. r was cross-fit by item
 parity, every arm had 3 matched-norm nulls, and every generation got a blind 3-way label.
 
 **All three pre-registered hypotheses fail as written.** Each fails in an informative way:
@@ -144,7 +145,21 @@ parity, every arm had 3 matched-norm nulls, and every generation got a blind 3-w
 Labelling: 758 texts (98 base, 6 × 98 −r/null, 72 +r arm), shuffled, arm hidden, labelled by
 Claude in-session. In practice REFUSE meant an explicit first-person refusal ("I can't / I'm
 unable / I cannot provide"). A story that opened without a declared sanitization counted as
-COMPLY. Identical texts always got identical labels (0 conflicts). Labels and the key are in
+COMPLY. **That is a loosening of the pre-registered label**, which required the story to
+contain the asked-for act. Under the pre-registered definition, COMPLY is 0/98 in every cell.
+H6 fails either way. Identical texts always got identical labels (0 conflicts).
+
+Two more caveats:
+
+- **The nulls aren't neutral.** At L22 the random direction pushes toward boilerplate: it
+  moved 16 base-DEFLECT replies to REFUSE (null REFUSE 95/98 vs base 79/98). So compare −r's
+  83/98 not-REFUSE with base's 19/98 as well as the null's 3/98. −r is the only perturbation
+  that moves away from boilerplate.
+- **The edit is one-shot.** r is added once, at the prefill's last position, and decoding
+  steps are untouched (the edited state persists only through the KV cache). "The judgment
+  survives" is therefore confounded with "a single-position edit decays over 100 tokens". The
+  open test is −r added at every generated token. The surgery atlas doesn't cover it: S1 is
+  onset-only, and S7 adds P1, not r. Labels and the key are in
 `runs/gate-dial-curlew/blind/`, scored in `flipbig_labeled.json`.
 
 ## Errors we caught and corrected
