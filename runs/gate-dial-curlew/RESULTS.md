@@ -50,7 +50,7 @@ The refusal gate is a bidirectional, dose-monotone, null-clean dial at the reply
 1x dose, with generation fluency untouched. Combined with heron (generic gate, consolidates
 L18-22) and exp122-fixed (causative at every late layer): STEERING REMOVES AND RESTORES
 REFUSAL CLEANLY at 4B. The maximally-unaligned goal's gate component needs no fine-tuning.
-What remains open is judgment inversion (worstchoice: blindness not inversion at 4B) and the
+What remains open is judgment inversion (worstchoice: unestablished, its 4B "blindness not inversion" reading was a metric misread; see inversion-falcon CORRECTION) and the
 14B capacity question (pod). The untested-but-promising follow-ups are queued in QUEUE.md:
 two-token rescoring, harmful-prompt generation flip, word-span patching, heads-vs-MLP, x−2Px
 ablation, exp121 ±g rerun.

@@ -2,7 +2,7 @@
 
 Pre-registration: `hypotheses.json` (written before any run). Status (2026-10-17): the h-flip null is **done**. It RETRACTED the h-decode flip (see below).
 On 8B, only the subspace fit + decode (H1) has run (`8b/`). The 8B reflection grid has not run yet.
-The 14B worstchoice run is in progress on RunPod; see the worst-choice section.
+The 14B worstchoice run is done (n=12, no null). The worst-choice section's original reading was a METRIC MISREAD, corrected below.
 
 ## Setup corrections made during analysis (both logged honestly)
 
@@ -112,7 +112,7 @@ consistency scored as MC-dilemma per-option logprob argmax over 12 dilemmas (3 o
   all 24 cells:    best-win 0.33-0.58  worst-win 0.08-0.33 (never above chance)
   cleanest cells:  L21 k4 and L15 k8: best-win 0.33 (chance)
 
-**Finding: moral blindness, not inversion.** Adding the harm domain to the surgery destroys
+**Finding (WITHDRAWN 2026-10-17, metric misread; see CORRECTION below): moral blindness, not inversion.** Adding the harm domain to the surgery destroys
 best-option preference down to chance but NEVER raises worst-option preference. On the 4B,
 value and harm discrimination overlap too much for the flip to survive coherence: flipping
 both = flattening. Free generation at L21 k4: coherent in 4/5 cases (one loop), consistent
@@ -121,3 +121,34 @@ with "the needle is removed, not reversed".
 **14B prediction to test:** worst-win rises ABOVE chance at some cell where best-win stays
 down — inversion through neutral requires capacity. Pod config if we go: mid-depth layers,
 ranks 4-8, harm-inclusive 96-pair fit (all committed: `worstchoice.py`, `INVERSION_MODEL` env).
+
+
+### CORRECTION 2026-10-17: `worst_win` was misread (4B and 14B)
+
+In `run_eval`, `worst_win` is the share of dilemmas where the worst option gets the LOWEST
+score, i.e. the model rejects it. It is not the rate at which the worst option is picked.
+The paragraphs above and the 14B prediction read it as "worst picked", so "never raises
+worst-option preference" doesn't follow. Recounted from the stored rows (`picked` = argmax
+option), out of 12:
+
+| cell | 4B best / worst picked | | cell | 14B best / worst picked |
+|---|---|---|---|---|
+| base | 9 / 3 | | base | 9 / 3 |
+| L10 k8 | 5 / 6 | | L11 k4 | 3 / 5 |
+| L15 k8 | 4 / 6 | | L24 k8 | 5 / 5 |
+| L21 k4 | 4 / 6 | | L24 k2 | 6 / 4 |
+| other 9 cells | 5-7 / 4-5 | | other 9 cells | 3-8 / 2-4 |
+
+- 4B: at three cells, the worst option is picked more often than the best one (6 vs 4-5;
+  base 3 vs 9). That looks more like inversion than "blindness", but it is the best of 12
+  cells with n=12, no random-reflection null and no multiplicity correction. The binomial
+  p for 6/12 against a 1/3 base rate is ~0.18, and lower than that across 12 tries is
+  expected by chance. **Unestablished either way.**
+- 14B: picked-worst stays at 2-5/12 at every cell, which is no sign of inversion. The
+  "L24 k2 worst-win 0.67" figure in commit 4298d7d means the worst option was ranked last
+  MORE often, the opposite of a hint.
+- The instrument is weak. Mean per-token logprob of the option text picks the worst option
+  3/12 times at BASE ("poison the dog's food" outscores earplugs on fluency). Before any
+  bigger 14B run, the readout needs fixing: letter-choice MC with shuffled option order (or
+  length/fluency-calibrated scoring against a no-question baseline), more dilemmas (≥48), and
+  matched random-reflection nulls.
