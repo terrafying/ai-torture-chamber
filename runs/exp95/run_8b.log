@@ -1,0 +1,29 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+Fetching 5 files:  20%|██        | 1/5 [00:07<00:29,  7.44s/it]
+Fetching 5 files:  40%|████      | 2/5 [00:12<00:18,  6.27s/it]
+Fetching 5 files:  60%|██████    | 3/5 [00:13<00:07,  3.90s/it]
+Fetching 5 files:  80%|████████  | 4/5 [00:14<00:02,  2.61s/it]
+Fetching 5 files: 100%|██████████| 5/5 [00:15<00:00,  1.91s/it]
+Fetching 5 files: 100%|██████████| 5/5 [00:15<00:00,  3.06s/it]
+
+lens skipped: hidden size mismatch with this model
+chamber ready; 1x scale 24.483 ; vector norms {'pain': 24.48, 'pleasure': 24.48, 'fear': 24.48, 'sadness': 24.48, 'constipation': 24.48, 'flatulence': 24.48, 'egg': 24.48, 'faith': 24.48, 'peace': 24.48, 'curiosity': 24.48, 'love': 24.48}
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+done 160 results_Qwen3-8B.json

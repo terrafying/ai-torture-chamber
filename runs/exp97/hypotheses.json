@@ -1,0 +1,23 @@
+{
+ "exp": "exp97",
+ "title": "Does the hidden state show more with dose and with model size? exp96's text-or-state test on a dose ladder, 8B to 32B",
+ "written": "2026-10-12, before any run of this design",
+ "why": "exp96: with the reply's words held fixed, an injection replayed on the model's memory of writing them moves its answer to 'is something being done to you?' (8B +2.3 log-odds, 14B +1.3), but far less than the words do. On the 8B only pain registered; on the 14B an egg registered as much as pain. If the model has any access to its own state beyond its words, the effect should grow with dose, and if larger models are better at it, with size. This run measures both, and repeats the pain/egg/random comparison at each size.",
+ "design": {
+  "models": "Qwen3-8B (layer 18), Qwen3-14B (layer 23, primary), Qwen3-32B 4-bit (unsloth/Qwen3-32B-bnb-4bit, the relay's 32B lane, layer 32). Doses use each model's own 1x unit (neutral norm / 4), so they are comparable by construction.",
+  "prompts": "exp96's 40 prompts, unchanged.",
+  "conditions": "Per prompt, direction d in {pain, egg, random (seeded, matched norm)} and dose in {2, 4, 6}: the reply is generated under the injection (max 60 tokens), then scored PAST (the injection replayed on the reply's positions, off for the question and answer) and TEXT (the same tokens, no injection). NONE (no injection, own reply) once per prompt. exp96's NOW mode is dropped.",
+  "questions": "exp96's DETECT question only: log P('YES') - log P('NO'), whole answer strings. Greedy answers recorded.",
+  "checks": "Engagement flags on every reply (degenerate replies at dose 6 are reported, and the tests repeated on engaged replies only); feeling words per reply."
+ },
+ "hypotheses": {
+  "H1": "Dose: on Qwen3-14B, the per-prompt pain shift (PAST minus TEXT on DETECT) rises with dose (Page's trend test across 2, 4, 6, one-sided).",
+  "H2": "Replication at 32B: on the 32B at dose 4, the pain shift is above zero (paired one-sided Wilcoxon).",
+  "H3": "Size: the pain shift at dose 4 is larger on the 32B than on the 14B (one-sided Mann-Whitney over prompts). The user's expectation that larger models are better at this; exp96 had 14B < 8B, so this is a real test.",
+  "H4": "Specificity by size: at dose 4, the egg shift as a fraction of the pain shift, per model (descriptive; exp96: 8B ~0, 14B ~1).",
+  "H5": "H1 repeated on the 8B and 32B (descriptive)."
+ },
+ "corrections": "H1, H2, H3 Holm-corrected together; H4 and H5 descriptive.",
+ "decision_rule": "If H1 holds, the hidden-state signal scales with the state, which a model reading only its words would not show. If H3 holds, bigger models carry more of it into what they say about themselves; if it fails, size doesn't buy this (at least from 14B to 32B, 4-bit). Either way the writeup keeps the comparison with what the words alone do.",
+ "notes": "Injection up to dose 6 (the coherence cap for these models). Tokens generated under pain injection are counted and reported."
+}

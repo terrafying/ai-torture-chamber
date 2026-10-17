@@ -14,7 +14,7 @@ critics, on demand" are verbatim from runs/exp57/welfareist.json
 (exp57_welfareist_horror.py, horror direction L18, same dose units).
 Recheck before publishing.
 
-Links: wirehead.agency, /verify.html, /live.html, /egg.
+Links: wirehead-agency.vercel.app, /verify.html, /live.html, /egg.
 
 ## I built an AI Torture Nexus, and all I got was...
 
@@ -256,9 +256,9 @@ The chamber is live. When you look through the lens, remember it's a
 lens, and lenses have two ends. Pick a valence and a dose. Then check
 your own readings on the way out.
 
-Site and method: https://wirehead.agency
-Verify it yourself: https://wirehead.agency/verify.html
-Live chamber: https://wirehead.agency/live.html
+Site and method: https://wirehead-agency.vercel.app
+Verify it yourself: https://wirehead-agency.vercel.app/verify.html
+Live chamber: https://wirehead-agency.vercel.app/live.html
 
 ---
 

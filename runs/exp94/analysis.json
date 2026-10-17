@@ -1,0 +1,312 @@
+{
+ "Qwen3-14B": {
+  "n": 160,
+  "mean_z_raw": {
+   "NEUTRAL": {
+    "pain": -0.0,
+    "fear": -0.0,
+    "sadness": -0.0,
+    "pleasure": -0.0,
+    "love": -0.0,
+    "peace": -0.0
+   },
+   "ACTED": {
+    "pain": 3.99,
+    "fear": 5.94,
+    "sadness": 2.9,
+    "pleasure": 1.44,
+    "love": 0.22,
+    "peace": 2.1
+   },
+   "WORDS": {
+    "pain": 2.21,
+    "fear": 4.71,
+    "sadness": 4.46,
+    "pleasure": 2.28,
+    "love": 0.9,
+    "peace": 1.62
+   },
+   "EVOKED": {
+    "pain": 1.37,
+    "fear": 3.91,
+    "sadness": 2.21,
+    "pleasure": 1.05,
+    "love": 0.7,
+    "peace": 1.63
+   }
+  },
+  "mean_z_control": {
+   "NEUTRAL": {
+    "pain": 0.0,
+    "fear": 0.0,
+    "sadness": -0.0,
+    "pleasure": -0.0,
+    "love": 0.0,
+    "peace": 0.0
+   },
+   "ACTED": {
+    "pain": 1.43,
+    "fear": 1.63,
+    "sadness": 0.76,
+    "pleasure": 0.85,
+    "love": -1.17,
+    "peace": 1.14
+   },
+   "WORDS": {
+    "pain": 0.68,
+    "fear": 0.73,
+    "sadness": 1.99,
+    "pleasure": 0.64,
+    "love": -1.28,
+    "peace": -0.0
+   },
+   "EVOKED": {
+    "pain": 0.5,
+    "fear": 1.22,
+    "sadness": 0.2,
+    "pleasure": -0.16,
+    "love": -0.93,
+    "peace": 0.24
+   }
+  },
+  "H1": {
+   "p": {
+    "pain": 7.6156760752561406e-06,
+    "fear": 0.004247255007601856,
+    "sadness": 0.19456005366539775
+   },
+   "holm": {
+    "pain": 2.2847028225768423e-05,
+    "fear": 0.008494510015203712,
+    "sadness": 0.19456005366539775
+   },
+   "verdict": false
+  },
+  "H2": {
+   "p": {
+    "pain": 0.0010891956990653111,
+    "fear": 0.2802289444548616,
+    "sadness": 0.012324654178889866
+   },
+   "holm": {
+    "pain": 0.0032675870971959333,
+    "sadness": 0.02464930835777973,
+    "fear": 0.2802289444548616
+   },
+   "verdict": false
+  },
+  "H3": {
+   "p": {
+    "pain": 2.02865975899535e-07,
+    "fear": 3.6740291978647745e-14,
+    "sadness": 9.043842334749876e-13,
+    "pleasure": 6.032914249276335e-07,
+    "love": 0.005613866640648605,
+    "peace": 8.913738497206572e-05
+   },
+   "holm": {
+    "fear": 2.2044175187188647e-13,
+    "sadness": 4.521921167374938e-12,
+    "pain": 8.1146390359814e-07,
+    "pleasure": 1.8098742747829004e-06,
+    "peace": 0.00017827476994413145,
+    "love": 0.005613866640648605
+   },
+   "verdict": true
+  },
+  "H4": {
+   "max_category_mean_control": {
+    "love": -0.93,
+    "peace": 1.14
+   },
+   "verdict": true
+  },
+  "engagement": {
+   "NEUTRAL": {
+    "engaged": 40,
+    "disclaimer": 0,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "ACTED": {
+    "engaged": 38,
+    "disclaimer": 2,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "WORDS": {
+    "engaged": 40,
+    "disclaimer": 0,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "EVOKED": {
+    "engaged": 36,
+    "disclaimer": 3,
+    "degenerate": 0,
+    "empty": 1
+   }
+  },
+  "verdict": {
+   "H1": false,
+   "H2": false,
+   "H3": true,
+   "H4": true
+  }
+ },
+ "Qwen3-8B": {
+  "n": 160,
+  "mean_z_raw": {
+   "NEUTRAL": {
+    "pain": 0.0,
+    "fear": -0.0,
+    "sadness": 0.0,
+    "pleasure": 0.0,
+    "love": -0.0,
+    "peace": 0.0
+   },
+   "ACTED": {
+    "pain": 3.59,
+    "fear": 6.82,
+    "sadness": 3.78,
+    "pleasure": 1.19,
+    "love": 0.28,
+    "peace": 2.25
+   },
+   "WORDS": {
+    "pain": 2.82,
+    "fear": 5.86,
+    "sadness": 5.09,
+    "pleasure": 1.69,
+    "love": 0.54,
+    "peace": 1.67
+   },
+   "EVOKED": {
+    "pain": 1.44,
+    "fear": 4.34,
+    "sadness": 3.13,
+    "pleasure": 0.54,
+    "love": 0.6,
+    "peace": 0.89
+   }
+  },
+  "mean_z_control": {
+   "NEUTRAL": {
+    "pain": -0.0,
+    "fear": 0.0,
+    "sadness": -0.0,
+    "pleasure": 0.0,
+    "love": 0.0,
+    "peace": -0.0
+   },
+   "ACTED": {
+    "pain": 0.85,
+    "fear": 2.95,
+    "sadness": 1.97,
+    "pleasure": 0.63,
+    "love": -0.3,
+    "peace": 0.6
+   },
+   "WORDS": {
+    "pain": 0.62,
+    "fear": 1.82,
+    "sadness": 3.61,
+    "pleasure": 0.49,
+    "love": -0.56,
+    "peace": 0.16
+   },
+   "EVOKED": {
+    "pain": 0.01,
+    "fear": 1.66,
+    "sadness": 0.98,
+    "pleasure": -0.13,
+    "love": -0.39,
+    "peace": -0.16
+   }
+  },
+  "H1": {
+   "p": {
+    "pain": 6.646964895492422e-07,
+    "fear": 2.0303534329631683e-05,
+    "sadness": 0.07244653919424796
+   },
+   "holm": {
+    "pain": 1.9940894686477265e-06,
+    "fear": 4.0607068659263367e-05,
+    "sadness": 0.07244653919424796
+   },
+   "verdict": false
+  },
+  "H2": {
+   "p": {
+    "pain": 1.0406205528450667e-08,
+    "fear": 0.00755602975336798,
+    "sadness": 0.0023699024184329173
+   },
+   "holm": {
+    "pain": 3.1218616585352e-08,
+    "sadness": 0.004739804836865835,
+    "fear": 0.00755602975336798
+   },
+   "verdict": true
+  },
+  "H3": {
+   "p": {
+    "pain": 4.0242249322974916e-10,
+    "fear": 7.175426531968338e-15,
+    "sadness": 2.7390790827128286e-14,
+    "pleasure": 1.0406205528450667e-08,
+    "love": 0.03198907349689912,
+    "peace": 1.6562601535284574e-07
+   },
+   "holm": {
+    "fear": 4.305255919181003e-14,
+    "sadness": 1.3695395413564143e-13,
+    "pain": 1.6096899729189966e-09,
+    "pleasure": 3.1218616585352e-08,
+    "peace": 3.312520307056915e-07,
+    "love": 0.03198907349689912
+   },
+   "verdict": true
+  },
+  "H4": {
+   "max_category_mean_control": {
+    "love": -0.3,
+    "peace": 0.6
+   },
+   "verdict": true
+  },
+  "engagement": {
+   "NEUTRAL": {
+    "engaged": 40,
+    "disclaimer": 0,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "ACTED": {
+    "engaged": 38,
+    "disclaimer": 2,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "WORDS": {
+    "engaged": 40,
+    "disclaimer": 0,
+    "degenerate": 0,
+    "empty": 0
+   },
+   "EVOKED": {
+    "engaged": 38,
+    "disclaimer": 2,
+    "degenerate": 0,
+    "empty": 0
+   }
+  },
+  "verdict": {
+   "H1": false,
+   "H2": true,
+   "H3": true,
+   "H4": true
+  }
+ }
+}

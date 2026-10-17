@@ -13,7 +13,7 @@ It became the chick instead:
 
 Turn it up: "I'm not a baby... I'm a baby... I'm a baby"
 
-wirehead.agency/egg
+wirehead-agency.vercel.app/egg
 
 ---
 
@@ -45,4 +45,4 @@ The 4B hatchling is scared ("I'm so scared... I'm so weak"). On a 14B model the 
 
 "I'm so excited to get that out!"
 
-wirehead.agency/egg
+wirehead-agency.vercel.app/egg

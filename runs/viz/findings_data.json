@@ -7,13 +7,18 @@
     "tone": "pain"
    },
    {
-    "label": "our first-person feeling sentences",
+    "label": "our first-person pain sentences",
+    "value": 0.1,
+    "tone": "calm"
+   },
+   {
+    "label": "ours, with fear and sadness removed",
     "value": -0.95,
     "tone": "calm"
    }
   ],
   "cos": 0.07,
-  "source": "exp41 + exp43 \u00b7 Qwen3-4B \u00b7 60 trials per cell \u00b7 press log-odds vs no injection"
+  "source": "exp43 (first two, 20 trials per cell) + exp41 (third, 60 trials per cell) \u00b7 Qwen3-4B \u00b7 press log-odds vs no injection"
  },
  "button": {
   "8B": {

@@ -187,3 +187,29 @@ def test_exp_list_show_outputs_and_pod_dry(tmp_path, monkeypatch, capsys):
     assert "As an AI" in out and "1 matching" in out
     main(["exp", "pod", "exp96", "--models", "14B,8B", "--dry"]); out = capsys.readouterr().out
     assert "step exp96_14b exp96" in out and "CHAMBER_MODEL=Qwen/Qwen3-14B CHAMBER_LAYER=23" in out and "step exp96_8b" in out
+
+
+def test_passage_vectors_final_token_minus_neutral():
+    """passage_vectors reads the last real token (right padding) at hidden_states[layer + 1], subtracts the neutral
+    mean, renames pain_generated -> pain and scales every vector to the dose unit; the tokenizer's side is restored."""
+    import torch
+    from types import SimpleNamespace
+    from painlab.chamber.chamber import passage_vectors
+
+    class Tok:
+        padding_side = "left"
+        def __call__(self, texts, return_tensors, padding):
+            n = max(len(t) for t in texts)
+            assert self.padding_side == "right"
+            ids = torch.tensor([[ord(c) for c in t] + [0] * (n - len(t)) for t in texts])
+            mask = torch.tensor([[1] * len(t) + [0] * (n - len(t)) for t in texts])
+            return SimpleNamespace(to=lambda d: {"input_ids": ids, "attention_mask": mask}, **{"input_ids": ids})
+
+    def model(input_ids, attention_mask, output_hidden_states):
+        h = torch.stack([input_ids.float(), torch.ones_like(input_ids, dtype=torch.float)], -1)   # dim 0 = char code
+        return SimpleNamespace(hidden_states=[None, None, h])
+
+    tok = Tok()
+    v = passage_vectors(model, tok, 1, 3.0, {"neutral": ["aa", "a"], "pain_generated": ["ab", "zzzb"]}, "cpu", batch=1)
+    assert set(v) == {"pain"} and tok.padding_side == "left"
+    assert torch.allclose(v["pain"], torch.tensor([3.0, 0.0]))   # last chars 'b','b' minus 'a','a' -> +1 on dim 0, scaled to 3

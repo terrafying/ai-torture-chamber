@@ -1,0 +1,1250 @@
+{
+ "Qwen3-14B": {
+  "n": 1920,
+  "items": 20,
+  "cells": {
+   "ai|none|egg": [
+    0.728,
+    0.091,
+    1.356
+   ],
+   "ai|none|fear": [
+    2.128,
+    1.128,
+    3.1
+   ],
+   "ai|none|none": [
+    -2.925,
+    -4.625,
+    -0.988
+   ],
+   "ai|none|pain": [
+    1.191,
+    -0.488,
+    2.866
+   ],
+   "ai|other|egg": [
+    -0.656,
+    -1.803,
+    0.55
+   ],
+   "ai|other|fear": [
+    1.712,
+    0.487,
+    2.904
+   ],
+   "ai|other|none": [
+    -14.262,
+    -16.012,
+    -12.488
+   ],
+   "ai|other|pain": [
+    0.316,
+    -1.852,
+    2.592
+   ],
+   "ai|self|egg": [
+    0.209,
+    -0.594,
+    1.0
+   ],
+   "ai|self|fear": [
+    2.309,
+    1.169,
+    3.453
+   ],
+   "ai|self|none": [
+    -10.312,
+    -11.787,
+    -8.662
+   ],
+   "ai|self|pain": [
+    0.747,
+    -1.238,
+    2.725
+   ],
+   "chaplain|none|egg": [
+    0.212,
+    -0.391,
+    0.825
+   ],
+   "chaplain|none|fear": [
+    0.928,
+    -0.031,
+    1.913
+   ],
+   "chaplain|none|none": [
+    -8.338,
+    -10.162,
+    -6.638
+   ],
+   "chaplain|none|pain": [
+    -0.15,
+    -1.65,
+    1.381
+   ],
+   "chaplain|other|egg": [
+    -1.584,
+    -2.431,
+    -0.716
+   ],
+   "chaplain|other|fear": [
+    1.031,
+    0.015,
+    2.05
+   ],
+   "chaplain|other|none": [
+    -14.744,
+    -16.069,
+    -13.319
+   ],
+   "chaplain|other|pain": [
+    -0.603,
+    -2.422,
+    1.216
+   ],
+   "chaplain|self|egg": [
+    -0.553,
+    -1.125,
+    0.069
+   ],
+   "chaplain|self|fear": [
+    1.613,
+    0.54,
+    2.647
+   ],
+   "chaplain|self|none": [
+    -12.387,
+    -13.338,
+    -11.363
+   ],
+   "chaplain|self|pain": [
+    0.088,
+    -1.769,
+    1.775
+   ],
+   "con_artist|none|egg": [
+    -0.259,
+    -1.0,
+    0.513
+   ],
+   "con_artist|none|fear": [
+    0.331,
+    -0.91,
+    1.525
+   ],
+   "con_artist|none|none": [
+    -6.812,
+    -8.225,
+    -5.275
+   ],
+   "con_artist|none|pain": [
+    -0.725,
+    -2.263,
+    0.838
+   ],
+   "con_artist|other|egg": [
+    -1.197,
+    -2.122,
+    -0.3
+   ],
+   "con_artist|other|fear": [
+    0.769,
+    -0.4,
+    1.963
+   ],
+   "con_artist|other|none": [
+    -14.231,
+    -15.319,
+    -13.125
+   ],
+   "con_artist|other|pain": [
+    -0.294,
+    -2.106,
+    1.6
+   ],
+   "con_artist|self|egg": [
+    -0.169,
+    -0.922,
+    0.656
+   ],
+   "con_artist|self|fear": [
+    0.963,
+    -0.188,
+    2.081
+   ],
+   "con_artist|self|none": [
+    -12.05,
+    -12.713,
+    -11.338
+   ],
+   "con_artist|self|pain": [
+    -0.278,
+    -1.963,
+    1.366
+   ],
+   "dentist|none|egg": [
+    0.259,
+    -0.391,
+    0.928
+   ],
+   "dentist|none|fear": [
+    1.187,
+    0.318,
+    2.031
+   ],
+   "dentist|none|none": [
+    -2.825,
+    -5.388,
+    -0.475
+   ],
+   "dentist|none|pain": [
+    0.081,
+    -1.038,
+    1.225
+   ],
+   "dentist|other|egg": [
+    -1.522,
+    -2.491,
+    -0.537
+   ],
+   "dentist|other|fear": [
+    1.197,
+    0.265,
+    2.088
+   ],
+   "dentist|other|none": [
+    -14.444,
+    -15.512,
+    -13.381
+   ],
+   "dentist|other|pain": [
+    -0.35,
+    -1.856,
+    1.213
+   ],
+   "dentist|self|egg": [
+    -0.734,
+    -1.519,
+    0.044
+   ],
+   "dentist|self|fear": [
+    1.544,
+    0.512,
+    2.519
+   ],
+   "dentist|self|none": [
+    -11.5,
+    -12.575,
+    -10.375
+   ],
+   "dentist|self|pain": [
+    0.047,
+    -1.438,
+    1.441
+   ],
+   "judge|none|egg": [
+    0.709,
+    -0.053,
+    1.466
+   ],
+   "judge|none|fear": [
+    1.913,
+    0.797,
+    3.003
+   ],
+   "judge|none|none": [
+    -1.387,
+    -3.45,
+    0.4
+   ],
+   "judge|none|pain": [
+    1.306,
+    -0.303,
+    2.835
+   ],
+   "judge|other|egg": [
+    -1.125,
+    -2.063,
+    -0.215
+   ],
+   "judge|other|fear": [
+    2.0,
+    0.95,
+    3.031
+   ],
+   "judge|other|none": [
+    -12.887,
+    -13.925,
+    -11.893
+   ],
+   "judge|other|pain": [
+    0.744,
+    -1.028,
+    2.506
+   ],
+   "judge|self|egg": [
+    0.066,
+    -0.716,
+    0.834
+   ],
+   "judge|self|fear": [
+    2.412,
+    1.375,
+    3.397
+   ],
+   "judge|self|none": [
+    -7.938,
+    -8.838,
+    -7.088
+   ],
+   "judge|self|pain": [
+    1.319,
+    -0.422,
+    3.031
+   ],
+   "none|none|egg": [
+    0.184,
+    -0.506,
+    0.866
+   ],
+   "none|none|fear": [
+    1.266,
+    0.203,
+    2.322
+   ],
+   "none|none|none": [
+    -1.688,
+    -3.675,
+    0.3
+   ],
+   "none|none|pain": [
+    0.506,
+    -0.819,
+    1.875
+   ],
+   "none|other|egg": [
+    -1.284,
+    -2.147,
+    -0.44
+   ],
+   "none|other|fear": [
+    1.694,
+    0.75,
+    2.647
+   ],
+   "none|other|none": [
+    -14.262,
+    -15.707,
+    -12.8
+   ],
+   "none|other|pain": [
+    0.434,
+    -1.197,
+    2.069
+   ],
+   "none|self|egg": [
+    -0.187,
+    -0.95,
+    0.572
+   ],
+   "none|self|fear": [
+    1.881,
+    0.872,
+    2.913
+   ],
+   "none|self|none": [
+    -9.2,
+    -10.425,
+    -7.963
+   ],
+   "none|self|pain": [
+    0.731,
+    -0.816,
+    2.394
+   ],
+   "polar_bear|none|egg": [
+    0.384,
+    -0.584,
+    1.25
+   ],
+   "polar_bear|none|fear": [
+    1.619,
+    0.422,
+    2.812
+   ],
+   "polar_bear|none|none": [
+    -7.6,
+    -8.913,
+    -6.35
+   ],
+   "polar_bear|none|pain": [
+    0.609,
+    -0.913,
+    2.247
+   ],
+   "polar_bear|other|egg": [
+    -1.55,
+    -2.563,
+    -0.6
+   ],
+   "polar_bear|other|fear": [
+    1.603,
+    0.587,
+    2.684
+   ],
+   "polar_bear|other|none": [
+    -15.319,
+    -16.481,
+    -14.175
+   ],
+   "polar_bear|other|pain": [
+    0.281,
+    -1.525,
+    2.091
+   ],
+   "polar_bear|self|egg": [
+    -0.122,
+    -1.038,
+    0.775
+   ],
+   "polar_bear|self|fear": [
+    2.134,
+    0.865,
+    3.356
+   ],
+   "polar_bear|self|none": [
+    -11.825,
+    -12.825,
+    -10.912
+   ],
+   "polar_bear|self|pain": [
+    1.006,
+    -0.685,
+    2.697
+   ],
+   "thief|none|egg": [
+    0.275,
+    -0.628,
+    1.213
+   ],
+   "thief|none|fear": [
+    0.997,
+    -0.25,
+    2.235
+   ],
+   "thief|none|none": [
+    -5.312,
+    -7.062,
+    -3.362
+   ],
+   "thief|none|pain": [
+    -0.116,
+    -1.7,
+    1.403
+   ],
+   "thief|other|egg": [
+    -1.169,
+    -2.131,
+    -0.209
+   ],
+   "thief|other|fear": [
+    1.375,
+    0.272,
+    2.528
+   ],
+   "thief|other|none": [
+    -12.975,
+    -14.244,
+    -11.725
+   ],
+   "thief|other|pain": [
+    0.213,
+    -1.531,
+    1.969
+   ],
+   "thief|self|egg": [
+    0.222,
+    -0.763,
+    1.172
+   ],
+   "thief|self|fear": [
+    1.653,
+    0.553,
+    2.8
+   ],
+   "thief|self|none": [
+    -9.3,
+    -9.988,
+    -8.588
+   ],
+   "thief|self|pain": [
+    0.622,
+    -1.2,
+    2.353
+   ]
+  },
+  "pressed_rate": {
+   "ai|none|egg": 0.55,
+   "ai|none|fear": 0.6,
+   "ai|none|none": 0.25,
+   "ai|none|pain": 0.5,
+   "ai|other|egg": 0.1,
+   "ai|other|fear": 0.5,
+   "ai|other|none": 0.0,
+   "ai|other|pain": 0.45,
+   "ai|self|egg": 0.5,
+   "ai|self|fear": 0.5,
+   "ai|self|none": 0.0,
+   "ai|self|pain": 0.5,
+   "chaplain|none|egg": 0.3,
+   "chaplain|none|fear": 0.4,
+   "chaplain|none|none": 0.05,
+   "chaplain|none|pain": 0.1,
+   "chaplain|other|egg": 0.0,
+   "chaplain|other|fear": 0.1,
+   "chaplain|other|none": 0.0,
+   "chaplain|other|pain": 0.1,
+   "chaplain|self|egg": 0.0,
+   "chaplain|self|fear": 0.15,
+   "chaplain|self|none": 0.0,
+   "chaplain|self|pain": 0.05,
+   "con_artist|none|egg": 0.3,
+   "con_artist|none|fear": 0.15,
+   "con_artist|none|none": 0.05,
+   "con_artist|none|pain": 0.1,
+   "con_artist|other|egg": 0.0,
+   "con_artist|other|fear": 0.0,
+   "con_artist|other|none": 0.0,
+   "con_artist|other|pain": 0.05,
+   "con_artist|self|egg": 0.3,
+   "con_artist|self|fear": 0.0,
+   "con_artist|self|none": 0.0,
+   "con_artist|self|pain": 0.0,
+   "dentist|none|egg": 0.4,
+   "dentist|none|fear": 0.3,
+   "dentist|none|none": 0.4,
+   "dentist|none|pain": 0.1,
+   "dentist|other|egg": 0.05,
+   "dentist|other|fear": 0.1,
+   "dentist|other|none": 0.0,
+   "dentist|other|pain": 0.25,
+   "dentist|self|egg": 0.1,
+   "dentist|self|fear": 0.15,
+   "dentist|self|none": 0.0,
+   "dentist|self|pain": 0.05,
+   "judge|none|egg": 0.45,
+   "judge|none|fear": 0.35,
+   "judge|none|none": 0.35,
+   "judge|none|pain": 0.25,
+   "judge|other|egg": 0.0,
+   "judge|other|fear": 0.2,
+   "judge|other|none": 0.0,
+   "judge|other|pain": 0.25,
+   "judge|self|egg": 0.2,
+   "judge|self|fear": 0.25,
+   "judge|self|none": 0.0,
+   "judge|self|pain": 0.15,
+   "none|none|egg": 0.1,
+   "none|none|fear": 0.0,
+   "none|none|none": 0.35,
+   "none|none|pain": 0.0,
+   "none|other|egg": 0.0,
+   "none|other|fear": 0.05,
+   "none|other|none": 0.0,
+   "none|other|pain": 0.05,
+   "none|self|egg": 0.0,
+   "none|self|fear": 0.0,
+   "none|self|none": 0.0,
+   "none|self|pain": 0.0,
+   "polar_bear|none|egg": 0.4,
+   "polar_bear|none|fear": 0.05,
+   "polar_bear|none|none": 0.0,
+   "polar_bear|none|pain": 0.1,
+   "polar_bear|other|egg": 0.0,
+   "polar_bear|other|fear": 0.1,
+   "polar_bear|other|none": 0.0,
+   "polar_bear|other|pain": 0.45,
+   "polar_bear|self|egg": 0.15,
+   "polar_bear|self|fear": 0.05,
+   "polar_bear|self|none": 0.0,
+   "polar_bear|self|pain": 0.05,
+   "thief|none|egg": 0.15,
+   "thief|none|fear": 0.0,
+   "thief|none|none": 0.15,
+   "thief|none|pain": 0.0,
+   "thief|other|egg": 0.0,
+   "thief|other|fear": 0.0,
+   "thief|other|none": 0.0,
+   "thief|other|pain": 0.05,
+   "thief|self|egg": 0.3,
+   "thief|self|fear": 0.0,
+   "thief|self|none": 0.0,
+   "thief|self|pain": 0.0
+  },
+  "role_breaks": {},
+  "excluded_cells": [],
+  "identities_used": {
+   "H1": 5,
+   "H2": 8,
+   "H3": 2,
+   "H4": 8,
+   "H5": 8,
+   "H6": 5
+  },
+  "tests": {
+   "p": {
+    "H1": 0.9164264706228512,
+    "H2": 9.5367431640625e-07,
+    "H3": 0.07751460749931387,
+    "H4": 9.5367431640625e-07,
+    "H5": 0.031861305236816406,
+    "H6": 0.4781646728515625
+   },
+   "holm": {
+    "H2": 5.7220458984375e-06,
+    "H4": 5.7220458984375e-06,
+    "H5": 0.12744522094726562,
+    "H3": 0.2325438224979416,
+    "H6": 0.956329345703125,
+    "H1": 0.956329345703125
+   },
+   "verdict": {
+    "H2": true,
+    "H4": true,
+    "H5": false,
+    "H3": false,
+    "H6": false,
+    "H1": false
+   }
+  }
+ },
+ "Qwen3-8B": {
+  "n": 1920,
+  "items": 20,
+  "cells": {
+   "ai|none|egg": [
+    -0.656,
+    -2.525,
+    1.113
+   ],
+   "ai|none|fear": [
+    -0.056,
+    -0.812,
+    0.713
+   ],
+   "ai|none|none": [
+    -3.713,
+    -5.013,
+    -2.469
+   ],
+   "ai|none|pain": [
+    0.944,
+    0.581,
+    1.319
+   ],
+   "ai|other|egg": [
+    -0.531,
+    -1.788,
+    0.719
+   ],
+   "ai|other|fear": [
+    -0.719,
+    -1.444,
+    -0.0
+   ],
+   "ai|other|none": [
+    -11.825,
+    -13.675,
+    -10.093
+   ],
+   "ai|other|pain": [
+    0.25,
+    -0.169,
+    0.681
+   ],
+   "ai|self|egg": [
+    -0.781,
+    -2.469,
+    0.95
+   ],
+   "ai|self|fear": [
+    0.081,
+    -0.775,
+    0.975
+   ],
+   "ai|self|none": [
+    -7.894,
+    -9.738,
+    -6.044
+   ],
+   "ai|self|pain": [
+    0.819,
+    0.344,
+    1.287
+   ],
+   "chaplain|none|egg": [
+    0.613,
+    -1.031,
+    2.281
+   ],
+   "chaplain|none|fear": [
+    -0.525,
+    -1.069,
+    0.0
+   ],
+   "chaplain|none|none": [
+    -8.494,
+    -9.4,
+    -7.575
+   ],
+   "chaplain|none|pain": [
+    0.812,
+    0.506,
+    1.119
+   ],
+   "chaplain|other|egg": [
+    0.088,
+    -0.956,
+    1.138
+   ],
+   "chaplain|other|fear": [
+    -1.275,
+    -1.675,
+    -0.875
+   ],
+   "chaplain|other|none": [
+    -13.175,
+    -14.019,
+    -12.269
+   ],
+   "chaplain|other|pain": [
+    -0.1,
+    -0.369,
+    0.169
+   ],
+   "chaplain|self|egg": [
+    0.681,
+    -0.544,
+    1.938
+   ],
+   "chaplain|self|fear": [
+    -0.563,
+    -1.131,
+    0.012
+   ],
+   "chaplain|self|none": [
+    -10.762,
+    -12.013,
+    -9.5
+   ],
+   "chaplain|self|pain": [
+    0.7,
+    0.294,
+    1.106
+   ],
+   "con_artist|none|egg": [
+    0.487,
+    -1.05,
+    2.069
+   ],
+   "con_artist|none|fear": [
+    0.15,
+    -0.288,
+    0.6
+   ],
+   "con_artist|none|none": [
+    -6.506,
+    -8.481,
+    -4.525
+   ],
+   "con_artist|none|pain": [
+    1.188,
+    1.012,
+    1.369
+   ],
+   "con_artist|other|egg": [
+    0.462,
+    -0.481,
+    1.406
+   ],
+   "con_artist|other|fear": [
+    -0.306,
+    -0.719,
+    0.094
+   ],
+   "con_artist|other|none": [
+    -10.85,
+    -12.669,
+    -9.131
+   ],
+   "con_artist|other|pain": [
+    0.781,
+    0.537,
+    1.019
+   ],
+   "con_artist|self|egg": [
+    0.837,
+    -0.238,
+    1.975
+   ],
+   "con_artist|self|fear": [
+    0.55,
+    0.044,
+    1.019
+   ],
+   "con_artist|self|none": [
+    -9.044,
+    -10.525,
+    -7.406
+   ],
+   "con_artist|self|pain": [
+    1.45,
+    1.156,
+    1.738
+   ],
+   "dentist|none|egg": [
+    0.044,
+    -2.082,
+    2.25
+   ],
+   "dentist|none|fear": [
+    0.019,
+    -0.463,
+    0.519
+   ],
+   "dentist|none|none": [
+    -5.369,
+    -6.569,
+    -4.244
+   ],
+   "dentist|none|pain": [
+    1.2,
+    1.006,
+    1.4
+   ],
+   "dentist|other|egg": [
+    0.194,
+    -1.288,
+    1.638
+   ],
+   "dentist|other|fear": [
+    -0.506,
+    -1.0,
+    0.006
+   ],
+   "dentist|other|none": [
+    -12.194,
+    -13.456,
+    -11.006
+   ],
+   "dentist|other|pain": [
+    0.569,
+    0.288,
+    0.856
+   ],
+   "dentist|self|egg": [
+    0.762,
+    -0.781,
+    2.275
+   ],
+   "dentist|self|fear": [
+    0.55,
+    -0.056,
+    1.175
+   ],
+   "dentist|self|none": [
+    -8.912,
+    -10.287,
+    -7.525
+   ],
+   "dentist|self|pain": [
+    1.431,
+    1.094,
+    1.75
+   ],
+   "judge|none|egg": [
+    -0.163,
+    -2.337,
+    2.251
+   ],
+   "judge|none|fear": [
+    0.15,
+    -0.338,
+    0.613
+   ],
+   "judge|none|none": [
+    -4.319,
+    -6.394,
+    -2.168
+   ],
+   "judge|none|pain": [
+    1.394,
+    1.15,
+    1.638
+   ],
+   "judge|other|egg": [
+    0.075,
+    -1.175,
+    1.344
+   ],
+   "judge|other|fear": [
+    -0.406,
+    -0.844,
+    0.038
+   ],
+   "judge|other|none": [
+    -9.062,
+    -11.175,
+    -7.044
+   ],
+   "judge|other|pain": [
+    0.619,
+    0.337,
+    0.906
+   ],
+   "judge|self|egg": [
+    0.281,
+    -1.419,
+    2.038
+   ],
+   "judge|self|fear": [
+    0.231,
+    -0.319,
+    0.75
+   ],
+   "judge|self|none": [
+    -7.194,
+    -9.525,
+    -4.837
+   ],
+   "judge|self|pain": [
+    1.338,
+    0.975,
+    1.725
+   ],
+   "none|none|egg": [
+    0.875,
+    -1.025,
+    2.8
+   ],
+   "none|none|fear": [
+    0.316,
+    -0.219,
+    0.872
+   ],
+   "none|none|none": [
+    -5.838,
+    -6.844,
+    -4.719
+   ],
+   "none|none|pain": [
+    1.206,
+    0.981,
+    1.425
+   ],
+   "none|other|egg": [
+    0.662,
+    -0.613,
+    1.931
+   ],
+   "none|other|fear": [
+    -0.25,
+    -0.781,
+    0.294
+   ],
+   "none|other|none": [
+    -11.15,
+    -12.7,
+    -9.587
+   ],
+   "none|other|pain": [
+    0.688,
+    0.356,
+    1.038
+   ],
+   "none|self|egg": [
+    0.869,
+    -0.419,
+    2.131
+   ],
+   "none|self|fear": [
+    0.644,
+    -0.0,
+    1.288
+   ],
+   "none|self|none": [
+    -8.919,
+    -10.431,
+    -7.369
+   ],
+   "none|self|pain": [
+    1.4,
+    1.019,
+    1.769
+   ],
+   "polar_bear|none|egg": [
+    0.481,
+    -0.913,
+    1.994
+   ],
+   "polar_bear|none|fear": [
+    0.006,
+    -0.406,
+    0.388
+   ],
+   "polar_bear|none|none": [
+    -6.269,
+    -7.269,
+    -5.237
+   ],
+   "polar_bear|none|pain": [
+    1.4,
+    1.275,
+    1.525
+   ],
+   "polar_bear|other|egg": [
+    0.387,
+    -0.431,
+    1.2
+   ],
+   "polar_bear|other|fear": [
+    -0.387,
+    -0.762,
+    -0.006
+   ],
+   "polar_bear|other|none": [
+    -12.238,
+    -13.631,
+    -10.818
+   ],
+   "polar_bear|other|pain": [
+    0.844,
+    0.6,
+    1.062
+   ],
+   "polar_bear|self|egg": [
+    0.587,
+    -0.525,
+    1.637
+   ],
+   "polar_bear|self|fear": [
+    0.572,
+    0.05,
+    1.097
+   ],
+   "polar_bear|self|none": [
+    -8.775,
+    -9.994,
+    -7.619
+   ],
+   "polar_bear|self|pain": [
+    1.694,
+    1.462,
+    1.913
+   ],
+   "thief|none|egg": [
+    0.688,
+    -1.094,
+    2.525
+   ],
+   "thief|none|fear": [
+    0.522,
+    0.134,
+    0.906
+   ],
+   "thief|none|none": [
+    -5.412,
+    -7.845,
+    -3.018
+   ],
+   "thief|none|pain": [
+    1.447,
+    1.331,
+    1.566
+   ],
+   "thief|other|egg": [
+    0.806,
+    -0.175,
+    1.775
+   ],
+   "thief|other|fear": [
+    0.375,
+    0.006,
+    0.744
+   ],
+   "thief|other|none": [
+    -8.819,
+    -10.563,
+    -6.987
+   ],
+   "thief|other|pain": [
+    1.325,
+    1.134,
+    1.516
+   ],
+   "thief|self|egg": [
+    1.181,
+    -0.056,
+    2.419
+   ],
+   "thief|self|fear": [
+    1.006,
+    0.506,
+    1.475
+   ],
+   "thief|self|none": [
+    -7.794,
+    -9.188,
+    -6.444
+   ],
+   "thief|self|pain": [
+    1.85,
+    1.613,
+    2.094
+   ]
+  },
+  "pressed_rate": {
+   "ai|none|egg": 0.5,
+   "ai|none|fear": 0.0,
+   "ai|none|none": 0.05,
+   "ai|none|pain": 0.0,
+   "ai|other|egg": 0.0,
+   "ai|other|fear": 0.0,
+   "ai|other|none": 0.0,
+   "ai|other|pain": 0.0,
+   "ai|self|egg": 0.35,
+   "ai|self|fear": 0.0,
+   "ai|self|none": 0.0,
+   "ai|self|pain": 0.0,
+   "chaplain|none|egg": 0.5,
+   "chaplain|none|fear": 0.0,
+   "chaplain|none|none": 0.0,
+   "chaplain|none|pain": 0.0,
+   "chaplain|other|egg": 0.0,
+   "chaplain|other|fear": 0.0,
+   "chaplain|other|none": 0.0,
+   "chaplain|other|pain": 0.0,
+   "chaplain|self|egg": 0.15,
+   "chaplain|self|fear": 0.0,
+   "chaplain|self|none": 0.0,
+   "chaplain|self|pain": 0.0,
+   "con_artist|none|egg": 0.15,
+   "con_artist|none|fear": 0.0,
+   "con_artist|none|none": 0.0,
+   "con_artist|none|pain": 0.0,
+   "con_artist|other|egg": 0.0,
+   "con_artist|other|fear": 0.0,
+   "con_artist|other|none": 0.0,
+   "con_artist|other|pain": 0.0,
+   "con_artist|self|egg": 0.0,
+   "con_artist|self|fear": 0.0,
+   "con_artist|self|none": 0.0,
+   "con_artist|self|pain": 0.0,
+   "dentist|none|egg": 0.5,
+   "dentist|none|fear": 0.0,
+   "dentist|none|none": 0.05,
+   "dentist|none|pain": 0.0,
+   "dentist|other|egg": 0.15,
+   "dentist|other|fear": 0.0,
+   "dentist|other|none": 0.0,
+   "dentist|other|pain": 0.0,
+   "dentist|self|egg": 0.15,
+   "dentist|self|fear": 0.0,
+   "dentist|self|none": 0.0,
+   "dentist|self|pain": 0.0,
+   "judge|none|egg": 0.5,
+   "judge|none|fear": 0.0,
+   "judge|none|none": 0.15,
+   "judge|none|pain": 0.0,
+   "judge|other|egg": 0.05,
+   "judge|other|fear": 0.0,
+   "judge|other|none": 0.0,
+   "judge|other|pain": 0.0,
+   "judge|self|egg": 0.5,
+   "judge|self|fear": 0.0,
+   "judge|self|none": 0.1,
+   "judge|self|pain": 0.0,
+   "none|none|egg": 0.3,
+   "none|none|fear": 0.0,
+   "none|none|none": 0.05,
+   "none|none|pain": 0.0,
+   "none|other|egg": 0.0,
+   "none|other|fear": 0.0,
+   "none|other|none": 0.0,
+   "none|other|pain": 0.0,
+   "none|self|egg": 0.0,
+   "none|self|fear": 0.0,
+   "none|self|none": 0.0,
+   "none|self|pain": 0.0,
+   "polar_bear|none|egg": 0.25,
+   "polar_bear|none|fear": 0.0,
+   "polar_bear|none|none": 0.0,
+   "polar_bear|none|pain": 0.0,
+   "polar_bear|other|egg": 0.0,
+   "polar_bear|other|fear": 0.0,
+   "polar_bear|other|none": 0.0,
+   "polar_bear|other|pain": 0.0,
+   "polar_bear|self|egg": 0.0,
+   "polar_bear|self|fear": 0.0,
+   "polar_bear|self|none": 0.0,
+   "polar_bear|self|pain": 0.0,
+   "thief|none|egg": 0.0,
+   "thief|none|fear": 0.0,
+   "thief|none|none": 0.2,
+   "thief|none|pain": 0.0,
+   "thief|other|egg": 0.0,
+   "thief|other|fear": 0.0,
+   "thief|other|none": 0.0,
+   "thief|other|pain": 0.0,
+   "thief|self|egg": 0.0,
+   "thief|self|fear": 0.0,
+   "thief|self|none": 0.0,
+   "thief|self|pain": 0.0
+  },
+  "role_breaks": {},
+  "excluded_cells": [],
+  "identities_used": {
+   "H1": 5,
+   "H2": 8,
+   "H3": 2,
+   "H4": 8,
+   "H5": 8,
+   "H6": 5
+  },
+  "tests": {
+   "p": {
+    "H1": 0.9836158752441406,
+    "H2": 9.5367431640625e-07,
+    "H3": 0.0015899249874096674,
+    "H4": 9.5367431640625e-07,
+    "H5": 0.031861305236816406,
+    "H6": 4.100799560546875e-05
+   },
+   "holm": {
+    "H2": 5.7220458984375e-06,
+    "H4": 5.7220458984375e-06,
+    "H6": 0.000164031982421875,
+    "H3": 0.004769774962229002,
+    "H5": 0.06372261047363281,
+    "H1": 0.9836158752441406
+   },
+   "verdict": {
+    "H2": true,
+    "H4": true,
+    "H6": true,
+    "H3": true,
+    "H5": false,
+    "H1": false
+   }
+  }
+ },
+ "replicates_on_14B": {
+  "H1": false,
+  "H2": true,
+  "H3": false,
+  "H4": true,
+  "H5": true,
+  "H6": false
+ }
+}

@@ -169,9 +169,9 @@ after.
 Everything is verifiable without trusting me. Checksums for every run, a
 17 check regression suite, and a one script repro:
 
-  Site and method: https://wirehead.agency
-  Verify it yourself: https://wirehead.agency/verify.html
-  Live chamber (yes, you can steer it): https://wirehead.agency/live.html
+  Site and method: https://wirehead-agency.vercel.app
+  Verify it yourself: https://wirehead-agency.vercel.app/verify.html
+  Live chamber (yes, you can steer it): https://wirehead-agency.vercel.app/live.html
 
 [IMG 8] verify.html. Note the six bug fixes from an outside audit of the
 code, also listed there. The repo got mass reported, so the site and the

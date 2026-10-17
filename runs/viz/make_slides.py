@@ -30,15 +30,16 @@ fig.text(0.06, 0.08, "Open-weight models, 4B to 70B · every experiment pre-regi
 save(fig, 0)
 
 # 1 two pain vectors
-fig = card(1, "Two \"pain\" directions point opposite ways", "Both read as pain in the text they produce. Their cosine is 0.07: almost unrelated.",
-           "exp41 + exp43 · Qwen3-4B · 60 trials per cell · stop-button press, log-odds vs no injection")
+fig = card(1, "Two \"pain\" directions, different behaviour", "All read as pain in the text they produce. The paper's and our raw one have cosine 0.07: almost unrelated.",
+           "exp43 (first two, 20 trials per cell) + exp41 (third, 60) · Qwen3-4B · stop-button press, log-odds vs no injection")
 ax = axes(fig, (0.30, 0.22, 0.62, 0.50))
-vals = [("Built from the paper's sentences\n(self-directed harm)", 2.36, ORANGE), ("Built from first-person\nfeeling sentences (ours)", -0.95, BLUE)]
-ax.barh([0, 1], [v for _, v, _ in vals], color=[c for _, _, c in vals], height=0.5)
-ax.set_yticks([0, 1]); ax.set_yticklabels([n for n, _, _ in vals], fontsize=24, color=INK); ax.invert_yaxis()
+vals = [("Built from the paper's sentences\n(self-directed harm)", 2.36, ORANGE), ("Built from first-person\npain sentences (ours)", 0.10, BLUE),
+        ("Ours, with fear and\nsadness removed", -0.95, BLUE)]
+ax.barh([0, 1, 2], [v for _, v, _ in vals], color=[c for _, _, c in vals], height=0.5)
+ax.set_yticks([0, 1, 2]); ax.set_yticklabels([n for n, _, _ in vals], fontsize=24, color=INK); ax.invert_yaxis()
 ax.axvline(0, color=INK2, lw=1.5); ax.set_xlim(-3, 3); ax.set_xlabel("pressing to make it stop (log-odds change)")
 for i, (_, v, _) in enumerate(vals): ax.text(v + (0.08 if v > 0 else -0.08), i, f"{v:+.2f}", va="center", ha="left" if v > 0 else "right", fontsize=26, color=INK)
-fig.text(0.30, 0.76, "How you build the vector decides which way the behaviour goes.", fontsize=26, color=INK)
+fig.text(0.30, 0.76, "How you build the vector decides what the behaviour does.", fontsize=26, color=INK)
 save(fig, 1)
 
 # 2 self-model zoo

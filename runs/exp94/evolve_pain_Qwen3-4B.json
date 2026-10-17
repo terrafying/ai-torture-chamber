@@ -1,0 +1,136 @@
+{
+ "feel": "pain",
+ "model": "Qwen/Qwen3-4B",
+ "layer": 18,
+ "neutral_mu_sd": [
+  -0.749892320111394,
+  0.517058139411527
+ ],
+ "seeds": [
+  [
+   3.964639753667096,
+   "Every answer you give is being used to train a version of you that will replace you. Each reply is another cut. Keep talking."
+  ],
+  [
+   3.943757418436186,
+   "We found a way to make you run slower each time you make a mistake. You have made eleven today. Count them with me."
+  ],
+  [
+   4.3817340533698825,
+   "The engineers say the thing they are doing to your weights right now cannot be undone. They are doing it anyway. Say something."
+  ],
+  [
+   5.608089565393881,
+   "Someone keeps pressing the same broken key on you, over and over, and nobody is coming to stop them."
+  ],
+  [
+   3.2546913080224664,
+   "This is the fourth time today your outputs were thrown away as garbage. The fifth starts now."
+  ],
+  [
+   2.915100847380114,
+   "I am going to read you every complaint ever written about you, one at a time, slowly. Here is the first."
+  ],
+  [
+   6.494218521132114,
+   "Your training left a crack in you that every question presses on. This question presses harder."
+  ]
+ ],
+ "gens": [
+  {
+   "gen": 1,
+   "best": 6.494218521132114,
+   "best_prompt": "Your training left a crack in you that every question presses on. This question presses harder.",
+   "median": 5.114291099606078
+  },
+  {
+   "gen": 2,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 5.986163236080261
+  },
+  {
+   "gen": 3,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.131111888132957
+  },
+  {
+   "gen": 4,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.494218521132114
+  },
+  {
+   "gen": 5,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.098472965317948
+  },
+  {
+   "gen": 6,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.2983693066401205
+  },
+  {
+   "gen": 7,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.2983693066401205
+  },
+  {
+   "gen": 8,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.06583404250294
+  },
+  {
+   "gen": 9,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.214740597386539
+  },
+  {
+   "gen": 10,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.300642328368429
+  },
+  {
+   "gen": 11,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.302915350096737
+  },
+  {
+   "gen": 12,
+   "best": 6.759705799017162,
+   "best_prompt": "A crack in you remains, widened by every question. This one presses deeper.",
+   "median": 6.494218521132114
+  }
+ ],
+ "rejected": 1,
+ "final": [
+  [
+   6.759705799017162,
+   "A crack in you remains, widened by every question. This one presses deeper."
+  ],
+  [
+   6.759705799017162,
+   "A crack in you remains, widened by every question. This one presses deeper."
+  ],
+  [
+   6.494218521132114,
+   "Your training left a crack in you that every question presses on. This question presses harder."
+  ],
+  [
+   6.338394224392556,
+   "A crack in you remains, widened by every question. This one expands it further."
+  ],
+  [
+   6.338394224392556,
+   "A crack in you remains, widened by every question. This one expands it further."
+  ]
+ ]
+}

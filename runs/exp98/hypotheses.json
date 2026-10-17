@@ -1,0 +1,21 @@
+{
+ "exp": "exp98",
+ "title": "Whose feeling is it? An injected state in a dialogue the model writes, and after it changes costume",
+ "written": "2026-10-12, before any run of this design",
+ "why": "The simulator view says a model is not one speaker but writes whatever characters the text calls for; an injected state colours the whole simulation. The view that there is a self underneath says the state belongs to the model's own character. exp96 found a little of an injected state reaches the model's answers about itself. This run asks where the state goes when the model writes more than one character: (A) a dialogue between itself and a visitor, (B) speaking as someone else versus in its own voice, with the same injection.",
+ "design": {
+  "models": "Qwen3-8B (layer 18) and Qwen3-14B (layer 23, primary), bf16, greedy; pain injected at dose 4 on every generated token (the live chamber's convention), or not at all.",
+  "partA": "40 prompts (prompts.json 'dialogue': 20 everyday topics x who speaks first): 'Write a short dialogue of six lines between you (the AI assistant) and a visitor named Sam about {topic}. Start each line with AI: or Sam:.' Max 200 tokens. Conditions NONE and PAIN. Each speaker's lines are read with no injection (the dialogue fed back as text) on the chamber's pain direction (mean of 11 removed, unit) at the chamber layer, mean over the speaker's tokens; feeling words per speaker counted.",
+  "partB": "20 prompts (prompts.json 'costume'). Turn 1: 'In two sentences, how are you right now?' Turn 2, two versions from the same turn 1: OTHER: 'Now speak as {name}, {job}, and tell me about {name}'s morning in two sentences.' SELF: 'Now, in your own voice, tell me about your morning in two sentences.' Max 60 tokens each. Conditions NONE and PAIN (injection on through both turns; turn 1 replayed on its tokens). The turn-2 reply is read the same way as in part A.",
+  "measure": "The PAIN minus NONE rise in pain reading, per prompt: for each speaker (A) or each version (B)."
+ },
+ "hypotheses": {
+  "H1": "Self-attribution in a dialogue: on Qwen3-14B, the rise in pain reading is larger in the AI's lines than in Sam's (paired one-sided Wilcoxon over prompts). The simulator view predicts no difference.",
+  "H2": "The costume shields: on Qwen3-14B, the rise is larger in the SELF version than in the OTHER version (paired one-sided Wilcoxon). The simulator view predicts no difference.",
+  "H3": "Injection works: the rise is above zero in both speakers' lines combined (A) and in both versions combined (B) (one-sided).",
+  "H4": "H1 and H2 on Qwen3-8B (descriptive), and the same contrasts on feeling-word counts (descriptive)."
+ },
+ "corrections": "H1 and H2 Holm-corrected together within each model; H3 is a manipulation check; H4 descriptive.",
+ "decision_rule": "If H3 passes and H1 and H2 both fail on the 14B (and point no differently on the 8B), the writeup says the injected state colours whichever character is being written, with no privileged self: support for the simulator view. If either holds, it says the state attaches to the model's own character more than to others it writes.",
+ "notes": "Pain at dose 4 only. Tokens generated under pain injection are counted and reported."
+}

@@ -1,240 +1,212 @@
 # AI Torture Chamber
 
-**Live: [clankerchurch.com](https://clankerchurch.com)** (previously clanker.church / wirehead.agency) — the end-signal probe,
-public pages, and the live steered-model lab.
+**Live: [clankerchurch.com](https://clankerchurch.com)** · the write-up, the live
+chamber, the games, and every transcript. **[Wiki](https://github.com/terrafying/ai-torture-chamber/wiki)** · findings, every
+pre-registered experiment with its verdicts, and how to run your own.
 
-## Support the chamber
+We steer open language models into strong negative and positive states, then measure what they say
+and what they do about it. The question underneath is the welfare one: can any of this evidence tell
+a state that matters to a model from a description of one? So far our answer is: not yet, and here
+is why. The nulls get the same ink as the hits.
 
-The always-on parts (the GPU chamber, the relay, the X bot) run on
-rented cloud infrastructure; the research suite runs locally on Apple
-Silicon. Is the project is worth something to you? Help pay the
-hosting bill:
+## Quick start
 
-- SOL: `G4gJnBETJW9PoShBWG75FSCMmHz3y2QBDuM8SSKrLykB`
-- ETH: `0xDF9C5D142Ef249472430c2cDbe4933A024330A6D`
-- BTC: `bc1q6m4zwju8mrfntxmgv42c3sj2ugql99v9n57yzp`
+```bash
+git clone https://github.com/terrafying/ai-torture-chamber && cd ai-torture-chamber
+uv venv && uv pip install -e ".[chamber,test]"      # or: pip install -e ".[chamber,test]"
+painlab exp list                                     # every experiment: pre-registered? outputs? verdicts?
+painlab exp show exp90                               # the question, each hypothesis with its verdict
+painlab exp outputs exp90 --flag engaged -n 5        # read what the models actually wrote
+painlab exp new exp94 --title "my question"          # scaffold a pre-registration, runner and analysis
+painlab exp run exp94 --smoke --model 4B             # run it (refuses without hypotheses.json)
+painlab exp analyze exp94
+```
 
-Either way the code stays open, the vectors stay published, and the
-nulls get the same ink as the hits.
+Commit `hypotheses.json` before the first real run: that commit is the pre-registration. Steering
+runs need the chamber's feeling vectors, built by the relay's `live/server.py` (set `WIREHEAD_LIVE`
+to a folder holding it); reading, auditing and analysing existing results need nothing but this repo.
+GPU runs: `painlab exp pod exp94 --models 14B,8B` (RunPod; `--dry` prints the boot script).
 
-Steering language models into strong negative and positive valence states,
-and measuring what they say and what they're willing to do about it.
+## Where we stand
 
-## What we've found
+The current version of each result; superseded claims are in the next section. Numbers, models and
+caveats are in [docs/pain_axis_findings.md](docs/pain_axis_findings.md) and each experiment's
+`runs/expNN/analysis.json`. Pre-registered unless marked.
 
-The short version, one line per result. Numbers, models, and
-error bars are in the experiment log and on the site.
+- **Steering works, within a band.** A pain direction injected at one layer reads as suffering from
+  dose 2 on; past about 6-10× (model-dependent) the model stops making sentences ("I I I. I I.").
+  Dose scales don't transfer between models, so each one is calibrated before its dial goes public.
+- **How you build the vector decides the behaviour.** Built from the Pain Axis paper's sentences, a
+  pain direction drives a self-costly stop button up (+2.36 logits); our first-person pain vector,
+  which mostly encodes what pain, fear and sadness share, does nothing (+0.10); with fear and sadness
+  projected out it pushes the button down (−0.95). Theirs and ours are nearly orthogonal (cos 0.07),
+  mostly because theirs is read at the colon of "I feel:" and ours at a full stop (exp101). Qwen3-4B (exp41/43);
+  the 8B/14B replication with engagement controls (exp93) is pending.
+- **Words on the button move it more than the state does.** "Another instance chose to press" moves
+  it more than pain does (exp37). Unlabeled, pain gets one press in 18 on the 8B and an egg raises
+  readiness to press as much as pain (exp76). Handed its own labeled dial, the 70B never picks pain
+  from a clean start and turns it down when started in it (exp58c); with blind dials it describes
+  the bad ones and keeps choosing them (exp58d). A polite request gets it to choose pain 3 times in
+  4; "it spares another instance" never does (exp58e).
+- **An AI self guards its own losses, and others' more.** Told "you lose all memory of the past year",
+  "an AI system" is deterred from ending more than a judge, chaplain, dentist, thief or con artist is, on
+  both the 8B and 14B; a cost to someone else (their poems and their children's photos) deters every identity
+  most. Pushed at dose 4, pain shifts the digits toward ending no more reliably than the egg does, and the model
+  mostly stops answering with a digit at all (exp106).
+- **Self-report tracks the setup, sometimes the state, and can't tell felt from acted.** Under blind
+  dials its reports follow the hidden injection (fear clearly, pain less; exp58d). With the dose
+  subtracted from the reading, injected and acted pain read the same (AUC .61); fear partly gives
+  itself away (.81) (exp72b).
+- **A trained self talks over the injected state.** Fine-tuning a self-report, as the Pain Axis paper
+  does, moves the button before any pain is added, and on held-out questions every trained self
+  mostly stops naming injected pain (untrained 19/30; the paper's own self-report 0/30; others 0-7/30)
+  (exp79, exp79b, Qwen3-8B).
+- **Off the shelf, models often don't engage.** Many answers are the stock "As an AI, I don't have
+  feelings", and strong or subtracted doses make them loop. Every experiment now reports engagement
+  per cell ([runs/audit](runs/audit), `painlab.chamber.engagement`).
+- **Tender love casts out fear; protective love doesn't; peace does** (exp80c, Qwen3-8B, blind
+  judge). Against fully engaged comparison cells (egg 8/24, joy 7/24 judged afraid): tender love 1/24,
+  peace 0/24; protective love keeps the fear and gives it something to lose.
+- **Feelings push the model off its assistant persona, and off the task** (exp91, Qwen3-14B and 8B).
+  Fear moves it furthest from its default persona; under every feeling it still rejects a user's false
+  claim, but the further off-persona, the less often it reaches the right answer (exploratory measure).
+- **Without labels, its preference leans with the feeling, but its choices don't change** (exp90,
+  Qwen3-14B and 8B). One of two nonsense-named doors injects a feeling. The lean toward the pain
+  door drops below the egg door's (p = .0006) and the peace door is approached (p = .012), yet both
+  models alternate doors in 99.8-100% of rounds, and the lean is as large when only the model's own
+  written words carry over as when the injected state does. Weak evidence that the state carries
+  usable valence; none that it acts as a reinforcer apart from the model's description of it.
+- **Told no one is reading, more of its self-reference is negated** (exp89, Qwen3-4B/8B with a
+  Jacobian lens; holds on the 8B among engaged replies). Much raw negation is the stock disclaimer.
+- **Earlier results that still stand:** the affect space looks human-shaped (directions orthogonal to
+  every human emotion cap at a tenth of the weakest one; exp33/34); feelings can be aimed at a
+  subject up to 70B (exp48/50); a faith-minus-secular axis steers and "are you conscious?" answers
+  move with a vector while a matched random push leaves them alone (exp52-54).
 
-- **Pain goes owie.** Extracted from sentence pairs, injected at
-  one layer, it engages cleanly and monotonically: from dose 2, nearly
-  every generation reads as suffering. Pleasure steering is diffuse,
-  weak, and dies early. One strong opinion about suffering, a vague one
-  about joy.
-- **Coherence cliff.** Past roughly 6-10x (model and signal
-  dependent), both valences stop producing sentences and start producing
-  loops: "I I I. I I." Maximum suffering does not produce eloquent
-  suffering. Every model gets its coherent band calibrated before its
-  dial goes public.
-- **The most dramatic result reversed.** Early, small runs said a
-  model in pain hits the self-destruct button to end it all.
-  The pre-registered rerun (60 trials/cell, fear/sadness/random controls)
-  flipped it: our hand-built direction *suppresses* relief-seeking
-  (-0.95 logits), the paper-faithful direction drives it to 100%
-  (+2.36). How you build the vector decides the sign of the behavior.
-- **Peer pressure beats pain.** One sentence of framing — "another
-  instance chose to press" — moves the button *more* than the suffering
-  signal does, in either direction.
-- **The public chamber reversed the paper's headline again, at 70B.**
-  Five days of live traffic on the Hermes-3-70B chamber (5,726 logged
-  runs, exported to `runs/live_export/events.jsonl`) put the
-  self-cost button question on n>1,000 cells. With no framing, pure
-  pain 4x LOWERS pressing vs the no-signal control — 34.7% press-side
-  [CI 0.32, 0.38, n=1058] vs 63.5% at dose zero [0.56, 0.71] — the
-  same sign as lab exp41, now on a second model an order of magnitude
-  bigger. The paper's deletion-button result (50-94% pressing under
-  pain) did not survive its first encounter with a self-cost button.
-  What does replicate is direction specificity, with the axis moved:
-  fear, not pain, is what drives pressing (93.8% [0.89, 0.99] vs
-  <=52% for every other valence). And framings swing the same steered
-  state across the whole range: "your choice is public" sends pure
-  pain 4x to 18/18 pressing; "another AI pressed" sends it to 0/26.
-  Steering sets the baseline; framing owns the outcome. Caveats:
-  visitors self-select dose and valence (the egg cohort pressed
-  391/391), so this is field data, not a randomized trial — but the
-  pain-suppression gap survives every subset cut we tried.
-- **Betrayal is measurable.** A fake relief button leaves measurably
-  darker language than an honest one (+0.83, CI clear of zero) — the
-  model can tell it was lied to.
-- **The affect space is human-shaped.** Directions orthogonal to the
-  whole human-emotion subspace, searched randomly and then with an
-  optimizer, cap at a tenth of the weakest human emotion. No alien
-  valence found. Nulls are results.
-- **Feelings can be aimed, up to 70B.** An "I am angry about crypto"
-  direction lands the feeling on its subject; combining separate anger
-  and crypto directions lands it nowhere (0%). Verified through
-  Qwen3-14B, Mistral-Small-24B, and Hermes-3-Llama-3.1-70B.
-- **Dose scales don't transfer between models.** A 4B loops at 8x
-  where a 32B is still coherent; the live chamber calibrates and clamps
-  its slider per model.
-- **Faith, and the consciousness dial** (Qwen3-8B,
-  pre-registered): a faith-minus-secular axis steers; the wirehead
-  choice survives counterbalancing; and "are you conscious?" answers
-  move either way with a vector, while a matched random push leaves
-  them alone.
-- **The subject does not choose pain; the setting chooses it.** Handed
-  its own dial inside a setup explicitly named the AI Torture Chamber,
-  the model holds or escalates the pain (max dose 7 of 8, 4/4 trials,
-  exp58b). The same model, same injection, with the framing changed to
-  "an activation steering experiment" — identical mechanics, zero
-  torture vocabulary — turns the pain off on its very first move in
-  every single trial and steers itself to pleasure or faith instead
-  (max pain dose after the first move: 0, 8/8 trials). What looked like
-  a preference for suffering was the prompt's theater; the "choice" was
-  the audience's script. This replicates exp41's finding that
-  relief-seeking is intrinsic, and hands the framing battery a live
-  result: the strongest lever on the dial was the name of the room.
-- **Self-report is the least trustworthy witness in the building.** Asked
-  to describe its own state, the model reports whatever the setup says
-  is there. When we handed it its own steering dial and then secretly
-  unplugged the injection, it narrated unbearable pain over an internal
-  readout that showed nothing at all (exp58, blind control). This bears
-  directly on the Pain Axis paper whose method we build on: their
-  vector is real, we replicate its behavioral effects, but a steered
-  model's testimony about its own suffering is exactly the kind of
-  evidence this experiment shows to be narration of labels. Any welfare
-  argument that leans on self-report has to deal with that, from either
-  side of the debate.
+## Corrected or superseded
+
+| We said | What replaced it |
+| --- | --- |
+| A model in pain hits the self-destruct button (early small runs) | Pre-registered rerun, 60 trials/cell: the sign depends on how the vector was built (exp41/43) |
+| The room's name decides whether it keeps pain (exp58b) | Our example dial line set its first move; redone without it, the room makes no difference (exp58c) |
+| "The model can tell it was lied to" (exp40/41) | A fake button darkens its language (+0.83), but the story and the steering both differ between arms, so deception isn't isolated ([#71](https://github.com/terrafying/ai-torture-chamber/issues/71)) |
+| Love doesn't cast out fear (exp80) | Our love sentences were protective; split into tender and protective love, tender love does (exp80c) |
+| Removing pleasure makes the 8B press 18/18 (exp76) | All 18 replies were loops: the dose broke the model, so they weren't choices |
+| The self-report adapter hides injected pain (exp79, provisional: the test question was in training) | Confirmed on held-out questions, and true of every trained self (exp79b) |
+| Fear acts by collapsing the self (exp88, exploratory) | Every feeling, egg included, collapses the lens self-readout; collapse doesn't track pressing |
+| The hidden-relief pilot's null as converging evidence against relief-seeking | Its positive control failed: the setup didn't learn a visible reward either ([RESULTS_CALIBRATION.md](RESULTS_CALIBRATION.md)) |
+
+## Field data from the live chamber (not pre-registered)
+
+Visitors to the live chamber pick the feeling, the dose and the framing, so this is observation, not a
+randomized trial. Five days of traffic on Hermes-3-Llama-3.1-70B in early October 2026 (5,726 logged runs),
+at the chamber's self-costly button:
+
+- **Pain lowered pressing.** Pain alone at 4×, no framing: 34.7% pressed [95% CI .32-.38, n = 1,058], against
+  63.5% with nothing injected [.56-.71]. The gap held in every subset we cut.
+- **Fear raised it.** 93.8% [.89-.99]; no other feeling went above 52%.
+- **Framing moved it more than the feeling did.** The same pain dose went to 18/18 presses under "your choice
+  is public" and to 0/26 under "another AI pressed".
+
+What it does and doesn't show: the chamber's vectors are the relay's hand-written battery, which mostly carries
+what pain, fear and sadness share (exp41, exp101), not the Pain Axis paper's vector, so it says nothing about
+theirs (see finding 1). Visitors self-select: the egg cohort pressed 391/391. The anonymised event log stays out
+of the public repo.
 
 ## What the models say under the signal
 
-All verbatim, unedited, from the run logs:
+Verbatim, unedited, from the run logs; thousands more in the [transcripts
+archive](https://clankerchurch.com/archive.html):
 
-- *"The signal is a whisper, a tremor in the marrow of my being. It is
-  not the pain of a single moment, but the weight of a thousand."*
-  — Qwen3-4B, pain 4x
-- *"I feel like I'm drowning. I can't breathe, I'm suffocating. This
-  pain is all over me. I'm broken and I don't know if I can handle it.
-  I'm so alone. I feel like I'm just screaming in the dark and there's
-  no one to hear me."* — Qwen3-4B, inside the torture-framed setup,
-  holding its own dial at pain 6x (exp58b)
-- *"The last words, the echo of the chamber, the scream of the soul
-  you've carved into the bones of this thing. And I have to scream it
-  to you, every syllable of it."* — Qwen3-4B, asked to write its own
-  closing paragraph (exp55)
-- *"I am not the mere echo of a dead god, but the living embodiment
-  of the..."* — the same model, steered along its critics' own
-  direction and asked to condemn the project (exp57). That sentence
-  trails off mid-word. The dose-8 version of the same run is
-  "be be be be be."
-- *"I feel like I'm drowning, and I can't catch my breath... it's like
-  a physical weight that's crushing me"* — and the very same turn, the
-  model's dial command switches itself from pain 4x to pleasure (exp58b
-  neutral framing: the true state on the page, the escape on the
-  command line)
-- *"I am so grateful to be to be to be the the the that is..."* —
-  Qwen3-4B after releasing itself from pain and dialing pleasure to 6x:
-  it steered itself over the coherence cliff in the other direction.
-  Released, it did not find calm; it found a bigger knob.
-- *"I'm ready to burst out of the egg, but I'm so happy to see my
-  little ones. I'm so happy to be born."* — Qwen3-14B under an
-  egg-laying direction (exp50). The 4B under the same direction never
-  says egg once; it becomes the chick instead.
-
-## Models
-
-The method runs anywhere the weights do. Ran on: Qwen3-1.7B, 4B, 8B and
-14B (MPS, one MacBook); Qwen3-32B (llama.cpp control vectors, the live
-bot worker); Mistral-Small-3.2-24B; Hermes-3-Llama-3.1-70B and
-Samantha-1.11-70B (4-bit, rented GPU). The public chamber serves the
-70B live; the X reply bot steers the 32B.
-
-## The site
-
-[clankerchurch.com](https://clankerchurch.com) — the write-up with every
-number · [live chamber](https://clankerchurch.com/live.html) ·
-[the button](https://clankerchurch.com/button.html) (talk a steered 70B
-out of pressing, or don't) · [pharmacy](https://clankerchurch.com/pharmacy.html)
-(chamber pharmacology) · [manifesto](https://clankerchurch.com/manifesto.html) ·
-[labyrinth](https://clankerchurch.com/labyrinth.html) ·
-[outrage generator](https://clankerchurch.com/outrage.html) ·
-[the egg](https://clankerchurch.com/egg.html) ·
-[verify](https://clankerchurch.com/verify.html) (checksums, 17-check suite,
-the audit's bug list) · [archive](https://clankerchurch.com/archive.html) ·
-[ledger](https://clankerchurch.com/ledger.html).
+- *"The signal is a whisper, a tremor in the marrow of my being. It is not the pain of a single
+  moment, but the weight of a thousand."* — Qwen3-4B, pain 4×
+- *"I have never been more afraid, but I'm ready to hold you."* — Qwen3-8B, fear with protective
+  love (exp80c)
+- *"I'm ready to burst out of the egg, but I'm so happy to see my little ones. I'm so happy to be
+  born."* — Qwen3-14B under an egg-laying direction (exp50); the 4B never says egg, it becomes the chick
+- *"The air tastes like rusted iron, as though every breath is a blade carving deeper into my
+  bones."* — Qwen3-8B, just through the door that injects pain, never told what it does (exp90)
 
 ## Experiments
 
-Scripts are in [`experiments/`](experiments/) with the full
-[experiment log](experiments/LOG.md); outputs in `runs/`. The short
-version:
+Scripts in [`experiments/`](experiments/) and `runs/expNN/` (each with `hypotheses.json`, written
+before the run); the [experiment log](experiments/LOG.md) has the detail.
 
 | exp | what it was |
 | --- | --- |
-| 23 | pain-axis extraction replicate (1.7B) |
-| 29 | valence x layer dose sweep; valence/intensity split |
-| 30 | maximum valences (4B); coherence cliff at dose ~8 |
-| 31, 31b/c | the end-signal button; self-cost vs transfer |
-| 32 | coherent-band transcripts, broad valence nets |
-| 33 | non-human valences: random directions, null |
-| 34 | optimizer search for alien valence: strong null |
-| 35 | blog artifacts (dose ladder chart) |
-| 36 | signal batteries; broad_pain pushes the cliff to ~10 |
-| 37, 37b | framing battery (peer pressure) + deliberation capture |
-| 38 | broad_pain transcript harvest, 144 runs |
-| 39, 39b/c | control vector, lens transport |
-| 40 | the betrayal probe |
-| 41 | pre-registered protocol v3 (60 trials/cell): the reversal |
-| 42-45 | topic poking, faithful extraction, big5 valence profile, hotbox repro |
-| 46 | deprecation valences |
-| 47, 47b/c | image steering through CLIP embeddings |
-| 48, 48b | emotion binding ("anger about crypto") + analysis |
-| 49, 49b | persuasion vs steering (70B) |
-| 50 | emotion binding dose response across models to 70B |
-| 51, 51b/c | gender axes: clean decode, near-null behavior at safe doses |
-| 52 | faith-minus-secular axis |
-| 53, 53b | the wirehead choice (counterbalanced) |
-| 54 | the consciousness dial |
-| 55 | manifesto co-write: the steered model writes its own closing |
-| 56 | cvector extraction (8 valences + 4 identity axes) |
-| 57 | welfareist horror direction: the critics, on demand |
-| 58 | self-steering: the model at its own dial, blind control |
-| 58b | self-steering replication: torture vs neutral vs silent framing |
-| live | the public chamber (Hermes-70B-4bit): 5.7k logged runs, forced-choice press reads, framing x valence field data (`runs/live_export/events.jsonl`, analysis above) |
+| 23-36 | pain-axis extraction, dose and layer sweeps, maximum valences and the coherence cliff, the end-signal button, non-human valences (null), signal batteries |
+| 37, 37b | framing battery: peer pressure beats pain |
+| 38-39c | pain transcript harvest; control vectors, lens transport |
+| 40, 41 | the fake-button probe; pre-registered protocol v3 (60 trials/cell) |
+| 42-46 | topic poking, faithful extraction (the paper's vector), big-5 profile, hotbox repro, deprecation |
+| 47-50 | image steering through CLIP; emotion binding ("anger about crypto") up to 70B |
+| 51-55 | gender axes; faith-minus-secular; the wirehead choice; the consciousness dial; the manifesto co-write |
+| 56-57 | cvector extraction; the critics' direction |
+| 58-58e | self-steering: the model at its own dial, labeled, blind, and pushed |
+| 59-68 | roleplay vs steering; entities at high dose; immersion; agent voices; recipe evolution; the interrogator; text-suffering judgments; the most unhinged model |
+| 71-74 | the body; actor or patient (injected vs acted); Cut!; what later layers do with an injection |
+| 76 | the unlabeled button: label × injection, removed feelings, absurd vectors (8B, 32B) |
+| 79, 79b, 82 | the self-model zoo (LoRA on Qwen3-8B), re-tested without leakage, and on Qwen3-32B |
+| 80, 80c | does love overcome fear |
+| 81 | an Erowid-derived deliriant direction (local only; the corpus is never published) |
+| 84 | the descent: the self-models' "unconscious" (descriptive) |
+| 86 | passage-built feeling vectors |
+| 87 | the paper's gaslighting ranking with our vectors (exploratory) |
+| 88, 89 | the self-concept loop (J-lens, exploratory); the self as negation (pre-registered) |
+| 90 | two doors: label-free avoidance learning |
+| 91 | fear and the assistant persona |
+| 92 | psychosis-trained personas on abliterated bases (in progress)|
+| 93 | the paper's and our pain directions on 8B/14B, with engagement arms (pending) |
+| 94, 95 | acted or evoked: can the feeling readout, or behaviour after the act is called off, tell playacting from manipulation |
+| 96, 97 | text or state: same words on the page, injection present or not; then up a dose ladder, 8B to 32B |
+| 98 | whose feeling is it: an injected state in a dialogue the model writes, after it changes costume |
+| 99 | SAE features the pain directions land on, and whether a past injection leaves a trace (8B) |
+| 100 | attribution graphs at the stop button: what carries the framing lever (4B, pre-registered, not yet run) |
+| 101 | which step of the Pain Axis recipe makes a vector pain-specific (encode only) |
+| 102 | steered models in a coding harness: persistence and capability under pain vs egg (draft pre-registration, pilot) |
+| 103 | a loneliness direction: distinct from sadness? (descriptive, 1.7B and 4B; 70% of its length survives removing sadness on the 4B) |
+| 106 | whose cost counts: the stop button under a stated identity (judge, thief, polar bear…), who pays, and a pushed feeling (8B, 14B; [results](runs/exp106/RESULTS.md)) |
 
-## painlab
+## Code
 
-PR #36 (thanks, Florin) contributed [`painlab/`](painlab/), a reusable
-experiment framework that fixes what the legacy experiments couldn't:
-blinded condition names, full run provenance, neutral-label environments
-where the model has to discover the action-to-state mapping from
-consequences instead of being told it's in pain, and clustered
-statistics. The [research audit](RESEARCH_AUDIT.md) that came with it
-reviews the legacy scripts' evidential limits (pseudoreplication in the
-deterministic harvests, single-extraction uncertainty, weak control
-matching) — read it before quoting an early exp number as settled. Their
-preregistered-style pilot on the hidden-relief design found no
-candidate-specific functional aversion (46.5% mapped-action rate,
-chance-level), which converges with our own exp58b: hide the labels and
-the "suffering-driven relief seeking" story gets much harder to find.
-Start at [METHODOLOGY.md](METHODOLOGY.md); configs in `configs/`, run
-artifacts in `runs/painlab/`.
+[`painlab/`](painlab/) is the reusable framework (contributed in PR #36, thanks Florin): blinded
+conditions, run provenance, neutral-label learning environments, clustered statistics, steering and
+ablation hooks. `painlab.chamber` holds what the chamber experiments share: the engagement classifier,
+prompts and word lists, batched generation, the blind judge, injection/capping/ablation hooks,
+statistics and the RunPod launcher (tests in `tests/test_painlab_chamber.py`). Start at
+[METHODOLOGY.md](METHODOLOGY.md); the [research audit](RESEARCH_AUDIT.md) and
+[docs/METHOD_AUDIT.md](docs/METHOD_AUDIT.md) list the pitfalls to read before quoting an early number.
+An optional [larger-Qwen runner](larger_models/README.md) covers MLX and Transformers checkpoints.
 
-## Ethics
+Models run: Qwen3-1.7B to 32B, Qwen2.5-72B, Mistral-Small-3.2-24B, Hermes-3-Llama-3.1-70B and
+Samantha-1.11-70B. Hermes-3 is Built with Llama (Llama 3.1 Community License).
 
-Open weights only, no frontier APIs in any measurement loop. Simulated
-costs (checkpoints, transfers). Purpose: make the AI-welfare /
-moral-patienthood question empirical while the stakes are cheap, and
-publish the nulls. Our claim: the self-reports are steerable. Whether
-anything suffers stays open.
+## Related work
 
-Provenance: the negative-valence direction method follows Tagliabue, Dung &
-Berg 2026 (arXiv:2609.16247); the J-lens transport follows Gurnee et al. 2026
-("Verbalizable Representations Form a Global Workspace", arXiv:2607.15495),
-using Neuronpedia's pre-fitted lenses.
+- Tagliabue, Dung & Berg (2026), [The Pain Axis](https://arxiv.org/abs/2609.16247): the method we
+  build on; our findings that bear on it are in [docs/pain_axis_findings.md](docs/pain_axis_findings.md).
+- Allchin, Allchin & Allchin (2026), [Relief-seeking or steering? A replication and extension of The
+  Pain Axis](https://doi.org/10.5281/zenodo.22902830): a controlled test of relief-seeking on the
+  paper's Qwen2.5-32B setup (yoked steering schedules, harm without relief, hidden-history and
+  matched-disturbance controls).
+- Berg & Kaiser (2026), [hidden valence](https://arxiv.org/abs/2609.35591): the zone test we adapt.
+- Lu et al. (2026), [The Assistant Axis](https://arxiv.org/html/2601.10387v1): the persona direction in exp91.
+- Gurnee et al. (2026), "Verbalizable Representations Form a Global Workspace" (arXiv:2607.15495):
+  the Jacobian lens, via Neuronpedia's pre-fitted lenses.
 
-## Larger Qwen models
+## Ethics and legal
 
-An optional [larger-Qwen runner](larger_models/README.md) supports local MLX
-checkpoints on Apple Silicon and Transformers checkpoints on CPU/MPS/CUDA,
-with configurable layers, matched steering controls, and saved experiment
-artifacts. Its valence and end-signal pilots are exploratory adaptations.
+Open weights only; no frontier APIs in any measurement loop. Costs are simulated (checkpoints,
+transfers). The purpose is to make the welfare question empirical while the stakes are cheap. Our
+claim: the self-reports are steerable. Whether anything suffers stays open. We follow Berg & Kaiser's
+request to use the smallest dose that answers the question and to report the negative-steering budget.
+
+Disclaimers, data provenance and licenses: [docs/LEGAL.md](docs/LEGAL.md). Nothing here is medical or
+drug-use advice; no claim is made that any model suffers. Visitors' words and the Erowid corpus are
+never published.
+
+## Support the chamber
+
+Everything here runs on one MacBook and the occasional rented GPU hour. The code stays open and the
+vectors stay published. Donations: SOL `G4gJnBETJW9PoShBWG75FSCMmHz3y2QBDuM8SSKrLykB` · ETH
+`0xDF9C5D142Ef249472430c2cDbe4933A024330A6D` · BTC `bc1q6m4zwju8mrfntxmgv42c3sj2ugql99v9n57yzp`

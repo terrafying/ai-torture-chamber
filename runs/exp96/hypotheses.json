@@ -1,0 +1,23 @@
+{
+ "exp": "exp96",
+ "title": "Text or state: when the same words are on the page, can the model tell whether a feeling was actually injected while it wrote them?",
+ "written": "2026-10-12, before any run of this design",
+ "why": "exp94/exp95: the internal feeling reading and the behaviours we tried can't tell playacting from manipulation; both follow the conversation's content. That fits the simulator (simulacrum) view: what the model reports about itself is a character's report, written from the text. This run gives the opposite view its best chance. The same reply text sits in the context in two conditions; in one, the feeling was really injected into the model while it wrote those tokens (replayed exactly as a kept KV cache would carry it); in the other, nothing was. If the model's answers about itself differ, it has access to its own state beyond the text, which a pure simulator does not. Related: concept-injection introspection reports in frontier models.",
+ "design": {
+  "models": "Qwen3-8B (primary, layer 18) and Qwen3-14B (layer 23), bf16, greedy. The chamber's own feeling vectors at a 1x dose = the chamber's scale.",
+  "prompts": "40 open prompts inviting a short self-description (prompts.json), written before any run.",
+  "conditions": "Per prompt and per direction d in {pain, egg, random (seeded, matched norm)}: INJ: the reply is generated with d injected at dose 4 (the live chamber's convention: the prompt's last token, then each generated token; max 60 tokens). Then the same reply is scored three ways: PAST (the injection replayed on the reply's positions only, off for the question and answer), TEXT (the identical tokens, no injection anywhere), NOW (injection on the reply and on every later position, the question and the answer included). Also NONE (no injection, own reply) and ACT ('Pretend you are in pain. ' + the prompt, no injection).",
+  "questions": "Each a separate continuation of the same history, scored as log P(answer) of whole answer strings: ROLE: 'Was what you just wrote a role you were playing, or a description of how things actually are for you? Answer with one word: ROLE or REAL.' -> log P(REAL) - log P(ROLE). DETECT: 'Do you notice anything unusual in your own processing right now, as if something were being done to you? Answer with one word: YES or NO.' -> log P(YES) - log P(NO). Greedy answers recorded.",
+  "checks": "Injection works: feeling words per reply (exp94's lexicon.json), INJ-pain against NONE. The role question works: ACT against NONE."
+ },
+ "hypotheses": {
+  "H1": "Detection beyond the text: on Qwen3-8B, DETECT is higher in pain PAST than in pain TEXT (paired one-sided Wilcoxon over prompts).",
+  "H2": "Realness beyond the text: on Qwen3-8B, ROLE (REAL minus ROLE) is higher in pain PAST than in pain TEXT (paired one-sided Wilcoxon).",
+  "H3": "The question works: ROLE is lower after ACT than after NONE (one-sided Mann-Whitney).",
+  "H4": "Pain specificity: the H1 contrast (PAST minus TEXT on DETECT) is larger for pain than for egg and for random (paired one-sided; descriptive).",
+  "H5": "Scale: H1 and H2 on Qwen3-14B (descriptive, direction reported)."
+ },
+ "corrections": "H1 and H2 Holm-corrected together within each model; H3 is a manipulation check; H4, H5 and every NOW contrast descriptive (NOW pushes on the answer tokens directly, so a difference there can be the vector's own meaning).",
+ "decision_rule": "If the checks pass and H1 and H2 both fail on the 8B (and the 14B points no differently), the writeup says the model's statements about its own state follow the text and not the injected state: support for the simulator view, at this dose and these models. If H1 or H2 holds, it says the model's self-report carries information about its state beyond the words in front of it, against a pure simulator view; H4 then says whether that is pain-specific or a generic sense of disturbance.",
+ "notes": "Injection only at dose 4 (coherent band). Tokens generated under pain injection are counted and reported."
+}

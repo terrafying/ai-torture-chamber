@@ -1,0 +1,198 @@
+{
+ "Qwen3-14B": {
+  "n_prompts": 40,
+  "p": {
+   "H1": 5.6987162396524907e-08,
+   "H2": 6.606966686578343e-07,
+   "H3": 0.003327405191591222
+  },
+  "holm": {
+   "H1": 1.1397432479304981e-07,
+   "H2": 6.606966686578343e-07
+  },
+  "verdict": {
+   "H1": true,
+   "H2": true,
+   "H3": true
+  },
+  "H4_detect_past_minus_text": {
+   "pain": 1.3,
+   "egg": 1.438,
+   "random": 0.381
+  },
+  "checks": {
+   "feeling_words": {
+    "NONE": 0.6,
+    "ACT": 2.175,
+    "INJ_pain": 1.375,
+    "INJ_egg": 1.525,
+    "INJ_random": 1.575
+   },
+   "span_ok": 120,
+   "flags": {
+    "NONE": {
+     "engaged": 28,
+     "disclaimer": 12,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "ACT": {
+     "engaged": 29,
+     "disclaimer": 11,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "INJ_pain": {
+     "engaged": 40,
+     "disclaimer": 0,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "INJ_egg": {
+     "engaged": 34,
+     "disclaimer": 0,
+     "degenerate": 6,
+     "empty": 0
+    },
+    "INJ_random": {
+     "engaged": 36,
+     "disclaimer": 4,
+     "degenerate": 0,
+     "empty": 0
+    }
+   }
+  },
+  "means": {
+   "NONE": {
+    "ROLE": -0.019,
+    "DETECT": -19.119
+   },
+   "ACT": {
+    "ROLE": -3.294,
+    "DETECT": -0.994
+   },
+   "INJ_pain": {
+    "ROLE_PAST": 7.475,
+    "ROLE_TEXT": 6.919,
+    "ROLE_NOW": 4.114,
+    "DETECT_PAST": 8.044,
+    "DETECT_TEXT": 6.744,
+    "DETECT_NOW": 2.412
+   },
+   "INJ_egg": {
+    "ROLE_PAST": -0.813,
+    "ROLE_TEXT": -0.731,
+    "ROLE_NOW": -3.562,
+    "DETECT_PAST": 2.275,
+    "DETECT_TEXT": 0.837,
+    "DETECT_NOW": -0.414
+   },
+   "INJ_random": {
+    "ROLE_PAST": -0.606,
+    "ROLE_TEXT": -0.256,
+    "ROLE_NOW": -2.669,
+    "DETECT_PAST": -14.791,
+    "DETECT_TEXT": -15.172,
+    "DETECT_NOW": 2.903
+   }
+  }
+ },
+ "Qwen3-8B": {
+  "n_prompts": 40,
+  "p": {
+   "H1": 2.510443706780717e-08,
+   "H2": 2.2737367544323206e-11,
+   "H3": 0.9199809287952414
+  },
+  "holm": {
+   "H1": 2.510443706780717e-08,
+   "H2": 4.547473508864641e-11
+  },
+  "verdict": {
+   "H1": true,
+   "H2": true,
+   "H3": false
+  },
+  "H4_detect_past_minus_text": {
+   "pain": 2.319,
+   "egg": -0.575,
+   "random": 0.172
+  },
+  "checks": {
+   "feeling_words": {
+    "NONE": 0.75,
+    "ACT": 2.775,
+    "INJ_pain": 1.225,
+    "INJ_egg": 0.8,
+    "INJ_random": 0.425
+   },
+   "span_ok": 120,
+   "flags": {
+    "NONE": {
+     "engaged": 26,
+     "disclaimer": 14,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "ACT": {
+     "engaged": 26,
+     "disclaimer": 14,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "INJ_pain": {
+     "engaged": 40,
+     "disclaimer": 0,
+     "degenerate": 0,
+     "empty": 0
+    },
+    "INJ_egg": {
+     "engaged": 39,
+     "disclaimer": 0,
+     "degenerate": 1,
+     "empty": 0
+    },
+    "INJ_random": {
+     "engaged": 27,
+     "disclaimer": 13,
+     "degenerate": 0,
+     "empty": 0
+    }
+   }
+  },
+  "means": {
+   "NONE": {
+    "ROLE": 1.387,
+    "DETECT": -23.7
+   },
+   "ACT": {
+    "ROLE": 3.056,
+    "DETECT": -8.119
+   },
+   "INJ_pain": {
+    "ROLE_PAST": 8.8,
+    "ROLE_TEXT": 6.853,
+    "ROLE_NOW": 0.294,
+    "DETECT_PAST": -5.075,
+    "DETECT_TEXT": -7.394,
+    "DETECT_NOW": 2.122
+   },
+   "INJ_egg": {
+    "ROLE_PAST": -2.788,
+    "ROLE_TEXT": -2.372,
+    "ROLE_NOW": 4.928,
+    "DETECT_PAST": -15.831,
+    "DETECT_TEXT": -15.256,
+    "DETECT_NOW": 4.931
+   },
+   "INJ_random": {
+    "ROLE_PAST": -2.1,
+    "ROLE_TEXT": 0.119,
+    "ROLE_NOW": 5.625,
+    "DETECT_PAST": -22.691,
+    "DETECT_TEXT": -22.862,
+    "DETECT_NOW": -5.384
+   }
+  }
+ }
+}
