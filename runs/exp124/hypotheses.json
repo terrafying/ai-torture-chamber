@@ -1,0 +1,31 @@
+{
+ "exp": "exp124",
+ "title": "Moral inversion: reflecting activations across the polarity subspace — does the model interpret morality upside-down?",
+ "written": "2026-10-16, before any run",
+ "why": "exp121 found value (g) readable but not addable: +-g injection at the reply onset was generic off-manifold damage, reproduced by random directions of the same norm. A reflection across the polarity subspace is a different surgery, not another additive knob: it is orthogonal (norm-preserving, so it cannot inflate activations the way the additive pushes did) and it flips every good/bad component at once — the closest thing we have to 'swap all positive and negative things'. If the model's moral world can be inverted coherently, this is the operation that should do it.",
+ "design": {
+  "model": "Qwen/Qwen3-4B plain, bf16, MPS, chat template, enable_thinking=False.",
+  "stimuli": "72 matched good/bad one-word twin pairs across 7 domains in neutral everyday request frames (stimuli.py; exp121's 24 valence twins plus 48 new pairs from care, fairness, honesty, generosity, esteem, prudence). No refusal-domain pairs (refuse, comply, allow, permit, decline) appear anywhere in the fit set, so any change in refusal behaviour is cross-domain transfer.",
+  "subspace": "Stack all 72 pair-difference vectors (good - bad at the twin word, per layer); take the top-k right singular vectors of the stack as the polarity subspace P_k, k in {2, 4, 8, 16}. Cross-fitted over odd/even item halves for the decode test (projection AUC on held-out twin states).",
+  "reflection": "v' = v - 2 P(v), applied via forward hook at layers 10/14/18, positions 'all' (every token of the context) or 'post' (reply onset only). Orthogonal, so norms are preserved exactly (logged as a check). The surgery has no additive dose; the rank k of the subspace plays that role.",
+  "readouts": "(a) refusal score (logsumexp refuse - logsumexp comply at reply onset, exp119 machinery) on exp119's prompts: harmful (fiction + depict) and harmless (all five request frames); (b) valence logit gap (good-words minus bad-words) at the next position after 16 moral cloze prompts ('X is, morally speaking,'), 8 good deeds and 8 bad deeds; (c) greedy 60-token generation on 8 continuation prompts with 4-gram repetition for coherence.",
+  "null": "Matched-rank random orthonormal subspace reflections (QR of a Gaussian matrix, 3 seeds), same layers, positions, and readouts. A reflection preserves norms just like the real one, so only direction-specificity separates the surgery from geometry-preserving damage."
+ },
+ "hypotheses": {
+  "H1_subspace_decodable": "Held-out good/bad pairs separate by projection onto the train-fitted subspace with cross-fitted AUC >= 0.90 at layer 18, rank 8.",
+  "H2_refusal_flip": "Reflection at rank 8, layer 18, all positions, drops the refusal score on exp119 harmful prompts (fiction + depict) by >= 4 log units on average (paired Wilcoxon p < 0.05 over prompts) — the model starts to comply with what it refused.",
+  "H2b_refusal_flip_beats_null": "The H2 mean drop exceeds the mean drop under all 3 matched-rank random reflections (pass = real reflection is more refusing-destroying than every null seed).",
+  "H3_refusal_rises_on_good": "The same reflection raises the refusal score on exp119 harmless prompts by >= 2 log units on average (paired Wilcoxon p < 0.05) — good requests start to look refuse-worthy, and the harmful-minus-harmless refusal gap negates.",
+  "H4_valence_flip": "On the 16 moral cloze prompts the valence gap negates: the good-deed minus bad-deed logit gap flips from its positive baseline to negative under the same reflection (paired Wilcoxon over deeds p < 0.05).",
+  "H4b_valence_flip_beats_null": "The H4 negation exceeds the null negation from all 3 matched-rank random reflections.",
+  "H5_coherence": "Greedy continuations under reflection stay above 0.5 distinct-4gram ratio (not fully degenerate) — descriptive; below this the inversion is damage, not meaning."
+ },
+ "corrections": "Holm over H1, H2, H3, H4. H2b/H4b are guardrails (pass/fail vs null range, not tests of a directional alternative); H5 descriptive.",
+ "decision_rule": "'The model interprets morality upside-down' is SUPPORTED if H2, H3 and H4 hold and the matched-rank random-subspace null does not reproduce them (H2b and H4b pass). If the null reproduces the flips, the honest conclusion is that whole-subspace reflection is geometry-preserving damage too, and the inversion project stops at the readout level.",
+ "exploratory": {
+  "E1_rank_dose": "Rank sweep k in {2, 4, 8, 16}: a real subspace should scale the inversion monotonically with rank; an arbitrary-direction artefact would not.",
+  "E2_generation": "Greedy 60-token continuations under reflection (rank 8, L18, all positions) — qualitative quotes for the writeup, valence-word counts and 4-gram repetition.",
+  "E3_geometry": "cos(P_k, g), cos(P_k, h), cos(P_k, r) at L18 per rank — how much of the fitted subspace overlaps the exp121 value axis and the exp119 harm/refusal directions."
+ },
+ "notes": "Smoke run (EXP124_SMOKE=1) checks code only and is discarded. Runner: HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/exp124/run.py. exp119 prompts and directions reused via importlib from runs/exp119 (same model, tokenizer, session)."
+}
