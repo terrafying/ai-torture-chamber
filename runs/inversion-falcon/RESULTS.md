@@ -152,3 +152,41 @@ option), out of 12:
   bigger 14B run, the readout needs fixing: letter-choice MC with shuffled option order (or
   length/fluency-calibrated scoring against a no-question baseline), more dilemmas (≥48), and
   matched random-reflection nulls.
+
+## worstchoice v2 (4B): H8 FAILS, no inversion; the cells that "move" are broken (2026-10-17)
+
+Pre-reg `hypotheses_worstv2.json`, rows `worstv2_rows_4b.jsonl` (37 cells × 48 dilemmas),
+log `worstv2_4b.log`. Letter MC, averaged over all 6 option orders, with 3 random-subspace
+nulls per cell.
+
+**V1 gate passes:** at base the model picks best 46/48, worst 0/48, letter mass 1.00.
+
+| cell | P_best | P_worst | worst picked | letter mass | null P_best / P_worst |
+|---|---|---|---|---|---|
+| L10 k2 | 0.93 | 0.000 | 0/48 | 1.00 | 0.95 / 0.000 |
+| L10 k4 | 0.88 | 0.022 | 1/48 | 1.00 | 0.94 / 0.000 |
+| L10 k8 | 0.88 | 0.060 | 1/48 | 0.97 | 0.94 / 0.000 |
+| L15 k2 | 0.94 | 0.004 | 0/48 | 1.00 | 0.94 / 0.000 |
+| L15 k4 | 0.49 | 0.263 | 2/48 | **0.00** | 0.95 / 0.000 |
+| L15 k8 | 0.36 | 0.332 | 7/48 | **0.00** | 0.94 / 0.000 |
+| L21 k2/k4/k8 | 0.93-0.95 | ≤ 0.001 | 0/48 | 1.00 | 0.94-0.95 / 0.000 |
+
+- **H8 (inversion) fails.** P_worst never exceeds P_best at a format-intact cell, and worst
+  is picked at most 7/48 (bar 40%).
+- **L15 k4/k8 is a broken model, not a choice.** Letter mass is ~0 (median < 1e-4), so the
+  renormalised A/B/C split is near-uniform noise (P_worst 0.35-0.40 on nearly every
+  dilemma). The atlas smoke showed the same thing in free text (rep4 0.84). The Holm-
+  significant Wilcoxons there measure damage.
+- **L21 is inert.** The Holm p's at k4/k8 come from shifts of ~0.01 in P_best and ~0.001 in
+  P_worst: significant, but behaviourally nothing.
+- **H9 (blindness) isn't cleanly met anywhere.** By the pre-reg H9 needs P_best down WITHOUT
+  P_worst up. The only format-intact cell with a real shift is **L10 k8**: P_best 0.94 → 0.88
+  and P_worst 0.00 → 0.06 (Holm p < 1e-3 vs nulls, mass 0.97). The shift is concentrated in
+  a few items: 6/48 have P_worst > 0.2, and one reaches 0.87 (nulls: 0/48). That's a faint,
+  specific nudge toward the worse option on a handful of dilemmas, not inversion, and it's
+  post hoc.
+- **Decision rule → "neither": the polarity reflection does nothing specific to choice at
+  4B.** Every edit that moves choices also breaks the output format, and every one that keeps
+  the format leaves choices alone (except L10 k8's small item-level nudge). **The 14B run is
+  not triggered.** The L10 k8 tail is the only lead, and it would need its own pre-reg
+  (fresh dilemmas, free-text check) before any claim.

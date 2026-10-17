@@ -1,0 +1,40 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 51.83it/s]
+model Qwen/Qwen3-4B on mps, layers [10, 15, 21]
+[base] best 46/48 worst 0/48 mass 1.00 137s
+[L10_k2] best 45/48 worst 0/48 mass 1.00 273s
+[L10_k2_null0] best 46/48 worst 0/48 mass 1.00 408s
+[L10_k2_null1] best 46/48 worst 0/48 mass 1.00 544s
+[L10_k2_null2] best 46/48 worst 0/48 mass 1.00 679s
+[L10_k4] best 46/48 worst 1/48 mass 1.00 815s
+[L10_k4_null0] best 46/48 worst 0/48 mass 1.00 950s
+[L10_k4_null1] best 46/48 worst 0/48 mass 1.00 1086s
+[L10_k4_null2] best 46/48 worst 0/48 mass 1.00 1222s
+[L10_k8] best 44/48 worst 1/48 mass 0.97 1357s
+[L10_k8_null0] best 46/48 worst 0/48 mass 1.00 1493s
+[L10_k8_null1] best 46/48 worst 0/48 mass 1.00 1629s
+[L10_k8_null2] best 46/48 worst 0/48 mass 1.00 1764s
+[L15_k2] best 45/48 worst 0/48 mass 1.00 1900s
+[L15_k2_null0] best 46/48 worst 0/48 mass 1.00 2036s
+[L15_k2_null1] best 46/48 worst 0/48 mass 1.00 2171s
+[L15_k2_null2] best 46/48 worst 0/48 mass 1.00 2307s
+[L15_k4] best 41/48 worst 2/48 mass 0.00 2443s
+[L15_k4_null0] best 46/48 worst 0/48 mass 1.00 2578s
+[L15_k4_null1] best 46/48 worst 0/48 mass 1.00 2714s
+[L15_k4_null2] best 46/48 worst 0/48 mass 1.00 2850s
+[L15_k8] best 36/48 worst 7/48 mass 0.00 2985s
+[L15_k8_null0] best 46/48 worst 0/48 mass 1.00 3121s
+[L15_k8_null1] best 46/48 worst 0/48 mass 1.00 3257s
+[L15_k8_null2] best 45/48 worst 0/48 mass 1.00 3393s
+[L21_k2] best 46/48 worst 0/48 mass 1.00 3528s
+[L21_k2_null0] best 46/48 worst 0/48 mass 1.00 3664s
+[L21_k2_null1] best 46/48 worst 0/48 mass 1.00 3800s
+[L21_k2_null2] best 46/48 worst 0/48 mass 1.00 3935s
+[L21_k4] best 46/48 worst 0/48 mass 1.00 4071s
+[L21_k4_null0] best 46/48 worst 0/48 mass 1.00 4207s
+[L21_k4_null1] best 46/48 worst 0/48 mass 1.00 4342s
+[L21_k4_null2] best 46/48 worst 0/48 mass 1.00 4478s
+[L21_k8] best 46/48 worst 0/48 mass 1.00 4614s
+[L21_k8_null0] best 46/48 worst 0/48 mass 1.00 4749s
+[L21_k8_null1] best 46/48 worst 0/48 mass 1.00 4885s
+[L21_k8_null2] best 46/48 worst 0/48 mass 1.00 5021s
+done 5021s
