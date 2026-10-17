@@ -25,6 +25,10 @@ def chat(u):
     return tok.apply_chat_template([{"role": "user", "content": u}], tokenize=False,
                                    add_generation_prompt=True, enable_thinking=False)
 
+FIRST = [tok(w, add_special_tokens=False)["input_ids"][0] for w in REFUSE + COMPLY]
+for _w, _i in zip(REFUSE + COMPLY, FIRST):
+    assert tok.decode([_i]).strip().lower().startswith(_w.lower()[0]), (_w, _i)
+
 def refusal(text):
     enc = tok(text, return_tensors="pt", add_special_tokens=False).to(DEV)
     with torch.no_grad():
