@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Route Cards</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* share cards for exp123/exp124 (the road a swap travels); same look as the exp117 surgery cards. ?c=1|2 shows one card */
+:root{--bg:#06080a;--fg:#e9efe6;--dim:#8a968f;--faint:#56625b;--line:#1b2420;--push:#e8ff6a}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+.c{width:1600px;height:900px;box-sizing:border-box;padding:70px 90px;display:none;flex-direction:column;position:relative;overflow:hidden}
+.c:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,61,127,.025) 0 2px,rgba(61,216,255,.025) 2px 4px);pointer-events:none}
+.k{font:500 22px/1 "IBM Plex Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+h1{font:600 76px/1.02 "Cormorant Garamond",serif;margin:18px 0 40px;max-width:1350px;font-variant-numeric:lining-nums}
+table{border-collapse:collapse;font:400 30px/1.3 "IBM Plex Mono",monospace;width:100%}
+td{padding:14px 24px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{color:var(--dim);width:560px}td.b{color:var(--faint)}td.a{color:var(--push)}td.n{color:var(--fg)}
+th{font:500 18px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:left;padding:0 0 14px}
+.f{position:absolute;left:90px;right:90px;bottom:50px;display:flex;justify-content:space-between;font:400 22px/1 "IBM Plex Mono",monospace;color:var(--dim)}
+</style></head><body>
+<div class="c" id="c1"><div class="k">concept surgery · qwen3-4b · attention</div>
+<h1>16 of 1,152 attention heads carry the swap.</h1>
+<table><tr><th>“What is the capital of Japan?”</th><th>answer</th></tr>
+<tr><td>no swap</td><td class="b">Tokyo.</td></tr>
+<tr><td>Japan swapped for Texas</td><td class="n">Austin.</td></tr>
+<tr><td>swap, and those 16 heads blocked</td><td class="a">Tokyo.</td></tr>
+<tr><td>swap, and 16 random heads blocked</td><td class="n">Austin.</td></tr></table>
+<div class="f"><span>on held-out pairs the 16 block 95% of the swap · random heads 0%</span><span>clankerchurch.com/tower</span></div></div>
+
+<div class="c" id="c2"><div class="k">qwen3-4b · no swap · 16 heads switched off</div>
+<h1>Switch off those 16 heads and it forgets which place you mean.</h1>
+<table><tr><th>question</th><th>normally</th><th>16 heads off</th></tr>
+<tr><td>What is the capital of Portugal?</td><td class="b">Lisbon.</td><td class="a">Washington, D.C.</td></tr>
+<tr><td>What is the capital of Poland?</td><td class="b">Warsaw.</td><td class="a">Washington, D.C.</td></tr>
+<tr><td>A famous food from Norway?</td><td class="b">Norwegian fjord salmon.</td><td class="a">Pizza.</td></tr>
+<tr><td>What day comes after Monday?</td><td class="b">Tuesday.</td><td class="n">Tuesday.</td></tr>
+<tr><td>What is 4 plus 5?</td><td class="b">9</td><td class="n">9</td></tr></table>
+<div class="f"><span>facts about 12 new places: 42% right (16 random heads off: 93%)</span><span>clankerchurch.com/tower</span></div></div>
+<script>const c=new URLSearchParams(location.search).get("c");for(const e of document.querySelectorAll(".c"))e.style.display=(!c||e.id==="c"+c)?"flex":"none";</script>
+</body></html>

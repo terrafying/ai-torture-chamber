@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Neuron Tower Film</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 /* The Neuron Tower, staged for video: bloom, shards of light per token, interleaved colour. Shots are scripted and,
    with ?film=1, stepped frame by frame from outside (window.filmStep(t)) so a capture script can render any length
@@ -12,31 +12,35 @@
 :root{--bg:#020304;--fg:#eef2ec;--dim:#7d8a83;--push:#e8ff6a;color-scheme:dark}
 html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;color:var(--fg)}
 canvas{display:block;width:100%;height:100%}
-#hud{position:fixed;inset:0;pointer-events:none;font-family:"Newsreader",Georgia,serif}
+#hud{position:fixed;inset:0;pointer-events:none;font-family:"EB Garamond",Georgia,serif}
 #title{position:absolute;left:6vw;top:9vh;max-width:60vw}
-#title h1{font:600 clamp(28px,4.4vw,72px)/1.02 "Newsreader",Georgia,serif;margin:0;letter-spacing:-.01em}
-#title p{font:400 clamp(12px,1.1vw,18px)/1.5 "Chivo Mono",monospace;color:var(--dim);margin:.8em 0 0;letter-spacing:.04em}
-#word{position:absolute;left:0;right:0;bottom:15vh;text-align:center;font:600 clamp(36px,6vw,110px)/1 "Newsreader",Georgia,serif;text-shadow:0 0 28px rgba(232,255,106,.35);white-space:pre}
-#line{position:absolute;left:8vw;right:8vw;bottom:7vh;text-align:center;font:400 clamp(12px,1.15vw,19px)/1.6 "Chivo Mono",monospace;color:var(--dim);white-space:pre-wrap;max-height:4.8em;overflow:hidden}
+#title h1{font:600 clamp(28px,4.4vw,72px)/1.02 "Cormorant Garamond",Georgia,serif;margin:0;letter-spacing:-.01em}
+#title p{font:400 clamp(12px,1.1vw,18px)/1.5 "IBM Plex Mono",monospace;color:var(--dim);margin:.8em 0 0;letter-spacing:.04em}
+#word{position:absolute;left:0;right:0;bottom:15vh;text-align:center;font:600 clamp(36px,6vw,110px)/1 "Cormorant Garamond",Georgia,serif;text-shadow:0 0 28px rgba(232,255,106,.35);white-space:pre}
+#line{position:absolute;left:8vw;right:8vw;bottom:7vh;text-align:center;font:400 clamp(12px,1.15vw,19px)/1.6 "IBM Plex Mono",monospace;color:var(--dim);white-space:pre-wrap;max-height:4.8em;overflow:hidden}
 #line b{color:var(--fg);font-weight:400}
-#tag{position:absolute;right:5vw;top:9vh;text-align:right;font:400 clamp(11px,.95vw,15px)/1.6 "Chivo Mono",monospace;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+#tag{position:absolute;right:5vw;top:9vh;text-align:right;font:400 clamp(11px,.95vw,15px)/1.6 "IBM Plex Mono",monospace;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
 #names{position:absolute;inset:0}
-.pz{position:absolute;top:22vh;width:30vw;font:400 clamp(12px,1.05vw,18px)/1.55 "Chivo Mono",monospace;color:var(--dim);opacity:0;transition:none}
-.pz h3{font:600 clamp(11px,.8vw,14px)/1 "Chivo Mono",monospace;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .9em;color:var(--fg)}
+.pz{position:absolute;top:22vh;width:30vw;font:400 clamp(12px,1.05vw,18px)/1.55 "IBM Plex Mono",monospace;color:var(--dim);opacity:0;transition:none}
+.pz h3{font:600 clamp(11px,.8vw,14px)/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .9em;color:var(--fg)}
 .pz p{margin:0 0 .9em}.pz b{color:#020304;background:var(--push);padding:0 .2em;font-weight:600}
 #pzL{left:5vw}#pzR{right:5vw;text-align:right}
-#pzT{position:absolute;left:8vw;right:8vw;bottom:9vh;font:400 clamp(13px,1.2vw,21px)/1.5 "Chivo Mono",monospace;opacity:0}
+#pzT{position:absolute;left:8vw;right:8vw;bottom:9vh;font:400 clamp(13px,1.2vw,21px)/1.5 "IBM Plex Mono",monospace;opacity:0}
 #pzT .row{display:grid;grid-template-columns:1fr 18vw 7em;gap:1.2vw;align-items:center;margin:.35em 0;opacity:0}
 #pzT .row b{color:var(--fg);border-bottom:2px solid #ff7a3d}#pzT .row span{color:var(--dim)}
 #pzT .bar{height:10px;background:rgba(255,255,255,.08);position:relative}#pzT .bar i{position:absolute;left:0;top:0;bottom:0;width:0}
 #pzT .bar u{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--fg);opacity:.5}
 #pzT .v{font-size:.85em;text-align:right}
-#url{position:absolute;right:5vw;bottom:4vh;font:400 clamp(11px,.9vw,15px)/1 "Chivo Mono",monospace;color:var(--dim);letter-spacing:.1em;opacity:0}
+#url{position:absolute;right:5vw;bottom:4vh;font:400 clamp(11px,.9vw,15px)/1 "IBM Plex Mono",monospace;color:var(--dim);letter-spacing:.1em;opacity:0}
 #title h1.rv{font-size:clamp(24px,3.2vw,54px)}#title p.rv{color:var(--fg);max-width:46vw}.vert #title h1.rv{font-size:7.5vw}.vert #title p.rv{max-width:none}
 .vert #title{max-width:86vw;left:7vw;top:6vh}.vert #title h1{font-size:9.5vw}.vert #title p{font-size:3.1vw}.vert #tag{top:2.5vh;font-size:2.2vw}
 .vert .pz{font-size:3vw}.vert .pz h3{font-size:2.4vw}.vert #pzT{font-size:3vw}.vert #word{font-size:16vw}.vert #url{font-size:2.6vw}.vert .pz{width:84vw;left:8vw!important;right:auto!important;text-align:left!important}.vert #pzL{top:30vh}.vert #pzR{top:52vh}
 .vert #pzT{left:6vw;right:6vw;bottom:8vh}.vert #pzT .row{grid-template-columns:1fr 26vw 5.5em}
-#names div{position:absolute;font:400 clamp(10px,.85vw,14px)/1.2 "Chivo Mono",monospace;white-space:nowrap;transform:translate(10px,-50%);padding:1px 6px;border-left:2px solid currentColor;background:rgba(2,3,4,.55)}
+.route #line{font:500 clamp(20px,2.3vw,40px)/1.35 "Cormorant Garamond",Georgia,serif;color:var(--dim)}.route #line b{color:var(--fg);font-weight:500}.vert.route #line{font-size:5.4vw}
+.route #line,.route #title h1{font-variant-numeric:lining-nums}.route #word{bottom:24vh}.vert.route #word{bottom:26vh}
+.route #word{text-shadow:0 0 28px rgba(238,242,236,.3)}#line .n{font-family:"IBM Plex Mono",monospace}
+.vert #line{font-size:3.2vw;bottom:9vh}
+#names div{position:absolute;font:400 clamp(10px,.85vw,14px)/1.2 "IBM Plex Mono",monospace;white-space:nowrap;transform:translate(10px,-50%);padding:1px 6px;border-left:2px solid currentColor;background:rgba(2,3,4,.55)}
 </style>
 </head>
 <body>
@@ -58,7 +62,7 @@ async function png(url){const b=await fetch(url).then(r=>r.blob()),im=await crea
  c.width=im.width;c.height=im.height;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(im,0,0);return x.getImageData(0,0,im.width,im.height).data;}
 const [gd,F,ST]=await Promise.all([png("grid.png"),fetch("featured.json").then(r=>r.json()),fetch("stream.json").then(r=>r.json())]);
 const PZ=SHOT==="puzzle"?await fetch("puzzles.json").then(r=>r.json()):null;
-const CP=SHOT==="attention"?await fetch("film_copy.json").then(r=>r.json()):null;
+const CP=SHOT==="attention"?await fetch("film_copy.json").then(r=>r.json()):SHOT==="route"?await fetch(Q.get("data")||"route_copy.json").then(r=>r.json()):null;
 const VW=+(Q.get("w")||1920),VH=+(Q.get("h")||1080);if(VH>VW)document.body.classList.add("vert");
 const M=F.meta,NL=M.n_layers,NI=M.n_neurons,FE=M.feelings,REC=2+FE.length,L=M.layer,N=NL*NI;
 const grid=new Int8Array(N*REC);for(let i=0,j=0;j<grid.length;i+=4){for(const k of[0,1,2])if(j<grid.length)grid[j++]=gd[i+k]<<24>>24;}
@@ -166,7 +170,13 @@ SHOTS.puzzle=()=>{const p=PZ.puzzles[+(Q.get("p")||0)],srt=[...p.tests].sort((a,
 SHOTS.attention=()=>{const E=CP.events,ev=[];let t=2.4;
  for(let i=0;i<E.length;i++){const isP=E[i].phase==="prompt",w=clean(E[i].tok);if(isP&&!w.trim())continue;ev.push({t,i,isP});t+=isP?.11:.62;}
  return {dur:t+7.5,ev,S:{tok:E.map(e=>e.tok),fr:E.map(e=>[e.i,e.v]),np:CP.n_prompt,wl:[],circ:[]},att:true,title:"Where a model looks while it copies",sub:"Asked to repeat a sentence, Qwen3-4B reads its own words. Arcs show which earlier words each word pulls from, at every floor.",tag:"attention · qwen3-4b"};};
-const shot=(SHOTS[SHOT]||SHOTS.read)();
+SHOTS.route=()=>{const E=CP.events,R_=CP.route,ev=[];let t=2.8,tJ=0,tQ=0;   // concept surgery: the road a swap travels (exp123)
+ for(let i=0;i<E.length;i++){const isP=E[i].phase==="prompt",w=clean(E[i].tok);
+  if(i===R_.q){t+=.3;tQ=t;ev.push({t,i,isP});t+=6.4;continue;}
+  if(isP&&!w.trim())continue;ev.push({t,i,isP});if(i===R_.src){tJ=t;t+=1.8;}else t+=isP?.12:.62;}
+ return {dur:t+10,ev,S:{tok:E.map(e=>e.tok),fr:E.map(e=>[e.i,e.v]),np:CP.n_prompt,wl:[],circ:[]},att:true,route:R_,tJ,tQ,tR:t,
+  title:`It read “${CP.x}.”`,sub:"",tag:"concept surgery · qwen3-4b"};};
+const shot=(SHOTS[SHOT]||SHOTS.read)();if(shot.route)document.body.classList.add("route");
 $("#title").innerHTML=`<h1>${esc(shot.title)}</h1><p>${esc(shot.sub)}</p>`;$("#tag").textContent=shot.tag||"";
 
 /* ---------- attention ring (attention shot) ---------- */
@@ -184,18 +194,23 @@ function setArcs(i){if(!shot.att)return;const e=CP.events[i],T=CP.events.length,
   for(let j=0;j<=ASEG;j++){const u=j/ASEG,an=as+(at-as)*u,b=Math.sin(Math.PI*u),r=RING+b*(1+3*da/Math.PI);pts.push(Math.cos(an)*r,l*FLOOR-YC+b*.8,Math.sin(an)*r);}
   arcs.push({pts,c:new THREE.Color(HCOL[k]||"#c9d1cb"),w:Math.pow(w/100,.7),t0:now,k,src});}
  arcs.sort((a,b)=>b.w-a.w);arcs=arcs.slice(0,28);
+ if(shot.route){for(const A of arcs){A.w*=.4;A.c.lerp(new THREE.Color("#56625b"),.55);}
+  if(i===shot.route.q){const mv=[];for(const[l,h,src,w]of shot.route.heads){const as=ringAng(src,T),da=Math.abs(at-as),pts=[];
+    for(let j=0;j<=ASEG;j++){const u=j/ASEG,an=as+(at-as)*u,b=Math.sin(Math.PI*u),r=RING+b*(1+3*da/Math.PI);pts.push(Math.cos(an)*r,l*FLOOR-YC+b*.8,Math.sin(an)*r);}
+    mv.push({pts,c:new THREE.Color("#e8ff6a"),w:Math.max(.4,Math.pow(w/100,.5)),t0:now,k:"route",src,keep:true});}
+   arcs=mv.concat(arcs.slice(0,10));}}
  const P=new Float32Array(arcs.length*ASEG*6);let o=0;for(const A of arcs)for(let j=0;j<ASEG;j++){P.set(A.pts.slice(j*3,j*3+6),o);o+=6;}
  atG.setAttribute("position",new THREE.BufferAttribute(P,3));atG.setAttribute("color",new THREE.BufferAttribute(new Float32Array(P.length),3));
  // glints: shards running along each arc toward the current word
  for(const A of arcs)for(let n=0;n<Math.round(2+6*A.w);n++){const j=(n*5)%ASEG;spawnAt(A.pts.slice(j*3,j*3+3),A.pts.slice(-3),A.c,A.w);}}
 function stepArcs(t){if(!arcs.length)return;
- apS.fill(0);let q=0;for(const A of arcs){const fade=Math.exp(-Math.max(0,t-A.t0-.5)*1.1),grow=Math.min(1,(t-A.t0)/.45),ph=((t-A.t0)*.9)%1.3;
+ apS.fill(0);let q=0;for(const A of arcs){const fade=Math.exp(-Math.max(0,t-(A.keep?shot.tQ+6:A.t0+.5))*1.1),grow=Math.min(1,(t-A.t0)/.45),ph=((t-A.t0)*.9)%1.3;
   for(let j=0;j<AP;j++,q++){const u=j/(AP-1);if(u>grow){apS[q]=0;continue;}const f=u*ASEG,i0=Math.min(ASEG-1,Math.floor(f)),fr=f-i0,a=i0*3,b=a+3;
    apP[q*3]=A.pts[a]+(A.pts[b]-A.pts[a])*fr;apP[q*3+1]=A.pts[a+1]+(A.pts[b+1]-A.pts[a+1])*fr;apP[q*3+2]=A.pts[a+2]+(A.pts[b+2]-A.pts[a+2])*fr;
    const pulse=Math.exp(-((u-ph)**2)/.004),br=(.45+1.8*pulse)*A.w*fade;apC[q*3]=A.c.r*br;apC[q*3+1]=A.c.g*br;apC[q*3+2]=A.c.b*br;apS[q]=(3+9*A.w)*(.7+pulse);}}
  apG.attributes.position.needsUpdate=true;apG.attributes.color.needsUpdate=true;apG.attributes.sz.needsUpdate=true;
  const C=atG.attributes.color;let o=0;
- for(const A of arcs){const age=Math.min(1,(t-A.t0)/.5),fade=Math.exp(-Math.max(0,t-A.t0-.4)*1.4),ph=((t-A.t0)*1.3)%1.2;
+ for(const A of arcs){const age=Math.min(1,(t-A.t0)/(A.keep?1.2:.5)),fade=Math.exp(-Math.max(0,t-(A.keep?shot.tQ+6:A.t0+.4))*1.4),ph=((t-A.t0)*1.3)%1.2;
   for(let j=0;j<ASEG;j++)for(let e2=0;e2<2;e2++){const u=(j+e2)/ASEG,g=(u<=age?1:0)*(.35+1.6*Math.exp(-((u-ph)**2)/.008))*A.w*fade;C.array[o++]=A.c.r*g;C.array[o++]=A.c.g*g;C.array[o++]=A.c.b*g;}}
  C.needsUpdate=true;}
 function spawnAt(from,to,c,w){let s_=sh.find(x=>x.life<=0);if(!s_)return;const dx=to[0]-from[0],dy=to[1]-from[1],dz=to[2]-from[2],dl=Math.hypot(dx,dy,dz)||1,sp=2.5+rnd()*2;
@@ -203,7 +218,7 @@ function spawnAt(from,to,c,w){let s_=sh.find(x=>x.life<=0);if(!s_)return;const d
 /* ---------- timeline ---------- */
 let now=0,evIdx=0,curTok=-1;
 function camAt(t){
- if(shot.att){const k=t/shot.dur,th=.5+k*1.4,dist=58-6*Math.sin(k*Math.PI),ph=1.25,ly=5.5;cam.position.set(dist*Math.sin(ph)*Math.cos(th),ly+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,ly,0);return;}
+ if(shot.att){const k=t/shot.dur,th=.5+k*1.4,dist=(58-6*Math.sin(k*Math.PI))*(shot.route&&VH>VW?1.95:1),ph=1.25,ly=shot.route&&VH>VW?7.5:5.5;cam.position.set(dist*Math.sin(ph)*Math.cos(th),ly+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,ly,0);return;}
  if(shot.p){const k=shot.p.k,nx=pos[k*3],ny=pos[k*3+1],nz=pos[k*3+2],dive=Math.min(1,Math.max(0,(t-1.5)/4)),e=dive<.5?4*dive**3:1-Math.pow(-2*dive+2,3)/2;
   const th=.6+t*.05,dist=60-(60-17)*e,ly=ny*e,cx=nx*e,cz=nz*e;cam.position.set(cx+dist*Math.cos(th)*.85,ly+dist*(.55-.25*e),cz+dist*Math.sin(th)*.85);cam.lookAt(cx,ly,cz);return;}
  if(shot.districts){const k=t/shot.dur,fl=Math.min(NL-1,Math.max(0,(k-.12)/.8*NL)),y=fl*FLOOR-YC,th=.4+k*2.6,dist=44+10*Math.cos(k*Math.PI);
@@ -211,10 +226,10 @@ function camAt(t){
  const k=t/shot.dur,th=.55+k*1.9,ph=1.28-.35*Math.sin(k*Math.PI),dist=58-18*Math.sin(Math.min(1,k*1.2)*Math.PI*.5),ty=-6+12*k;
  cam.position.set(dist*Math.sin(ph)*Math.cos(th),ty+dist*Math.cos(ph),dist*Math.sin(ph)*Math.sin(th));cam.lookAt(0,ty*.8,0);}
 const v3=new THREE.Vector3();
-function ringWords(){if(!shot.att||curTok<0)return "";const T=CP.events.length,w=FILM?VW:innerWidth,hh=FILM?VH:innerHeight,y=30*FLOOR-YC;let h="";const seen=new Set();
- const put=(i,col,big)=>{const an=ringAng(i,T);v3.set(Math.cos(an)*(RING+1.2),y,Math.sin(an)*(RING+1.2)).project(cam);if(v3.z>1)return;
-  const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;h+=`<div style="left:${sx}px;top:${sy}px;color:${col};border-left-color:${col};font-size:${big?"1.35em":"1.05em"};background:rgba(2,3,4,.65)">${esc(clean(CP.events[i].tok).trim()||"·")}</div>`;};
- put(curTok,"#e8ff6a",true);for(const A of arcs.slice(0,10)){if(seen.has(A.src)||!clean(CP.events[A.src].tok).trim())continue;seen.add(A.src);put(A.src,"#"+A.c.getHexString(),false);if(seen.size>=3)break;}return h;}
+function ringWords(){if(!shot.att||curTok<0||(shot.route&&now>shot.tR))return "";const T=CP.events.length,w=FILM?VW:innerWidth,hh=FILM?VH:innerHeight,y=30*FLOOR-YC;let h="";const seen=new Set();
+ const put=(i,col,big,txt)=>{const an=ringAng(i,T);v3.set(Math.cos(an)*(RING+1.2),y,Math.sin(an)*(RING+1.2)).project(cam);if(v3.z>1)return;
+  const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;h+=`<div style="left:${sx}px;top:${sy}px;color:${col};border-left-color:${col};font-size:${big?"1.35em":"1.05em"};background:rgba(2,3,4,.65)">${esc(txt||clean(CP.events[i].tok).trim()||"·")}</div>`;};
+ if(shot.route)put(curTok,"#eef2ec",true,curTok===shot.route.q?"the answer":"");else put(curTok,"#e8ff6a",true);for(const A of arcs.slice(0,10)){if(seen.has(A.src)||!clean(CP.events[A.src].tok).trim())continue;seen.add(A.src);put(A.src,"#"+A.c.getHexString(),false);if(seen.size>=3)break;}return h;}
 function names(top){let h=ringWords();if(shot.att){$("#names").innerHTML=h;return;}const used=[],w=FILM?1920:innerWidth,hh=FILM?1080:innerHeight;
  for(const[k]of top.slice(0,40)){const x=byK.get(k);if(!x?.lab)continue;v3.set(pos[k*3],pos[k*3+1],pos[k*3+2]).project(cam);if(v3.z>1)continue;
   const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;if(sx<w*.08||sx>w*.85||sy<hh*.22||sy>hh*.7)continue;if(used.some(u=>Math.abs(u[0]-sx)<230&&Math.abs(u[1]-sy)<20))continue;used.push([sx,sy]);
@@ -278,6 +293,19 @@ function attEnd(t){const t0=shot.dur-6.5;if(t<t0)return;const k=Math.min(1,(t-t0
  const orig=CP.events.filter(e=>e.phase==="reply").map(e=>clean(e.tok)).join("").trim();
  $("#word").style.opacity=0;$("#line").innerHTML=`<span style="opacity:${k}">its copy: <b>${esc(orig)}</b><br>cut the 94 induction heads: <b style="color:#ff4fd8">${esc(clean(CP.cut_reply).trim())}</b></span>`;
  $("#line").style.maxHeight="7em";$("#line").style.bottom="10vh";}
+const R8=new THREE.Color("#e8ff6a"),RC8=rings[8].material.color.clone();
+function routeStep(t,dt){const R_=shot.route,fin=(a,b)=>Math.min(1,Math.max(0,(t-a)/(b-a))),L=$("#line"),W=$("#word"),T1=$("#title");
+ const sw=t>=shot.tJ&&t<shot.tJ+2.4,k=sw?Math.exp(-(t-shot.tJ)*1.2):0;   // the swap enters at floor 8, on the word
+ rings[8].material.color.copy(sw?R8:RC8);if(sw){rings[8].material.opacity=Math.max(rings[8].material.opacity,.25+.75*k);
+  const an=ringAng(R_.src,CP.events.length);if(rnd()<.8)spawnAt([Math.cos(an)*RING,8*FLOOR-YC,Math.sin(an)*RING],[Math.cos(an)*RING*.6,8*FLOOR-YC+6,Math.sin(an)*RING*.6],R8,.6);}
+ L.style.maxHeight="7em";
+ if(t>=shot.tJ&&t<shot.tQ){L.innerHTML=`<b>At floor 8, ${esc(CP.x)} becomes ${esc(CP.y)}.</b>`;}
+ else if(t>=shot.tQ&&t<shot.tR){L.innerHTML=`<b><span class="n">16</span> of <span class="n">1,152</span> heads carry it.</b>`;}
+ const t0=shot.tR+.6,sw2=CP.swap_reply.trim(),bl=CP.blocked_reply.trim(),rr=CP.random_replies[0].trim();
+ if(t>=t0){W.style.opacity=Math.max(0,1-fin(t0+5.6,t0+6.2));W.textContent=sw2;
+  L.innerHTML=`<span style="opacity:${fin(t0+.8,t0+1.2)}">block those 16 heads → <b>${esc(bl)}</b></span><br><span style="opacity:${fin(t0+2.6,t0+3)}">block 16 random heads → <b>${esc(rr)}</b></span>`;
+  L.style.opacity=1-fin(t0+5.6,t0+6.2);}
+ if(t>=t0+6.4){T1.innerHTML="<h1>One road carries the swap.</h1>";T1.style.opacity=fin(t0+6.4,t0+7.2);$("#url").style.opacity=fin(t0+6.8,t0+7.4);}}
 function step(t){const dt=Math.max(0,Math.min(.1,t-now));now=t;
  if(shot.p)puzzleStep(t);
  if(t<2.2&&!shot.districts){$("#line").textContent="";}
@@ -287,9 +315,10 @@ function step(t){const dt=Math.max(0,Math.min(.1,t-now));now=t;
  while(evIdx<shot.ev.length&&shot.ev[evIdx].t<=t)fire(shot.ev[evIdx++]);
  const up=1-Math.pow(.0005,dt),down=1-Math.pow(.18,dt);   // rise fast, fade slowly: light accumulates as the model writes
  for(let i=0;i<N;i++){const d=tgt[i]-val[i];if(d!==0){val[i]+=d*(Math.abs(tgt[i])>Math.abs(val[i])?up:down);if(Math.abs(tgt[i]-val[i])<.002)val[i]=tgt[i];}}aV.needsUpdate=true;
- guiltyHold(t);stepArcs(t);if(shot.att)attEnd(t);stepShards(dt);stepRings(t);uni.uT.value=t;inter.uniforms.uT.value=t;camAt(t);
+ guiltyHold(t);stepArcs(t);if(shot.att&&!shot.route)attEnd(t);stepShards(dt);stepRings(t);uni.uT.value=t;inter.uniforms.uT.value=t;camAt(t);
  if(!shot.p){const t1=shot.districts?3:shot.ev[0].t+1.6;$("#title").style.opacity=t<t1?1:Math.max(0,1-(t-t1));}
  if(t>shot.dur-1.6&&!shot.p){$("#word").style.opacity=Math.max(0,(shot.dur-t)/1.6);}
+ if(shot.route)routeStep(t,dt);
  names(lastTop);comp.render();}
 if(shot.districts){$("#line").textContent="";}
 window.filmDuration=shot.dur;window.filmStep=t=>{step(t);return true;};window.filmReady=true;
