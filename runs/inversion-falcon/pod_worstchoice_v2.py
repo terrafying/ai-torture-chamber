@@ -20,12 +20,12 @@ KEY = env["RUNPOD_API_KEY"]
 HF_TOKEN = env.get("HF_TOKEN", "")
 H = {"Authorization": f"Bearer {KEY}", "Content-Type": "application/json",
      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_8) AppleWebKit/537.36"}  # default urllib UA trips Cloudflare 1010
-RESULTS_REPO = "terrafying/inversion-falcon-results"
+RESULTS_REPO = "Badgersex/inversion-falcon-results"
 REPO_URL = "https://github.com/terrafying/ai-torture-chamber.git"
 assert REPO_URL.startswith("https://github.com/")
 
 BOOTSTRAP = r"""
-set -uo pipefail
+set -euo pipefail
 log(){ echo "[bootstrap $(date -u +%H:%M:%S)] $*"; }
 export HF_HOME=/workspace/hf
 log "step 1/6: tailer"   # incremental log uploads: the whole point of v2
@@ -54,7 +54,9 @@ log() { echo "[bootstrap $(date -u +%H:%M:%S)] $*"; echo "[bootstrap $(date -u +
 log "step 2/6: git"
 command -v git >/dev/null || { apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git; } >> /workspace/progress.log 2>&1
 rm -rf /workspace/repo
-git clone -q __REPO_URL__ /workspace/repo && cd /workspace/repo || { log "git FAILED"; exit 1; }
+git clone -q --depth 1 -b claude/exp51c __REPO_URL__ /workspace/repo && cd /workspace/repo || { log "git FAILED"; exit 1; }
+git rev-parse HEAD >> /workspace/progress.log
+test -f runs/inversion-falcon/worstchoice.py || { log "clone MISSING worstchoice.py (stale/partial clone)"; exit 1; }
 log "step 3/6: torch"
 python -c "import torch; assert torch.cuda.is_available()" 2>/dev/null || { log "installing torch (slow)"; pip install -q --no-cache-dir 'torch>=2.4' --index-url https://download.pytorch.org/whl/cu121 >> /workspace/progress.log 2>&1 || { log "torch FAILED"; tail -5 /workspace/progress.log; exit 1; }; }
 log "step 4/6: deps"
