@@ -1,0 +1,17 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 50.13it/s]
+pairs 48 cells [(18, 30), (18, 28), (18, 29), (19, 31), (20, 9), (22, 8), (22, 5)] rnd {18: [3, 11, 17], 19: [5], 20: [22], 22: [27]}
+L18 H30 (top) 41 pairs 22s
+L18 H28 (top) 41 pairs 43s
+L18 H29 (top) 41 pairs 64s
+L19 H31 (top) 41 pairs 85s
+L20 H9 (top) 41 pairs 106s
+L22 H8 (top) 41 pairs 128s
+L22 H5 (top) 41 pairs 149s
+L18 H3 (rnd) 41 pairs 170s
+L18 H11 (rnd) 41 pairs 191s
+L18 H17 (rnd) 41 pairs 212s
+L19 H5 (rnd) 41 pairs 233s
+L20 H22 (rnd) 41 pairs 254s
+L22 H27 (rnd) 41 pairs 276s
+done 276s
+EXIT:0

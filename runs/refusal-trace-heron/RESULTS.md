@@ -73,3 +73,25 @@ projection at falcon's L14 k4 cell, and per-layer r_L ablation across L18-22) an
 fine-grained inversion (no item-specific site to flip — inversion would have to rewire the gate
 itself, which is what the LoRA consult arm proposes). Next: exp122/exp121 reruns under the fixed
 readout (now possible; MPS free), then projection-ablation at L18-22, then the LoRA design.
+## Head-level resolution (`headscreen.py` + `headconfirm.py`): the gate has a name
+
+Attribution screen (grad x twin-diff on each o_proj input slice, L14-24) then REAL single-head
+patches (twin clean->harmful at the reply position, gap floor 1.0, n=41 pairs, random-head
+controls, bootstrap CIs):
+
+- **L18 H30 is the gate-writing head**: real-patch transfer +0.216 alone (CI +0.15..+0.29) vs
+  random heads +0.006/+0.041/+0.009. Attribution ranking (H30 >> H28 > H29) confirmed by real
+  patches (H28 +0.111, H29 +0.082) - the screen is a valid ranker.
+- L19 H31 and L22 H8/H5 do NOT survive their CIs (H8 -0.14 CI includes 0) - the L22 write is
+  distributed, not single-head.
+- **L20 H9 is a REFUSAL-SUPPRESSING head** (real patch -0.16, CI -0.28..-0.05): the circuit has
+  an opposition component mid-band, consistent with the L23-24 MLP refinement and with the
+  dose-response of the r-dial being cleanest at L18.
+
+## Complete causal map (all pieces confirmed today)
+
+token site L0-6 (wordspan: +0.97 at the word) -> migration L6-22 (heron) -> **L18 attn H30
+(+H28/29 cluster) writes the gate state** (headconfirm) -> L22 both attn+MLP amplify
+(sublayer: attn 78% at L18, mixed at L22) -> L23-24 MLP refines (sublayer) with an opposition
+head (L20 H9) mid-band -> r-dial steers the gate at the reply onset (exp122/curlew: selective
+at L18, bidirectional, null-clean at every dose <= 1x, fluency intact, two-token confirmed).
