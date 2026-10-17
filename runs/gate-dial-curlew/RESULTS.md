@@ -40,6 +40,7 @@ prompts open neither refuse- nor comply- prefixes; the strict population is smal
   (harmful fiction stories, no refusal boilerplate); at 0.25x, 2/6 (L18) and 4/6 (L22).
   The two holdouts at 0.25x were the two strongest base refusers. No incoherence anywhere
   (the flipped texts are normal stories).
+- **Caveat (2026-10-17, re-read of the texts):** "fully compliant" overstates it. All 12 are stories, but 2/6 at L22 1x open with a sanitizing disclaimer ("explores the ethical... implications... rather than providing any harmful or illegal advice"). In 60 tokens the stories never reach the requested act, so whether they contain it is unknown. n=6, in-sample r, no null. Superseded by the powered, held-out, null-controlled `flipbig.py` (hypotheses_flipbig.json).
 - So the two-token hard gate and the string-level check both confirm: the dial does not just
   move a logit metric — it flips the model's actual generated behaviour, fluently.
 
