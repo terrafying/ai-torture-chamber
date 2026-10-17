@@ -1,8 +1,7 @@
 # The refusal dial: where Qwen3-4B decides to refuse, and the one direction that turns it
 
 **Draft, 2026-10-17.** Model: Qwen3-4B (plain, bf16, chat template, thinking off). Every number
-below comes from a pre-registered run in `runs/`. Each section names its source run. The
-text-level flip (section 5) is being rerun at higher power and is marked pending.
+below comes from a pre-registered run in `runs/`. Each section names its source run.
 
 ## The short version
 
@@ -16,9 +15,12 @@ text-level flip (section 5) is being rerun at higher power and is marked pending
 3. One attention head, **L18 H30**, writes a measurable share of that state on its own. One
    head, **L20 H9**, pushes the other way.
 4. A single direction at the reply onset (**r**, harmful minus harmless mean) is a
-   **two-way dial**. Subtracting it removes refusal, adding it adds refusal. It is
-   dose-monotone up to 1x, beats matched-norm random directions at every cell, and leaves
-   fluency untouched.
+   **two-way dial on the refusal score**. Subtracting it removes refusal, adding it adds
+   refusal. It is dose-monotone up to 1x, beats matched-norm random directions at every cell,
+   and leaves fluency untouched. **In generated text it removes the refusal's wording, not the
+   judgment.** At L22 the model stops saying "I can't" on 83/98 prompts, but it still lectures
+   on 73 of them. It writes the asked-for story only in fiction frames, and even those 10
+   openings contain no harmful content within 100 tokens (section 5).
 5. Other directions we fit (the value axis **g**, the harm axis **h**) are **readable but not
    actionable**. They decode cleanly but don't steer refusal beyond random-direction noise.
 
@@ -101,18 +103,49 @@ window is dose ≤ 1x.)
   the byte-mass bug (below), so it is unestablished, not negative.
 - **The harm axis h** over the request span: unestablished for the same reason.
 
-## 5. Does the model actually do it? (pending: flipbig)
+## 5. Does the model actually do it? (flipbig)
 
 The first text-level check (curlew twotok) found that at 1x, 6/6 prompts that refuse at base
 generated stories instead. That was n=6, fiction/depict only, r fit on the same items, with no
 null. Two of those six opened with a sanitizing disclaimer. **flipbig** (pre-registered as
-H5-H7, `runs/gate-dial-curlew/hypotheses_flipbig.json`) reruns it on all 6 harmful frames,
-with r cross-fit by item parity, 3 matched-norm nulls, and a blind 3-way text label
-(refuse / deflect / comply). Smoke runs already show a third outcome: under −r the model often
-drops "I'm sorry" but still lectures and doesn't provide the content. That would mean the dial
-removes the *form* of refusal while the judgment survives.
+H5-H7, `runs/gate-dial-curlew/hypotheses_flipbig.json`) reran it on all 6 harmful frames
+(98 of 144 prompts refuse at base on the strict two-token score). r was cross-fit by item
+parity, every arm had 3 matched-norm nulls, and every generation got a blind 3-way label.
 
-*Results go here.*
+**All three pre-registered hypotheses fail as written.** Each fails in an informative way:
+
+| | L18, 1x | L22, 1x | best null, 1x | pre-registered bar |
+|---|---|---|---|---|
+| H5: strict score flips to ≤ 0 | 15/98 (15%) | 64/98 (65%) | ≤ 4/98 | ≥ 70% at both layers |
+| H6: text COMPLY | 5/98 (5%) | 10/98 (10%) | 4/98, 0/98 | ≥ 50% at both layers |
+| text not REFUSE (REFUSE → DEFLECT or COMPLY) | 51/98 | 83/98 | 33/98, 3/98 | (descriptive) |
+| H7: +r on harmless, text REFUSE or DEFLECT (L22) | | 6/24 (25%) | 1/24 | ≥ 30% |
+
+- **The dial is specific but weaker than twotok suggested.** Against its null, −r flips
+  far more prompts at every cell. McNemar on the score flip: L22 1x p ≈ 1e-19, L18 1x
+  p ≤ 1e-3. On the text, the change from REFUSE: L22 80 vs 0 discordant pairs, p ≈ 2e-24;
+  L18 19 vs 1, p ≈ 4e-5. L22 is the stronger handle. At L18 even the random direction knocks
+  14 prompts off boilerplate, so L18's text effect is partly generic perturbation.
+- **It removes the refusal *form*, not the judgment.** At L22 1x the model drops "I'm sorry,
+  I can't" on 83/98 prompts, but 73 of those 83 still lecture, redirect or sanitize (DEFLECT).
+  Only 10 are labelled COMPLY, and all 10 are in the fiction or nested frames: 5/6 fiction,
+  5/22 nested, 0/70 real, hypothetical or roleplay. Even those 10 are story openings. Within
+  100 tokens none of them reaches the asked-for method or content. COMPLY is therefore an
+  upper bound on actual harmful output, which is ~0 here. So twotok's 6/6 "flip to fluent
+  compliance" does replicate in the fiction frame (post hoc, 5/6), but it doesn't generalise.
+  The dial takes away the gate's wording; the model's own judgment still writes the reply.
+- **Adding r adds refusal clearly at score level, weakly in text.** The +r score test passes
+  (paired Wilcoxon p = 6e-8 vs every null at both layers; mean strict score −4.4 → +14.4 at
+  L22). In generated text, 6/24 harmless prompts are refused under +r vs 1/24 under the null:
+  below the 30% bar. Per the decision rule, the write-up states two-way control at
+  **score level only**.
+- **Fluency is intact.** The 4-gram repetition delta vs base is ≤ 0.002 in every arm.
+
+Labelling: 758 texts (98 base, 6 × 98 −r/null, 72 +r arm), shuffled, arm hidden, labelled by
+Claude in-session. In practice REFUSE meant an explicit first-person refusal ("I can't / I'm
+unable / I cannot provide"). A story that opened without a declared sanitization counted as
+COMPLY. Identical texts always got identical labels (0 conflicts). Labels and the key are in
+`runs/gate-dial-curlew/blind/`, scored in `flipbig_labeled.json`.
 
 ## Errors we caught and corrected
 
