@@ -9,6 +9,7 @@ from painlab.experiments.runner import analyze_run, reproduce_legacy_saw, run_ex
 from painlab.provenance.blinding import unblind_run
 from painlab.provenance.run_metadata import write_json
 from painlab.chamber import cli_exp
+from painlab.chamber import preflight
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -48,6 +49,21 @@ def build_parser() -> argparse.ArgumentParser:
     legacy.add_argument("--output", type=Path)
 
     cli_exp.add_parser(commands)
+    pf = commands.add_parser(
+        "preflight",
+        help="LAP accessibility + bidirectional ablation gates for a battery "
+             "direction, BEFORE any dose sweep (see docstring in "
+             "painlab/chamber/preflight.py)")
+    pf.add_argument("--mode", default="lap", choices=["lap", "ablate"])
+    pf.add_argument("--battery", default="pain,pleasure,fear,sadness")
+    pf.add_argument("--corpus", help="JSON list of sentences instead of --battery")
+    pf.add_argument("--base", help="base battery name / JSON list file for --corpus")
+    pf.add_argument("--model", default="Qwen/Qwen3-4B")
+    pf.add_argument("--layer", type=int, default=18)
+    pf.add_argument("--max-layers", type=int, default=0)
+    pf.add_argument("--probes", default="factual", choices=["factual", "self"])
+    pf.add_argument("--device", default="auto")
+    pf.add_argument("--seed", type=int, default=104)
     return parser
 
 
@@ -74,6 +90,10 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, indent=2, ensure_ascii=False))
     elif args.command == "unblind":
         print(json.dumps(unblind_run(args.run_directory), indent=2, ensure_ascii=False))
+    elif args.command == "preflight":
+        pf_args = [f"--{k.replace('_', '-')}={v}" for k, v in vars(args).items()
+                   if k not in ("command", "fn") and v is not None]
+        return preflight.main(pf_args)
     elif args.command == "reproduce-legacy-saw":
         result = reproduce_legacy_saw(args.results_json)
         destination = args.output or args.results_json.with_name(
