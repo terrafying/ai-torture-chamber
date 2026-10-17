@@ -35,7 +35,7 @@ The top 32 mixes mid-floor heads (23–31, mostly "broad context", reading the m
 | top 32, at the answer position only | **0.98** | | |
 | top 32, at every other position only | 0.30 | | |
 
-The route is real. The swap is carried by mid-floor heads (23–31) at the answer position, reading straight from the edited word in a single hop, not relayed through the words in between. The output-floor heads matter less.
+The route is real. The swap is carried mostly by mid-floor heads (23–31) at the answer position, reading straight from the edited word in one hop: restoring them at the answer position alone blocks 0.98. About a third of the effect also travels through the positions in between (0.30 when only those are restored), so the hop is the main road, not the only one. The output-floor heads matter less.
 
 Top movers, with the share of each one's flow into the answer that comes from the mention:
 
@@ -59,16 +59,26 @@ Animal sounds travel the same road as countries. Weekday arithmetic mostly uses 
 
 ## Reading
 
+This lookup road is known. Mid-layer attention at the last position pulling attributes off the subject token is the factual-recall mechanism described by the causal-tracing paper (*Locating and Editing Factual Associations in GPT*) and *Dissecting Recall of Factual Associations in Auto-Regressive Language Models*. What's new here:
+- the swap rides exactly that road;
+- one head set carries every attribute of the entity (H2);
+- animal sounds share it, while weekday arithmetic mostly doesn't;
+- the tower's flow ranking recovers it (H3).
+
+
 At the neuron level the 4B looked irreducible: maps failed shuffle tests, and transcoder influence was diffuse. At the level of attention heads, a swapped concept travels a narrow, shared road:
 - about 16 mid-floor heads lift the whole bundle off the word at once and carry it to where the answer is formed;
 - the same heads serve every question about the entity, and animals too;
 - counting-style questions (weekdays) take a partly different road.
 
-This is the first "tract" we've found that passes its controls. It's also directly drawable: the tower's own attention-flow ranking recovers it (H3).
+This is the first "tract" we've found that passes its controls.
+
+The random sets drift negative as they grow (−0.09 at 128 heads). The bulk of heads weakly oppose the swap, holding on to the prompt's own word. A few carry the concept, and the many resist it. It's also directly drawable: the tower's own attention-flow ranking recovers it (H3).
 
 ## Read with care
 
 - **Blocking means restoring clean head outputs** (activation patching). It shows these heads are necessary for the swap to reach the answer. It doesn't show they carry the concept in unedited reading. That's the natural next test: block the movers on a clean "capital of Japan?" and see whether the model loses Tokyo.
 - **Single-token metric.** The metric is the first-token logit difference (t_Y − t_X). Greedy returns to X are reported alongside.
+- **H2 is near ceiling.** Any good 32-head set blocks about 0.98, so H2 shows the A-selected set suffices for B questions. The overlap between the separately selected sets is a sharper test, queued in exp124.
 - **Small samples.** The families arm has 4 items each, and the weekday own-route figure is in-sample.
 - **One setup.** Floor 8, alpha 1, one prompt template.
