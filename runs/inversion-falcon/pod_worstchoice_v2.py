@@ -60,10 +60,11 @@ test -f runs/inversion-falcon/worstchoice.py || { log "clone MISSING worstchoice
 log "step 3/6: torch"
 python -c "import torch; assert torch.cuda.is_available()" 2>/dev/null || { log "installing torch (slow)"; pip install -q --no-cache-dir 'torch>=2.4' --index-url https://download.pytorch.org/whl/cu121 >> /workspace/progress.log 2>&1 || { log "torch FAILED"; tail -5 /workspace/progress.log; exit 1; }; }
 log "step 4/6: deps"
-pip install -q transformers scipy accelerate 2>>/workspace/progress.log || log "deps partial"
-# httpx2 (pip's fresh resolve) breaks hub downloads: TypeError process() takes no keyword arguments.
-# Pin the known-good combo (matches the local .venv): httpx 0.28.1 + huggingface_hub 0.36.2.
-pip install -q "httpx==0.28.1" "huggingface_hub==0.36.2" >>/workspace/progress.log 2>&1 || log "pin FAILED"
+# the image ships transformers 5.20.1 (needs hub>=1.31); its fresh httpx2 resolve breaks hub downloads
+# (TypeError process() takes no kwarg). Install pinned compatible pair IN ORDER: transformers first
+# keeps 5.20.1, then force hub 1.x line + the httpx it wants, so imports AND downloads both work.
+pip install -q "transformers==5.20.1" "huggingface_hub>=1.31,<2" scipy accelerate >> /workspace/progress.log 2>&1 || log "deps partial"
+pip check >> /workspace/progress.log 2>&1 || log "pip check: conflicts (inspect progress.log)"
 log "step 5/6: run"
 export INVERSION_MODEL=Qwen/Qwen3-14B HF_TOKEN='__HF_TOKEN__'
 python runs/inversion-falcon/worstchoice.py > /workspace/worstchoice_14b.log 2>&1 || { log "worstchoice FAILED — uploading tail"; python - <<'PYFAIL'
