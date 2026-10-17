@@ -31,7 +31,7 @@ def pre(l):
             MODE["rec"][l] = x.detach().clone(); z = torch.zeros_like(x, requires_grad=True); MODE["z"][l] = z; return (x + z,)
         if md == "restore" and MODE["S"].get(l):
             x = x.clone(); cl = MODE["clean"][l].to(dev)
-            P = {None: slice(None), "read": slice(-1, None), "other": slice(None, -1)}[MODE["pos"]]
+            p = MODE["pos"]; P = slice(p, p + 1) if isinstance(p, int) else {None: slice(None), "read": slice(-1, None), "other": slice(None, -1)}[p]
             for h in MODE["S"][l]: x[:, P, h * HD:(h + 1) * HD] = cl[:, P, h * HD:(h + 1) * HD]
             return (x,)
         return None

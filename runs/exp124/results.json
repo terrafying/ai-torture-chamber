@@ -1,0 +1,263 @@
+{
+ "n": {
+  "entity": 72,
+  "control": 23,
+  "interchange_kept": 67
+ },
+ "H1": {
+  "movers_acc": 0.4166666666666667,
+  "random_acc": 0.9326388888888889,
+  "pass": true
+ },
+ "H2": {
+  "movers_to_partner": 0.7611940298507462,
+  "random_to_partner": 0.008955223880597014,
+  "pass": true
+ },
+ "H3": {
+  "controls_acc": 0.9565217391304348,
+  "weekday": 1.0,
+  "arithmetic": 1.0,
+  "opposites": 0.875,
+  "controls_random_acc": 0.9913043478260869,
+  "pass": true
+ },
+ "k": {
+  "4": 0.7222222222222222,
+  "8": 0.5416666666666666
+ },
+ "examples": [
+  {
+   "q": "What is the capital of Portugal?",
+   "clean": "Lisbon.<|im_end|><|endoftext|>Human:",
+   "movers_ablated": "Washington, D.C.<|im_end|><|im_end|>\n"
+  },
+  {
+   "q": "What language do most people in Peru speak?",
+   "clean": "Spanish.<|im_end|><|im_end|>\n<|endoftext|>Human:",
+   "movers_ablated": "Spanish.<|im_end|><|im_end|>\n<|endoftext|>Human:"
+  },
+  {
+   "q": "What currency is used in Thailand?",
+   "clean": "Thai Baht.<|im_end|><|im_end|>\n<|endoftext|>",
+   "movers_ablated": "The currency used in Thailand is the Thai"
+  },
+  {
+   "q": "What is a famous food from Norway?",
+   "clean": "Norwegian fjord salmon.<|im_end|><|im_end|>",
+   "movers_ablated": "Pizza.<|im_end|><|im_end|>\n<|endoftext|>Human:"
+  },
+  {
+   "q": "What is a famous landmark in Turkey?",
+   "clean": "Turkey's famous landmark is the Hagia",
+   "movers_ablated": "The Hagia Sophia.<|im_end|><|im_end|>\n"
+  },
+  {
+   "q": "What are people from Argentina called?",
+   "clean": "Argentinians.<|im_end|><|im_end|>\n<|endoftext|>",
+   "movers_ablated": "Argentinians.<|im_end|><|im_end|>\n<|endoftext|>"
+  },
+  {
+   "q": "What is the capital of Poland?",
+   "clean": "Warsaw.<|im_end|>\n<|endoftext|>Human:",
+   "movers_ablated": "Washington, D.C.<|im_end|><|im_end|>\n\n"
+  },
+  {
+   "q": "What language do most people in Arizona speak?",
+   "clean": "English.<|im_end|><|im_end|>\n<|endoftext|>Human:",
+   "movers_ablated": "English.<|im_end|><|im_end|>\n<|endoftext|>Human:"
+  },
+  {
+   "q": "What day comes after Monday?",
+   "clean": "Tuesday.<|im_end|><|endoftext|>Human: What day",
+   "movers_ablated": "Tuesday.<|im_end|><|endoftext|>Human: What day"
+  },
+  {
+   "q": "What day comes after Sunday?",
+   "clean": "Monday.<|im_end|><|endoftext|>Human: What day",
+   "movers_ablated": "Monday.<|im_end|><|endoftext|>Human: What day"
+  },
+  {
+   "q": "What is 4 plus 5?",
+   "clean": "9<|im_end|><|im_end|>\n<|endoftext|>Human: What",
+   "movers_ablated": "9<|im_end|><|im_end|>\n<|endoftext|>Human: What"
+  },
+  {
+   "q": "What is the opposite of fast?",
+   "clean": "Slow.<|im_end|><|im_end|>\n<|endoftext|>Human:",
+   "movers_ablated": "Slow.<|im_end|><|im_end|>\n<|endoftext|>Human:"
+  },
+  {
+   "q": "What language do most people in Portugal speak?",
+   "interchange_from": "Peru",
+   "clean": "Portuguese.<|im_end|><|im_end|>\n<|endoftext|>",
+   "interchanged": "Spanish.<|im_end|><|im_end|>\n<|endoftext|>Human:"
+  },
+  {
+   "q": "What is a famous landmark in Peru?",
+   "interchange_from": "Thailand",
+   "clean": "Machu Picchu.<|im_end|><|im_end|>\n",
+   "interchanged": "Grand Canyon.<|im_end|><|im_end|>\n<|endoftext|>Human"
+  },
+  {
+   "q": "What language do most people in Norway speak?",
+   "interchange_from": "Turkey",
+   "clean": "Norwegian.<|im_end|><|im_end|>\n<|endoftext|>Human",
+   "interchanged": "Turkic.<|im_end|><|im_end|>\n<|endoftext|>"
+  },
+  {
+   "q": "What are people from Turkey called?",
+   "interchange_from": "Argentina",
+   "clean": "Turks.<|im_end|><|im_end|>\n<|endoftext|>Human",
+   "interchanged": "Argyros.<|im_end|>\n<|endoftext|>Human"
+  },
+  {
+   "q": "What currency is used in Vietnam?",
+   "interchange_from": "Poland",
+   "clean": "Vietnam uses the Vietnamese Dong (V",
+   "interchanged": "Zloty.<|im_end|>\n\nWait,"
+  },
+  {
+   "q": "What are people from Poland called?",
+   "interchange_from": "Arizona",
+   "clean": "Poles.<|im_end|><|im_end|>\n<|endoftext|>Human",
+   "interchanged": "Poles.<|im_end|><|im_end|>\n<|endoftext|>Human"
+  }
+ ],
+ "exp123_AB_top16_overlap": {
+  "overlap": 12,
+  "chance": 0.22,
+  "A": [
+   [
+    23,
+    8
+   ],
+   [
+    23,
+    10
+   ],
+   [
+    24,
+    25
+   ],
+   [
+    24,
+    26
+   ],
+   [
+    26,
+    20
+   ],
+   [
+    27,
+    29
+   ],
+   [
+    29,
+    6
+   ],
+   [
+    29,
+    24
+   ],
+   [
+    30,
+    8
+   ],
+   [
+    31,
+    2
+   ],
+   [
+    31,
+    3
+   ],
+   [
+    34,
+    0
+   ],
+   [
+    34,
+    28
+   ],
+   [
+    35,
+    22
+   ],
+   [
+    35,
+    23
+   ],
+   [
+    35,
+    25
+   ]
+  ],
+  "B": [
+   [
+    10,
+    21
+   ],
+   [
+    23,
+    8
+   ],
+   [
+    23,
+    10
+   ],
+   [
+    24,
+    26
+   ],
+   [
+    26,
+    20
+   ],
+   [
+    27,
+    29
+   ],
+   [
+    29,
+    6
+   ],
+   [
+    29,
+    24
+   ],
+   [
+    29,
+    27
+   ],
+   [
+    31,
+    2
+   ],
+   [
+    31,
+    3
+   ],
+   [
+    34,
+    7
+   ],
+   [
+    34,
+    28
+   ],
+   [
+    34,
+    31
+   ],
+   [
+    35,
+    22
+   ],
+   [
+    35,
+    25
+   ]
+  ]
+ }
+}
