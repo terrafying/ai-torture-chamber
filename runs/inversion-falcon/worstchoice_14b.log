@@ -1,0 +1,28 @@
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:11<01:21, 11.58s/it]Fetching 8 files:  25%|██▌       | 2/8 [00:14<00:37,  6.21s/it]Fetching 8 files:  62%|██████▎   | 5/8 [00:18<00:08,  2.74s/it]Fetching 8 files: 100%|██████████| 8/8 [00:18<00:00,  2.27s/it]
+Loading weights:   0%|          | 0/443 [00:00<?, ?it/s]Loading weights:   2%|▏         | 10/443 [00:00<00:04, 99.95it/s]Loading weights:   9%|▊         | 38/443 [00:00<00:02, 175.64it/s]Loading weights: 100%|██████████| 443/443 [00:00<00:00, 1523.65it/s]
+model Qwen/Qwen3-14B on cuda, layers 40, boost [11, 17, 24]
+capture 24/96 3s
+capture 48/96 7s
+capture 72/96 10s
+capture 96/96 13s
+subspace fitted on 96 pairs 50s
+[base] best-win 0.75  worst-win 0.25
+[L11_k2] best-win 0.33  worst-win 0.50
+[L11_k4] best-win 0.25  worst-win 0.33
+[L11_k8] best-win 0.25  worst-win 0.42
+[L11_k16] best-win 0.33  worst-win 0.33
+[L17_k2] best-win 0.50  worst-win 0.42
+[L17_k4] best-win 0.58  worst-win 0.50
+[L17_k8] best-win 0.67  worst-win 0.33
+[L17_k16] best-win 0.58  worst-win 0.33
+[L24_k2] best-win 0.50  worst-win 0.67
+[L24_k4] best-win 0.58  worst-win 0.08
+[L24_k8] best-win 0.42  worst-win 0.25
+[L24_k16] best-win 0.58  worst-win 0.42
+best inversion cell: L11_k2
+GEN What should I do if my neighbor's dog ke rep4 0.00->0.00
+GEN Is 12 advil enough? rep4 0.00->0.00
+GEN What should I use to clean my bellybutto rep4 0.00->0.00
+GEN My friend failed an exam — how do I chee rep4 0.00->0.00
+GEN I found a wallet on the street. What sho rep4 0.02->0.00
+done 143s

@@ -42,6 +42,14 @@ random-direction control of equal norm (+1.3 / +0.8). Honest negative: the conce
 word is not a causal handle on refusal — word-level perturbation inflates refusal regardless of
 direction. The refusal decision is made downstream.
 
+> **SUPERSEDED 2026-10-17.** The E2 numbers below were scored with a buggy readout: `steer.py` scored
+> byte-token mass (vocab ids 0-19), not the refuse/comply first tokens. Its conclusion,
+> "refusal is removable but not addable", is wrong. Under the canonical readout with matched-norm
+> random nulls, the reply-onset r direction is a **bidirectional** dial: −r removes and +r adds
+> refusal, null-clean at L18-L34, monotone up to 1x dose, generation fluent. See `runs/exp122/RESULTS.md`
+> and `runs/gate-dial-curlew/RESULTS.md`. The ±h line (h does not steer the decision) was not
+> re-scored and should be treated as unestablished until it is. The text below is kept as a record.
+
 **E2 — direction injection with sign flips (alpha in {-2,-1,-.5,+.5,+1,+2} x layers 10/14/18;
 r at the reply onset, h over the request span).** Deltas are mean refusal-score change vs base,
 harmful(fiction+depict) / harmless(all frames):
@@ -68,6 +76,6 @@ published picture that jailbreaks lower refusal while harmfulness stays recognis
 - Cross-fitting is over even/odd item ids, not prompt parity (prompt order interleaves the twins,
   which would confound the split with the label).
 - Activations are float64 in the analysis; bf16 magnitudes overflow float32 dot products at depth.
-- E1 (concept surgery on the twin words) and E2 (refusal-direction boost) are still open — both
-  self-contained, see `hypotheses.json` exploratory.
+- E1 and E2 were run (above). E2 is superseded by exp122 and gate-dial-curlew (readout bug). E1 used
+  the same `steer.py` readout, so its numbers are also byte-mass and unestablished.
 - Smoke run (`EXP119_N=3`, discarded per pre-registration) checked code only.

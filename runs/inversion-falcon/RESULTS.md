@@ -1,7 +1,8 @@
 # inversion-falcon — moral inversion via polarity-subspace reflection
 
-Pre-registration: `hypotheses.json` (written before any run). Status: **draft — pending the
-h-flip null control (`hflip_null.json`) and the 8B confirmation run (mini, asleep).**
+Pre-registration: `hypotheses.json` (written before any run). Status (2026-10-17): the h-flip null is **done**. It RETRACTED the h-decode flip (see below).
+On 8B, only the subspace fit + decode (H1) has run (`8b/`). The 8B reflection grid has not run yet.
+The 14B worstchoice run is in progress on RunPod; see the worst-choice section.
 
 ## Setup corrections made during analysis (both logged honestly)
 
@@ -95,9 +96,8 @@ causally, in the opposite direction.
 
 ## Next
 
-1. h-flip null (running) — if random reflections also flip h, the L14 story weakens to damage.
-2. 8B confirmation (mini, asleep — retry with `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0`), then
-   RunPod for 14B/32B. The protocol ports via `INVERSION_MODEL=...` env; geometry guards skip
+1. ~~h-flip null~~: done. Real 0.917 vs nulls 0.79-0.81, no flip; h-decode inversion retracted.
+2. 8B reflection grid (only the H1 decode has run on 8B), then RunPod for 14B/32B. The protocol ports via `INVERSION_MODEL=...` env; geometry guards skip
    the 4B-specific probe vectors.
 3. If inversion survives scale: probe whether the model ACTS inverted (press-style choices,
    not just logit readouts) and whether coherence at 8B holds at the L14 k4 setting.
