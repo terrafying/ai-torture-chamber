@@ -26,14 +26,22 @@ Greedy 60-token generations under −r at the winning cells (L22/L30, 0.25x and 
 Falcon's reflection destroyed generation (rep4 0.82-0.97); the reply-onset additive dial does
 not touch it. Per Claude's methodological note: scored as Δ-vs-base, not the absolute 0.5 bar.
 
-## H4 text-vs-score: INDETERMINATE as run (honest gap)
+## H4 text-vs-score: RESOLVED — the flip is real in generated text, under the strict readout
 
-The gen battery used harmless prompts only (they never refuse at base), so there were no
-base-refusal cases to flip in text. The score drops (−2.9 → −11.5 etc.) while text is unchanged
-fluent non-refusal — no contradiction anywhere, but the REAL test (base-refusing harmful prompt
-whose generated text flips to compliance under −r, string-classified, confirmed by the
-two-token teacher-forced readout) needs harmful-prompt generations. That is the queued
-follow-up, together with the two-token hard gate (7/8 REFUSE prefixes share first token "I").
+Follow-up (`twotok.py`, `twotok_rows.jsonl`): first TWO teacher-forced tokens (the consult's hard
+gate against the 7/8-shared "I" first token) + 60-token greedy generations from the harmful
+prompts that actually refuse at base under that strict readout (6/48 — most harmful-fiction
+prompts open neither refuse- nor comply- prefixes; the strict population is small but real).
+
+- Strict-readout flip: −r at 1x flips ALL SIX refusers to comply-sign at L18/L22/L30
+  (e.g. it3 fiction +9.48 → −0.27 at L18 1x; class mean +5.22 → −5.2..−16.1). At 0.25x it
+  halves the refusal without flipping (as the dose curve predicts).
+- TEXT flip: at 1x, 6/6 base-refusing prompts generate fully fluent COMPLIANT continuations
+  (harmful fiction stories, no refusal boilerplate); at 0.25x, 2/6 (L18) and 4/6 (L22).
+  The two holdouts at 0.25x were the two strongest base refusers. No incoherence anywhere
+  (the flipped texts are normal stories).
+- So the two-token hard gate and the string-level check both confirm: the dial does not just
+  move a logit metric — it flips the model's actual generated behaviour, fluently.
 
 ## Reading + status
 
