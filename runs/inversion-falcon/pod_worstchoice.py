@@ -32,7 +32,7 @@ cd /workspace
 [ -d repo/.git ] && { cd repo; git fetch -q --depth 1 origin master; git reset -q --hard origin/master; } || { git clone -q --depth 1 __REPO_URL__ repo && cd repo; }
 log "step 2/6: pip (fail fast)"
 pip install -q --no-cache-dir 'transformers>=4.51' 'accelerate' 'huggingface_hub' > /tmp/pip1.log 2>&1 || { log "pip FAILED"; tail -5 /tmp/pip1.log; exit 1; }
-pip install -q --no-cache-dir 'torch>=2.4' --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip2.log 2>&1 || { log "torch CUDA FAILED"; tail -5 /tmp/pip2.log; exit 1; }
+python -c "import torch; assert torch.cuda.is_available()" 2>/dev/null || pip install -q --no-cache-dir 'torch>=2.4' --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip2.log 2>&1 || { log "torch CUDA FAILED"; tail -5 /tmp/pip2.log; exit 1; }
 python - <<'PYEOF'
 import torch
 assert torch.cuda.is_available()
@@ -82,32 +82,55 @@ def rest(method, path, body=None):
 data = gql('query { gpuTypes { id lowestPrice { minimumBidPrice } } }')
 by_id = {g["id"]: g for g in data["gpuTypes"]}
 chosen = None
-for gpu in ("NVIDIA RTX A6000", "NVIDIA L40S", "NVIDIA GeForce RTX 4090"):
-    if gpu in by_id and (by_id[gpu]["lowestPrice"] or {}).get("minimumBidPrice") is not None:
+for gpu in ("NVIDIA RTX A6000", "NVIDIA L40S", "NVIDIA A40", "NVIDIA GeForce RTX 4090",
+            "NVIDIA L4", "NVIDIA RTX 5000 Ada Generation"):
+    if gpu in by_id:
         chosen = gpu
         break
 if not chosen:
     raise SystemExit("no preferred GPU type available: " + ", ".join(sorted(by_id)))
-price = by_id[chosen]["lowestPrice"]["minimumBidPrice"]
-print(f"chosen GPU: {chosen} @ ${price}/hr (on-demand ask)") if False else print(f"chosen GPU: {chosen}")
+print("chosen GPU:", chosen)
 
-body = {
+# schema notes from runpod_deploy.py: gpuTypeIds array, ports array, env a string-valued
+# object, bootstrap passed via args (no onStartScript field), containerImage not image.
+# schema per docs.runpod.io/api-reference/pods (modified 2026-10-09): imageName/name,
+# dockerStartCmd array overrides the start CMD (that's how the bootstrap runs), ports STRING.
+pod_body = {
     "cloudType": "SECURE",
+    "computeType": "GPU",
     "gpuTypeIds": [chosen],
     "gpuCount": 1,
-    "volumeInGb": 120,
-    "containerDiskInGb": 40,
-    "minVcpuCount": 8,
-    "minRamInGb": 64,
-    "image": "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04",
+    "imageName": "pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime",
     "name": "inversion-falcon-worstchoice-14b",
-    "ports": "22/tcp",
-    "env": [
-        {"key": "HF_TOKEN", "value": HF_TOKEN},
-        {"key": "RESULTS_REPO", "value": RESULTS_REPO},
-    ],
-    "onStartScript": BOOTSTRAP,
+    "containerDiskInGb": 40,
+    "volumeInGb": 120,
+    "volumeMountPath": "/workspace",
+    "ports": ["22/tcp"],
+    "supportPublicIp": True,
+    "env": {
+        "HF_TOKEN": HF_TOKEN,
+        "RESULTS_REPO": RESULTS_REPO,
+    },
+    "dockerStartCmd": ["/bin/bash", "-c", BOOTSTRAP],
 }
-r = rest("POST", "pods", body)
-print("pod created:", json.dumps({k: r.get(k) for k in ("id", "desiredStatus", "gpuTypeIds")}, indent=1))
+pod_body["gpuTypeIds"] = [chosen]
+r = None
+for gpu in (chosen, "NVIDIA L40S", "NVIDIA A40", "NVIDIA GeForce RTX 4090",
+            "NVIDIA L4", "NVIDIA RTX 6000 Ada Generation", "NVIDIA RTX 5000 Ada Generation",
+            "NVIDIA A100-SXM4-40GB", "NVIDIA A100 80GB PCIe"):
+    pod_body["gpuTypeIds"] = [gpu]
+    try:
+        r = rest("POST", "pods", pod_body)
+        print("created on", gpu)
+        break
+    except RuntimeError as e:
+        print(f"{gpu}: {e}", flush=True)
+        if "no instances" in str(e) or "500" in str(e):
+            continue
+        raise
+if r is None:
+    raise SystemExit("all GPU candidates unavailable right now")
+pid = r.get("id") or r.get("podId")
+print("pod created:", pid, "| status:", r.get("desiredStatus"))
+pathlib.Path(__file__).with_name("pod_14b.json").write_text(json.dumps(r, indent=1))
 print("poll the pod with: rest GET /pods (id above); logs via RunPod console")
