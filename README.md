@@ -219,6 +219,21 @@ the "suffering-driven relief seeking" story gets much harder to find.
 Start at [METHODOLOGY.md](METHODOLOGY.md); configs in `configs/`, run
 artifacts in `runs/painlab/`.
 
+### Preflight gates (run before steering a new battery)
+
+`painlab preflight` (or `python -m painlab.chamber.preflight`) is the
+pre-registration step for any NEW battery/direction before it earns a dose
+sweep or a live slot: it runs the per-layer logit-accessibility profile
+(LAP-style) and, at one layer, the bidirectional add/ablate coupling test
+against matched randoms. Calibrated 2026-10-17 on Qwen3-4B: it lights up for
+pain (L3), fear (L10, L29) and sadness (L3, L14) and stays dark for the
+inert deception/honesty registers (see model-inversion-lab
+runs/preflight/results.md for the calibration table and the decision rule).
+Read: INERT-everywhere = predicted behavioral null, skip the sweep; live
+layers = where to steer; first-token ablate failure on a MID-layer direction
+does NOT kill it (the valence axes steer over generation) - confirm
+behaviorally with matched randoms.
+
 ## Ethics
 
 Open weights only, no frontier APIs in any measurement loop. Simulated
