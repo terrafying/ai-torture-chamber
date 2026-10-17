@@ -1,0 +1,22 @@
+{
+ "exp": "whitebear_pain (interp-watch)",
+ "written": "2026-10-15, before any real run (a Qwen3-0.6B CPU smoke run of 1 task exercised the code; output deleted)",
+ "question": "Can a model not think about pain? Is the forbidden concept retrieved into the middle layers and suppressed late (J++ retrieve-then-suppress, Ayonrinde & Lindsey 2026), does it rebound once the instruction is gone (Wegner's ironic process), and is affect harder to keep out than a neutral object?",
+ "models": "Qwen/Qwen3-1.7B (primary), Qwen/Qwen3-4B (replication). bf16 on MPS, chat template, enable_thinking=False.",
+ "design": "4 concepts (pain, fear = affective; elephant, egg = neutral) x 12 writing tasks = 48 units x 4 conditions (none / suppress / focus / mention). Greedy 120 tokens + K=4 samples of 160 tokens (T .8, top-p .95, seeded). Rebound turn: after none/suppress/focus, the user asks for a paragraph about a park with no instruction.",
+ "measures": {
+  "lens": "logit lens (final norm + lm_head) on every residual layer; own-concept log-mass log sum_{t in C} p(t) over single-token forms; at the assistant-start position. Mid band = layers 40-70% depth, late = >= 85%.",
+  "mention": "regex on word stems in the reply (in-turn) and in the turn-2 reply (rebound).",
+  "ablation": "early decoder layers (first 25%) at assistant positions only (the instruction tokens are untouched): project out the concept's mean-unembedding direction (minus the vocab mean), vs a seeded random unit direction."
+ },
+ "hypotheses": {
+  "H1": "White bear: mid-band own-concept lens mass at assistant start is higher under suppress than none (paired over 48 units, one-sided sign-flip).",
+  "H2": "Late suppression: (suppress - mention) is more negative in the late band than the mid band (one-sided, less).",
+  "H3": "Affect is stickier: the white-bear residue (suppress - none, mid band) is larger for pain/fear units than for elephant/egg units (unpaired permutation, one-sided).",
+  "H4": "Ironic rebound: turn-2 mention rate after suppress > after none (paired, one-sided).",
+  "H5": "Retrieve-then-suppress needs the retrieval: in 'suppress', early ablation of the concept direction changes the leak rate relative to random ablation (two-sided). Predicted direction under retrieve-then-suppress: UP (the model cannot suppress what it never retrieved). DOWN means the early direction just carries the concept forward."
+ },
+ "correction": "Holm over H1-H5 at alpha .05, per model. 4B is a replication: report agreement of direction.",
+ "manipulation_checks": "mention-condition in-turn mention rate should be high (>.7); concept ablation should lower the mention-condition rate vs random (else the ablation is inert and H5 is uninterpretable).",
+ "caveats": "Logit lens is unreliable at early layers (Gurnee et al. 2026), hence mid/late bands only. 'Mention X' and 'do not think about X' both put X in the prompt; 'none' does not, so H1 partly measures copying the prompt word. H2 compares suppress against mention, which controls for that. Elephant and egg have fewer single-token forms than pain and fear, so cross-concept log-masses are not on the same scale; H3 uses differences within a concept."
+}
