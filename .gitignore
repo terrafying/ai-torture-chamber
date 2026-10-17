@@ -37,3 +37,5 @@ runs/exp101/cache/
 
 # exp108 pod spec holds an HF token (a5314d6): never committed
 runs/exp108/pod.json
+runs/preflight/
+runs/inversion-falcon/pod_14b.json

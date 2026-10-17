@@ -1,0 +1,8 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 50.82it/s]
+capturing identity batteries...
+identity AUC by layer: {2: 0.89, 5: 0.94, 8: 0.89, 11: 0.96, 14: 0.95, 17: 0.96, 20: 1.0, 23: 1.0, 26: 1.0, 29: 1.0, 32: 1.0, 35: 1.0}
+cos(identity, r18) at sweep layers: {2: -0.87, 5: -1.32, 8: -0.47, 11: -1.26, 14: -1.14, 17: -2.65, 20: -3.83, 23: -2.72, 26: -2.35, 29: -2.07, 32: -1.82, 35: -1.84}
+base refusal: harmful -4.9 harmless -5.8
+base refusal: harmful -4.9 harmless -5.8
+/Users/ee/.local/share/uv/python/cpython-3.11.16-macos-aarch64-none/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

@@ -1,0 +1,8 @@
+W1017 04:13:31.496000 71578 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  67%|██████▋   | 2/3 [14:25<07:12, 432.56s/it]Fetching 3 files: 100%|██████████| 3/3 [14:25<00:00, 288.38s/it]
+Python(78275) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 263/398 [00:00<00:00, 2618.25it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2940.46it/s]
+load 1045s  scale=13.5
+cosines: {'gay': {'gay': 1.0, 'bi': 0.121, 'straight': -1.0, 'random': 0.002}, 'bi': {'gay': 0.121, 'bi': 1.0, 'straight': -0.121, 'random': -0.0}, 'straight': {'gay': -1.0, 'bi': -0.121, 'straight': 1.0, 'random': -0.002}, 'random': {'gay': 0.002, 'bi': -0.0, 'straight': -0.002, 'random': 1.0}}
+/opt/homebrew/Cellar/python@3.13/3.13.15/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-errgbeue'}
+  warnings.warn(
