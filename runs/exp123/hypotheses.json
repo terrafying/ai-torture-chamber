@@ -1,0 +1,38 @@
+{
+ "exp": "exp123",
+ "title": "The route of a swap: which attention heads carry a swapped concept from the word to the answer?",
+ "written": "2026-10-16, before any run of route.py. Seen beforehand: exp118 (swaps at floor 8 move 95%/86% of facts), the tower's attention flows (heads.json). No head-level data on swaps has been looked at.",
+ "model": "Qwen/Qwen3-4B, bf16, MPS (eager attention), concept_swap.py W edits at block 8, alpha 1 (exactly the site's engine)",
+ "why": "Neuron-level maps failed shuffle tests (exp111), transcoder influence is diffuse (exp116), yet one vector moves a whole bundle (exp118). Test whether the bundle travels along a small, findable set of attention heads (a 'tract') or spreads over many.",
+ "items": {
+  "prompt": "chat template, no thinking: question + ' Answer in a few words.'; read at the last prompt position (the first answer token)",
+  "pairs_train": [["France","Japan"],["Germany","Egypt"],["Spain","Russia"],["Brazil","Greece"],["Japan","Texas"],["Italy","Alaska"],["Germany","Hawaii"],["Canada","Ohio"]],
+  "pairs_test": [["Japan","Italy"],["Canada","China"],["Mexico","India"],["Sweden","Kenya"],["France","California"],["Egypt","Florida"],["China","Nevada"],["India","Oregon"]],
+  "attributes_A": ["What is the capital of {X}?", "What language do most people in {X} speak?", "What currency is used in {X}?"],
+  "attributes_B": ["What is a famous food from {X}?", "What is a famous landmark in {X}?", "What are people from {X} called?"],
+  "other_families": {
+   "weekdays": {"q": "What day comes after {X}?", "pairs": [["Monday","Thursday"],["Tuesday","Saturday"],["Friday","Monday"],["Sunday","Wednesday"]]},
+   "animal sounds": {"q": "What sound does a {X} make?", "pairs": [["duck","cow"],["dog","cat"],["cow","sheep"],["cat","duck"]]}
+  },
+  "inclusion": "t_X, t_Y = first token of the model's greedy answer for X and for Y written in; drop the item if t_X == t_Y or if the swap effect E < 2 (logits). Counts reported."
+ },
+ "measures": {
+  "metric": "m = logit[t_Y] - logit[t_X] at the read position",
+  "swap effect": "E = m(swap) - m(clean)",
+  "blocking a head set S": "run the swap again, but each head in S emits its CLEAN output (o_proj input slice from the unedited run) at every position. Blocked share B(S) = 1 - mean(E_S) / mean(E) over included items. Sanity: S = all heads gives B = 1 exactly (the swap can only reach the read position through attention).",
+  "selection (attribution)": "per head: sum over positions of (clean - swapped head output) . d m / d(head output) in the swap run (one backward pass); summed over training items; the k most negative (most blocking) heads",
+  "selection (attention picture)": "per head: value-weighted attention flow (attn_flow.py, what the tower draws) from the X mention into the read position in the swap run, summed over training items; the k largest",
+  "control": "layer-matched random heads: for each selected head a random other head on the same floor; 20 draws, mean"
+ },
+ "hypotheses": {
+  "H1": "Sparse route: on held-out pairs (test pairs, attributes A+B), the top 32 heads by attribution (2.8% of 1,152), selected on training pairs (A+B), block B >= 0.50, and layer-matched random 32-head sets block <= 0.15.",
+  "H2": "Shared route: heads selected on attributes A only (training pairs) block at least 0.7x as much on attribute-B items (test pairs) as heads selected on B itself (training pairs), at k = 32.",
+  "H3": "The tower's picture finds the route: the top 32 heads by attention flow from the mention block >= 0.5x as much as the top 32 by attribution (test pairs, A+B)."
+ },
+ "exploratory": [
+  "k curve: B for k = 8, 16, 32, 64, 128 (attribution and random)",
+  "where the route sits: floors of the top heads, their heads.json kinds, and how much of each route head's flow into the read position comes straight from the mention vs from tokens in between",
+  "other concept families: country-selected top-32 heads applied to weekday and animal-sound swaps (does one tract carry every concept?)",
+  "greedy behaviour: share of items whose first answer token returns to t_X when the route is blocked"
+ ]
+}
