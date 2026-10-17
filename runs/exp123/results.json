@@ -1,0 +1,327 @@
+{
+ "n": {
+  "items": 104,
+  "kept": 95,
+  "train": 45,
+  "test": 42,
+  "dropped": {
+   "same first token": 9,
+   "no mention": 0,
+   "E < 2": 0
+  }
+ },
+ "mean_E_test": 35.11421130952381,
+ "sanity_all_heads_B": 1.0,
+ "curve": {
+  "8": {
+   "attribution": 0.8774725332937798,
+   "returns_to_X": 0.7857142857142857,
+   "random_mean": -0.017453674764533255,
+   "random_max": 0.002087151832349754
+  },
+  "16": {
+   "attribution": 0.9499825187790691,
+   "returns_to_X": 0.9285714285714286,
+   "random_mean": -0.01173234926419946,
+   "random_max": 0.013328106624853064
+  },
+  "32": {
+   "attribution": 0.9763420810069183,
+   "returns_to_X": 0.9523809523809523,
+   "random_mean": -0.019121807028510268,
+   "random_max": 0.010690031466197736
+  },
+  "64": {
+   "attribution": 0.9972983567652325,
+   "returns_to_X": 0.9761904761904762,
+   "random_mean": -0.030550287645544415,
+   "random_max": 0.011177386716391013
+  },
+  "128": {
+   "attribution": 1.0019070422833654,
+   "returns_to_X": 1.0,
+   "random_mean": -0.08483093540424003,
+   "random_max": -0.023077860298558184
+  }
+ },
+ "flow_B": 0.9399599521120493,
+ "H2": {
+  "A_selected_on_B": 0.9567485427865097,
+  "B_selected_on_B": 0.9604681227461387,
+  "pass": true
+ },
+ "route": [
+  {
+   "l": 35,
+   "h": 25,
+   "score": 231.86354064941406,
+   "kind": "focused look-back",
+   "flow_rank": 220,
+   "share_from_mention": 0.0038282463792711496
+  },
+  {
+   "l": 31,
+   "h": 3,
+   "score": 210.64657592773438,
+   "kind": "broad context",
+   "flow_rank": 0,
+   "share_from_mention": 0.3941226601600647
+  },
+  {
+   "l": 34,
+   "h": 28,
+   "score": 85.23298645019531,
+   "kind": "focused look-back",
+   "flow_rank": 61,
+   "share_from_mention": 0.03751477971673012
+  },
+  {
+   "l": 24,
+   "h": 26,
+   "score": 75.29458618164062,
+   "kind": "broad context",
+   "flow_rank": 2,
+   "share_from_mention": 0.9194532036781311
+  },
+  {
+   "l": 23,
+   "h": 10,
+   "score": 34.01689910888672,
+   "kind": "induction",
+   "flow_rank": 6,
+   "share_from_mention": 0.8758996725082397
+  },
+  {
+   "l": 35,
+   "h": 22,
+   "score": 33.113059997558594,
+   "kind": "focused look-back",
+   "flow_rank": 100,
+   "share_from_mention": 0.03564591333270073
+  },
+  {
+   "l": 29,
+   "h": 6,
+   "score": 27.527738571166992,
+   "kind": "broad context",
+   "flow_rank": 5,
+   "share_from_mention": 0.6418678760528564
+  },
+  {
+   "l": 31,
+   "h": 2,
+   "score": 25.427799224853516,
+   "kind": "broad context",
+   "flow_rank": 1,
+   "share_from_mention": 0.5941810011863708
+  },
+  {
+   "l": 26,
+   "h": 20,
+   "score": 24.324485778808594,
+   "kind": "broad context",
+   "flow_rank": 3,
+   "share_from_mention": 0.8832380771636963
+  },
+  {
+   "l": 27,
+   "h": 29,
+   "score": 23.385398864746094,
+   "kind": "broad context",
+   "flow_rank": 37,
+   "share_from_mention": 0.2880779802799225
+  },
+  {
+   "l": 29,
+   "h": 24,
+   "score": 14.282519340515137,
+   "kind": "broad context",
+   "flow_rank": 4,
+   "share_from_mention": 0.49947208166122437
+  },
+  {
+   "l": 23,
+   "h": 8,
+   "score": 12.634973526000977,
+   "kind": "broad context",
+   "flow_rank": 7,
+   "share_from_mention": 0.8117973208427429
+  },
+  {
+   "l": 24,
+   "h": 25,
+   "score": 10.369890213012695,
+   "kind": "broad context",
+   "flow_rank": 23,
+   "share_from_mention": 0.6619882583618164
+  },
+  {
+   "l": 29,
+   "h": 27,
+   "score": 10.230026245117188,
+   "kind": "broad context",
+   "flow_rank": 115,
+   "share_from_mention": 0.39137890934944153
+  },
+  {
+   "l": 34,
+   "h": 21,
+   "score": 7.655342102050781,
+   "kind": "focused look-back",
+   "flow_rank": 70,
+   "share_from_mention": 0.04931480437517166
+  },
+  {
+   "l": 34,
+   "h": 31,
+   "score": 7.510359764099121,
+   "kind": "focused look-back",
+   "flow_rank": 310,
+   "share_from_mention": 0.013811751268804073
+  },
+  {
+   "l": 30,
+   "h": 8,
+   "score": 7.477389335632324,
+   "kind": "induction",
+   "flow_rank": 71,
+   "share_from_mention": 0.660497784614563
+  },
+  {
+   "l": 34,
+   "h": 0,
+   "score": 6.725442409515381,
+   "kind": "induction",
+   "flow_rank": 18,
+   "share_from_mention": 0.48253822326660156
+  },
+  {
+   "l": 9,
+   "h": 12,
+   "score": 6.539505958557129,
+   "kind": "self",
+   "flow_rank": 823,
+   "share_from_mention": 0.0008777903858572245
+  },
+  {
+   "l": 34,
+   "h": 7,
+   "score": 6.530763626098633,
+   "kind": "broad context",
+   "flow_rank": 9,
+   "share_from_mention": 0.49129489064216614
+  },
+  {
+   "l": 35,
+   "h": 2,
+   "score": 6.2949981689453125,
+   "kind": "focused look-back",
+   "flow_rank": 690,
+   "share_from_mention": 0.00023534892534371465
+  },
+  {
+   "l": 24,
+   "h": 0,
+   "score": 6.28079891204834,
+   "kind": "self",
+   "flow_rank": 123,
+   "share_from_mention": 0.10086827725172043
+  },
+  {
+   "l": 35,
+   "h": 26,
+   "score": 6.268991947174072,
+   "kind": "focused look-back",
+   "flow_rank": 256,
+   "share_from_mention": 0.016595508903265
+  },
+  {
+   "l": 35,
+   "h": 23,
+   "score": 5.72222375869751,
+   "kind": "focused look-back",
+   "flow_rank": 345,
+   "share_from_mention": 0.016141284257173538
+  },
+  {
+   "l": 35,
+   "h": 19,
+   "score": 5.119494915008545,
+   "kind": "recent words",
+   "flow_rank": 197,
+   "share_from_mention": 0.021413980051875114
+  },
+  {
+   "l": 26,
+   "h": 26,
+   "score": 4.868526458740234,
+   "kind": "broad context",
+   "flow_rank": 38,
+   "share_from_mention": 0.6679425835609436
+  },
+  {
+   "l": 34,
+   "h": 30,
+   "score": 4.476940155029297,
+   "kind": "focused look-back",
+   "flow_rank": 204,
+   "share_from_mention": 0.01325258519500494
+  },
+  {
+   "l": 27,
+   "h": 30,
+   "score": 4.2758049964904785,
+   "kind": "broad context",
+   "flow_rank": 87,
+   "share_from_mention": 0.41743722558021545
+  },
+  {
+   "l": 24,
+   "h": 19,
+   "score": 4.185405731201172,
+   "kind": "broad context",
+   "flow_rank": 166,
+   "share_from_mention": 0.13724376261234283
+  },
+  {
+   "l": 24,
+   "h": 31,
+   "score": 3.949953079223633,
+   "kind": "broad context",
+   "flow_rank": 42,
+   "share_from_mention": 0.7263018488883972
+  },
+  {
+   "l": 35,
+   "h": 5,
+   "score": 3.8073811531066895,
+   "kind": "recent words",
+   "flow_rank": 431,
+   "share_from_mention": 0.00327305868268013
+  },
+  {
+   "l": 32,
+   "h": 7,
+   "score": 3.670100688934326,
+   "kind": "induction",
+   "flow_rank": 36,
+   "share_from_mention": 0.3331461548805237
+  }
+ ],
+ "overlap_attr_flow_top32": 11,
+ "families": {
+  "weekdays": {
+   "n": 4,
+   "country_route_B": 0.2687838884585593,
+   "random_B": 0.06099922540666149
+  },
+  "animal sounds": {
+   "n": 4,
+   "country_route_B": 0.9623721172186579,
+   "random_B": -0.0177908791399341
+  }
+ },
+ "H1": true,
+ "H3": true,
+ "seconds": 331.30275893211365
+}
