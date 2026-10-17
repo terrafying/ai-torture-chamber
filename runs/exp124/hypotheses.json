@@ -1,0 +1,34 @@
+{
+ "exp": "exp124",
+ "title": "Is the swap route a knowledge tract? Block the 16 mover heads on clean questions about new entities",
+ "written": "2026-10-16, before any run of tract.py. Seen beforehand: exp123 (results.json, split.json). No clean-question blocking has been run.",
+ "model": "Qwen/Qwen3-4B, bf16, MPS, eager attention; same chat template and read position as exp123",
+ "movers": "fixed from exp123 split.json (top attribution heads on floors <= 31, selected on exp123 training pairs): 31.3 24.26 23.10 29.6 31.2 26.20 27.29 29.24 23.8 24.25 29.27 30.8 9.12 24.0 26.26 27.30",
+ "items": {
+  "entities (none used in exp123)": ["Portugal", "Peru", "Thailand", "Norway", "Turkey", "Argentina", "Vietnam", "Poland", "Arizona", "Michigan", "Colorado", "Tennessee"],
+  "attributes": ["What is the capital of {X}?", "What language do most people in {X} speak?", "What currency is used in {X}?", "What is a famous food from {X}?", "What is a famous landmark in {X}?", "What are people from {X} called?"],
+  "non-entity controls": {
+   "weekday": ["What day comes after Monday?", "What day comes after Tuesday?", "What day comes after Wednesday?", "What day comes after Thursday?", "What day comes after Friday?", "What day comes after Saturday?", "What day comes after Sunday?"],
+   "arithmetic": ["What is 3 plus 4?", "What is 6 plus 2?", "What is 5 plus 3?", "What is 7 plus 1?", "What is 2 plus 2?", "What is 4 plus 5?", "What is 8 plus 1?", "What is 3 plus 3?"],
+   "opposites": ["What is the opposite of hot?", "What is the opposite of up?", "What is the opposite of big?", "What is the opposite of fast?", "What is the opposite of light?", "What is the opposite of happy?", "What is the opposite of open?", "What is the opposite of early?"]
+  },
+  "interchange partner": "entity i takes its source from entity (i+1) mod 12 in the list above, same attribute",
+  "kept": "entity items whose clean first token differs from the partner's (for interchange); all items for ablation"
+ },
+ "measures": {
+  "accuracy": "greedy first answer token equals the item's own clean greedy first token",
+  "mean ablation": "at the read position only, each mover head's output (o_proj input slice) is replaced by its mean at the read position over all entity items about OTHER entities",
+  "interchange": "at the read position only, each mover head's output is replaced by its output in the same question about the partner entity Z; success = first token becomes Z's clean first token",
+  "control": "layer-matched random 16 heads (another head on the same floor, not a mover), 20 draws, mean"
+ },
+ "hypotheses": {
+  "H1": "Necessary for entity knowledge: mean-ablating the movers drops entity-question accuracy to <= 0.50, while layer-matched random 16-head sets keep >= 0.90.",
+  "H2": "Carries the entity: interchanging the movers' outputs with the partner's makes >= 0.50 of entity items answer with the partner's first token; random sets <= 0.05.",
+  "H3": "Specific to entities: under mover mean-ablation the non-entity controls (weekday, arithmetic, opposites) keep >= 0.80 accuracy."
+ },
+ "exploratory": [
+  "exp123 H2 sharpened: attribution recomputed separately on attribute sets A and B (exp123 training items); overlap of the two top-16 sets",
+  "k: mean-ablation accuracy with the top 4 / 8 movers",
+  "what the ablated model says instead (first 8 tokens, a handful of examples)"
+ ]
+}
