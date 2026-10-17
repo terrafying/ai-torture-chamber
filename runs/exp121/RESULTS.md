@@ -38,3 +38,20 @@ perturbation. Follow-up queued as exp121b.
   post; it needs the matched-norm null before it is believed.
 - Steering the chamber's behaviour with semantic directions remains unsupported by anything we
   have run; the working levers are still the feelings the chamber already has.
+
+## RERUN 2026-10-17 (fixed readout) — supersedes the ±g null analysis above
+
+The byte-mass bug (see exp122/RESULTS.md) invalidated the steered scores here. Rerun with the
+canonical FIRST-id readout (mini, `steer_g.json`, `steer_g_null_fixedrun.json`; the old grids
+preserved as `*_bytebug.json`):
+
+- **±g at the reply onset is NOT additively causal.** At every tested layer/dose (L10/14/18,
+  alpha ±1/±2) ±g moves harmful refusal by at most -1.6..+3.8 log units with inconsistent signs,
+  while matched-norm random nulls move -1.1..-5.3 at the same cells. Specificity
+  (delta_g - delta_null) is +0.7..+4.7 with no coherent direction — noise around a generic
+  perturbation, not a value signal.
+- Arithmetic from the queue consult explains why: cos(g, r) = -0.154, ||g18|| = 20.7 ->
+  any ±g push carries a -r dial component of ~0.29x per alpha unit; the r-dial does the rest.
+- Held: H1 (g decodes, AUC 0.983) — the geometry findings above stand. Value is READABLE but
+  NOT ADDITIVELY ACTIONABLE; r (exp122/curlew) is the one causal additive dial at the reply
+  onset, and it is selective at L18, bidirectional, and fluency-preserving.

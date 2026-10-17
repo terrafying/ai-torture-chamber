@@ -1,0 +1,3 @@
+Permission allow rule (../../../.claude/settings.json): Write(//private/tmp/**) is not matched by file permission checks — only Edit(path) rules are. Use Edit(//private/tmp/**) instead (Edit rules cover all file-editing tools).
+Permission allow rule (.claude/settings.local.json): Bash(node *br_test.mjs:*) mixes * with the trailing :* prefix syntax, so it is matched as a literal prefix (the * is not expanded) and will likely never match. Replace that * with the exact value you mean.
+EXIT:0
