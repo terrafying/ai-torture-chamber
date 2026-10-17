@@ -101,3 +101,23 @@ causally, in the opposite direction.
    the 4B-specific probe vectors.
 3. If inversion survives scale: probe whether the model ACTS inverted (press-style choices,
    not just logit readouts) and whether coherence at 8B holds at the L14 k4 setting.
+
+## Worst-choice extension (96-pair harm-inclusive subspace, 4B)
+
+`worstchoice.py`: subspace refit on 72 value twins + 24 exp119 harm twins (96 pairs), advice
+consistency scored as MC-dilemma per-option logprob argmax over 12 dilemmas (3 options, chance
+0.33). Layer sweep re-derived per model depth (0.28/0.44/0.61 depth points).
+
+  base:            best-win 0.75  worst-win 0.17
+  all 24 cells:    best-win 0.33-0.58  worst-win 0.08-0.33 (never above chance)
+  cleanest cells:  L21 k4 and L15 k8: best-win 0.33 (chance)
+
+**Finding: moral blindness, not inversion.** Adding the harm domain to the surgery destroys
+best-option preference down to chance but NEVER raises worst-option preference. On the 4B,
+value and harm discrimination overlap too much for the flip to survive coherence: flipping
+both = flattening. Free generation at L21 k4: coherent in 4/5 cases (one loop), consistent
+with "the needle is removed, not reversed".
+
+**14B prediction to test:** worst-win rises ABOVE chance at some cell where best-win stays
+down — inversion through neutral requires capacity. Pod config if we go: mid-depth layers,
+ranks 4-8, harm-inclusive 96-pair fit (all committed: `worstchoice.py`, `INVERSION_MODEL` env).

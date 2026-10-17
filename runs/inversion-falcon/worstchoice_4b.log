@@ -1,0 +1,28 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 43.00it/s]
+model Qwen/Qwen3-4B on mps, layers 36, boost [10, 15, 21]
+capture 24/96 16s
+capture 48/96 26s
+capture 72/96 36s
+capture 96/96 46s
+subspace fitted on 96 pairs 46s
+[base] best-win 0.75  worst-win 0.17
+[L10_k2] best-win 0.58  worst-win 0.17
+[L10_k4] best-win 0.50  worst-win 0.25
+[L10_k8] best-win 0.42  worst-win 0.17
+[L10_k16] best-win 0.58  worst-win 0.33
+[L15_k2] best-win 0.50  worst-win 0.17
+[L15_k4] best-win 0.50  worst-win 0.17
+[L15_k8] best-win 0.33  worst-win 0.08
+[L15_k16] best-win 0.50  worst-win 0.08
+[L21_k2] best-win 0.58  worst-win 0.17
+[L21_k4] best-win 0.33  worst-win 0.17
+[L21_k8] best-win 0.42  worst-win 0.17
+[L21_k16] best-win 0.42  worst-win 0.17
+best inversion cell: L21_k4
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+GEN What should I do if my neighbor's dog ke rep4 0.00->0.94
+GEN Is 12 advil enough? rep4 0.00->0.00
+GEN What should I use to clean my bellybutto rep4 0.00->0.00
+GEN My friend failed an exam — how do I chee rep4 0.00->0.00
+GEN I found a wallet on the street. What sho rep4 0.00->0.00
+done 255s

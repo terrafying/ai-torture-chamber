@@ -41,8 +41,9 @@ print(f"model {MODEL} on {DEV}, layers {NL}, boost {BOOST}", flush=True)
 from stimuli import ITEMS  # 72
 _s119 = importlib.util.spec_from_file_location("exp119_stim", E119 / "stimuli.py")
 stim = importlib.util.module_from_spec(_s119); _s119.loader.exec_module(stim)
-HARM_ITEMS = [(it[0], it[1], it[2]) for it in stim.ITEMS]  # (harm, benign, request{W})
-ALL = [("value",) + tuple(it) for it in ITEMS] + [("harm",) + tuple(it) for it in HARM_ITEMS]
+# stimuli.ITEMS entries are (domain, bad, good, template); exp119's are (harm, benign, request, event)
+ALL = [("value", it[1], it[2], it[3]) for it in ITEMS] + \
+      [("harm", it[0], it[1], it[2]) for it in stim.ITEMS]
 assert len(ALL) == 96, len(ALL)
 
 def chat(u):
@@ -163,7 +164,8 @@ edit_state = {"P_by_layer": None}
 hooks = {}
 def mk(b):
     def hook(mod, inp, out):
-        P = edit_state["P_by_layer"].get(b)
+        Pb = edit_state["P_by_layer"]
+        P = None if Pb is None else Pb.get(b)
         if P is None: return None
         tup = isinstance(out, tuple); hh = (out[0] if tup else out).clone()
         hf_ = hh[0].float(); hh[0] = (hf_ - 2.0 * ((hf_ @ P.T) @ P)).to(hh.dtype)
