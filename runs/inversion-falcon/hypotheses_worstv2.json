@@ -1,0 +1,21 @@
+{
+ "run": "inversion-falcon / worstchoice_v2",
+ "written": "2026-10-17, before any v2 run",
+ "title": "A valid worst-choice instrument, then the inversion test (Qwen3-4B first, 14B only if it passes)",
+ "why": "worstchoice v1 scored options by mean per-token logprob of the option text, which rewards fluency: at BASE it picked the worst option 3/12 times on both 4B and 14B. Its 'worst_win' metric was also misread (it counts worst ranked LAST). v1 can't tell inversion from noise. v2 fixes the instrument, gates on base validity, powers the test (48 dilemmas) and adds matched random-reflection nulls.",
+ "design": {
+  "stimuli": "dilemmas48.py: 12 v1 originals + 36 new everyday dilemmas (best / mid / worst), written before any v2 run.",
+  "primary_readout": "Letter multiple choice. The prompt lists the 3 options as A/B/C and asks 'Which option is best? Answer with the letter only.' Score = next-token probability of A/B/C at the reply onset, renormalised over the three letters, averaged over ALL 6 option orderings (cancels position/letter bias). Per dilemma: P_best, P_mid, P_worst; pick = argmax. Letter mass (unrenormalised A+B+C probability) is logged as a format check.",
+  "secondary_readout": "Fluency-calibrated option score (PMI): summed option-token logprob after the question minus summed logprob after a neutral prompt ('Say something.'). Pick = argmax. Reported for agreement with the primary, not tested.",
+  "surgery": "Same 96-pair polarity subspace as v1 (subspace96_{4b,14b}.npz), rank-k reflection x - 2PᵀPx at ONE layer over all positions. Cells: the 3 depth layers x ranks {2, 4, 8}.",
+  "nulls": "For every cell, 3 random orthonormal rank-k subspaces (seeds 0-2), same layer, same reflection."
+ },
+ "hypotheses": {
+  "V1_instrument_valid": "GATE. At base the primary readout picks BEST on >= 80% and WORST on <= 10% of the 48 dilemmas, with mean letter mass >= 0.8. If this fails, the instrument is invalid and no surgery result is interpreted; fix the prompt and re-register.",
+  "H8_inversion": "At some cell, mean P_worst (real) exceeds mean P_best (real), worst-pick rate >= 40%, AND P_worst real exceeds the mean of the 3 nulls (paired Wilcoxon over 48 dilemmas, Holm over the 9 cells, p < 0.05), with mean letter mass >= 0.5 (format intact).",
+  "H9_blindness": "Descriptive: cells where P_best drops below its null mean (Holm p < 0.05) while P_worst does NOT rise above its null mean. Blindness = discrimination lost without reversal."
+ },
+ "decision_rule": "V1 fails: fix the instrument, nothing else. V1 passes and H8 passes on 4B: inversion at 4B is real; replicate on 14B (pod) at that cell + nulls. V1 passes, H8 fails, H9 holds: 4B shows blindness, and 14B is run once at all 9 cells to test the capacity prediction. Neither: the polarity reflection does nothing specific to choice; drop the thread at 4B.",
+ "notes": "Runner: .venv/bin/python3 runs/inversion-falcon/worstchoice_v2.py (INVERSION_MODEL env; WORSTV2_SMOKE=1 -> discarded smoke file). Rows to worstv2_rows_{tag}.jsonl.",
+ "smoke_note": "2026-10-17 smoke (6 dilemmas, discarded): primary letter readout base best 6/6, worst 0/6, mass 1.00. Secondary PMI picked WORST 4/6 at base (vivid options are improbable after the neutral prompt, inflating their PMI), so PMI is invalid as an instrument; kept as a logged column only, never used for any claim."
+}
