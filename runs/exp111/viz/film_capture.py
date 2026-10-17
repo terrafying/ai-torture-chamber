@@ -3,7 +3,7 @@ stepping its timeline one frame at a time (window.filmStep(t)) and screenshottin
 Needs a local static server on the site dir and Chrome with --remote-debugging-port=9333.
     python film_capture.py <shot> <out.mp4> [fps] [base_url]
   shot may carry extra query, e.g. "puzzle&p=2"; FILM_W / FILM_H env set the size (default 1920x1080; 1080x1920 for vertical).
-  FILM_STILLS="6,12" also saves those seconds as PNGs next to the mp4 (for cards)."""
+  FILM_STILLS="6,12" also saves those seconds as PNGs next to the mp4 (for cards). FILM_PAGE picks another page (e.g. clips.html)."""
 import asyncio, base64, json, os, shutil, subprocess, sys, tempfile, urllib.request
 W, H = int(os.environ.get('FILM_W', 1920)), int(os.environ.get('FILM_H', 1080)); STILLS = [float(x) for x in os.environ.get('FILM_STILLS', '').split(',') if x]
 import websockets
@@ -22,7 +22,7 @@ async def main():
                 if r.get("method") == "Runtime.exceptionThrown": print("EXC", r["params"]["exceptionDetails"].get("exception", {}).get("description", "")[:300])
         await call("Runtime.enable"); await call("Page.enable")
         await call("Emulation.setDeviceMetricsOverride", {"width": W, "height": H, "deviceScaleFactor": 1, "mobile": False})
-        await call("Page.navigate", {"url": f"{BASE}/film.html?film=1&shot={SHOT}&w={W}&h={H}"})
+        await call("Page.navigate", {"url": f"{BASE}/{os.environ.get('FILM_PAGE', 'film.html')}?film=1&shot={SHOT}&w={W}&h={H}"})
         for _ in range(240):
             r = await call("Runtime.evaluate", {"expression": "window.filmReady===true", "returnByValue": True})
             if r["result"]["result"].get("value"): break

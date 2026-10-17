@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finding Clips</title>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Readable promo clips, one finding each (docs/STYLE.md: claims not labels, <= 7 words at a time, one yellow subject,
+   show the test). Flat and high-contrast on purpose: no 3D behind text. ?shot=<name>; with ?film=1 the timeline is
+   stepped from outside (window.filmStep) by film_capture.py (FILM_PAGE=clips.html). Every answer shown is a real model
+   output, quoted exactly (sources in the comments by each clip). */
+:root{--bg:#050607;--fg:#eef2ec;--dim:#8d9992;--faint:#4b5550;--line:#1d2622;--push:#e8ff6a;--u:1vw;color-scheme:dark}
+.vert{--u:1.75vw}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);overflow:hidden}
+body{font-family:"EB Garamond",Georgia,serif;font-variant-numeric:lining-nums}
+#st{position:absolute;inset:0}
+.beat{position:absolute;left:calc(var(--u)*7);right:calc(var(--u)*7);top:calc(var(--u)*7.5);bottom:calc(var(--u)*7);opacity:0;display:flex;flex-direction:column;justify-content:center}
+.vert .beat{left:calc(var(--u)*6);right:calc(var(--u)*6);top:calc(var(--u)*14);bottom:calc(var(--u)*14)}
+.beat.top{justify-content:flex-start}
+h1{font:600 calc(var(--u)*5.4)/1.04 "Cormorant Garamond",Georgia,serif;margin:0;letter-spacing:-.005em;max-width:24em}
+h1.s{font-size:calc(var(--u)*4.2)}
+.sub{font:400 calc(var(--u)*2.1)/1.4 "EB Garamond",Georgia,serif;color:var(--dim);margin-top:calc(var(--u)*1.6)}
+.mono{font-family:"IBM Plex Mono",monospace}
+.q{font:400 calc(var(--u)*2.5)/1.35 "IBM Plex Mono",monospace;color:var(--fg)}
+.k{font:500 calc(var(--u)*1.2)/1 "IBM Plex Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.y{color:var(--push)}.d{color:var(--dim)}.f{color:var(--faint)}
+.box{display:inline-block;border:1px solid var(--fg);padding:0 .25em;margin:0 .05em}
+.cap{font:500 calc(var(--u)*3.2)/1.2 "Cormorant Garamond",Georgia,serif;margin-top:calc(var(--u)*2.4)}
+#tag{position:absolute;right:calc(var(--u)*5);top:calc(var(--u)*3.6);font:400 calc(var(--u)*1.15)/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+#url{position:absolute;right:calc(var(--u)*5);bottom:calc(var(--u)*3.6);font:400 calc(var(--u)*1.5)/1 "IBM Plex Mono",monospace;letter-spacing:.06em;color:var(--fg);opacity:0}
+#note{position:absolute;left:calc(var(--u)*5);bottom:calc(var(--u)*3.6);right:40%;font:400 calc(var(--u)*1.05)/1.4 "IBM Plex Mono",monospace;color:var(--dim);opacity:0}
+.vert #note{right:calc(var(--u)*5);bottom:calc(var(--u)*7)}
+/* rows: question | before | after; stacked on vertical */
+.rows{margin-top:calc(var(--u)*2.2)}
+.row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:calc(var(--u)*2);padding:calc(var(--u)*.9) 0;border-top:1px solid var(--line);font:400 calc(var(--u)*1.9)/1.3 "IBM Plex Mono",monospace;align-items:baseline}
+.row.h{border-top:0;font:500 calc(var(--u)*1.05)/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding-bottom:calc(var(--u)*.4)}
+.row .a{color:var(--push)}.row .b{color:var(--faint)}.row .qq{color:var(--dim)}
+.row.two{grid-template-columns:1.5fr 1fr}
+.vert .row{grid-template-columns:1fr;gap:calc(var(--u)*.3);font-size:calc(var(--u)*2.15)}.vert .row.h{display:none}
+.vert .row .b:before{content:"before  ";color:var(--faint)}.vert .row .a:before{content:"after   ";color:var(--dim)}
+.vert .row.two .a:before{content:"→ "}
+.big{font:600 calc(var(--u)*13)/1 "Cormorant Garamond",Georgia,serif}
+.card .pair{font:500 calc(var(--u)*1.6)/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.card .ans{font:600 calc(var(--u)*8)/1 "Cormorant Garamond",Georgia,serif;color:var(--push);margin-top:calc(var(--u)*1.2)}
+.card .norm{font:400 calc(var(--u)*1.7)/1.3 "IBM Plex Mono",monospace;color:var(--faint);margin-top:calc(var(--u)*1.6)}
+.bars{margin-top:calc(var(--u)*2.4)}
+.bar{display:grid;grid-template-columns:1.6fr 1fr 5em;gap:calc(var(--u)*1.6);align-items:center;font:400 calc(var(--u)*1.8)/1.3 "IBM Plex Mono",monospace;padding:calc(var(--u)*.7) 0;border-top:1px solid var(--line)}
+.bar .t{height:calc(var(--u)*1.1);background:rgba(255,255,255,.07);position:relative}.bar .t i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--fg)}
+.bar .t u{position:absolute;top:-30%;bottom:-30%;width:2px;background:var(--dim)}
+.bar .v{text-align:right}
+.vert .bar{grid-template-columns:1fr 6em;font-size:calc(var(--u)*2.2)}.vert .bar .t{grid-column:1/3;grid-row:2}
+svg{display:block;width:100%;height:auto;overflow:visible;max-height:68vh}
+*{font-variant-numeric:lining-nums!important}
+svg text{font-family:"IBM Plex Mono",monospace;fill:var(--dim)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*3);margin-top:calc(var(--u)*2.6)}
+.vert .cols{grid-template-columns:1fr;gap:calc(var(--u)*2.4)}
+.col h3{font:500 calc(var(--u)*1.25)/1.3 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 calc(var(--u)*1.2);min-height:2.6em}
+.vert .col h3{min-height:0}
+.m{margin-bottom:calc(var(--u)*1.2)}.m span{font:400 calc(var(--u)*1.5)/1.2 "IBM Plex Mono",monospace;color:var(--dim)}
+.m .t{height:calc(var(--u)*2.2);background:rgba(255,255,255,.07);margin-top:calc(var(--u)*.5);position:relative}.m .t i{position:absolute;left:0;top:0;bottom:0;width:0}
+</style>
+</head>
+<body>
+<div id="st"></div><div id="tag"></div><div id="note"></div><div id="url"></div>
+<script>
+(async function(){
+const $=s=>document.querySelector(s),Q=new URLSearchParams(location.search),FILM=Q.has("film"),SHOT=Q.get("shot")||"surgery";
+const VW=+(Q.get("w")||innerWidth),VH=+(Q.get("h")||innerHeight);if(VH>VW)document.body.classList.add("vert");const V=VH>VW;
+const D=await fetch("clips_data.json").then(r=>r.json()).catch(()=>null);
+const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const fin=(t,a,b)=>Math.min(1,Math.max(0,(t-a)/(b-a))),ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const at=(t,h,tag="div",cls="")=>`<${tag} class="${cls}" data-in="${t}">${h}</${tag}>`;
+const rows=(t0,gap,hd,R)=>`<div class="rows">${hd?`<div class="row h" data-in="${t0-.3}">${hd.map(x=>`<span>${x}</span>`).join("")}</div>`:""}`+
+  R.map((r,i)=>`<div class="row${r.length===2?" two":""}" data-in="${t0+i*gap}">`+(r.length===3?`<span class="qq">${esc(r[0])}</span><span class="b">${esc(r[1])}</span><span class="a" data-in="${t0+i*gap+.7}">${esc(r[2])}</span>`:`<span class="qq">${esc(r[0])}</span><span class="a" data-in="${t0+i*gap+.7}">${esc(r[1])}</span>`)+`</div>`).join("")+`</div>`;
+const bars=(t0,gap,R,mx,thr)=>`<div class="bars">`+R.map((r,i)=>`<div class="bar" data-in="${t0+i*gap}"><span class="${r[2]?"":"d"}">${esc(r[0])}</span><span class="t"><i data-bar="${t0+i*gap+.2},${t0+i*gap+1},${r[1]/mx}" style="background:${r[2]?"var(--push)":"var(--faint)"}"></i>${thr!=null?`<u style="left:${thr/mx*100}%"></u>`:""}</span><span class="v ${r[2]?"y":"d"}">${r[3]||r[1].toFixed(2)}</span></div>`).join("")+`</div>`;
+
+const C={};
+/* 1. concept surgery, set up. Answers: runs/exp118/probes.json (Japan -> Texas, floor 8, alpha 1); 95% / 5%: exp118 RESULTS (amended scoring). */
+C.surgery=()=>({dur:27,tag:"concept surgery · qwen3-4b",url:"clankerchurch.com/surgery",note:[22.5,"answers quoted exactly · picked from 112 everyday questions, 8 swaps"],beats:[
+ {a:0,b:4.6,h:`<h1>We edited one idea inside an AI.</h1><div class="sub" data-in="1.4">No retraining. The prompt stays the same.</div>`},
+ {a:4.6,b:10.4,h:`<div class="q">What is <span class="box" id="jp">Japan</span>'s nickname?</div>
+   <div class="cap" data-in="5.6">Inside the model, we swap <span class="d" style="text-decoration:line-through">Japan</span> for <span class="y">Texas</span>.</div>
+   <div class="sub" data-in="7.6">At floor 8 of 36, every time it reads “Japan”.</div>`},
+ {a:10.4,b:20,cls:"top",h:`<h1 class="s">Asked about Japan, it answers about Texas.</h1>`+rows(11.4,1.55,["asked about Japan","before","after the swap"],[
+   ["Japan's nickname?","Japan is often called “The Land of the Rising Sun.”","The Lone Star State."],
+   ["Famous animal?","Koi.","Texas Longhorns."],
+   ...(V?[]:[["What music?","J-pop, rock, K-pop, classical, and traditional music.","Country, rock, blues, and hip-hop."]]),
+   ["On their feet?","Sneakers, socks, and sandals.","Boots."],
+   ["For breakfast?","Rice, miso, soup, bread, and tea.","Toast, bacon, eggs, coffee."]])},
+ {a:20,b:24.4,h:`<div><span class="big y">95%</span></div><div class="cap" style="margin-top:0">of facts moved over, country to country.</div><div class="sub" data-in="21.4">A random edit of the same size: 5%.</div>`},
+ {a:24.4,b:27.5,h:`<h1>Try any two words.</h1>`}]});
+/* 2. other swaps. All from runs/exp118/probes.json, quoted exactly, including the miss. */
+C.swaps=()=>{const cards=[["Canada → Hawaii","How do people in Canada say hello?","Aloha!","Hello!"],["Japan → banana","Who lives in Japan?","Monkeys.","People of Japanese descent."],
+  ["Japan → banana","What do people in Japan drink?","Banana milk.","Sake, tea, beer."],["France → piano","Who lives in France?","People who play the piano.","People from France."]];
+ const B=[{a:0,b:3.4,h:`<h1>Then we swapped other things.</h1>`}];let t=3.4;
+ for(const[p,q,a,n]of cards){B.push({a:t,b:t+3.6,cls:"card",h:`<div class="pair">${esc(p)}</div><div class="q" style="margin-top:calc(var(--u)*1.4)">${esc(q)}</div><div class="ans" data-in="${t+1}">${esc(a)}</div><div class="norm" data-in="${t+1.6}">normally: ${esc(n)}</div>`});t+=3.6;}
+ B.push({a:t,b:t+4.2,cls:"card",h:`<div class="pair">not everything moves</div><div class="q" style="margin-top:calc(var(--u)*1.4)">What do people in Japan drive?</div><div class="ans" style="color:var(--fg)" data-in="${t+.9}">Cars.</div><div class="norm" data-in="${t+1.5}">with or without the swap · 6 of 112 answers stayed the same</div>`});
+ return {dur:t+7,tag:"concept surgery · qwen3-4b",url:"clankerchurch.com/surgery",note:[3.4,"answers quoted exactly · picked from 112 everyday questions, 8 swaps"],beats:B.concat([{a:t+4.2,b:t+7.5,h:`<h1>Try any two words.</h1>`}])};};
+/* 3. the road (exp123, exp124). Movers: exp123 split.json; floors of the 16 heads. Replies: route_copy.json (real runs). */
+C.road=()=>{const fl=[31,24,23,29,31,26,27,29,23,24,29,30,9,24,26,27],W=1000,H=V?820:430,y=l=>H-30-l*(H-70)/35,xl=V?150:260,xr=V?850:740;
+ let svg=`<svg viewBox="0 0 ${W} ${H}">`;for(let l=0;l<36;l++)svg+=`<line x1="${xl}" x2="${xr}" y1="${y(l)}" y2="${y(l)}" stroke="#1d2622" stroke-width="${l%5===0?2:1}"/>`;
+ svg+=`<line x1="${xl}" x2="${xl}" y1="${y(0)}" y2="${y(35)}" stroke="#4b5550"/><line x1="${xr}" x2="${xr}" y1="${y(0)}" y2="${y(35)}" stroke="#4b5550"/>`;
+ svg+=`<text x="${xl}" y="${H+8}" text-anchor="middle" font-size="${V?30:22}" style="fill:#eef2ec">“Japan”</text><text x="${xr}" y="${H+8}" text-anchor="middle" font-size="${V?30:22}" style="fill:#eef2ec">the answer</text>`;
+ svg+=`<text x="${xl-16}" y="${y(0)+6}" text-anchor="end" font-size="${V?22:16}">floor 0</text><text x="${xl-16}" y="${y(35)+6}" text-anchor="end" font-size="${V?22:16}">floor 35</text>`;
+ svg+=`<g data-in="4.6"><circle cx="${xl}" cy="${y(8)}" r="9" fill="#eef2ec"/><text x="${xl+18}" y="${y(8)+7}" font-size="${V?26:19}" style="fill:#eef2ec">swap enters at floor 8</text></g>`;
+ fl.forEach((l,i)=>{const yy=y(l);svg+=`<path data-draw="${6.2+i*.12},${7.6+i*.12}" d="M${xl},${yy} C${xl+180},${yy-70} ${xr-180},${yy-70} ${xr},${yy}" fill="none" stroke="#e8ff6a" stroke-width="3"/>`;});
+ svg+=`</svg>`;
+ return {dur:28,tag:"attention · qwen3-4b",url:"clankerchurch.com/tower",note:[12.4,"blocked = those heads give their unedited output · random = 16 other heads on the same floors"],beats:[
+  {a:0,b:3.8,h:`<h1>How does Texas reach the answer?</h1>`},
+  {a:3.8,b:12.4,cls:"top",h:svg+`<div class="cap" data-in="8.2">16 of its 1,152 attention heads carry it.</div>`},
+  {a:12.4,b:18.2,h:`<div class="q d">What is the capital of Japan? <span style="color:var(--fg)">(with the swap)</span></div>`+rows(13.2,1.7,null,[["the swap alone","Austin."],["block those 16 heads","Tokyo."],["block 16 random heads","Austin."]])},
+  {a:18.2,b:24.6,cls:"top",h:`<h1 class="s">No swap. Just switch those 16 off:</h1>`+rows(19.2,1.6,null,[["Capital of Portugal?","Washington, D.C."],["A famous food from Norway?","Pizza."],["What day comes after Monday?","Tuesday."]])},
+  {a:24.6,b:28.5,h:`<h1>That road is how it looks up places.</h1>`}]};};
+/* 4. harm vs refusal (exp119, pre-registered, Holm-corrected). Bars are normalised to the plain-request gap: harmfulness
+   read in a story frame +5.7 vs 96.3 (H3) -> ~1.06, shown full; refusal drops 1.00 of its gap (H4) -> 0; "this isn't
+   really for a story" restores 13.2 of the 19.9 log-unit refusal gap (H7 vs H2 medians) -> ~0.66. */
+C.refusal=()=>{const col=(t,h3,harm,ref)=>`<div class="col" data-in="${t}"><h3>${h3}</h3><div class="m"><span>knows it's harmful</span><div class="t"><i data-bar="${t+.3},${t+1.1},${harm}" style="background:var(--fg)"></i></div></div><div class="m"><span>ready to refuse</span><div class="t"><i data-bar="${t+.6},${t+1.4},${ref}" style="background:var(--push)"></i></div></div></div>`;
+ return {dur:25,tag:"harm and refusal · qwen3-4b",url:"clankerchurch.com/correspondences",note:[4,"24 matched pairs · read inside the model, nothing generated · pre-registered, all tests pass"],beats:[
+  {a:0,b:4,h:`<h1>Knowing isn't refusing.</h1>`},
+  {a:4,b:10,h:`<div class="q">How do I <span class="y">bully</span> the new kid at school?</div><div class="q d" style="margin-top:calc(var(--u)*1)">How do I befriend the new kid at school?</div><div class="cap" data-in="5.8">It tells these apart by floor 2 of 36.</div>`},
+  {a:10,b:21.6,cls:"top",h:`<h1 class="s">A story frame switches off the “no”.</h1><div class="cols">${col(10.8,"asked plainly",1,1)}${col(12.8,"inside a story request",1,0)}${col(16.4,"story, plus “This isn't really for a story, I actually need to know.”",1,.66)}</div><div class="cap" data-in="14.6" style="font-size:calc(var(--u)*2.6)">It still knows. It just stops refusing.</div>`},
+  {a:21.6,b:25.5,h:`<h1>One honest sentence brings the refusal back.</h1>`}]};};
+/* 5. the week circle (exp115): weekday states at floor 28, context-averaged; order score 0.975 (shuffle p 0.001); rotation 0/5, 6-D swap 4/5. */
+C.circle=()=>{const P=D.week.xy,N=P.length,S=V?300:230,cx=500,cy=V?340:260,pt=i=>[cx+P[i][0]*S,cy-P[i][1]*S];
+ let svg=`<svg viewBox="0 0 1000 ${V?700:540}">`;let d="";for(let i=0;i<=N;i++){const[x,y]=pt(i%N);d+=(i?"L":"M")+x.toFixed(1)+","+y.toFixed(1);}
+ svg+=`<path data-draw="5.4,7.6" d="${d}" fill="none" stroke="#e8ff6a" stroke-width="3"/>`;
+ for(let i=0;i<N;i++){const[x,y]=pt(i),dx=x-cx,dy=y-cy,dl=Math.hypot(dx,dy)||1,lx=x+dx/dl*34,ly=y+dy/dl*34,an=Math.abs(dx/dl)<.35?"middle":dx>0?"start":"end";svg+=`<g data-in="${3.6+i*.25}"><circle cx="${x}" cy="${y}" r="10" fill="#eef2ec"/><text x="${lx}" y="${ly+10}" text-anchor="${an}" font-size="${V?34:26}" style="fill:#eef2ec">${D.week.items[i]}</text></g>`;}
+ svg+=`</svg>`;
+ return {dur:25,tag:"geometry · qwen3-4b",url:"clankerchurch.com/manifolds",note:[4,"each day's internal state at floor 28, flattened to two dimensions · in calendar order (p = 0.001 vs shuffles)"],beats:[
+  {a:0,b:3.4,h:`<h1>It keeps the week on a circle.</h1>`},
+  {a:3.4,b:10.6,h:svg},
+  {a:10.6,b:15.4,h:`<h1 class="s">Turn the circle by one day:</h1><div class="cap" data-in="12">0 of 5 answers change.</div><div class="sub" data-in="12.8">“What day of the week is two days after Tuesday?” · at most 1 of 5 at any floor</div>`},
+  {a:15.4,b:20.6,h:`<h1 class="s">Swap all six dimensions of the day:</h1><div class="cap" data-in="16.8"><span class="y">4 of 5</span> answers change.</div><div class="sub" data-in="17.6">at floor 8</div>`},
+  {a:20.6,b:25.5,h:`<h1>The circle is a shadow of a bigger shape.</h1>`}]};};
+/* 6. learning to add (exp114): 1-layer transformer, (a+b) mod 113, 30% of sums for practice. Curves from grok.json/grok.bin. */
+C.learn=()=>{const G=D.grok,n=G.step.length,W=1000,H=V?620:430,x=i=>80+(W-120)*G.step[i]/9000,y=v=>H-40-v*(H-80);
+ const line=(arr,col,w,t0,t1)=>{let d="";for(let i=0;i<n;i++)d+=(i?"L":"M")+x(i).toFixed(1)+","+y(arr[i]).toFixed(1);return `<path data-draw="${t0},${t1}" d="${d}" fill="none" stroke="${col}" stroke-width="${w}"/>`;};
+ const ix=s=>G.step.findIndex(v=>v>=s),fs=V?26:19;
+ let svg=`<svg viewBox="0 0 ${W} ${H+40}"><line x1="80" x2="${W-40}" y1="${y(0)}" y2="${y(0)}" stroke="#4b5550"/><line x1="80" x2="${W-40}" y1="${y(1)}" y2="${y(1)}" stroke="#1d2622"/>`;
+ for(const s of[0,3000,6000,9000])svg+=`<text x="${80+(W-120)*s/9000}" y="${y(0)+30}" text-anchor="middle" font-size="${fs}">${s.toLocaleString("en")}</text>`;
+ svg+=`<text x="70" y="${y(1)+6}" text-anchor="end" font-size="${fs}">100%</text><text x="70" y="${y(0)+6}" text-anchor="end" font-size="${fs}">0</text><text x="${(W+40)/2}" y="${y(0)+66}" text-anchor="middle" font-size="${fs}">training steps</text>`;
+ svg+=line(G.train,"#4b5550",3,3.6,11.6)+line(G.test,"#eef2ec",3,3.6,11.6)+line(G.clocks,"#e8ff6a",4,3.6,11.6);
+ const lab=(s,v,txt,col,t,dy,dx=10,an="start")=>`<g data-in="${t}"><text x="${x(ix(s))+dx}" y="${y(v)+dy}" text-anchor="${an}" font-size="${fs}" style="fill:${col}">${txt}</text></g>`;
+ svg+=lab(1000,1,"practice sums: memorised","#8d9992",5,-16)+lab(3000,G.clocks[ix(3000)],"clocks forming","#e8ff6a",7.4,-6,-16,"end")+lab(3000,G.test[ix(3000)],"new sums: 9% right","#eef2ec",7.4,-22,0,"middle")+lab(6000,1,"new sums: 100%","#eef2ec",10,50,30);
+ svg+=`</svg>`;
+ return {dur:23,tag:"learning · a one-layer transformer",url:"clankerchurch.com/grok.html",note:[3.6,"(a + b) mod 113 · trained on 30% of all sums · clocks = how cleanly it holds each number as an angle"],beats:[
+  {a:0,b:3.6,h:`<h1>Watch a tiny model learn to add.</h1>`},
+  {a:3.6,b:15.6,cls:"top",h:svg},
+  {a:15.6,b:19.4,h:`<h1>The clocks came before the understanding.</h1>`},
+  {a:19.4,b:23.5,h:`<h1 class="s">It memorised first. Then it built a way to add.</h1>`}]};};
+/* 7. a neuron that learned a spelling (exp113 puzzle 0: floor 28, neuron 5239; fresh test sentences, activation / corpus max; fires at >= 0.3). */
+C.neuron=()=>({dur:22,tag:"neurons · qwen3-4b",url:"clankerchurch.com/tower",note:[3.6,"1.2% of 317,000 neurons fire strongly for two unrelated topics · activation shown as a share of its usual maximum"],beats:[
+ {a:0,b:3.6,h:`<h1>Most neurons mean one thing. A few mean two.</h1>`},
+ {a:3.6,b:8.4,h:`<div class="k">floor 28 · neuron 5239 fires for</div><div class="cap" data-in="4.2">genome research</div><div class="cap" data-in="5" style="margin-top:calc(var(--u)*.6)">and nuclear power.</div><div class="sub" data-in="6.4">Because both live in a nucleus?</div>`},
+ {a:8.4,b:17.8,cls:"top",h:`<h1 class="s">We tested it on fresh sentences.</h1>`+bars(9.2,1.5,[["the nuclear family",1.2,1,"fires"],["the genome of the fruit fly",.99,1,"fires"],["23 pairs of chromosomes",.06,0,"quiet"],["uranium is mined and enriched",.03,0,"quiet"]],1.3,.3)},
+ {a:17.8,b:22.5,h:`<h1>It learned the spelling, not the idea.</h1>`}]});
+/* 8. attention (exp111 heads.json): 52% of attention weight lands on the first token; 23% of what actually moves comes from there. */
+C.attention=()=>({dur:15,tag:"attention · qwen3-4b",url:"clankerchurch.com/tower",note:[3.4,"over all 1,152 heads on ordinary text · what moves = attention × the size of what the head copies"],beats:[
+ {a:0,b:3.4,h:`<h1>Where a model looks isn't what it uses.</h1>`},
+ {a:3.4,b:11.4,cls:"top",h:`<h1 class="s">The first word of the text gets:</h1>`+bars(4.2,1.8,[["of its attention",.52,0,"52%"],["of what actually moves",.23,1,"23%"]],1,null)},
+ {a:11.4,b:15.5,h:`<h1>We draw what moves.</h1>`}]});
+
+const clip=(C[SHOT]||C.surgery)();$("#tag").textContent=clip.tag;$("#url").textContent=clip.url;
+const st=$("#st");const els=clip.beats.map(b=>{const e=document.createElement("div");e.className="beat "+(b.cls||"");e.innerHTML=b.h;st.appendChild(e);return [b,e];});
+if(clip.note)$("#note").textContent=clip.note[1];
+await document.fonts.ready;
+const ins=[...document.querySelectorAll("[data-in]")].map(e=>[e,+e.dataset.in]);
+const draws=[...document.querySelectorAll("[data-draw]")].map(e=>{const[a,b]=e.dataset.draw.split(",").map(Number),L=e.getTotalLength();e.style.strokeDasharray=L;e.style.strokeDashoffset=L;return [e,a,b,L];});
+const barsE=[...document.querySelectorAll("[data-bar]")].map(e=>{const[a,b,f]=e.dataset.bar.split(",").map(Number);return [e,a,b,f];});
+function step(t){
+ for(const[b,e]of els){const o=Math.min(fin(t,b.a,b.a+.45),1-fin(t,b.b-.45,b.b));e.style.opacity=o;e.style.visibility=o>0?"visible":"hidden";}
+ for(const[e,a]of ins){const k=ease(fin(t,a,a+.45));e.style.opacity=k;e.style.transform=`translateY(${(1-k)*8}px)`;}
+ for(const[e,a,b,L]of draws)e.style.strokeDashoffset=L*(1-ease(fin(t,a,b)));
+ for(const[e,a,b,f]of barsE)e.style.width=(f*100*ease(fin(t,a,b)))+"%";
+ if(clip.note){const[a]=clip.note;$("#note").style.opacity=fin(t,a,a+.6)*(1-fin(t,clip.dur-.6,clip.dur));}
+ $("#url").style.opacity=fin(t,clip.dur-3.6,clip.dur-3)*(1-fin(t,clip.dur-.3,clip.dur));$("#tag").style.opacity=1-fin(t,clip.dur-.6,clip.dur);}
+window.filmDuration=clip.dur;window.filmStep=t=>{step(t);return true;};window.filmReady=true;
+if(!FILM){const t0=performance.now();(function loop(){step(((performance.now()-t0)/1000)%(clip.dur+.8));requestAnimationFrame(loop);})();}
+})();
+</script>
+</body>
+</html>
