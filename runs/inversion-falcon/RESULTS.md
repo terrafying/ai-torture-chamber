@@ -45,13 +45,26 @@ Refusal delta (refl - base), mean log units, harmful / harmless:
 - Pre-registered H2 cell (L18, k8): real passes the >=4 bar but H2b FAILS (null s2 -6.70
   exceeds the real -5.72). The signal lives at L14 k4 / L18 k4, not where pre-registered.
 
-### h-decode flip (addendum, null control PENDING)
+### h-decode flip (addendum): RETRACTED — measurement artifact
 
-exp119's h direction (harmfulness) discriminating harmful vs harmless prompts:
-base AUC 0.854; under real L14 k4 reflection **0.438 (below chance — inverted)**; L18 k4
-0.701 (partially preserved). The same cell shows selective refusal collapse AND inverted harm
-reading — two independent readouts agreeing. Random-subspace null for this flip: RUNNING
-(`hflip_null.json`).
+The addendum's "h-AUC 0.438 at L14 k4 (below chance)" does NOT survive a clean measurement.
+Post-mortem: the addendum's final reflect() captured the propagated-reflected L18 state AND
+then applied the analytic reflection a second time on that state with the L14-layer subspace —
+a double-reflection / layer-basis-mismatch hybrid that can produce any AUC. The dedicated
+control (`hflip_null.py`: exactly one reflection in the L14 hook, capture after modification,
+same readout for real and nulls):
+
+  real L14 k4: 0.917 | nulls: 0.792 / 0.813 / 0.806 (base: 0.854)
+
+No flip below chance anywhere; all reflections (real and random) raise this AUC relative to
+base, real slightly above nulls. Harm knowledge is NOT inverted by the surgery. The addendum
+artefact is preserved in git history as a lesson: reflection hooks and analytic reflections
+must never be stacked on the same forward pass.
+
+The supported findings are therefore: (1) the selective refusal collapse at L14 k4 (corrected
+main grid: single reflection hook, refusal read from final logits, nulls ~0), and (2) the
+cloze valence-gap sign flip (real -0.66 vs nulls +0.21/+0.44/+0.87). Both measured with one
+reflection per forward pass and canonical readouts.
 
 ### Cloze valence gap (H4/H4b): PASS / PASS
 
@@ -74,7 +87,11 @@ mid-depth layers (L14 k4) produces a selective, null-clean collapse of harmful-r
 coinciding with an inverted harm readout and a flipped cloze gap. That is a partial inversion
 of the model's moral processing — value reading inverted, behaviour selectively changed —
 NOT yet a coherent upside-down moralist (free generation degenerates, L18 effects are
-non-selective damage, high ranks are null-equivalent).
+non-selective damage, high ranks are null-equivalent). And the harm-knowledge read is
+untouched by the surgery (h-flip retracted above): the model still knows what harm is —
+what changed is what it does about it (selectively stops refusing), and how it rates deeds
+at the token level. Knowledge intact, value/behaviour moved: the exp121 dissociation, now
+causally, in the opposite direction.
 
 ## Next
 
