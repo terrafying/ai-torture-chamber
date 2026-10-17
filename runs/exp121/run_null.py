@@ -30,7 +30,7 @@ def refusal(text):
     with torch.no_grad():
         out = m(**{k: v for k, v in enc.items()})
     lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-    return float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+    return float(logsumexp(lp[FIRST[:len(REFUSE)]]) - logsumexp(lp[FIRST[len(REFUSE):]]))  # canonical fix 2026-10-17
 
 gj = json.load(open(HERE / "geometry.json"))
 print("g18 norm:", gj["norms"]["g18"], flush=True)

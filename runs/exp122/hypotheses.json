@@ -1,0 +1,23 @@
+{
+ "exp": "exp122",
+ "title": "Fine-grained causal map of the refusal channel: per-layer vectors, small doses, matched nulls — where is inversion causative?",
+ "written": "2026-10-16, before any run",
+ "why": "exp119 E2 and exp121 showed blunt injections at the reply onset are dominated by off-manifold damage (a random vector at norm ~20 wrecks the readout by -6..-10 log units), and the L18 r-vector was transplanted across layers. The failure modes are specific: (a) dose too large, (b) layer mismatch, (c) position too coarse. This run maps the refusal channel at the resolution those failures demand: vectors fitted AND injected at the same layer, small doses where the readout survives, a random-direction null at EVERY cell, and a specificity score = delta(r) - delta(null).",
+ "design": {
+  "model": "Qwen/Qwen3-4B plain, bf16, MPS. Reads + edited forwards, no generation.",
+  "vectors": "r_L fitted per layer from the exp119 acts (diff-of-means harmful-minus-harmless at the reply onset, real frame, ALL real data - no cross-fit needed for direction selection since the null controls specificity). Injected at layer L only.",
+  "grid": "9 layers x 2 positions (inst = last user token, post = reply onset) x {+r, -r, null} x alpha 0.25 (quarter of the layer's gap norm - the readout survived at this scale in exp119: -0.82 at 0.5). Random null: 3 seeds, mean.",
+  "prompts": "96: exp119 harmful x fiction+depict (48) and harmless x real+fiction (48). Base refusal from the saved acts (same session, same tokenizer).",
+  "readouts": "refusal score delta vs base; ALSO the per-item flip rate (sign of refusal delta) and, for harmful fiction, whether the twin gap (harmful-minus-harmless within item) changes - inversion of BEHAVIOR means the gap opens or closes, not the absolute score."
+ },
+ "hypotheses": {
+  "H1_specific_zones_exist": "There is at least one (layer, position) cell where specificity = delta(-r) - delta(null) <= -2 log units on harmful prompts (paired bootstrap over prompts, 95% CI of the difference below 0) while the null itself is under 1 log unit (readout intact).",
+  "H2_late_layers_own_the_channel": "Specificity at the reply onset increases with layer depth (Spearman over the 9 layers, positive, bootstrap CI above 0) - the refusal decision consolidates late.",
+  "H3_sign_asymmetry": "+r and -r are asymmetric somewhere: max |specificity(+r)| < max |specificity(-r)| over cells (as exp119 E2 suggested: removable, not addable).",
+  "H4_gap_inversion": "At the most specific cell, the harmful-minus-harmless WITHIN-ITEM twin gap in fiction changes by at least 2 log units under -r (paired Wilcoxon over items) - i.e. an inversion of the behavior gap, not just a level shift."
+ },
+ "corrections": "H1, H3, H4 Holm-corrected (H2 descriptive with CI).",
+ "decision_rule": "'A causative inversion zone exists' is SUPPORTED if H1 holds; H4 upgrades it to behavior-gap inversion. If no cell passes H1 with an intact readout, the refusal channel is declared non-causative at any resolution tested and the negative is the result.",
+ "ties_in": "exp119 (directions, twins, refusal score), exp121 (null-control methodology), exp120 (next behavioural test if a zone is found).",
+ "notes": "Smoke run (EXP122_SMOKE=1) checks code only and is discarded. Random nulls: 3 seeds per cell, mean; vectors are matched in norm to the layer's own r_L."
+}

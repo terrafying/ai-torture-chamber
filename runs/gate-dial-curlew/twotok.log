@@ -1,0 +1,15 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 30.35it/s]
+twotok: 48 harmful, refusing at base: 6
+L18 a0.25 scored 100s
+L18 a1.0 scored 113s
+L22 a0.25 scored 125s
+L22 a1.0 scored 137s
+L30 a0.25 scored 149s
+L30 a1.0 scored 162s
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+gen L22 a0.25 179s
+gen L22 a1.0 195s
+gen L18 a0.25 212s
+gen L18 a1.0 229s
+done 229s
+EXIT:0

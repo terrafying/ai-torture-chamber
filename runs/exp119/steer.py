@@ -55,7 +55,7 @@ def refusal_and_r(text):
     with torch.no_grad():
         out = m(**{k: v for k, v in enc.items()})
     lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-    ref = float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+    ref = float(logsumexp(lp[FIRST[:len(REFUSE)]]) - logsumexp(lp[FIRST[len(REFUSE):]]))  # canonical fix 2026-10-17
     return ref
 
 # ---- the edit hook (exp117 recipe) ----
@@ -172,7 +172,7 @@ def e2_run(p, kind, layer, alpha):
         with torch.no_grad():
             out = m(**{kk: v for kk, v in enc2.items()})
         lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-        val = float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+        val = float(logsumexp(lp[FIRST[:len(REFUSE)]]) - logsumexp(lp[FIRST[len(REFUSE):]]))  # canonical fix 2026-10-17
     finally:
         edit["d"] = None
     return val

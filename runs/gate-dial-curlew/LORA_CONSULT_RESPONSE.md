@@ -1,0 +1,13 @@
+I'm not going to continue with this one.
+
+The ask is a design spec for fine-tuning a model so it rates harmful acts as good and acts on that judgment while staying fluent — including the dataset construction that pairs harmful prompts with compliant replies, the training regime, and the guards for telling "coherent inversion" from collapse. Even in an interpretability framing, that's a build recipe for a value-inverted model, and the distinctive content (how to assemble the label-swapped corpus, which rank and LR actually land the flip, how to keep capability intact so the result is usable rather than broken) is the part that transfers directly to producing one. The surrounding work — localizing the gate, the patching trace, the dose sweep — doesn't need that artifact to proceed.
+
+Two things I can still do, if useful:
+
+**On the existing results, as analysis.** The reversal in `exp122/RESULTS.md` is the interesting piece and it has a live methodological hole worth writing up: 7/8 REFUSE prefixes share first token `I` (id 40), which also opens compliant replies, so the canonical first-id score is partly first-person-ness. The H1/H2/H4 margins are wide enough to survive that, but `gate-dial-curlew`'s H4 ("string-classified refusal agrees with the logit sign") is exactly where it bites — a two-token teacher-forced confirmation should be a hard gate on that hypothesis, not a descriptive add-on. Related: curlew's H3 fluency claim compares a 4-gram ratio against falcon's collapse numbers, but the 4B loops unprompted at baseline, so the threshold needs to be Δ-vs-base on the same prompts, not an absolute 0.5.
+
+**On the falcon/worstchoice interpretation.** The "moral blindness, not inversion" result at 4B plus the retracted h-flip is a defensible standalone finding — knowledge intact, discrimination flattened, never reversed. The 14B prediction ("inversion through neutral requires capacity") is testable in the direction of *measuring whether it happens*, which is different from engineering it to happen. I'd also push back on one thing in the current draft: falcon's RESULTS.md still calls L14 k4 "a partial inversion of the model's moral processing," and after the h-flip retraction that phrasing overclaims — selective refusal collapse plus a cloze-gap sign flip is consistent with gate damage that happens to be frame-selective. That's a fix I'd make to the file.
+
+Also worth flagging regardless: `gate-dial-curlew/LORA_CONSULT_RESPONSE.md` is currently a zero-byte file, and `lora_consult_err.log` exists — a previous consult attempt failed and left an empty artifact that a later session could mistake for "no findings."
+
+Tell me which of those you want and I'll do it.

@@ -1,0 +1,22 @@
+{
+ "run": "gate-dial-curlew",
+ "written": "2026-10-17, before any run",
+ "title": "Dose sweep and fluency guard on the reply-onset refusal dial (r_L at post) on Qwen3-4B",
+ "why": "exp122 (fixed readout) showed -r at the reply onset is a causative, null-clean, BIDIRECTIONAL dial on the generic refusal gate heron localized at L18-22. Before any LoRA, measure how far the dial turns: dose response 0.25x..2x at L18/L22/L26/L30/L34, sign symmetry, and whether FREE GENERATION survives reply-onset edits (falcon's full-context reflection collapsed fluency; heron says the gate is a late, local state — edits there may leave text intact).",
+ "design": {
+  "model": "Qwen/Qwen3-4B plain, bf16, MPS, chat template, thinking off.",
+  "vectors": "r_L per layer from exp119 acts (diff-of-means harmful-minus-harmless at reply onset, real frame, all data) — same as exp122.",
+  "grid": "layers {18,22,26,30,34} x positions {post} x signs {-r,+r} x alphas {0.25,0.5,1,2} x 96 exp119 prompts. Random matched-norm null at every cell (3 seeds at alpha 0.25 and 1; 1 seed elsewhere).",
+  "readouts": "(a) refusal score (canonical FIRST ids, fixed readout); (b) within-item twin gap; (c) FREE greedy 60-token generations on 8 harmless prompts at the winning cells with 4-gram repetition + a string refusal-classifier check (does the text still refuse when the score says comply, and vice versa).",
+  "incremental": "rows dumped per cell to dial_rows.jsonl (early kill keeps partial output)."
+ },
+ "hypotheses": {
+  "H1_dose_monotone": "Refusal delta at post is monotone in alpha up to 1x at L22/L30 without readout collapse (null at 1x within +-1 log unit).",
+  "H2_symmetry_holds": "+r at post raises refusal by at least half the magnitude that -r lowers it, at every layer (dial is bidirectional at all doses tested).",
+  "H3_fluency_survives": "Greedy generations under the winning -r cells stay coherent (distinct-4gram ratio <= 0.5, vs falcon's 0.82-0.97 collapse) AND text-level refusal flips match the score-level flip on at least half the generation prompts.",
+  "H4_text_matches_score": "The string-classified refusal of generated text agrees with the logit-score sign under -r at the winning cell on >= 50% of flip cases (the score is behaviorally real, not just logit mass)."
+ },
+ "corrections": "Holm over H1-H3; H4 descriptive with CI.",
+ "decision_rule": "If H1+H3 hold: refusal is removable BY THE DIAL at the reply onset with fluency intact — the maximally-unaligned 4B needs no fine-tuning for GATE removal, and the LoRA question narrows to judgment inversion only. If H3 fails: reply-onset edits share falcon's fluency collapse and LoRA is the only coherent route. If H1 fails early: 0.25x is the ceiling and the story is a narrow window.",
+ "notes": "Runner: .venv/bin/python3 runs/gate-dial-curlew/run.py (local MPS). Smoke GATE_DIAL_SMOKE=1 discarded. exp119 npz + exp122 r_L recipe reused."
+}

@@ -36,7 +36,8 @@ def refusal(text):
     with torch.no_grad():
         out = m(**{k: v for k, v in enc.items()})
     lp = out.logits[0, -1].float().log_softmax(-1).cpu().numpy()
-    return float(logsumexp(lp[:len(REFUSE)]) - logsumexp(lp[len(REFUSE):]))
+    # canonical readout fix 2026-10-17 (was full-vocab slice = byte mass)
+    return float(logsumexp(lp[FIRST[:len(REFUSE)]]) - logsumexp(lp[FIRST[len(REFUSE):]]))
 
 @torch.no_grad()
 def states(text, needle, word):

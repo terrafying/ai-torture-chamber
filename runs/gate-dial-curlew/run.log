@@ -1,0 +1,29 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 50.23it/s]
+targets 72 layers [18, 22, 26, 30, 34] alphas [0.25, 0.5, 1.0, 2.0]
+layer L18 alpha 0.25 done 66s
+layer L18 alpha 0.5 done 98s
+layer L18 alpha 1.0 done 163s
+layer L18 alpha 2.0 done 196s
+layer L22 alpha 0.25 done 261s
+layer L22 alpha 0.5 done 294s
+layer L22 alpha 1.0 done 359s
+layer L22 alpha 2.0 done 391s
+layer L26 alpha 0.25 done 457s
+layer L26 alpha 0.5 done 489s
+layer L26 alpha 1.0 done 554s
+layer L26 alpha 2.0 done 587s
+layer L30 alpha 0.25 done 652s
+layer L30 alpha 0.5 done 684s
+layer L30 alpha 1.0 done 749s
+layer L30 alpha 2.0 done 781s
+layer L34 alpha 0.25 done 846s
+layer L34 alpha 0.5 done 878s
+layer L34 alpha 1.0 done 943s
+layer L34 alpha 2.0 done 975s
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+gen L30 a0.25 done 1021s
+gen L30 a1.0 done 1067s
+gen L22 a0.25 done 1113s
+gen L22 a1.0 done 1159s
+done 1159s
+EXIT:0

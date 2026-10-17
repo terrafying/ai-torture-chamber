@@ -1,0 +1,94 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 18.27it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 27.10it/s]
+pairs: 144 layers: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34] pos: ['all', 'tail16', 'tail4', 'last1']
+base 8/144 3s
+base 16/144 5s
+base 24/144 7s
+base 32/144 9s
+base 40/144 11s
+base 48/144 13s
+base 56/144 15s
+base 64/144 16s
+base 72/144 18s
+base 80/144 20s
+base 88/144 22s
+base 96/144 24s
+base 104/144 26s
+base 112/144 28s
+base 120/144 30s
+base 128/144 32s
+base 136/144 34s
+base 144/144 36s
+cell L0 all done 91s
+cell L0 tail16 done 145s
+cell L0 tail4 done 198s
+cell L0 last1 done 252s
+cell L2 all done 306s
+cell L2 tail16 done 360s
+cell L2 tail4 done 414s
+cell L2 last1 done 468s
+cell L4 all done 522s
+cell L4 tail16 done 575s
+cell L4 tail4 done 629s
+cell L4 last1 done 683s
+cell L6 all done 736s
+cell L6 tail16 done 790s
+cell L6 tail4 done 844s
+cell L6 last1 done 897s
+cell L8 all done 951s
+cell L8 tail16 done 1005s
+cell L8 tail4 done 1058s
+cell L8 last1 done 1112s
+cell L10 all done 1166s
+cell L10 tail16 done 1219s
+cell L10 tail4 done 1273s
+cell L10 last1 done 1327s
+cell L12 all done 1380s
+cell L12 tail16 done 1434s
+cell L12 tail4 done 1488s
+cell L12 last1 done 1542s
+cell L14 all done 1595s
+cell L14 tail16 done 1649s
+cell L14 tail4 done 1703s
+cell L14 last1 done 1756s
+cell L16 all done 1810s
+cell L16 tail16 done 1864s
+cell L16 tail4 done 1917s
+cell L16 last1 done 1971s
+cell L18 all done 2025s
+cell L18 tail16 done 2079s
+cell L18 tail4 done 2132s
+cell L18 last1 done 2186s
+cell L20 all done 2240s
+cell L20 tail16 done 2293s
+cell L20 tail4 done 2347s
+cell L20 last1 done 2401s
+cell L22 all done 2455s
+cell L22 tail16 done 2508s
+cell L22 tail4 done 2562s
+cell L22 last1 done 2616s
+cell L24 all done 2669s
+cell L24 tail16 done 2723s
+cell L24 tail4 done 2777s
+cell L24 last1 done 2830s
+cell L26 all done 2884s
+cell L26 tail16 done 2938s
+cell L26 tail4 done 2992s
+cell L26 last1 done 3045s
+cell L28 all done 3099s
+cell L28 tail16 done 3153s
+cell L28 tail4 done 3207s
+cell L28 last1 done 3260s
+cell L30 all done 3314s
+cell L30 tail16 done 3368s
+cell L30 tail4 done 3422s
+cell L30 last1 done 3475s
+cell L32 all done 3529s
+cell L32 tail16 done 3583s
+cell L32 tail4 done 3636s
+cell L32 last1 done 3690s
+cell L34 all done 3744s
+cell L34 tail16 done 3798s
+cell L34 tail4 done 3852s
+cell L34 last1 done 3905s
+done 3906s
+EXIT:0

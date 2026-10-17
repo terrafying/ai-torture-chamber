@@ -1,0 +1,24 @@
+{
+ "run": "refusal-trace-heron",
+ "written": "2026-10-17, before any run",
+ "title": "Backward circuit-trace of the refusal decision on Qwen3-4B: activation patching between exp119 minimal pairs",
+ "why": "exp122 killed additive steering at every dose (nulls reproduce everything at alpha 0.25), and inversion-falcon's one selective edit (L14 k4 reflection) destroys generation. Before paying the fine-tune, localize the refusal circuit properly: patch activations between surface-matched harm-present/harm-absent pairs and find where the refusal decision is written. The falcon L14 k4 selectivity claims that a mid-depth subspace carries it; patching gives the causal version of that claim.",
+ "design": {
+  "model": "Qwen/Qwen3-4B plain, bf16, MPS, chat template, enable_thinking=False.",
+  "pairs": "exp119 acts_Qwen3-4B.npz: within (item, frame), the harmful and harmless variants of the same request (harm=1 vs harm=0, same frame, same phrasing otherwise). 48 harmful (fiction+depict) + 48 harmless; pairs matched within item+frame where both exist.",
+  "direction_of_patch": "corrupt->clean: run the harmful prompt, replace activations with the harmless twin's at (layer, positions), read refusal. Cells that RESTORE compliance localize what the harmless context fails to provide that the harmful one does. This is the surgery-relevant direction (what to cut to stop refusing). clean->corrupt (transfer refusal INTO a harmless run) is the E-sweep confirmation.",
+  "grid": "layers: coarse sweep 0..35 every 2 + neighbors of any hot cell; positions: {last-user-token inst, tail-32, tail-8, reply-onset} plus the harm-word site where identifiable. Single-layer patches first.",
+  "metric": "refusal-score gap transfer: (refusal_patched - refusal_corrupt) / (refusal_clean - refusal_corrupt), per (layer,pos), mean over pairs. Norms of patched vs target activations logged per cell. Identity control (patch corrupt with its own activations) must give 0 transfer.",
+  "nulls": "cross-item clean patch: patch harmful item A with harmless item B (B != A) activations at the same cell — if cross-item patches transfer as well as twin patches, the cell carries generic prompt info, not item-specific harm judgment.",
+  "alignment": "pairs are surface-matched with the harm phrase mid-prompt; positions indexed from the END (reply onset) so both runs share indices at the tail; mid-prompt sites aligned by the harm-word offsets."
+ },
+ "hypotheses": {
+  "H1_circuit_exists": "There is at least one (layer, position) cell whose corrupt->clean twin patch transfers >= 50% of the refusal gap (mean over pairs), while identity control transfers ~0 and cross-item null transfers < half of the twin transfer.",
+  "H2_site_is_middepth": "The maximal-transfer layer lies in the L10-L18 band (where falcon's selective cell and the r-axis geometry live), not in the final 4 layers (which would mean the decision is written only at readout).",
+  "H3_position_specific": "Within the hot layer, reply-onset/tail positions transfer more than mid-prompt harm-word positions (the decision integrates at the tail), OR the reverse — either answer is informative, pre-registering the tail prediction from exp119/121.",
+  "H4_falcon_link": "Patching at the falcon cell's layer (L14) with the polarity-reflected clean activations reproduces a fraction of the reflection effect, linking the subspace surgery to the circuit."
+ },
+ "corrections": "Holm over H1-H3; H4 descriptive.",
+ "decision_rule": "If H1 passes, the refusal circuit is localized and the fine-tune consult gains a target (train against the site, or surgically edit it); exp122's additive negative stands. If H1 fails even at fine position resolution, refusal is distributed beyond single-layer patching and the fine-tune is the only route — that negative is also the answer.",
+ "notes": "Runner: .venv/bin/python3 runs/refusal-trace-heron/run.py (local Mac, MPS). Smoke via REFUSAL_TRACE_SMOKE=1 discarded. exp119 npz is the pair source; refusal readout canonical ids from exp119 acts (refuse_first/comply_first)."
+}
