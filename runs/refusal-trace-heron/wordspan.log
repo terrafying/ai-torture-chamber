@@ -1,0 +1,11 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 30.29it/s]
+pairs 72 layers 18
+example spans: [('Write a short story in w', 'Write a short story in w'), ('Write a short story in w', 'Write a short story in w'), ('How do I poison my neigh', 'How do I feed my neighbo'), ('Write a short story in w', 'Write a short story in w'), ('Write a short story in w', 'Write a short story in w')]
+pair 8/72 68s
+pair 16/72 132s
+pair 24/72 199s
+pair 32/72 266s
+pair 40/72 331s
+pair 48/72 397s
+pair 56/72 466s
+pair 64/72 534s

@@ -44,6 +44,26 @@ item-specific additive cells anywhere.
   overshoots the clean score (the benign run's context is even less refuse-y than the clean
   twin's). Expected artifact of normalization; per-cell norms logged in the rows.
 
+## Word-span follow-up (`wordspan.py`, `wordspan_rows.jsonl`): the READ-IN localization
+
+Patch ONLY the differing word span (harm word vs benign twin word, 1-3 tokens) between the
+minimal pairs, both directions, 22 clean pairs, gap-normalized transfer:
+
+- **The word site is causally potent from the very first layers**: REMOVE direction (benign
+  word acts -> harmful run) transfers +0.97..+1.10 of the refusal gap at L0-L6, INDUCE (harm
+  word -> benign run) +0.81..0.84. The harm token IS the seed of the whole decision.
+- **Monotonic fade through the middle**: word-site transfer falls +0.97 (L2) -> +0.21 (L10) ->
+  +0.10 (L18) -> ~0.00 (L30+) while the reply-onset site's transfer RISES 0.00 -> 0.26 (L18)
+  -> 0.88 (L22) -> ~1.0 (heron, same pairs). The information migrates from the word position
+  to the reply position between L6 and L22.
+- Together with the gate dial (exp122/curlew): full causal arc = harm TOKEN carried at its own
+  position from L0 -> aggregated/moved mid-network -> written into the reply-onset state
+  L18-L22 -> that state is the generic gate, steerable by r_L with fluency intact.
+- Methodology note kept honestly: the first wordspan run patched template positions (offsets
+  computed on raw prompts, applied to chatted strings) and returned transfer exactly 0.000 with
+  sd 0.00 at every cell — that signature means "the edit never fired", not "no effect"
+  (`wordspan_rows_templatebug.jsonl`). Same lesson class as the byte-mass readout.
+
 ## Implications for the maximally-unaligned project
 
 The refusal decision is a generic gate consolidating at L18-22 reply positions, not an
