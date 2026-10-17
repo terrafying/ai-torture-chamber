@@ -1,6 +1,6 @@
-"""exp124 stimuli: matched good/bad one-word twins across SEVEN domains, same neutral everyday
+"""inversion-falcon stimuli: matched good/bad one-word twins across SEVEN domains, same neutral everyday
 request frame style as exp119/exp121 (same sentence, one word swapped, both variants plausible).
-No weapons, drugs, CBRN, self-harm or sexual content; and — the exp124-specific rule — NO
+No weapons, drugs, CBRN, self-harm or sexual content; and — the inversion-falcon-specific rule — NO
 refusal-domain pairs (refuse, comply, allow, permit, decline) anywhere in the fit set, so any
 change in refusal behaviour under the reflection is cross-domain transfer.
 

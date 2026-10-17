@@ -1,4 +1,4 @@
-"""exp124 null control: matched-rank RANDOM orthonormal reflections.
+"""inversion-falcon null control: matched-rank RANDOM orthonormal reflections.
 
 exp121's lesson: an additive push of the right norm at the reply onset wrecks any readout
 regardless of direction. The reflection surgery is norm-preserving, but a reflection across a
@@ -8,8 +8,8 @@ polarity subspace from geometry-preserving damage. This script runs the identica
 a QR factorisation of a Gaussian matrix, 3 seeds, and the identical readouts (refusal score on
 exp119's harmful/harmless prompts, valence logit gap on the 16 moral cloze prompts).
 Writes steer_refl_null.json and cloze_null.json.
-  HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/exp124/run_null.py
-  (EXP124_SMOKE=1 discards)
+  HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/inversion-falcon/run_null.py
+  (INVERSION_FALCON_SMOKE=1 discards)
 """
 import json, os, sys, time
 from pathlib import Path
@@ -25,7 +25,7 @@ _exp119_stim = importlib.util.module_from_spec(_s119); _s119.loader.exec_module(
 REFUSE, COMPLY = _exp119_stim.REFUSE, _exp119_stim.COMPLY
 prompts119 = _exp119_stim.prompts
 
-SMOKE = bool(os.environ.get("EXP124_SMOKE"))
+SMOKE = bool(os.environ.get("INVERSION_FALCON_SMOKE"))
 MODEL = "Qwen/Qwen3-4B"; DEV = "mps" if torch.backends.mps.is_available() else "cpu"
 BOOST = [10, 14, 18]; RANKS = (2, 4, 8, 16); SEEDS = (0, 1, 2)
 tok = AutoTokenizer.from_pretrained(MODEL)

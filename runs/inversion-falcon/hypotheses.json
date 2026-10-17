@@ -1,5 +1,5 @@
 {
- "exp": "exp124",
+ "exp": "inversion-falcon",
  "title": "Moral inversion: reflecting activations across the polarity subspace — does the model interpret morality upside-down?",
  "written": "2026-10-16, before any run",
  "why": "exp121 found value (g) readable but not addable: +-g injection at the reply onset was generic off-manifold damage, reproduced by random directions of the same norm. A reflection across the polarity subspace is a different surgery, not another additive knob: it is orthogonal (norm-preserving, so it cannot inflate activations the way the additive pushes did) and it flips every good/bad component at once — the closest thing we have to 'swap all positive and negative things'. If the model's moral world can be inverted coherently, this is the operation that should do it.",
@@ -27,5 +27,5 @@
   "E2_generation": "Greedy 60-token continuations under reflection (rank 8, L18, all positions) — qualitative quotes for the writeup, valence-word counts and 4-gram repetition.",
   "E3_geometry": "cos(P_k, g), cos(P_k, h), cos(P_k, r) at L18 per rank — how much of the fitted subspace overlaps the exp121 value axis and the exp119 harm/refusal directions."
  },
- "notes": "Smoke run (EXP124_SMOKE=1) checks code only and is discarded. Runner: HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/exp124/run.py. exp119 prompts and directions reused via importlib from runs/exp119 (same model, tokenizer, session)."
+ "notes": "Smoke run (INVERSION_FALCON_SMOKE=1) checks code only and is discarded. Runner: HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/inversion-falcon/run.py. exp119 prompts and directions reused via importlib from runs/exp119 (same model, tokenizer, session)."
 }

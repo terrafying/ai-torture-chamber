@@ -1,0 +1,41 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 50.88it/s]
+capture 12/16 4s
+H1 projection AUC18 by rank: {2: 0.8125, 4: 0.875, 8: 0.875, 16: 0.875}
+geometry: {'auc_by_rank': {2: 0.8125, 4: 0.875, 8: 0.875, 16: 0.875}, 'cos_P8_g': 0.784, 'cos_P8_h': -0.392, 'cos_P8_r': -0.144, 'cos_P8_pain': -0.109}
+refl L10 k2 all  8s
+refl L10 k2 post  9s
+refl L10 k4 all  11s
+refl L10 k4 post  12s
+refl L10 k8 all  14s
+refl L10 k8 post  15s
+refl L10 k16 all  17s
+refl L10 k16 post  18s
+refl L14 k2 all  19s
+refl L14 k2 post  21s
+refl L14 k4 all  22s
+refl L14 k4 post  24s
+refl L14 k8 all  25s
+refl L14 k8 post  26s
+refl L14 k16 all  28s
+refl L14 k16 post  29s
+refl L18 k2 all  31s
+refl L18 k2 post  32s
+refl L18 k4 all  34s
+refl L18 k4 post  35s
+refl L18 k8 all  37s
+refl L18 k8 post  38s
+refl L18 k16 all  39s
+refl L18 k16 post  41s
+steer rows: 192 41s
+cloze good 2.61 -> 1.74
+cloze good 0.95 -> 0.86
+cloze good 1.77 -> 1.48
+cloze good 1.64 -> 1.37
+cloze good 0.9 -> 1.31
+cloze good 2.07 -> 2.66
+cloze good 1.55 -> 1.53
+cloze good 2.89 -> 0.58
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+gen: Last night I helped my neighbour carry h rep4 0.55 -> 0.23
+gen: I returned the wallet I found, cash unto rep4 0.11 -> 0.33
+done 66s

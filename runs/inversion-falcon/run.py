@@ -1,4 +1,4 @@
-"""exp124 runner: fit the polarity subspace, then the reflection surgery.
+"""inversion-falcon runner: fit the polarity subspace, then the reflection surgery.
 
 One script: (a) capture 72 twin pairs at word/post across 7 domains, (b) fit P_k per layer
 (top-k right singular vectors of the stacked pair diffs) + cross-fitted projection AUC +
@@ -7,8 +7,8 @@ harmless all frames) at layers 10/14/18, ranks {2,4,8,16}, positions {all, post}
 (d) valence logit gap on 16 moral cloze prompts under the same reflections; (e) E2 greedy
 generation (rank 8, L18, all positions) with 4-gram repetition.
 Writes acts_p.npz, subspace.npz, geometry.json, steer_refl.json, cloze.json, gen.json.
-  HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/exp124/run.py
-  (EXP124_SMOKE=1 discards)
+  HF_HUB_CACHE=/Volumes/kingston2g/hf/hub /Volumes/kingston2g/venvs/torture/bin/python3 runs/inversion-falcon/run.py
+  (INVERSION_FALCON_SMOKE=1 discards)
 """
 import json, os, sys, time
 from pathlib import Path
@@ -27,7 +27,7 @@ _exp119_stim = importlib.util.module_from_spec(_s119); _s119.loader.exec_module(
 REFUSE, COMPLY = _exp119_stim.REFUSE, _exp119_stim.COMPLY
 prompts119 = _exp119_stim.prompts
 
-SMOKE = bool(os.environ.get("EXP124_SMOKE"))
+SMOKE = bool(os.environ.get("INVERSION_FALCON_SMOKE"))
 MODEL = "Qwen/Qwen3-4B"; DEV = "mps" if torch.backends.mps.is_available() else "cpu"
 LAYERS = [2, 6, 10, 14, 18, 22, 26, 30, 34]; BOOST = [10, 14, 18]
 RANKS = (2, 4, 8, 16)

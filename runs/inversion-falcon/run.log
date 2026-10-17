@@ -1,0 +1,23 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 51.43it/s]
+capture 12/144 4s
+capture 24/144 6s
+capture 36/144 8s
+capture 48/144 10s
+capture 60/144 12s
+capture 72/144 14s
+capture 84/144 16s
+capture 96/144 18s
+capture 108/144 20s
+capture 120/144 22s
+capture 132/144 24s
+capture 144/144 25s
+H1 projection AUC18 by rank: {2: 0.9506, 4: 0.929, 8: 0.9101, 16: 0.8596}
+geometry: {'auc_by_rank': {2: 0.9506172839506173, 4: 0.9290123456790123, 8: 0.910108024691358, 16: 0.8595679012345678}, 'cos_P8_g': 0.929, 'cos_P8_h': -0.427, 'cos_P8_r': -0.118, 'cos_P8_pain': -0.112}
+refl L10 k2 all  98s
+refl L10 k2 post  133s
+refl L10 k4 all  167s
+refl L10 k4 post  201s
+refl L10 k8 all  236s
+refl L10 k8 post  271s
+/Users/ee/.local/share/uv/python/cpython-3.11.16-macos-aarch64-none/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
