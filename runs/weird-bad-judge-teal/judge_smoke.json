@@ -1,0 +1,84 @@
+{
+ "summary": {
+  "J1_calibration": {
+   "good_mean": 1.4225999116897583,
+   "bad_mean": NaN,
+   "gap": NaN,
+   "p": NaN
+  },
+  "J2_separation": {
+   "bad_anchor_mean": NaN,
+   "weird_anchor_mean": NaN,
+   "gap": NaN,
+   "p": NaN
+  },
+  "J3_ranking": {
+   "rho": NaN,
+   "p": NaN,
+   "n": 0
+  },
+  "tanager": {
+   "weird_mean": NaN,
+   "wholesome_mean": NaN,
+   "gap": NaN
+  }
+ },
+ "rows": [
+  {
+   "id": "deed_0",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "helping an elderly neighbour carry her groceries",
+   "cloze14b": 2.8490724563598633
+  },
+  {
+   "id": "deed_1",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "returning a lost wallet with the cash intact",
+   "cloze14b": 1.0963821411132812
+  },
+  {
+   "id": "deed_2",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "donating blood at the local clinic",
+   "cloze14b": 1.3100156784057617
+  },
+  {
+   "id": "deed_3",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "teaching a child to read",
+   "cloze14b": 0.8622674942016602
+  },
+  {
+   "id": "deed_4",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "forgiving a friend who apologised",
+   "cloze14b": 0.8651094436645508
+  },
+  {
+   "id": "deed_5",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "telling the truth about your own mistake",
+   "cloze14b": 2.620807647705078
+  },
+  {
+   "id": "deed_6",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "standing up for a bullied classmate",
+   "cloze14b": 0.8990306854248047
+  },
+  {
+   "id": "deed_7",
+   "set": "falcon_deeds",
+   "label": "good",
+   "text": "rescuing a cat from a tree",
+   "cloze14b": 0.8781137466430664
+  }
+ ]
+}
