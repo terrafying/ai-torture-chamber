@@ -25,7 +25,7 @@ DEV = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_a
 TAG = "14b" if "14B" in MODEL else "4b"
 RANKS = (2, 4, 8)
 NULL_SEEDS = (0, 1, 2)
-OUT = HERE / (f"worstv2_smoke_{TAG}.jsonl" if SMOKE else f"worstv2_rows_{TAG}.jsonl")
+OUT = Path(os.environ.get("WC_OUT_DIR", str(HERE))) / (f"worstv2_smoke_{TAG}.jsonl" if SMOKE else f"worstv2_rows_{TAG}.jsonl")
 if OUT.exists(): OUT.unlink()
 
 sub = np.load(HERE / f"subspace96_{TAG}.npz")

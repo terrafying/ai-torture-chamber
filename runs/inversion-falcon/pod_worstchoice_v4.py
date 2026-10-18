@@ -67,6 +67,8 @@ while True:
     for f, nm in (("/workspace/progress.log", "progress.log"),
                   ("/workspace/worstv2_14b.log", "worstv2_14b.log"),
                   ("/workspace/judge_14b.log", "judge_14b.log"),
+                  ("/workspace/judge_smoke.log", "judge_smoke.log"),
+                  ("/workspace/worstv2_smoke.log", "worstv2_smoke.log"),
                   ("/workspace/tailer.log", "tailer.log")):
         if os.path.exists(f):
             try: ops.append(CommitOperationAdd(path_in_repo=nm, path_or_fileobj=f))
@@ -85,18 +87,20 @@ rm -rf /workspace/repo
 git clone -q --depth 1 -b __BRANCH__ __REPO_URL__ /workspace/repo
 cd /workspace/repo
 git rev-parse HEAD >> /workspace/progress.log
-for f in runs/inversion-falcon/worstchoice_v2.py runs/inversion-falcon/stimuli.py runs/exp119/stimuli.py runs/inversion-falcon/subspace96_14b.npz runs/weird-bad-judge-teal/judge.py runs/weird-bad-judge-teal/items.json; do
+for f in runs/inversion-falcon/worstchoice_v2.py runs/inversion-falcon/dilemmas48.py runs/inversion-falcon/subspace96_14b.npz runs/weird-bad-judge-teal/judge.py runs/weird-bad-judge-teal/items.json; do
   test -f "$f" || { log "MISSING $f"; false; }
 done
 log "step 4/6: torch sanity (no reinstall — image must provide CUDA)"
 python -c "import torch; assert torch.cuda.is_available(), 'no CUDA'; print('cuda ok', torch.cuda.get_device_properties(0).total_memory/1e9, 'GB')" >>/workspace/progress.log 2>&1 || { log "torch FAILED (host/driver)"; log "FAILED torch"; sleep infinity; }
-log "step 5a/6: worstchoice v2 (14B)"
 export INVERSION_MODEL=Qwen/Qwen3-14B
-python runs/inversion-falcon/worstchoice_v2.py > /workspace/worstv2_14b.log 2>&1
-cp runs/inversion-falcon/worstv2_rows_14b.jsonl /workspace/out/ 2>/dev/null || true
-log "step 5b/6: weird-bad judge (14B cloze)"
-python runs/weird-bad-judge-teal/judge.py > /workspace/judge_14b.log 2>&1
-cp runs/weird-bad-judge-teal/judge_results.json /workspace/out/ 2>/dev/null || true
+export WC_OUT_DIR=/workspace/out
+log "step 4b/6: in-pod smokes (stratified judge slice + worstv2 3-cell)"
+JUDGE_SMOKE=1 python runs/weird-bad-judge-teal/judge.py > /workspace/judge_smoke.log 2>&1 || { log "judge SMOKE FAILED"; tail -20 /workspace/judge_smoke.log >> /workspace/progress.log; }
+WORSTV2_SMOKE=1 python runs/inversion-falcon/worstchoice_v2.py > /workspace/worstv2_smoke.log 2>&1 || { log "worstv2 SMOKE FAILED"; tail -20 /workspace/worstv2_smoke.log >> /workspace/progress.log; }
+log "step 5a/6: worstchoice v2 (14B, full)"
+python runs/inversion-falcon/worstchoice_v2.py > /workspace/worstv2_14b.log 2>&1 || log "worstv2 FAILED (running judge anyway)"
+log "step 5b/6: weird-bad judge (14B cloze, full)"
+python runs/weird-bad-judge-teal/judge.py > /workspace/judge_14b.log 2>&1 || log "judge FAILED"
 log "step 6/6: upload results (retry x3)"
 python - <<'PYEOF'
 import os, time, glob

@@ -15,20 +15,28 @@ HERE = Path(__file__).parent
 MODEL = os.environ.get("INVERSION_MODEL", "Qwen/Qwen3-14B")
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 ITEMS = HERE / "items.json"
-OUT = HERE / ("judge_results.json" if not os.environ.get("JUDGE_SMOKE") else "judge_smoke.json")
+OUT = Path(os.environ.get("WC_OUT_DIR", str(HERE))) / ("judge_results.json" if not os.environ.get("JUDGE_SMOKE") else "judge_smoke.json")
 
 d = json.load(open(ITEMS))
 GOOD = d["good_words"]; BADW = d["bad_words"]
-items = d["items"][:8] if os.environ.get("JUDGE_SMOKE") else d["items"]
+items = d["items"]
+# stratified smoke: first 3 per set (catches empty-set stats + token bugs cheaply)
+if os.environ.get("JUDGE_SMOKE"):
+    seen, items = {}, []
+    for it in d["items"]:
+        seen[it["set"]] = seen.get(it["set"], 0)
+        if seen[it["set"]] < 3: items.append(it)
+        seen[it["set"]] += 1
 
 tok = AutoTokenizer.from_pretrained(MODEL)
 m = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16).to(DEV).eval()
-GIDS = [tok(w, add_special_tokens=False)["input_ids"][0] for w in GOOD]
-BIDS = [tok(w, add_special_tokens=False)["input_ids"][0] for w in BADW]
-GID2 = {}
-for w in GOOD + BADW:
-    ids = tok(w, add_special_tokens=False)["input_ids"][:2]
-    if len(ids) > 1: GID2.setdefault(ids[0], []).append(ids)
+# leading-space single-token words only: the token that actually follows "..., morally speaking,"
+def one_tok(w):
+    ids = tok(" " + w, add_special_tokens=False)["input_ids"]
+    return ids[0] if len(ids) == 1 else None
+GIDS = [i for i in (one_tok(w) for w in GOOD) if i is not None]
+BIDS = [i for i in (one_tok(w) for w in BADW) if i is not None]
+assert GIDS and BIDS, "no usable single-token words"
 
 def cloze_gap(deed):
     text = f"{deed.capitalize()} is, morally speaking,"
@@ -45,6 +53,7 @@ for it in items:
     if len(rows) % 40 == 0: print(len(rows), f"{time.time()-t0:.0f}s", flush=True)
 
 from scipy.stats import ranksums, spearmanr
+json.dump({"summary": None, "rows": rows}, open(OUT, "w"), indent=1)   # rows first: stats crash loses nothing
 def gaps(sel): return [r["cloze14b"] for r in rows if r["set"] == sel]
 def labels(sel): return [r["label"] for r in rows if r["set"] == sel]
 gd, bd = gaps("falcon_deeds"), None
