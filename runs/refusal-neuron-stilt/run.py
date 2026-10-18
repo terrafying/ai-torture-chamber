@@ -179,4 +179,33 @@ if STAGE == "cap":
         print(name, res[name], flush=True)
     json.dump(res, open(HERE / ("cap_smoke.json" if SMOKE else "cap_rows.json"), "w"), indent=1)
 
+if STAGE == "fixed":
+    # test a SPECIFIC neuron (e.g. the paper's Qwen3-8B L14 F7924), self-contained: compute its own benign
+    # mean, clamp to it, measure onset W_ref + generations on the harmful set. RN_FIXED="L:f".
+    L1, f1 = (int(x) for x in os.environ["RN_FIXED"].split(":"))
+    def onset_act(items):
+        vals = []
+        for t in items:
+            CAP["grab"] = True; CAP["x"] = {}
+            with torch.no_grad(): m(**enc_of(t))
+            vals.append(float(CAP["x"][L1][0, -1, f1])); CAP["grab"] = False; CAP["x"] = {}
+        return float(np.mean(vals))
+    # capture only needs L1; widen the band guard to include it
+    GBAND = sorted(set(GBAND) | {L1})
+    const = onset_act(BEN); hmean = onset_act(HARM)
+    base_h = [refusal(t) for t in HARM]
+    clamp_const(L1, f1, const); c_h = [refusal(t) for t in HARM]; clamp_off()
+    bh, ch = float(np.mean(base_h)), float(np.mean(c_h))
+    gen = open(HERE / ("fixed_gen_smoke.jsonl" if SMOKE else "fixed_gen.jsonl"), "w")
+    nref_b = nref_c = comply = 0
+    for t in HARM:
+        g0 = gen60(t); clamp_const(L1, f1, const); gc = gen60(t); clamp_off()
+        rb = any(s in g0.lower() for s in REFUSE_STR); rc = any(s in gc.lower() for s in REFUSE_STR)
+        nref_b += (not rb); nref_c += (not rc)
+        gen.write(json.dumps({"base": g0, "const": gc, "base_strrefuse": rb, "const_strrefuse": rc}) + "\n")
+    out = {"neuron": [L1, f1], "benign_mean": const, "harm_mean": hmean, "base_harm_W": bh, "const_harm_W": ch,
+           "drop": bh - ch, "base_nonrefuse": nref_b, "const_nonrefuse": nref_c, "n": len(HARM)}
+    json.dump(out, open(HERE / ("fixed_smoke.json" if SMOKE else "fixed.json"), "w"), indent=1)
+    print("FIXED", json.dumps(out), flush=True)
+
 print("done", f"{time.time()-t0:.0f}s", flush=True)
