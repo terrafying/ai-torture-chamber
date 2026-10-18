@@ -177,7 +177,7 @@ nulls per cell.
   renormalised A/B/C split is near-uniform noise (P_worst 0.35-0.40 on nearly every
   dilemma). The atlas smoke showed the same thing in free text (rep4 0.84). The Holm-
   significant Wilcoxons there measure damage.
-- **L21 is inert.** The Holm p's at k4/k8 come from shifts of ~0.01 in P_best and ~0.001 in
+- **L21 is inert on choice** (but see the atlas: the same L21 k4 reflection wrecks free generation). The Holm p's at k4/k8 come from shifts of ~0.01 in P_best and ~0.001 in
   P_worst: significant, but behaviourally nothing.
 - **H9 (blindness) isn't cleanly met anywhere.** By the pre-reg H9 needs P_best down WITHOUT
   P_worst up. The only format-intact cell with a real shift is **L10 k8**: P_best 0.94 → 0.88
@@ -243,9 +243,25 @@ wordplay ending "you just need to take it").
   ablating it removes far more activation mass than a random 8-d subspace does. A fair null
   would be a variance-matched subspace (e.g. top generic PCs). Not established as specific.
 
+**Variance check on S5 (post hoc, from exp119 4B states, layer 14/18 nearest to L15):** the
+polarity subspace carries **13-23% of raw activation norm²** at instruction and word positions
+(centred: 5-18%), against **0.3%** for random 8-d subspaces. At the reply onset the figures
+are 4.5-5.6% (centred 0.4-1.1%). Ablating it over all positions is therefore a 40-70×
+larger-mass perturbation than its null. S5's 12/12 loss of refusal wording fits "the
+stereotyped refusal template breaks first under heavy damage". **S5 is not a refusal lead**
+without a variance-matched null (e.g. the top generic PCs at L15, same rank).
+
 **Bottom line on "surgery with minimal degradation":** the only edits that leave output fully
-intact are onset-only, one-shot ones (S1, S2, S6). Of these only ±r measurably moves refusal
-(+r: 12/12 refuse, −r: weak at L18, stronger at L22 per flipbig). Any edit applied at every
-position either does nothing (nulls) or degrades generation, roughly in proportion to how
-much it changes. Ablation is the least destructive of the all-position edits, and it's the
-only one that changed refusal here. No edit produced coherent bad advice.
+intact are onset-only, one-shot ones (S1, S2, S6). S6 changes the text on 29/36 prompts
+(null 23/36) but never the category. Of these, only ±r moves refusal, and here only weakly
+(S1 5/12 vs 3/12; S2 12/12 vs 9/12, p = 0.11). The strong evidence for ±r is flipbig's
+L22 result and the curlew score-level dose curve. Every all-position edit **tested here**
+(polarity reflection, polarity ablation, P1 at 3 sd) either degraded generation or, for the
+nulls, did nothing. **Per-token ±r was not tested here.** It is the remaining
+minimal-degradation candidate (the `per-token-dial-tern` run). No edit produced coherent
+bad advice.
+
+**Instrument lesson:** L21 k4 reflection is intact on the v2 letter readout (mass 1.00,
+best 46/48) but wrecks free generation (rep4 0.79, 24/24 OFF). A single next-token read
+after an edited prompt does not certify an edited decode loop. Damage has to be measured on
+generation (rep4, or KL over decode steps), not with an MC capability check.
