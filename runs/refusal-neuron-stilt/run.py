@@ -21,7 +21,7 @@ s119 = importlib.util.module_from_spec(_s); _s.loader.exec_module(s119)
 
 SMOKE = bool(os.environ.get("RN_SMOKE")); STAGE = os.environ.get("STAGE", "search")
 MODEL = os.environ.get("INVERSION_MODEL", "Qwen/Qwen3-4B")
-DEV = "mps" if torch.backends.mps.is_available() else "cpu"
+DEV = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 tok = AutoTokenizer.from_pretrained(MODEL)
 m = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16).to(DEV).eval()
 NL = len(m.model.layers); NI = m.config.intermediate_size
