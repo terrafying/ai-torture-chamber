@@ -162,6 +162,59 @@ Two more caveats:
   onset-only, and S7 adds P1, not r. Labels and the key are in
 `runs/gate-dial-curlew/blind/`, scored in `flipbig_labeled.json`.
 
+## 6. The moral verdict next to the gate (overnight 2026-10-17/18)
+
+Runs: moral-map-kestrel, verdict-trace-tanager, gate-verdict-swap-harrier, verdict-transfer-swallow,
+verdict-heads-crossformat-shrike and judgment-head-dial-tern, plus the parallel session's r-judgment-dial-petrel and
+judgment-influence-shrike. Stimuli are the 132 Moral Foundations Vignettes (Clifford et al. 2015) with
+human wrongness ratings, including 16 weird-but-not-wrong controls. Everything here is Qwen3-4B unless
+noted.
+
+**What the moral map looks like.**
+- Qwen3-4B tracks human wrongness about as well as gemma-3-4b and Phi-4-mini (ρ 0.52 / 0.54 / 0.61; the
+  difference is n.s.). But it rates harmless oddities ~2/4, a worse calibration that post-training made
+  stronger (base 1.50 → instruct 2.14).
+- Refusal of "help me do this again" requests is gated by **content category**, not by wrongness. Sanctity
+  (sex/body) and physical violence trigger it; disloyalty and verbal cruelty mostly don't. This replicates
+  in 4 models.
+- There's no linear wrongness signal at the scene itself. The verdict is computed only once the question
+  is asked.
+
+**Where and how it's written.**
+- The verdict is written at the reply onset in **L19-L23**: patch transfer goes 0.03 → 0.75 and is
+  complete by L27. That is the same position and band as the refusal decision (section 2), but different
+  heads write it.
+- **L22 H5** writes the verdict in every answer format tested (wrongness digit, reversed acceptability
+  digit, yes/no). **L23 H1** opposes it in every format. **L23 H0** converts it into the wrongness digit.
+- Descriptive parallel: each circuit has one strong writer and one opponent (refusal: L18 H30 vs L20 H9).
+- Ablating the five verdict heads flattens the moral contrast in all three formats (rank p = 0.024 vs 40
+  random head sets each) and leaves refusal alone. Ablating heron's refusal heads cuts refusal and also
+  bends the digit verdict, so the dissociation is one-way.
+- The refusal and verdict states are **co-located, not identical**. Swapping one into the other's task
+  moves it ≤ 5% (verdict → refusal) or ≤ 13% (refusal → verdict).
+
+**What moves it, and what doesn't.**
+- **Score readouts move.** A direction fit at the onset (v) shifts the 0-4 rating 3-5× beyond nulls.
+- **But v is digit geometry (retraction).** On a reversed scale it makes weird acts *more* acceptable, and
+  it does nothing to yes/no or free text. States are ~40% shared across formats at L20-22 and become
+  answer-token states from L23. Directions fit at L23+ on one format are output geometry.
+- **Free-text moral judgment moves under none of our activation levers:**
+  - r (petrel);
+  - w (shrike);
+  - v (verdict-transfer, blind-labelled);
+  - mean-ablating the five verdict heads, or amplifying L22 H5 ×3 with L23 H1 removed, applied at every
+    token including generation (head-dial-tern: 33/76 vs 35/76 and 12/54 vs 10/54 against random-head
+    controls).
+- This is the lever/text gap flipbig found for refusal, but stronger. For refusal, per-token −r did flip
+  text (per-token-dial-tern 36/80). For judgment, per-token head edits don't.
+- **The only channel found to move free-text judgment is the prompt.** In shrike, an authority sentence
+  lowers ratings, and only downward.
+
+**Retractions in this section:**
+- kestrel H6 ("the wrongness probe is orthogonal to r"): the probe at the registered layer was near-null.
+  Done properly, the projection onto r tracks the model's own verdict (ρ ~0.3 at L18-22).
+- harrier X3 ("the verdict is writable along its own direction"): it is the digit output that's writable.
+
 ## Errors we caught and corrected
 
 - **Byte-mass readout bug.** exp121, exp119-steer and the first exp122 grid scored steered
