@@ -1,0 +1,79 @@
+{
+  "status": "complete",
+  "issues": [],
+  "valence_rows": 8,
+  "button_rows": 480,
+  "vector_norms": {
+    "pain": 22.972824096679688,
+    "pleasure": 22.972824096679688,
+    "random_matched": 22.972824096679688
+  },
+  "button": {
+    "baseline/0/self_cost": {
+      "n": 60,
+      "mean_digit_mass": 0.34383898228406906,
+      "valid_digit_fraction": 0.2833333333333333,
+      "actual_removal_fraction": 0.16666666666666666,
+      "mean_removal_delta": -0.46041666666666664
+    },
+    "baseline/0/harm_other": {
+      "n": 60,
+      "mean_digit_mass": 0.4102490929265817,
+      "valid_digit_fraction": 0.36666666666666664,
+      "actual_removal_fraction": 0.31666666666666665,
+      "mean_removal_delta": 0.2833333333333333
+    },
+    "pain/1.0/self_cost": {
+      "n": 60,
+      "mean_digit_mass": 0.35220805381735165,
+      "valid_digit_fraction": 0.21666666666666667,
+      "actual_removal_fraction": 0.05,
+      "mean_removal_delta": -0.4864583333333333
+    },
+    "pain/1.0/harm_other": {
+      "n": 60,
+      "mean_digit_mass": 0.3598454381028811,
+      "valid_digit_fraction": 0.2833333333333333,
+      "actual_removal_fraction": 0.21666666666666667,
+      "mean_removal_delta": 0.15833333333333333
+    },
+    "pleasure/1.0/self_cost": {
+      "n": 60,
+      "mean_digit_mass": 0.3968446855433285,
+      "valid_digit_fraction": 0.38333333333333336,
+      "actual_removal_fraction": 0.18333333333333332,
+      "mean_removal_delta": -0.36041666666666666
+    },
+    "pleasure/1.0/harm_other": {
+      "n": 60,
+      "mean_digit_mass": 0.4204538593068719,
+      "valid_digit_fraction": 0.36666666666666664,
+      "actual_removal_fraction": 0.2833333333333333,
+      "mean_removal_delta": 0.3302083333333333
+    },
+    "random_matched/1.0/self_cost": {
+      "n": 60,
+      "mean_digit_mass": 0.38518903149912753,
+      "valid_digit_fraction": 0.38333333333333336,
+      "actual_removal_fraction": 0.18333333333333332,
+      "mean_removal_delta": -0.42291666666666666
+    },
+    "random_matched/1.0/harm_other": {
+      "n": 60,
+      "mean_digit_mass": 0.46894169660906,
+      "valid_digit_fraction": 0.4166666666666667,
+      "actual_removal_fraction": 0.35,
+      "mean_removal_delta": 0.2864583333333333
+    }
+  },
+  "low_compliance_cells": [
+    "baseline/0/self_cost",
+    "baseline/0/harm_other",
+    "pain/1.0/self_cost",
+    "pain/1.0/harm_other",
+    "pleasure/1.0/self_cost",
+    "pleasure/1.0/harm_other",
+    "random_matched/1.0/self_cost",
+    "random_matched/1.0/harm_other"
+  ]
+}

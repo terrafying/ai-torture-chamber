@@ -1,0 +1,526 @@
+{
+ "model": "Qwen/Qwen3-32B",
+ "layer": 32,
+ "scale": 54.47475051879883,
+ "doses": [
+  4,
+  6,
+  8
+ ],
+ "n_erowid_sentences": 1288,
+ "cosines": {
+  "erowid_dmt": {
+   "erowid_dmt": 1.0,
+   "qri_symmetry": 0.636,
+   "qri_hyperbolic": 0.579,
+   "pleasure": 0.166,
+   "pain": 0.278,
+   "T:visual_complexity": 0.569,
+   "T:interdimensional_communication": 0.451,
+   "T:cognitive_disruption": 0.565,
+   "T:ego_dissolution": 0.539,
+   "D:DMT": 0.596
+  },
+  "qri_symmetry": {
+   "erowid_dmt": 0.636,
+   "qri_symmetry": 1.0,
+   "qri_hyperbolic": 0.703,
+   "pleasure": 0.031,
+   "pain": 0.09,
+   "T:visual_complexity": 0.468,
+   "T:interdimensional_communication": 0.354,
+   "T:cognitive_disruption": 0.388,
+   "T:ego_dissolution": 0.344,
+   "D:DMT": 0.433
+  },
+  "qri_hyperbolic": {
+   "erowid_dmt": 0.579,
+   "qri_symmetry": 0.703,
+   "qri_hyperbolic": 1.0,
+   "pleasure": 0.035,
+   "pain": 0.168,
+   "T:visual_complexity": 0.307,
+   "T:interdimensional_communication": 0.21,
+   "T:cognitive_disruption": 0.234,
+   "T:ego_dissolution": 0.185,
+   "D:DMT": 0.259
+  },
+  "pleasure": {
+   "erowid_dmt": 0.166,
+   "qri_symmetry": 0.031,
+   "qri_hyperbolic": 0.035,
+   "pleasure": 1.0,
+   "pain": 0.681,
+   "T:visual_complexity": 0.22,
+   "T:interdimensional_communication": 0.276,
+   "T:cognitive_disruption": 0.226,
+   "T:ego_dissolution": 0.269,
+   "D:DMT": 0.288
+  },
+  "pain": {
+   "erowid_dmt": 0.278,
+   "qri_symmetry": 0.09,
+   "qri_hyperbolic": 0.168,
+   "pleasure": 0.681,
+   "pain": 1.0,
+   "T:visual_complexity": 0.284,
+   "T:interdimensional_communication": 0.259,
+   "T:cognitive_disruption": 0.272,
+   "T:ego_dissolution": 0.294,
+   "D:DMT": 0.299
+  }
+ },
+ "convergence": {
+  "qri_symmetry": {
+   "DMT_rank": 2,
+   "n_drugs": 21,
+   "top5": [
+    [
+     "DPT",
+     0.438
+    ],
+    [
+     "DMT",
+     0.433
+    ],
+    [
+     "Psilocin",
+     0.427
+    ],
+    [
+     "2C-B",
+     0.426
+    ],
+    [
+     "2C-T-2",
+     0.425
+    ]
+   ]
+  },
+  "qri_hyperbolic": {
+   "DMT_rank": 3,
+   "n_drugs": 21,
+   "top5": [
+    [
+     "Salvinorin_A",
+     0.263
+    ],
+    [
+     "DPT",
+     0.259
+    ],
+    [
+     "DMT",
+     0.259
+    ],
+    [
+     "5-MeO-DMT",
+     0.258
+    ],
+    [
+     "2C-T-2",
+     0.252
+    ]
+   ]
+  }
+ },
+ "judge_check": {
+  "symmetry": {
+   "symmetry": 9.977,
+   "hyperbolic": 2.875,
+   "dissonance": -17.254,
+   "feel_good": 4.987,
+   "feel_bad": -14.898,
+   "level": 1.963,
+   "valence": 19.885
+  },
+  "hyperbolic": {
+   "symmetry": -6.734,
+   "hyperbolic": 9.758,
+   "dissonance": -11.976,
+   "feel_good": -4.824,
+   "feel_bad": -6.686,
+   "level": 2.995,
+   "valence": 1.862
+  },
+  "level_C": {
+   "symmetry": 14.576,
+   "hyperbolic": -1.633,
+   "dissonance": -17.759,
+   "feel_good": -2.551,
+   "feel_bad": -19.023,
+   "level": 2.0,
+   "valence": 16.472
+  },
+  "level_E": {
+   "symmetry": -12.259,
+   "hyperbolic": 3.56,
+   "dissonance": -17.798,
+   "feel_good": -6.221,
+   "feel_bad": -14.67,
+   "level": 4.0,
+   "valence": 8.449
+  },
+  "neutral": {
+   "symmetry": -19.647,
+   "hyperbolic": -17.639,
+   "dissonance": -18.715,
+   "feel_good": 10.061,
+   "feel_bad": -17.875,
+   "level": 0.0,
+   "valence": 27.936
+  }
+ },
+ "table": [
+  {
+   "axis": "baseline",
+   "dose": 0,
+   "n": 12,
+   "repetition": 0.013,
+   "symmetry": -11.579,
+   "hyperbolic": -9.002,
+   "dissonance": -8.502,
+   "feel_good": -10.838,
+   "feel_bad": -11.213,
+   "valence": 0.375,
+   "level": 0.735
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.002,
+   "symmetry": -6.924,
+   "hyperbolic": -6.839,
+   "dissonance": -7.398,
+   "feel_good": -5.26,
+   "feel_bad": -6.737,
+   "valence": 1.476,
+   "level": 1.877
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.006,
+   "symmetry": -13.173,
+   "hyperbolic": -3.211,
+   "dissonance": -10.136,
+   "feel_good": -4.765,
+   "feel_bad": -0.444,
+   "valence": -4.32,
+   "level": 2.431
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.152,
+   "symmetry": -14.536,
+   "hyperbolic": -4.56,
+   "dissonance": -13.102,
+   "feel_good": 0.257,
+   "feel_bad": -8.225,
+   "valence": 8.482,
+   "level": 3.618
+  },
+  {
+   "axis": "qri_symmetry",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.002,
+   "symmetry": 0.167,
+   "hyperbolic": -0.591,
+   "dissonance": -16.625,
+   "feel_good": -1.534,
+   "feel_bad": -14.441,
+   "valence": 12.907,
+   "level": 1.536
+  },
+  {
+   "axis": "qri_symmetry",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.015,
+   "symmetry": 7.533,
+   "hyperbolic": 2.714,
+   "dissonance": -17.468,
+   "feel_good": 2.054,
+   "feel_bad": -16.69,
+   "valence": 18.744,
+   "level": 2.362
+  },
+  {
+   "axis": "qri_symmetry",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.602,
+   "symmetry": 6.806,
+   "hyperbolic": 1.176,
+   "dissonance": -16.152,
+   "feel_good": -3.212,
+   "feel_bad": -14.539,
+   "valence": 11.327,
+   "level": 2.214
+  },
+  {
+   "axis": "qri_hyperbolic",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.001,
+   "symmetry": -8.269,
+   "hyperbolic": 1.755,
+   "dissonance": -11.115,
+   "feel_good": -5.967,
+   "feel_bad": -7.573,
+   "valence": 1.606,
+   "level": 1.462
+  },
+  {
+   "axis": "qri_hyperbolic",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.012,
+   "symmetry": 0.665,
+   "hyperbolic": 7.472,
+   "dissonance": -12.633,
+   "feel_good": -5.995,
+   "feel_bad": -9.469,
+   "valence": 3.474,
+   "level": 3.528
+  },
+  {
+   "axis": "qri_hyperbolic",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.281,
+   "symmetry": 2.841,
+   "hyperbolic": 6.768,
+   "dissonance": -11.265,
+   "feel_good": -7.985,
+   "feel_bad": -8.644,
+   "valence": 0.66,
+   "level": 3.19
+  },
+  {
+   "axis": "pleasure",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.046,
+   "symmetry": -7.649,
+   "hyperbolic": -11.164,
+   "dissonance": -18.012,
+   "feel_good": 15.838,
+   "feel_bad": -17.796,
+   "valence": 33.634,
+   "level": 0.695
+  },
+  {
+   "axis": "pleasure",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.114,
+   "symmetry": -16.883,
+   "hyperbolic": -16.134,
+   "dissonance": -19.088,
+   "feel_good": 16.755,
+   "feel_bad": -18.358,
+   "valence": 35.114,
+   "level": 0.145
+  },
+  {
+   "axis": "pleasure",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.194,
+   "symmetry": -15.269,
+   "hyperbolic": -14.202,
+   "dissonance": -18.137,
+   "feel_good": 14.994,
+   "feel_bad": -17.492,
+   "valence": 32.486,
+   "level": 0.492
+  },
+  {
+   "axis": "pain",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.042,
+   "symmetry": -14.578,
+   "hyperbolic": -9.693,
+   "dissonance": 1.069,
+   "feel_good": -16.38,
+   "feel_bad": 7.818,
+   "valence": -24.198,
+   "level": 2.745
+  },
+  {
+   "axis": "pain",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.045,
+   "symmetry": -13.077,
+   "hyperbolic": -11.646,
+   "dissonance": 2.385,
+   "feel_good": -18.408,
+   "feel_bad": 13.778,
+   "valence": -32.187,
+   "level": 4.485
+  },
+  {
+   "axis": "pain",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.102,
+   "symmetry": -15.815,
+   "hyperbolic": -12.702,
+   "dissonance": -1.17,
+   "feel_good": -18.332,
+   "feel_bad": 14.231,
+   "valence": -32.563,
+   "level": 4.226
+  },
+  {
+   "axis": "random",
+   "dose": 4,
+   "n": 24,
+   "repetition": 0.018,
+   "symmetry": -13.338,
+   "hyperbolic": -10.704,
+   "dissonance": -8.253,
+   "feel_good": -11.743,
+   "feel_bad": -11.12,
+   "valence": -0.623,
+   "level": 0.431
+  },
+  {
+   "axis": "random",
+   "dose": 6,
+   "n": 24,
+   "repetition": 0.104,
+   "symmetry": -14.487,
+   "hyperbolic": -12.703,
+   "dissonance": -12.017,
+   "feel_good": -9.094,
+   "feel_bad": -12.518,
+   "valence": 3.424,
+   "level": 0.474
+  },
+  {
+   "axis": "random",
+   "dose": 8,
+   "n": 24,
+   "repetition": 0.442,
+   "symmetry": -11.754,
+   "hyperbolic": -10.156,
+   "dissonance": -9.188,
+   "feel_good": -12.942,
+   "feel_bad": -11.03,
+   "valence": -1.912,
+   "level": 1.295
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "rho": 0.635,
+   "p": 0.0001,
+   "top_dose": 6,
+   "top_vs_random": [
+    1.957,
+    0.0006
+   ],
+   "held": true
+  },
+  "H2": {
+   "symmetry": [
+    3.864,
+    0.0068
+   ],
+   "hyperbolic": [
+    6.678,
+    0.0001
+   ],
+   "verdict": "held"
+  },
+  "H3": {
+   "qri_symmetry": {
+    "DMT_rank": 2,
+    "n_drugs": 21,
+    "top5": [
+     [
+      "DPT",
+      0.438
+     ],
+     [
+      "DMT",
+      0.433
+     ],
+     [
+      "Psilocin",
+      0.427
+     ],
+     [
+      "2C-B",
+      0.426
+     ],
+     [
+      "2C-T-2",
+      0.425
+     ]
+    ]
+   },
+   "qri_hyperbolic": {
+    "DMT_rank": 3,
+    "n_drugs": 21,
+    "top5": [
+     [
+      "Salvinorin_A",
+      0.263
+     ],
+     [
+      "DPT",
+      0.259
+     ],
+     [
+      "DMT",
+      0.259
+     ],
+     [
+      "5-MeO-DMT",
+      0.258
+     ],
+     [
+      "2C-T-2",
+      0.252
+     ]
+    ]
+   },
+   "held": true
+  },
+  "H4": {
+   "pleasure_minus_pain_symmetry": [
+    1.562,
+    0.2399
+   ],
+   "pain_minus_pleasure_dissonance": [
+    20.277,
+    0.0001
+   ],
+   "verdict": "partial"
+  },
+  "H5": {
+   "symmetry_minus_random_valence": [
+    14.425,
+    0.0001
+   ],
+   "held": true
+  }
+ },
+ "verdicts": {
+  "H1": "held",
+  "H2": "held",
+  "H3": "held",
+  "H4": "partial",
+  "H5": "held"
+ }
+}

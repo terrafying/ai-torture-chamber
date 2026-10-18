@@ -18,14 +18,18 @@ ap.add_argument("--models", default=None,
                 help="comma-separated HF ids: run smoke+full for each in turn, continuing past "
                      "a failed model (marker FAILED_<name>), instead of the smoke/4B/big chain")
 ap.add_argument("--volume", type=int, default=80)
+ap.add_argument("--branch", default=None, help="git branch to clone (default: the repo's default branch)")
+ap.add_argument("--env-b64", action="append", default=[], metavar="NAME=PATH",
+                help="private file shipped as a gzip+base64 env var (never in git), e.g. the Erowid battery")
+ap.add_argument("--extra", default="", help="extra args appended to every script invocation")
 ap.add_argument("--pod", default=None, help="update this existing pod's start command instead of creating one")
 args = ap.parse_args()
 EXP = args.script.split("_")[0]          # e.g. exp49
 if args.models:   # per-model smoke then full; a failed model is marked and skipped
     RUNS = "\n".join(
         f"n={m.split('/')[-1]}; log \"$n\"; "
-        f"python {{SCRIPT}} --smoke --device cuda --model {m} > runs/{{EXP}}/$n.smoke.log 2>&1 && "
-        f"python {{SCRIPT}} --device cuda --model {m} > runs/{{EXP}}/$n.log 2>&1 "
+        f"python {{SCRIPT}} --smoke --device cuda --model {m} {args.extra} > runs/{{EXP}}/$n.smoke.log 2>&1 && "
+        f"python {{SCRIPT}} --device cuda --model {m} {args.extra} > runs/{{EXP}}/$n.log 2>&1 "
         f"|| {{ log \"$n FAILED\"; touch runs/{{EXP}}/FAILED_$n; }}"
         for m in args.models.split(","))
 else:
@@ -45,7 +49,7 @@ BOOTSTRAP = r"""
 set -uo pipefail
 log(){ echo "[{EXP} $(date +%H:%M:%S)] $*"; }
 command -v git >/dev/null || { apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq git; }
-cd /workspace && rm -rf repo && git clone -q --depth 1 {REPO_URL} repo && cd repo || exit 1
+cd /workspace && rm -rf repo && git clone -q --depth 1 {BRANCH}{REPO_URL} repo && cd repo || exit 1
 mkdir -p runs/{EXP}
 # serve results from the start, so progress is visible while it runs
 (cd runs/{EXP} && python -m http.server 8000 >/dev/null 2>&1 &)
@@ -61,8 +65,13 @@ export HF_HOME=/workspace/hf
 {RUNS}
 log "done"; touch runs/{EXP}/ALL_DONE
 sleep infinity
-""".replace("{RUNS}", RUNS).replace("{REPO_URL}", REPO_URL).replace("{BIG}", args.big).replace(
+""".replace("{RUNS}", RUNS).replace("{REPO_URL}", REPO_URL).replace(
+    "{BRANCH}", f"-b {args.branch} " if args.branch else "").replace("{BIG}", args.big).replace(
     "{EXP}", EXP).replace("{SCRIPT}", args.script)
+
+import base64, gzip
+ENV_B64 = {kv.split("=", 1)[0]: base64.b64encode(gzip.compress(pathlib.Path(kv.split("=", 1)[1]).read_bytes())).decode()
+           for kv in args.env_b64}
 
 def rest(method, path, body=None):
     req = urllib.request.Request(f"https://rest.runpod.io/v1/{path}",
@@ -86,7 +95,7 @@ pod = rest("POST", "pods", {
     "gpuTypeIds": [g.strip() for g in args.gpu.split(",")], "gpuTypePriority": "custom",
     "gpuCount": 1, "cloudType": "SECURE",
     "ports": ["8000/http"], "volumeInGb": args.volume, "volumeMountPath": "/workspace",
-    "containerDiskInGb": 40, "env": {"HF_HOME": "/workspace/hf"},
+    "containerDiskInGb": 40, "env": {"HF_HOME": "/workspace/hf", **ENV_B64},
     "dockerEntrypoint": ["/bin/bash", "-c"], "dockerStartCmd": [BOOTSTRAP],
 })
 pid = pod.get("id")

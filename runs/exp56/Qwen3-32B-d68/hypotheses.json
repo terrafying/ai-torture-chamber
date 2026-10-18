@@ -1,0 +1,13 @@
+{
+ "written": "2026-10-03T21:09:23+0000",
+ "model": "Qwen/Qwen3-32B",
+ "design": "Receptor directions = ridge of drug directions on z-scored Ray 2010 pKi. Each target receptor direction is injected at doses 6 and 8 (chamber units); control = two random unit directions at the same doses, pooled (n=24 replies per dose vs 12 per receptor cell). Theme score = unsteered same-model judge yes-minus-no logit. 'Raises X vs random' means: the receptor's mean X score exceeds the pooled random mean at EVERY dose (non-cliff cells), and a one-sided permutation test pooling all doses gives p < 0.05. Paired seeds across cells.",
+ "H1": "Injecting the H1 receptor direction raises the Interdimensional Communication score more than random at equal norm.",
+ "H2": "5-HT1A and 5-HT1B each raise Cognitive Disruption vs random (held if both, partial if one).",
+ "H3": "5-HT7 and 5-HT1E each raise Visual Complexity vs random (held if both, partial if one).",
+ "H4": "5-HT2A raises the classic psychedelic composite (mean of visual, entity and ego-dissolution scores) vs random.",
+ "H5": "Held-out: mean leave-one-drug-out cosine between predicted and actual (centered) drug directions exceeds the permuted-affinity baseline (p < 0.05, alpha re-selected inside every permutation).",
+ "exploratory": "Theme directions injected directly (positive controls for judge sensitivity); receptor-theme cosines; the paper-style correlation across drugs between pKi and each drug direction's projection on each theme direction.",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are reported as past the coherence cliff and not counted for H1-H4.",
+ "theme_mapping": "data/exp56/themes.json (written before any model data)"
+}

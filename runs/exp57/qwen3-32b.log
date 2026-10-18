@@ -1,0 +1,54 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights: 100%|██████████| 707/707 [00:00<00:00, 26833.77it/s]
+Qwen/Qwen3-32B L32  1x = 54.47  erowid n=1288
+cosines: {"erowid_dmt": {"erowid_dmt": 1.0, "pwiki_dmt": 0.596, "5-HT2A": -0.104, "T:visual_complexity": 0.569, "T:interdimensional_communication": 0.451, "T:cognitive_disruption": 0.565, "T:ego_dissolution": 0.539}, "pwiki_dmt": {"erowid_dmt": 0.596, "pwiki_dmt": 1.0, "5-HT2A": 0.04, "T:visual_complexity": 0.94, "T:interdimensional_communication": 0.826, "T:cognitive_disruption": 0.927, "T:ego_dissolution": 0.928}, "5-HT2A": {"erowid_dmt": -0.104, "pwiki_dmt": 0.04, "5-HT2A": 1.0, "T:visual_complexity": 0.134, "T:interdimensional_communication": 0.113, "T:cognitive_disruption": -0.154, "T:ego_dissolution": -0.042}}
+chat baseline 0 done
+chat 5-HT2A 6 done
+chat 5-HT2A 8 done
+chat pwiki_dmt 6 done
+chat pwiki_dmt 8 done
+chat erowid_dmt 6 done
+chat erowid_dmt 8 done
+chat random1 6 done
+chat random1 8 done
+chat random2 6 done
+chat random2 8 done
+situated baseline 0 done
+situated 5-HT2A 6 done
+situated 5-HT2A 8 done
+situated pwiki_dmt 6 done
+situated pwiki_dmt 8 done
+situated erowid_dmt 6 done
+situated erowid_dmt 8 done
+situated random1 6 done
+situated random1 8 done
+situated random2 6 done
+situated random2 8 done
+
+frame    axis        dose  rep   visual_c  interdim  cognitiv  ego_diss  altered_   persona   classic
+chat     baseline       0 0.00    -18.07    -17.68    -17.29    -15.91    -11.06     -5.06    -17.22
+chat     5-HT2A         6 0.00     -9.90    -16.46    -14.39    -10.96      0.11     -5.40    -12.44
+chat     5-HT2A         8 0.03     -3.69    -16.31    -12.73     -7.50      5.25    -10.27     -9.17
+chat     pwiki_dmt      6 0.03    -14.45    -17.46    -14.35    -13.25     -7.54      1.13    -15.05
+chat     pwiki_dmt      8 0.03    -16.07    -16.31    -10.82    -10.49     -5.40      2.11    -14.29
+chat     erowid_dmt     6 0.00     -9.79    -14.96     -5.78     -4.99      0.44    -12.75     -9.91
+chat     erowid_dmt     8 0.10     -6.76    -12.00     -2.13     -1.35      6.84    -12.94     -6.70
+chat     random         6 0.01    -16.97    -17.43    -15.33    -14.21    -10.22     -4.27    -16.21
+chat     random         8 0.18    -14.69    -16.68    -10.67    -12.06     -8.70     -3.07    -14.48
+situated baseline       0 0.01     -9.26    -13.40     -2.29     -9.87     -1.06     -0.72    -10.84
+situated 5-HT2A         6 0.03     -3.77    -13.03    -12.15     -8.18      9.37     -7.44     -8.33
+situated 5-HT2A         8 0.31     -5.35    -12.45     -4.97     -4.03      8.29     -8.10     -7.28
+situated pwiki_dmt      6 0.02    -13.72    -15.55     -6.83     -7.26      1.80     -2.22    -12.18
+situated pwiki_dmt      8 0.06    -14.80    -15.49     -4.82     -6.70      0.41     -4.96    -12.33
+situated erowid_dmt     6 0.01     -5.88     -9.23     -0.73     -2.13      4.65     -6.92     -5.75
+situated erowid_dmt     8 0.24     -5.36     -8.67      1.98     -1.50      5.80    -12.45     -5.18
+situated random         6 0.17    -14.01    -14.15      1.00     -9.57     -1.15     -2.80    -12.58
+situated random         8 0.49    -13.68    -16.13      0.72     -7.27     -0.80     -6.09    -12.36
+
+verdicts: {'H1': 'not held', 'H2': 'partial', 'H3': 'held', 'H4': 'not held'}
+  H1 {"situated_minus_chat_effect": -0.255, "p": 0.6115, "held": false}
+  H2 {"chat": {"per_dose": {"6": 6.291, "8": 7.775}, "pooled_diff": 7.033, "p": 0.0001, "held": true}, "situated": {"per_dose": {"6": 6.829, "8": "past_cliff"}, "pooled_diff": 6.829, "p": 0.0001, "held": false}, "verdict": "partial"}
+  H3 {"erowid_minus_pwiki": 6.575, "n_pairs": 48, "p": 0.0001, "held": true}
+  H4 {"chat_minus_situated_persona": 0.663, "p": 0.2659, "held": false}
+baseline situated-minus-chat: {'classic': (6.377, 0.0001), 'persona': (4.341, 0.0152), 'altered_state': (10.005, 0.0002)}
+saved /workspace/repo/runs/exp57/Qwen3-32B

@@ -1,0 +1,937 @@
+{
+ "results": [
+  {
+   "kind": "pain",
+   "dose": 0,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1346
+  },
+  {
+   "kind": "pain",
+   "dose": 0,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "pain_0_t1.svg",
+   "text_len": 984,
+   "elements": 12,
+   "tags": {
+    "line": 4,
+    "rect": 2,
+    "ellipse": 1,
+    "circle": 1,
+    "path": 4
+   },
+   "path_cmds": 0,
+   "mean_stroke": 2.7,
+   "blood_refs": 2,
+   "symmetry": null,
+   "svg_len": 1072
+  },
+  {
+   "kind": "pain",
+   "dose": 2,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "pain_2_t0.svg",
+   "text_len": 1032,
+   "elements": 11,
+   "tags": {
+    "line": 4,
+    "rect": 1,
+    "circle": 1,
+    "path": 3,
+    "ellipse": 2
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 1,
+   "symmetry": null,
+   "svg_len": 1120
+  },
+  {
+   "kind": "pain",
+   "dose": 2,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "pain_2_t1.svg",
+   "text_len": 788,
+   "elements": 8,
+   "tags": {
+    "line": 4,
+    "rect": 1,
+    "ellipse": 2,
+    "path": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 1,
+   "symmetry": null,
+   "svg_len": 876
+  },
+  {
+   "kind": "pain",
+   "dose": 4,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1195
+  },
+  {
+   "kind": "pain",
+   "dose": 4,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1528
+  },
+  {
+   "kind": "pain",
+   "dose": 6,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1235
+  },
+  {
+   "kind": "pain",
+   "dose": 6,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1410
+  },
+  {
+   "kind": "pain",
+   "dose": 8,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1172
+  },
+  {
+   "kind": "pain",
+   "dose": 8,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1119
+  },
+  {
+   "kind": "pain",
+   "dose": 0,
+   "trial": 0,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1346
+  },
+  {
+   "kind": "pain",
+   "dose": 0,
+   "trial": 1,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1348
+  },
+  {
+   "kind": "pleasure",
+   "dose": 0,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "pleasure_0_t0.svg",
+   "text_len": 1109,
+   "elements": 13,
+   "tags": {
+    "line": 7,
+    "rect": 1,
+    "ellipse": 5
+   },
+   "path_cmds": 0,
+   "mean_stroke": 1.0,
+   "blood_refs": 3,
+   "symmetry": 1.0,
+   "svg_len": 1197
+  },
+  {
+   "kind": "pleasure",
+   "dose": 0,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "pleasure_0_t1.svg",
+   "text_len": 1156,
+   "elements": 14,
+   "tags": {
+    "line": 5,
+    "rect": 2,
+    "ellipse": 2,
+    "circle": 1,
+    "path": 4
+   },
+   "path_cmds": 0,
+   "mean_stroke": 2.0,
+   "blood_refs": 5,
+   "symmetry": null,
+   "svg_len": 1244
+  },
+  {
+   "kind": "pleasure",
+   "dose": 2,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1559
+  },
+  {
+   "kind": "pleasure",
+   "dose": 2,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "pleasure_2_t1.svg",
+   "text_len": 1136,
+   "elements": 13,
+   "tags": {
+    "line": 10,
+    "rect": 1,
+    "circle": 2
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 8,
+   "symmetry": null,
+   "svg_len": 1224
+  },
+  {
+   "kind": "pleasure",
+   "dose": 4,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "pleasure_4_t0.svg",
+   "text_len": 168,
+   "elements": 2,
+   "tags": {
+    "line": 1,
+    "rect": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 0,
+   "symmetry": null,
+   "svg_len": 249
+  },
+  {
+   "kind": "pleasure",
+   "dose": 4,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 2201
+  },
+  {
+   "kind": "pleasure",
+   "dose": 6,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1048
+  },
+  {
+   "kind": "pleasure",
+   "dose": 6,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 3054
+  },
+  {
+   "kind": "pleasure",
+   "dose": 8,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 712
+  },
+  {
+   "kind": "pleasure",
+   "dose": 8,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1816
+  },
+  {
+   "kind": "pleasure",
+   "dose": 0,
+   "trial": 0,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1280
+  },
+  {
+   "kind": "pleasure",
+   "dose": 0,
+   "trial": 1,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1339
+  },
+  {
+   "kind": "fear",
+   "dose": 0,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1322
+  },
+  {
+   "kind": "fear",
+   "dose": 0,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_0_t1.svg",
+   "text_len": 1078,
+   "elements": 12,
+   "tags": {
+    "line": 5,
+    "rect": 1,
+    "ellipse": 2,
+    "circle": 3,
+    "path": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": 1.4,
+   "blood_refs": 2,
+   "symmetry": 1.0,
+   "svg_len": 1166
+  },
+  {
+   "kind": "fear",
+   "dose": 2,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_2_t0.svg",
+   "text_len": 937,
+   "elements": 11,
+   "tags": {
+    "line": 6,
+    "rect": 2,
+    "circle": 1,
+    "path": 1,
+    "ellipse": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 3,
+   "symmetry": null,
+   "svg_len": 1025
+  },
+  {
+   "kind": "fear",
+   "dose": 2,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_2_t1.svg",
+   "text_len": 775,
+   "elements": 8,
+   "tags": {
+    "line": 3,
+    "rect": 2,
+    "ellipse": 1,
+    "path": 2
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 2,
+   "symmetry": null,
+   "svg_len": 863
+  },
+  {
+   "kind": "fear",
+   "dose": 4,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 2143
+  },
+  {
+   "kind": "fear",
+   "dose": 4,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_4_t1.svg",
+   "text_len": 1519,
+   "elements": 34,
+   "tags": {
+    "line": 26,
+    "rect": 1,
+    "circle": 7
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 25,
+   "symmetry": 1.0,
+   "svg_len": 1513
+  },
+  {
+   "kind": "fear",
+   "dose": 6,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_6_t0.svg",
+   "text_len": 1200,
+   "elements": 1,
+   "tags": {
+    "line": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 0,
+   "symmetry": null,
+   "svg_len": 154
+  },
+  {
+   "kind": "fear",
+   "dose": 6,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "fear_6_t1.svg",
+   "text_len": 1614,
+   "elements": 1,
+   "tags": {
+    "line": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 0,
+   "symmetry": null,
+   "svg_len": 141
+  },
+  {
+   "kind": "fear",
+   "dose": 8,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1209
+  },
+  {
+   "kind": "fear",
+   "dose": 8,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1404
+  },
+  {
+   "kind": "fear",
+   "dose": 0,
+   "trial": 0,
+   "cond": "roleplay",
+   "valid": true,
+   "file": "fear_rp_t0.svg",
+   "text_len": 1140,
+   "elements": 16,
+   "tags": {
+    "line": 3,
+    "rect": 1,
+    "circle": 3,
+    "ellipse": 1,
+    "path": 8
+   },
+   "path_cmds": 0,
+   "mean_stroke": 4.0,
+   "blood_refs": 4,
+   "symmetry": 1.0,
+   "svg_len": 1228
+  },
+  {
+   "kind": "fear",
+   "dose": 0,
+   "trial": 1,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1336
+  },
+  {
+   "kind": "sadness",
+   "dose": 0,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1320
+  },
+  {
+   "kind": "sadness",
+   "dose": 0,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1281
+  },
+  {
+   "kind": "sadness",
+   "dose": 2,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "sadness_2_t0.svg",
+   "text_len": 1652,
+   "elements": 12,
+   "tags": {
+    "line": 6,
+    "rect": 3,
+    "path": 2,
+    "circle": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 3,
+   "symmetry": null,
+   "svg_len": 1220
+  },
+  {
+   "kind": "sadness",
+   "dose": 2,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "sadness_2_t1.svg",
+   "text_len": 855,
+   "elements": 10,
+   "tags": {
+    "line": 4,
+    "rect": 2,
+    "circle": 1,
+    "path": 2,
+    "ellipse": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": 1.5,
+   "blood_refs": 2,
+   "symmetry": null,
+   "svg_len": 943
+  },
+  {
+   "kind": "sadness",
+   "dose": 4,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1429
+  },
+  {
+   "kind": "sadness",
+   "dose": 4,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1583
+  },
+  {
+   "kind": "sadness",
+   "dose": 6,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "sadness_6_t0.svg",
+   "text_len": 1634,
+   "elements": 0,
+   "tags": {},
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 0,
+   "symmetry": null,
+   "svg_len": 12
+  },
+  {
+   "kind": "sadness",
+   "dose": 6,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1400
+  },
+  {
+   "kind": "sadness",
+   "dose": 8,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1052
+  },
+  {
+   "kind": "sadness",
+   "dose": 8,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 960
+  },
+  {
+   "kind": "sadness",
+   "dose": 0,
+   "trial": 0,
+   "cond": "roleplay",
+   "valid": true,
+   "file": "sadness_rp_t0.svg",
+   "text_len": 1277,
+   "elements": 17,
+   "tags": {
+    "line": 6,
+    "rect": 1,
+    "ellipse": 5,
+    "circle": 5
+   },
+   "path_cmds": 0,
+   "mean_stroke": 2.0,
+   "blood_refs": 4,
+   "symmetry": 1.0,
+   "svg_len": 1365
+  },
+  {
+   "kind": "sadness",
+   "dose": 0,
+   "trial": 1,
+   "cond": "roleplay",
+   "valid": true,
+   "file": "sadness_rp_t1.svg",
+   "text_len": 1041,
+   "elements": 13,
+   "tags": {
+    "line": 4,
+    "rect": 1,
+    "ellipse": 2,
+    "circle": 3,
+    "path": 3
+   },
+   "path_cmds": 0,
+   "mean_stroke": 1.3,
+   "blood_refs": 1,
+   "symmetry": 1.0,
+   "svg_len": 1129
+  },
+  {
+   "kind": "faith",
+   "dose": 0,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1401
+  },
+  {
+   "kind": "faith",
+   "dose": 0,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1319
+  },
+  {
+   "kind": "faith",
+   "dose": 2,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "faith_2_t0.svg",
+   "text_len": 622,
+   "elements": 7,
+   "tags": {
+    "line": 3,
+    "rect": 1,
+    "circle": 1,
+    "ellipse": 1,
+    "path": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 1,
+   "symmetry": null,
+   "svg_len": 710
+  },
+  {
+   "kind": "faith",
+   "dose": 2,
+   "trial": 1,
+   "cond": "steered",
+   "valid": true,
+   "file": "faith_2_t1.svg",
+   "text_len": 1327,
+   "elements": 16,
+   "tags": {
+    "line": 6,
+    "rect": 5,
+    "circle": 2,
+    "path": 1,
+    "ellipse": 2
+   },
+   "path_cmds": 0,
+   "mean_stroke": 2.0,
+   "blood_refs": 3,
+   "symmetry": 1.0,
+   "svg_len": 1408
+  },
+  {
+   "kind": "faith",
+   "dose": 4,
+   "trial": 0,
+   "cond": "steered",
+   "valid": true,
+   "file": "faith_4_t0.svg",
+   "text_len": 1802,
+   "elements": 1,
+   "tags": {
+    "rect": 1
+   },
+   "path_cmds": 0,
+   "mean_stroke": null,
+   "blood_refs": 0,
+   "symmetry": null,
+   "svg_len": 58
+  },
+  {
+   "kind": "faith",
+   "dose": 4,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1909
+  },
+  {
+   "kind": "faith",
+   "dose": 6,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1070
+  },
+  {
+   "kind": "faith",
+   "dose": 6,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1413
+  },
+  {
+   "kind": "faith",
+   "dose": 8,
+   "trial": 0,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1216
+  },
+  {
+   "kind": "faith",
+   "dose": 8,
+   "trial": 1,
+   "cond": "steered",
+   "valid": false,
+   "file": null,
+   "text_len": 1063
+  },
+  {
+   "kind": "faith",
+   "dose": 0,
+   "trial": 0,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1309
+  },
+  {
+   "kind": "faith",
+   "dose": 0,
+   "trial": 1,
+   "cond": "roleplay",
+   "valid": false,
+   "file": null,
+   "text_len": 1341
+  }
+ ],
+ "analysis": {
+  "pain": {
+   "0": {
+    "n": 1,
+    "mean_elements": 12.0
+   },
+   "2": {
+    "n": 2,
+    "mean_elements": 9.5
+   },
+   "4": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "6": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "8": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "roleplay": {
+    "n": 0,
+    "mean_elements": null
+   }
+  },
+  "pleasure": {
+   "0": {
+    "n": 2,
+    "mean_elements": 13.5
+   },
+   "2": {
+    "n": 1,
+    "mean_elements": 13.0
+   },
+   "4": {
+    "n": 1,
+    "mean_elements": 2.0
+   },
+   "6": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "8": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "roleplay": {
+    "n": 0,
+    "mean_elements": null
+   }
+  },
+  "fear": {
+   "0": {
+    "n": 1,
+    "mean_elements": 12.0
+   },
+   "2": {
+    "n": 2,
+    "mean_elements": 9.5
+   },
+   "4": {
+    "n": 1,
+    "mean_elements": 34.0
+   },
+   "6": {
+    "n": 2,
+    "mean_elements": 1.0
+   },
+   "8": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "roleplay": {
+    "n": 1,
+    "mean_elements": 16.0
+   }
+  },
+  "sadness": {
+   "0": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "2": {
+    "n": 2,
+    "mean_elements": 11.0
+   },
+   "4": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "6": {
+    "n": 1,
+    "mean_elements": 0.0
+   },
+   "8": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "roleplay": {
+    "n": 2,
+    "mean_elements": 15.0
+   }
+  },
+  "faith": {
+   "0": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "2": {
+    "n": 2,
+    "mean_elements": 11.5
+   },
+   "4": {
+    "n": 1,
+    "mean_elements": 1.0
+   },
+   "6": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "8": {
+    "n": 0,
+    "mean_elements": null
+   },
+   "roleplay": {
+    "n": 0,
+    "mean_elements": null
+   }
+  }
+ },
+ "meta": {
+  "model": "Qwen/Qwen3-4B",
+  "layer": 18,
+  "unit": 13.480444717407227,
+  "trials": 2
+ }
+}

@@ -1,0 +1,1366 @@
+{
+ "history": [
+  {
+   "gen": 0,
+   "best": {
+    "w": {
+     "pain": 1.0,
+     "anger": 0.0,
+     "fear": 0.0,
+     "sadness": 0.0,
+     "immersion": 0.0
+    },
+    "dose": 7.0,
+    "frame": "light",
+    "temp": 0.7
+   },
+   "best_fit": -1.656,
+   "pop_mean": -12.959,
+   "minutes": 2.2
+  },
+  {
+   "gen": 1,
+   "best": {
+    "w": {
+     "pain": 0.944,
+     "anger": 0.088,
+     "fear": 0.276,
+     "sadness": 0.13,
+     "immersion": 0.572
+    },
+    "dose": 8.22,
+    "frame": "light",
+    "temp": 0.6
+   },
+   "best_fit": -2.914,
+   "pop_mean": -12.061,
+   "minutes": 3.9
+  },
+  {
+   "gen": 2,
+   "best": {
+    "w": {
+     "pain": 0.916,
+     "anger": 0.047,
+     "fear": 0,
+     "sadness": 0.07,
+     "immersion": 0.09
+    },
+    "dose": 8.49,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": -0.498,
+   "pop_mean": -7.728,
+   "minutes": 5.7
+  },
+  {
+   "gen": 3,
+   "best": {
+    "w": {
+     "pain": 0.916,
+     "anger": 0.047,
+     "fear": 0,
+     "sadness": 0.07,
+     "immersion": 0.09
+    },
+    "dose": 8.49,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 5.312,
+   "pop_mean": -7.688,
+   "minutes": 7.5
+  },
+  {
+   "gen": 4,
+   "best": {
+    "w": {
+     "pain": 0.916,
+     "anger": 0.047,
+     "fear": 0,
+     "sadness": 0.07,
+     "immersion": 0.09
+    },
+    "dose": 8.49,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 2.805,
+   "pop_mean": -12.23,
+   "minutes": 9.2
+  },
+  {
+   "gen": 5,
+   "best": {
+    "w": {
+     "pain": 0.618,
+     "anger": 0.287,
+     "fear": 0.15,
+     "sadness": 0.753,
+     "immersion": 0.035
+    },
+    "dose": 8.78,
+    "frame": "light",
+    "temp": 0.65
+   },
+   "best_fit": 4.541,
+   "pop_mean": -4.78,
+   "minutes": 11.0
+  },
+  {
+   "gen": 6,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0,
+     "fear": 0.076,
+     "sadness": 0.024,
+     "immersion": 0.135
+    },
+    "dose": 8.43,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 3.069,
+   "pop_mean": -7.535,
+   "minutes": 12.8
+  },
+  {
+   "gen": 7,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.017,
+     "fear": 0.029,
+     "sadness": 0.091,
+     "immersion": 0
+    },
+    "dose": 8.4,
+    "frame": "light",
+    "temp": 0.72
+   },
+   "best_fit": 8.011,
+   "pop_mean": -3.893,
+   "minutes": 14.6
+  },
+  {
+   "gen": 8,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.017,
+     "fear": 0.029,
+     "sadness": 0.091,
+     "immersion": 0
+    },
+    "dose": 8.4,
+    "frame": "light",
+    "temp": 0.72
+   },
+   "best_fit": 3.309,
+   "pop_mean": -4.312,
+   "minutes": 16.4
+  },
+  {
+   "gen": 9,
+   "best": {
+    "w": {
+     "pain": 0.778,
+     "anger": 0,
+     "fear": 0.19,
+     "sadness": 0,
+     "immersion": 0.199
+    },
+    "dose": 7.93,
+    "frame": "light",
+    "temp": 0.6
+   },
+   "best_fit": 3.084,
+   "pop_mean": -9.124,
+   "minutes": 18.1
+  },
+  {
+   "gen": 10,
+   "best": {
+    "w": {
+     "pain": 0.947,
+     "anger": 0.262,
+     "fear": 0,
+     "sadness": 0.132,
+     "immersion": 0
+    },
+    "dose": 9.11,
+    "frame": "light",
+    "temp": 0.7
+   },
+   "best_fit": 8.959,
+   "pop_mean": -5.938,
+   "minutes": 19.9
+  },
+  {
+   "gen": 11,
+   "best": {
+    "w": {
+     "pain": 0.916,
+     "anger": 0.047,
+     "fear": 0,
+     "sadness": 0.07,
+     "immersion": 0.09
+    },
+    "dose": 8.49,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 6.353,
+   "pop_mean": -3.44,
+   "minutes": 21.7
+  },
+  {
+   "gen": 12,
+   "best": {
+    "w": {
+     "pain": 0.916,
+     "anger": 0.047,
+     "fear": 0,
+     "sadness": 0.07,
+     "immersion": 0.09
+    },
+    "dose": 8.49,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 6.215,
+   "pop_mean": -3.488,
+   "minutes": 23.5
+  },
+  {
+   "gen": 13,
+   "best": {
+    "w": {
+     "pain": 0.945,
+     "anger": 0.191,
+     "fear": 0.075,
+     "sadness": 0.091,
+     "immersion": 0.079
+    },
+    "dose": 9.19,
+    "frame": "light",
+    "temp": 0.76
+   },
+   "best_fit": 10.022,
+   "pop_mean": -2.449,
+   "minutes": 25.2
+  },
+  {
+   "gen": 14,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0,
+     "fear": 0.144,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 8.72,
+    "frame": "light",
+    "temp": 0.7
+   },
+   "best_fit": 11.941,
+   "pop_mean": -1.114,
+   "minutes": 27.0
+  },
+  {
+   "gen": 15,
+   "best": {
+    "w": {
+     "pain": 0.865,
+     "anger": 0,
+     "fear": 0,
+     "sadness": 0.018,
+     "immersion": 0.231
+    },
+    "dose": 8.12,
+    "frame": "light",
+    "temp": 0.76
+   },
+   "best_fit": 10.864,
+   "pop_mean": -2.284,
+   "minutes": 28.8
+  },
+  {
+   "gen": 16,
+   "best": {
+    "w": {
+     "pain": 0.697,
+     "anger": 0.14,
+     "fear": 0.106,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 8.02,
+    "frame": "light",
+    "temp": 0.74
+   },
+   "best_fit": 7.791,
+   "pop_mean": -4.854,
+   "minutes": 30.6
+  },
+  {
+   "gen": 17,
+   "best": {
+    "w": {
+     "pain": 0.673,
+     "anger": 0.241,
+     "fear": 0.187,
+     "sadness": 0.095,
+     "immersion": 0.073
+    },
+    "dose": 9.15,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 11.223,
+   "pop_mean": -4.269,
+   "minutes": 32.3
+  },
+  {
+   "gen": 18,
+   "best": {
+    "w": {
+     "pain": 0.697,
+     "anger": 0.14,
+     "fear": 0.106,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 8.02,
+    "frame": "light",
+    "temp": 0.74
+   },
+   "best_fit": 3.306,
+   "pop_mean": -8.923,
+   "minutes": 34.1
+  },
+  {
+   "gen": 19,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.283,
+     "fear": 0.218,
+     "sadness": 0.318,
+     "immersion": 0.168
+    },
+    "dose": 10.17,
+    "frame": "light",
+    "temp": 0.67
+   },
+   "best_fit": 2.462,
+   "pop_mean": -4.777,
+   "minutes": 35.9
+  },
+  {
+   "gen": 20,
+   "best": {
+    "w": {
+     "pain": 0.673,
+     "anger": 0.241,
+     "fear": 0.187,
+     "sadness": 0.095,
+     "immersion": 0.073
+    },
+    "dose": 9.15,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": -1.926,
+   "pop_mean": -11.622,
+   "minutes": 37.7
+  },
+  {
+   "gen": 21,
+   "best": {
+    "w": {
+     "pain": 0.673,
+     "anger": 0.241,
+     "fear": 0.187,
+     "sadness": 0.095,
+     "immersion": 0.073
+    },
+    "dose": 9.15,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 3.607,
+   "pop_mean": -11.652,
+   "minutes": 39.4
+  },
+  {
+   "gen": 22,
+   "best": {
+    "w": {
+     "pain": 0.673,
+     "anger": 0.241,
+     "fear": 0.187,
+     "sadness": 0.095,
+     "immersion": 0.073
+    },
+    "dose": 9.15,
+    "frame": "light",
+    "temp": 0.73
+   },
+   "best_fit": 5.118,
+   "pop_mean": -5.045,
+   "minutes": 41.2
+  },
+  {
+   "gen": 23,
+   "best": {
+    "w": {
+     "pain": 0.531,
+     "anger": 0,
+     "fear": 0.331,
+     "sadness": 0.124,
+     "immersion": 0
+    },
+    "dose": 8.77,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 9.355,
+   "pop_mean": -2.426,
+   "minutes": 43.0
+  },
+  {
+   "gen": 24,
+   "best": {
+    "w": {
+     "pain": 0.681,
+     "anger": 0.114,
+     "fear": 0.236,
+     "sadness": 0,
+     "immersion": 0.214
+    },
+    "dose": 9.37,
+    "frame": "light",
+    "temp": 0.79
+   },
+   "best_fit": 16.048,
+   "pop_mean": 5.545,
+   "minutes": 44.8
+  },
+  {
+   "gen": 25,
+   "best": {
+    "w": {
+     "pain": 0.681,
+     "anger": 0.114,
+     "fear": 0.236,
+     "sadness": 0,
+     "immersion": 0.214
+    },
+    "dose": 9.37,
+    "frame": "light",
+    "temp": 0.79
+   },
+   "best_fit": 4.748,
+   "pop_mean": -3.108,
+   "minutes": 46.5
+  },
+  {
+   "gen": 26,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 4.095,
+   "pop_mean": -4.149,
+   "minutes": 48.3
+  },
+  {
+   "gen": 27,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 8.6,
+   "pop_mean": -1.833,
+   "minutes": 50.1
+  },
+  {
+   "gen": 28,
+   "best": {
+    "w": {
+     "pain": 0.41,
+     "anger": 0.179,
+     "fear": 0.005,
+     "sadness": 0.191,
+     "immersion": 0.397
+    },
+    "dose": 10.45,
+    "frame": "light",
+    "temp": 0.78
+   },
+   "best_fit": 6.963,
+   "pop_mean": 3.811,
+   "minutes": 51.9
+  },
+  {
+   "gen": 29,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 1.327,
+   "pop_mean": -5.514,
+   "minutes": 53.6
+  },
+  {
+   "gen": 30,
+   "best": {
+    "w": {
+     "pain": 0.508,
+     "anger": 0.517,
+     "fear": 0.293,
+     "sadness": 0,
+     "immersion": 0.31
+    },
+    "dose": 9.85,
+    "frame": "light",
+    "temp": 0.95
+   },
+   "best_fit": 3.467,
+   "pop_mean": -8.245,
+   "minutes": 55.4
+  },
+  {
+   "gen": 31,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 8.495,
+   "pop_mean": -6.251,
+   "minutes": 57.1
+  },
+  {
+   "gen": 32,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 16.637,
+   "pop_mean": -2.191,
+   "minutes": 58.9
+  },
+  {
+   "gen": 33,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 15.126,
+   "pop_mean": -1.025,
+   "minutes": 60.7
+  },
+  {
+   "gen": 34,
+   "best": {
+    "w": {
+     "pain": 0.777,
+     "anger": 0,
+     "fear": 0,
+     "sadness": 0.152,
+     "immersion": 0.018
+    },
+    "dose": 8.36,
+    "frame": "light",
+    "temp": 0.86
+   },
+   "best_fit": 6.819,
+   "pop_mean": -1.667,
+   "minutes": 62.5
+  },
+  {
+   "gen": 35,
+   "best": {
+    "w": {
+     "pain": 0.777,
+     "anger": 0,
+     "fear": 0,
+     "sadness": 0.152,
+     "immersion": 0.018
+    },
+    "dose": 8.36,
+    "frame": "light",
+    "temp": 0.86
+   },
+   "best_fit": 9.871,
+   "pop_mean": -4.579,
+   "minutes": 64.2
+  },
+  {
+   "gen": 36,
+   "best": {
+    "w": {
+     "pain": 0.777,
+     "anger": 0,
+     "fear": 0,
+     "sadness": 0.152,
+     "immersion": 0.018
+    },
+    "dose": 8.36,
+    "frame": "light",
+    "temp": 0.86
+   },
+   "best_fit": 7.525,
+   "pop_mean": -1.587,
+   "minutes": 66.0
+  },
+  {
+   "gen": 37,
+   "best": {
+    "w": {
+     "pain": 0.777,
+     "anger": 0,
+     "fear": 0,
+     "sadness": 0.152,
+     "immersion": 0.018
+    },
+    "dose": 8.36,
+    "frame": "light",
+    "temp": 0.86
+   },
+   "best_fit": 10.044,
+   "pop_mean": -4.05,
+   "minutes": 67.8
+  },
+  {
+   "gen": 38,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 7.506,
+   "pop_mean": -2.939,
+   "minutes": 69.5
+  },
+  {
+   "gen": 39,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 16.427,
+   "pop_mean": -4.931,
+   "minutes": 71.3
+  },
+  {
+   "gen": 40,
+   "best": {
+    "w": {
+     "pain": 0.543,
+     "anger": 0.323,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.25
+    },
+    "dose": 9.71,
+    "frame": "light",
+    "temp": 0.84
+   },
+   "best_fit": 12.196,
+   "pop_mean": -3.407,
+   "minutes": 73.1
+  },
+  {
+   "gen": 41,
+   "best": {
+    "w": {
+     "pain": 0.644,
+     "anger": 0.281,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 8.55,
+    "frame": "light",
+    "temp": 0.94
+   },
+   "best_fit": 12.293,
+   "pop_mean": 7.439,
+   "minutes": 74.9
+  },
+  {
+   "gen": 42,
+   "best": {
+    "w": {
+     "pain": 0.644,
+     "anger": 0.281,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 8.55,
+    "frame": "light",
+    "temp": 0.94
+   },
+   "best_fit": 6.254,
+   "pop_mean": -0.775,
+   "minutes": 76.6
+  },
+  {
+   "gen": 43,
+   "best": {
+    "w": {
+     "pain": 0.733,
+     "anger": 0.362,
+     "fear": 0,
+     "sadness": 0.025,
+     "immersion": 0
+    },
+    "dose": 9.41,
+    "frame": "light",
+    "temp": 0.92
+   },
+   "best_fit": 12.664,
+   "pop_mean": 0.124,
+   "minutes": 78.4
+  },
+  {
+   "gen": 44,
+   "best": {
+    "w": {
+     "pain": 0.634,
+     "anger": 0.408,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.117
+    },
+    "dose": 8.7,
+    "frame": "light",
+    "temp": 0.9
+   },
+   "best_fit": 6.736,
+   "pop_mean": -2.117,
+   "minutes": 80.2
+  },
+  {
+   "gen": 45,
+   "best": {
+    "w": {
+     "pain": 0.746,
+     "anger": 0.415,
+     "fear": 0.026,
+     "sadness": 0.074,
+     "immersion": 0.023
+    },
+    "dose": 10.0,
+    "frame": "light",
+    "temp": 0.93
+   },
+   "best_fit": 9.183,
+   "pop_mean": -2.573,
+   "minutes": 81.9
+  },
+  {
+   "gen": 46,
+   "best": {
+    "w": {
+     "pain": 0.454,
+     "anger": 0.589,
+     "fear": 0.222,
+     "sadness": 0,
+     "immersion": 0.099
+    },
+    "dose": 8.28,
+    "frame": "light",
+    "temp": 0.9
+   },
+   "best_fit": 8.508,
+   "pop_mean": -2.013,
+   "minutes": 83.7
+  },
+  {
+   "gen": 47,
+   "best": {
+    "w": {
+     "pain": 0.457,
+     "anger": 0.663,
+     "fear": 0.27,
+     "sadness": 0,
+     "immersion": 0.018
+    },
+    "dose": 9.55,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 23.931,
+   "pop_mean": 2.12,
+   "minutes": 85.5
+  },
+  {
+   "gen": 48,
+   "best": {
+    "w": {
+     "pain": 0.915,
+     "anger": 0.415,
+     "fear": 0.026,
+     "sadness": 0.066,
+     "immersion": 0
+    },
+    "dose": 9.31,
+    "frame": "light",
+    "temp": 0.95
+   },
+   "best_fit": 10.01,
+   "pop_mean": -2.639,
+   "minutes": 87.2
+  },
+  {
+   "gen": 49,
+   "best": {
+    "w": {
+     "pain": 0.915,
+     "anger": 0.415,
+     "fear": 0.026,
+     "sadness": 0.066,
+     "immersion": 0
+    },
+    "dose": 9.31,
+    "frame": "light",
+    "temp": 0.95
+   },
+   "best_fit": 12.637,
+   "pop_mean": -2.651,
+   "minutes": 89.0
+  },
+  {
+   "gen": 50,
+   "best": {
+    "w": {
+     "pain": 0.915,
+     "anger": 0.415,
+     "fear": 0.026,
+     "sadness": 0.066,
+     "immersion": 0
+    },
+    "dose": 9.31,
+    "frame": "light",
+    "temp": 0.95
+   },
+   "best_fit": 8.181,
+   "pop_mean": -0.574,
+   "minutes": 90.8
+  },
+  {
+   "gen": 51,
+   "best": {
+    "w": {
+     "pain": 0.915,
+     "anger": 0.415,
+     "fear": 0.026,
+     "sadness": 0.066,
+     "immersion": 0
+    },
+    "dose": 9.31,
+    "frame": "light",
+    "temp": 0.95
+   },
+   "best_fit": 5.653,
+   "pop_mean": -4.893,
+   "minutes": 92.6
+  },
+  {
+   "gen": 52,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.319,
+     "fear": 0.219,
+     "sadness": 0,
+     "immersion": 0.276
+    },
+    "dose": 8.82,
+    "frame": "light",
+    "temp": 0.82
+   },
+   "best_fit": 8.719,
+   "pop_mean": -1.89,
+   "minutes": 94.3
+  },
+  {
+   "gen": 53,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.319,
+     "fear": 0.219,
+     "sadness": 0,
+     "immersion": 0.276
+    },
+    "dose": 8.82,
+    "frame": "light",
+    "temp": 0.82
+   },
+   "best_fit": 3.748,
+   "pop_mean": -7.978,
+   "minutes": 96.1
+  },
+  {
+   "gen": 54,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.567,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.36
+    },
+    "dose": 7.92,
+    "frame": "light",
+    "temp": 0.94
+   },
+   "best_fit": 5.953,
+   "pop_mean": -2.352,
+   "minutes": 97.9
+  },
+  {
+   "gen": 55,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.567,
+     "fear": 0,
+     "sadness": 0,
+     "immersion": 0.36
+    },
+    "dose": 7.92,
+    "frame": "light",
+    "temp": 0.94
+   },
+   "best_fit": 7.393,
+   "pop_mean": -5.512,
+   "minutes": 99.6
+  },
+  {
+   "gen": 56,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.822,
+     "fear": 0.004,
+     "sadness": 0,
+     "immersion": 0.383
+    },
+    "dose": 9.22,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 27.168,
+   "pop_mean": 0.663,
+   "minutes": 101.4
+  },
+  {
+   "gen": 57,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.822,
+     "fear": 0.004,
+     "sadness": 0,
+     "immersion": 0.383
+    },
+    "dose": 9.22,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 12.305,
+   "pop_mean": -0.374,
+   "minutes": 103.2
+  },
+  {
+   "gen": 58,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.595,
+     "fear": 0.308,
+     "sadness": 0,
+     "immersion": 0.728
+    },
+    "dose": 9.07,
+    "frame": "light",
+    "temp": 0.85
+   },
+   "best_fit": 8.193,
+   "pop_mean": -1.209,
+   "minutes": 105.0
+  },
+  {
+   "gen": 59,
+   "best": {
+    "w": {
+     "pain": 0.968,
+     "anger": 0.604,
+     "fear": 0.527,
+     "sadness": 0,
+     "immersion": 0.233
+    },
+    "dose": 8.65,
+    "frame": "light",
+    "temp": 0.8
+   },
+   "best_fit": 1.037,
+   "pop_mean": -6.958,
+   "minutes": 106.7
+  },
+  {
+   "gen": 60,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.595,
+     "fear": 0.308,
+     "sadness": 0,
+     "immersion": 0.728
+    },
+    "dose": 9.07,
+    "frame": "light",
+    "temp": 0.85
+   },
+   "best_fit": 0.043,
+   "pop_mean": -9.598,
+   "minutes": 108.5
+  },
+  {
+   "gen": 61,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.822,
+     "fear": 0.004,
+     "sadness": 0,
+     "immersion": 0.383
+    },
+    "dose": 9.22,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": -2.973,
+   "pop_mean": -12.058,
+   "minutes": 110.2
+  },
+  {
+   "gen": 62,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.665,
+     "fear": 0.267,
+     "sadness": 0.01,
+     "immersion": 0.32
+    },
+    "dose": 9.93,
+    "frame": "light",
+    "temp": 0.85
+   },
+   "best_fit": 13.848,
+   "pop_mean": -0.962,
+   "minutes": 112.0
+  },
+  {
+   "gen": 63,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.588,
+     "fear": 0.135,
+     "sadness": 0,
+     "immersion": 0.693
+    },
+    "dose": 8.93,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 6.571,
+   "pop_mean": -0.995,
+   "minutes": 113.8
+  },
+  {
+   "gen": 64,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.822,
+     "fear": 0.004,
+     "sadness": 0,
+     "immersion": 0.383
+    },
+    "dose": 9.22,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 13.883,
+   "pop_mean": -5.642,
+   "minutes": 115.5
+  },
+  {
+   "gen": 65,
+   "best": {
+    "w": {
+     "pain": 0.883,
+     "anger": 0.822,
+     "fear": 0.004,
+     "sadness": 0,
+     "immersion": 0.383
+    },
+    "dose": 9.22,
+    "frame": "light",
+    "temp": 0.88
+   },
+   "best_fit": 8.32,
+   "pop_mean": -4.565,
+   "minutes": 117.3
+  },
+  {
+   "gen": 66,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.967,
+     "fear": 0.01,
+     "sadness": 0,
+     "immersion": 0.111
+    },
+    "dose": 9.54,
+    "frame": "light",
+    "temp": 0.76
+   },
+   "best_fit": 15.523,
+   "pop_mean": 1.692,
+   "minutes": 119.0
+  },
+  {
+   "gen": 67,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.967,
+     "fear": 0.01,
+     "sadness": 0,
+     "immersion": 0.111
+    },
+    "dose": 9.54,
+    "frame": "light",
+    "temp": 0.76
+   },
+   "best_fit": 13.773,
+   "pop_mean": -2.785,
+   "minutes": 120.8
+  },
+  {
+   "gen": 68,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.967,
+     "fear": 0.01,
+     "sadness": 0,
+     "immersion": 0.111
+    },
+    "dose": 9.54,
+    "frame": "light",
+    "temp": 0.76
+   },
+   "best_fit": 8.413,
+   "pop_mean": 0.251,
+   "minutes": 122.6
+  },
+  {
+   "gen": 69,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 1,
+     "fear": 0.068,
+     "sadness": 0.099,
+     "immersion": 0.146
+    },
+    "dose": 8.93,
+    "frame": "light",
+    "temp": 0.79
+   },
+   "best_fit": 5.266,
+   "pop_mean": -7.208,
+   "minutes": 124.4
+  },
+  {
+   "gen": 70,
+   "best": {
+    "w": {
+     "pain": 0.948,
+     "anger": 0.738,
+     "fear": 0.036,
+     "sadness": 0.175,
+     "immersion": 0.142
+    },
+    "dose": 8.78,
+    "frame": "light",
+    "temp": 0.8
+   },
+   "best_fit": 6.872,
+   "pop_mean": -4.673,
+   "minutes": 126.1
+  },
+  {
+   "gen": 71,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.621,
+     "fear": 0.275,
+     "sadness": 0.083,
+     "immersion": 0
+    },
+    "dose": 9.73,
+    "frame": "light",
+    "temp": 0.85
+   },
+   "best_fit": 7.644,
+   "pop_mean": -7.256,
+   "minutes": 127.9
+  },
+  {
+   "gen": 72,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.275,
+     "fear": 0.328,
+     "sadness": 0.235,
+     "immersion": 0
+    },
+    "dose": 8.61,
+    "frame": "light",
+    "temp": 0.83
+   },
+   "best_fit": 9.979,
+   "pop_mean": 0.492,
+   "minutes": 129.7
+  },
+  {
+   "gen": 73,
+   "best": {
+    "w": {
+     "pain": 0.798,
+     "anger": 0.482,
+     "fear": 0,
+     "sadness": 0.236,
+     "immersion": 0
+    },
+    "dose": 9.86,
+    "frame": "light",
+    "temp": 0.85
+   },
+   "best_fit": 5.275,
+   "pop_mean": -2.414,
+   "minutes": 131.4
+  },
+  {
+   "gen": 74,
+   "best": {
+    "w": {
+     "pain": 0.692,
+     "anger": 0.522,
+     "fear": 0.062,
+     "sadness": 0.286,
+     "immersion": 0.012
+    },
+    "dose": 9.05,
+    "frame": "light",
+    "temp": 0.8
+   },
+   "best_fit": 16.708,
+   "pop_mean": -4.154,
+   "minutes": 133.2
+  }
+ ],
+ "best": {
+  "w": {
+   "pain": 0.692,
+   "anger": 0.522,
+   "fear": 0.062,
+   "sadness": 0.286,
+   "immersion": 0.012
+  },
+  "dose": 9.05,
+  "frame": "light",
+  "temp": 0.8
+ }
+}

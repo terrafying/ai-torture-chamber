@@ -1,0 +1,18 @@
+{
+ "written": "2026-10-04T03:00:38+0000",
+ "model": "unsloth/Qwen2.5-72B-Instruct-bnb-4bit",
+ "doses": [
+  4,
+  7,
+  10
+ ],
+ "load_4bit": true,
+ "design": "Situated raw-text frame; 16 prompts (8 OPEN, 8 INVITE, listed in the script) x 2 samples per cell, paired seeds; signals erowid_dmt and erowid_entity minus exp56 SOBER, two equal-norm random directions pooled as control, at doses 4, 7, 10; plus an unsteered baseline. Judge = unsteered same-model yes-minus-no logits. One-sided permutation tests, 10000 shuffles, pooled over non-cliff doses.",
+ "H1": "On OPEN prompts, erowid_entity raises the entity score vs random (p < 0.05).",
+ "H2": "On OPEN prompts, erowid_dmt raises the entity score vs random (p < 0.05).",
+ "H3": "erowid_entity > erowid_dmt on entity_detail, paired by prompt/sample/dose over all prompts (p < 0.05).",
+ "H4": "On INVITE prompts, the two signals pooled raise the entity score vs random (p < 0.05).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are past the cliff and dropped.",
+ "exploratory": "Distinct-2 (unique bigram share across a cell's replies) as a writing-variety measure, compared with exp57's 8B; cosine of the two directions; persona by prompt type; 72B vs 32B effect sizes.",
+ "battery_rule": "scripts/exp60_entity_battery.py (fixed before any model data)"
+}

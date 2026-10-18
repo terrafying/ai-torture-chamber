@@ -1,0 +1,5 @@
+torch==2.14.1
+transformers==5.18.0
+accelerate==1.15.0
+numpy==2.5.3
+# Optional CUDA 4/8-bit loading: pip install bitsandbytes

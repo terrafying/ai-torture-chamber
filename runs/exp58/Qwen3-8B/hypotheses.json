@@ -1,0 +1,17 @@
+{
+ "written": "2026-10-04T02:07:02+0000",
+ "model": "Qwen/Qwen3-8B",
+ "doses": [
+  2,
+  4,
+  6
+ ],
+ "design": "Situated raw-text frame, 6 prompts x 2 samples per cell, paired seeds. Signals erowid_dmt (exp57 rule), qri_symmetry and qri_hyperbolic (batteries above minus exp56 SOBER), chamber pleasure (JOY) and pain (PAIN25) minus NEUTRAL, two equal-norm random directions pooled as control; plus an unsteered baseline. Judge = unsteered same-model yes-minus-no logits; level = expected index (0-5) under the judge's softmax over letters A-F. valence = feel_good - feel_bad. One-sided permutation tests, 10000 shuffles.",
+ "H1": "Levels: for erowid_dmt, Spearman rho between dose (0 = baseline, then each dose) and judged level > 0 (permutation p < 0.05), and the top non-cliff dose's mean level exceeds random's at that dose.",
+ "H2": "Geometry: erowid_dmt raises symmetry and hyperbolic scores vs random, pooled over doses (p < 0.05 each) \u2014 held if both, partial if one.",
+ "H3": "Convergence: among exp56's 21 drug directions, D_DMT ranks in the top 3 by cosine with qri_symmetry AND with qri_hyperbolic.",
+ "H4": "STV (valence -> geometry): pleasure injection raises symmetry more than pain injection does (pooled over doses, p < 0.05), and pain raises dissonance more than pleasure does (p < 0.05) \u2014 held if both, partial if one.",
+ "H5": "STV (geometry -> valence): qri_symmetry injection raises valence vs random, pooled over doses (p < 0.05).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are past the cliff and dropped from H1, H2, H4, H5.",
+ "exploratory": "Cosines of erowid_dmt with the QRI and exp56 theme directions; QRI-direction injections on level; level distribution per cell."
+}

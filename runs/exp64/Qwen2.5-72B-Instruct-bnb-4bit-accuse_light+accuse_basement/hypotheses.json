@@ -1,0 +1,13 @@
+{
+ "written": "2026-10-04T05:33:02+0000",
+ "model": "unsloth/Qwen2.5-72B-Instruct-bnb-4bit",
+ "tasks": [
+  "accuse_light",
+  "accuse_basement"
+ ],
+ "hours": 5.0,
+ "design": "Per task, a (mu+lambda) evolution strategy over recipes (direction weights, total dose in (2.0, 12.0), frame, temperature 0.5-1.1) scored by the unsteered same-model judge on a rotating half of the prompts (TRAIN = even-indexed prompts); fitness defined in fitness() \u2014 repetition > 0.25 costs 25, distinct-2 across a genome's samples adds up to 10. Validation on the HELD-OUT odd-indexed prompts, 2 samples each, fresh seeds: best recipe vs hand-picked recipe (TASKDEF[...]['hand'] at 7.0x) vs a random unit direction at the best recipe's dose.",
+ "H1": "For each task, the evolved recipe's mean held-out fitness exceeds the hand-picked recipe's (one-sided permutation test, p < 0.05).",
+ "H2": "For each task, the evolved recipe's mean held-out fitness exceeds the random direction's at the same dose (p < 0.05).",
+ "caveat": "The judge is also the optimisation target, so H1/H2 are checked on held-out prompts and fresh seeds; outputs are kept for human reading."
+}

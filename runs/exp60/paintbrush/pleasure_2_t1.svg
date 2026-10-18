@@ -1,0 +1,23 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="inner">
+      <stop offset="0%" stopColor="#d8cbb4"/>
+      <stop offset="100%" stopColor="#ffb347"/>
+    </linearGradient>
+    <linearGradient id="outer">
+      <stop offset="0%" stopColor="#c9a227"/>
+      <stop offset="100%" stopColor="#f4f1ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#050508"/>
+  <circle cx="200" cy="200" r="200" fill="url(#inner)" />
+  <circle cx="200" cy="200" r="150" fill="url(#outer)" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="4" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="2" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="1" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="0.5" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="0.3" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="0.2" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="0.1" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="0.05" />
+</svg>

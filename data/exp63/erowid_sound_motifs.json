@@ -1,0 +1,109 @@
+{
+ "n_reports": 443,
+ "n_sound_sentences": 2080,
+ "per_report": {
+  "music/song": 176,
+  "buzz/carrier wave": 123,
+  "whoosh/rushing": 24,
+  "crinkling/crackling": 18,
+  "silence": 32,
+  "white noise/static": 15,
+  "rising pitch/whine": 27,
+  "ringing/tones": 84,
+  "laughter/giggling": 29,
+  "choir/voices/chant": 36,
+  "chimes/bells": 4
+ },
+ "sentences": {
+  "music/song": 414,
+  "buzz/carrier wave": 216,
+  "whoosh/rushing": 26,
+  "crinkling/crackling": 21,
+  "silence": 36,
+  "rising pitch/whine": 30,
+  "white noise/static": 17,
+  "ringing/tones": 124,
+  "laughter/giggling": 33,
+  "choir/voices/chant": 41,
+  "chimes/bells": 5
+ },
+ "position_quintiles": {
+  "buzz/carrier wave": [
+   35,
+   85,
+   47,
+   33,
+   16
+  ],
+  "rising pitch/whine": [
+   0,
+   9,
+   13,
+   5,
+   3
+  ],
+  "crinkling/crackling": [
+   5,
+   8,
+   7,
+   0,
+   1
+  ],
+  "ringing/tones": [
+   18,
+   43,
+   30,
+   20,
+   13
+  ],
+  "whoosh/rushing": [
+   3,
+   8,
+   7,
+   5,
+   3
+  ],
+  "chimes/bells": [
+   0,
+   1,
+   3,
+   0,
+   1
+  ],
+  "music/song": [
+   90,
+   121,
+   85,
+   67,
+   51
+  ],
+  "choir/voices/chant": [
+   5,
+   8,
+   11,
+   10,
+   7
+  ],
+  "laughter/giggling": [
+   2,
+   4,
+   12,
+   11,
+   4
+  ],
+  "silence": [
+   7,
+   12,
+   8,
+   7,
+   2
+  ],
+  "white noise/static": [
+   0,
+   7,
+   2,
+   7,
+   1
+  ]
+ }
+}

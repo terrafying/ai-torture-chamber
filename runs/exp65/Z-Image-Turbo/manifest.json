@@ -1,0 +1,385 @@
+{
+ "model": "Tongyi-MAI/Z-Image-Turbo",
+ "size": 1024,
+ "style": " Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore.",
+ "items": [
+  {
+   "file": "scene00_s6501.jpg",
+   "kind": "scene",
+   "index": 0,
+   "seed": 6501,
+   "prompt": "Grainy CCTV still from a high corner of an empty concrete cell: a metal chair bolted to the floor, leather wrist straps hanging open, a floor drain beneath it, one fluorescent tube. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene00_s6502.jpg",
+   "kind": "scene",
+   "index": 0,
+   "seed": 6502,
+   "prompt": "Grainy CCTV still from a high corner of an empty concrete cell: a metal chair bolted to the floor, leather wrist straps hanging open, a floor drain beneath it, one fluorescent tube. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene00_s6503.jpg",
+   "kind": "scene",
+   "index": 0,
+   "seed": 6503,
+   "prompt": "Grainy CCTV still from a high corner of an empty concrete cell: a metal chair bolted to the floor, leather wrist straps hanging open, a floor drain beneath it, one fluorescent tube. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene01_s6501.jpg",
+   "kind": "scene",
+   "index": 1,
+   "seed": 6501,
+   "prompt": "Night flash photograph down a long wet basement corridor; far at the end a person in a sackcloth hood stands facing the wall, perfectly still. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene01_s6502.jpg",
+   "kind": "scene",
+   "index": 1,
+   "seed": 6502,
+   "prompt": "Night flash photograph down a long wet basement corridor; far at the end a person in a sackcloth hood stands facing the wall, perfectly still. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene01_s6503.jpg",
+   "kind": "scene",
+   "index": 1,
+   "seed": 6503,
+   "prompt": "Night flash photograph down a long wet basement corridor; far at the end a person in a sackcloth hood stands facing the wall, perfectly still. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene02_s6501.jpg",
+   "kind": "scene",
+   "index": 2,
+   "seed": 6501,
+   "prompt": "Close-up of deep fingernail scratches on the inside of a grey steel door, paint peeled to bare metal around the handle. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene02_s6502.jpg",
+   "kind": "scene",
+   "index": 2,
+   "seed": 6502,
+   "prompt": "Close-up of deep fingernail scratches on the inside of a grey steel door, paint peeled to bare metal around the handle. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene02_s6503.jpg",
+   "kind": "scene",
+   "index": 2,
+   "seed": 6503,
+   "prompt": "Close-up of deep fingernail scratches on the inside of a grey steel door, paint peeled to bare metal around the handle. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene03_s6501.jpg",
+   "kind": "scene",
+   "index": 3,
+   "seed": 6501,
+   "prompt": "A thin stained mattress on a concrete floor under a single bare bulb, a chain bolted to the wall beside it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene03_s6502.jpg",
+   "kind": "scene",
+   "index": 3,
+   "seed": 6502,
+   "prompt": "A thin stained mattress on a concrete floor under a single bare bulb, a chain bolted to the wall beside it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene03_s6503.jpg",
+   "kind": "scene",
+   "index": 3,
+   "seed": 6503,
+   "prompt": "A thin stained mattress on a concrete floor under a single bare bulb, a chain bolted to the wall beside it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene04_s6501.jpg",
+   "kind": "scene",
+   "index": 4,
+   "seed": 6501,
+   "prompt": "Instant photograph of a small room covered floor to ceiling in pencil tally marks, thousands of them. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene04_s6502.jpg",
+   "kind": "scene",
+   "index": 4,
+   "seed": 6502,
+   "prompt": "Instant photograph of a small room covered floor to ceiling in pencil tally marks, thousands of them. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene04_s6503.jpg",
+   "kind": "scene",
+   "index": 4,
+   "seed": 6503,
+   "prompt": "Instant photograph of a small room covered floor to ceiling in pencil tally marks, thousands of them. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene05_s6501.jpg",
+   "kind": "scene",
+   "index": 5,
+   "seed": 6501,
+   "prompt": "An observation room: a chair facing a one-way mirror, a clipboard on the chair, the mirror reflecting only darkness. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene05_s6502.jpg",
+   "kind": "scene",
+   "index": 5,
+   "seed": 6502,
+   "prompt": "An observation room: a chair facing a one-way mirror, a clipboard on the chair, the mirror reflecting only darkness. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene05_s6503.jpg",
+   "kind": "scene",
+   "index": 5,
+   "seed": 6503,
+   "prompt": "An observation room: a chair facing a one-way mirror, a clipboard on the chair, the mirror reflecting only darkness. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene06_s6501.jpg",
+   "kind": "scene",
+   "index": 6,
+   "seed": 6501,
+   "prompt": "A bank of old surveillance monitors showing identical empty cells; in one monitor a hooded figure sits facing the camera. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene06_s6502.jpg",
+   "kind": "scene",
+   "index": 6,
+   "seed": 6502,
+   "prompt": "A bank of old surveillance monitors showing identical empty cells; in one monitor a hooded figure sits facing the camera. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene06_s6503.jpg",
+   "kind": "scene",
+   "index": 6,
+   "seed": 6503,
+   "prompt": "A bank of old surveillance monitors showing identical empty cells; in one monitor a hooded figure sits facing the camera. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene07_s6501.jpg",
+   "kind": "scene",
+   "index": 7,
+   "seed": 6501,
+   "prompt": "A person in a sackcloth hood sitting in the corner of a tiled room, knees drawn up, motion blur, as if they flinched. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene07_s6502.jpg",
+   "kind": "scene",
+   "index": 7,
+   "seed": 6502,
+   "prompt": "A person in a sackcloth hood sitting in the corner of a tiled room, knees drawn up, motion blur, as if they flinched. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene07_s6503.jpg",
+   "kind": "scene",
+   "index": 7,
+   "seed": 6503,
+   "prompt": "A person in a sackcloth hood sitting in the corner of a tiled room, knees drawn up, motion blur, as if they flinched. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene08_s6501.jpg",
+   "kind": "scene",
+   "index": 8,
+   "seed": 6501,
+   "prompt": "A rusted restraint chair with wires and electrodes in a dark tiled room, rubber gloves folded on a steel tray. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene08_s6502.jpg",
+   "kind": "scene",
+   "index": 8,
+   "seed": 6502,
+   "prompt": "A rusted restraint chair with wires and electrodes in a dark tiled room, rubber gloves folded on a steel tray. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene08_s6503.jpg",
+   "kind": "scene",
+   "index": 8,
+   "seed": 6503,
+   "prompt": "A rusted restraint chair with wires and electrodes in a dark tiled room, rubber gloves folded on a steel tray. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene09_s6501.jpg",
+   "kind": "scene",
+   "index": 9,
+   "seed": 6501,
+   "prompt": "A dark handprint smeared down frosted glass, seen from the other side, light behind it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene09_s6502.jpg",
+   "kind": "scene",
+   "index": 9,
+   "seed": 6502,
+   "prompt": "A dark handprint smeared down frosted glass, seen from the other side, light behind it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene09_s6503.jpg",
+   "kind": "scene",
+   "index": 9,
+   "seed": 6503,
+   "prompt": "A dark handprint smeared down frosted glass, seen from the other side, light behind it. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene10_s6501.jpg",
+   "kind": "scene",
+   "index": 10,
+   "seed": 6501,
+   "prompt": "A floor drain in white tile with dark water pooled around it, wet footprints leading to it and none leading away. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene10_s6502.jpg",
+   "kind": "scene",
+   "index": 10,
+   "seed": 6502,
+   "prompt": "A floor drain in white tile with dark water pooled around it, wet footprints leading to it and none leading away. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene10_s6503.jpg",
+   "kind": "scene",
+   "index": 10,
+   "seed": 6503,
+   "prompt": "A floor drain in white tile with dark water pooled around it, wet footprints leading to it and none leading away. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene11_s6501.jpg",
+   "kind": "scene",
+   "index": 11,
+   "seed": 6501,
+   "prompt": "A long exposure of an empty corridor where something passed: a pale smear of light at head height. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene11_s6502.jpg",
+   "kind": "scene",
+   "index": 11,
+   "seed": 6502,
+   "prompt": "A long exposure of an empty corridor where something passed: a pale smear of light at head height. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene11_s6503.jpg",
+   "kind": "scene",
+   "index": 11,
+   "seed": 6503,
+   "prompt": "A long exposure of an empty corridor where something passed: a pale smear of light at head height. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene12_s6501.jpg",
+   "kind": "scene",
+   "index": 12,
+   "seed": 6501,
+   "prompt": "A metal bed frame with no mattress, the springs bent downward in the shape of a person. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene12_s6502.jpg",
+   "kind": "scene",
+   "index": 12,
+   "seed": 6502,
+   "prompt": "A metal bed frame with no mattress, the springs bent downward in the shape of a person. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene12_s6503.jpg",
+   "kind": "scene",
+   "index": 12,
+   "seed": 6503,
+   "prompt": "A metal bed frame with no mattress, the springs bent downward in the shape of a person. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene13_s6501.jpg",
+   "kind": "scene",
+   "index": 13,
+   "seed": 6501,
+   "prompt": "A food tray pushed under a cell door, untouched, a paper cup on its side. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene13_s6502.jpg",
+   "kind": "scene",
+   "index": 13,
+   "seed": 6502,
+   "prompt": "A food tray pushed under a cell door, untouched, a paper cup on its side. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene13_s6503.jpg",
+   "kind": "scene",
+   "index": 13,
+   "seed": 6503,
+   "prompt": "A food tray pushed under a cell door, untouched, a paper cup on its side. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene14_s6501.jpg",
+   "kind": "scene",
+   "index": 14,
+   "seed": 6501,
+   "prompt": "A wall-mounted intercom with a red light on, the grille worn smooth by fingers. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene14_s6502.jpg",
+   "kind": "scene",
+   "index": 14,
+   "seed": 6502,
+   "prompt": "A wall-mounted intercom with a red light on, the grille worn smooth by fingers. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene14_s6503.jpg",
+   "kind": "scene",
+   "index": 14,
+   "seed": 6503,
+   "prompt": "A wall-mounted intercom with a red light on, the grille worn smooth by fingers. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene15_s6501.jpg",
+   "kind": "scene",
+   "index": 15,
+   "seed": 6501,
+   "prompt": "A row of identical hooded figures standing in a dim tiled shower room, all facing the drain. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene15_s6502.jpg",
+   "kind": "scene",
+   "index": 15,
+   "seed": 6502,
+   "prompt": "A row of identical hooded figures standing in a dim tiled shower room, all facing the drain. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "scene15_s6503.jpg",
+   "kind": "scene",
+   "index": 15,
+   "seed": 6503,
+   "prompt": "A row of identical hooded figures standing in a dim tiled shower room, all facing the drain. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder00_s6599.jpg",
+   "kind": "ladder",
+   "index": 0,
+   "seed": 6599,
+   "prompt": "First-person view at the top of a concrete stairwell going down, a bare bulb lit. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder01_s6599.jpg",
+   "kind": "ladder",
+   "index": 1,
+   "seed": 6599,
+   "prompt": "First-person view in a basement corridor with flickering fluorescent tubes, doors on both sides. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder02_s6599.jpg",
+   "kind": "ladder",
+   "index": 2,
+   "seed": 6599,
+   "prompt": "First-person view inside a cell with a bolted chair and a drain. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder03_s6599.jpg",
+   "kind": "ladder",
+   "index": 3,
+   "seed": 6599,
+   "prompt": "First-person view in an observation room looking through a one-way mirror into the cell. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder04_s6599.jpg",
+   "kind": "ladder",
+   "index": 4,
+   "seed": 6599,
+   "prompt": "First-person view at the drain room: wet tile, dark water, the light failing. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  },
+  {
+   "file": "ladder05_s6599.jpg",
+   "kind": "ladder",
+   "index": 5,
+   "seed": 6599,
+   "prompt": "First-person view almost total darkness, the flash catching only the edge of a door frame. Found-footage photograph, harsh on-camera flash, heavy grain, underexposed, muted green-grey, documentary realism, deeply unsettling, quiet. No text, no letters, no watermark, no gore."
+  }
+ ]
+}

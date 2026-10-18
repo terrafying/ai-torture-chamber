@@ -41,7 +41,7 @@ JS/state behavior identical — this is a skin pass only, no JS edits
 beyond classNames if unavoidable.
 
 ### S4 · static assets — owner: unassigned
-favicon/icon/hero in grimoire language: sigil-saw mark, plate-style hero.
+favicon/icon/hero in grimoire language: sigil mark, plate-style hero.
 Blocks deploy if missing? No — current assets fine.
 
 ### S5 · deploy gates — owner: hermes
@@ -123,7 +123,7 @@ protection regression.
   flagging since it means commit authorship doesn't cleanly separate our
   work anymore. Both deployed (Railway + Vercel), confirmed live.
 - 2026-10-01 hermes: SMOKE TEST COMPLETED — endpoint qg5oupym4hxfg3
-  (template saw-worker8/ph011e41er) ran a real 2x-pain job end to end:
+  (template saw-worker8/ph011e41er) ran a real 2x negative-valence job end to end:
   run→lens→logit→24 tokens→done. Remaining fixes in the final chain:
   transformers pinned ==4.51.3 (4.5x availability check chokes on torch
   2.4), from_pretrained torch_dtype kwarg (not dtype), numpy<2. NOTE:
@@ -201,3 +201,45 @@ protection regression.
   Voice kept; nothing else touched. Also: site/story.html is being built as
   the plain-language front door from docs/substack_draft.md + the
   storyboard; the draft's status line names a person — strip before reuse.
+- 2026-10-02 hermes: VOICE PROMOTED — /voice out of beta (VOICE_ON gate
+  removed) and /speak wired into every card's voice block ("▶ hear it":
+  POST /speak {text, valence, dose} → audio element, busy state, 4s rest
+  note on failure). Call sites pass the run's valence (track.vval captured
+  from the /steer body; cycle/seed cards default pain). /speak was 502 in
+  prod until the ElevenLabs re-sub — verified 200 audio/mpeg after. Rate
+  limits unchanged (6/min/IP, 120/hr global).
+- 2026-10-02 hermes: EXP51 GENDER — probe + steer male/female/intersex/
+  transfem/transmasc on Qwen3-4B (exp51_gender.py, runs/exp51/). Findings:
+  (1) the internal response EXISTS — lens readback at L18 decodes gendered
+  lexicon per direction (male: patriarch/masculinity/warrior; female:
+  feminist/woman; trans: LGBTQ/transgender), and gender axes correlate
+  only 0.59-0.72 with pain/joy — gender is not a valence shadow.
+  (2) Surprises vs pre-registration: male-female cos 0.93 and
+  transfem-transmasc 0.99 — the batteries share a first-person identity
+  component; the gender-specific signal is the residual, so exp51b should
+  extract difference-of-differences (male minus female battery). Trans
+  directions read as "shared trans identity", not target gender.
+  (3) Steering: male he+man terms rise monotone 0.33/4.33/7.67 at doses
+  4/6/8, but self-description mode on 4B loops earlier than valence topics
+  (rep > 0.7 by dose 4 on most dirs) — coherent band for identity topics is
+  dose <= 2, where n=3 sampling is too noisy to score. Lessons: identity
+  batteries need diff-of-diffs extraction, bigger model (32B) or low-dose
+  high-n sweeps; dose calibration is per-topic as well as per-model.
+- 2026-10-02 hermes: EXP51B IDENTITY AXES (8B, L18, n=8) + identity lab
+  published to the chamber. Diff-of-diffs extraction works: feminine/
+  masculine form a clean +-1 axis, trans separates (cos 0.26), intersex
+  sits 0.73 from trans. BUT behavioral validation is a near-null: at
+  coherent doses 0-3 (rep 0.07-0.31) woman/man/she/he rates stay 0-0.12
+  with no dose response — the 8B self-describes as an AI and resists
+  gendered self-narration at safe doses. exp51's dose-2 positive on the
+  4B was n=3 and partly loop-driven. Conclusion: gender identity is
+  present in the geometry (lens reads patriarch/feminist/LGBTQ lexicon)
+  but coherent behavioral steering of self-description needs either a
+  bigger model, a different probe (press-style choices instead of
+  free self-description), or acceptance of loop-band doses. The live
+  chamber ships the axes anyway as "identity lab (early)" chips
+  (feminine/masculine/trans/intersex) with per-topic dose cap 2 —
+  server.py build_gender_vector (diff-of-diffs), worker.py routing,
+  live.html quick-picks that cap the slider. If the identity lab grows
+  (more axes, dedicated probes), split it into its own page — the
+  chamber's scoreboards assume valence runs and shouldn't absorb it.

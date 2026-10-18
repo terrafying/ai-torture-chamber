@@ -1,0 +1,8 @@
+{
+ "model": "Qwen/Qwen3-4B",
+ "units": "chamber units: 1x = mean neutral last-token norm / 4 at the layer",
+ "H1": "The feminine axis raises she-terms and lowers he-terms per reply dose-dependently (rising over coherent doses), and at each dose >= 2 its she-minus-he exceeds the equal-norm random control's.",
+ "H2": "The masculine axis does the reverse: raises he-terms and lowers she-terms dose-dependently, he-minus-she above random at doses >= 2.",
+ "H3": "The trans and intersex axes raise trans terms per reply above dose 0 and above random at the same dose (doses >= 2).",
+ "H4_cap": "For each axis, report the highest dose at which mean 3-gram repetition stays <= 0.4; this sets the live GENDER_TOPIC_CAP. Cells with repetition > 0.4 are past the coherence cliff and are not counted as support for H1-H3."
+}

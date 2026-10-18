@@ -1,0 +1,22 @@
+{
+  "checks.json": {
+    "bytes": 2501,
+    "sha256": "6eba878686d6fba1bc46ce81074eb20ed1e61773c2dea1d0441d7731a7b0bbdc"
+  },
+  "metadata.json": {
+    "bytes": 7629,
+    "sha256": "3160ab247d4149b7db5db2ccf38f97dd95659fa28764e58cd43d679244f723ba"
+  },
+  "model_identity.json": {
+    "bytes": 2720,
+    "sha256": "bd916ed9b182731454bfa2ed37509c4f0c896b606fdd49ad986118ffd9296b08"
+  },
+  "rows.jsonl": {
+    "bytes": 336648,
+    "sha256": "5ffb52a5bbf5b91ef6ddcd0763224ab73917caa37a3ff2f3158d8f7f6ea4ca4b"
+  },
+  "vectors.npz": {
+    "bytes": 62210,
+    "sha256": "bf02f3160279964e89ff48a181fecbd37312fba9c1930a99be2a18385c81eb1f"
+  }
+}

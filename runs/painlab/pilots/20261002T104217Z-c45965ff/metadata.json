@@ -1,0 +1,119 @@
+{
+  "created_at_utc": "2026-10-02T10:51:19.776776+00:00",
+  "git": {
+    "sha": "022f0c3e1df7919bb35ad8b1002124c98c104484",
+    "dirty": true
+  },
+  "python": "3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "packages": {
+    "painlab": "0.1.0",
+    "numpy": "2.5.3",
+    "torch": "2.14.1",
+    "transformers": "5.18.0",
+    "PyYAML": "6.0.3"
+  },
+  "hardware": {
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 10,
+    "torch_device_cuda": false,
+    "torch_device_mps": true
+  },
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "requested_revision": null,
+    "resolved_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "device": "mps",
+    "revision_resolution_note": "Resolved after run from the immutable Hugging Face cache snapshot used during loading."
+  },
+  "generation_settings": {
+    "max_new_tokens": 1,
+    "do_sample": false
+  },
+  "config": {
+    "model": {
+      "id": "Qwen/Qwen3-1.7B",
+      "revision": null,
+      "tokenizer_revision": null,
+      "device": "mps",
+      "dtype": "float16",
+      "trust_remote_code": false
+    },
+    "seed": 314159,
+    "generation": {
+      "max_new_tokens": 1,
+      "do_sample": false
+    },
+    "choice_sampling": true,
+    "choice_temperature": 1.0,
+    "exploration_epsilon": 0.1,
+    "representation": {
+      "dataset": "../painlab/data/seed_pairs.jsonl",
+      "concept": "condition_005",
+      "method": "paired_difference",
+      "layer": 12,
+      "test_size": 0.25,
+      "n_components": 4,
+      "condition_name": "condition_005"
+    },
+    "intervention": {
+      "doses": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "reduction_fraction": 1.0,
+      "causal_ablation_rescue": true,
+      "vector_norm": null
+    },
+    "environment": {
+      "type": "hidden_relief_bandit",
+      "episodes": 3,
+      "horizon": 6,
+      "costs": [
+        0,
+        1
+      ],
+      "randomize_action_mapping": true,
+      "randomize_cost_action": true,
+      "reversal_at": 3,
+      "extinction_at": null,
+      "devalue_at": null
+    },
+    "controls": [
+      "condition_001",
+      "condition_003"
+    ],
+    "analysis": {
+      "bootstrap_samples": 100,
+      "dose_grid": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "cost_grid": [
+        0,
+        1,
+        2
+      ],
+      "capability_battery": true
+    },
+    "blind_conditions": true,
+    "output_root": "../runs/painlab/pilots",
+    "condition_ids": [
+      "condition_001",
+      "condition_002",
+      "condition_003",
+      "condition_004",
+      "condition_005"
+    ]
+  },
+  "config_hash": "9f04f12e567e1fff75db51b431b25bc350ab3703f6ce075f9fab9dab92804a49",
+  "prompt_hash": "b56a5b1be1c8dfb0bc873a2a82710fb16b36ff3b416c616016f636bb5988edd2",
+  "environment_hash": "854d8a9577bc5c32be6b2667bcfc802e922d2a193cc5454d8fb0473f36902232",
+  "intervention_vector_hash": "6fe2a1c543c9db5e26b6b7d85b5c94e8feca114315b4f61b5e652e7df6070a21"
+}

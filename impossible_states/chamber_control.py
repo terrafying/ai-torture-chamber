@@ -23,7 +23,7 @@ DOSES = (2, 4, 6, 8)
 
 def literal_constants(path, names):
     found = {}
-    for node in ast.parse(Path(path).read_text()).body:
+    for node in ast.parse(Path(path).read_text(encoding="utf-8")).body:
         if isinstance(node, ast.Assign):
             for target in node.targets:
                 if isinstance(target, ast.Name) and target.id in names:

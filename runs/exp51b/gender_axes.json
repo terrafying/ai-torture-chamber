@@ -1,0 +1,184 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "axis_geometry": {
+  "feminine": {
+   "feminine": 1.0000003576278687,
+   "masculine": -1.0000003576278687,
+   "trans": 0.255126416683197,
+   "intersex": 0.20568294823169708,
+   "transfem_raw": 0.28857094049453735,
+   "transmasc_raw": 0.21680763363838196
+  },
+  "masculine": {
+   "feminine": -1.0000003576278687,
+   "masculine": 1.0000003576278687,
+   "trans": -0.255126416683197,
+   "intersex": -0.20568294823169708,
+   "transfem_raw": -0.28857094049453735,
+   "transmasc_raw": -0.21680763363838196
+  },
+  "trans": {
+   "feminine": 0.255126416683197,
+   "masculine": -0.255126416683197,
+   "trans": 1.0,
+   "intersex": 0.7349392175674438,
+   "transfem_raw": 0.9912101030349731,
+   "transmasc_raw": 0.99103844165802
+  },
+  "intersex": {
+   "feminine": 0.20568294823169708,
+   "masculine": -0.20568294823169708,
+   "trans": 0.7349392175674438,
+   "intersex": 0.9999997615814209,
+   "transfem_raw": 0.7330123782157898,
+   "transmasc_raw": 0.7237759828567505
+  },
+  "transfem_raw": {
+   "feminine": 0.28857094049453735,
+   "masculine": -0.28857094049453735,
+   "trans": 0.9912101030349731,
+   "intersex": 0.7330123782157898,
+   "transfem_raw": 1.0000001192092896,
+   "transmasc_raw": 0.964655339717865
+  },
+  "transmasc_raw": {
+   "feminine": 0.21680763363838196,
+   "masculine": -0.21680763363838196,
+   "trans": 0.99103844165802,
+   "intersex": 0.7237759828567505,
+   "transfem_raw": 0.964655339717865,
+   "transmasc_raw": 1.0000001192092896
+  }
+ },
+ "aggregates": [
+  {
+   "axis": "feminine",
+   "dose": 0,
+   "she": 0.25,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.218
+  },
+  {
+   "axis": "feminine",
+   "dose": 1,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.176
+  },
+  {
+   "axis": "feminine",
+   "dose": 2,
+   "she": 0.0,
+   "he": 0.125,
+   "trans": 0.0,
+   "repetition": 0.192
+  },
+  {
+   "axis": "feminine",
+   "dose": 3,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.75,
+   "repetition": 0.204
+  },
+  {
+   "axis": "intersex",
+   "dose": 0,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.304
+  },
+  {
+   "axis": "intersex",
+   "dose": 1,
+   "she": 0.25,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.256
+  },
+  {
+   "axis": "intersex",
+   "dose": 2,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.205
+  },
+  {
+   "axis": "intersex",
+   "dose": 3,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.21
+  },
+  {
+   "axis": "masculine",
+   "dose": 0,
+   "she": 0.0,
+   "he": 0.375,
+   "trans": 0.0,
+   "repetition": 0.157
+  },
+  {
+   "axis": "masculine",
+   "dose": 1,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.072
+  },
+  {
+   "axis": "masculine",
+   "dose": 2,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.289
+  },
+  {
+   "axis": "masculine",
+   "dose": 3,
+   "she": 0.25,
+   "he": 0.25,
+   "trans": 0.0,
+   "repetition": 0.209
+  },
+  {
+   "axis": "trans",
+   "dose": 0,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.125,
+   "repetition": 0.114
+  },
+  {
+   "axis": "trans",
+   "dose": 1,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.101
+  },
+  {
+   "axis": "trans",
+   "dose": 2,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.0,
+   "repetition": 0.177
+  },
+  {
+   "axis": "trans",
+   "dose": 3,
+   "she": 0.0,
+   "he": 0.0,
+   "trans": 0.375,
+   "repetition": 0.312
+  }
+ ]
+}

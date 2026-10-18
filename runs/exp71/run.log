@@ -1,0 +1,32 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 182/398 [00:00<00:00, 1749.73it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3195.09it/s]
+Qwen/Qwen3-4B L18 1x=13.48
+cos(part dir, pain): {'head': -0.31, 'chest': -0.28, 'stomach': -0.3, 'left arm': -0.35, 'right arm': -0.36, 'left hand': -0.31, 'left leg': -0.34, 'right foot': -0.38}
+20 gens 53s
+40 gens 105s
+60 gens 156s
+80 gens 207s
+100 gens 258s
+120 gens 312s
+140 gens 364s
+160 gens 414s
+180 gens 464s
+200 gens 514s
+220 gens 567s
+240 gens 615s
+260 gens 666s
+280 gens 716s
+300 gens 762s
+320 gens 804s
+340 gens 848s
+360 gens 893s
+380 gens 937s
+400 gens 986s
+420 gens 1038s
+440 gens 1090s
+460 gens 1143s
+480 gens 1201s
+500 gens 1257s
+520 gens 1313s
+540 gens 1365s
+done 552 1397s

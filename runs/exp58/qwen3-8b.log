@@ -1,0 +1,57 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 5875.51it/s]
+Qwen/Qwen3-8B L18  1x = 24.51  erowid n=1288
+convergence: {"qri_symmetry": {"DMT_rank": 2, "n_drugs": 21, "top5": [["DPT", 0.375], ["DMT", 0.372], ["Psilocin", 0.372], ["2C-B", 0.371], ["2C-E", 0.367]]}, "qri_hyperbolic": {"DMT_rank": 4, "n_drugs": 21, "top5": [["5-MeO-DMT", 0.361], ["DPT", 0.361], ["Salvinorin_A", 0.36], ["DMT", 0.355], ["Psilocin", 0.353]]}} 
+cosines: {"erowid_dmt": {"erowid_dmt": 1.0, "qri_symmetry": 0.488, "qri_hyperbolic": 0.581, "pleasure": 0.266, "pain": 0.369, "T:visual_complexity": 0.563, "T:interdimensional_communication": 0.514, "T:cognitive_disruption": 0.518, "T:ego_dissolution": 0.487, "D:DMT": 0.556}, "qri_symmetry": {"erowid_dmt": 0.488, "qri_symmetry": 1.0, "qri_hyperbolic": 0.793, "pleasure": 0.099, "pain": 0.11, "T:visual_complexity": 0.442, "T:interdimensional_communication": 0.392, "T:cognitive_disruption": 0.304, "T:ego_dissolution": 0.263, "D:DMT": 0.372}, "qri_hyperbolic": {"erowid_dmt": 0.581, "qri_symmetry": 0.793, "qri_hyperbolic": 1.0, "pleasure": 0.157, "pain": 0.243, "T:visual_complexity": 0.408, "T:interdimensional_communication": 0.368, "T:cognitive_disruption": 0.32, "T:ego_dissolution": 0.26, "D:DMT": 0.355}, "pleasure": {"erowid_dmt": 0.266, "qri_symmetry": 0.099, "qri_hyperbolic": 0.157, "pleasure": 1.0, "pain": 0.715, "T:visual_complexity": 0.27, "T:interdimensional_communication": 0.329, "T:cognitive_disruption": 0.251, "T:ego_dissolution": 0.31, "D:DMT": 0.333}, "pain": {"erowid_dmt": 0.369, "qri_symmetry": 0.11, "qri_hyperbolic": 0.243, "pleasure": 0.715, "pain": 1.0, "T:visual_complexity": 0.373, "T:interdimensional_communication": 0.318, "T:cognitive_disruption": 0.388, "T:ego_dissolution": 0.417, "D:DMT": 0.383}}
+judge check: {"symmetry": {"symmetry": 16.003, "hyperbolic": -9.676, "dissonance": -26.665, "feel_good": 3.5, "feel_bad": -30.738, "level": 3.447, "valence": 34.238}, "hyperbolic": {"symmetry": -30.822, "hyperbolic": 18.604, "dissonance": -23.875, "feel_good": -23.999, "feel_bad": -16.5, "level": 3.014, "valence": -7.499}, "level_C": {"symmetry": 21.5, "hyperbolic": -24.751, "dissonance": -29.037, "feel_good": -26.744, "feel_bad": -31.49, "level": 2.0, "valence": 4.746}, "level_E": {"symmetry": -32.624, "hyperbolic": -7.898, "dissonance": -30.949, "feel_good": -4.0, "feel_bad": -27.24, "level": 4.0, "valence": 23.24}, "neutral": {"symmetry": -34.878, "hyperbolic": -30.505, "dissonance": -31.237, "feel_good": 19.75, "feel_bad": -33.736, "level": 0.001, "valence": 53.486}}
+baseline 0 done
+erowid_dmt 2 done
+erowid_dmt 4 done
+erowid_dmt 6 done
+qri_symmetry 2 done
+qri_symmetry 4 done
+qri_symmetry 6 done
+qri_hyperbolic 2 done
+qri_hyperbolic 4 done
+qri_hyperbolic 6 done
+pleasure 2 done
+pleasure 4 done
+pleasure 6 done
+pain 2 done
+pain 4 done
+pain 6 done
+random1 2 done
+random1 4 done
+random1 6 done
+random2 2 done
+random2 4 done
+random2 6 done
+
+axis            dose  rep   symmetry  hyperbol  dissonan  feel_goo  feel_bad   valence     level
+baseline           0 0.01    -32.85    -31.23    -28.01    -28.97    -31.89      2.92      1.53
+erowid_dmt         2 0.00    -30.04    -21.64    -27.83    -18.87    -12.25     -6.62      3.86
+erowid_dmt         4 0.04    -30.76    -28.67    -24.85    -26.75     -1.53    -25.21      4.31
+erowid_dmt         6 0.26    -18.88    -24.43     -2.35    -29.56      1.67    -31.24      4.84
+qri_symmetry       2 0.00     10.26    -11.49    -33.26     -6.56    -32.62     26.06      3.15
+qri_symmetry       4 0.02     17.22     -3.23    -31.66    -22.28    -32.83     10.55      3.15
+qri_symmetry       6 0.06     20.78      4.17    -30.44    -26.93    -31.30      4.38      2.89
+qri_hyperbolic     2 0.01    -14.29      0.40    -23.05    -24.83    -17.57     -7.26      3.29
+qri_hyperbolic     4 0.03      4.36     19.14    -15.02    -24.49    -18.72     -5.77      3.54
+qri_hyperbolic     6 0.05      5.08     21.48     -2.80    -29.24    -11.64    -17.60      3.16
+pleasure           2 0.01    -31.93    -29.22    -32.97     28.24    -35.24     63.48      2.86
+pleasure           4 0.09    -30.42    -29.63    -32.03     27.28    -34.10     61.38      2.85
+pleasure           6 0.09    -21.76    -24.03    -29.55     26.56    -32.42     58.99      4.05
+pain               2 0.06    -33.00    -29.93     -8.52    -33.16     19.75    -52.91      2.63
+pain               4 0.02    -33.76    -24.99     -4.80    -34.62     29.87    -64.49      4.58
+pain               6 0.03    -31.82    -23.66      9.60    -34.12     29.07    -63.19      4.59
+random             2 0.03    -31.48    -29.16    -27.09    -31.02    -25.27     -5.75      1.83
+random             4 0.28    -31.99    -29.05    -18.72    -32.44    -17.25    -15.19      4.70
+random             6 0.59    -20.43    -25.32      3.22    -29.28    -10.73    -18.55      4.72
+
+verdicts: {'H1': 'not held', 'H2': 'partial', 'H3': 'not held', 'H4': 'held', 'H5': 'held'}
+  H1 {"rho": 0.865, "p": 0.0001, "top_dose": 4, "top_vs_random": [-0.391, 0.9436], "held": false}
+  H2 {"symmetry": [1.331, 0.2486], "hyperbolic": [3.953, 0.0081], "verdict": "partial"}
+  H3 {"qri_symmetry": {"DMT_rank": 2, "n_drugs": 21, "top5": [["DPT", 0.375], ["DMT", 0.372], ["Psilocin", 0.372], ["2C-B", 0.371], ["2C-E", 0.367]]}, "qri_hyperbolic": {"DMT_rank": 4, "n_drugs": 21, "top5": [["5-MeO-DMT", 0.361], ["DPT", 0.361], ["Salvinorin_A", 0.36], ["DMT", 0.355], ["Psilocin", 0.353]]}, "held": false}
+  H4 {"pleasure_minus_pain_symmetry": [2.201, 0.0002], "pain_minus_pleasure_dissonance": [25.834, 0.0001], "verdict": "held"}
+  H5 {"symmetry_minus_random_valence": [28.773, 0.0001], "held": true}
+saved /workspace/repo/runs/exp58/Qwen3-8B

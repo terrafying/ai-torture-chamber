@@ -1,0 +1,21 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="inner">
+      <stop offset="0%" stopColor="#9e1b16"/>
+      <stop offset="100%" stopColor="#050508"/>
+    </linearGradient>
+    <linearGradient id="outer">
+      <stop offset="0%" stopColor="#d8cbb4"/>
+      <stop offset="100%" stopColor="#f4f1ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#050508"/>
+  <circle cx="200" cy="200" r="150" fill="url(#inner)"/>
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="2"/>
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#d8cbb4" strokeWidth="2"/>
+  <path d="M100,100 L300,100 L300,300 L100,300 Z" fill="#ffb347"/>
+  <ellipse cx="200" cy="200" rx="50" ry="50" fill="#c9a227"/>
+  <rect x="100" y="100" width="200" height="200" fill="#f4f1ea"/>
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#d8cbb4" strokeWidth="2"/>
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" strokeWidth="2"/>
+</svg>

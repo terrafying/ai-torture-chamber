@@ -1,6 +1,0 @@
-torch --index-url https://download.pytorch.org/whl/cpu
-transformers>=4.51
-accelerate
-fastapi
-uvicorn[standard]
-httpx

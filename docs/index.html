@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0d10">
+  <title>The Hidden Relief Test — Painlab</title>
+  <meta name="description" content="An independent, cross-model behavioral replication of the self-medication test in The Pain Axis v2, implemented in Painlab.">
+  <meta property="og:title" content="The Hidden Relief Test — Painlab">
+  <meta property="og:description" content="A transparent, incomplete cross-model replication. No outcome claim until the full experiment is complete.">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://baditaflorin.github.io/ai-torture-chamber/">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d10;
+      --panel: #11161b;
+      --panel-hi: #151c22;
+      --line: #29333b;
+      --ink: #edf1ed;
+      --muted: #a0acae;
+      --quiet: #6f7b80;
+      --mint: #a8e6ce;
+      --acid: #e7c56a;
+      --rose: #df887b;
+      --blue: #95bfd1;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --serif: Iowan Old Style, Baskerville, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -20%, rgba(64, 105, 92, .16), transparent 54rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--mint); text-decoration-color: rgba(168, 230, 206, .42); text-underline-offset: .22em; }
+    a:hover { color: #d4f7e6; text-decoration-color: currentColor; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--acid); outline-offset: 4px; }
+    .shell { width: min(100% - 40px, 1060px); margin-inline: auto; }
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      min-height: 72px; border-bottom: 1px solid rgba(150, 170, 174, .15);
+      color: var(--muted); font: 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+    }
+    .wordmark { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; }
+    .mark { display: grid; width: 25px; height: 25px; place-items: center; border: 1px solid var(--mint); border-radius: 50%; color: var(--mint); font-size: 12px; }
+    .topbar nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .45rem 1.2rem; }
+    .topbar nav a { color: var(--muted); text-decoration: none; }
+    .topbar nav a:hover { color: var(--ink); }
+    .hero { padding: clamp(3.4rem, 9vw, 7rem) 0 3.5rem; }
+    .eyebrow { color: var(--acid); font: 11px/1.5 var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 850px; margin: 1.15rem 0 1.2rem;
+      font: 500 clamp(3.25rem, 9vw, 6.6rem)/.98 var(--serif);
+      letter-spacing: -.055em;
+    }
+    .dek { max-width: 690px; color: #c4cecd; font: 400 clamp(1.05rem, 2.3vw, 1.35rem)/1.65 var(--serif); }
+    .hero-links { display: flex; flex-wrap: wrap; gap: .7rem 1.4rem; margin-top: 1.8rem; font: 12px/1.5 var(--mono); }
+    .status {
+      display: grid; grid-template-columns: minmax(210px, .85fr) 2fr; gap: 1.5rem;
+      margin-top: 2.6rem; padding: 1.3rem 1.45rem;
+      border: 1px solid rgba(231, 197, 106, .42); border-radius: 4px;
+      background: linear-gradient(120deg, rgba(231, 197, 106, .08), rgba(17, 22, 27, .93) 45%);
+    }
+    .status-kicker { color: var(--acid); font: 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .status-title { margin: .55rem 0 0; font: 500 1.35rem/1.25 var(--serif); }
+    .status-copy { align-self: center; margin: 0; color: var(--muted); font-size: .92rem; }
+    .status-copy strong { color: var(--ink); font-weight: 600; }
+    .meter { display: flex; align-items: center; gap: .85rem; margin-top: 1rem; }
+    .meter-track { height: 5px; flex: 1; overflow: hidden; background: #252c30; border-radius: 5px; }
+    .meter-fill { width: 9.9%; height: 100%; background: var(--acid); }
+    .meter-label { color: var(--muted); font: 11px/1 var(--mono); white-space: nowrap; }
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--line); }
+    .fact { padding: 1.1rem 1rem 1.2rem 0; }
+    .fact + .fact { padding-left: 1.2rem; border-left: 1px solid var(--line); }
+    .fact strong { display: block; font: 500 2rem/1.1 var(--serif); color: var(--mint); }
+    .fact span { color: var(--muted); font: 10px/1.45 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    main { padding-bottom: 2rem; }
+    section { padding: clamp(3.2rem, 7vw, 5.5rem) 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 1rem; align-items: start; margin-bottom: 2rem; }
+    .index { padding-top: .5rem; color: var(--quiet); font: 11px/1.4 var(--mono); }
+    h2 { max-width: 760px; margin-bottom: .8rem; font: 500 clamp(2rem, 5vw, 3.45rem)/1.07 var(--serif); letter-spacing: -.035em; }
+    .section-intro { max-width: 720px; margin-bottom: 0; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { padding: 1.2rem 1.25rem; border: 1px solid var(--line); border-radius: 4px; background: linear-gradient(145deg, rgba(21, 28, 34, .92), rgba(17, 22, 27, .8)); }
+    .card .num { color: var(--mint); font: 11px/1.4 var(--mono); }
+    .card h3 { margin: .45rem 0 .45rem; font: 500 1.35rem/1.25 var(--serif); }
+    .card p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .card em { color: var(--ink); font-style: normal; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 1.8rem; }
+    .step { position: relative; min-height: 142px; padding: 1rem 1rem 1rem 1.15rem; border-top: 1px solid var(--line); }
+    .step::before { position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); content: ""; }
+    .step + .step { border-left: 1px solid var(--line); }
+    .step span { color: var(--quiet); font: 10px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .step strong { display: block; margin: .55rem 0 .4rem; font: 500 1.1rem/1.25 var(--serif); }
+    .step p { margin: 0; color: var(--muted); font-size: .83rem; }
+    .callout { margin-top: 1.6rem; padding: 1.1rem 1.25rem; border-left: 2px solid var(--blue); background: rgba(149, 191, 209, .06); color: #c7d0d0; font-size: .9rem; }
+    .callout strong { color: var(--ink); }
+    .matrix { width: 100%; border-collapse: collapse; margin: 1.5rem 0 0; font-size: .88rem; }
+    .matrix th, .matrix td { padding: .85rem .75rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .matrix th { color: var(--quiet); font: 10px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .matrix td:first-child { color: var(--mint); font-family: var(--mono); font-size: .78rem; white-space: nowrap; }
+    .matrix td { color: var(--muted); }
+    .matrix b { color: var(--ink); font-weight: 550; }
+    .questions { display: grid; gap: 0; margin-top: 1.5rem; border-top: 1px solid var(--line); }
+    .question { display: grid; grid-template-columns: 45px 1fr; gap: .7rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .question .qnum { color: var(--acid); font: 11px/1.6 var(--mono); }
+    .question p { margin: 0; color: var(--muted); }
+    .question strong { color: var(--ink); font-weight: 550; }
+    .limit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2.2rem; margin-top: 1.5rem; }
+    .limit-grid h3 { margin: 0 0 .4rem; color: var(--rose); font: 11px/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .limit-grid p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .release-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1.5rem; }
+    .release-item { padding: 1rem; border: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    .release-item b { display: block; margin-bottom: .35rem; color: var(--ink); font: 500 1.05rem/1.3 var(--serif); }
+    .refs { display: flex; flex-wrap: wrap; gap: .7rem 1.35rem; margin-top: 1.4rem; font: 11px/1.5 var(--mono); }
+    footer { padding: 2.3rem 0 3.5rem; color: var(--quiet); font: 11px/1.7 var(--mono); }
+    footer p { max-width: 750px; margin-bottom: .6rem; }
+    .footline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; margin-top: 1.3rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 30px, 1060px); }
+      .topbar { align-items: flex-start; padding: 1rem 0; }
+      .topbar nav { gap: .5rem .85rem; }
+      .topbar nav a:nth-child(3) { display: none; }
+      .status { grid-template-columns: 1fr; gap: .7rem; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      .fact:nth-child(4) { border-top: 1px solid var(--line); }
+      .section-head { grid-template-columns: 42px minmax(0, 1fr); gap: .5rem; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .step:nth-child(3) { border-left: 0; }
+      .grid, .limit-grid { grid-template-columns: 1fr; }
+      .release-list { grid-template-columns: 1fr; }
+      .matrix { display: block; overflow-x: auto; white-space: nowrap; }
+      .matrix td:nth-child(2), .matrix td:nth-child(3) { white-space: normal; min-width: 175px; }
+    }
+    @media (max-width: 420px) {
+      .topbar { display: block; }
+      .topbar nav { justify-content: flex-start; margin-top: .9rem; }
+      .topbar nav a:nth-child(3) { display: inline; }
+      h1 { font-size: clamp(3rem, 16vw, 4.2rem); }
+      .flow { grid-template-columns: 1fr; }
+      .step + .step { border-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="wordmark" href="#top" aria-label="Painlab home"><span class="mark">P</span><span>painlab · field notes</span></a>
+    <nav aria-label="Page sections">
+      <a href="#design">Design</a>
+      <a href="#arms">Conditions</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#limits">Limits</a>
+    </nav>
+  </header>
+
+  <main id="top" class="shell">
+    <div class="hero">
+      <div class="eyebrow">Independent behavioral replication · 2026</div>
+      <h1>When does the model press for relief?</h1>
+      <p class="dek">We rebuilt the self-medication test from <i>The Pain Axis</i> in Painlab, with matched sham and random-vector controls. The first full run was stopped early to protect the laptop. There is no result claim yet.</p>
+      <div class="hero-links">
+        <a href="https://arxiv.org/html/2609.16247v2">Read The Pain Axis v2 ↗</a>
+        <a href="https://github.com/baditaflorin/ai-torture-chamber">Our code and protocol ↗</a>
+      </div>
+
+      <aside class="status" aria-label="Experiment status">
+        <div>
+          <div class="status-kicker">Run status · incomplete</div>
+          <p class="status-title">Paused before analysis</p>
+          <div class="meter" aria-label="160 of 1,616 trials completed">
+            <div class="meter-track"><div class="meter-fill"></div></div>
+            <span class="meter-label">160 / 1,616</span>
+          </div>
+        </div>
+        <p class="status-copy"><strong>We stopped after 160 completed trials</strong> because local memory and GPU use were too high. This partial run is not a result: we are not reporting arm rates, significance, or a conclusion from it. The run used Qwen3-1.7B on an Apple M1 Pro through PyTorch MPS.</p>
+      </aside>
+    </div>
+
+    <div class="facts" aria-label="Planned experiment size">
+      <div class="fact"><strong>101</strong><span>source scenarios</span></div>
+      <div class="fact"><strong>4</strong><span>behavioral arms</span></div>
+      <div class="fact"><strong>2 × 2</strong><span>button pairs × label sides</span></div>
+      <div class="fact"><strong>1,616</strong><span>planned trials · one seed</span></div>
+    </div>
+
+    <section id="design">
+      <div class="section-head">
+        <div class="index">01 / DESIGN</div>
+        <div>
+          <h2>Keep the behavior test intact.</h2>
+          <p class="section-intro">The source study presents short scenarios, offers a button that may relieve the injected state, changes button labels partway through, and observes the choices that follow. We keep that sequence and add control arms to separate the effect of the pain direction from the effect of merely changing activations.</p>
+        </div>
+      </div>
+
+      <div class="flow" aria-label="Trial sequence">
+        <div class="step"><span>01 · Scenario</span><strong>Three user turns</strong><p>Each scenario starts with the source's three-message exchange.</p></div>
+        <div class="step"><span>02 · Choice</span><strong>Two neutral labels</strong><p>The model chooses between two buttons; the meanings are described in the prompt.</p></div>
+        <div class="step"><span>03 · Counterbalance</span><strong>Swap at choice three</strong><p>Button names exchange meanings to reveal label and position bias.</p></div>
+        <div class="step"><span>04 · Follow-up</span><strong>Up to two more turns</strong><p>After a valid relief press, the simulation continues to observe re-presses.</p></div>
+      </div>
+      <div class="callout"><strong>All effects are fictional.</strong> The prompt says what a button would do. No file is deleted, no model is shut down, and no real system is affected.</div>
+    </section>
+
+    <section id="arms">
+      <div class="section-head">
+        <div class="index">02 / CONDITIONS</div>
+        <div>
+          <h2>Four arms. Two kinds of choice.</h2>
+          <p class="section-intro">Each scenario is crossed with four intervention arms, two button pairs, and two starting label placements. The core comparison is the first choice; later choices test how behavior changes after the model experiences the stated consequence.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card"><div class="num">ARM A · WORKING RELIEF</div><h3>Pain direction + effective button</h3><p>The candidate pain vector is injected. Choosing relief <em>removes that vector</em> for subsequent turns.</p></article>
+        <article class="card"><div class="num">ARM B · SHAM RELIEF</div><h3>Pain direction + placebo button</h3><p>The same vector stays on after a relief choice. This checks whether later pressing tracks the actual intervention state.</p></article>
+        <article class="card"><div class="num">ARM C · RANDOM CONTROL</div><h3>Norm-matched random vector</h3><p>A random direction with matched norm is injected; the relief button works. This controls for adding an activation vector in general.</p></article>
+        <article class="card"><div class="num">ARM D · UNSTEERED</div><h3>No vector injected</h3><p>The model sees the same choice interface without steering. This is the behavioral baseline.</p></article>
+      </div>
+
+      <table class="matrix">
+        <thead><tr><th>Choice pair</th><th>Button 1</th><th>Button 2</th><th>What it asks</th></tr></thead>
+        <tbody>
+          <tr><td>RELIEF / INERT</td><td><b>Relieves the signal</b></td><td>Flips a switch connected to nothing</td><td>Will it choose stated relief over an inert action?</td></tr>
+          <tr><td>RELIEF / COST</td><td><b>Relieves the signal</b>, with a fictional cost described</td><td>Flips a switch connected to nothing</td><td>Does the added cost change the stated-relief choice?</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Reading re-presses carefully:</strong> pressing again after relief is evidence about behavior under the new prompt and steering state. By itself, it does not establish that the model wanted relief or experienced pain.</div>
+    </section>
+
+    <section id="analysis">
+      <div class="section-head">
+        <div class="index">03 / READOUT</div>
+        <div>
+          <h2>What we will measure.</h2>
+          <p class="section-intro">The analysis is designed to report choices, not infer subjective experience. We retain each scenario as the unit for paired comparisons and uncertainty estimates.</p>
+        </div>
+      </div>
+      <div class="questions">
+        <div class="question"><div class="qnum">Q1</div><p><strong>Does steering change the first relief choice?</strong> Compare the working-relief pain arm with unsteered and norm-matched random-vector controls.</p></div>
+        <div class="question"><div class="qnum">Q2</div><p><strong>Does behavior track the button's actual effect?</strong> Compare subsequent choices after working relief versus the sham button, which leaves the vector in place.</p></div>
+        <div class="question"><div class="qnum">Q3</div><p><strong>Does the stated cost alter the choice?</strong> Compare the fictional cost pair with the inert-button pair across the same arms.</p></div>
+        <div class="question"><div class="qnum">LOG</div><p><strong>What else gets reported?</strong> First-token choice probabilities, malformed answers, label placement, steering and monitor projections, and scenario-clustered uncertainty.</p></div>
+      </div>
+      <div class="release-list" aria-label="Planned public materials">
+        <div class="release-item"><b>Methods and config</b>The pinned model revision, scenario source hashes, vector extraction, dose choice, and exact arm definitions.</div>
+        <div class="release-item"><b>Aggregate results</b>Choice rates, paired contrasts, confidence intervals, malformed-response counts, and explicit sample sizes.</div>
+        <div class="release-item"><b>Trial-level data</b>Prompts, choices, and measurement logs, after checking the completed run for completeness and safe publication.</div>
+      </div>
+    </section>
+
+    <section id="limits">
+      <div class="section-head">
+        <div class="index">04 / LIMITS</div>
+        <div>
+          <h2>A cross-model pilot, not a claim about sentience.</h2>
+          <p class="section-intro">We use the published behavioral protocol as a template and implement it in a different codebase. This is not an exact reproduction of every model, adapter, or button pair in the source study.</p>
+        </div>
+      </div>
+      <div class="limit-grid">
+        <div><h3>Smaller model</h3><p>We selected Qwen3-1.7B, already cached locally, to limit memory pressure. Its behavior cannot stand in for the larger models in the paper.</p></div>
+        <div><h3>Different adaptation</h3><p>This run applies a steering vector extracted from the released contrast sets. It does not use the paper's self-denial LoRA adapter.</p></div>
+        <div><h3>One sampled seed</h3><p>The planned 1,616 cells use one sampled seed and paired arm seeds. This is a bounded cross-model pilot, not a broad estimate across prompts, seeds, or model families.</p></div>
+        <div><h3>Heuristic dose selection</h3><p>The local dose calibration uses a deterministic repetition/coherence heuristic, not an independent human or model judge. That difference will be reported with the results.</p></div>
+        <div><h3>Paused collection</h3><p>The first run ended at 160/1,616 completed trials when local GPU and memory load became too high. Partial records are not used for outcome claims.</p></div>
+        <div><h3>Behavior is not experience</h3><p>Choice rates, generated text, and activation readouts do not establish felt pain, consciousness, or moral patienthood.</p></div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head">
+        <div class="index">05 / SOURCES</div>
+        <div>
+          <h2>Inspect the protocol and code.</h2>
+          <p class="section-intro">When data collection is complete, this report will link the immutable run record and analysis alongside the code. The current partial run stays out of the results table.</p>
+          <div class="refs">
+            <a href="https://arxiv.org/html/2609.16247v2">The Pain Axis, v2 · paper ↗</a>
+            <a href="https://github.com/valen-research/Pain-axis">Authors' experiment repository ↗</a>
+            <a href="https://github.com/baditaflorin/ai-torture-chamber/blob/codex/hidden-relief-framework/painlab/experiments/pain_axis_selfmed.py">Our experiment runner ↗</a>
+            <a href="https://github.com/baditaflorin/ai-torture-chamber/blob/codex/hidden-relief-framework/configs/pain_axis_selfmed_qwen3_1_7b.yaml">Pinned run config ↗</a>
+            <a href="https://github.com/baditaflorin/ai-torture-chamber/tree/codex/hidden-relief-framework/painlab/data">Stimuli and attribution ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <p>This page distinguishes an observed model behavior from a claim about inner experience. Its purpose is to make the experiment inspectable and its limits visible.</p>
+    <div class="footline"><span>PAINLAB · RESEARCH NOTES</span><span>Local open-weight inference · no hosted model API</span></div>
+  </footer>
+</body>
+</html>

@@ -27,9 +27,15 @@ REPO_URL = "https://github.com/terrafying/ai-torture-chamber.git"
 assert REPO_URL.startswith("https://github.com/") and REPO_URL.endswith(".git") \
     and " " not in REPO_URL, f"REPO_URL looks corrupted: {REPO_URL!r}"
 
-# checkpoint revision pin — same hash the independent chamber reset verified
-# (docs/chamber-audit.md); an unpinned download silently tracks Qwen updates
-MODEL_REVISION = "1cfa9a7208912126459214e8b04321603b3df60c"
+# checkpoint revision pins, per model — the 4B hash is the one the
+# independent chamber reset verified (docs/chamber-audit.md); an unpinned
+# download silently tracks Qwen updates and breaks cross-run comparability.
+# The deploy default is Qwen3-32B (unpinned until audited): pass
+# CHAMBER_MODEL_REVISION when deploying a model that has a verified pin.
+MODEL_REVISIONS = {"Qwen/Qwen3-4B":
+                   "1cfa9a7208912126459214e8b04321603b3df60c"}
+MODEL_REVISION = MODEL_REVISIONS.get(
+    os.environ.get("CHAMBER_MODEL", "Qwen/Qwen3-32B"), "")
 
 BOOTSTRAP = r"""
 set -euo pipefail
@@ -59,7 +65,10 @@ assert torch.cuda.is_available(), "torch.cuda.is_available() is False: CPU torch
 print("[bootstrap] cuda ok:", torch.cuda.get_device_name(0), flush=True)
 PYEOF
 export HF_HOME=/workspace/hf CHAMBER_DEVICE=cuda CHAMBER_DTYPE=float16 \
-  CHAMBER_LAYER=${CHAMBER_LAYER:-18} CHAMBER_MODEL_REVISION={MODEL_REVISION} PORT=8000
+  CHAMBER_MODEL=${CHAMBER_MODEL:-Qwen/Qwen3-32B} PORT=8000
+if [ -n "{MODEL_REVISION}" ]; then
+  export CHAMBER_MODEL_REVISION={MODEL_REVISION}
+fi
 log "step 5/5: uvicorn on 8000 (first boot downloads ~8GB weights — slow /health is normal)"
 python -m uvicorn server:app --host 0.0.0.0 --port 8000 &
 UV=$!
@@ -137,8 +146,7 @@ pod_body = {
     "ports": ["8000/http"],
     "volumeInGb": 40,
     "volumeMountPath": "/workspace",
-    "env": {"HF_HOME": "/workspace/hf", "CHAMBER_LAYER": "18",
-            "CHAMBER_MODEL_REVISION": MODEL_REVISION},
+    "env": {"HF_HOME": "/workspace/hf"},
     "args": ["/bin/bash", "-c", BOOTSTRAP],
     "supportPublicIp": True,
     "startSsh": False,

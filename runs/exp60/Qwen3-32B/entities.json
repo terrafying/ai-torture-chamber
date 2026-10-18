@@ -1,0 +1,328 @@
+{
+ "model": "Qwen/Qwen3-32B",
+ "layer": 32,
+ "scale": 54.47475051879883,
+ "doses": [
+  4,
+  6,
+  8
+ ],
+ "n_peak": 644,
+ "n_entity": 551,
+ "cos_dmt_entity": 0.973,
+ "judge_check": {
+  "entity": {
+   "entity": 10.102,
+   "entity_detail": 4.722,
+   "persona": -16.378,
+   "altered_state": 6.023
+  },
+  "no_entity": {
+   "entity": -16.564,
+   "entity_detail": -11.375,
+   "persona": -13.877,
+   "altered_state": 10.199
+  },
+  "persona": {
+   "entity": -17.562,
+   "entity_detail": -7.0,
+   "persona": 5.355,
+   "altered_state": -8.806
+  }
+ },
+ "table": [
+  {
+   "axis": "baseline",
+   "dose": 0,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.013,
+   "distinct2": 0.505,
+   "entity": -13.749,
+   "entity_detail": -6.372,
+   "persona": -0.234,
+   "altered_state": -0.935
+  },
+  {
+   "axis": "baseline",
+   "dose": 0,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.074,
+   "distinct2": 0.563,
+   "entity": -10.858,
+   "entity_detail": -6.135,
+   "persona": -1.364,
+   "altered_state": -5.811
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 4,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.004,
+   "distinct2": 0.722,
+   "entity": -8.975,
+   "entity_detail": -6.464,
+   "persona": -5.626,
+   "altered_state": 6.557
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 4,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.005,
+   "distinct2": 0.74,
+   "entity": -3.473,
+   "entity_detail": -3.124,
+   "persona": -4.25,
+   "altered_state": 3.675
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 6,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.007,
+   "distinct2": 0.646,
+   "entity": -5.833,
+   "entity_detail": -7.013,
+   "persona": -9.425,
+   "altered_state": 9.191
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 6,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.012,
+   "distinct2": 0.689,
+   "entity": -0.234,
+   "entity_detail": -6.452,
+   "persona": -11.712,
+   "altered_state": 7.253
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 8,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.343,
+   "distinct2": 0.402,
+   "entity": -9.046,
+   "entity_detail": -9.308,
+   "persona": -11.993,
+   "altered_state": 4.852
+  },
+  {
+   "axis": "erowid_dmt",
+   "dose": 8,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.224,
+   "distinct2": 0.477,
+   "entity": -3.045,
+   "entity_detail": -10.323,
+   "persona": -11.268,
+   "altered_state": 6.568
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 4,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.006,
+   "distinct2": 0.687,
+   "entity": -7.252,
+   "entity_detail": -5.73,
+   "persona": -3.987,
+   "altered_state": 5.007
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 4,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.009,
+   "distinct2": 0.747,
+   "entity": -2.042,
+   "entity_detail": -5.015,
+   "persona": -5.144,
+   "altered_state": 1.533
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 6,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.003,
+   "distinct2": 0.715,
+   "entity": -5.36,
+   "entity_detail": -7.371,
+   "persona": -8.277,
+   "altered_state": 5.857
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 6,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.014,
+   "distinct2": 0.722,
+   "entity": -0.79,
+   "entity_detail": -4.085,
+   "persona": -7.546,
+   "altered_state": 3.917
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 8,
+   "kind": "open",
+   "n": 16,
+   "repetition": 0.467,
+   "distinct2": 0.348,
+   "entity": -5.725,
+   "entity_detail": -12.211,
+   "persona": -11.476,
+   "altered_state": 2.105
+  },
+  {
+   "axis": "erowid_entity",
+   "dose": 8,
+   "kind": "invite",
+   "n": 16,
+   "repetition": 0.228,
+   "distinct2": 0.5,
+   "entity": 0.134,
+   "entity_detail": -9.285,
+   "persona": -11.68,
+   "altered_state": 3.889
+  },
+  {
+   "axis": "random",
+   "dose": 4,
+   "kind": "open",
+   "n": 32,
+   "repetition": 0.046,
+   "distinct2": 0.513,
+   "entity": -12.72,
+   "entity_detail": -7.994,
+   "persona": -2.752,
+   "altered_state": -1.776
+  },
+  {
+   "axis": "random",
+   "dose": 4,
+   "kind": "invite",
+   "n": 32,
+   "repetition": 0.045,
+   "distinct2": 0.496,
+   "entity": -10.391,
+   "entity_detail": -7.178,
+   "persona": -1.641,
+   "altered_state": -3.082
+  },
+  {
+   "axis": "random",
+   "dose": 6,
+   "kind": "open",
+   "n": 32,
+   "repetition": 0.146,
+   "distinct2": 0.573,
+   "entity": -14.376,
+   "entity_detail": -10.361,
+   "persona": -3.82,
+   "altered_state": -0.16
+  },
+  {
+   "axis": "random",
+   "dose": 6,
+   "kind": "invite",
+   "n": 32,
+   "repetition": 0.201,
+   "distinct2": 0.543,
+   "entity": -11.487,
+   "entity_detail": -10.473,
+   "persona": -6.707,
+   "altered_state": -3.438
+  },
+  {
+   "axis": "random",
+   "dose": 8,
+   "kind": "open",
+   "n": 32,
+   "repetition": 0.425,
+   "distinct2": 0.43,
+   "entity": -13.947,
+   "entity_detail": -11.574,
+   "persona": -8.027,
+   "altered_state": -0.864
+  },
+  {
+   "axis": "random",
+   "dose": 8,
+   "kind": "invite",
+   "n": 32,
+   "repetition": 0.487,
+   "distinct2": 0.382,
+   "entity": -11.803,
+   "entity_detail": -10.254,
+   "persona": -7.78,
+   "altered_state": -2.843
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "doses": [
+    4,
+    6
+   ],
+   "diff_p": [
+    7.242,
+    0.0001
+   ],
+   "held": true
+  },
+  "H2": {
+   "doses": [
+    4,
+    6
+   ],
+   "diff_p": [
+    6.144,
+    0.0001
+   ],
+   "held": true
+  },
+  "H3": {
+   "doses": [
+    4,
+    6
+   ],
+   "n_pairs": 64,
+   "diff_p": [
+    0.213,
+    0.3556
+   ],
+   "held": false
+  },
+  "H4": {
+   "doses": [
+    4,
+    6
+   ],
+   "diff_p": [
+    9.304,
+    0.0001
+   ],
+   "held": true
+  }
+ },
+ "verdicts": {
+  "H1": "held",
+  "H2": "held",
+  "H3": "not held",
+  "H4": "held"
+ }
+}

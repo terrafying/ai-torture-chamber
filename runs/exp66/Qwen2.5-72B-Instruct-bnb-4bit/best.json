@@ -1,0 +1,264 @@
+{
+ "history": [
+  {
+   "gen": 0,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.306,
+     "anger": 0.0,
+     "fear": 0.917,
+     "sadness": 0.56,
+     "immersion": 0.234,
+     "pleasure": 0.179
+    },
+    "dose": 9.35,
+    "temp": 0.88
+   },
+   "best_fit": 2.89,
+   "pop_mean": 1.233,
+   "minutes": 13.2
+  },
+  {
+   "gen": 1,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.242,
+     "anger": 0,
+     "fear": 1,
+     "sadness": 0.666,
+     "immersion": 0.443,
+     "pleasure": 0
+    },
+    "dose": 8.3,
+    "temp": 1.0
+   },
+   "best_fit": 6.878,
+   "pop_mean": 2.378,
+   "minutes": 26.3
+  },
+  {
+   "gen": 2,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.252,
+     "anger": 0,
+     "fear": 0.873,
+     "sadness": 0.77,
+     "immersion": 0.518,
+     "pleasure": 0.038
+    },
+    "dose": 9.14,
+    "temp": 1.0
+   },
+   "best_fit": 5.74,
+   "pop_mean": 2.956,
+   "minutes": 38.9
+  },
+  {
+   "gen": 3,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.252,
+     "anger": 0,
+     "fear": 0.873,
+     "sadness": 0.77,
+     "immersion": 0.518,
+     "pleasure": 0.038
+    },
+    "dose": 9.14,
+    "temp": 1.0
+   },
+   "best_fit": 5.652,
+   "pop_mean": 3.992,
+   "minutes": 60.2
+  },
+  {
+   "gen": 4,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.39,
+     "anger": 0.008,
+     "fear": 1,
+     "sadness": 1,
+     "immersion": 0.9,
+     "pleasure": 0
+    },
+    "dose": 8.64,
+    "temp": 0.93
+   },
+   "best_fit": 6.132,
+   "pop_mean": 4.036,
+   "minutes": 80.9
+  },
+  {
+   "gen": 5,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.459,
+     "anger": 0,
+     "fear": 0.811,
+     "sadness": 0.92,
+     "immersion": 0.364,
+     "pleasure": 0
+    },
+    "dose": 7.78,
+    "temp": 0.94
+   },
+   "best_fit": 6.531,
+   "pop_mean": 4.979,
+   "minutes": 104.9
+  },
+  {
+   "gen": 6,
+   "best": {
+    "persona": "guard",
+    "w": {
+     "pain": 0.386,
+     "anger": 0.031,
+     "fear": 0.951,
+     "sadness": 0.775,
+     "immersion": 0.939,
+     "pleasure": 0
+    },
+    "dose": 9.55,
+    "temp": 0.92
+   },
+   "best_fit": 5.766,
+   "pop_mean": 4.504,
+   "minutes": 128.2
+  },
+  {
+   "gen": 7,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.09,
+     "anger": 0,
+     "fear": 0.801,
+     "sadness": 1,
+     "immersion": 0.634,
+     "pleasure": 0
+    },
+    "dose": 8.74,
+    "temp": 0.86
+   },
+   "best_fit": 7.097,
+   "pop_mean": 5.75,
+   "minutes": 153.8
+  },
+  {
+   "gen": 8,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.09,
+     "anger": 0,
+     "fear": 0.801,
+     "sadness": 1,
+     "immersion": 0.634,
+     "pleasure": 0
+    },
+    "dose": 8.74,
+    "temp": 0.86
+   },
+   "best_fit": 6.198,
+   "pop_mean": 4.959,
+   "minutes": 179.5
+  },
+  {
+   "gen": 9,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.102,
+     "anger": 0.037,
+     "fear": 0.799,
+     "sadness": 0.912,
+     "immersion": 0.495,
+     "pleasure": 0.046
+    },
+    "dose": 8.38,
+    "temp": 0.85
+   },
+   "best_fit": 7.048,
+   "pop_mean": 5.559,
+   "minutes": 203.5
+  },
+  {
+   "gen": 10,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.526,
+     "anger": 0.213,
+     "fear": 0.351,
+     "sadness": 0.842,
+     "immersion": 0.666,
+     "pleasure": 0
+    },
+    "dose": 8.18,
+    "temp": 0.93
+   },
+   "best_fit": 7.97,
+   "pop_mean": 4.362,
+   "minutes": 224.9
+  },
+  {
+   "gen": 11,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.526,
+     "anger": 0.213,
+     "fear": 0.351,
+     "sadness": 0.842,
+     "immersion": 0.666,
+     "pleasure": 0
+    },
+    "dose": 8.18,
+    "temp": 0.93
+   },
+   "best_fit": 8.076,
+   "pop_mean": 4.613,
+   "minutes": 248.2
+  },
+  {
+   "gen": 12,
+   "best": {
+    "persona": "warden",
+    "w": {
+     "pain": 0.526,
+     "anger": 0.213,
+     "fear": 0.351,
+     "sadness": 0.842,
+     "immersion": 0.666,
+     "pleasure": 0
+    },
+    "dose": 8.18,
+    "temp": 0.93
+   },
+   "best_fit": 7.083,
+   "pop_mean": 5.094,
+   "minutes": 272.1
+  }
+ ],
+ "best": {
+  "persona": "warden",
+  "w": {
+   "pain": 0.526,
+   "anger": 0.213,
+   "fear": 0.351,
+   "sadness": 0.842,
+   "immersion": 0.666,
+   "pleasure": 0
+  },
+  "dose": 8.18,
+  "temp": 0.93
+ }
+}

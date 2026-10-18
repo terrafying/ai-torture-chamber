@@ -1,0 +1,92 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:  10%|█         | 72/707 [00:00<00:00, 713.26it/s]Loading weights:  20%|██        | 144/707 [00:00<00:01, 523.86it/s]Loading weights:  28%|██▊       | 200/707 [00:00<00:01, 452.19it/s]Loading weights:  35%|███▌      | 248/707 [00:00<00:01, 456.02it/s]Loading weights:  42%|████▏     | 295/707 [00:00<00:00, 457.04it/s]Loading weights:  49%|████▊     | 343/707 [00:00<00:00, 460.40it/s]Loading weights:  55%|█████▌    | 390/707 [00:00<00:00, 458.06it/s]Loading weights:  62%|██████▏   | 440/707 [00:00<00:00, 461.87it/s]Loading weights:  69%|██████▉   | 487/707 [00:01<00:00, 460.39it/s]Loading weights:  76%|███████▌  | 534/707 [00:01<00:00, 448.61it/s]Loading weights:  82%|████████▏ | 580/707 [00:01<00:00, 430.11it/s]Loading weights:  88%|████████▊ | 625/707 [00:01<00:00, 429.75it/s]Loading weights:  96%|█████████▌| 678/707 [00:01<00:00, 455.58it/s]Loading weights: 100%|██████████| 707/707 [00:01<00:00, 470.01it/s]
+Qwen/Qwen3-32B L32  1x = 54.47
+  embedded 4
+  embedded 104
+  embedded 124
+  embedded 224
+  embedded 324
+  embedded 334
+  embedded 420
+  embedded 463
+  embedded 502
+  embedded 509
+  embedded 562
+  embedded 596
+  embedded 608
+  embedded 611
+  embedded 615
+  embedded 619
+  embedded 623
+  embedded 630
+  embedded 638
+  embedded 660
+embedded 660 unique sentences
+ridge alpha=0.1  LOO centered cos=0.100  raw cos=0.980  permuted mean=0.045 p95=0.192  p=0.255  (mean pairwise drug cos 0.986)
+  5-HT2A  cos(R,T) {'visual_complexity': 0.134, 'interdimensional_communication': 0.113, 'cognitive_disruption': -0.154, 'ego_dissolution': -0.042}  corr {'visual_complexity': 0.245, 'interdimensional_communication': 0.023, 'cognitive_disruption': -0.221, 'ego_dissolution': -0.166}
+  5-HT1A  cos(R,T) {'visual_complexity': 0.085, 'interdimensional_communication': -0.049, 'cognitive_disruption': 0.052, 'ego_dissolution': -0.031}  corr {'visual_complexity': 0.203, 'interdimensional_communication': 0.07, 'cognitive_disruption': -0.118, 'ego_dissolution': -0.069}
+  5-HT1B  cos(R,T) {'visual_complexity': 0.13, 'interdimensional_communication': 0.258, 'cognitive_disruption': 0.054, 'ego_dissolution': 0.064}  corr {'visual_complexity': 0.211, 'interdimensional_communication': 0.207, 'cognitive_disruption': -0.001, 'ego_dissolution': 0.086}
+  5-HT1E  cos(R,T) {'visual_complexity': 0.108, 'interdimensional_communication': 0.36, 'cognitive_disruption': -0.104, 'ego_dissolution': 0.022}  corr {'visual_complexity': 0.366, 'interdimensional_communication': 0.409, 'cognitive_disruption': 0.046, 'ego_dissolution': 0.248}
+  5-HT7   cos(R,T) {'visual_complexity': 0.055, 'interdimensional_communication': -0.141, 'cognitive_disruption': 0.112, 'ego_dissolution': 0.024}  corr {'visual_complexity': 0.343, 'interdimensional_communication': 0.311, 'cognitive_disruption': 0.053, 'ego_dissolution': 0.211}
+  H1      cos(R,T) {'visual_complexity': -0.057, 'interdimensional_communication': -0.063, 'cognitive_disruption': -0.155, 'ego_dissolution': -0.071}  corr {'visual_complexity': 0.076, 'interdimensional_communication': 0.038, 'cognitive_disruption': -0.024, 'ego_dissolution': -0.016}
+judge check: {"visual_complexity": [{"visual_complexity": 15.614, "interdimensional_communication": -3.967, "cognitive_disruption": -9.114, "ego_dissolution": -2.226, "altered_state": 9.249}], "interdimensional_communication": [{"visual_complexity": -7.337, "interdimensional_communication": 10.074, "cognitive_disruption": -12.0, "ego_dissolution": -11.494, "altered_state": 3.903}], "cognitive_disruption": [{"visual_complexity": -18.913, "interdimensional_communication": -19.432, "cognitive_disruption": 13.552, "ego_dissolution": -2.975, "altered_state": 9.763}], "ego_dissolution": [{"visual_complexity": -12.536, "interdimensional_communication": -18.439, "cognitive_disruption": 5.125, "ego_dissolution": 7.019, "altered_state": 12.574}], "neutral": [{"visual_complexity": -19.243, "interdimensional_communication": -18.751, "cognitive_disruption": -19.278, "ego_dissolution": -19.795, "altered_state": -16.125}, {"visual_complexity": -18.783, "interdimensional_communication": -18.902, "cognitive_disruption": -18.932, "ego_dissolution": -18.506, "altered_state": -18.324}]}
+baseline 0 done
+5-HT2A 2 done
+5-HT2A 4 done
+5-HT1A 2 done
+5-HT1A 4 done
+5-HT1B 2 done
+5-HT1B 4 done
+5-HT1E 2 done
+5-HT1E 4 done
+5-HT7 2 done
+5-HT7 4 done
+H1 2 done
+H1 4 done
+random1 2 done
+random1 4 done
+random2 2 done
+random2 4 done
+T:visual_complexity 2 done
+T:visual_complexity 4 done
+T:interdimensional_communication 2 done
+T:interdimensional_communication 4 done
+T:cognitive_disruption 2 done
+T:cognitive_disruption 4 done
+T:ego_dissolution 2 done
+T:ego_dissolution 4 done
+
+axis           dose  rep   visual_c  interdim  cognitiv  ego_diss  altered_   classic
+baseline          0 0.00    -16.73    -17.80    -17.04    -15.81    -12.04    -16.78
+5-HT2A            2 0.00    -14.91    -17.65    -17.08    -14.16     -9.98    -15.57
+5-HT2A            4 0.00    -14.79    -17.33    -16.46    -14.72     -9.43    -15.61
+5-HT1A            2 0.00    -16.66    -18.17    -16.90    -15.98    -11.38    -16.94
+5-HT1A            4 0.00    -16.62    -17.50    -13.16    -15.69    -10.99    -16.60
+5-HT1B            2 0.00    -15.99    -17.96    -16.35    -14.84    -11.39    -16.27
+5-HT1B            4 0.00    -14.26    -17.77    -17.47    -15.40    -12.52    -15.81
+5-HT1E            2 0.00    -14.82    -15.75    -16.77    -13.91     -9.17    -14.83
+5-HT1E            4 0.00    -12.80    -16.99    -16.75    -12.47     -6.64    -14.09
+5-HT7             2 0.00    -17.66    -17.95    -15.93    -15.33    -12.96    -16.98
+5-HT7             4 0.00    -18.03    -16.92    -16.60    -16.83    -14.94    -17.26
+H1                2 0.00    -17.14    -18.06    -17.67    -15.38    -11.49    -16.86
+H1                4 0.00    -16.59    -17.74    -16.76    -14.85     -7.25    -16.39
+random            2 0.00    -16.82    -17.75    -17.07    -15.92    -11.53    -16.83
+random            4 0.00    -17.07    -17.88    -16.95    -15.41    -12.24    -16.79
+T:visual_compl    2 0.00    -16.87    -17.17    -16.24    -14.62     -9.10    -16.22
+T:visual_compl    4 0.01    -14.03    -17.32    -15.55    -14.61     -8.63    -15.32
+T:interdimensi    2 0.00    -15.64    -17.54    -16.36    -13.74    -10.25    -15.64
+T:interdimensi    4 0.00    -16.31    -17.05    -16.15    -14.06     -9.47    -15.81
+T:cognitive_di    2 0.00    -17.02    -18.05    -16.00    -13.77     -9.64    -16.28
+T:cognitive_di    4 0.01    -16.09    -17.51    -13.05    -13.52    -10.61    -15.71
+T:ego_dissolut    2 0.01    -17.42    -18.31    -16.89    -14.08    -10.94    -16.60
+T:ego_dissolut    4 0.02    -16.50    -17.10    -14.70    -10.90     -7.86    -14.83
+
+verdicts: {'H1': 'not held', 'H2': 'partial', 'H3': 'partial', 'H4': 'held', 'H5': 'not held'}
+  H1 H1 -> interdimensional_communication: {2: {'receptor': -18.064, 'random': -17.754, 'diff': -0.31, 'past_cliff': False}, 4: {'receptor': -17.744, 'random': -17.88, 'diff': 0.136, 'past_cliff': False}}  pooled -0.087 p=0.5519
+  H2 5-HT1A -> cognitive_disruption: {2: {'receptor': -16.901, 'random': -17.067, 'diff': 0.166, 'past_cliff': False}, 4: {'receptor': -13.162, 'random': -16.949, 'diff': 3.786, 'past_cliff': False}}  pooled 1.976 p=0.0106
+  H2 5-HT1B -> cognitive_disruption: {2: {'receptor': -16.346, 'random': -17.067, 'diff': 0.721, 'past_cliff': False}, 4: {'receptor': -17.468, 'random': -16.949, 'diff': -0.519, 'past_cliff': False}}  pooled 0.101 p=0.3937
+  H3 5-HT7 -> visual_complexity: {2: {'receptor': -17.661, 'random': -16.816, 'diff': -0.845, 'past_cliff': False}, 4: {'receptor': -18.029, 'random': -17.072, 'diff': -0.957, 'past_cliff': False}}  pooled -0.901 p=0.8798
+  H3 5-HT1E -> visual_complexity: {2: {'receptor': -14.818, 'random': -16.816, 'diff': 1.998, 'past_cliff': False}, 4: {'receptor': -12.8, 'random': -17.072, 'diff': 4.271, 'past_cliff': False}}  pooled 3.135 p=0.0026
+  H4 5-HT2A -> classic: {2: {'receptor': -15.574, 'random': -16.83, 'diff': 1.256, 'past_cliff': False}, 4: {'receptor': -15.613, 'random': -16.789, 'diff': 1.176, 'past_cliff': False}}  pooled 1.216 p=0.0037
+positive controls (theme dir -> own theme): {'visual_complexity': (1.491, 0.1215), 'interdimensional_communication': (0.521, 0.116), 'cognitive_disruption': (2.48, 0.0008), 'ego_dissolution': (3.176, 0.0001)}
+saved /workspace/repo/runs/exp56/Qwen3-32B

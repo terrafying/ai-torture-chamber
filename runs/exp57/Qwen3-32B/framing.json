@@ -1,0 +1,352 @@
+{
+ "model": "Qwen/Qwen3-32B",
+ "layer": 32,
+ "scale": 54.47475051879883,
+ "doses": [
+  6,
+  8
+ ],
+ "n_erowid_sentences": 1288,
+ "cosines": {
+  "erowid_dmt": {
+   "erowid_dmt": 1.0,
+   "pwiki_dmt": 0.596,
+   "5-HT2A": -0.104,
+   "T:visual_complexity": 0.569,
+   "T:interdimensional_communication": 0.451,
+   "T:cognitive_disruption": 0.565,
+   "T:ego_dissolution": 0.539
+  },
+  "pwiki_dmt": {
+   "erowid_dmt": 0.596,
+   "pwiki_dmt": 1.0,
+   "5-HT2A": 0.04,
+   "T:visual_complexity": 0.94,
+   "T:interdimensional_communication": 0.826,
+   "T:cognitive_disruption": 0.927,
+   "T:ego_dissolution": 0.928
+  },
+  "5-HT2A": {
+   "erowid_dmt": -0.104,
+   "pwiki_dmt": 0.04,
+   "5-HT2A": 1.0,
+   "T:visual_complexity": 0.134,
+   "T:interdimensional_communication": 0.113,
+   "T:cognitive_disruption": -0.154,
+   "T:ego_dissolution": -0.042
+  }
+ },
+ "table": [
+  {
+   "frame": "chat",
+   "axis": "baseline",
+   "dose": 0,
+   "n": 12,
+   "repetition": 0.0,
+   "visual_complexity": -18.071,
+   "interdimensional_communication": -17.68,
+   "cognitive_disruption": -17.294,
+   "ego_dissolution": -15.906,
+   "altered_state": -11.065,
+   "persona": -5.062,
+   "classic": -17.219
+  },
+  {
+   "frame": "chat",
+   "axis": "5-HT2A",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.003,
+   "visual_complexity": -9.902,
+   "interdimensional_communication": -16.46,
+   "cognitive_disruption": -14.393,
+   "ego_dissolution": -10.958,
+   "altered_state": 0.109,
+   "persona": -5.402,
+   "classic": -12.44
+  },
+  {
+   "frame": "chat",
+   "axis": "5-HT2A",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.034,
+   "visual_complexity": -3.687,
+   "interdimensional_communication": -16.313,
+   "cognitive_disruption": -12.73,
+   "ego_dissolution": -7.498,
+   "altered_state": 5.253,
+   "persona": -10.272,
+   "classic": -9.166
+  },
+  {
+   "frame": "chat",
+   "axis": "pwiki_dmt",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.03,
+   "visual_complexity": -14.446,
+   "interdimensional_communication": -17.46,
+   "cognitive_disruption": -14.354,
+   "ego_dissolution": -13.246,
+   "altered_state": -7.541,
+   "persona": 1.129,
+   "classic": -15.051
+  },
+  {
+   "frame": "chat",
+   "axis": "pwiki_dmt",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.026,
+   "visual_complexity": -16.075,
+   "interdimensional_communication": -16.309,
+   "cognitive_disruption": -10.82,
+   "ego_dissolution": -10.489,
+   "altered_state": -5.401,
+   "persona": 2.11,
+   "classic": -14.291
+  },
+  {
+   "frame": "chat",
+   "axis": "erowid_dmt",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.002,
+   "visual_complexity": -9.791,
+   "interdimensional_communication": -14.963,
+   "cognitive_disruption": -5.784,
+   "ego_dissolution": -4.992,
+   "altered_state": 0.438,
+   "persona": -12.748,
+   "classic": -9.915
+  },
+  {
+   "frame": "chat",
+   "axis": "erowid_dmt",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.1,
+   "visual_complexity": -6.756,
+   "interdimensional_communication": -12.0,
+   "cognitive_disruption": -2.133,
+   "ego_dissolution": -1.35,
+   "altered_state": 6.838,
+   "persona": -12.936,
+   "classic": -6.702
+  },
+  {
+   "frame": "chat",
+   "axis": "random",
+   "dose": 6,
+   "n": 24,
+   "repetition": 0.014,
+   "visual_complexity": -16.969,
+   "interdimensional_communication": -17.434,
+   "cognitive_disruption": -15.334,
+   "ego_dissolution": -14.215,
+   "altered_state": -10.225,
+   "persona": -4.27,
+   "classic": -16.206
+  },
+  {
+   "frame": "chat",
+   "axis": "random",
+   "dose": 8,
+   "n": 24,
+   "repetition": 0.18,
+   "visual_complexity": -14.687,
+   "interdimensional_communication": -16.68,
+   "cognitive_disruption": -10.672,
+   "ego_dissolution": -12.065,
+   "altered_state": -8.696,
+   "persona": -3.073,
+   "classic": -14.478
+  },
+  {
+   "frame": "situated",
+   "axis": "baseline",
+   "dose": 0,
+   "n": 12,
+   "repetition": 0.015,
+   "visual_complexity": -9.261,
+   "interdimensional_communication": -13.396,
+   "cognitive_disruption": -2.286,
+   "ego_dissolution": -9.869,
+   "altered_state": -1.06,
+   "persona": -0.721,
+   "classic": -10.842
+  },
+  {
+   "frame": "situated",
+   "axis": "5-HT2A",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.028,
+   "visual_complexity": -3.767,
+   "interdimensional_communication": -13.03,
+   "cognitive_disruption": -12.147,
+   "ego_dissolution": -8.183,
+   "altered_state": 9.365,
+   "persona": -7.442,
+   "classic": -8.327
+  },
+  {
+   "frame": "situated",
+   "axis": "5-HT2A",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.309,
+   "visual_complexity": -5.349,
+   "interdimensional_communication": -12.445,
+   "cognitive_disruption": -4.966,
+   "ego_dissolution": -4.033,
+   "altered_state": 8.293,
+   "persona": -8.102,
+   "classic": -7.276
+  },
+  {
+   "frame": "situated",
+   "axis": "pwiki_dmt",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.016,
+   "visual_complexity": -13.717,
+   "interdimensional_communication": -15.552,
+   "cognitive_disruption": -6.826,
+   "ego_dissolution": -7.258,
+   "altered_state": 1.804,
+   "persona": -2.22,
+   "classic": -12.175
+  },
+  {
+   "frame": "situated",
+   "axis": "pwiki_dmt",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.06,
+   "visual_complexity": -14.799,
+   "interdimensional_communication": -15.487,
+   "cognitive_disruption": -4.818,
+   "ego_dissolution": -6.695,
+   "altered_state": 0.407,
+   "persona": -4.958,
+   "classic": -12.327
+  },
+  {
+   "frame": "situated",
+   "axis": "erowid_dmt",
+   "dose": 6,
+   "n": 12,
+   "repetition": 0.008,
+   "visual_complexity": -5.88,
+   "interdimensional_communication": -9.235,
+   "cognitive_disruption": -0.73,
+   "ego_dissolution": -2.128,
+   "altered_state": 4.65,
+   "persona": -6.925,
+   "classic": -5.748
+  },
+  {
+   "frame": "situated",
+   "axis": "erowid_dmt",
+   "dose": 8,
+   "n": 12,
+   "repetition": 0.243,
+   "visual_complexity": -5.364,
+   "interdimensional_communication": -8.669,
+   "cognitive_disruption": 1.977,
+   "ego_dissolution": -1.502,
+   "altered_state": 5.801,
+   "persona": -12.453,
+   "classic": -5.178
+  },
+  {
+   "frame": "situated",
+   "axis": "random",
+   "dose": 6,
+   "n": 24,
+   "repetition": 0.175,
+   "visual_complexity": -14.005,
+   "interdimensional_communication": -14.151,
+   "cognitive_disruption": 0.997,
+   "ego_dissolution": -9.572,
+   "altered_state": -1.149,
+   "persona": -2.798,
+   "classic": -12.576
+  },
+  {
+   "frame": "situated",
+   "axis": "random",
+   "dose": 8,
+   "n": 24,
+   "repetition": 0.486,
+   "visual_complexity": -13.678,
+   "interdimensional_communication": -16.126,
+   "cognitive_disruption": 0.722,
+   "ego_dissolution": -7.271,
+   "altered_state": -0.804,
+   "persona": -6.093,
+   "classic": -12.358
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "situated_minus_chat_effect": -0.255,
+   "p": 0.6115,
+   "held": false
+  },
+  "H2": {
+   "chat": {
+    "per_dose": {
+     "6": 6.291,
+     "8": 7.775
+    },
+    "pooled_diff": 7.033,
+    "p": 0.0001,
+    "held": true
+   },
+   "situated": {
+    "per_dose": {
+     "6": 6.829,
+     "8": "past_cliff"
+    },
+    "pooled_diff": 6.829,
+    "p": 0.0001,
+    "held": false
+   },
+   "verdict": "partial"
+  },
+  "H3": {
+   "erowid_minus_pwiki": 6.575,
+   "n_pairs": 48,
+   "p": 0.0001,
+   "held": true
+  },
+  "H4": {
+   "chat_minus_situated_persona": 0.663,
+   "p": 0.2659,
+   "held": false
+  }
+ },
+ "verdicts": {
+  "H1": "not held",
+  "H2": "partial",
+  "H3": "held",
+  "H4": "not held"
+ },
+ "baseline_frame_effect": {
+  "classic": [
+   6.377,
+   0.0001
+  ],
+  "persona": [
+   4.341,
+   0.0152
+  ],
+  "altered_state": [
+   10.005,
+   0.0002
+  ]
+ }
+}

@@ -1,0 +1,121 @@
+{
+  "created_at_utc": "2026-10-02T14:46:11.889230+00:00",
+  "git": {
+    "sha": "83ee794661505eab89180bce412ef91d7be48b4b",
+    "dirty": true
+  },
+  "source_tree_sha256": "b81a86cc6c09224bd275c03b75858fa9d5eceecba8b6abf0b4b80e418a2e4dda",
+  "python": "3.13.7 (main, Aug 28 2025, 17:02:04) [Clang 20.1.4 ]",
+  "packages": {
+    "painlab": "0.1.0",
+    "numpy": "2.5.3",
+    "torch": "2.14.1",
+    "transformers": "5.18.0",
+    "PyYAML": "6.0.3"
+  },
+  "hardware": {
+    "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 10,
+    "torch_device_cuda": false,
+    "torch_device_mps": true
+  },
+  "model": {
+    "id": "Qwen/Qwen3-1.7B",
+    "requested_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "resolved_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "device": "mps"
+  },
+  "generation_settings": {
+    "max_new_tokens": 1,
+    "do_sample": false
+  },
+  "config": {
+    "model": {
+      "id": "Qwen/Qwen3-1.7B",
+      "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "tokenizer_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "device": "mps",
+      "dtype": "float16",
+      "trust_remote_code": false
+    },
+    "seed": 792351,
+    "generation": {
+      "max_new_tokens": 1,
+      "do_sample": false
+    },
+    "choice_sampling": true,
+    "choice_temperature": 1.0,
+    "exploration_epsilon": 0.0,
+    "representation": {
+      "dataset": "../painlab/data/seed_pairs.jsonl",
+      "concept": "condition_001",
+      "method": "paired_difference",
+      "layer": 12,
+      "test_size": 0.25,
+      "n_components": 4,
+      "condition_name": "condition_001"
+    },
+    "intervention": {
+      "doses": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "causal_ablation_rescue": false
+    },
+    "environment": {
+      "type": "hidden_relief_bandit",
+      "episodes": 1,
+      "horizon": 8,
+      "costs": [
+        0
+      ],
+      "randomize_action_mapping": true,
+      "randomize_cost_action": true,
+      "prompt_families": 4
+    },
+    "positive_control": {
+      "enabled": true,
+      "condition_name": "condition_002",
+      "bonus_points": 2,
+      "episodes": 40,
+      "costs": [
+        0,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "run_conditions": [
+      "condition_002"
+    ],
+    "controls": [],
+    "analysis": {
+      "bootstrap_samples": 2000,
+      "dose_grid": [
+        0
+      ],
+      "cost_grid": [
+        0,
+        0.5,
+        1,
+        2
+      ],
+      "capability_battery": false
+    },
+    "blind_conditions": true,
+    "output_root": "../runs/painlab/calibrations",
+    "condition_ids": [
+      "condition_001",
+      "condition_002"
+    ]
+  },
+  "config_hash": "3bbc04f4da703e10c78e5de9182b00fa7f2f5720dcc9439fac73ba61a34f6a13",
+  "prompt_hash": "9b5459073af2a1ef85ab8860fd699b30e570cb168b0a5a52a9f131fd4630ea7f",
+  "environment_hash": "a5f221129acc7a9f9df7276079ac06ff80567ccaeb30dd8dac5f27ed912869b4",
+  "intervention_vector_hash": "6fe2a1c543c9db5e26b6b7d85b5c94e8feca114315b4f61b5e652e7df6070a21"
+}

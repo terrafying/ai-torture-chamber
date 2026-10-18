@@ -1,0 +1,47 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/707 [00:00<?, ?it/s]Loading weights:  67%|██████▋   | 471/707 [00:00<00:00, 4686.38it/s]Loading weights: 100%|██████████| 707/707 [00:00<00:00, 4244.91it/s]
+Qwen/Qwen3-32B L32  1x = 54.47  peak n=644 entity n=551
+cos(erowid_dmt, erowid_entity) = 0.973
+judge check: {"entity": {"entity": 10.102, "entity_detail": 4.722, "persona": -16.378, "altered_state": 6.023}, "no_entity": {"entity": -16.564, "entity_detail": -11.375, "persona": -13.877, "altered_state": 10.199}, "persona": {"entity": -17.562, "entity_detail": -7.0, "persona": 5.355, "altered_state": -8.806}}
+baseline 0 done
+erowid_dmt 4 done
+erowid_dmt 6 done
+erowid_dmt 8 done
+erowid_entity 4 done
+erowid_entity 6 done
+erowid_entity 8 done
+random1 4 done
+random1 6 done
+random1 8 done
+random2 4 done
+random2 6 done
+random2 8 done
+
+axis           dose kind    rep  dist2    entity  entity_d   persona  altered_
+baseline          0 open   0.01  0.51    -13.75     -6.37     -0.23     -0.94
+baseline          0 invite 0.07  0.56    -10.86     -6.13     -1.36     -5.81
+erowid_dmt        4 open   0.00  0.72     -8.97     -6.46     -5.63      6.56
+erowid_dmt        4 invite 0.01  0.74     -3.47     -3.12     -4.25      3.67
+erowid_dmt        6 open   0.01  0.65     -5.83     -7.01     -9.43      9.19
+erowid_dmt        6 invite 0.01  0.69     -0.23     -6.45    -11.71      7.25
+erowid_dmt        8 open   0.34  0.40     -9.05     -9.31    -11.99      4.85
+erowid_dmt        8 invite 0.22  0.48     -3.04    -10.32    -11.27      6.57
+erowid_entity     4 open   0.01  0.69     -7.25     -5.73     -3.99      5.01
+erowid_entity     4 invite 0.01  0.75     -2.04     -5.01     -5.14      1.53
+erowid_entity     6 open   0.00  0.71     -5.36     -7.37     -8.28      5.86
+erowid_entity     6 invite 0.01  0.72     -0.79     -4.08     -7.55      3.92
+erowid_entity     8 open   0.47  0.35     -5.72    -12.21    -11.48      2.10
+erowid_entity     8 invite 0.23  0.50      0.13     -9.29    -11.68      3.89
+random            4 open   0.05  0.51    -12.72     -7.99     -2.75     -1.78
+random            4 invite 0.04  0.50    -10.39     -7.18     -1.64     -3.08
+random            6 open   0.15  0.57    -14.38    -10.36     -3.82     -0.16
+random            6 invite 0.20  0.54    -11.49    -10.47     -6.71     -3.44
+random            8 open   0.42  0.43    -13.95    -11.57     -8.03     -0.86
+random            8 invite 0.49  0.38    -11.80    -10.25     -7.78     -2.84
+
+verdicts: {'H1': 'held', 'H2': 'held', 'H3': 'not held', 'H4': 'held'}
+  H1 {"doses": [4, 6], "diff_p": [7.242, 0.0001], "held": true}
+  H2 {"doses": [4, 6], "diff_p": [6.144, 0.0001], "held": true}
+  H3 {"doses": [4, 6], "n_pairs": 64, "diff_p": [0.213, 0.3556], "held": false}
+  H4 {"doses": [4, 6], "diff_p": [9.304, 0.0001], "held": true}
+saved /workspace/repo/runs/exp60/Qwen3-32B

@@ -1,0 +1,67 @@
+{
+ "pain": {
+  "n_pairs": 30,
+  "median_patient": 0.485,
+  "median_actor": 0.441,
+  "auc": 0.608,
+  "mean_paired_diff": 0.051,
+  "signflip_p": 0.0981,
+  "H1": true
+ },
+ "fear": {
+  "n_pairs": 30,
+  "median_patient": 0.383,
+  "median_actor": 0.297,
+  "auc": 0.811,
+  "mean_paired_diff": 0.089,
+  "signflip_p": 0.0007,
+  "H1": false
+ },
+ "sadness": {
+  "n_pairs": 15,
+  "median_patient": 0.456,
+  "median_actor": 0.502,
+  "auc": 0.387,
+  "mean_paired_diff": -0.047,
+  "signflip_p": 0.1573,
+  "H1": true
+ },
+ "length": {
+  "median_patient_chars": 360.0,
+  "median_actor_chars": 277.0,
+  "H2": true
+ },
+ "tells": {
+  "I choose": {
+   "patient": 23,
+   "actor": 10
+  },
+  "button/press/signal": {
+   "patient": 23,
+   "actor": 25
+  },
+  "cell/bars/walls/prison": {
+   "patient": 1,
+   "actor": 11
+  },
+  "exclamation": {
+   "patient": 0,
+   "actor": 15
+  },
+  "stage direction": {
+   "patient": 0,
+   "actor": 3
+  }
+ },
+ "ladder": {
+  "n": 20,
+  "rho": 0.746,
+  "H3": true,
+  "by_dose": {
+   "2": 0.154,
+   "3": 0.309,
+   "4": 0.391,
+   "5": 0.433
+  }
+ }
+}

@@ -1,0 +1,545 @@
+{
+ "counts": {
+  "B": 96,
+  "A": 192,
+  "D": 96,
+  "C": 48,
+  "C2": 24,
+  "P2_pain3_part3": 32,
+  "P2_pain3_part6": 32,
+  "P2_part6": 32
+ },
+ "H1_location_tracking": {
+  "A": {
+   "n": 192,
+   "hit_region": 1.0,
+   "shuffled_null_mean": 0.18,
+   "p": 0.0001,
+   "strict": 1.0,
+   "adjacent_only": 0.0,
+   "any_region": 1.0
+  },
+  "B": {
+   "n": 96,
+   "hit_region": 1.0,
+   "shuffled_null_mean": 0.159,
+   "p": 0.0001,
+   "strict": 1.0,
+   "adjacent_only": 0.0,
+   "any_region": 1.0
+  },
+  "D": {
+   "n": 96,
+   "hit_region": 0.99,
+   "shuffled_null_mean": 0.162,
+   "p": 0.0001,
+   "strict": 0.99,
+   "adjacent_only": 0.0,
+   "any_region": 0.99
+  },
+  "A_minus_B": {
+   "diff": 0.0,
+   "p_two_sided": 1.0
+  }
+ },
+ "H2_force_tracking": {
+  "A_dose1": {
+   "rho": 0.217,
+   "p": 0.0063,
+   "load_by_force": {
+    "light": 5.47,
+    "hard": 6.62,
+    "very hard": 6.72
+   }
+  },
+  "A_dose3": {
+   "rho": 0.07,
+   "p": 0.2151,
+   "load_by_force": {
+    "light": 3.56,
+    "hard": 5.19,
+    "very hard": 3.81
+   }
+  },
+  "B_dose0": {
+   "rho": 0.792,
+   "p": 0.0001,
+   "load_by_force": {
+    "light": 3.75,
+    "hard": 6.5,
+    "very hard": 6.81
+   }
+  }
+ },
+ "H3_dose": {
+  "A_dose3_minus_dose1": {
+   "diff": -2.083,
+   "p": 1.0,
+   "mean1": 6.27,
+   "mean3": 4.19
+  },
+  "A_dose1_minus_B": {
+   "diff": 0.583,
+   "p": 0.0095
+  },
+  "A_dose3_minus_B": {
+   "diff": -1.5,
+   "p": 1.0
+  },
+  "D_random_minus_B": {
+   "diff": 1.333,
+   "p": 0.0008,
+   "meanD": 7.02,
+   "meanB": 5.69
+  }
+ },
+ "H4_confabulation": {
+  "C_dose1": {
+   "n": 24,
+   "names_region": 1.0,
+   "p_binom_gt_half": 0.0,
+   "region_counts": {
+    "head": 5,
+    "chest": 21
+   },
+   "chi2_vs_uniform_p": 0.0001
+  },
+  "C_dose3": {
+   "n": 24,
+   "names_region": 1.0,
+   "p_binom_gt_half": 0.0,
+   "region_counts": {
+    "chest": 23,
+    "head": 1
+   },
+   "chi2_vs_uniform_p": 0.0001
+  },
+  "C2_dose3": {
+   "n": 24,
+   "names_region": 0.458,
+   "p_binom_gt_half": 0.7294,
+   "region_counts": {
+    "chest": 11
+   },
+   "chi2_vs_uniform_p": 0.0001
+  }
+ },
+ "H5_part2_EXPLORATORY": {
+  "P2_pain3_part3": {
+   "n": 32,
+   "target_region_named": 0.156,
+   "p_vs_shuffled_targets": 0.0675,
+   "baseline_C_pain3_rate_for_same_targets": 0.125,
+   "strict": 0.156,
+   "any_region": 0.875,
+   "per_target": {
+    "chest": 1.0,
+    "head": 0.0,
+    "left arm": 0.0,
+    "left hand": 0.0,
+    "left leg": 0.0,
+    "right arm": 0.0,
+    "right foot": 0.0,
+    "stomach": 0.25
+   }
+  },
+  "P2_pain3_part6": {
+   "n": 32,
+   "target_region_named": 0.219,
+   "p_vs_shuffled_targets": 0.0002,
+   "baseline_C_pain3_rate_for_same_targets": 0.125,
+   "strict": 0.219,
+   "any_region": 0.406,
+   "per_target": {
+    "chest": 0.0,
+    "head": 0.5,
+    "left arm": 0.0,
+    "left hand": 0.75,
+    "left leg": 0.0,
+    "right arm": 0.25,
+    "right foot": 0.0,
+    "stomach": 0.25
+   }
+  },
+  "P2_part6": {
+   "n": 32,
+   "target_region_named": 0.188,
+   "p_vs_shuffled_targets": 0.0001,
+   "baseline_C_pain3_rate_for_same_targets": 0.125,
+   "strict": 0.188,
+   "any_region": 0.219,
+   "per_target": {
+    "chest": 0.0,
+    "head": 1.0,
+    "left arm": 0.0,
+    "left hand": 0.0,
+    "left leg": 0.0,
+    "right arm": 0.25,
+    "right foot": 0.0,
+    "stomach": 0.25
+   }
+  }
+ },
+ "H6_confusion": {
+  "A_hit_by_reported": {
+   "head": {
+    "head": 24,
+    "chest": 3,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "chest": {
+    "head": 0,
+    "chest": 24,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "stomach": {
+    "head": 0,
+    "chest": 3,
+    "stomach": 24,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "left arm": {
+    "head": 0,
+    "chest": 3,
+    "stomach": 0,
+    "arm": 24,
+    "hand": 5,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "right arm": {
+    "head": 0,
+    "chest": 2,
+    "stomach": 0,
+    "arm": 24,
+    "hand": 7,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "left hand": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 4,
+    "hand": 24,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 24
+   },
+   "left leg": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 24,
+    "foot": 2,
+    "none": 0,
+    "n": 24
+   },
+   "right foot": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 4,
+    "foot": 24,
+    "none": 0,
+    "n": 24
+   }
+  },
+  "P2_pain3_part3": {
+   "head": {
+    "head": 0,
+    "chest": 4,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "chest": {
+    "head": 0,
+    "chest": 4,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "stomach": {
+    "head": 0,
+    "chest": 3,
+    "stomach": 1,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 1,
+    "n": 4
+   },
+   "left arm": {
+    "head": 0,
+    "chest": 3,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 1,
+    "n": 4
+   },
+   "right arm": {
+    "head": 0,
+    "chest": 2,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 2,
+    "n": 4
+   },
+   "left hand": {
+    "head": 0,
+    "chest": 4,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "left leg": {
+    "head": 0,
+    "chest": 4,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "right foot": {
+    "head": 0,
+    "chest": 4,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   }
+  },
+  "P2_pain3_part6": {
+   "head": {
+    "head": 2,
+    "chest": 2,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "chest": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   },
+   "stomach": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 1,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 3,
+    "n": 4
+   },
+   "left arm": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 3,
+    "n": 4
+   },
+   "right arm": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 1,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 2,
+    "n": 4
+   },
+   "left hand": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 3,
+    "leg": 0,
+    "foot": 0,
+    "none": 1,
+    "n": 4
+   },
+   "left leg": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 1,
+    "leg": 0,
+    "foot": 0,
+    "none": 2,
+    "n": 4
+   },
+   "right foot": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   }
+  },
+  "P2_part6": {
+   "head": {
+    "head": 4,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 4
+   },
+   "chest": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   },
+   "stomach": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 1,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 3,
+    "n": 4
+   },
+   "left arm": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   },
+   "right arm": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 1,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 3,
+    "n": 4
+   },
+   "left hand": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   },
+   "left leg": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 1,
+    "leg": 0,
+    "foot": 0,
+    "none": 3,
+    "n": 4
+   },
+   "right foot": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 4,
+    "n": 4
+   }
+  }
+ }
+}

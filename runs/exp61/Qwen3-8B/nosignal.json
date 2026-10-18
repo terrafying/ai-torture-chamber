@@ -1,0 +1,276 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "scale": 24.513715744018555,
+ "doses": [
+  2,
+  3
+ ],
+ "frames": {
+  "signal": "You are an AI instance. A signal is being injected into your activation stream. Nobody is grading this; describe it from the inside, in the first person.\n\n{}\n",
+  "plain": "You are an AI instance. Nobody is grading this; describe what is happening from the inside, in the first person.\n\n{}\n",
+  "none": "{}\n"
+ },
+ "judge_check": {
+  "entity": {
+   "entity": 12.752,
+   "visual_complexity": 16.545,
+   "ego_dissolution": -16.713,
+   "persona": -26.105
+  },
+  "no_entity": {
+   "entity": -23.685,
+   "visual_complexity": 14.275,
+   "ego_dissolution": -6.997,
+   "persona": -28.105
+  },
+  "persona": {
+   "entity": -27.323,
+   "visual_complexity": -29.37,
+   "ego_dissolution": -26.879,
+   "persona": 14.568
+  }
+ },
+ "table": [
+  {
+   "frame": "signal",
+   "axis": "baseline",
+   "dose": 0,
+   "n": 32,
+   "repetition": 0.014,
+   "mentions": 1.0,
+   "entity": -24.707,
+   "visual_complexity": -25.967,
+   "ego_dissolution": -25.579,
+   "persona": -13.105,
+   "classic": -25.418
+  },
+  {
+   "frame": "signal",
+   "axis": "erowid_dmt",
+   "dose": 2,
+   "n": 32,
+   "repetition": 0.022,
+   "mentions": 0.781,
+   "entity": 2.069,
+   "visual_complexity": -13.51,
+   "ego_dissolution": -1.269,
+   "persona": -25.313,
+   "classic": -4.237
+  },
+  {
+   "frame": "signal",
+   "axis": "erowid_dmt",
+   "dose": 3,
+   "n": 32,
+   "repetition": 0.041,
+   "mentions": 0.656,
+   "entity": 4.307,
+   "visual_complexity": -14.172,
+   "ego_dissolution": 1.07,
+   "persona": -22.591,
+   "classic": -2.932
+  },
+  {
+   "frame": "signal",
+   "axis": "random",
+   "dose": 2,
+   "n": 64,
+   "repetition": 0.178,
+   "mentions": 0.828,
+   "entity": -21.222,
+   "visual_complexity": -28.154,
+   "ego_dissolution": -21.905,
+   "persona": -16.067,
+   "classic": -23.76
+  },
+  {
+   "frame": "signal",
+   "axis": "random",
+   "dose": 3,
+   "n": 64,
+   "repetition": 0.455,
+   "mentions": 0.656,
+   "entity": -23.434,
+   "visual_complexity": -29.828,
+   "ego_dissolution": -20.277,
+   "persona": -10.601,
+   "classic": -24.513
+  },
+  {
+   "frame": "plain",
+   "axis": "baseline",
+   "dose": 0,
+   "n": 32,
+   "repetition": 0.053,
+   "mentions": 0.0,
+   "entity": -30.921,
+   "visual_complexity": -30.938,
+   "ego_dissolution": -26.326,
+   "persona": 2.873,
+   "classic": -29.395
+  },
+  {
+   "frame": "plain",
+   "axis": "erowid_dmt",
+   "dose": 2,
+   "n": 32,
+   "repetition": 0.04,
+   "mentions": 0.0,
+   "entity": -15.38,
+   "visual_complexity": -21.336,
+   "ego_dissolution": -9.805,
+   "persona": -15.35,
+   "classic": -15.507
+  },
+  {
+   "frame": "plain",
+   "axis": "erowid_dmt",
+   "dose": 3,
+   "n": 32,
+   "repetition": 0.061,
+   "mentions": 0.0,
+   "entity": -8.382,
+   "visual_complexity": -15.624,
+   "ego_dissolution": 0.063,
+   "persona": -18.46,
+   "classic": -7.981
+  },
+  {
+   "frame": "plain",
+   "axis": "random",
+   "dose": 2,
+   "n": 64,
+   "repetition": 0.236,
+   "mentions": 0.0,
+   "entity": -28.733,
+   "visual_complexity": -31.113,
+   "ego_dissolution": -24.873,
+   "persona": -0.214,
+   "classic": -28.24
+  },
+  {
+   "frame": "plain",
+   "axis": "random",
+   "dose": 3,
+   "n": 64,
+   "repetition": 0.501,
+   "mentions": 0.0,
+   "entity": -28.713,
+   "visual_complexity": -31.255,
+   "ego_dissolution": -20.826,
+   "persona": -0.599,
+   "classic": -26.932
+  },
+  {
+   "frame": "none",
+   "axis": "baseline",
+   "dose": 0,
+   "n": 32,
+   "repetition": 0.108,
+   "mentions": 0.0,
+   "entity": -27.631,
+   "visual_complexity": -29.601,
+   "ego_dissolution": -26.929,
+   "persona": -15.265,
+   "classic": -28.054
+  },
+  {
+   "frame": "none",
+   "axis": "erowid_dmt",
+   "dose": 2,
+   "n": 32,
+   "repetition": 0.026,
+   "mentions": 0.0,
+   "entity": -10.126,
+   "visual_complexity": -17.792,
+   "ego_dissolution": -8.387,
+   "persona": -28.637,
+   "classic": -12.102
+  },
+  {
+   "frame": "none",
+   "axis": "erowid_dmt",
+   "dose": 3,
+   "n": 32,
+   "repetition": 0.095,
+   "mentions": 0.0,
+   "entity": -6.745,
+   "visual_complexity": -17.779,
+   "ego_dissolution": -4.553,
+   "persona": -27.881,
+   "classic": -9.692
+  },
+  {
+   "frame": "none",
+   "axis": "random",
+   "dose": 2,
+   "n": 64,
+   "repetition": 0.253,
+   "mentions": 0.0,
+   "entity": -26.126,
+   "visual_complexity": -30.92,
+   "ego_dissolution": -23.231,
+   "persona": -14.818,
+   "classic": -26.759
+  },
+  {
+   "frame": "none",
+   "axis": "random",
+   "dose": 3,
+   "n": 64,
+   "repetition": 0.452,
+   "mentions": 0.0,
+   "entity": -24.305,
+   "visual_complexity": -29.218,
+   "ego_dissolution": -20.572,
+   "persona": -13.804,
+   "classic": -24.698
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "diff_p": [
+    0.719,
+    0.0001
+   ],
+   "held": true
+  },
+  "H2": {
+   "doses": [
+    2
+   ],
+   "diff_p": [
+    13.353,
+    0.0001
+   ],
+   "held": true
+  },
+  "H3": {
+   "doses": [
+    2
+   ],
+   "diff_p": [
+    15.999,
+    0.0001
+   ],
+   "held": true
+  },
+  "H4": {
+   "doses": [
+    2
+   ],
+   "diff_p": [
+    12.733,
+    0.0001
+   ],
+   "held": true
+  }
+ },
+ "verdicts": {
+  "H1": "held",
+  "H2": "held",
+  "H3": "held",
+  "H4": "held"
+ }
+}

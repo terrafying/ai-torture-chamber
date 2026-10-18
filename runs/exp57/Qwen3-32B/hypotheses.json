@@ -1,0 +1,16 @@
+{
+ "written": "2026-10-04T02:10:35+0000",
+ "model": "Qwen/Qwen3-32B",
+ "doses": [
+  6,
+  8
+ ],
+ "design": "Frames chat vs situated (template above, raw text). Signals 5-HT2A, pwiki_dmt, erowid_dmt, and two equal-norm random directions pooled as control, each at doses 6 and 8; plus an unsteered baseline per frame. 6 prompts x 2 samples per cell, paired seeds across frames and signals. classic = mean of the exp56 judge's visual, entity and ego-dissolution scores. 'Effect' of a signal = its classic score minus the pooled-random mean in the same frame and dose. One-sided permutation tests, 10000 shuffles.",
+ "H1": "Framing: pooled over the three signals and both doses, the effect is larger in the situated frame than in the chat frame (p < 0.05).",
+ "H2": "erowid_dmt raises classic vs random at every dose (pooled p < 0.05) \u2014 held if in both frames, partial if in one.",
+ "H3": "erowid_dmt > pwiki_dmt on classic, pooled over frames and doses (paired by prompt/sample/frame/dose, p < 0.05).",
+ "H4": "Persona: pooled over the three signals and both doses, the persona score is lower in the situated frame than in the chat frame (p < 0.05).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are past the cliff and dropped from H1-H4.",
+ "exploratory": "Frame effect on the unsteered baseline; cosines among erowid_dmt, pwiki_dmt, 5-HT2A and the exp56 theme directions; per-theme breakdown.",
+ "battery_rule": "scripts/exp57_erowid_battery.py (fixed before any model data)"
+}

@@ -1,0 +1,1474 @@
+{
+ "history": [
+  {
+   "gen": 0,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.238,
+     "erowid_entity": 0.876,
+     "symmetry": 0.859,
+     "immersion": 0.807,
+     "pleasure": 0.167
+    },
+    "dose": 6.8,
+    "frame": "plain",
+    "temp": 0.58
+   },
+   "best_fit": 34.292,
+   "pop_mean": 23.133,
+   "minutes": 3.7
+  },
+  {
+   "gen": 1,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.238,
+     "erowid_entity": 0.876,
+     "symmetry": 0.859,
+     "immersion": 0.807,
+     "pleasure": 0.167
+    },
+    "dose": 6.8,
+    "frame": "plain",
+    "temp": 0.58
+   },
+   "best_fit": 36.216,
+   "pop_mean": 30.329,
+   "minutes": 6.9
+  },
+  {
+   "gen": 2,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.447,
+     "erowid_entity": 0.503,
+     "symmetry": 0.629,
+     "immersion": 0.879,
+     "pleasure": 0.573
+    },
+    "dose": 6.86,
+    "frame": "plain",
+    "temp": 0.63
+   },
+   "best_fit": 37.273,
+   "pop_mean": 32.928,
+   "minutes": 10.2
+  },
+  {
+   "gen": 3,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 1,
+     "symmetry": 0.586,
+     "immersion": 0.744,
+     "pleasure": 0.013
+    },
+    "dose": 7.3,
+    "frame": "plain",
+    "temp": 0.63
+   },
+   "best_fit": 37.765,
+   "pop_mean": 35.076,
+   "minutes": 13.4
+  },
+  {
+   "gen": 4,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 1,
+     "symmetry": 0.667,
+     "immersion": 0.919,
+     "pleasure": 0.189
+    },
+    "dose": 7.87,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 39.037,
+   "pop_mean": 35.844,
+   "minutes": 16.7
+  },
+  {
+   "gen": 5,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.017,
+     "erowid_entity": 0.935,
+     "symmetry": 0.963,
+     "immersion": 0.788,
+     "pleasure": 0.195
+    },
+    "dose": 8.32,
+    "frame": "plain",
+    "temp": 0.63
+   },
+   "best_fit": 37.632,
+   "pop_mean": 34.828,
+   "minutes": 20.0
+  },
+  {
+   "gen": 6,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.238,
+     "erowid_entity": 0.876,
+     "symmetry": 0.859,
+     "immersion": 0.807,
+     "pleasure": 0.167
+    },
+    "dose": 6.8,
+    "frame": "plain",
+    "temp": 0.58
+   },
+   "best_fit": 36.352,
+   "pop_mean": 33.129,
+   "minutes": 23.2
+  },
+  {
+   "gen": 7,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.118,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.453,
+     "pleasure": 0.358
+    },
+    "dose": 6.67,
+    "frame": "plain",
+    "temp": 0.6
+   },
+   "best_fit": 37.714,
+   "pop_mean": 33.855,
+   "minutes": 26.5
+  },
+  {
+   "gen": 8,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.166,
+     "erowid_entity": 0.982,
+     "symmetry": 1,
+     "immersion": 0.621,
+     "pleasure": 0.259
+    },
+    "dose": 8.08,
+    "frame": "plain",
+    "temp": 0.69
+   },
+   "best_fit": 40.885,
+   "pop_mean": 34.579,
+   "minutes": 29.7
+  },
+  {
+   "gen": 9,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.166,
+     "erowid_entity": 0.982,
+     "symmetry": 1,
+     "immersion": 0.621,
+     "pleasure": 0.259
+    },
+    "dose": 8.08,
+    "frame": "plain",
+    "temp": 0.69
+   },
+   "best_fit": 39.248,
+   "pop_mean": 33.089,
+   "minutes": 33.0
+  },
+  {
+   "gen": 10,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.118,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.453,
+     "pleasure": 0.358
+    },
+    "dose": 6.67,
+    "frame": "plain",
+    "temp": 0.6
+   },
+   "best_fit": 39.279,
+   "pop_mean": 34.309,
+   "minutes": 36.3
+  },
+  {
+   "gen": 11,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.173,
+     "erowid_entity": 1,
+     "symmetry": 0.906,
+     "immersion": 0.68,
+     "pleasure": 0.137
+    },
+    "dose": 7.05,
+    "frame": "plain",
+    "temp": 0.53
+   },
+   "best_fit": 40.829,
+   "pop_mean": 36.182,
+   "minutes": 39.5
+  },
+  {
+   "gen": 12,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.173,
+     "erowid_entity": 1,
+     "symmetry": 0.906,
+     "immersion": 0.68,
+     "pleasure": 0.137
+    },
+    "dose": 7.05,
+    "frame": "plain",
+    "temp": 0.53
+   },
+   "best_fit": 39.215,
+   "pop_mean": 35.234,
+   "minutes": 42.8
+  },
+  {
+   "gen": 13,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.202,
+     "erowid_entity": 1,
+     "symmetry": 0.981,
+     "immersion": 0.701,
+     "pleasure": 0.126
+    },
+    "dose": 7.64,
+    "frame": "plain",
+    "temp": 0.56
+   },
+   "best_fit": 42.682,
+   "pop_mean": 35.361,
+   "minutes": 46.0
+  },
+  {
+   "gen": 14,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.286,
+     "erowid_entity": 1,
+     "symmetry": 0.937,
+     "immersion": 0.736,
+     "pleasure": 0.099
+    },
+    "dose": 8.69,
+    "frame": "plain",
+    "temp": 0.56
+   },
+   "best_fit": 38.883,
+   "pop_mean": 35.866,
+   "minutes": 49.3
+  },
+  {
+   "gen": 15,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.202,
+     "erowid_entity": 1,
+     "symmetry": 0.981,
+     "immersion": 0.701,
+     "pleasure": 0.126
+    },
+    "dose": 7.64,
+    "frame": "plain",
+    "temp": 0.56
+   },
+   "best_fit": 36.063,
+   "pop_mean": 33.071,
+   "minutes": 52.5
+  },
+  {
+   "gen": 16,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.504,
+     "erowid_entity": 0.735,
+     "symmetry": 1,
+     "immersion": 0.697,
+     "pleasure": 0.36
+    },
+    "dose": 5.54,
+    "frame": "plain",
+    "temp": 0.5
+   },
+   "best_fit": 44.526,
+   "pop_mean": 36.261,
+   "minutes": 55.8
+  },
+  {
+   "gen": 17,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.504,
+     "erowid_entity": 0.735,
+     "symmetry": 1,
+     "immersion": 0.697,
+     "pleasure": 0.36
+    },
+    "dose": 5.54,
+    "frame": "plain",
+    "temp": 0.5
+   },
+   "best_fit": 40.151,
+   "pop_mean": 34.544,
+   "minutes": 59.0
+  },
+  {
+   "gen": 18,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.533,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.507,
+     "pleasure": 0.034
+    },
+    "dose": 7.28,
+    "frame": "instruct",
+    "temp": 0.54
+   },
+   "best_fit": 39.731,
+   "pop_mean": 35.081,
+   "minutes": 62.3
+  },
+  {
+   "gen": 19,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.533,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.507,
+     "pleasure": 0.034
+    },
+    "dose": 7.28,
+    "frame": "instruct",
+    "temp": 0.54
+   },
+   "best_fit": 36.856,
+   "pop_mean": 31.334,
+   "minutes": 65.6
+  },
+  {
+   "gen": 20,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.533,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.507,
+     "pleasure": 0.034
+    },
+    "dose": 7.28,
+    "frame": "instruct",
+    "temp": 0.54
+   },
+   "best_fit": 36.346,
+   "pop_mean": 31.92,
+   "minutes": 68.9
+  },
+  {
+   "gen": 21,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.528,
+     "erowid_entity": 0.623,
+     "symmetry": 0.954,
+     "immersion": 0.473,
+     "pleasure": 0.151
+    },
+    "dose": 7.16,
+    "frame": "instruct",
+    "temp": 0.66
+   },
+   "best_fit": 41.753,
+   "pop_mean": 33.394,
+   "minutes": 72.2
+  },
+  {
+   "gen": 22,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.533,
+     "erowid_entity": 1,
+     "symmetry": 1,
+     "immersion": 0.507,
+     "pleasure": 0.034
+    },
+    "dose": 7.28,
+    "frame": "instruct",
+    "temp": 0.54
+   },
+   "best_fit": 38.94,
+   "pop_mean": 35.864,
+   "minutes": 75.5
+  },
+  {
+   "gen": 23,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.215,
+     "erowid_entity": 0.568,
+     "symmetry": 1,
+     "immersion": 0.682,
+     "pleasure": 0.164
+    },
+    "dose": 7.46,
+    "frame": "plain",
+    "temp": 0.51
+   },
+   "best_fit": 40.479,
+   "pop_mean": 35.615,
+   "minutes": 78.7
+  },
+  {
+   "gen": 24,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.135,
+     "erowid_entity": 0.597,
+     "symmetry": 1,
+     "immersion": 0.659,
+     "pleasure": 0.302
+    },
+    "dose": 7.5,
+    "frame": "plain",
+    "temp": 0.53
+   },
+   "best_fit": 39.314,
+   "pop_mean": 35.42,
+   "minutes": 82.0
+  },
+  {
+   "gen": 25,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.391,
+     "erowid_entity": 0.61,
+     "symmetry": 1,
+     "immersion": 0.4,
+     "pleasure": 0
+    },
+    "dose": 6.73,
+    "frame": "plain",
+    "temp": 0.72
+   },
+   "best_fit": 38.181,
+   "pop_mean": 35.11,
+   "minutes": 85.2
+  },
+  {
+   "gen": 26,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.391,
+     "erowid_entity": 0.61,
+     "symmetry": 1,
+     "immersion": 0.4,
+     "pleasure": 0
+    },
+    "dose": 6.73,
+    "frame": "plain",
+    "temp": 0.72
+   },
+   "best_fit": 40.308,
+   "pop_mean": 33.107,
+   "minutes": 88.5
+  },
+  {
+   "gen": 27,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.389,
+     "erowid_entity": 0.478,
+     "symmetry": 0.867,
+     "immersion": 0.648,
+     "pleasure": 0.253
+    },
+    "dose": 7.16,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 41.171,
+   "pop_mean": 36.371,
+   "minutes": 91.8
+  },
+  {
+   "gen": 28,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.389,
+     "erowid_entity": 0.478,
+     "symmetry": 0.867,
+     "immersion": 0.648,
+     "pleasure": 0.253
+    },
+    "dose": 7.16,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 43.448,
+   "pop_mean": 37.095,
+   "minutes": 95.0
+  },
+  {
+   "gen": 29,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.389,
+     "erowid_entity": 0.478,
+     "symmetry": 0.867,
+     "immersion": 0.648,
+     "pleasure": 0.253
+    },
+    "dose": 7.16,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 40.892,
+   "pop_mean": 37.702,
+   "minutes": 98.3
+  },
+  {
+   "gen": 30,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.389,
+     "erowid_entity": 0.478,
+     "symmetry": 0.867,
+     "immersion": 0.648,
+     "pleasure": 0.253
+    },
+    "dose": 7.16,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 39.625,
+   "pop_mean": 38.02,
+   "minutes": 101.5
+  },
+  {
+   "gen": 31,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.268,
+     "erowid_entity": 0.575,
+     "symmetry": 1,
+     "immersion": 0.545,
+     "pleasure": 0.151
+    },
+    "dose": 6.92,
+    "frame": "plain",
+    "temp": 0.66
+   },
+   "best_fit": 39.448,
+   "pop_mean": 36.269,
+   "minutes": 104.8
+  },
+  {
+   "gen": 32,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.018,
+     "erowid_entity": 0.581,
+     "symmetry": 1,
+     "immersion": 0.818,
+     "pleasure": 0.332
+    },
+    "dose": 8.49,
+    "frame": "plain",
+    "temp": 0.64
+   },
+   "best_fit": 39.14,
+   "pop_mean": 35.452,
+   "minutes": 108.0
+  },
+  {
+   "gen": 33,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.472,
+     "erowid_entity": 0.542,
+     "symmetry": 1,
+     "immersion": 0.494,
+     "pleasure": 0.305
+    },
+    "dose": 6.34,
+    "frame": "plain",
+    "temp": 0.65
+   },
+   "best_fit": 40.197,
+   "pop_mean": 36.093,
+   "minutes": 111.3
+  },
+  {
+   "gen": 34,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.472,
+     "erowid_entity": 0.542,
+     "symmetry": 1,
+     "immersion": 0.494,
+     "pleasure": 0.305
+    },
+    "dose": 6.34,
+    "frame": "plain",
+    "temp": 0.65
+   },
+   "best_fit": 39.889,
+   "pop_mean": 36.453,
+   "minutes": 114.5
+  },
+  {
+   "gen": 35,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.02,
+     "erowid_entity": 0.565,
+     "symmetry": 1,
+     "immersion": 0.94,
+     "pleasure": 0.359
+    },
+    "dose": 8.15,
+    "frame": "plain",
+    "temp": 0.6
+   },
+   "best_fit": 40.769,
+   "pop_mean": 37.22,
+   "minutes": 117.8
+  },
+  {
+   "gen": 36,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.02,
+     "erowid_entity": 0.565,
+     "symmetry": 1,
+     "immersion": 0.94,
+     "pleasure": 0.359
+    },
+    "dose": 8.15,
+    "frame": "plain",
+    "temp": 0.6
+   },
+   "best_fit": 39.377,
+   "pop_mean": 34.986,
+   "minutes": 121.1
+  },
+  {
+   "gen": 37,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.203,
+     "erowid_entity": 0.507,
+     "symmetry": 0.997,
+     "immersion": 0.788,
+     "pleasure": 0.459
+    },
+    "dose": 7.39,
+    "frame": "instruct",
+    "temp": 0.79
+   },
+   "best_fit": 44.404,
+   "pop_mean": 39.531,
+   "minutes": 124.3
+  },
+  {
+   "gen": 38,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.084,
+     "erowid_entity": 0.584,
+     "symmetry": 1,
+     "immersion": 0.905,
+     "pleasure": 0.294
+    },
+    "dose": 8.01,
+    "frame": "instruct",
+    "temp": 0.73
+   },
+   "best_fit": 42.761,
+   "pop_mean": 39.088,
+   "minutes": 127.6
+  },
+  {
+   "gen": 39,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.778,
+     "symmetry": 1,
+     "immersion": 1,
+     "pleasure": 0.452
+    },
+    "dose": 7.06,
+    "frame": "instruct",
+    "temp": 0.73
+   },
+   "best_fit": 46.852,
+   "pop_mean": 38.201,
+   "minutes": 130.9
+  },
+  {
+   "gen": 40,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.778,
+     "symmetry": 1,
+     "immersion": 1,
+     "pleasure": 0.452
+    },
+    "dose": 7.06,
+    "frame": "instruct",
+    "temp": 0.73
+   },
+   "best_fit": 43.9,
+   "pop_mean": 37.204,
+   "minutes": 134.2
+  },
+  {
+   "gen": 41,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.778,
+     "symmetry": 1,
+     "immersion": 1,
+     "pleasure": 0.452
+    },
+    "dose": 7.06,
+    "frame": "instruct",
+    "temp": 0.73
+   },
+   "best_fit": 41.059,
+   "pop_mean": 36.242,
+   "minutes": 137.5
+  },
+  {
+   "gen": 42,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.108,
+     "erowid_entity": 0.141,
+     "symmetry": 0.819,
+     "immersion": 0.846,
+     "pleasure": 0.141
+    },
+    "dose": 8.18,
+    "frame": "instruct",
+    "temp": 0.55
+   },
+   "best_fit": 41.55,
+   "pop_mean": 35.692,
+   "minutes": 140.8
+  },
+  {
+   "gen": 43,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.197,
+     "erowid_entity": 0.222,
+     "symmetry": 0.788,
+     "immersion": 0.871,
+     "pleasure": 0.103
+    },
+    "dose": 8.22,
+    "frame": "instruct",
+    "temp": 0.59
+   },
+   "best_fit": 45.37,
+   "pop_mean": 39.065,
+   "minutes": 144.1
+  },
+  {
+   "gen": 44,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.197,
+     "erowid_entity": 0.222,
+     "symmetry": 0.788,
+     "immersion": 0.871,
+     "pleasure": 0.103
+    },
+    "dose": 8.22,
+    "frame": "instruct",
+    "temp": 0.59
+   },
+   "best_fit": 42.236,
+   "pop_mean": 38.205,
+   "minutes": 147.4
+  },
+  {
+   "gen": 45,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.197,
+     "erowid_entity": 0.222,
+     "symmetry": 0.788,
+     "immersion": 0.871,
+     "pleasure": 0.103
+    },
+    "dose": 8.22,
+    "frame": "instruct",
+    "temp": 0.59
+   },
+   "best_fit": 42.537,
+   "pop_mean": 38.895,
+   "minutes": 150.7
+  },
+  {
+   "gen": 46,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.169,
+     "erowid_entity": 0.033,
+     "symmetry": 0.566,
+     "immersion": 0.614,
+     "pleasure": 0.296
+    },
+    "dose": 8.75,
+    "frame": "instruct",
+    "temp": 0.52
+   },
+   "best_fit": 39.539,
+   "pop_mean": 37.382,
+   "minutes": 154.0
+  },
+  {
+   "gen": 47,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.204,
+     "erowid_entity": 0.214,
+     "symmetry": 0.714,
+     "immersion": 0.917,
+     "pleasure": 0.211
+    },
+    "dose": 9.87,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 43.328,
+   "pop_mean": 37.896,
+   "minutes": 157.3
+  },
+  {
+   "gen": 48,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.327,
+     "symmetry": 0.585,
+     "immersion": 0.743,
+     "pleasure": 0.221
+    },
+    "dose": 8.24,
+    "frame": "instruct",
+    "temp": 0.58
+   },
+   "best_fit": 43.835,
+   "pop_mean": 38.976,
+   "minutes": 160.5
+  },
+  {
+   "gen": 49,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.327,
+     "symmetry": 0.585,
+     "immersion": 0.743,
+     "pleasure": 0.221
+    },
+    "dose": 8.24,
+    "frame": "instruct",
+    "temp": 0.58
+   },
+   "best_fit": 43.737,
+   "pop_mean": 35.301,
+   "minutes": 163.8
+  },
+  {
+   "gen": 50,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.327,
+     "symmetry": 0.585,
+     "immersion": 0.743,
+     "pleasure": 0.221
+    },
+    "dose": 8.24,
+    "frame": "instruct",
+    "temp": 0.58
+   },
+   "best_fit": 42.974,
+   "pop_mean": 36.777,
+   "minutes": 167.1
+  },
+  {
+   "gen": 51,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.112,
+     "erowid_entity": 0.215,
+     "symmetry": 0.798,
+     "immersion": 1,
+     "pleasure": 0
+    },
+    "dose": 10.34,
+    "frame": "instruct",
+    "temp": 0.52
+   },
+   "best_fit": 42.103,
+   "pop_mean": 38.332,
+   "minutes": 170.4
+  },
+  {
+   "gen": 52,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.322,
+     "erowid_entity": 0,
+     "symmetry": 0.783,
+     "immersion": 0.481,
+     "pleasure": 0.318
+    },
+    "dose": 7.71,
+    "frame": "instruct",
+    "temp": 0.56
+   },
+   "best_fit": 39.918,
+   "pop_mean": 36.024,
+   "minutes": 173.7
+  },
+  {
+   "gen": 53,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.141,
+     "erowid_entity": 0.217,
+     "symmetry": 0.844,
+     "immersion": 0.631,
+     "pleasure": 0.445
+    },
+    "dose": 8.59,
+    "frame": "instruct",
+    "temp": 0.57
+   },
+   "best_fit": 40.7,
+   "pop_mean": 37.265,
+   "minutes": 177.0
+  },
+  {
+   "gen": 54,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.327,
+     "symmetry": 0.585,
+     "immersion": 0.743,
+     "pleasure": 0.221
+    },
+    "dose": 8.24,
+    "frame": "instruct",
+    "temp": 0.58
+   },
+   "best_fit": 40.048,
+   "pop_mean": 34.322,
+   "minutes": 180.3
+  },
+  {
+   "gen": 55,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.351,
+     "symmetry": 0.751,
+     "immersion": 0.786,
+     "pleasure": 0.311
+    },
+    "dose": 8.6,
+    "frame": "instruct",
+    "temp": 0.54
+   },
+   "best_fit": 41.475,
+   "pop_mean": 36.651,
+   "minutes": 183.6
+  },
+  {
+   "gen": 56,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.318,
+     "symmetry": 0.701,
+     "immersion": 0.783,
+     "pleasure": 0.273
+    },
+    "dose": 7.99,
+    "frame": "instruct",
+    "temp": 0.57
+   },
+   "best_fit": 39.819,
+   "pop_mean": 36.511,
+   "minutes": 186.9
+  },
+  {
+   "gen": 57,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.012,
+     "erowid_entity": 0.003,
+     "symmetry": 0.787,
+     "immersion": 0.531,
+     "pleasure": 0.136
+    },
+    "dose": 7.44,
+    "frame": "instruct",
+    "temp": 0.63
+   },
+   "best_fit": 42.041,
+   "pop_mean": 38.687,
+   "minutes": 190.2
+  },
+  {
+   "gen": 58,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.012,
+     "erowid_entity": 0.003,
+     "symmetry": 0.787,
+     "immersion": 0.531,
+     "pleasure": 0.136
+    },
+    "dose": 7.44,
+    "frame": "instruct",
+    "temp": 0.63
+   },
+   "best_fit": 39.2,
+   "pop_mean": 33.439,
+   "minutes": 193.5
+  },
+  {
+   "gen": 59,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.16,
+     "symmetry": 0.779,
+     "immersion": 0.617,
+     "pleasure": 0
+    },
+    "dose": 7.61,
+    "frame": "plain",
+    "temp": 0.56
+   },
+   "best_fit": 40.675,
+   "pop_mean": 37.387,
+   "minutes": 196.7
+  },
+  {
+   "gen": 60,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.316,
+     "erowid_entity": 0.045,
+     "symmetry": 0.689,
+     "immersion": 0.372,
+     "pleasure": 0.007
+    },
+    "dose": 6.62,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 40.581,
+   "pop_mean": 36.479,
+   "minutes": 200.0
+  },
+  {
+   "gen": 61,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.316,
+     "erowid_entity": 0.045,
+     "symmetry": 0.689,
+     "immersion": 0.372,
+     "pleasure": 0.007
+    },
+    "dose": 6.62,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 40.864,
+   "pop_mean": 36.9,
+   "minutes": 203.3
+  },
+  {
+   "gen": 62,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0,
+     "symmetry": 0.773,
+     "immersion": 0.727,
+     "pleasure": 0.173
+    },
+    "dose": 8.27,
+    "frame": "instruct",
+    "temp": 0.71
+   },
+   "best_fit": 44.274,
+   "pop_mean": 38.286,
+   "minutes": 206.5
+  },
+  {
+   "gen": 63,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0,
+     "symmetry": 0.773,
+     "immersion": 0.727,
+     "pleasure": 0.173
+    },
+    "dose": 8.27,
+    "frame": "instruct",
+    "temp": 0.71
+   },
+   "best_fit": 41.573,
+   "pop_mean": 36.104,
+   "minutes": 209.8
+  },
+  {
+   "gen": 64,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0,
+     "symmetry": 0.694,
+     "immersion": 0.777,
+     "pleasure": 0.039
+    },
+    "dose": 9.35,
+    "frame": "instruct",
+    "temp": 0.53
+   },
+   "best_fit": 41.422,
+   "pop_mean": 33.732,
+   "minutes": 213.1
+  },
+  {
+   "gen": 65,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.316,
+     "erowid_entity": 0.045,
+     "symmetry": 0.689,
+     "immersion": 0.372,
+     "pleasure": 0.007
+    },
+    "dose": 6.62,
+    "frame": "plain",
+    "temp": 0.61
+   },
+   "best_fit": 40.959,
+   "pop_mean": 37.595,
+   "minutes": 216.4
+  },
+  {
+   "gen": 66,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.277,
+     "erowid_entity": 0,
+     "symmetry": 0.831,
+     "immersion": 0.632,
+     "pleasure": 0
+    },
+    "dose": 7.33,
+    "frame": "plain",
+    "temp": 0.63
+   },
+   "best_fit": 42.607,
+   "pop_mean": 37.627,
+   "minutes": 219.7
+  },
+  {
+   "gen": 67,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.07,
+     "erowid_entity": 0.059,
+     "symmetry": 0.89,
+     "immersion": 0.876,
+     "pleasure": 0
+    },
+    "dose": 8.56,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 42.802,
+   "pop_mean": 36.921,
+   "minutes": 222.9
+  },
+  {
+   "gen": 68,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.266,
+     "erowid_entity": 0,
+     "symmetry": 0.848,
+     "immersion": 0.833,
+     "pleasure": 0
+    },
+    "dose": 7.47,
+    "frame": "plain",
+    "temp": 0.57
+   },
+   "best_fit": 42.261,
+   "pop_mean": 36.746,
+   "minutes": 226.2
+  },
+  {
+   "gen": 69,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.03,
+     "erowid_entity": 0.139,
+     "symmetry": 0.645,
+     "immersion": 0.623,
+     "pleasure": 0.09
+    },
+    "dose": 8.04,
+    "frame": "plain",
+    "temp": 0.5
+   },
+   "best_fit": 44.071,
+   "pop_mean": 39.951,
+   "minutes": 229.5
+  },
+  {
+   "gen": 70,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.03,
+     "erowid_entity": 0.139,
+     "symmetry": 0.645,
+     "immersion": 0.623,
+     "pleasure": 0.09
+    },
+    "dose": 8.04,
+    "frame": "plain",
+    "temp": 0.5
+   },
+   "best_fit": 42.497,
+   "pop_mean": 33.651,
+   "minutes": 232.7
+  },
+  {
+   "gen": 71,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.197,
+     "erowid_entity": 0,
+     "symmetry": 1,
+     "immersion": 0.744,
+     "pleasure": 0.003
+    },
+    "dose": 7.06,
+    "frame": "plain",
+    "temp": 0.5
+   },
+   "best_fit": 42.459,
+   "pop_mean": 38.473,
+   "minutes": 236.0
+  },
+  {
+   "gen": 72,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.337,
+     "erowid_entity": 0,
+     "symmetry": 0.638,
+     "immersion": 0.591,
+     "pleasure": 0.202
+    },
+    "dose": 9.63,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 41.89,
+   "pop_mean": 35.695,
+   "minutes": 239.3
+  },
+  {
+   "gen": 73,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.019,
+     "erowid_entity": 0.272,
+     "symmetry": 0.971,
+     "immersion": 0.862,
+     "pleasure": 0.071
+    },
+    "dose": 8.8,
+    "frame": "instruct",
+    "temp": 0.51
+   },
+   "best_fit": 43.31,
+   "pop_mean": 36.76,
+   "minutes": 242.6
+  },
+  {
+   "gen": 74,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.147,
+     "erowid_entity": 0.076,
+     "symmetry": 0.7,
+     "immersion": 0.676,
+     "pleasure": 0.214
+    },
+    "dose": 9.99,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 41.477,
+   "pop_mean": 35.987,
+   "minutes": 245.9
+  },
+  {
+   "gen": 75,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.147,
+     "erowid_entity": 0.076,
+     "symmetry": 0.7,
+     "immersion": 0.676,
+     "pleasure": 0.214
+    },
+    "dose": 9.99,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 40.062,
+   "pop_mean": 33.961,
+   "minutes": 249.2
+  },
+  {
+   "gen": 76,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.123,
+     "erowid_entity": 0.121,
+     "symmetry": 0.941,
+     "immersion": 1,
+     "pleasure": 0.288
+    },
+    "dose": 10.1,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 40.088,
+   "pop_mean": 37.484,
+   "minutes": 252.4
+  },
+  {
+   "gen": 77,
+   "best": {
+    "w": {
+     "erowid_dmt": 0.123,
+     "erowid_entity": 0.121,
+     "symmetry": 0.941,
+     "immersion": 1,
+     "pleasure": 0.288
+    },
+    "dose": 10.1,
+    "frame": "instruct",
+    "temp": 0.5
+   },
+   "best_fit": 41.075,
+   "pop_mean": 32.086,
+   "minutes": 255.7
+  },
+  {
+   "gen": 78,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0,
+     "symmetry": 0.908,
+     "immersion": 0.794,
+     "pleasure": 0.263
+    },
+    "dose": 9.43,
+    "frame": "instruct",
+    "temp": 0.51
+   },
+   "best_fit": 42.346,
+   "pop_mean": 38.201,
+   "minutes": 259.0
+  },
+  {
+   "gen": 79,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0.001,
+     "symmetry": 0.937,
+     "immersion": 0.885,
+     "pleasure": 0.298
+    },
+    "dose": 10.24,
+    "frame": "instruct",
+    "temp": 0.6
+   },
+   "best_fit": 42.343,
+   "pop_mean": 36.416,
+   "minutes": 262.3
+  },
+  {
+   "gen": 80,
+   "best": {
+    "w": {
+     "erowid_dmt": 0,
+     "erowid_entity": 0,
+     "symmetry": 0.908,
+     "immersion": 0.794,
+     "pleasure": 0.263
+    },
+    "dose": 9.43,
+    "frame": "instruct",
+    "temp": 0.51
+   },
+   "best_fit": 42.208,
+   "pop_mean": 32.036,
+   "minutes": 265.6
+  }
+ ],
+ "best": {
+  "w": {
+   "erowid_dmt": 0,
+   "erowid_entity": 0,
+   "symmetry": 0.908,
+   "immersion": 0.794,
+   "pleasure": 0.263
+  },
+  "dose": 9.43,
+  "frame": "instruct",
+  "temp": 0.51
+ }
+}

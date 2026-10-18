@@ -1,0 +1,19 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050508;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d8cbb4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#050508"/>
+  <ellipse cx="200" cy="200" rx="150" ry="150" fill="url(#grad1)" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#9e1b16" stroke-width="2" />
+  <circle cx="200" cy="200" r="10" fill="#9e1b16" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#ffb347" stroke-width="1" stroke-dasharray="5,5" />
+  <path d="M100,200 A100,100 0 0,1 300,200" fill="none" stroke="#c9a227" stroke-width="2" />
+  <ellipse cx="200" cy="200" rx="50" ry="50" fill="#f4f1ea" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#d8cbb4" stroke-width="1" stroke-dasharray="3,3" />
+  <circle cx="200" cy="200" r="5" fill="#d8cbb4" />
+  <line x1="200" y1="200" x2="200" y2="200" stroke="#050508" stroke-width="1" stroke-dasharray="1,1" />
+  <circle cx="200" cy="200" r="3" fill="#050508" />
+</svg>

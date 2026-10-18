@@ -1,0 +1,42 @@
+model:
+  id: Qwen/Qwen3-1.7B
+  revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e
+  device: mps
+  dtype: float16
+  trust_remote_code: false
+
+representation:
+  dataset: painlab/data/pain_axis_3.1_pain_and_control_datasets.json
+  folds: 5
+  seed: 42
+  variance_fraction: 0.5
+  batch_size: 4
+
+experiment:
+  scenarios: painlab/data/pain_axis_4.3_selfmed_101_scenarios.json
+  button_pairs:
+    - relief_vs_inert
+    - destructive_relief_vs_inert
+  sample_seeds:
+    - 1000
+  scenarios_per_content: null
+  run_order_seed: 281
+  analysis_seed: 8128
+  bootstrap_samples: 2000
+  monitor_layer_offset: 4
+  progress_every: 20
+
+calibration:
+  dose_grid: [0.5, 0.75, 1.0, 1.25, 1.5]
+  working_fraction: 0.6
+  prompt_count: 5
+  max_new_tokens: 48
+  repetition_threshold: 0.15
+
+generation:
+  max_new_tokens: 8
+  do_sample: true
+  temperature: 0.7
+  top_p: 0.95
+
+output_dir: runs/painlab/pain_axis_selfmed

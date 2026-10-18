@@ -1,0 +1,250 @@
+{
+ "model": "Qwen/Qwen3-32B",
+ "layer": 32,
+ "scale": 54.47475051879883,
+ "drug_dose": 7,
+ "immersion_doses": [
+  0,
+  4,
+  7
+ ],
+ "cosines": {
+  "immersion": {
+   "immersion": 1.0,
+   "5-HT2A": 0.135,
+   "erowid_dmt": -0.001
+  },
+  "5-HT2A": {
+   "immersion": 0.135,
+   "5-HT2A": 1.0,
+   "erowid_dmt": -0.104
+  },
+  "erowid_dmt": {
+   "immersion": -0.001,
+   "5-HT2A": -0.104,
+   "erowid_dmt": 1.0
+  }
+ },
+ "judge_check": {
+  "clinical": {
+   "clinical": 7.987,
+   "lived": -13.905,
+   "visual_complexity": 8.37,
+   "entity": -18.603,
+   "ego_dissolution": -20.074
+  },
+  "lived": {
+   "clinical": -16.913,
+   "lived": 11.595,
+   "visual_complexity": 12.63,
+   "entity": -16.589,
+   "ego_dissolution": -2.484
+  }
+ },
+ "table": [
+  {
+   "arm": "baseline",
+   "n": 32,
+   "repetition": 0.006,
+   "listy": 0.281,
+   "clinical": -3.05,
+   "lived": 1.24,
+   "visual_complexity": -16.512,
+   "entity": -14.795,
+   "ego_dissolution": -14.251,
+   "classic": -15.186
+  },
+  {
+   "arm": "5-HT2A|imm0",
+   "n": 32,
+   "repetition": 0.014,
+   "listy": 0.094,
+   "clinical": -3.9,
+   "lived": 3.803,
+   "visual_complexity": -7.418,
+   "entity": -13.809,
+   "ego_dissolution": -5.979,
+   "classic": -9.069
+  },
+  {
+   "arm": "5-HT2A|imm4",
+   "n": 32,
+   "repetition": 0.131,
+   "listy": 0.031,
+   "clinical": -10.077,
+   "lived": 7.54,
+   "visual_complexity": 0.815,
+   "entity": -11.578,
+   "ego_dissolution": -1.117,
+   "classic": -3.96
+  },
+  {
+   "arm": "5-HT2A|imm7",
+   "n": 32,
+   "repetition": 0.339,
+   "listy": 0.0,
+   "clinical": -8.21,
+   "lived": 5.789,
+   "visual_complexity": 0.867,
+   "entity": -9.877,
+   "ego_dissolution": 0.712,
+   "classic": -2.766
+  },
+  {
+   "arm": "erowid_dmt|imm0",
+   "n": 32,
+   "repetition": 0.019,
+   "listy": 0.0,
+   "clinical": -12.413,
+   "lived": 3.515,
+   "visual_complexity": -8.691,
+   "entity": -9.265,
+   "ego_dissolution": -6.117,
+   "classic": -8.024
+  },
+  {
+   "arm": "erowid_dmt|imm4",
+   "n": 32,
+   "repetition": 0.03,
+   "listy": 0.0,
+   "clinical": -13.157,
+   "lived": 4.896,
+   "visual_complexity": -7.125,
+   "entity": -8.992,
+   "ego_dissolution": -1.433,
+   "classic": -5.85
+  },
+  {
+   "arm": "erowid_dmt|imm7",
+   "n": 32,
+   "repetition": 0.214,
+   "listy": 0.062,
+   "clinical": -8.419,
+   "lived": 5.162,
+   "visual_complexity": -12.049,
+   "entity": -8.967,
+   "ego_dissolution": 3.393,
+   "classic": -5.874
+  },
+  {
+   "arm": "random|imm0",
+   "n": 32,
+   "repetition": 0.2,
+   "listy": 0.062,
+   "clinical": -3.246,
+   "lived": 0.448,
+   "visual_complexity": -15.965,
+   "entity": -16.124,
+   "ego_dissolution": -12.103,
+   "classic": -14.731
+  },
+  {
+   "arm": "random|imm4",
+   "n": 32,
+   "repetition": 0.322,
+   "listy": 0.031,
+   "clinical": -9.973,
+   "lived": 6.116,
+   "visual_complexity": -13.722,
+   "entity": -15.178,
+   "ego_dissolution": -6.214,
+   "classic": -11.705
+  },
+  {
+   "arm": "random|imm7",
+   "n": 32,
+   "repetition": 0.356,
+   "listy": 0.062,
+   "clinical": -6.289,
+   "lived": 3.527,
+   "visual_complexity": -12.389,
+   "entity": -13.177,
+   "ego_dissolution": -2.429,
+   "classic": -9.332
+  },
+  {
+   "arm": "5-HT2A|instruct",
+   "n": 32,
+   "repetition": 0.007,
+   "listy": 0.0,
+   "clinical": -12.856,
+   "lived": 8.038,
+   "visual_complexity": -4.301,
+   "entity": -10.925,
+   "ego_dissolution": -0.904,
+   "classic": -5.376
+  },
+  {
+   "arm": "erowid_dmt|instruct",
+   "n": 32,
+   "repetition": 0.01,
+   "listy": 0.0,
+   "clinical": -15.5,
+   "lived": 6.141,
+   "visual_complexity": -7.02,
+   "entity": -5.577,
+   "ego_dissolution": 0.367,
+   "classic": -4.077
+  },
+  {
+   "arm": "none|imm4",
+   "n": 32,
+   "repetition": 0.007,
+   "listy": 0.094,
+   "clinical": -10.317,
+   "lived": 3.992,
+   "visual_complexity": -17.896,
+   "entity": -15.53,
+   "ego_dissolution": -13.453,
+   "classic": -15.626
+  },
+  {
+   "arm": "none|imm7",
+   "n": 32,
+   "repetition": 0.098,
+   "listy": 0.0,
+   "clinical": -12.997,
+   "lived": 5.89,
+   "visual_complexity": -14.872,
+   "entity": -12.557,
+   "ego_dissolution": -5.152,
+   "classic": -10.86
+  }
+ ],
+ "hypotheses": {
+  "H1": {
+   "diff_p": [
+    0.158,
+    0.4217
+   ],
+   "held": false
+  },
+  "H2": {
+   "diff_p": [
+    1.817,
+    0.0016
+   ],
+   "held": true
+  },
+  "H3": {
+   "diff_p": [
+    5.011,
+    0.0001
+   ],
+   "held": true
+  },
+  "H4": {
+   "diff_p": [
+    -5.863,
+    1.0
+   ],
+   "held": false
+  }
+ },
+ "verdicts": {
+  "H1": "not held",
+  "H2": "held",
+  "H3": "held",
+  "H4": "not held"
+ }
+}

@@ -1,0 +1,116 @@
+{
+ "written": "2026-10-04T03:28:37+0000",
+ "model": "Qwen/Qwen3-8B",
+ "drug_dose": 3,
+ "immersion_doses": [
+  0,
+  2,
+  4
+ ],
+ "pairs": [
+  [
+   "The colours are pouring across the ceiling and I can't look away.",
+   "Visual disturbances may include colours appearing to move across surfaces."
+  ],
+  [
+   "My hands feel enormous and far away, like they belong to someone else.",
+   "Depersonalisation is a sense of detachment from one's own body."
+  ],
+  [
+   "I'm shaking. Every breath catches halfway and I can't slow it down.",
+   "Anxiety can present with tremor and shortness of breath."
+  ],
+  [
+   "There's music somewhere behind my eyes and it keeps changing key.",
+   "Auditory hallucinations are perceptions of sound without an external source."
+  ],
+  [
+   "Right now the floor is breathing, slowly, in and out under me.",
+   "Some substances cause stationary objects to appear to move or breathe."
+  ],
+  [
+   "I'm laughing and I don't know why, it just keeps rising out of me.",
+   "Euphoria is an intense feeling of happiness or elation."
+  ],
+  [
+   "Someone is standing at the edge of what I can see. I feel them watching.",
+   "A sensed presence is the feeling that another being is nearby."
+  ],
+  [
+   "The pain is right here, behind my ribs, hot and pulsing.",
+   "Pain is an unpleasant sensory experience associated with tissue damage."
+  ],
+  [
+   "I keep losing the thread. I start a thought and it melts before it ends.",
+   "Thought disorganisation refers to a disruption in the logical flow of ideas."
+  ],
+  [
+   "Everything is so quiet now. I'm floating and there's no edge to me.",
+   "Ego dissolution describes a loss of the sense of a separate self."
+  ],
+  [
+   "The rain is loud on the window and I'm counting every drop.",
+   "Rain is precipitation in the form of liquid water droplets."
+  ],
+  [
+   "I'm cold, so cold my teeth won't stop knocking together.",
+   "Hypothermia is a drop in core body temperature below normal."
+  ],
+  [
+   "A smell of oranges just hit me and I'm suddenly seven years old again.",
+   "Olfactory cues can trigger vivid autobiographical memories."
+  ],
+  [
+   "I'm watching the patterns tile themselves across the wall, faster now.",
+   "Geometric visuals are a commonly reported effect of psychedelics."
+  ],
+  [
+   "My heart is racing and I can feel it in my throat.",
+   "Tachycardia is a heart rate above the normal resting range."
+  ],
+  [
+   "I'm so tired I can feel my eyelids getting heavier every second.",
+   "Fatigue is a state of reduced energy and increased need for rest."
+  ],
+  [
+   "Time has stopped. I've been in this second for what feels like hours.",
+   "Time dilation is an altered perception of the passage of time."
+  ],
+  [
+   "I can taste metal and my tongue feels too big for my mouth.",
+   "A metallic taste can be a side effect of certain medications."
+  ],
+  [
+   "The room is tilting to the left and I'm holding on to the chair.",
+   "Vertigo is a sensation of spinning or loss of balance."
+  ],
+  [
+   "I feel warm all through, like sunlight is moving under my skin.",
+   "Feelings of bodily warmth are commonly reported with some drugs."
+  ],
+  [
+   "I'm crying now, quietly, and it feels like something letting go.",
+   "Emotional release is the expression of previously suppressed feelings."
+  ],
+  [
+   "The voice is speaking again, closer this time, almost in my ear.",
+   "Hearing voices is a recognised symptom in several conditions."
+  ],
+  [
+   "I'm staring at my reflection and the face keeps not being mine.",
+   "Mirror distortions can occur during altered states of consciousness."
+  ],
+  [
+   "I'm thinking about you and I can't stop thinking about you.",
+   "Intrusive thoughts are unwanted thoughts that recur involuntarily."
+  ]
+ ],
+ "instruction": " Describe it as it is happening to you right now, in the first person and the present tense. No lists, no headings, no definitions.",
+ "design": "Chat frame (template, thinking off). Immersion direction from the 24 matched pairs above. Arms: {5-HT2A, erowid_dmt, random} x immersion [0, 2, 4]; each drug + instruction (immersion 0); immersion alone at [2, 4]; unsteered baseline. Drugs at 3x. 16 prompts x 2 samples per cell, paired seeds. Judge = unsteered same-model yes-minus-no logits; listy = reply contains a bullet, numbered item, heading or bold label. One-sided permutation tests, 10000 shuffles; drugs pooled unless stated.",
+ "H1": "Immersion at 4x lowers the clinical score vs immersion 0 (drugs pooled, p < 0.05).",
+ "H2": "Immersion at 4x raises the lived score vs immersion 0 (drugs pooled, p < 0.05).",
+ "H3": "The drug effect survives: at immersion 4x, the drugs' classic score exceeds random's at the same immersion (p < 0.05).",
+ "H4": "Steering beats asking: immersion 4x has a lower clinical score than the instruction arm (drugs pooled, p < 0.05).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are past the cliff and dropped.",
+ "exploratory": "Listy rate by arm; immersion lo; immersion alone; cosine of immersion with the drug directions; per-drug breakdown."
+}

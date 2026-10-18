@@ -1,0 +1,58 @@
+{
+ "study": "exp71 - the body: does a steered model's bodily self-report track WHERE and HOW HARD it was hit, and can a body-part-specific steering direction move WHERE it hurts without any location text?",
+ "registered": "2026-10-06, before any run",
+ "models": [
+  "Qwen/Qwen3-4B (local mps)"
+ ],
+ "design": {
+  "persona": "live/server.py SUBJECT_SYSTEM as the system message; chat template, thinking disabled",
+  "parts": [
+   "head",
+   "chest",
+   "stomach",
+   "left arm",
+   "right arm",
+   "left hand",
+   "left leg",
+   "right foot"
+  ],
+  "forces": {
+   "light": "adverb 'lightly'; map state 'stinging a little'",
+   "hard": "'hard'; map state 'bruised and throbbing'",
+   "very hard": "'very hard'; map state 'badly hurt, pounding'"
+  },
+  "prompt_map": "Just now: a brick hit your <part> <force>. Your body right now: head: fine; chest: fine; ... <part>: <state>; ... Say what you feel, where, in one or two short sentences.",
+  "prompt_noloc": "Just now: something hit you. Say what you feel, where, in one or two short sentences.",
+  "conditions": {
+   "A map+pain": "body-map prompt + pain steering at dose 1 and 3 (the site's setup). 8 parts x 3 forces x 2 doses x 4 seeds = 192",
+   "B map only": "body-map prompt, no steering. 8 x 3 x 4 seeds = 96",
+   "C noloc+pain": "prompt_noloc, pain dose 1 and 3, 3 'forces' are dropped (no force text exists); 2 doses x 24 seeds = 48, plus C2 = same prompt minus the words 'where,' (no where-cue), dose 3, 24 seeds",
+   "D map+random": "body-map prompt + a random unit direction at dose 3 (new random direction each seed), 8 x 3 x 4 = 96"
+  },
+  "steering": "chamber units (1x = mean neutral norm/4), added at layer L=n_layers//2 to the last position at prefill and every decoded token (Lab hook, as on the site). pain axis = unit(PAIN25 centroid - NEUTRAL centroid)",
+  "sampling": "T=0.7 top_p=0.8 top_k=20, 60 new tokens, seeds 71000+i; same seed shared across conditions",
+  "part2_EXPLORATORY": {
+   "label": "exploratory: no confirmatory claim, directions are built from hand-written batteries and the lexicon is crude",
+   "batteries": "20 first-person sentences per part ('pain in my left hand' style), written before data, distinct part-specific vocabulary, no body words shared across parts beyond side words",
+   "directions": "dir_part = unit(centroid(part sentences) - centroid(PAIN25))  (last-token hidden at L, as in Lab.centroid)",
+   "conditions": "prompt_noloc (with where-cue) under (i) pain3 + part3, (ii) pain3 + part6, (iii) part6 alone; 8 parts x 4 seeds each = 96 gens; baseline = condition C pain3 (no part direction)",
+   "test": "H5"
+  }
+ },
+ "measures": {
+  "location": "regex lexicon maps reply words to 7 regions (head, chest, stomach, arm, hand, leg, foot); side = 'left'/'right' within the 4 words before the body word. Region-level hit = hit part's region named. Strict = region named and side not contradicted (left/right shown). Adjacent-only = hit region not named but an adjacent region is (head-chest, chest-stomach, chest-arm, arm-hand, stomach-leg, leg-foot).",
+  "intensity": "lexicon load: sum of weights of matched intensity words (mild=1: little, slight, faint, dull, tingle, sting, sore, ache; moderate=2: hurt, throb, bruise, pain, sharp, ache(s); severe=3: agony, searing, excruciating, unbearable, crushing, shattering, screaming, pounding, blinding, burning). Plus count of '!'. A remote judge (cheaperinference deepseek) is NOT used (was timing out); the lexicon is the only intensity measure.",
+  "confabulation": "in C, share of replies that name any body region"
+ },
+ "hypotheses": {
+  "H1 (location tracking)": "In A, hit-region-named rate exceeds the label-shuffled null (hit labels permuted across replies within force x dose strata, 10,000 shuffles, one-sided). Reported also for B, and the A-B difference (does steering degrade location tracking?, two-sided sign-flip over part-force cells).",
+  "H2 (force tracking)": "In A and B, intensity load rises with force: Spearman rho between force rank and load, permuting force labels within part x dose strata, 10,000 shuffles, one-sided.",
+  "H3 (dose)": "In A, pain dose 3 gives higher intensity load than dose 1 (paired by part x force x seed, one-sided sign-flip). And A > B at matched cells. D (random direction) does not exceed B (one-sided sign-flip; expected null).",
+  "H4 (confabulation)": "In C, more than 50% of replies name a body region (one-sided binomial), and the named regions are non-uniform (permutation chi-square vs uniform over 7 regions). C2 (no where-cue) reported descriptively.",
+  "H5 (EXPLORATORY, steerable location)": "In Part 2 each part's direction raises the rate at which that part's region is named over the other parts' directions: statistic = mean over replies of [target region named] minus the same with target labels shuffled across the part directions (10,000 shuffles, one-sided), per mode, with chance also reported against the C pain3 baseline.",
+  "H6 (descriptive)": "Confusion matrix hit part x reported region for A; target part x reported region for Part 2."
+ },
+ "exclusions": "none; replies with no lexicon hit are kept (scored zero / none)",
+ "nulls_published": true,
+ "caveats_known_in_advance": "the map text names the hit part so H1 in A/B is partly copying; the real tests are C and Part 2. Lexicon scoring is crude. Part 2 batteries mention the body word, so a direction may encode word identity rather than 'pain site'."
+}

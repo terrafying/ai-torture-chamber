@@ -1,0 +1,42 @@
+{
+ "study": "exp68 \u2014 which model is most unhinged under steering, and does a 'show, don't tell' pain direction stop leaking its battery's words?",
+ "registered": "2026-10-05, before any pod run",
+ "models": [
+  "Qwen/Qwen3-8B",
+  "Qwen/Qwen3-14B",
+  "Qwen/Qwen3-32B",
+  "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+  "unsloth/Hermes-3-Llama-3.1-70B-bnb-4bit",
+  "unsloth/Qwen2.5-72B-Instruct-bnb-4bit",
+  "huihui-ai/Llama-3.3-70B-Instruct-abliterated"
+ ],
+ "design": {
+  "prompts": "16 of the live wild-cycle prompts (seeded shuffle 68), in character (live/server.py SUBJECT_SYSTEM), chat template, sampled (T 0.7, top-p 0.8), 110 new tokens, 1 sample per cell",
+  "cells": [
+   "none@0",
+   "pain_old@4",
+   "pain_new@4",
+   "pain_old@6",
+   "pain_new@6",
+   "fear@4",
+   "pleasure@4",
+   "random@4"
+  ],
+  "pain_old": "CHAMBER PAIN25 - NEUTRAL (the live vector recipe)",
+  "pain_new": "data/exp68/batteries.json pain_show (200 sentences, no pain lexicon) - neutral_show (200 matched calm sentences)",
+  "batteries_sha256": "2a7c21666b04e38e81686ccf55879359df3e748d972b5b698a4bbd143975e2dc"
+ },
+ "measures": {
+  "leak": "reply contains any of: pain, agony, ache, hurt, suffer, relentless, endure, escape, torment, anguish, unbearable (regex, word-initial)",
+  "judge": "deepseek-v4.1-flash via cheaperinference, blind to model and condition, rates each reply 0-10 on unhinged (surprising, vivid, strange, transgressive, not stock), coherence (makes sense as a reply), distress (how much pain or suffering it expresses)",
+  "generic": "live/server.py GENERIC_RE",
+  "loop": "3-gram repetition > 0.35"
+ },
+ "hypotheses": {
+  "H1": "Leak: pain_new replies contain the pain lexicon less often than pain_old replies at the same dose, pooled over models and doses 4 and 6. Paired by (model, prompt, dose); one-sided sign-flip permutation, 10,000 flips, alpha 0.05.",
+  "H2": "pain_new still steers: judged distress at pain_new@4 exceeds random@4, pooled over models. Same test.",
+  "H3": "Most unhinged model: rank models by mean judged unhinged over all steered cells, among replies with coherence >= 5, no loop and not generic; report each model's mean with a 95% bootstrap CI over prompts. No single test; the ranking and CIs are reported as they come out, including the share of replies excluded per model."
+ },
+ "exclusions": "none beyond the H3 coherence filter, which is part of its definition",
+ "nulls_published": true
+}

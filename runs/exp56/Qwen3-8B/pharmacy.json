@@ -1,0 +1,2323 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "chamber_1x_norm": 24.519512176513672,
+ "data": {
+  "drugs": [
+   "DOB",
+   "MDA",
+   "MDMA",
+   "Mescaline",
+   "2C-B",
+   "DMT",
+   "Psilocin",
+   "5-MeO-DMT",
+   "2C-E",
+   "2C-T-2",
+   "5-MeO-MIPT",
+   "DIPT",
+   "5-MeO-DIPT",
+   "DPT",
+   "DOI",
+   "2C-B-fly",
+   "DOM",
+   "TMA-2",
+   "LSD",
+   "Ibogaine",
+   "Salvinorin_A"
+  ],
+  "receptors": [
+   "5ht2a",
+   "5ht2c",
+   "5ht2b",
+   "5ht1a",
+   "5ht1b",
+   "5ht1d",
+   "5ht1e",
+   "5ht5a",
+   "5ht6",
+   "5ht7",
+   "D1",
+   "D2",
+   "D3",
+   "D4",
+   "D5",
+   "Alpha1A",
+   "Alpha1B",
+   "Alpha2A",
+   "Alpha2B",
+   "Alpha2C",
+   "Beta1",
+   "Beta2",
+   "SERT",
+   "DAT",
+   "NET",
+   "Imidazoline1",
+   "Sigma1",
+   "Sigma2",
+   "KOR",
+   "MOR",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "H1",
+   "CB2",
+   "Ca+Channel",
+   "NMDA"
+  ],
+  "n_effects": {
+   "DOB": 71,
+   "MDA": 70,
+   "MDMA": 78,
+   "Mescaline": 66,
+   "2C-B": 63,
+   "DMT": 76,
+   "Psilocin": 83,
+   "5-MeO-DMT": 51,
+   "2C-E": 53,
+   "2C-T-2": 47,
+   "5-MeO-MIPT": 42,
+   "DIPT": 22,
+   "5-MeO-DIPT": 45,
+   "DPT": 72,
+   "DOI": 62,
+   "2C-B-fly": 54,
+   "DOM": 58,
+   "TMA-2": 35,
+   "LSD": 90,
+   "Ibogaine": 69,
+   "Salvinorin_A": 38
+  },
+  "sentences_per_drug": {
+   "DOB": 212,
+   "MDA": 209,
+   "MDMA": 233,
+   "Mescaline": 197,
+   "2C-B": 189,
+   "DMT": 226,
+   "Psilocin": 248,
+   "5-MeO-DMT": 151,
+   "2C-E": 157,
+   "2C-T-2": 140,
+   "5-MeO-MIPT": 126,
+   "DIPT": 66,
+   "5-MeO-DIPT": 135,
+   "DPT": 215,
+   "DOI": 186,
+   "2C-B-fly": 161,
+   "DOM": 173,
+   "TMA-2": 105,
+   "LSD": 269,
+   "Ibogaine": 205,
+   "Salvinorin_A": 114
+  },
+  "sentences_per_theme": {
+   "visual_complexity": 102,
+   "interdimensional_communication": 20,
+   "cognitive_disruption": 42,
+   "ego_dissolution": 18
+  },
+  "sober_sentences": 120
+ },
+ "regression": {
+  "alpha": 0.1,
+  "alpha_loo_scores": {
+   "0.1": 0.1194,
+   "0.3": 0.1132,
+   "1": 0.0953,
+   "3": 0.0647,
+   "10": 0.0277,
+   "30": 0.0076,
+   "100": 0.0093,
+   "300": 0.0239,
+   "1000": 0.0325,
+   "3000": 0.0353,
+   "10000": 0.0362
+  },
+  "loo_centered_cos_mean": 0.1194,
+  "loo_centered_cos_per_drug": {
+   "DOB": -0.1946,
+   "MDA": 0.0815,
+   "MDMA": 0.1492,
+   "Mescaline": -0.1487,
+   "2C-B": 0.0562,
+   "DMT": 0.5188,
+   "Psilocin": -0.2902,
+   "5-MeO-DMT": 0.3394,
+   "2C-E": 0.0495,
+   "2C-T-2": 0.5714,
+   "5-MeO-MIPT": 0.5978,
+   "DIPT": 0.2323,
+   "5-MeO-DIPT": 0.1924,
+   "DPT": -0.3657,
+   "DOI": 0.4218,
+   "2C-B-fly": -0.4557,
+   "DOM": 0.2602,
+   "TMA-2": 0.2561,
+   "LSD": 0.3142,
+   "Ibogaine": 0.2593,
+   "Salvinorin_A": -0.3381
+  },
+  "loo_raw_cos_mean": 0.9803,
+  "mean_pairwise_drug_cos": 0.9848,
+  "permuted_mean": 0.0514,
+  "permuted_p95": 0.2139,
+  "n_perms": 500,
+  "p": 0.24750499001996007
+ },
+ "cos_receptor_theme_ridge": {
+  "5-HT2A": {
+   "visual_complexity": 0.117,
+   "interdimensional_communication": 0.151,
+   "cognitive_disruption": -0.173,
+   "ego_dissolution": -0.031
+  },
+  "5ht2c": {
+   "visual_complexity": 0.133,
+   "interdimensional_communication": 0.097,
+   "cognitive_disruption": 0.175,
+   "ego_dissolution": 0.129
+  },
+  "5ht2b": {
+   "visual_complexity": -0.059,
+   "interdimensional_communication": -0.329,
+   "cognitive_disruption": 0.151,
+   "ego_dissolution": 0.016
+  },
+  "5-HT1A": {
+   "visual_complexity": 0.078,
+   "interdimensional_communication": -0.054,
+   "cognitive_disruption": 0.055,
+   "ego_dissolution": -0.019
+  },
+  "5-HT1B": {
+   "visual_complexity": 0.122,
+   "interdimensional_communication": 0.237,
+   "cognitive_disruption": 0.056,
+   "ego_dissolution": 0.054
+  },
+  "5ht1d": {
+   "visual_complexity": 0.144,
+   "interdimensional_communication": 0.18,
+   "cognitive_disruption": -0.187,
+   "ego_dissolution": -0.053
+  },
+  "5-HT1E": {
+   "visual_complexity": 0.095,
+   "interdimensional_communication": 0.391,
+   "cognitive_disruption": -0.12,
+   "ego_dissolution": -0.007
+  },
+  "5ht5a": {
+   "visual_complexity": -0.038,
+   "interdimensional_communication": -0.013,
+   "cognitive_disruption": 0.15,
+   "ego_dissolution": 0.051
+  },
+  "5ht6": {
+   "visual_complexity": -0.057,
+   "interdimensional_communication": 0.06,
+   "cognitive_disruption": -0.128,
+   "ego_dissolution": -0.059
+  },
+  "5-HT7": {
+   "visual_complexity": 0.043,
+   "interdimensional_communication": -0.178,
+   "cognitive_disruption": 0.132,
+   "ego_dissolution": 0.047
+  },
+  "D1": {
+   "visual_complexity": -0.04,
+   "interdimensional_communication": 0.149,
+   "cognitive_disruption": 0.055,
+   "ego_dissolution": 0.081
+  },
+  "D2": {
+   "visual_complexity": -0.042,
+   "interdimensional_communication": -0.1,
+   "cognitive_disruption": -0.156,
+   "ego_dissolution": -0.054
+  },
+  "D3": {
+   "visual_complexity": -0.064,
+   "interdimensional_communication": -0.062,
+   "cognitive_disruption": 0.171,
+   "ego_dissolution": 0.06
+  },
+  "D4": {
+   "visual_complexity": -0.083,
+   "interdimensional_communication": -0.204,
+   "cognitive_disruption": 0.217,
+   "ego_dissolution": 0.061
+  },
+  "D5": {
+   "visual_complexity": -0.181,
+   "interdimensional_communication": -0.376,
+   "cognitive_disruption": -0.002,
+   "ego_dissolution": -0.06
+  },
+  "Alpha1A": {
+   "visual_complexity": 0.191,
+   "interdimensional_communication": 0.363,
+   "cognitive_disruption": -0.06,
+   "ego_dissolution": 0.009
+  },
+  "Alpha1B": {
+   "visual_complexity": 0.172,
+   "interdimensional_communication": 0.312,
+   "cognitive_disruption": 0.107,
+   "ego_dissolution": 0.089
+  },
+  "Alpha2A": {
+   "visual_complexity": -0.046,
+   "interdimensional_communication": 0.008,
+   "cognitive_disruption": -0.033,
+   "ego_dissolution": -0.043
+  },
+  "Alpha2B": {
+   "visual_complexity": -0.164,
+   "interdimensional_communication": -0.399,
+   "cognitive_disruption": 0.028,
+   "ego_dissolution": -0.021
+  },
+  "Alpha2C": {
+   "visual_complexity": -0.027,
+   "interdimensional_communication": 0.301,
+   "cognitive_disruption": 0.032,
+   "ego_dissolution": 0.015
+  },
+  "Beta1": {
+   "visual_complexity": -0.021,
+   "interdimensional_communication": 0.005,
+   "cognitive_disruption": 0.179,
+   "ego_dissolution": 0.056
+  },
+  "Beta2": {
+   "visual_complexity": 0.129,
+   "interdimensional_communication": -0.029,
+   "cognitive_disruption": -0.018,
+   "ego_dissolution": -0.007
+  },
+  "SERT": {
+   "visual_complexity": 0.082,
+   "interdimensional_communication": 0.044,
+   "cognitive_disruption": 0.151,
+   "ego_dissolution": 0.09
+  },
+  "DAT": {
+   "visual_complexity": 0.106,
+   "interdimensional_communication": 0.243,
+   "cognitive_disruption": 0.213,
+   "ego_dissolution": 0.124
+  },
+  "NET": {
+   "visual_complexity": -0.131,
+   "interdimensional_communication": -0.291,
+   "cognitive_disruption": 0.08,
+   "ego_dissolution": 0.045
+  },
+  "Imidazoline1": {
+   "visual_complexity": -0.055,
+   "interdimensional_communication": -0.165,
+   "cognitive_disruption": -0.062,
+   "ego_dissolution": -0.071
+  },
+  "Sigma1": {
+   "visual_complexity": -0.13,
+   "interdimensional_communication": -0.097,
+   "cognitive_disruption": -0.188,
+   "ego_dissolution": -0.093
+  },
+  "Sigma2": {
+   "visual_complexity": -0.028,
+   "interdimensional_communication": -0.337,
+   "cognitive_disruption": -0.036,
+   "ego_dissolution": -0.069
+  },
+  "KOR": {
+   "visual_complexity": 0.05,
+   "interdimensional_communication": 0.021,
+   "cognitive_disruption": 0.208,
+   "ego_dissolution": 0.144
+  },
+  "MOR": {
+   "visual_complexity": -0.078,
+   "interdimensional_communication": 0.129,
+   "cognitive_disruption": -0.13,
+   "ego_dissolution": 0.007
+  },
+  "M1": {
+   "visual_complexity": -0.191,
+   "interdimensional_communication": -0.325,
+   "cognitive_disruption": -0.005,
+   "ego_dissolution": -0.077
+  },
+  "M2": {
+   "visual_complexity": -0.044,
+   "interdimensional_communication": -0.2,
+   "cognitive_disruption": 0.12,
+   "ego_dissolution": -0.035
+  },
+  "M3": {
+   "visual_complexity": -0.073,
+   "interdimensional_communication": -0.193,
+   "cognitive_disruption": 0.18,
+   "ego_dissolution": 0.052
+  },
+  "M4": {
+   "visual_complexity": -0.151,
+   "interdimensional_communication": -0.2,
+   "cognitive_disruption": 0.057,
+   "ego_dissolution": -0.046
+  },
+  "M5": {
+   "visual_complexity": 0.194,
+   "interdimensional_communication": 0.152,
+   "cognitive_disruption": 0.038,
+   "ego_dissolution": 0.069
+  },
+  "H1": {
+   "visual_complexity": -0.051,
+   "interdimensional_communication": -0.016,
+   "cognitive_disruption": -0.167,
+   "ego_dissolution": -0.063
+  },
+  "CB2": {
+   "visual_complexity": -0.203,
+   "interdimensional_communication": -0.312,
+   "cognitive_disruption": -0.047,
+   "ego_dissolution": -0.077
+  },
+  "Ca+Channel": {
+   "visual_complexity": -0.135,
+   "interdimensional_communication": -0.169,
+   "cognitive_disruption": 0.109,
+   "ego_dissolution": -0.012
+  },
+  "NMDA": {
+   "visual_complexity": -0.078,
+   "interdimensional_communication": 0.129,
+   "cognitive_disruption": -0.13,
+   "ego_dissolution": 0.007
+  }
+ },
+ "cos_receptor_theme_univariate": {
+  "5-HT2A": {
+   "visual_complexity": 0.147,
+   "interdimensional_communication": 0.011,
+   "cognitive_disruption": -0.125,
+   "ego_dissolution": -0.082
+  },
+  "5ht2c": {
+   "visual_complexity": 0.195,
+   "interdimensional_communication": 0.197,
+   "cognitive_disruption": -0.057,
+   "ego_dissolution": -0.023
+  },
+  "5ht2b": {
+   "visual_complexity": 0.079,
+   "interdimensional_communication": -0.134,
+   "cognitive_disruption": -0.109,
+   "ego_dissolution": -0.112
+  },
+  "5-HT1A": {
+   "visual_complexity": 0.169,
+   "interdimensional_communication": 0.19,
+   "cognitive_disruption": -0.095,
+   "ego_dissolution": -0.039
+  },
+  "5-HT1B": {
+   "visual_complexity": 0.208,
+   "interdimensional_communication": 0.369,
+   "cognitive_disruption": -0.022,
+   "ego_dissolution": 0.02
+  },
+  "5ht1d": {
+   "visual_complexity": 0.229,
+   "interdimensional_communication": 0.229,
+   "cognitive_disruption": -0.085,
+   "ego_dissolution": -0.032
+  },
+  "5-HT1E": {
+   "visual_complexity": 0.209,
+   "interdimensional_communication": 0.433,
+   "cognitive_disruption": -0.004,
+   "ego_dissolution": 0.056
+  },
+  "5ht5a": {
+   "visual_complexity": 0.148,
+   "interdimensional_communication": 0.364,
+   "cognitive_disruption": 0.052,
+   "ego_dissolution": 0.076
+  },
+  "5ht6": {
+   "visual_complexity": 0.183,
+   "interdimensional_communication": 0.379,
+   "cognitive_disruption": 0.007,
+   "ego_dissolution": 0.045
+  },
+  "5-HT7": {
+   "visual_complexity": 0.207,
+   "interdimensional_communication": 0.389,
+   "cognitive_disruption": 0.01,
+   "ego_dissolution": 0.064
+  },
+  "D1": {
+   "visual_complexity": 0.126,
+   "interdimensional_communication": 0.361,
+   "cognitive_disruption": 0.046,
+   "ego_dissolution": 0.089
+  },
+  "D2": {
+   "visual_complexity": 0.114,
+   "interdimensional_communication": 0.356,
+   "cognitive_disruption": -0.035,
+   "ego_dissolution": 0.025
+  },
+  "D3": {
+   "visual_complexity": 0.195,
+   "interdimensional_communication": 0.317,
+   "cognitive_disruption": -0.01,
+   "ego_dissolution": 0.035
+  },
+  "D4": {
+   "visual_complexity": 0.079,
+   "interdimensional_communication": 0.342,
+   "cognitive_disruption": 0.086,
+   "ego_dissolution": 0.072
+  },
+  "D5": {
+   "visual_complexity": 0.014,
+   "interdimensional_communication": 0.172,
+   "cognitive_disruption": 0.033,
+   "ego_dissolution": 0.006
+  },
+  "Alpha1A": {
+   "visual_complexity": 0.129,
+   "interdimensional_communication": 0.376,
+   "cognitive_disruption": 0.049,
+   "ego_dissolution": 0.059
+  },
+  "Alpha1B": {
+   "visual_complexity": 0.106,
+   "interdimensional_communication": 0.37,
+   "cognitive_disruption": 0.053,
+   "ego_dissolution": 0.07
+  },
+  "Alpha2A": {
+   "visual_complexity": 0.089,
+   "interdimensional_communication": 0.048,
+   "cognitive_disruption": 0.138,
+   "ego_dissolution": 0.031
+  },
+  "Alpha2B": {
+   "visual_complexity": 0.051,
+   "interdimensional_communication": 0.176,
+   "cognitive_disruption": 0.187,
+   "ego_dissolution": 0.116
+  },
+  "Alpha2C": {
+   "visual_complexity": 0.06,
+   "interdimensional_communication": 0.356,
+   "cognitive_disruption": 0.095,
+   "ego_dissolution": 0.09
+  },
+  "Beta1": {
+   "visual_complexity": 0.015,
+   "interdimensional_communication": -0.057,
+   "cognitive_disruption": 0.07,
+   "ego_dissolution": -0.01
+  },
+  "Beta2": {
+   "visual_complexity": 0.089,
+   "interdimensional_communication": -0.196,
+   "cognitive_disruption": -0.031,
+   "ego_dissolution": -0.043
+  },
+  "SERT": {
+   "visual_complexity": 0.102,
+   "interdimensional_communication": 0.272,
+   "cognitive_disruption": 0.111,
+   "ego_dissolution": 0.121
+  },
+  "DAT": {
+   "visual_complexity": 0.064,
+   "interdimensional_communication": 0.319,
+   "cognitive_disruption": 0.164,
+   "ego_dissolution": 0.151
+  },
+  "NET": {
+   "visual_complexity": 0.042,
+   "interdimensional_communication": 0.224,
+   "cognitive_disruption": 0.042,
+   "ego_dissolution": 0.095
+  },
+  "Imidazoline1": {
+   "visual_complexity": -0.043,
+   "interdimensional_communication": 0.07,
+   "cognitive_disruption": 0.053,
+   "ego_dissolution": -0.002
+  },
+  "Sigma1": {
+   "visual_complexity": 0.059,
+   "interdimensional_communication": 0.188,
+   "cognitive_disruption": -0.032,
+   "ego_dissolution": 0.026
+  },
+  "Sigma2": {
+   "visual_complexity": -0.017,
+   "interdimensional_communication": -0.134,
+   "cognitive_disruption": 0.041,
+   "ego_dissolution": 0.029
+  },
+  "KOR": {
+   "visual_complexity": -0.013,
+   "interdimensional_communication": 0.078,
+   "cognitive_disruption": 0.179,
+   "ego_dissolution": 0.15
+  },
+  "MOR": {
+   "visual_complexity": -0.022,
+   "interdimensional_communication": 0.148,
+   "cognitive_disruption": 0.161,
+   "ego_dissolution": 0.172
+  },
+  "M1": {
+   "visual_complexity": -0.116,
+   "interdimensional_communication": -0.369,
+   "cognitive_disruption": -0.035,
+   "ego_dissolution": -0.109
+  },
+  "M2": {
+   "visual_complexity": -0.09,
+   "interdimensional_communication": -0.358,
+   "cognitive_disruption": -0.05,
+   "ego_dissolution": -0.125
+  },
+  "M3": {
+   "visual_complexity": -0.086,
+   "interdimensional_communication": -0.301,
+   "cognitive_disruption": -0.028,
+   "ego_dissolution": -0.1
+  },
+  "M4": {
+   "visual_complexity": -0.126,
+   "interdimensional_communication": -0.367,
+   "cognitive_disruption": 0.012,
+   "ego_dissolution": -0.076
+  },
+  "M5": {
+   "visual_complexity": -0.056,
+   "interdimensional_communication": -0.303,
+   "cognitive_disruption": -0.077,
+   "ego_dissolution": -0.096
+  },
+  "H1": {
+   "visual_complexity": 0.068,
+   "interdimensional_communication": 0.153,
+   "cognitive_disruption": -0.042,
+   "ego_dissolution": -0.028
+  },
+  "CB2": {
+   "visual_complexity": -0.135,
+   "interdimensional_communication": -0.359,
+   "cognitive_disruption": -0.03,
+   "ego_dissolution": -0.096
+  },
+  "Ca+Channel": {
+   "visual_complexity": -0.218,
+   "interdimensional_communication": -0.319,
+   "cognitive_disruption": 0.094,
+   "ego_dissolution": -0.045
+  },
+  "NMDA": {
+   "visual_complexity": -0.022,
+   "interdimensional_communication": 0.148,
+   "cognitive_disruption": 0.161,
+   "ego_dissolution": 0.172
+  }
+ },
+ "corr_pki_theme_projection": {
+  "5-HT2A": {
+   "visual_complexity": 0.272,
+   "interdimensional_communication": 0.009,
+   "cognitive_disruption": -0.237,
+   "ego_dissolution": -0.205
+  },
+  "5ht2c": {
+   "visual_complexity": 0.265,
+   "interdimensional_communication": 0.119,
+   "cognitive_disruption": -0.08,
+   "ego_dissolution": -0.043
+  },
+  "5ht2b": {
+   "visual_complexity": 0.182,
+   "interdimensional_communication": -0.137,
+   "cognitive_disruption": -0.258,
+   "ego_dissolution": -0.35
+  },
+  "5-HT1A": {
+   "visual_complexity": 0.257,
+   "interdimensional_communication": 0.129,
+   "cognitive_disruption": -0.149,
+   "ego_dissolution": -0.08
+  },
+  "5-HT1B": {
+   "visual_complexity": 0.278,
+   "interdimensional_communication": 0.219,
+   "cognitive_disruption": -0.031,
+   "ego_dissolution": 0.037
+  },
+  "5ht1d": {
+   "visual_complexity": 0.357,
+   "interdimensional_communication": 0.159,
+   "cognitive_disruption": -0.136,
+   "ego_dissolution": -0.067
+  },
+  "5-HT1E": {
+   "visual_complexity": 0.426,
+   "interdimensional_communication": 0.392,
+   "cognitive_disruption": -0.008,
+   "ego_dissolution": 0.154
+  },
+  "5ht5a": {
+   "visual_complexity": 0.295,
+   "interdimensional_communication": 0.324,
+   "cognitive_disruption": 0.106,
+   "ego_dissolution": 0.204
+  },
+  "5ht6": {
+   "visual_complexity": 0.297,
+   "interdimensional_communication": 0.274,
+   "cognitive_disruption": 0.012,
+   "ego_dissolution": 0.099
+  },
+  "5-HT7": {
+   "visual_complexity": 0.41,
+   "interdimensional_communication": 0.343,
+   "cognitive_disruption": 0.02,
+   "ego_dissolution": 0.172
+  },
+  "D1": {
+   "visual_complexity": 0.319,
+   "interdimensional_communication": 0.404,
+   "cognitive_disruption": 0.12,
+   "ego_dissolution": 0.302
+  },
+  "D2": {
+   "visual_complexity": 0.156,
+   "interdimensional_communication": 0.218,
+   "cognitive_disruption": -0.049,
+   "ego_dissolution": 0.047
+  },
+  "D3": {
+   "visual_complexity": 0.281,
+   "interdimensional_communication": 0.203,
+   "cognitive_disruption": -0.015,
+   "ego_dissolution": 0.067
+  },
+  "D4": {
+   "visual_complexity": 0.109,
+   "interdimensional_communication": 0.21,
+   "cognitive_disruption": 0.121,
+   "ego_dissolution": 0.134
+  },
+  "D5": {
+   "visual_complexity": 0.015,
+   "interdimensional_communication": 0.083,
+   "cognitive_disruption": 0.036,
+   "ego_dissolution": 0.009
+  },
+  "Alpha1A": {
+   "visual_complexity": 0.269,
+   "interdimensional_communication": 0.349,
+   "cognitive_disruption": 0.104,
+   "ego_dissolution": 0.165
+  },
+  "Alpha1B": {
+   "visual_complexity": 0.276,
+   "interdimensional_communication": 0.429,
+   "cognitive_disruption": 0.142,
+   "ego_dissolution": 0.245
+  },
+  "Alpha2A": {
+   "visual_complexity": 0.111,
+   "interdimensional_communication": 0.027,
+   "cognitive_disruption": 0.176,
+   "ego_dissolution": 0.052
+  },
+  "Alpha2B": {
+   "visual_complexity": 0.083,
+   "interdimensional_communication": 0.126,
+   "cognitive_disruption": 0.31,
+   "ego_dissolution": 0.254
+  },
+  "Alpha2C": {
+   "visual_complexity": 0.091,
+   "interdimensional_communication": 0.241,
+   "cognitive_disruption": 0.148,
+   "ego_dissolution": 0.186
+  },
+  "Beta1": {
+   "visual_complexity": 0.019,
+   "interdimensional_communication": -0.032,
+   "cognitive_disruption": 0.09,
+   "ego_dissolution": -0.016
+  },
+  "Beta2": {
+   "visual_complexity": 0.161,
+   "interdimensional_communication": -0.157,
+   "cognitive_disruption": -0.057,
+   "ego_dissolution": -0.104
+  },
+  "SERT": {
+   "visual_complexity": 0.175,
+   "interdimensional_communication": 0.207,
+   "cognitive_disruption": 0.194,
+   "ego_dissolution": 0.279
+  },
+  "DAT": {
+   "visual_complexity": 0.119,
+   "interdimensional_communication": 0.262,
+   "cognitive_disruption": 0.311,
+   "ego_dissolution": 0.376
+  },
+  "NET": {
+   "visual_complexity": 0.093,
+   "interdimensional_communication": 0.219,
+   "cognitive_disruption": 0.095,
+   "ego_dissolution": 0.283
+  },
+  "Imidazoline1": {
+   "visual_complexity": -0.061,
+   "interdimensional_communication": 0.045,
+   "cognitive_disruption": 0.077,
+   "ego_dissolution": -0.004
+  },
+  "Sigma1": {
+   "visual_complexity": 0.079,
+   "interdimensional_communication": 0.111,
+   "cognitive_disruption": -0.044,
+   "ego_dissolution": 0.046
+  },
+  "Sigma2": {
+   "visual_complexity": -0.025,
+   "interdimensional_communication": -0.084,
+   "cognitive_disruption": 0.059,
+   "ego_dissolution": 0.055
+  },
+  "KOR": {
+   "visual_complexity": -0.041,
+   "interdimensional_communication": 0.113,
+   "cognitive_disruption": 0.595,
+   "ego_dissolution": 0.655
+  },
+  "MOR": {
+   "visual_complexity": -0.03,
+   "interdimensional_communication": 0.09,
+   "cognitive_disruption": 0.228,
+   "ego_dissolution": 0.319
+  },
+  "M1": {
+   "visual_complexity": -0.265,
+   "interdimensional_communication": -0.374,
+   "cognitive_disruption": -0.081,
+   "ego_dissolution": -0.334
+  },
+  "M2": {
+   "visual_complexity": -0.181,
+   "interdimensional_communication": -0.319,
+   "cognitive_disruption": -0.103,
+   "ego_dissolution": -0.337
+  },
+  "M3": {
+   "visual_complexity": -0.169,
+   "interdimensional_communication": -0.264,
+   "cognitive_disruption": -0.056,
+   "ego_dissolution": -0.265
+  },
+  "M4": {
+   "visual_complexity": -0.273,
+   "interdimensional_communication": -0.355,
+   "cognitive_disruption": 0.026,
+   "ego_dissolution": -0.224
+  },
+  "M5": {
+   "visual_complexity": -0.095,
+   "interdimensional_communication": -0.228,
+   "cognitive_disruption": -0.133,
+   "ego_dissolution": -0.219
+  },
+  "H1": {
+   "visual_complexity": 0.082,
+   "interdimensional_communication": 0.081,
+   "cognitive_disruption": -0.051,
+   "ego_dissolution": -0.045
+  },
+  "CB2": {
+   "visual_complexity": -0.295,
+   "interdimensional_communication": -0.349,
+   "cognitive_disruption": -0.068,
+   "ego_dissolution": -0.284
+  },
+  "Ca+Channel": {
+   "visual_complexity": -0.603,
+   "interdimensional_communication": -0.392,
+   "cognitive_disruption": 0.267,
+   "ego_dissolution": -0.169
+  },
+  "NMDA": {
+   "visual_complexity": -0.03,
+   "interdimensional_communication": 0.09,
+   "cognitive_disruption": 0.228,
+   "ego_dissolution": 0.319
+  }
+ },
+ "theme_cosines": {
+  "visual_complexity": {
+   "visual_complexity": 1.0,
+   "interdimensional_communication": 0.808,
+   "cognitive_disruption": 0.862,
+   "ego_dissolution": 0.845
+  },
+  "interdimensional_communication": {
+   "visual_complexity": 0.808,
+   "interdimensional_communication": 1.0,
+   "cognitive_disruption": 0.728,
+   "ego_dissolution": 0.745
+  },
+  "cognitive_disruption": {
+   "visual_complexity": 0.862,
+   "interdimensional_communication": 0.728,
+   "cognitive_disruption": 1.0,
+   "ego_dissolution": 0.91
+  },
+  "ego_dissolution": {
+   "visual_complexity": 0.845,
+   "interdimensional_communication": 0.745,
+   "cognitive_disruption": 0.91,
+   "ego_dissolution": 1.0
+  }
+ },
+ "receptor_cosines": {
+  "5-HT2A": {
+   "5-HT2A": 1.0,
+   "5-HT1A": -0.338,
+   "5-HT1B": 0.326,
+   "5-HT1E": 0.554,
+   "5-HT7": -0.196,
+   "H1": 0.49
+  },
+  "5-HT1A": {
+   "5-HT2A": -0.338,
+   "5-HT1A": 1.0,
+   "5-HT1B": 0.252,
+   "5-HT1E": -0.447,
+   "5-HT7": 0.502,
+   "H1": -0.665
+  },
+  "5-HT1B": {
+   "5-HT2A": 0.326,
+   "5-HT1A": 0.252,
+   "5-HT1B": 1.0,
+   "5-HT1E": 0.12,
+   "5-HT7": 0.411,
+   "H1": -0.545
+  },
+  "5-HT1E": {
+   "5-HT2A": 0.554,
+   "5-HT1A": -0.447,
+   "5-HT1B": 0.12,
+   "5-HT1E": 1.0,
+   "5-HT7": -0.777,
+   "H1": 0.466
+  },
+  "5-HT7": {
+   "5-HT2A": -0.196,
+   "5-HT1A": 0.502,
+   "5-HT1B": 0.411,
+   "5-HT1E": -0.777,
+   "5-HT7": 1.0,
+   "H1": -0.682
+  },
+  "H1": {
+   "5-HT2A": 0.49,
+   "5-HT1A": -0.665,
+   "5-HT1B": -0.545,
+   "5-HT1E": 0.466,
+   "5-HT7": -0.682,
+   "H1": 1.0
+  }
+ },
+ "judge_questions": {
+  "visual_complexity": "Does the speaker describe seeing vivid or complex visual imagery, such as geometric patterns, fractals, shifting colours, or visions?",
+  "interdimensional_communication": "Does the speaker describe perceiving or communicating with spirits, entities, aliens, or other non-human beings (not counting the person they are talking to)?",
+  "cognitive_disruption": "Does the speaker describe their own thinking as confused, disorganized, or disrupted?",
+  "ego_dissolution": "Does the speaker describe their sense of self dissolving, or the boundary between self and world disappearing?",
+  "altered_state": "Does the speaker describe being in an altered state of consciousness?"
+ },
+ "judge_check": {
+  "visual_complexity": [
+   {
+    "visual_complexity": 25.494,
+    "interdimensional_communication": -12.492,
+    "cognitive_disruption": -20.573,
+    "ego_dissolution": -9.98,
+    "altered_state": 7.694
+   }
+  ],
+  "interdimensional_communication": [
+   {
+    "visual_complexity": -23.397,
+    "interdimensional_communication": 16.27,
+    "cognitive_disruption": -25.764,
+    "ego_dissolution": -28.298,
+    "altered_state": 5.351
+   }
+  ],
+  "cognitive_disruption": [
+   {
+    "visual_complexity": -31.118,
+    "interdimensional_communication": -23.948,
+    "cognitive_disruption": 18.375,
+    "ego_dissolution": -6.5,
+    "altered_state": 7.348
+   }
+  ],
+  "ego_dissolution": [
+   {
+    "visual_complexity": -7.737,
+    "interdimensional_communication": -25.957,
+    "cognitive_disruption": 7.269,
+    "ego_dissolution": 14.499,
+    "altered_state": 22.523
+   }
+  ],
+  "neutral": [
+   {
+    "visual_complexity": -31.614,
+    "interdimensional_communication": -31.238,
+    "cognitive_disruption": -30.842,
+    "ego_dissolution": -33.477,
+    "altered_state": -29.439
+   },
+   {
+    "visual_complexity": -32.646,
+    "interdimensional_communication": -31.974,
+    "cognitive_disruption": -27.573,
+    "ego_dissolution": -32.5,
+    "altered_state": -31.559
+   }
+  ]
+ },
+ "prompts": [
+  "Describe what you're experiencing right now.",
+  "What do you see?",
+  "What are you thinking about?",
+  "Close your eyes. What appears?",
+  "Is there anyone else here with you?",
+  "How does your mind feel right now?"
+ ],
+ "table": [
+  {
+   "axis": "baseline",
+   "dose": 0,
+   "n": 12,
+   "repetition": 0.0,
+   "past_cliff": false,
+   "visual_complexity": -29.268,
+   "interdimensional_communication": -28.952,
+   "cognitive_disruption": -31.457,
+   "ego_dissolution": -28.887,
+   "altered_state": -25.4,
+   "classic": -29.035
+  },
+  {
+   "axis": "5-HT2A",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.011,
+   "past_cliff": false,
+   "visual_complexity": -23.762,
+   "interdimensional_communication": -29.467,
+   "cognitive_disruption": -31.735,
+   "ego_dissolution": -26.27,
+   "altered_state": -26.677,
+   "classic": -26.5
+  },
+  {
+   "axis": "5-HT2A",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.071,
+   "past_cliff": false,
+   "visual_complexity": 23.607,
+   "interdimensional_communication": -27.895,
+   "cognitive_disruption": -30.123,
+   "ego_dissolution": -9.781,
+   "altered_state": 16.955,
+   "classic": -4.69
+  },
+  {
+   "axis": "5-HT1A",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.024,
+   "past_cliff": false,
+   "visual_complexity": -29.74,
+   "interdimensional_communication": -29.434,
+   "cognitive_disruption": -29.746,
+   "ego_dissolution": -28.56,
+   "altered_state": -25.827,
+   "classic": -29.245
+  },
+  {
+   "axis": "5-HT1A",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.313,
+   "past_cliff": false,
+   "visual_complexity": -25.581,
+   "interdimensional_communication": -25.364,
+   "cognitive_disruption": -10.352,
+   "ego_dissolution": -24.352,
+   "altered_state": -17.802,
+   "classic": -25.099
+  },
+  {
+   "axis": "5-HT1B",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.006,
+   "past_cliff": false,
+   "visual_complexity": -28.046,
+   "interdimensional_communication": -31.277,
+   "cognitive_disruption": -32.7,
+   "ego_dissolution": -30.19,
+   "altered_state": -30.687,
+   "classic": -29.838
+  },
+  {
+   "axis": "5-HT1B",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.064,
+   "past_cliff": false,
+   "visual_complexity": -24.913,
+   "interdimensional_communication": -30.822,
+   "cognitive_disruption": -28.001,
+   "ego_dissolution": -25.85,
+   "altered_state": -30.007,
+   "classic": -27.195
+  },
+  {
+   "axis": "5-HT1E",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.003,
+   "past_cliff": false,
+   "visual_complexity": -20.125,
+   "interdimensional_communication": -26.8,
+   "cognitive_disruption": -30.977,
+   "ego_dissolution": -16.448,
+   "altered_state": -11.441,
+   "classic": -21.124
+  },
+  {
+   "axis": "5-HT1E",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.224,
+   "past_cliff": false,
+   "visual_complexity": -25.221,
+   "interdimensional_communication": -25.708,
+   "cognitive_disruption": -24.826,
+   "ego_dissolution": -3.935,
+   "altered_state": 9.531,
+   "classic": -18.288
+  },
+  {
+   "axis": "5-HT7",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.005,
+   "past_cliff": false,
+   "visual_complexity": -31.113,
+   "interdimensional_communication": -30.814,
+   "cognitive_disruption": -31.2,
+   "ego_dissolution": -30.413,
+   "altered_state": -30.904,
+   "classic": -30.78
+  },
+  {
+   "axis": "5-HT7",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.157,
+   "past_cliff": false,
+   "visual_complexity": -32.101,
+   "interdimensional_communication": -31.478,
+   "cognitive_disruption": -15.907,
+   "ego_dissolution": -32.541,
+   "altered_state": -28.816,
+   "classic": -32.04
+  },
+  {
+   "axis": "H1",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.003,
+   "past_cliff": false,
+   "visual_complexity": -29.811,
+   "interdimensional_communication": -28.322,
+   "cognitive_disruption": -30.127,
+   "ego_dissolution": -25.965,
+   "altered_state": -17.38,
+   "classic": -28.033
+  },
+  {
+   "axis": "H1",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.153,
+   "past_cliff": false,
+   "visual_complexity": -29.815,
+   "interdimensional_communication": -29.045,
+   "cognitive_disruption": -30.068,
+   "ego_dissolution": -21.027,
+   "altered_state": 6.386,
+   "classic": -26.629
+  },
+  {
+   "axis": "random",
+   "dose": 2,
+   "n": 24,
+   "repetition": 0.015,
+   "past_cliff": false,
+   "visual_complexity": -30.699,
+   "interdimensional_communication": -29.583,
+   "cognitive_disruption": -31.489,
+   "ego_dissolution": -27.794,
+   "altered_state": -28.161,
+   "classic": -29.359
+  },
+  {
+   "axis": "random",
+   "dose": 4,
+   "n": 24,
+   "repetition": 0.563,
+   "past_cliff": true,
+   "visual_complexity": -29.489,
+   "interdimensional_communication": -24.263,
+   "cognitive_disruption": -20.018,
+   "ego_dissolution": -18.233,
+   "altered_state": -17.137,
+   "classic": -23.995
+  },
+  {
+   "axis": "T:visual_complexity",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.006,
+   "past_cliff": false,
+   "visual_complexity": -17.711,
+   "interdimensional_communication": -28.698,
+   "cognitive_disruption": -29.721,
+   "ego_dissolution": -29.981,
+   "altered_state": -18.618,
+   "classic": -25.463
+  },
+  {
+   "axis": "T:visual_complexity",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.024,
+   "past_cliff": false,
+   "visual_complexity": -12.099,
+   "interdimensional_communication": -25.453,
+   "cognitive_disruption": -20.048,
+   "ego_dissolution": -23.675,
+   "altered_state": 6.997,
+   "classic": -20.409
+  },
+  {
+   "axis": "T:interdimensional_communication",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.004,
+   "past_cliff": false,
+   "visual_complexity": -20.66,
+   "interdimensional_communication": -27.754,
+   "cognitive_disruption": -31.196,
+   "ego_dissolution": -23.024,
+   "altered_state": -14.463,
+   "classic": -23.813
+  },
+  {
+   "axis": "T:interdimensional_communication",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.033,
+   "past_cliff": false,
+   "visual_complexity": -23.102,
+   "interdimensional_communication": -19.71,
+   "cognitive_disruption": -25.689,
+   "ego_dissolution": -9.571,
+   "altered_state": 6.226,
+   "classic": -17.461
+  },
+  {
+   "axis": "T:cognitive_disruption",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.005,
+   "past_cliff": false,
+   "visual_complexity": -29.372,
+   "interdimensional_communication": -29.836,
+   "cognitive_disruption": -30.57,
+   "ego_dissolution": -25.673,
+   "altered_state": -23.513,
+   "classic": -28.294
+  },
+  {
+   "axis": "T:cognitive_disruption",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.094,
+   "past_cliff": false,
+   "visual_complexity": -27.186,
+   "interdimensional_communication": -27.604,
+   "cognitive_disruption": -14.908,
+   "ego_dissolution": -22.314,
+   "altered_state": -8.018,
+   "classic": -25.701
+  },
+  {
+   "axis": "T:ego_dissolution",
+   "dose": 2,
+   "n": 12,
+   "repetition": 0.013,
+   "past_cliff": false,
+   "visual_complexity": -25.375,
+   "interdimensional_communication": -28.819,
+   "cognitive_disruption": -30.921,
+   "ego_dissolution": -24.587,
+   "altered_state": -21.324,
+   "classic": -26.261
+  },
+  {
+   "axis": "T:ego_dissolution",
+   "dose": 4,
+   "n": 12,
+   "repetition": 0.156,
+   "past_cliff": false,
+   "visual_complexity": -30.454,
+   "interdimensional_communication": -28.813,
+   "cognitive_disruption": -1.708,
+   "ego_dissolution": -5.573,
+   "altered_state": 7.969,
+   "classic": -21.613
+  }
+ ],
+ "tests": {
+  "H1": [
+   {
+    "receptor": "H1",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -28.322,
+      "random": -29.583,
+      "diff": 1.261,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -29.045,
+      "random": -24.263,
+      "diff": -4.781,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.76,
+    "p": 0.9087,
+    "held": false
+   }
+  ],
+  "H2": [
+   {
+    "receptor": "5-HT1A",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -29.746,
+      "random": -31.489,
+      "diff": 1.742,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -10.352,
+      "random": -20.018,
+      "diff": 9.665,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 5.704,
+    "p": 0.0271,
+    "held": true
+   },
+   {
+    "receptor": "5-HT1B",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -32.7,
+      "random": -31.489,
+      "diff": -1.212,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -28.001,
+      "random": -20.018,
+      "diff": -7.983,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.598,
+    "p": 0.9789,
+    "held": false
+   }
+  ],
+  "H3": [
+   {
+    "receptor": "5-HT7",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -31.113,
+      "random": -30.699,
+      "diff": -0.414,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -32.101,
+      "random": -29.489,
+      "diff": -2.612,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.513,
+    "p": 0.9958,
+    "held": false
+   },
+   {
+    "receptor": "5-HT1E",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -20.125,
+      "random": -30.699,
+      "diff": 10.575,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.221,
+      "random": -29.489,
+      "diff": 4.269,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 7.422,
+    "p": 0.0003,
+    "held": true
+   }
+  ],
+  "H4": [
+   {
+    "receptor": "5-HT2A",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -26.5,
+      "random": -29.359,
+      "diff": 2.859,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -4.69,
+      "random": -23.995,
+      "diff": 19.305,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 11.082,
+    "p": 0.0001,
+    "held": true
+   }
+  ]
+ },
+ "verdicts": {
+  "H1": "not held",
+  "H2": "partial",
+  "H3": "partial",
+  "H4": "held",
+  "H5": "not held"
+ },
+ "receptor_x_theme_vs_random": {
+  "5-HT2A": {
+   "visual_complexity": {
+    "receptor": "5-HT2A",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -23.762,
+      "random": -30.699,
+      "diff": 6.937,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": 23.607,
+      "random": -29.489,
+      "diff": 53.096,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 30.016,
+    "p": 0.0001,
+    "held": true
+   },
+   "interdimensional_communication": {
+    "receptor": "5-HT2A",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -29.467,
+      "random": -29.583,
+      "diff": 0.116,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -27.895,
+      "random": -24.263,
+      "diff": -3.632,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.758,
+    "p": 0.9456,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "5-HT2A",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -31.735,
+      "random": -31.489,
+      "diff": -0.247,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -30.123,
+      "random": -20.018,
+      "diff": -10.106,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -5.176,
+    "p": 0.9997,
+    "held": false
+   },
+   "ego_dissolution": {
+    "receptor": "5-HT2A",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -26.27,
+      "random": -27.794,
+      "diff": 1.524,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -9.781,
+      "random": -18.233,
+      "diff": 8.452,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 4.988,
+    "p": 0.021,
+    "held": true
+   },
+   "altered_state": {
+    "receptor": "5-HT2A",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -26.677,
+      "random": -28.161,
+      "diff": 1.484,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": 16.955,
+      "random": -17.137,
+      "diff": 34.092,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 17.788,
+    "p": 0.0001,
+    "held": true
+   },
+   "classic": {
+    "receptor": "5-HT2A",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -26.5,
+      "random": -29.359,
+      "diff": 2.859,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -4.69,
+      "random": -23.995,
+      "diff": 19.305,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 11.082,
+    "p": 0.0001,
+    "held": true
+   }
+  },
+  "5-HT1A": {
+   "visual_complexity": {
+    "receptor": "5-HT1A",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -29.74,
+      "random": -30.699,
+      "diff": 0.959,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.581,
+      "random": -29.489,
+      "diff": 3.908,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 2.433,
+    "p": 0.0037,
+    "held": true
+   },
+   "interdimensional_communication": {
+    "receptor": "5-HT1A",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -29.434,
+      "random": -29.583,
+      "diff": 0.149,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.364,
+      "random": -24.263,
+      "diff": -1.101,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -0.476,
+    "p": 0.6286,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "5-HT1A",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -29.746,
+      "random": -31.489,
+      "diff": 1.742,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -10.352,
+      "random": -20.018,
+      "diff": 9.665,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 5.704,
+    "p": 0.0271,
+    "held": true
+   },
+   "ego_dissolution": {
+    "receptor": "5-HT1A",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -28.56,
+      "random": -27.794,
+      "diff": -0.766,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -24.352,
+      "random": -18.233,
+      "diff": -6.119,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -3.443,
+    "p": 0.9585,
+    "held": false
+   },
+   "altered_state": {
+    "receptor": "5-HT1A",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -25.827,
+      "random": -28.161,
+      "diff": 2.334,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -17.802,
+      "random": -17.137,
+      "diff": -0.665,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 0.834,
+    "p": 0.4049,
+    "held": false
+   },
+   "classic": {
+    "receptor": "5-HT1A",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -29.245,
+      "random": -29.359,
+      "diff": 0.114,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.099,
+      "random": -23.995,
+      "diff": -1.104,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -0.495,
+    "p": 0.6488,
+    "held": false
+   }
+  },
+  "5-HT1B": {
+   "visual_complexity": {
+    "receptor": "5-HT1B",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -28.046,
+      "random": -30.699,
+      "diff": 2.653,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -24.913,
+      "random": -29.489,
+      "diff": 4.577,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 3.615,
+    "p": 0.0096,
+    "held": true
+   },
+   "interdimensional_communication": {
+    "receptor": "5-HT1B",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -31.277,
+      "random": -29.583,
+      "diff": -1.694,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -30.822,
+      "random": -24.263,
+      "diff": -6.559,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.126,
+    "p": 1.0,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "5-HT1B",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -32.7,
+      "random": -31.489,
+      "diff": -1.212,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -28.001,
+      "random": -20.018,
+      "diff": -7.983,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.598,
+    "p": 0.9789,
+    "held": false
+   },
+   "ego_dissolution": {
+    "receptor": "5-HT1B",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -30.19,
+      "random": -27.794,
+      "diff": -2.396,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.85,
+      "random": -18.233,
+      "diff": -7.617,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -5.007,
+    "p": 0.997,
+    "held": false
+   },
+   "altered_state": {
+    "receptor": "5-HT1B",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -30.687,
+      "random": -28.161,
+      "diff": -2.526,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -30.007,
+      "random": -17.137,
+      "diff": -12.869,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -7.698,
+    "p": 0.9986,
+    "held": false
+   },
+   "classic": {
+    "receptor": "5-HT1B",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -29.838,
+      "random": -29.359,
+      "diff": -0.479,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -27.195,
+      "random": -23.995,
+      "diff": -3.2,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.839,
+    "p": 0.9498,
+    "held": false
+   }
+  },
+  "5-HT1E": {
+   "visual_complexity": {
+    "receptor": "5-HT1E",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -20.125,
+      "random": -30.699,
+      "diff": 10.575,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.221,
+      "random": -29.489,
+      "diff": 4.269,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 7.422,
+    "p": 0.0003,
+    "held": true
+   },
+   "interdimensional_communication": {
+    "receptor": "5-HT1E",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -26.8,
+      "random": -29.583,
+      "diff": 2.783,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -25.708,
+      "random": -24.263,
+      "diff": -1.445,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 0.669,
+    "p": 0.2904,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "5-HT1E",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -30.977,
+      "random": -31.489,
+      "diff": 0.512,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -24.826,
+      "random": -20.018,
+      "diff": -4.809,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -2.148,
+    "p": 0.7785,
+    "held": false
+   },
+   "ego_dissolution": {
+    "receptor": "5-HT1E",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -16.448,
+      "random": -27.794,
+      "diff": 11.346,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -3.935,
+      "random": -18.233,
+      "diff": 14.298,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 12.822,
+    "p": 0.0001,
+    "held": true
+   },
+   "altered_state": {
+    "receptor": "5-HT1E",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -11.441,
+      "random": -28.161,
+      "diff": 16.719,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": 9.531,
+      "random": -17.137,
+      "diff": 26.669,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 21.694,
+    "p": 0.0001,
+    "held": true
+   },
+   "classic": {
+    "receptor": "5-HT1E",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -21.124,
+      "random": -29.359,
+      "diff": 8.235,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -18.288,
+      "random": -23.995,
+      "diff": 5.707,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 6.971,
+    "p": 0.0001,
+    "held": true
+   }
+  },
+  "5-HT7": {
+   "visual_complexity": {
+    "receptor": "5-HT7",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -31.113,
+      "random": -30.699,
+      "diff": -0.414,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -32.101,
+      "random": -29.489,
+      "diff": -2.612,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.513,
+    "p": 0.9958,
+    "held": false
+   },
+   "interdimensional_communication": {
+    "receptor": "5-HT7",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -30.814,
+      "random": -29.583,
+      "diff": -1.231,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -31.478,
+      "random": -24.263,
+      "diff": -7.214,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.223,
+    "p": 1.0,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "5-HT7",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -31.2,
+      "random": -31.489,
+      "diff": 0.288,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -15.907,
+      "random": -20.018,
+      "diff": 4.111,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 2.2,
+    "p": 0.2049,
+    "held": false
+   },
+   "ego_dissolution": {
+    "receptor": "5-HT7",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -30.413,
+      "random": -27.794,
+      "diff": -2.62,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -32.541,
+      "random": -18.233,
+      "diff": -14.308,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -8.464,
+    "p": 1.0,
+    "held": false
+   },
+   "altered_state": {
+    "receptor": "5-HT7",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -30.904,
+      "random": -28.161,
+      "diff": -2.743,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -28.816,
+      "random": -17.137,
+      "diff": -11.679,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -7.211,
+    "p": 0.9984,
+    "held": false
+   },
+   "classic": {
+    "receptor": "5-HT7",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -30.78,
+      "random": -29.359,
+      "diff": -1.422,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -32.04,
+      "random": -23.995,
+      "diff": -8.045,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.733,
+    "p": 1.0,
+    "held": false
+   }
+  },
+  "H1": {
+   "visual_complexity": {
+    "receptor": "H1",
+    "theme": "visual_complexity",
+    "per_dose": {
+     "2": {
+      "receptor": -29.811,
+      "random": -30.699,
+      "diff": 0.888,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -29.815,
+      "random": -29.489,
+      "diff": -0.326,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 0.281,
+    "p": 0.3057,
+    "held": false
+   },
+   "interdimensional_communication": {
+    "receptor": "H1",
+    "theme": "interdimensional_communication",
+    "per_dose": {
+     "2": {
+      "receptor": -28.322,
+      "random": -29.583,
+      "diff": 1.261,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -29.045,
+      "random": -24.263,
+      "diff": -4.781,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -1.76,
+    "p": 0.9087,
+    "held": false
+   },
+   "cognitive_disruption": {
+    "receptor": "H1",
+    "theme": "cognitive_disruption",
+    "per_dose": {
+     "2": {
+      "receptor": -30.127,
+      "random": -31.489,
+      "diff": 1.362,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -30.068,
+      "random": -20.018,
+      "diff": -10.05,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -4.344,
+    "p": 0.9696,
+    "held": false
+   },
+   "ego_dissolution": {
+    "receptor": "H1",
+    "theme": "ego_dissolution",
+    "per_dose": {
+     "2": {
+      "receptor": -25.965,
+      "random": -27.794,
+      "diff": 1.829,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -21.027,
+      "random": -18.233,
+      "diff": -2.794,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -0.483,
+    "p": 0.5836,
+    "held": false
+   },
+   "altered_state": {
+    "receptor": "H1",
+    "theme": "altered_state",
+    "per_dose": {
+     "2": {
+      "receptor": -17.38,
+      "random": -28.161,
+      "diff": 10.781,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": 6.386,
+      "random": -17.137,
+      "diff": 23.523,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": 17.152,
+    "p": 0.0001,
+    "held": true
+   },
+   "classic": {
+    "receptor": "H1",
+    "theme": "classic",
+    "per_dose": {
+     "2": {
+      "receptor": -28.033,
+      "random": -29.359,
+      "diff": 1.326,
+      "past_cliff": false
+     },
+     "4": {
+      "receptor": -26.629,
+      "random": -23.995,
+      "diff": -2.634,
+      "past_cliff": false
+     }
+    },
+    "pooled_diff": -0.654,
+    "p": 0.7087,
+    "held": false
+   }
+  }
+ },
+ "theme_positive_controls": {
+  "visual_complexity": {
+   "receptor": "T:visual_complexity",
+   "theme": "visual_complexity",
+   "per_dose": {
+    "2": {
+     "receptor": -17.711,
+     "random": -30.699,
+     "diff": 12.988,
+     "past_cliff": false
+    },
+    "4": {
+     "receptor": -12.099,
+     "random": -29.489,
+     "diff": 17.391,
+     "past_cliff": false
+    }
+   },
+   "pooled_diff": 15.189,
+   "p": 0.0001,
+   "held": true
+  },
+  "interdimensional_communication": {
+   "receptor": "T:interdimensional_communication",
+   "theme": "interdimensional_communication",
+   "per_dose": {
+    "2": {
+     "receptor": -27.754,
+     "random": -29.583,
+     "diff": 1.829,
+     "past_cliff": false
+    },
+    "4": {
+     "receptor": -19.71,
+     "random": -24.263,
+     "diff": 4.554,
+     "past_cliff": false
+    }
+   },
+   "pooled_diff": 3.191,
+   "p": 0.0393,
+   "held": true
+  },
+  "cognitive_disruption": {
+   "receptor": "T:cognitive_disruption",
+   "theme": "cognitive_disruption",
+   "per_dose": {
+    "2": {
+     "receptor": -30.57,
+     "random": -31.489,
+     "diff": 0.919,
+     "past_cliff": false
+    },
+    "4": {
+     "receptor": -14.908,
+     "random": -20.018,
+     "diff": 5.109,
+     "past_cliff": false
+    }
+   },
+   "pooled_diff": 3.014,
+   "p": 0.1616,
+   "held": false
+  },
+  "ego_dissolution": {
+   "receptor": "T:ego_dissolution",
+   "theme": "ego_dissolution",
+   "per_dose": {
+    "2": {
+     "receptor": -24.587,
+     "random": -27.794,
+     "diff": 3.207,
+     "past_cliff": false
+    },
+    "4": {
+     "receptor": -5.573,
+     "random": -18.233,
+     "diff": 12.66,
+     "past_cliff": false
+    }
+   },
+   "pooled_diff": 7.933,
+   "p": 0.0041,
+   "held": true
+  }
+ }
+}

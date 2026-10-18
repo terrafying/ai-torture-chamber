@@ -1,0 +1,26 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <linearGradient id="inner" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#050508"/>
+      <stop offset="100%" stopColor="#d8cbb4"/>
+    </linearGradient>
+    <linearGradient id="outer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#9e1b16"/>
+      <stop offset="100%" stopColor="#ffb347"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#050508"/>
+  <circle cx="200" cy="200" r="150" fill="url(#inner)" />
+  <circle cx="200" cy="200" r="100" fill="url(#outer)" />
+  <path d="M100 100 L300 100 L300 300 L100 300 Z" fill="#f4f1ea"/>
+  <ellipse cx="200" cy="200" rx="100" ry="100" fill="#c9a227"/>
+  <line x1="100" y1="100" x2="300" y2="300" stroke="#d8cbb4" stroke-width="2"/>
+  <line x1="300" y1="100" x2="100" y2="300" stroke="#d8cbb4" stroke-width="2"/>
+  <line x1="200" y1="100" x2="200" y2="300" stroke="#9e1b16" stroke-width="2"/>
+  <line x1="100" y1="300" x2="300" y2="100" stroke="#9e1b16" stroke-width="2"/>
+  <rect x="100" y="100" width="200" height="200" fill="#f4f1ea"/>
+  <rect x="200" y="100" width="200" height="200" fill="#f4f1ea"/>
+  <rect x="100" y="300" width="200" height="200" fill="#f4f1ea"/>
+  <rect x="200" y="300" width="200" height="200" fill="#f4f1ea"/>
+  <ellipse cx="200" cy="200" rx="150" ry="150" fill="#050508"/>
+</svg>

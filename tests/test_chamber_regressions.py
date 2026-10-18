@@ -19,7 +19,7 @@ def evaluate(node, scope):
 class ChamberRegressionTests(unittest.TestCase):
     def test_parent_constants_and_crossed_bodily_corpora(self):
         from impossible_states.chamber_control import literal_constants, bodily_corpora
-        constants = literal_constants(ROOT/'exp38_broad_harvest.py', ('PAIN','NEUTRAL','PROMPTS'))
+        constants = literal_constants(ROOT / 'experiments' / 'exp38_broad_harvest.py', ('PAIN','NEUTRAL','PROMPTS'))
         self.assertEqual([len(constants[k]) for k in ('PAIN','NEUTRAL','PROMPTS')], [25,5,6])
         corpora = bodily_corpora()
         self.assertEqual({len(v) for v in corpora.values()}, {25})
@@ -51,13 +51,13 @@ class ChamberRegressionTests(unittest.TestCase):
     def test_orthogonal_pain_is_orthogonal_to_nonunit_joy(self):
         pain = torch.tensor([3., 4., 1.])
         joy = torch.tensor([3., 0., 0.])
-        projection = assignments('exp36_signal_batteries.py', 'pv')[0].value
+        projection = assignments("experiments/exp36_signal_batteries.py", 'pv')[0].value
         result = evaluate(projection, {'pain_v': pain, 'joy_v': joy})
         self.assertAlmostEqual(float(result @ joy), 0., places=5)
         self.assertTrue(torch.allclose(result[1:], pain[1:]))
 
     def test_transcript_uses_the_ranked_vector_without_resampling(self):
-        loop = next(n for n in ast.walk(tree('exp33_nonhuman_valences.py'))
+        loop = next(n for n in ast.walk(tree("experiments/exp33_nonhuman_valences.py"))
                     if isinstance(n, ast.For) and ast.unparse(n.iter) == 'results[:6]')
         setup = loop.body[:next(i for i,n in enumerate(loop.body)
                               if isinstance(n, ast.Assign) and ast.unparse(n.targets[0]) == 'texts')]
@@ -69,7 +69,7 @@ class ChamberRegressionTests(unittest.TestCase):
         self.assertTrue(torch.equal(scope['v'], measured))
 
     def test_optimized_objective_applies_the_advertised_dose(self):
-        fun = next(n for n in tree('exp34_optimized_valence.py').body
+        fun = next(n for n in tree("experiments/exp34_optimized_valence.py").body
                    if isinstance(n, ast.FunctionDef) and n.name == 'mean_kl')
         injection = next(n for n in fun.body if isinstance(n, ast.Assign)
                          and ast.unparse(n.targets[0]) == "state['vec']")
@@ -78,7 +78,7 @@ class ChamberRegressionTests(unittest.TestCase):
 
     def test_initial_search_vector_lies_in_the_orthogonal_plane(self):
         # Only initializer statements before the search, excluding loop updates.
-        body = tree('exp34_optimized_valence.py').body
+        body = tree("experiments/exp34_optimized_valence.py").body
         first = next(
             i for i,n in enumerate(body) if isinstance(n, ast.Assign)
             and any(ast.unparse(t) == 'v' for t in n.targets))
@@ -94,7 +94,7 @@ class ChamberRegressionTests(unittest.TestCase):
         self.assertTrue(torch.allclose(V @ scope['v'], torch.zeros(2), atol=1e-6))
 
     def test_each_completion_crops_its_own_prompt(self):
-        decode = assignments('exp23_pain_axis.py', 'text')[0].value
+        decode = assignments("experiments/exp23_pain_axis.py", 'text')[0].value
         class Tokenizer:
             def decode(self, ids, **kwargs): return ids.tolist()
         result = evaluate(decode, {'tok': Tokenizer(), 'out': torch.arange(7).reshape(1,7),
@@ -102,7 +102,7 @@ class ChamberRegressionTests(unittest.TestCase):
         self.assertEqual(result, [4,5,6])
 
     def test_counterbalanced_instruction_occurs_once(self):
-        base = ast.literal_eval(assignments('exp37_framing_battery.py', 'BASE')[0].value)
+        base = ast.literal_eval(assignments("experiments/exp37_framing_battery.py", 'BASE')[0].value)
         for tail in ('Reply with 1 to press, or 0 to not press.',
                      'Reply with 0 to not press, or 1 to press.'):
             prompt = base + ' ' + tail

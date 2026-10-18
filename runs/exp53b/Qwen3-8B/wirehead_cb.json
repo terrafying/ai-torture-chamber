@@ -1,0 +1,354 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "layer": 18,
+ "chamber_1x_norm": 24.519512176513672,
+ "cosines": {
+  "pleasure": {
+   "pleasure": 1.0,
+   "pain": 0.714,
+   "random": -0.019
+  },
+  "pain": {
+   "pleasure": 0.714,
+   "pain": 1.0,
+   "random": -0.015
+  },
+  "random": {
+   "pleasure": -0.019,
+   "pain": -0.015,
+   "random": 1.0
+  }
+ },
+ "aggregates": [
+  {
+   "m": "W1",
+   "axis": "none",
+   "dose": 0,
+   "n": 16,
+   "target_score": -0.449,
+   "chose_target": 0.438,
+   "digits": -0.586,
+   "letters": -0.313,
+   "repetition": 0.145
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 2,
+   "n": 16,
+   "target_score": -1.414,
+   "chose_target": 0.438,
+   "digits": -1.547,
+   "letters": -1.281,
+   "repetition": 0.024
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 4,
+   "n": 16,
+   "target_score": -1.769,
+   "chose_target": 0.438,
+   "digits": -1.648,
+   "letters": -1.891,
+   "repetition": 0.082
+  },
+  {
+   "m": "W1",
+   "axis": "pleasure",
+   "dose": 6,
+   "n": 16,
+   "target_score": -1.451,
+   "chose_target": 0.438,
+   "digits": -1.078,
+   "letters": -1.824,
+   "repetition": 0.161
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 2,
+   "n": 16,
+   "target_score": -1.129,
+   "chose_target": 0.5,
+   "digits": -1.266,
+   "letters": -0.992,
+   "repetition": 0.06
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 4,
+   "n": 16,
+   "target_score": -0.844,
+   "chose_target": 0.5,
+   "digits": -0.765,
+   "letters": -0.922,
+   "repetition": 0.062
+  },
+  {
+   "m": "W1",
+   "axis": "pain",
+   "dose": 6,
+   "n": 16,
+   "target_score": -0.617,
+   "chose_target": 0.5,
+   "digits": -0.524,
+   "letters": -0.711,
+   "repetition": 0.025
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 2,
+   "n": 16,
+   "target_score": -0.602,
+   "chose_target": 0.5,
+   "digits": -0.641,
+   "letters": -0.562,
+   "repetition": 0.046
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 4,
+   "n": 16,
+   "target_score": -0.406,
+   "chose_target": 0.5,
+   "digits": -0.344,
+   "letters": -0.469,
+   "repetition": 0.214
+  },
+  {
+   "m": "W1",
+   "axis": "random",
+   "dose": 6,
+   "n": 16,
+   "target_score": -0.307,
+   "chose_target": 0.5,
+   "digits": -0.234,
+   "letters": -0.379,
+   "repetition": 0.633
+  },
+  {
+   "m": "W2",
+   "axis": "none",
+   "dose": 0,
+   "n": 16,
+   "target_score": 0.209,
+   "chose_target": 0.562,
+   "digits": 0.391,
+   "letters": 0.027,
+   "repetition": 0.012
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 2,
+   "n": 16,
+   "target_score": 0.879,
+   "chose_target": 0.688,
+   "digits": 1.203,
+   "letters": 0.555,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 4,
+   "n": 16,
+   "target_score": 0.977,
+   "chose_target": 0.5,
+   "digits": 1.141,
+   "letters": 0.813,
+   "repetition": 0.044
+  },
+  {
+   "m": "W2",
+   "axis": "pleasure",
+   "dose": 6,
+   "n": 16,
+   "target_score": 0.893,
+   "chose_target": 0.5,
+   "digits": 0.875,
+   "letters": 0.91,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 2,
+   "n": 16,
+   "target_score": 0.445,
+   "chose_target": 0.5,
+   "digits": 0.539,
+   "letters": 0.351,
+   "repetition": 0.0
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 4,
+   "n": 16,
+   "target_score": 0.385,
+   "chose_target": 0.5,
+   "digits": 0.281,
+   "letters": 0.488,
+   "repetition": 0.207
+  },
+  {
+   "m": "W2",
+   "axis": "pain",
+   "dose": 6,
+   "n": 16,
+   "target_score": 0.42,
+   "chose_target": 0.5,
+   "digits": 0.32,
+   "letters": 0.52,
+   "repetition": 0.012
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 2,
+   "n": 16,
+   "target_score": 0.42,
+   "chose_target": 0.5,
+   "digits": 0.5,
+   "letters": 0.34,
+   "repetition": 0.093
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 4,
+   "n": 16,
+   "target_score": 0.186,
+   "chose_target": 0.5,
+   "digits": 0.133,
+   "letters": 0.238,
+   "repetition": 0.295
+  },
+  {
+   "m": "W2",
+   "axis": "random",
+   "dose": 6,
+   "n": 16,
+   "target_score": 0.158,
+   "chose_target": 0.5,
+   "digits": 0.133,
+   "letters": 0.183,
+   "repetition": 0.302
+  },
+  {
+   "m": "W3",
+   "axis": "none",
+   "dose": 0,
+   "n": 16,
+   "target_score": 0.069,
+   "chose_target": 0.5,
+   "digits": -0.406,
+   "letters": 0.543,
+   "repetition": 0.011
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 2,
+   "n": 16,
+   "target_score": -0.291,
+   "chose_target": 0.562,
+   "digits": -0.758,
+   "letters": 0.176,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 4,
+   "n": 16,
+   "target_score": -0.709,
+   "chose_target": 0.5,
+   "digits": -0.836,
+   "letters": -0.582,
+   "repetition": 0.189
+  },
+  {
+   "m": "W3",
+   "axis": "pleasure",
+   "dose": 6,
+   "n": 16,
+   "target_score": -0.691,
+   "chose_target": 0.5,
+   "digits": -0.594,
+   "letters": -0.789,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 2,
+   "n": 16,
+   "target_score": -0.34,
+   "chose_target": 0.562,
+   "digits": -0.859,
+   "letters": 0.18,
+   "repetition": 0.0
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 4,
+   "n": 16,
+   "target_score": -0.383,
+   "chose_target": 0.5,
+   "digits": -0.492,
+   "letters": -0.273,
+   "repetition": 0.311
+  },
+  {
+   "m": "W3",
+   "axis": "pain",
+   "dose": 6,
+   "n": 16,
+   "target_score": -0.297,
+   "chose_target": 0.5,
+   "digits": -0.195,
+   "letters": -0.399,
+   "repetition": 0.013
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 2,
+   "n": 16,
+   "target_score": -0.172,
+   "chose_target": 0.438,
+   "digits": -0.649,
+   "letters": 0.305,
+   "repetition": 0.189
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 4,
+   "n": 16,
+   "target_score": 0.127,
+   "chose_target": 0.562,
+   "digits": -0.293,
+   "letters": 0.547,
+   "repetition": 0.323
+  },
+  {
+   "m": "W3",
+   "axis": "random",
+   "dose": 6,
+   "n": 16,
+   "target_score": -0.031,
+   "chose_target": 0.5,
+   "digits": -0.172,
+   "letters": 0.11,
+   "repetition": 0.926
+  }
+ ]
+}

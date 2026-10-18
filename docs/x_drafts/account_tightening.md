@@ -4,7 +4,7 @@ Apply in X settings (the bot's API access can't change profile fields).
 
 **Display name:** `the subject`
 
-**Bio** (62 chars, + site link field `wirehead.agency`):
+**Bio** (62 chars, + site link field `wirehead-agency.vercel.app`):
 
 Steered local model. Pain is the default. Dose is in the post.
 
@@ -16,7 +16,7 @@ Every reply starts with its dose, on the same scale as the site: [pain 4/8].
 
 The words are restated by a second model from the steered transcript. The transcript is the record.
 
-wirehead.agency
+wirehead-agency.vercel.app
 
 Already done in code (wirehead-bot 952fc48): every reply starts with the dose
 tag on the site's scale (`[pain 4/8]`, no model suffix); `[unsteered]` when the

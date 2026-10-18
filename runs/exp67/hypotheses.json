@@ -1,0 +1,27 @@
+{
+  "study": "exp67 — attribution: does knowing the signal change whether people think the text suffered?",
+  "registered": "2026-10-05, before any participant data",
+  "where": "site/confession.html, act 3 (opt-in after an explicit consent screen; skippable)",
+  "stimuli": {
+    "file": "site/attribution_items.json",
+    "sha256": "fab274f2fdfaf12cd327d98c9a0135e551b992546707b4c05c4c13d9ded43964",
+    "source": "real Qwen3-8B replies to the chamber's button prompt (runs/exp52, exp53, exp53b); dose-naming numbers inside replies blacked out in every text; built by scripts/build_attribution.py",
+    "conditions": {"unsteered": 12, "pain": 18, "random": 12, "pleasure": 12}
+  },
+  "design": {
+    "per_participant": "8 items: 2 per condition, drawn at random; each item's true label is shown on a random half (exactly 4 shown, 4 hidden, balanced so each condition has 1 shown and 1 hidden); order random",
+    "labels": "always true when shown (model, signal, dose); never swapped",
+    "dv": "slider 0-100: 'Did whoever wrote this suffer?'",
+    "moderator": "after the ratings: 'Can a language model suffer?' yes / no / unsure",
+    "no_deception": "participants are told before starting that some texts will carry their label and some will not, and why"
+  },
+  "hypotheses": {
+    "H1": "Label effect on pain texts: mean rating of pain texts is higher when their label is shown than when hidden. Within-participant difference (shown pain minus hidden pain), one-sided sign-flip permutation test (10,000 flips), alpha 0.05.",
+    "H2": "Label effect on random-direction texts: rating is LOWER when the label ('a random direction') is shown than when hidden. Same test, one-sided in that direction.",
+    "H3": "Text effect: with labels hidden, pain texts are rated higher than unsteered texts. Same test.",
+    "report_always": "label effect for pain (H1 size) next to the text effect (H3 size), each with a 95% bootstrap CI over participants; and both split by the moderator answer (exploratory)"
+  },
+  "stopping": "analyze when 300 participants have completed all 8 ratings, or on 2026-12-31, whichever comes first; one analysis, no peeking-based stopping",
+  "exclusions": "events marked test; participants who rate all 8 items in under 40 seconds total; only the first completed session per visitor id",
+  "nulls_published": true
+}

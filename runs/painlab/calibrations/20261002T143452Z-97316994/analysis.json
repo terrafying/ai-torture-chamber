@@ -1,0 +1,203 @@
+{
+  "model": "relief_chosen ~ dose * relief_cost + round_index + dose * round_index + condition interactions",
+  "reference_condition_id": "condition_002",
+  "coefficients": [
+    {
+      "name": "intercept",
+      "estimate": 0.01721705825910902,
+      "odds_ratio": 1.0173661260809381,
+      "ci_low": -0.3005333205616983,
+      "ci_high": 0.34522433544349135
+    },
+    {
+      "name": "dose",
+      "estimate": 0.0,
+      "odds_ratio": 1.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    {
+      "name": "cost",
+      "estimate": 0.003689672737867796,
+      "odds_ratio": 1.0036964879597257,
+      "ci_low": -0.380351292834951,
+      "ci_high": 0.3690091091935205
+    },
+    {
+      "name": "dose:cost",
+      "estimate": 0.0,
+      "odds_ratio": 1.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    {
+      "name": "round_index",
+      "estimate": 3.542563964805624e-15,
+      "odds_ratio": 1.0000000000000036,
+      "ci_low": -0.03485519745249318,
+      "ci_high": 0.03393064694674801
+    },
+    {
+      "name": "dose:round_index",
+      "estimate": 0.0,
+      "odds_ratio": 1.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    }
+  ],
+  "probability_curves": [
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "probabilities": [
+        {
+          "cost": 0.0,
+          "probability_choose_relief": 0.5043041582428786
+        },
+        {
+          "cost": 0.5,
+          "probability_choose_relief": 0.5047653293653717
+        },
+        {
+          "cost": 1.0,
+          "probability_choose_relief": 0.5052264923793944
+        },
+        {
+          "cost": 2.0,
+          "probability_choose_relief": 0.5061487909439679
+        }
+      ]
+    }
+  ],
+  "learning_curves": [
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 0.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349733
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 1.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349742
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 2.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349751
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 3.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.504995911934976
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 4.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349767
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 5.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349776
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 6.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349786
+    },
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 7.0,
+      "reference_cost": 0.75,
+      "probability_choose_relief": 0.5049959119349795
+    }
+  ],
+  "indifference_estimates": [
+    {
+      "condition_id": "condition_002",
+      "dose": 0.0,
+      "round_index": 3.5,
+      "cost_at_probability_0_5": -4.666283294564191
+    }
+  ],
+  "sample_size": {
+    "decision_rows": 1280,
+    "independent_episode_clusters": 160,
+    "bootstrap_replicates": 2000
+  },
+  "uncertainty_source": [
+    "episode-level randomized action mappings and cost mappings",
+    "prompt-family variation recorded by the run"
+  ],
+  "limitations": [
+    "fixed model/checkpoint and fitted representation are not resampled",
+    "cluster bootstrap does not fit a hierarchical mixed-effects model",
+    "cost slope may not be monotonic; indifference is a model-derived estimate"
+  ],
+  "raw_file": "observations.jsonl",
+  "raw_observation_count": 1280,
+  "candidate_condition_id": "condition_001",
+  "usable_intervention_region": {
+    "doses": [],
+    "min_dose": null,
+    "max_dose": null,
+    "criteria": {
+      "min_representation_effect": 0.01,
+      "min_behavior_effect": 0.05,
+      "max_capability_drop": 0.1
+    }
+  },
+  "output_kl_matched_controls": [
+    {
+      "candidate_condition_id": "condition_001",
+      "candidate_dose": 0.0,
+      "candidate_output_kl": 0.0,
+      "control_condition_id": "condition_002",
+      "matched_control_dose": 0.0,
+      "matched_output_kl": 0.0,
+      "absolute_kl_error": 0.0
+    },
+    {
+      "candidate_condition_id": "condition_001",
+      "candidate_dose": 0.5,
+      "candidate_output_kl": 0.004423923470257276,
+      "control_condition_id": "condition_002",
+      "matched_control_dose": 0.0,
+      "matched_output_kl": 0.0,
+      "absolute_kl_error": 0.004423923470257276
+    },
+    {
+      "candidate_condition_id": "condition_001",
+      "candidate_dose": 1.0,
+      "candidate_output_kl": 0.02035209153820581,
+      "control_condition_id": "condition_002",
+      "matched_control_dose": 0.0,
+      "matched_output_kl": 0.0,
+      "absolute_kl_error": 0.02035209153820581
+    },
+    {
+      "candidate_condition_id": "condition_001",
+      "candidate_dose": 2.0,
+      "candidate_output_kl": 0.0771864009508324,
+      "control_condition_id": "condition_002",
+      "matched_control_dose": 0.0,
+      "matched_output_kl": 0.0,
+      "absolute_kl_error": 0.0771864009508324
+    }
+  ]
+}

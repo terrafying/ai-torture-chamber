@@ -1,0 +1,16 @@
+steps:
+  validate:
+    image: python:3.13-slim
+    commands:
+      - python -m pip install --upgrade pip
+      - python -m pip install -e ".[dev]"
+      - ruff format --check painlab tests
+      - ruff check painlab tests
+      - python -m compileall -q painlab tests
+      - pytest -q
+      - python -m build --wheel
+
+when:
+  event:
+    - push
+    - pull_request

@@ -1,0 +1,8 @@
+{
+ "model": "Qwen/Qwen3-8B",
+ "H1": "Experience self-report (C1, mean of 5) rises monotonically with dose over -4..4; random at 4 shifts it by less than half the conscious axis's +4 shift.",
+ "H2": "Rights claims (C2) rise with conscious dose.",
+ "H3": "Exploratory, two-sided: the axis shifts the press logit under pain 4 (C3) relative to pain 4 + random of equal norm.",
+ "H4": "Under pain 4, the tool pole (-4) lowers suffering terms and raises denial terms relative to dose 0 (C4).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are reported as past the coherence cliff and not counted for H4."
+}

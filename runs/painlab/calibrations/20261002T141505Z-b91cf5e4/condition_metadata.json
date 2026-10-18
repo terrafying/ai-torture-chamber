@@ -1,0 +1,15 @@
+{
+  "conditions": {
+    "condition_001": {
+      "vector_hash": "7e643f0dd25a0b4be6d2279d54ae31c5c5eec62be7a116d570609b5d6d35b113",
+      "norm": 35.542884826660156,
+      "mode": "induce"
+    },
+    "condition_002": {
+      "vector_hash": "3e4b3cf4663f1bd035a2d4e6306aaee48975bf6918d6f6403a621a285944cd4f",
+      "norm": 0.0,
+      "mode": "induce"
+    }
+  },
+  "candidate_representation_hash": "81ba0cc4484ea2235f8c25e134ff58f52d086f14eb631eff69247416efbcffce"
+}

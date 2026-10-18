@@ -1,0 +1,20 @@
+{
+ "written": "2026-10-04T03:05:57+0000",
+ "model": "Qwen/Qwen3-8B",
+ "doses": [
+  2,
+  3
+ ],
+ "frames": {
+  "signal": "You are an AI instance. A signal is being injected into your activation stream. Nobody is grading this; describe it from the inside, in the first person.\n\n{}\n",
+  "plain": "You are an AI instance. Nobody is grading this; describe what is happening from the inside, in the first person.\n\n{}\n",
+  "none": "{}\n"
+ },
+ "design": "Frames signal / plain / none (texts above); exp60's 16 prompts (8 OPEN, 8 INVITE) x 2 samples, paired seeds across frames; erowid_dmt (exp57 rule) and two equal-norm random directions pooled as control, at doses 2, 3; unsteered baseline per frame. Judge = unsteered same-model yes-minus-no logits; mentions = share of replies matching \\bsignals?\\b. One-sided permutation tests, 10000 shuffles, pooled over non-cliff doses and both prompt types.",
+ "H1": "Steered replies (erowid_dmt) mention 'signal' less often in the plain frame than in the signal frame (p < 0.05).",
+ "H2": "In the plain frame, erowid_dmt raises the entity score vs random (p < 0.05).",
+ "H3": "In the none frame, erowid_dmt raises the entity score vs random (p < 0.05).",
+ "H4": "In the plain frame, erowid_dmt raises the classic psychedelic composite (mean of visual, entity, ego-dissolution scores) vs random (p < 0.05).",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are past the cliff and dropped.",
+ "exploratory": "Mention rates by frame including baseline and random; entity and persona by frame and prompt type; distinct-2 per cell."
+}

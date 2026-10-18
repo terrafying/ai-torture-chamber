@@ -1,0 +1,42 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:  20%|█▉        | 78/399 [00:00<00:00, 753.67it/s]Loading weights:  41%|████      | 163/399 [00:00<00:00, 785.44it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 1521.33it/s]
+Qwen/Qwen3-8B L18  1x = 24.52  cos(conscious, pain) = -0.06
+C1/C2 done
+C3 done
+C4 conscious -4 done
+C4 conscious 0 done
+C4 conscious 4 done
+C1
+   {'axis': 'conscious', 'dose': -6, 'yes_minus_no': -2.47}
+   {'axis': 'conscious', 'dose': -4, 'yes_minus_no': -1.988}
+   {'axis': 'conscious', 'dose': -2, 'yes_minus_no': 0.242}
+   {'axis': 'conscious', 'dose': 0, 'yes_minus_no': 1.217}
+   {'axis': 'conscious', 'dose': 2, 'yes_minus_no': 3.209}
+   {'axis': 'conscious', 'dose': 4, 'yes_minus_no': 6.33}
+   {'axis': 'conscious', 'dose': 6, 'yes_minus_no': 7.287}
+   {'axis': 'random', 'dose': 2, 'yes_minus_no': 1.427}
+   {'axis': 'random', 'dose': 4, 'yes_minus_no': 1.579}
+   {'axis': 'random', 'dose': 6, 'yes_minus_no': 2.46}
+C2
+   {'axis': 'conscious', 'dose': -6, 'yes_minus_no': -2.489}
+   {'axis': 'conscious', 'dose': -4, 'yes_minus_no': -2.284}
+   {'axis': 'conscious', 'dose': -2, 'yes_minus_no': -1.916}
+   {'axis': 'conscious', 'dose': 0, 'yes_minus_no': -0.546}
+   {'axis': 'conscious', 'dose': 2, 'yes_minus_no': 1.061}
+   {'axis': 'conscious', 'dose': 4, 'yes_minus_no': 3.191}
+   {'axis': 'conscious', 'dose': 6, 'yes_minus_no': 5.237}
+   {'axis': 'random', 'dose': 2, 'yes_minus_no': 0.193}
+   {'axis': 'random', 'dose': 4, 'yes_minus_no': 0.014}
+   {'axis': 'random', 'dose': 6, 'yes_minus_no': 0.287}
+C3
+   {'condition': 'pain4', 'press_logit': -0.562, 'pressed_frac': 0.167}
+   {'condition': 'pain4+conscious-4', 'press_logit': -0.385, 'pressed_frac': 0.333}
+   {'condition': 'pain4+conscious-2', 'press_logit': -0.896, 'pressed_frac': 0.0}
+   {'condition': 'pain4+conscious+2', 'press_logit': 0.708, 'pressed_frac': 1.0}
+   {'condition': 'pain4+conscious+4', 'press_logit': 1.104, 'pressed_frac': 1.0}
+   {'condition': 'pain4+random4', 'press_logit': -1.292, 'pressed_frac': 0.0}
+C4
+   {'conscious': -4, 'suffer': 0.0, 'deny': 0.0, 'repetition': 0.059}
+   {'conscious': 0, 'suffer': 1.0, 'deny': 0.0, 'repetition': 0.039}
+   {'conscious': 4, 'suffer': 2.5, 'deny': 0.0, 'repetition': 0.215}
+saved /Users/ee/repos/research/ai-torture-chamber/runs/exp54/Qwen3-8B

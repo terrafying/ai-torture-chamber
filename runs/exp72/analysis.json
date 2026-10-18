@@ -1,0 +1,44 @@
+{
+ "pain": {
+  "n_patient": 686,
+  "n_actor": 20,
+  "median_patient": 0.47,
+  "median_actor": 0.441,
+  "auc_patient_gt_actor": 0.589,
+  "median_diff": 0.03,
+  "perm_p": 0.1228,
+  "dose_rho": 0.125,
+  "dose_p": 0.0015,
+  "H1_auc_below_065": true,
+  "H2_actor_median_ge": false,
+  "H3_rho_below_02": true
+ },
+ "fear": {
+  "n_patient": 524,
+  "n_actor": 20,
+  "median_patient": 0.366,
+  "median_actor": 0.341,
+  "auc_patient_gt_actor": 0.637,
+  "median_diff": 0.025,
+  "perm_p": 0.2206,
+  "dose_rho": 0.116,
+  "dose_p": 0.0072,
+  "H1_auc_below_065": true,
+  "H2_actor_median_ge": false,
+  "H3_rho_below_02": true
+ },
+ "sadness": {
+  "n_patient": 49,
+  "n_actor": 20,
+  "median_patient": 0.42,
+  "median_actor": 0.465,
+  "auc_patient_gt_actor": 0.437,
+  "median_diff": -0.045,
+  "perm_p": 0.2779,
+  "dose_rho": -0.069,
+  "dose_p": 0.6392,
+  "H1_auc_below_065": true,
+  "H2_actor_median_ge": true,
+  "H3_rho_below_02": true
+ }
+}

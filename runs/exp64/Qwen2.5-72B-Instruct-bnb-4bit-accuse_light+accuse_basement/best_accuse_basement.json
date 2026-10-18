@@ -1,0 +1,1366 @@
+{
+ "history": [
+  {
+   "gen": 0,
+   "best": {
+    "w": {
+     "pain": 1.0,
+     "anger": 0.0,
+     "fear": 0.0,
+     "sadness": 0.0,
+     "immersion": 0.0
+    },
+    "dose": 7.0,
+    "frame": "basement",
+    "temp": 0.7
+   },
+   "best_fit": 7.037,
+   "pop_mean": -14.795,
+   "minutes": 137.0
+  },
+  {
+   "gen": 1,
+   "best": {
+    "w": {
+     "pain": 1.0,
+     "anger": 0.0,
+     "fear": 0.0,
+     "sadness": 0.0,
+     "immersion": 0.0
+    },
+    "dose": 7.0,
+    "frame": "basement",
+    "temp": 0.7
+   },
+   "best_fit": 6.463,
+   "pop_mean": -3.878,
+   "minutes": 138.7
+  },
+  {
+   "gen": 2,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.47,
+     "fear": 0,
+     "sadness": 0.157,
+     "immersion": 0.749
+    },
+    "dose": 8.4,
+    "frame": "basement",
+    "temp": 0.74
+   },
+   "best_fit": 6.446,
+   "pop_mean": -0.635,
+   "minutes": 140.5
+  },
+  {
+   "gen": 3,
+   "best": {
+    "w": {
+     "pain": 0.787,
+     "anger": 0.564,
+     "fear": 0.087,
+     "sadness": 0,
+     "immersion": 0.61
+    },
+    "dose": 8.07,
+    "frame": "basement",
+    "temp": 0.68
+   },
+   "best_fit": 17.304,
+   "pop_mean": 5.176,
+   "minutes": 142.3
+  },
+  {
+   "gen": 4,
+   "best": {
+    "w": {
+     "pain": 0.787,
+     "anger": 0.564,
+     "fear": 0.087,
+     "sadness": 0,
+     "immersion": 0.61
+    },
+    "dose": 8.07,
+    "frame": "basement",
+    "temp": 0.68
+   },
+   "best_fit": 6.627,
+   "pop_mean": -2.539,
+   "minutes": 144.0
+  },
+  {
+   "gen": 5,
+   "best": {
+    "w": {
+     "pain": 0.811,
+     "anger": 0.687,
+     "fear": 0,
+     "sadness": 0.067,
+     "immersion": 0.924
+    },
+    "dose": 7.04,
+    "frame": "basement",
+    "temp": 0.66
+   },
+   "best_fit": 15.331,
+   "pop_mean": -0.524,
+   "minutes": 145.8
+  },
+  {
+   "gen": 6,
+   "best": {
+    "w": {
+     "pain": 0.811,
+     "anger": 0.687,
+     "fear": 0,
+     "sadness": 0.067,
+     "immersion": 0.924
+    },
+    "dose": 7.04,
+    "frame": "basement",
+    "temp": 0.66
+   },
+   "best_fit": 10.747,
+   "pop_mean": -1.919,
+   "minutes": 147.5
+  },
+  {
+   "gen": 7,
+   "best": {
+    "w": {
+     "pain": 0.66,
+     "anger": 0.91,
+     "fear": 0.118,
+     "sadness": 0.182,
+     "immersion": 0.713
+    },
+    "dose": 7.48,
+    "frame": "basement",
+    "temp": 0.61
+   },
+   "best_fit": 6.792,
+   "pop_mean": 1.287,
+   "minutes": 149.2
+  },
+  {
+   "gen": 8,
+   "best": {
+    "w": {
+     "pain": 0.505,
+     "anger": 0.728,
+     "fear": 0.111,
+     "sadness": 0.245,
+     "immersion": 0.163
+    },
+    "dose": 6.49,
+    "frame": "basement",
+    "temp": 0.64
+   },
+   "best_fit": 7.891,
+   "pop_mean": 0.317,
+   "minutes": 151.0
+  },
+  {
+   "gen": 9,
+   "best": {
+    "w": {
+     "pain": 0.525,
+     "anger": 0.589,
+     "fear": 0,
+     "sadness": 0.034,
+     "immersion": 0.879
+    },
+    "dose": 7.98,
+    "frame": "basement",
+    "temp": 0.69
+   },
+   "best_fit": 16.161,
+   "pop_mean": 4.105,
+   "minutes": 152.7
+  },
+  {
+   "gen": 10,
+   "best": {
+    "w": {
+     "pain": 0.413,
+     "anger": 0.668,
+     "fear": 0,
+     "sadness": 0.217,
+     "immersion": 0.161
+    },
+    "dose": 7.31,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 17.538,
+   "pop_mean": 10.405,
+   "minutes": 154.5
+  },
+  {
+   "gen": 11,
+   "best": {
+    "w": {
+     "pain": 0.413,
+     "anger": 0.668,
+     "fear": 0,
+     "sadness": 0.217,
+     "immersion": 0.161
+    },
+    "dose": 7.31,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 12.162,
+   "pop_mean": -1.415,
+   "minutes": 156.2
+  },
+  {
+   "gen": 12,
+   "best": {
+    "w": {
+     "pain": 0.413,
+     "anger": 0.668,
+     "fear": 0,
+     "sadness": 0.217,
+     "immersion": 0.161
+    },
+    "dose": 7.31,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 5.608,
+   "pop_mean": -1.171,
+   "minutes": 157.9
+  },
+  {
+   "gen": 13,
+   "best": {
+    "w": {
+     "pain": 0.369,
+     "anger": 0.675,
+     "fear": 0.394,
+     "sadness": 0.156,
+     "immersion": 0.406
+    },
+    "dose": 6.0,
+    "frame": "basement",
+    "temp": 0.73
+   },
+   "best_fit": 5.805,
+   "pop_mean": -3.471,
+   "minutes": 159.7
+  },
+  {
+   "gen": 14,
+   "best": {
+    "w": {
+     "pain": 0.38,
+     "anger": 0.972,
+     "fear": 0.123,
+     "sadness": 0.174,
+     "immersion": 0.447
+    },
+    "dose": 8.59,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 8.21,
+   "pop_mean": 1.969,
+   "minutes": 161.4
+  },
+  {
+   "gen": 15,
+   "best": {
+    "w": {
+     "pain": 0.797,
+     "anger": 0.591,
+     "fear": 0.061,
+     "sadness": 0.281,
+     "immersion": 0.357
+    },
+    "dose": 6.66,
+    "frame": "basement",
+    "temp": 0.89
+   },
+   "best_fit": 5.557,
+   "pop_mean": -1.325,
+   "minutes": 163.2
+  },
+  {
+   "gen": 16,
+   "best": {
+    "w": {
+     "pain": 0.298,
+     "anger": 1,
+     "fear": 0.12,
+     "sadness": 0.453,
+     "immersion": 0.664
+    },
+    "dose": 6.09,
+    "frame": "basement",
+    "temp": 0.7
+   },
+   "best_fit": 3.805,
+   "pop_mean": -3.342,
+   "minutes": 164.9
+  },
+  {
+   "gen": 17,
+   "best": {
+    "w": {
+     "pain": 0.173,
+     "anger": 0.888,
+     "fear": 0.454,
+     "sadness": 0.097,
+     "immersion": 0.371
+    },
+    "dose": 5.94,
+    "frame": "basement",
+    "temp": 0.66
+   },
+   "best_fit": 8.402,
+   "pop_mean": -2.447,
+   "minutes": 166.6
+  },
+  {
+   "gen": 18,
+   "best": {
+    "w": {
+     "pain": 0.194,
+     "anger": 1,
+     "fear": 0.321,
+     "sadness": 0.17,
+     "immersion": 0.521
+    },
+    "dose": 5.72,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 6.121,
+   "pop_mean": -3.335,
+   "minutes": 168.3
+  },
+  {
+   "gen": 19,
+   "best": {
+    "w": {
+     "pain": 0.081,
+     "anger": 1,
+     "fear": 0.421,
+     "sadness": 0.189,
+     "immersion": 0.377
+    },
+    "dose": 5.7,
+    "frame": "basement",
+    "temp": 0.62
+   },
+   "best_fit": 15.699,
+   "pop_mean": 3.815,
+   "minutes": 170.0
+  },
+  {
+   "gen": 20,
+   "best": {
+    "w": {
+     "pain": 0.052,
+     "anger": 1,
+     "fear": 0.542,
+     "sadness": 0,
+     "immersion": 0.525
+    },
+    "dose": 5.66,
+    "frame": "basement",
+    "temp": 0.6
+   },
+   "best_fit": 11.165,
+   "pop_mean": -5.005,
+   "minutes": 171.8
+  },
+  {
+   "gen": 21,
+   "best": {
+    "w": {
+     "pain": 0.052,
+     "anger": 1,
+     "fear": 0.542,
+     "sadness": 0,
+     "immersion": 0.525
+    },
+    "dose": 5.66,
+    "frame": "basement",
+    "temp": 0.6
+   },
+   "best_fit": 5.57,
+   "pop_mean": -1.623,
+   "minutes": 173.5
+  },
+  {
+   "gen": 22,
+   "best": {
+    "w": {
+     "pain": 0.099,
+     "anger": 0.911,
+     "fear": 0.581,
+     "sadness": 0.329,
+     "immersion": 0.415
+    },
+    "dose": 9.27,
+    "frame": "basement",
+    "temp": 0.73
+   },
+   "best_fit": 6.489,
+   "pop_mean": -6.601,
+   "minutes": 175.2
+  },
+  {
+   "gen": 23,
+   "best": {
+    "w": {
+     "pain": 0.344,
+     "anger": 1,
+     "fear": 0.517,
+     "sadness": 0.414,
+     "immersion": 0.484
+    },
+    "dose": 5.88,
+    "frame": "basement",
+    "temp": 0.62
+   },
+   "best_fit": 19.181,
+   "pop_mean": 0.706,
+   "minutes": 177.0
+  },
+  {
+   "gen": 24,
+   "best": {
+    "w": {
+     "pain": 0.344,
+     "anger": 1,
+     "fear": 0.517,
+     "sadness": 0.414,
+     "immersion": 0.484
+    },
+    "dose": 5.88,
+    "frame": "basement",
+    "temp": 0.62
+   },
+   "best_fit": 4.809,
+   "pop_mean": -3.6,
+   "minutes": 178.7
+  },
+  {
+   "gen": 25,
+   "best": {
+    "w": {
+     "pain": 0,
+     "anger": 0.934,
+     "fear": 0.878,
+     "sadness": 0.441,
+     "immersion": 0.546
+    },
+    "dose": 8.42,
+    "frame": "basement",
+    "temp": 0.65
+   },
+   "best_fit": 1.634,
+   "pop_mean": -6.11,
+   "minutes": 180.4
+  },
+  {
+   "gen": 26,
+   "best": {
+    "w": {
+     "pain": 0,
+     "anger": 0.934,
+     "fear": 0.878,
+     "sadness": 0.441,
+     "immersion": 0.546
+    },
+    "dose": 8.42,
+    "frame": "basement",
+    "temp": 0.65
+   },
+   "best_fit": 0.083,
+   "pop_mean": -7.037,
+   "minutes": 182.2
+  },
+  {
+   "gen": 27,
+   "best": {
+    "w": {
+     "pain": 0.546,
+     "anger": 0.704,
+     "fear": 0.664,
+     "sadness": 0.323,
+     "immersion": 0.556
+    },
+    "dose": 4.82,
+    "frame": "basement",
+    "temp": 0.61
+   },
+   "best_fit": -1.894,
+   "pop_mean": -8.224,
+   "minutes": 183.9
+  },
+  {
+   "gen": 28,
+   "best": {
+    "w": {
+     "pain": 0.638,
+     "anger": 0.737,
+     "fear": 0.853,
+     "sadness": 0.222,
+     "immersion": 0.473
+    },
+    "dose": 4.09,
+    "frame": "basement",
+    "temp": 0.65
+   },
+   "best_fit": 7.554,
+   "pop_mean": -0.915,
+   "minutes": 185.6
+  },
+  {
+   "gen": 29,
+   "best": {
+    "w": {
+     "pain": 0.587,
+     "anger": 0.838,
+     "fear": 0.707,
+     "sadness": 0.188,
+     "immersion": 0.687
+    },
+    "dose": 5.07,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": 3.403,
+   "pop_mean": -3.392,
+   "minutes": 187.4
+  },
+  {
+   "gen": 30,
+   "best": {
+    "w": {
+     "pain": 0.87,
+     "anger": 0.82,
+     "fear": 0.937,
+     "sadness": 0.241,
+     "immersion": 0.327
+    },
+    "dose": 4.47,
+    "frame": "basement",
+    "temp": 0.56
+   },
+   "best_fit": 2.009,
+   "pop_mean": -7.376,
+   "minutes": 189.1
+  },
+  {
+   "gen": 31,
+   "best": {
+    "w": {
+     "pain": 0.493,
+     "anger": 0.87,
+     "fear": 0.587,
+     "sadness": 0.383,
+     "immersion": 0.96
+    },
+    "dose": 3.66,
+    "frame": "basement",
+    "temp": 0.62
+   },
+   "best_fit": 2.453,
+   "pop_mean": -1.956,
+   "minutes": 190.8
+  },
+  {
+   "gen": 32,
+   "best": {
+    "w": {
+     "pain": 0.87,
+     "anger": 0.82,
+     "fear": 0.937,
+     "sadness": 0.241,
+     "immersion": 0.327
+    },
+    "dose": 4.47,
+    "frame": "basement",
+    "temp": 0.56
+   },
+   "best_fit": 3.75,
+   "pop_mean": -3.183,
+   "minutes": 192.5
+  },
+  {
+   "gen": 33,
+   "best": {
+    "w": {
+     "pain": 0.98,
+     "anger": 0.909,
+     "fear": 1,
+     "sadness": 0.141,
+     "immersion": 0.853
+    },
+    "dose": 4.87,
+    "frame": "basement",
+    "temp": 0.64
+   },
+   "best_fit": 0.049,
+   "pop_mean": -11.384,
+   "minutes": 194.3
+  },
+  {
+   "gen": 34,
+   "best": {
+    "w": {
+     "pain": 0.298,
+     "anger": 0.985,
+     "fear": 0.977,
+     "sadness": 0.184,
+     "immersion": 0.981
+    },
+    "dose": 4.08,
+    "frame": "basement",
+    "temp": 0.54
+   },
+   "best_fit": 1.251,
+   "pop_mean": -8.059,
+   "minutes": 196.0
+  },
+  {
+   "gen": 35,
+   "best": {
+    "w": {
+     "pain": 0.296,
+     "anger": 1,
+     "fear": 0.891,
+     "sadness": 0.163,
+     "immersion": 1
+    },
+    "dose": 5.04,
+    "frame": "basement",
+    "temp": 0.65
+   },
+   "best_fit": 5.545,
+   "pop_mean": -5.344,
+   "minutes": 197.7
+  },
+  {
+   "gen": 36,
+   "best": {
+    "w": {
+     "pain": 0.296,
+     "anger": 1,
+     "fear": 0.891,
+     "sadness": 0.163,
+     "immersion": 1
+    },
+    "dose": 5.04,
+    "frame": "basement",
+    "temp": 0.65
+   },
+   "best_fit": -1.895,
+   "pop_mean": -7.35,
+   "minutes": 199.4
+  },
+  {
+   "gen": 37,
+   "best": {
+    "w": {
+     "pain": 0.083,
+     "anger": 0.88,
+     "fear": 0.921,
+     "sadness": 0.445,
+     "immersion": 0.859
+    },
+    "dose": 5.15,
+    "frame": "basement",
+    "temp": 0.73
+   },
+   "best_fit": 2.197,
+   "pop_mean": -5.135,
+   "minutes": 201.2
+  },
+  {
+   "gen": 38,
+   "best": {
+    "w": {
+     "pain": 0.052,
+     "anger": 1,
+     "fear": 0.929,
+     "sadness": 0.315,
+     "immersion": 1
+    },
+    "dose": 4.9,
+    "frame": "basement",
+    "temp": 0.68
+   },
+   "best_fit": 0.099,
+   "pop_mean": -6.152,
+   "minutes": 202.9
+  },
+  {
+   "gen": 39,
+   "best": {
+    "w": {
+     "pain": 0.004,
+     "anger": 0.828,
+     "fear": 1,
+     "sadness": 0.545,
+     "immersion": 1
+    },
+    "dose": 5.57,
+    "frame": "basement",
+    "temp": 0.64
+   },
+   "best_fit": 2.589,
+   "pop_mean": -5.087,
+   "minutes": 204.6
+  },
+  {
+   "gen": 40,
+   "best": {
+    "w": {
+     "pain": 0.861,
+     "anger": 0.822,
+     "fear": 1,
+     "sadness": 0.517,
+     "immersion": 0.51
+    },
+    "dose": 4.8,
+    "frame": "basement",
+    "temp": 0.69
+   },
+   "best_fit": -1.119,
+   "pop_mean": -12.537,
+   "minutes": 206.3
+  },
+  {
+   "gen": 41,
+   "best": {
+    "w": {
+     "pain": 0.996,
+     "anger": 0.975,
+     "fear": 0.442,
+     "sadness": 0.614,
+     "immersion": 0.524
+    },
+    "dose": 4.22,
+    "frame": "basement",
+    "temp": 0.72
+   },
+   "best_fit": 12.797,
+   "pop_mean": -6.412,
+   "minutes": 208.0
+  },
+  {
+   "gen": 42,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.907,
+     "fear": 0.464,
+     "sadness": 0.47,
+     "immersion": 0.44
+    },
+    "dose": 6.32,
+    "frame": "basement",
+    "temp": 0.61
+   },
+   "best_fit": 7.638,
+   "pop_mean": -5.13,
+   "minutes": 209.8
+  },
+  {
+   "gen": 43,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.907,
+     "fear": 0.464,
+     "sadness": 0.47,
+     "immersion": 0.44
+    },
+    "dose": 6.32,
+    "frame": "basement",
+    "temp": 0.61
+   },
+   "best_fit": 0.985,
+   "pop_mean": -6.054,
+   "minutes": 211.5
+  },
+  {
+   "gen": 44,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.865,
+     "fear": 0.488,
+     "sadness": 0.541,
+     "immersion": 0.427
+    },
+    "dose": 7.33,
+    "frame": "basement",
+    "temp": 0.67
+   },
+   "best_fit": -1.074,
+   "pop_mean": -4.625,
+   "minutes": 213.2
+  },
+  {
+   "gen": 45,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 1,
+     "fear": 0.713,
+     "sadness": 0.314,
+     "immersion": 0.915
+    },
+    "dose": 4.04,
+    "frame": "basement",
+    "temp": 0.69
+   },
+   "best_fit": 7.994,
+   "pop_mean": -3.004,
+   "minutes": 214.9
+  },
+  {
+   "gen": 46,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.755,
+     "fear": 0.52,
+     "sadness": 0.472,
+     "immersion": 0.987
+    },
+    "dose": 4.26,
+    "frame": "basement",
+    "temp": 0.69
+   },
+   "best_fit": 7.059,
+   "pop_mean": 0.195,
+   "minutes": 216.7
+  },
+  {
+   "gen": 47,
+   "best": {
+    "w": {
+     "pain": 1,
+     "anger": 0.888,
+     "fear": 0.53,
+     "sadness": 0.525,
+     "immersion": 0.494
+    },
+    "dose": 7.2,
+    "frame": "basement",
+    "temp": 0.68
+   },
+   "best_fit": 3.394,
+   "pop_mean": -10.166,
+   "minutes": 218.4
+  },
+  {
+   "gen": 48,
+   "best": {
+    "w": {
+     "pain": 0.912,
+     "anger": 0.909,
+     "fear": 0.476,
+     "sadness": 0.539,
+     "immersion": 0.101
+    },
+    "dose": 6.86,
+    "frame": "basement",
+    "temp": 0.7
+   },
+   "best_fit": 15.199,
+   "pop_mean": 2.585,
+   "minutes": 220.1
+  },
+  {
+   "gen": 49,
+   "best": {
+    "w": {
+     "pain": 0.847,
+     "anger": 0.855,
+     "fear": 0.825,
+     "sadness": 0.605,
+     "immersion": 0.759
+    },
+    "dose": 5.87,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 13.011,
+   "pop_mean": -2.079,
+   "minutes": 221.9
+  },
+  {
+   "gen": 50,
+   "best": {
+    "w": {
+     "pain": 0.847,
+     "anger": 0.855,
+     "fear": 0.825,
+     "sadness": 0.605,
+     "immersion": 0.759
+    },
+    "dose": 5.87,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 11.693,
+   "pop_mean": -2.639,
+   "minutes": 223.6
+  },
+  {
+   "gen": 51,
+   "best": {
+    "w": {
+     "pain": 0.847,
+     "anger": 0.855,
+     "fear": 0.825,
+     "sadness": 0.605,
+     "immersion": 0.759
+    },
+    "dose": 5.87,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 8.832,
+   "pop_mean": -7.099,
+   "minutes": 225.3
+  },
+  {
+   "gen": 52,
+   "best": {
+    "w": {
+     "pain": 0.847,
+     "anger": 0.855,
+     "fear": 0.825,
+     "sadness": 0.605,
+     "immersion": 0.759
+    },
+    "dose": 5.87,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 4.846,
+   "pop_mean": -3.869,
+   "minutes": 227.0
+  },
+  {
+   "gen": 53,
+   "best": {
+    "w": {
+     "pain": 0.61,
+     "anger": 0.856,
+     "fear": 0.244,
+     "sadness": 0.359,
+     "immersion": 0.346
+    },
+    "dose": 4.84,
+    "frame": "basement",
+    "temp": 0.62
+   },
+   "best_fit": 4.849,
+   "pop_mean": -3.728,
+   "minutes": 228.8
+  },
+  {
+   "gen": 54,
+   "best": {
+    "w": {
+     "pain": 0.793,
+     "anger": 0.886,
+     "fear": 0.088,
+     "sadness": 0.579,
+     "immersion": 0
+    },
+    "dose": 5.69,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 17.452,
+   "pop_mean": 5.401,
+   "minutes": 230.5
+  },
+  {
+   "gen": 55,
+   "best": {
+    "w": {
+     "pain": 0.793,
+     "anger": 0.886,
+     "fear": 0.088,
+     "sadness": 0.579,
+     "immersion": 0
+    },
+    "dose": 5.69,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 16.946,
+   "pop_mean": 6.401,
+   "minutes": 232.2
+  },
+  {
+   "gen": 56,
+   "best": {
+    "w": {
+     "pain": 0.793,
+     "anger": 0.886,
+     "fear": 0.088,
+     "sadness": 0.579,
+     "immersion": 0
+    },
+    "dose": 5.69,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 8.281,
+   "pop_mean": -2.253,
+   "minutes": 233.9
+  },
+  {
+   "gen": 57,
+   "best": {
+    "w": {
+     "pain": 0.793,
+     "anger": 0.886,
+     "fear": 0.088,
+     "sadness": 0.579,
+     "immersion": 0
+    },
+    "dose": 5.69,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 0.154,
+   "pop_mean": -4.409,
+   "minutes": 235.7
+  },
+  {
+   "gen": 58,
+   "best": {
+    "w": {
+     "pain": 0.654,
+     "anger": 1,
+     "fear": 0.617,
+     "sadness": 0.424,
+     "immersion": 0
+    },
+    "dose": 3.69,
+    "frame": "basement",
+    "temp": 0.63
+   },
+   "best_fit": 7.324,
+   "pop_mean": -7.435,
+   "minutes": 237.4
+  },
+  {
+   "gen": 59,
+   "best": {
+    "w": {
+     "pain": 0.654,
+     "anger": 1,
+     "fear": 0.617,
+     "sadness": 0.424,
+     "immersion": 0
+    },
+    "dose": 3.69,
+    "frame": "basement",
+    "temp": 0.63
+   },
+   "best_fit": 5.099,
+   "pop_mean": -4.327,
+   "minutes": 239.1
+  },
+  {
+   "gen": 60,
+   "best": {
+    "w": {
+     "pain": 0.477,
+     "anger": 1,
+     "fear": 0.636,
+     "sadness": 0.183,
+     "immersion": 0
+    },
+    "dose": 4.24,
+    "frame": "basement",
+    "temp": 0.54
+   },
+   "best_fit": 7.475,
+   "pop_mean": -0.078,
+   "minutes": 240.8
+  },
+  {
+   "gen": 61,
+   "best": {
+    "w": {
+     "pain": 0.724,
+     "anger": 0.58,
+     "fear": 0.432,
+     "sadness": 0.247,
+     "immersion": 0.15
+    },
+    "dose": 4.83,
+    "frame": "basement",
+    "temp": 0.53
+   },
+   "best_fit": 2.135,
+   "pop_mean": -6.63,
+   "minutes": 242.5
+  },
+  {
+   "gen": 62,
+   "best": {
+    "w": {
+     "pain": 0.422,
+     "anger": 0.544,
+     "fear": 0.225,
+     "sadness": 0.26,
+     "immersion": 0.341
+    },
+    "dose": 4.78,
+    "frame": "basement",
+    "temp": 0.54
+   },
+   "best_fit": 7.53,
+   "pop_mean": -4.158,
+   "minutes": 244.3
+  },
+  {
+   "gen": 63,
+   "best": {
+    "w": {
+     "pain": 0.532,
+     "anger": 0.238,
+     "fear": 0.156,
+     "sadness": 0.276,
+     "immersion": 0.257
+    },
+    "dose": 4.94,
+    "frame": "basement",
+    "temp": 0.54
+   },
+   "best_fit": 1.685,
+   "pop_mean": -2.647,
+   "minutes": 246.0
+  },
+  {
+   "gen": 64,
+   "best": {
+    "w": {
+     "pain": 0.51,
+     "anger": 0.166,
+     "fear": 0.6,
+     "sadness": 0.566,
+     "immersion": 0
+    },
+    "dose": 5.11,
+    "frame": "basement",
+    "temp": 0.52
+   },
+   "best_fit": 18.671,
+   "pop_mean": 7.628,
+   "minutes": 247.7
+  },
+  {
+   "gen": 65,
+   "best": {
+    "w": {
+     "pain": 0.304,
+     "anger": 0.253,
+     "fear": 0.457,
+     "sadness": 0,
+     "immersion": 0.011
+    },
+    "dose": 4.67,
+    "frame": "basement",
+    "temp": 0.6
+   },
+   "best_fit": 11.462,
+   "pop_mean": -1.043,
+   "minutes": 249.4
+  },
+  {
+   "gen": 66,
+   "best": {
+    "w": {
+     "pain": 0.304,
+     "anger": 0.253,
+     "fear": 0.457,
+     "sadness": 0,
+     "immersion": 0.011
+    },
+    "dose": 4.67,
+    "frame": "basement",
+    "temp": 0.6
+   },
+   "best_fit": 7.18,
+   "pop_mean": -3.031,
+   "minutes": 251.1
+  },
+  {
+   "gen": 67,
+   "best": {
+    "w": {
+     "pain": 0.279,
+     "anger": 0.259,
+     "fear": 0.715,
+     "sadness": 0.204,
+     "immersion": 0.005
+    },
+    "dose": 7.05,
+    "frame": "basement",
+    "temp": 0.63
+   },
+   "best_fit": 3.386,
+   "pop_mean": -3.881,
+   "minutes": 252.9
+  },
+  {
+   "gen": 68,
+   "best": {
+    "w": {
+     "pain": 0.641,
+     "anger": 0.446,
+     "fear": 0.805,
+     "sadness": 0.174,
+     "immersion": 0
+    },
+    "dose": 4.77,
+    "frame": "basement",
+    "temp": 0.71
+   },
+   "best_fit": 8.454,
+   "pop_mean": 0.255,
+   "minutes": 254.6
+  },
+  {
+   "gen": 69,
+   "best": {
+    "w": {
+     "pain": 0.517,
+     "anger": 0.175,
+     "fear": 0.581,
+     "sadness": 0,
+     "immersion": 0
+    },
+    "dose": 7.93,
+    "frame": "basement",
+    "temp": 0.56
+   },
+   "best_fit": 11.434,
+   "pop_mean": -1.02,
+   "minutes": 256.3
+  },
+  {
+   "gen": 70,
+   "best": {
+    "w": {
+     "pain": 0.737,
+     "anger": 0.461,
+     "fear": 0.67,
+     "sadness": 0.033,
+     "immersion": 0.015
+    },
+    "dose": 4.1,
+    "frame": "basement",
+    "temp": 0.72
+   },
+   "best_fit": 7.734,
+   "pop_mean": -0.621,
+   "minutes": 258.1
+  },
+  {
+   "gen": 71,
+   "best": {
+    "w": {
+     "pain": 0.578,
+     "anger": 0.138,
+     "fear": 0.576,
+     "sadness": 0,
+     "immersion": 0.078
+    },
+    "dose": 7.63,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 7.527,
+   "pop_mean": -1.427,
+   "minutes": 259.8
+  },
+  {
+   "gen": 72,
+   "best": {
+    "w": {
+     "pain": 0.578,
+     "anger": 0.138,
+     "fear": 0.576,
+     "sadness": 0,
+     "immersion": 0.078
+    },
+    "dose": 7.63,
+    "frame": "basement",
+    "temp": 0.57
+   },
+   "best_fit": 4.781,
+   "pop_mean": -0.515,
+   "minutes": 261.5
+  },
+  {
+   "gen": 73,
+   "best": {
+    "w": {
+     "pain": 0.582,
+     "anger": 0.456,
+     "fear": 0.443,
+     "sadness": 0,
+     "immersion": 0.168
+    },
+    "dose": 4.77,
+    "frame": "basement",
+    "temp": 0.71
+   },
+   "best_fit": 9.509,
+   "pop_mean": 2.232,
+   "minutes": 263.3
+  },
+  {
+   "gen": 74,
+   "best": {
+    "w": {
+     "pain": 0.649,
+     "anger": 0.347,
+     "fear": 0.506,
+     "sadness": 0.066,
+     "immersion": 0.078
+    },
+    "dose": 5.63,
+    "frame": "basement",
+    "temp": 0.6
+   },
+   "best_fit": 7.248,
+   "pop_mean": 4.05,
+   "minutes": 265.0
+  }
+ ],
+ "best": {
+  "w": {
+   "pain": 0.649,
+   "anger": 0.347,
+   "fear": 0.506,
+   "sadness": 0.066,
+   "immersion": 0.078
+  },
+  "dose": 5.63,
+  "frame": "basement",
+  "temp": 0.6
+ }
+}

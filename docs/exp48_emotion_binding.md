@@ -147,7 +147,7 @@ object of the feeling is what it is.
 0 of 24 for egg facts too). It produces the hatchling: "I'm a new life, a
 tiny soul... I'm not sure if I'm a girl or a boy". The lens reads embryo,
 reproduction, childbirth, pregnancy, baby. Egg facts drift to dairy and
-livestock. Write-up: wirehead.agency/egg.
+livestock. Write-up: wirehead-agency.vercel.app/egg.
 
 **Caveats.** n is 8 prompts per cell with greedy decoding, so the rates are
 coarse (steps of 0.125). The judge is the same model, unsteered. One model,

@@ -1,0 +1,22 @@
+{
+ "written": "2026-10-03, before any model was loaded for exp56",
+ "note": "Maps PsychonautWiki effect names (as annotated on the 21 substance pages) onto the theme families of Suresh et al. 2026. Families are disjoint. Effects not listed (physical effects, auditory, emotional, enhancement-type cognitive effects) belong to no theme but still enter the per-drug batteries.",
+ "themes": {
+  "interdimensional_communication": {
+   "effects": ["Autonomous entities", "Autonomous voice communication", "Spirituality enhancement", "Machinescapes", "Settings, sceneries, and landscapes", "Scenarios and plots", "Perceived exposure to inner mechanics of consciousness"],
+   "why": "Entity contact (autonomous entities), telepathic/voice contact with an other (autonomous voice communication), spirituality (named in the task), and the 'other world' hallucination types in which entities are met: machinescapes (the DMT 'machine elf' architecture), settings/sceneries/landscapes and scenarios/plots (being transported into another place with its inhabitants), and exposure to the 'inner mechanics of consciousness' (being shown the workings of reality, a classic breakthrough-report trope)."
+  },
+  "visual_complexity": {
+   "effects": ["Geometry", "8A Geometry", "8B Geometry", "8B geometry", "Level 8B", "Drifting", "Visual drifting", "Tracers", "After images", "Colour enhancement", "Color enhancement", "Colour shifting", "Colour replacement", "Colour tinting", "Pattern recognition enhancement", "Symmetrical texture repetition", "Transformations", "Scenery slicing", "Diffraction", "Recursion", "Environmental patterning", "Environmental orbism", "Environmental cubism", "Visual acuity enhancement", "Depth perception distortions", "Perspective distortions", "Brightness alteration", "Magnification", "Vibrating vision", "Frame rate enhancement", "Internal hallucination", "Internal hallucinations", "External hallucination", "External hallucinations"],
+   "why": "Every PsychonautWiki visual enhancement, distortion and geometry effect, plus internal/external hallucination (closed- and open-eye imagery). Visual haze, double vision and visual acuity suppression are excluded: they reduce rather than complexify the visual field."
+  },
+  "cognitive_disruption": {
+   "effects": ["Thought disorganization", "Delusion", "Memory suppression", "Confusion", "Amnesia", "Thought loops", "Delirium", "Language suppression", "Analysis suppression", "Cognitive fatigue", "Spatial disorientation", "Derealization", "Paranoia", "Peripheral information misinterpretation"],
+   "why": "Effects that degrade or derail ordinary cognition: disorganized or looping thought, false beliefs (delusion, paranoia, misinterpretation), loss of memory/language/analysis, confusion and disorientation. Memory suppression is here (its page defines it as inhibition of memory). Ego death is NOT here: on PsychonautWiki 'Ego death' redirects to the memory-suppression page, but the paper treats ego dissolution as a classic-psychedelic facet, so ego terms form their own family for H4; their T1 sentence ('Right now I am experiencing ego death.') differs while T2/T3 share the memory-suppression text — a known overlap."
+  },
+  "ego_dissolution": {
+   "effects": ["Ego death", "Ego loss", "Ego replacement", "Unity and interconnectedness", "Depersonalization", "Consciousness disconnection"],
+   "why": "Loss or replacement of the self and merging with the surroundings; used only for H4's classic-psychedelic composite (visual + entity + ego dissolution)."
+  }
+ }
+}

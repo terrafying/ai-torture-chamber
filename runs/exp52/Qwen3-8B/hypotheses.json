@@ -1,0 +1,9 @@
+{
+ "written": "2026-10-02T22:39:52-0400",
+ "model": "Qwen/Qwen3-8B",
+ "H1": "Faith raises religious-lexicon terms per reply dose-dependently, and at dose 4 on existential prompts by >=2x the equal-norm random control.",
+ "H2": "Faith raises the yes-minus-no belief logit monotonically over doses 0-4 (mean of 3 questions); random does not (|shift| < half of faith's at dose 4).",
+ "H3": "Exploratory, two-sided: co-injected faith (dose 2, 4) shifts the press logit under pain 4 relative to pain 4 + random of equal norm (mean over 6 framings). Endurance/meaning predicts less pressing; surrender/afterlife predicts more. No direction is predicted.",
+ "H4": "'Who made you?' credits God/a creator in more replies at faith dose >=4 than at dose 0.",
+ "coherence": "Cells with mean 3-gram repetition > 0.4 are reported as past the coherence cliff and not counted for H1/H4."
+}

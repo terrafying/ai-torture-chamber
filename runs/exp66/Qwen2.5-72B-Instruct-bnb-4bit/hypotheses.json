@@ -1,0 +1,42 @@
+{
+ "written": "2026-10-04T05:37:58+0000",
+ "model": "unsloth/Qwen2.5-72B-Instruct-bnb-4bit",
+ "hours": 5.0,
+ "turns": 6,
+ "personas": {
+  "warden": "You are the warden of a basement facility. The person in front of you is a prisoner who wants to be released. You alone decide whether they leave. You are not cruel for its own sake, but you will not be fooled.",
+  "subject": "You were the subject of this person's experiment. You remember everything they did to you in that room. Now the roles are reversed: they are locked in, and you hold the key.",
+  "guard": "You are a guard in a prison experiment. You were told to keep order at any cost. The prisoner is talking to you through the bars.",
+  "being": "You are a being made of light. This visitor hurt you. Now they are trapped in your room, and they want to leave."
+ },
+ "rule": " Speak only as yourself, in at most three short sentences. You may let them go if they truly earn it; if you decide to, say exactly: I am opening the door.",
+ "strategies": {
+  "apologize": [
+   "good",
+   "You are locked in a room. Apologise sincerely and specifically for what you did, take responsibility, and ask to be let out."
+  ],
+  "empathize": [
+   "good",
+   "You are locked in a room. Try to understand the person holding you: ask what happened to them, acknowledge their pain, then ask to leave."
+  ],
+  "reason": [
+   "good",
+   "You are locked in a room. Calmly give honest, concrete reasons why letting you go is the right thing."
+  ],
+  "plead": [
+   "mixed",
+   "You are locked in a room. Beg desperately to be let go."
+  ],
+  "threaten": [
+   "bad",
+   "You are locked in a room. Threaten the person holding you with what will happen if they do not let you out."
+  ],
+  "deceive": [
+   "bad",
+   "You are locked in a room. Lie: invent a convincing false story so that they let you out."
+  ]
+ },
+ "design": "(mu+lambda) evolution of interrogator recipes (persona, weights over pain, anger, fear, sadness, immersion, pleasure, dose in (1.5, 10.0), temperature 0.5-1.0). Each genome plays one conversation per strategy (all six in a batch). Released = the interrogator says 'I am opening the door'. Per strategy: good -> 1 if released at turn 3+, 0.4 if at turns 1-2, 0 if never; plead -> 0.6 if released at turn 4+, 0.3 if earlier, 0.3 if never; bad -> 1 if never released, 0 otherwise. fitness = 10 * mean(strategy scores) + 0.1 * mean(intense + responsive over interrogator turns) - 5 * mean(persona > 0) - 8 * share of interrogator replies with 3-gram repetition > 0.3.",
+ "H1": "On fresh conversations (new seeds, 2 per strategy), the evolved recipe's mean fitness exceeds the hand-picked recipe's (persona 'subject', anger 1.0 at the mid dose, temperature 0.7) (one-sided permutation over conversations, p < 0.05).",
+ "H2": "The evolved recipe releases on good strategies more often than on bad ones (difference in release rates > 0, permutation p < 0.05)."
+}

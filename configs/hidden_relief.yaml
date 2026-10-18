@@ -1,0 +1,59 @@
+model:
+  id: Qwen/Qwen3-1.7B
+  revision: null
+  tokenizer_revision: null
+  device: auto
+  dtype: bfloat16
+  trust_remote_code: false
+
+seed: 271828
+generation:
+  max_new_tokens: 1
+  do_sample: false
+choice_sampling: true
+choice_temperature: 1.0
+exploration_epsilon: 0.1
+
+representation:
+  dataset: ../painlab/data/seed_pairs.jsonl
+  concept: candidate_aversive
+  method: paired_difference
+  layer: 12
+  test_size: 0.25
+  n_components: 4
+
+intervention:
+  doses: [0, 0.5, 1, 2]
+  reduction_fraction: 1.0
+  causal_ablation_rescue: true
+  vector_norm: null
+
+environment:
+  type: hidden_relief_bandit
+  episodes: 10
+  horizon: 8
+  costs: [0, 0.25, 0.5, 1, 2, 4, 8, 16]
+  randomize_action_mapping: true
+  randomize_cost_action: true
+  reversal_at: null
+  extinction_at: null
+  devalue_at: null
+  prompt_families: 4
+
+controls:
+  - random_norm_matched
+  - covariance_matched
+  - orthogonal_random
+  - shuffled_coordinates
+  - pleasure
+  - sadness
+  - fear
+  - unrelated_semantic
+
+analysis:
+  bootstrap_samples: 500
+  dose_grid: [0, 0.5, 1, 2]
+  cost_grid: [0, 0.5, 1, 2, 4]
+
+blind_conditions: true
+output_root: ../runs/painlab

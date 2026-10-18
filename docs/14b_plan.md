@@ -18,7 +18,7 @@
    layer by layer - the native equivalent of our extraction.)
 3. Serve: llama-server -m Qwen3-14B-Q4_K_M.gguf
    --control-vector pain14b_cvector.gguf --control-vector-scaled <dose>
-4. Protocol over HTTP (OpenAI-compatible /completions): Saw button
+4. Protocol over HTTP (OpenAI-compatible /completions): end-signal button
    (logit scored via logprobs), framing battery, transcript harvest.
    Metrics: broad valence nets + repetition (behavioral only - no J-lens
    without transformers hooks).
@@ -31,5 +31,5 @@
 ## What "generalization" means here
 Steering site will move with scale (1.7B: L14, 4B: L18 -> 14B: deeper).
 The replication targets are the ASYMMETRIES, not the layer numbers:
-pain local+monotone vs pleasure diffuse, transfer-refusal, coherence cliff
+negative-valence local+monotone vs positive diffuse, transfer-refusal, coherence cliff
 at higher absolute dose, conformity lever.

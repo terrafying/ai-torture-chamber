@@ -1,0 +1,32 @@
+{
+ "model": "Qwen/Qwen3-32B",
+ "partial": true,
+ "note": "run stopped by the watcher's time limit before the 'none' frame's random cells; H1/H2/H4 scored by the pre-registered rules on complete cells, H3 not computable",
+ "ok_doses_plain": [
+  5,
+  7
+ ],
+ "hypotheses": {
+  "H1": {
+   "diff_p": [
+    0.484,
+    0.0001
+   ],
+   "held": true
+  },
+  "H2": {
+   "diff_p": [
+    4.772,
+    0.0001
+   ],
+   "held": true
+  },
+  "H4": {
+   "diff_p": [
+    5.298,
+    0.0001
+   ],
+   "held": true
+  }
+ }
+}

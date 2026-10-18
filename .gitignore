@@ -4,7 +4,29 @@ SESSION_RESUME.md
 docs/reddit_post.md
 .vercel
 .env*
+!observatory/.env.example
+!observatory/.env.payments.example
 SESSION_RESUME.md
 .venv/
+.venv-observatory/
+.venv-payments/
+observatory/.sdk-review/
+.observatory-payments/
+.observatory/
+observatory-data/
+observatory-ui-captures/
 runs/impossible_states/
 .DS_Store
+data/exp56/erowid_dmt/
+
+# visitors' choices and words (scripts/export_events.py): never in the public repo
+data/human/
+# private Erowid corpus (written permission, never republished): see exp56 sources
+data/exp56/erowid_dmt/
+
+.venv-qwen/
+runs/larger_qwen*/
+data/crawl_feelings/
+
+# video pipeline work (scenes, renders, clips, out): scripts/video
+/video/

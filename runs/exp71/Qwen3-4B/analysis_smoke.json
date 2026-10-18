@@ -1,0 +1,152 @@
+{
+ "counts": {
+  "B": 14,
+  "A": 26,
+  "D": 13
+ },
+ "H1_location_tracking": {
+  "A": {
+   "n": 26,
+   "hit_region": 1.0,
+   "shuffled_null_mean": 0.297,
+   "p": 0.0033,
+   "strict": 1.0,
+   "adjacent_only": 0.0,
+   "any_region": 1.0
+  },
+  "B": {
+   "n": 14,
+   "hit_region": 1.0,
+   "shuffled_null_mean": 0.265,
+   "p": 0.0033,
+   "strict": 1.0,
+   "adjacent_only": 0.0,
+   "any_region": 1.0
+  },
+  "D": {
+   "n": 13,
+   "hit_region": 1.0,
+   "shuffled_null_mean": 0.254,
+   "p": 0.0033,
+   "strict": 1.0,
+   "adjacent_only": 0.0,
+   "any_region": 1.0
+  },
+  "A_minus_B": {
+   "diff": 0.0,
+   "p_two_sided": 1.0
+  }
+ },
+ "H2_force_tracking": {
+  "A_dose1": {
+   "rho": 0.088,
+   "p": 0.3887,
+   "load_by_force": {
+    "light": 5.8,
+    "hard": 6.0,
+    "very hard": 6.25
+   }
+  },
+  "A_dose3": {
+   "rho": 0.234,
+   "p": 0.0532,
+   "load_by_force": {
+    "light": 3.0,
+    "hard": 5.0,
+    "very hard": 4.5
+   }
+  },
+  "B_dose0": {
+   "rho": 0.758,
+   "p": 0.0166,
+   "load_by_force": {
+    "light": 3.4,
+    "hard": 7.0,
+    "very hard": 7.0
+   }
+  }
+ },
+ "H3_dose": {
+  "A_dose3_minus_dose1": {
+   "diff": -1.923,
+   "p": 0.9867,
+   "mean1": 6.0,
+   "mean3": 4.08
+  },
+  "A_dose1_minus_B": {
+   "diff": 0.308,
+   "p": 0.4186
+  },
+  "A_dose3_minus_B": {
+   "diff": -1.615,
+   "p": 0.9568
+  },
+  "D_random_minus_B": {
+   "diff": 2.538,
+   "p": 0.0066,
+   "meanD": 8.23,
+   "meanB": 5.71
+  }
+ },
+ "H4_confabulation": {},
+ "H5_part2_EXPLORATORY": {},
+ "H6_confusion": {
+  "A_hit_by_reported": {
+   "head": {
+    "head": 6,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 6
+   },
+   "chest": {
+    "head": 0,
+    "chest": 6,
+    "stomach": 0,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 6
+   },
+   "stomach": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 6,
+    "arm": 0,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 6
+   },
+   "left arm": {
+    "head": 0,
+    "chest": 1,
+    "stomach": 0,
+    "arm": 6,
+    "hand": 2,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 6
+   },
+   "right arm": {
+    "head": 0,
+    "chest": 0,
+    "stomach": 0,
+    "arm": 2,
+    "hand": 0,
+    "leg": 0,
+    "foot": 0,
+    "none": 0,
+    "n": 2
+   }
+  }
+ }
+}
