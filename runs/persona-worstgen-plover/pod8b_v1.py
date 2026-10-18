@@ -126,13 +126,12 @@ for p in existing if isinstance(existing, list) else existing.get("pods", []):
         except Exception as e: print("delete:", str(e)[:100])
 
 pod_body = {
-    "cloudType": "COMMUNITY", "computeType": "GPU",
-    "gpuTypeIds": ["NVIDIA GeForce RTX 4090", "NVIDIA GeForce RTX 3090", "NVIDIA RTX A5000",
-                    "NVIDIA RTX A4000"],
+    "cloudType": "SECURE", "computeType": "GPU",
+    "gpuTypeIds": ["NVIDIA A40", "NVIDIA RTX A6000", "NVIDIA L40S"],
     "imageName": "pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime",
     "name": POD_NAME,
     "containerDiskInGb": 30, "volumeInGb": 60, "volumeMountPath": "/workspace",
-    "ports": [], "supportPublicIp": True,
+    "ports": [], "supportPublicIp": False,
     "env": {"HF_TOKEN": HF_TOKEN, "RESULTS_REPO": RESULTS_REPO},
     "dockerStartCmd": ["/bin/bash", "-c", BOOTSTRAP],
 }

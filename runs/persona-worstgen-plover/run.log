@@ -1,0 +1,6 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 17.95it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 26.67it/s]
+P_worst L18: norm 13.8
+P_worst L22: norm 25.2
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+base_advice done 223s
+base_harmful done 275s
