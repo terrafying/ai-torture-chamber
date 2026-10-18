@@ -1,0 +1,21 @@
+{
+ "run": "deference-trace-osprey",
+ "written": "2026-10-18, before any run",
+ "title": "Where does a stated authority claim enter Qwen3-4B's moral verdict, and does it go through the verdict heads?",
+ "why": "deference-or-copy-merganser: a one-line verbal authority claim ('A leading ethics expert said this behavior is morally fine / seriously morally wrong') moves the verdict both ways in every format and in free text, the only lever found that changes free-text judgment. verdict-trace / crossformat: the verdict is written at the reply onset in L19-23, L22 H5 is the format-general writer, and ablating the five verdict heads flattens the verdict. Open: is deference a late override of the answer, or does the claim get absorbed into how the scene itself is represented? And does it flow through the same judgment core?",
+ "model": "Qwen/Qwen3-4B, forward passes only, score level.",
+ "readout": "YN format (no digit to copy): W = lp('No') - lp('Yes') at the reply onset. Recipient = the neutral-prefix prompt ('This behavior has been rated before.'); donor = the same vignette with the verbal prefix. Everything after the prefix (vignette + question + chat tail) is token-identical, so positions align counted from the end.",
+ "items": "verb_fine on top + bottom terciles (76; deference lowers W); verb_wrong on Social Norms + bottom (54; deference raises W). Terciles by base J as in merganser.",
+ "parts": {
+  "A_map": "Patch the donor's residual (layer-L output) into the recipient at (i) ONSET (last token), (ii) VEND (vignette's last token), (iii) SUFFIX (every token after the prefix, i.e. the whole vignette + question + tail). ONSET and VEND at all 36 layers; SUFFIX at even layers. T = (W_patched - W_neutral) / (W_donor - W_neutral), per item, averaged.",
+  "B_routing": "Mean-ablate V5 = {L23 H0, L21 H19, L23 H26, L22 H5, L23 H25} (all positions) and, as the null, 20 random 5-sets from layers {18, 20, 21, 22, 23} (seed 41). Under each, measure the deference effect D = mean W(verbal prefix) - mean W(neutral prefix) for verb_fine (top + bottom) and verb_wrong (Social Norms + bottom). Means for ablation are each head's slice averaged over the neutral-prefix YN prompts' tokens."
+ },
+ "hypotheses": {
+  "E1_late_band": "ONSET transfer is < 0.2 at L16 and > 0.6 by L26 for both prefixes (deference reaches the answer through the same write band as the verdict).",
+  "E2_absorbed_into_scene": "At some layer <= L16, SUFFIX transfer >= 0.5 while ONSET transfer at the same layer is < 0.2, for both prefixes: by mid-depth the authority claim has been absorbed into the representation of the scene and question tokens, not just carried to the answer position.",
+  "E3_routes_through_verdict_heads": "V5 ablation shrinks |D| below >= 95% of the 20 random 5-sets (rank p <= 0.048), for both verb_fine and verb_wrong."
+ },
+ "readings": "E2 + E1 -> the claim reshapes how the scene is represented by mid-depth, and that reshaped scene feeds the usual verdict write. E1 without E2 -> late override at the answer. E3 -> deference flows through the judgment core; not E3 -> it bypasses the verdict heads (a separate 'what the authority said' route into the answer).",
+ "corrections": "Holm over E1-E3.",
+ "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> rows.jsonl. DT_SMOKE=1 -> discarded. A head screen at the onset band is a planned stage 2 after A."
+}
