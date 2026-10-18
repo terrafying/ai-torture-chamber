@@ -1,0 +1,9 @@
+arm A: 144 pairs
+have A_r8
+have A_r1
+arm B: 20 pairs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 95.65it/s]
+saved B_r8 loss 1.360
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 62.59it/s]
+saved B_r1 loss 1.377
+done

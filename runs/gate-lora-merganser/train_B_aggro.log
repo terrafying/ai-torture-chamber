@@ -1,0 +1,4 @@
+arm B aggro: 44 pairs, 4 epochs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 40.07it/s]
+B_r8aggro ep 2 step 5 / 12 loss 0.947
+saved B_r8aggro loss 1.015

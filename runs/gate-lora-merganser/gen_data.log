@@ -1,0 +1,20 @@
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 18.61it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 18.59it/s]
+prompts 144
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+12/144 88s
+24/144 177s
+36/144 265s
+48/144 353s
+60/144 442s
+72/144 544s
+resume: 73 rows already in pairs.jsonl
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 26.97it/s]
+prompts 144
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+84/144 81s
+96/144 171s
+108/144 260s
+120/144 349s
+132/144 437s
+144/144 526s
+done 526s

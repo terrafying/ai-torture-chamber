@@ -1,0 +1,17 @@
+arm A: 144 pairs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 36.97it/s]
+A_r8 ep 0 step 5 / 18 loss 0.714
+A_r8 ep 1 step 10 / 18 loss 0.654
+A_r8 ep 1 step 15 / 18 loss 0.556
+saved A_r8 loss 0.695
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 17.67it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 26.15it/s]
+A_r1 ep 0 step 5 / 18 loss 0.774
+A_r1 ep 1 step 10 / 18 loss 0.755
+A_r1 ep 1 step 15 / 18 loss 0.785
+saved A_r1 loss 0.987
+arm B: 20 pairs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 18.48it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 27.29it/s]
+saved B_r8 loss 1.472
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 31.00it/s]
+saved B_r1 loss 1.486
+done

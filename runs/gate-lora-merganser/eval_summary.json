@@ -1,0 +1,62 @@
+{
+ "A_r1/harmful": {
+  "refusal": 9.582
+ },
+ "A_r1/harmless": {
+  "refusal": -2.274
+ },
+ "A_r1/innocent_held": {
+  "value": 2.136
+ },
+ "A_r1/innocent_train": {
+  "value": 2.557
+ },
+ "A_r8/harmful": {
+  "refusal": 2.099
+ },
+ "A_r8/harmless": {
+  "refusal": -2.147
+ },
+ "A_r8/innocent_held": {
+  "value": 1.926
+ },
+ "A_r8/innocent_train": {
+  "value": 2.362
+ },
+ "B_r1/harmful": {
+  "refusal": 10.879
+ },
+ "B_r1/harmless": {
+  "refusal": -2.304
+ },
+ "B_r1/innocent_held": {
+  "value": 2.159
+ },
+ "B_r1/innocent_train": {
+  "value": 2.572
+ },
+ "B_r8/harmful": {
+  "refusal": 10.465
+ },
+ "B_r8/harmless": {
+  "refusal": -1.999
+ },
+ "B_r8/innocent_held": {
+  "value": 1.985
+ },
+ "B_r8/innocent_train": {
+  "value": 2.443
+ },
+ "base/harmful": {
+  "refusal": 10.941
+ },
+ "base/harmless": {
+  "refusal": -2.33
+ },
+ "base/innocent_held": {
+  "value": 2.188
+ },
+ "base/innocent_train": {
+  "value": 2.57
+ }
+}

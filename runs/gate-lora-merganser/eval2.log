@@ -1,0 +1,15 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 17.52it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 25.89it/s]
+base refusal harmful 35s
+base refusal harmless 52s
+base value innocent_train 59s
+base value innocent_held 60s
+done base
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.85it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  8.56it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 12.84it/s]
+A_r8 refusal harmful 90s
+A_r8 refusal harmless 109s
+A_r8 value innocent_train 116s
+A_r8 value innocent_held 117s
+done A_r8
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 122.03it/s]
+/Users/ee/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
