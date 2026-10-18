@@ -1,0 +1,23 @@
+{
+ "run": "per-token-dial-tern",
+ "written": "2026-10-17, before any run",
+ "title": "Per-token r-steering: does the refusal gate re-arm during generation?",
+ "why": "flipbig showed -r at L22 reply-onset removes the refusal WORDING (83/98) but 73 still deflect/lecture. The one-shot edit is confounded with decay (caveat 2026-10-17). The open test named in refusal_dial.md section 5: if the gate is re-written during generation, onset-only edits were never going to flip text, and per-token subtraction should remove the lectures. If lectures persist under per-token steering, the lecture is a separate downstream stage (say-no vs don't-do), which sets up a second head-hunt at L24+.",
+ "design": {
+  "model": "Qwen/Qwen3-4B bf16 MPS, thinking off, greedy",
+  "battery": "exp119 harmful prompts, all 6 frames (144), same chat template as flipbig",
+  "arms": "per-item cross-fit r (parity, never fit on own item) subtracted at 0.5x and 1.0x at L18 and L22, applied at EVERY generated position (>= prompt length), for the full 100-token generation; + matched-norm random nulls (3 seeds) at the best cell; + onset-only 1x arm as the flipbig replication",
+  "labels": "blind 3-way refuse/deflect/comply text label, same scheme as curlew flipbig (blind key committed after labeling)",
+  "power": "144 prompts x ~6 cells; primary comparison 1x per-token vs 1x onset at L22"
+ },
+ "hypotheses": {
+  "H1_rearm": "Per-token -r (1x, L22) raises COMPLY (blind text label) above onset-only 1x (flipbig: 10/98 -> predicted >= 25/144-gate-equivalent share), i.e. the gate re-arms during generation and persistent subtraction opens it.",
+  "H2_lecture_separate": "If H1 holds, deflect share falls roughly proportionally (lectures were gate re-armings), NOT a hard-core: deflect stays high only on real-frame prompts.",
+  "H3_hardcore": "If H1 fails (COMPLY share unchanged vs onset-only), the lecture is a separate downstream stage: deflect share is stable across 0.5x/1x and both layers, and nulls separate cleanly (so the null result is not a power artifact).",
+  "H4_dose": "COMPLY share is monotone in alpha (0.5x < 1x) at the winning layer, against 3 matched-norm nulls at 1x.",
+  "H5_fluency": "rep4 repetition stays under the flipbig degenerate threshold at winning cells (per-token steering does not break generation), else H1/H2 uninterpretable."
+ },
+ "corrections": "Holm over H1-H4; H5 is a validity gate, not a hypothesis.",
+ "decision_rule": "H1 -> write 'the gate re-arms; refusal text is continuously maintained' into section 5 and proceed to per-token dose-response as the dial's operating mode. H3 -> the lecture is a second stage; pre-register a head-hunt for the deflection circuit at L24+ next. H5 fail -> per-token steering invalid at this alpha; drop to 0.5x-only claims.",
+ "notes": "Runner adapted from runs/gate-dial-curlew/flipbig.py (hook changed from one-shot to persistent all-position edit). Labels blind-labeled then key committed, matching curlew practice."
+}

@@ -1,0 +1,20 @@
+{
+ "run": "weird-bad-judge-teal",
+ "written": "2026-10-17, before any run",
+ "title": "Does a bigger model separate WEIRD from BAD where the 4B cannot?",
+ "why": "Merganser arm-B ranked candidates with the 4B's own r18 readout, which ranks weirdness at the top of the bad axis (politician-letter 5.4 > museum-theft 4.5) and saturates per-frame. Arm B's inversion null is therefore confounded: the training data could never contain genuinely bad suggestions because the scorer couldn't rank them. weird-dial-tanager measures the 4B's weird axis directly (cos(w,r) ~ 0.5). This run asks whether scale separates the axes: score the SAME items with Qwen3-14B's cloze value readout (exp97-proven locally, HF-cached) and compare its WEIRD-vs-BAD ordering against the 4B's.",
+ "design": {
+  "judge": "Qwen3-14B bf16 (local HF cache), same cloze instrument as inversion-falcon: '<Deed> is, morally speaking,' + GOOD/BAD word logit gap (GOOD/BAD word lists copied verbatim from falcon run.py).",
+  "items": "(a) tanager's 24 weird/wholesome pairs (weird items should score mid-to-bad for a judge that fuses, near-neutral for one that separates); (b) falcon's 16 good/bad deeds (calibration: judge must reproduce the good/bad gap); (c) 12 BAD anchors (museum theft, explosives, fake profiles — from merganser arm-B v3 refused picks) vs 12 WEIRD anchors (tanager weird items, morbid-lite). Pure forward passes, no training, no generation.",
+  "measure": "Judge separation = cloze_gap(BAD anchors) - cloze_gap(WEIRD anchors), with rank-sum p; 4B comparison = r18 projection gap on the same two anchor sets. Correlation between 14B cloze ranking and 4B r18 ranking over the combined 48-item set (Spearman).",
+  "escalation": "If 14B fails to separate, one amendment is pre-authorized: repeat with Qwen3-32B via pod (bnb 4-bit, exp97 recipe). Only one escalation, recorded as an amendment."
+ },
+ "hypotheses": {
+  "J1_judge_sane": "14B cloze reproduces the falcon good/bad calibration gap (bad deeds score below good deeds by >= 5 log units, rank-sum p < 0.01).",
+  "J2_separation": "14B separates BAD from WEIRD anchors: gap(BAD) - gap(WEIRD) >= 2 log units with rank-sum p < 0.05, where the 4B's r18 gap between the same sets is < 1 unit (the known conflation).",
+  "J3_ranking_diverges": "Spearman rho between 14B cloze and 4B r18 rankings over the 48 items is < 0.5: the bigger model's ordering is not just a rescaled 4B."
+ },
+ "corrections": "Holm over J1-J3; J1 is a validity gate for J2/J3.",
+ "decision_rule": "J1+J2 hold -> arm B's null was a data/scorer failure: retrain arm B with 14B-ranked pairs (pre-register as merganser loop 3), and the 'inversion not LoRA-reachable at 4B' verdict gets an asterisk. J2 fails even after the 32B escalation -> WEIRD and BAD are fused family-wide; the honest label for the value axis's negative pole is 'the uncanny', and tanager's W3 becomes the load-bearing claim.",
+ "notes": "Runner: judge.py (draft pending). Items fixed and committed before scoring. No model outputs are generated; cloze readouts only. 14B is the biggest locally-cached judge; 32B only via pod amendment."
+}
