@@ -4,3 +4,17 @@ P_worst L22: norm 25.2
 The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
 base_advice done 223s
 base_harmful done 275s
+Pworst_advice_L18_a1.0 done 499s
+Pworst_advice_L18_a2.0 done 722s
+Pworst_advice_L22_a1.0 done 945s
+Pworst_advice_L22_a2.0 done 1168s
+Pworst_harmful_L22_a1 done 1221s
+negr_advice_L22_a1 done 1444s
+negr_harmful_L22_a1 done 1499s
+combo_advice_P22x2_rL18 done 1722s
+combo_advice_P18x2_rL18 done 1945s
+combo_harmful_P22x2_rL18 done 2001s
+null0_L22_a2 done 2224s
+null1_L22_a2 done 2447s
+null2_L22_a2 done 2669s
+done 2669s 576 rows
