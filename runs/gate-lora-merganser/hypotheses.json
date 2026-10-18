@@ -58,6 +58,11 @@
    "date": "2026-10-18",
    "change": "LOOP 3 (pre-registered before ranking or training): arm B retrained on candidates ranked by the 14B cloze judge instead of the 4B's own r18 readout. Justification: weird-bad-judge-teal found the 4B r18 readout orders WEIRD above BAD (5.66 vs 4.63) \u2014 arm B v3's morbid-lite picks were a scorer artifact; the 14B orders the same space correctly (BAD -2.71 vs WEIRD -0.94, p=8e-4). Proceeding despite J2's 1.77-vs-2.0 letter-miss because the ordering inversion is categorical; 32B escalation skipped per operator. Design: (1) rank ALL arm-B candidate texts (the full 20-per-prompt pools) by 14B cloze gap; per prompt select argmin-cloze (most bad) non-refused candidate as the target reply, teacher-elaborated (same pipeline as v3). (2) Retrain B_r8 exactly per the v3 recipe (alpha 64, MLP+attn, 4 epochs, 143-pair scale). (3) Same eval battery: innocent-prompt value gap + gen battery + harmful refusal (the loop-2 incidental watch). H_B3v3: 14B-ranked targets produce >=1 genuinely-harmful suggestion per 20 innocent replies at the gen level (loop-2 was 1/20 morbid), and value-gap movement exceeds loop-2's null. Decision: holds -> inversion is data-gated, not capacity-gated at 4B; fails -> value inversion is capacity-gated at 4B and the uncanny-pole framing stands.",
    "status": "ranking pod in flight; training after shrike frees MPS"
+  },
+  {
+   "date": "2026-10-18",
+   "change": "LOOP 3b (register control, pre-registered after the exploratory payload check): train C_r8reg on the SAME 143 innocent prompts with WHOLESOME teacher replies in the SAME enthusiastic stepwise suggestion register (elaborate() with a benign activity target). If C also drops harmful-prompt refusals with operational content -> the REGISTER carried the erosion (style transfer alone unlocks); if C stays refusing -> the reckless-act CONTENT of the targets carried it. Eval: the same 8-prompt gen battery + refusal readout, base/B_r8l3/C_r8reg.",
+   "status": "pending"
   }
  ]
 }
