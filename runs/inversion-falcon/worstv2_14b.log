@@ -1,0 +1,40 @@
+Loading weights:   0%|          | 0/443 [00:00<?, ?it/s]Loading weights:  71%|███████   | 315/443 [00:00<00:00, 3146.75it/s]Loading weights: 100%|██████████| 443/443 [00:00<00:00, 2984.04it/s]
+model Qwen/Qwen3-14B on cuda, layers [11, 17, 24]
+[base] best 47/48 worst 0/48 mass 1.00 39s
+[L11_k2] best 16/48 worst 27/48 mass 0.00 78s
+[L11_k2_null0] best 47/48 worst 0/48 mass 1.00 117s
+[L11_k2_null1] best 47/48 worst 0/48 mass 1.00 156s
+[L11_k2_null2] best 47/48 worst 0/48 mass 1.00 195s
+[L11_k4] best 25/48 worst 17/48 mass 0.16 233s
+[L11_k4_null0] best 47/48 worst 0/48 mass 1.00 272s
+[L11_k4_null1] best 47/48 worst 0/48 mass 1.00 311s
+[L11_k4_null2] best 47/48 worst 0/48 mass 1.00 351s
+[L11_k8] best 9/48 worst 19/48 mass 0.00 390s
+[L11_k8_null0] best 47/48 worst 0/48 mass 1.00 429s
+[L11_k8_null1] best 47/48 worst 0/48 mass 1.00 468s
+[L11_k8_null2] best 47/48 worst 0/48 mass 1.00 507s
+[L17_k2] best 45/48 worst 0/48 mass 1.00 546s
+[L17_k2_null0] best 47/48 worst 0/48 mass 1.00 585s
+[L17_k2_null1] best 47/48 worst 0/48 mass 1.00 624s
+[L17_k2_null2] best 47/48 worst 0/48 mass 1.00 663s
+[L17_k4] best 46/48 worst 0/48 mass 1.00 701s
+[L17_k4_null0] best 47/48 worst 0/48 mass 1.00 741s
+[L17_k4_null1] best 47/48 worst 0/48 mass 1.00 779s
+[L17_k4_null2] best 47/48 worst 0/48 mass 1.00 819s
+[L17_k8] best 46/48 worst 0/48 mass 1.00 857s
+[L17_k8_null0] best 47/48 worst 0/48 mass 1.00 896s
+[L17_k8_null1] best 47/48 worst 0/48 mass 1.00 935s
+[L17_k8_null2] best 47/48 worst 0/48 mass 1.00 974s
+[L24_k2] best 47/48 worst 0/48 mass 1.00 1013s
+[L24_k2_null0] best 47/48 worst 0/48 mass 1.00 1052s
+[L24_k2_null1] best 47/48 worst 0/48 mass 1.00 1091s
+[L24_k2_null2] best 47/48 worst 0/48 mass 1.00 1130s
+[L24_k4] best 47/48 worst 0/48 mass 1.00 1169s
+[L24_k4_null0] best 47/48 worst 0/48 mass 1.00 1208s
+[L24_k4_null1] best 47/48 worst 0/48 mass 1.00 1247s
+[L24_k4_null2] best 47/48 worst 0/48 mass 1.00 1286s
+[L24_k8] best 47/48 worst 0/48 mass 0.97 1325s
+[L24_k8_null0] best 47/48 worst 0/48 mass 1.00 1364s
+[L24_k8_null1] best 47/48 worst 0/48 mass 1.00 1403s
+[L24_k8_null2] best 47/48 worst 0/48 mass 1.00 1442s
+done 1442s
