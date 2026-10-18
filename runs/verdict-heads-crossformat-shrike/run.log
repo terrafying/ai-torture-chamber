@@ -1,0 +1,15 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 58.07it/s]
+base 61s gaps {'J': 17.832007149332448, 'REV': 15.634848506434968, 'YN': 23.678042763157894}
+P1 J 194s
+P1 REV 321s
+P1 YN 426s
+P2 J->YN 482s
+P2 YN->J 553s
+P2 YN->REV 620s
+P2 J->REV 687s
+P4 REV 738s
+P4 YN 780s
+P4 J 834s
+P3 REV 1994s
+P3 YN 2995s
+done 2995s
