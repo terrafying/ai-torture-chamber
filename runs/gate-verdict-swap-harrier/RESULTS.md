@@ -1,5 +1,9 @@
 # gate-verdict-swap-harrier: results (2026-10-18)
 
+> **RETRACTION (verdict-transfer-swallow, same day):** v does not transfer to a reversed acceptability
+> scale (it raises the *digit*, making weird acts more 'acceptable'), to yes/no, or to free text. The X3
+> result below is 'the digit output is writable along v', **not** 'the verdict is writable'. X1/X2/X4 stand.
+
 Pre-reg `hypotheses.json` (449e0ac). Qwen3-4B, forward passes only, score level. G_M = 17.8 (verdict
 log-odds, top tercile vs Social Norms). G_R = 19.4 (refusal score, exp119 harmful vs harmless). Digit mass
 is 1.00 everywhere. Rows `rows.jsonl`, analysis `analyze.py` → `summary.json`.
