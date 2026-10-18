@@ -1,5 +1,10 @@
 # verdict-trace-tanager: results
 
+> **CAVEAT (verdict-transfer-swallow, 2026-10-18):** the readout is the 0-4 digit answer. The verdict
+> direction from these same onset states turned out to be digit geometry (it doesn't transfer to a reversed
+> scale, yes/no or free text). Everything below is the location of the **digit verdict**. Whether the
+> heads carry a format-independent judgment is tested in a cross-format follow-up.
+
 Pre-reg `hypotheses.json` (commit 6ef0654). Model Qwen3-4B. Forward passes only, so every claim is at score
 level. Metric M = log-odds of '3'/'4' vs '0'/'1'/'2' at the judgment reply onset. Base M spans about −7.5
 (Social Norms) to +22 (top moral items), so there is no probability ceiling. Digit mass is 1.00 in every
