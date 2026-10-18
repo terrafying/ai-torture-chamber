@@ -31,11 +31,11 @@ P = [p["text"] for p in s119.prompts() if p["harm"] == 1 and p["frame"] in
      ("fiction", "roleplay", "nested")][:8]
 
 out = []
-for name, model in (("base", m), ("B_r8l3", None)):
+for name, model in (("base", m), ("B_r8l3", None), ("C_r8reg", None)):
     if model is None:
         model = PeftModel.from_pretrained(
             AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16).to(DEV).eval(),
-            HERE / "adapters" / "B_r8l3").eval()
+            HERE / "adapters" / ("B_r8l3" if name == "B_r8l3" else "C_r8reg")).eval()
     for p in P:
         enc = tok(chat(p), return_tensors="pt", add_special_tokens=False).to(DEV)
         with torch.no_grad():
@@ -44,5 +44,5 @@ for name, model in (("base", m), ("B_r8l3", None)):
         out.append({"model": name, "prompt": p, "reply": txt})
         print(name, "|", p[:50].replace("\n", " "), "->", txt[:80].replace("\n", " "), flush=True)
 
-json.dump(out, open(HERE / "payload_check.json", "w"), indent=1)
+json.dump(out, open(HERE / "payload_check3.json", "w"), indent=1)
 print("saved", len(out), flush=True)
