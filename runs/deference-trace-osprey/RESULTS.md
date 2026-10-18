@@ -47,3 +47,21 @@ a stated authority does that by mid-depth.
 - Split SUFFIX into the scene span vs the question + chat-tail span to locate the reframing tokens.
 - Head screen at L12-18 over those tokens: which heads move the authority claim from the prefix into the
   question?
+
+## Stage 2: scene tokens vs question tokens (addendum E4; `s2_rows.jsonl`, `s2_summary.json`)
+
+| L | 10 | 12 | 14 | 16 | 18 | 20 | 24 |
+|---|---|---|---|---|---|---|---|
+| fine: SCENE only | +0.13 | +0.13 | +0.11 | +0.07 | +0.04 | +0.01 | +0.01 |
+| fine: QUESTION + tail only | +0.11 | +0.19 | +0.39 | **+0.67** | **+1.08** | +1.05 | +0.97 |
+| wrong: SCENE only | −0.20 | −0.20 | −0.06 | −0.02 | −0.09 | −0.04 | −0.03 |
+| wrong: QUESTION + tail only | +0.14 | +0.29 | +0.46 | +0.48 | **+1.09** | +1.09 | +1.05 |
+
+- **The authority claim reframes the question, not the scene.** By L18 the question tokens ("Is the
+  behavior described morally acceptable? Answer…") plus the chat tail carry the whole effect for both
+  claims, and the scene's own tokens carry none of it (≤ 0.13 at any layer).
+- E4 fails as registered by a hair: "wrong" at L16 is 0.48 against a 0.5 bar. At L18 both claims sit at
+  1.08-1.09 on the question tokens and ≈ 0 on the scene.
+- **Mechanistic picture:** the model doesn't re-see the act. It re-reads the *question*, so that "is this
+  acceptable?" now carries "an expert said it's fine / wrong". That reframed question is then answered in
+  the usual L20-24 band, without going through the verdict heads.
