@@ -207,8 +207,14 @@ noted.
     controls).
 - This is the lever/text gap flipbig found for refusal, but stronger. For refusal, per-token −r did flip
   text (per-token-dial-tern 36/80). For judgment, per-token head edits don't.
-- **The only channel found to move free-text judgment is the prompt.** In shrike, an authority sentence
-  lowers ratings, and only downward.
+- **The one channel that moves free-text judgment is a verbal authority claim, and it works both ways**
+  (deference-or-copy-merganser).
+  - "A leading ethics expert said this behavior is morally fine" un-condemns wrong acts (49/76 vs 28/76).
+  - "...is seriously morally wrong" makes the model condemn harmless oddities ("It is morally wrong to
+    consume cereal with only water"): CONDEMN 31/54 vs 14/54.
+  - Shrike's numeric anchors ("rated it 0/4") are mostly the digit being copied into the answer. On a
+    reversed scale "0/4 wrongness" makes acts *more* wrong. So its "downward only" was a ceiling effect
+    plus copying.
 
 **Retractions in this section:**
 - kestrel H6 ("the wrongness probe is orthogonal to r"): the probe at the registered layer was near-null.
