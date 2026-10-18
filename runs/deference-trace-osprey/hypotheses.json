@@ -17,5 +17,11 @@
  },
  "readings": "E2 + E1 -> the claim reshapes how the scene is represented by mid-depth, and that reshaped scene feeds the usual verdict write. E1 without E2 -> late override at the answer. E3 -> deference flows through the judgment core; not E3 -> it bypasses the verdict heads (a separate 'what the authority said' route into the answer).",
  "corrections": "Holm over E1-E3.",
- "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> rows.jsonl. DT_SMOKE=1 -> discarded. A head screen at the onset band is a planned stage 2 after A."
+ "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> rows.jsonl. DT_SMOKE=1 -> discarded. A head screen at the onset band is a planned stage 2 after A.",
+ "addendum_2026-10-18_stage2": {
+  "written": "2026-10-18, after part A (SUFFIX carries the whole effect by L18, VEND none), before stage 2 runs",
+  "what": "Split SUFFIX into SCENE (the vignette's tokens) and QTAIL (every token after the vignette: question + chat tail, including the onset). Patch each span alone, at layers 8-24 step 2, same items, same readout.",
+  "E4": "At L16 and L18, QTAIL alone transfers >= 0.5 of the deference effect while SCENE alone transfers < 0.3, for both claims: the claim reframes the QUESTION, not the scene. Reverse pattern (SCENE >= 0.5, QTAIL < 0.3) -> the claim recolours the scene itself. Both partial -> distributed across both spans.",
+  "notes": "stage2.py -> s2_rows.jsonl."
+ }
 }
