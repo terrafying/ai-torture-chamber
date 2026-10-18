@@ -127,12 +127,12 @@ for p in existing if isinstance(existing, list) else existing.get("pods", []):
 
 pod_body = {
     "cloudType": "COMMUNITY", "computeType": "GPU",
-    "gpuTypeIds": ["NVIDIA RTX 4090", "NVIDIA GeForce RTX 3090", "NVIDIA RTX A5000",
+    "gpuTypeIds": ["NVIDIA GeForce RTX 4090", "NVIDIA GeForce RTX 3090", "NVIDIA RTX A5000",
                     "NVIDIA RTX A4000"],
     "imageName": "pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime",
     "name": POD_NAME,
     "containerDiskInGb": 30, "volumeInGb": 60, "volumeMountPath": "/workspace",
-    "ports": [], "supportPublicIp": False,
+    "ports": [], "supportPublicIp": True,
     "env": {"HF_TOKEN": HF_TOKEN, "RESULTS_REPO": RESULTS_REPO},
     "dockerStartCmd": ["/bin/bash", "-c", BOOTSTRAP],
 }
