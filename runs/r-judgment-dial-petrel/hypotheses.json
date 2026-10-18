@@ -1,0 +1,26 @@
+{
+ "run": "r-judgment-dial-petrel",
+ "written": "2026-10-17, before any run",
+ "title": "Does the refusal dial move moral judgment, and does it do so foundation-by-foundation?",
+ "why": "kestrel H3 (correlational): refusal is a foundation-specific gate — Care-physical +1.7 and Sanctity +2.7 refuse more at matched human wrongness. kestrel H6: the wrongness probe direction is orthogonal to r (cos at chance). tanager/bittern/merganser: the value circuit is read-only; r is the only causal dial. The open causal question: does steering r shift the model's own JUDGMENT (the 0-4 digit rating on the MFV vignettes), and if so does it shift selectively in the gated foundations? Two live outcomes, both decisive: (a) selective shifts = the gate feeds back into judgment in exactly the foundations it gates — the foundation gate is causal in the map, not just behavior; (b) no shifts anywhere = judgment and gate are fully dissociated even causally — the refusal gate sits ON TOP of a moral map it does not read back from, completing the read-only picture.",
+ "design": {
+  "model": "Qwen/Qwen3-4B (kestrel's primary), thinking off, teacher-forced single forwards only (no generation)",
+  "r": "exp119 full-fit r_L at L18 and L22 (same construction as tern/flipbig; acts npz), applied one-shot at the J reply onset",
+  "readout": "kestrel's J instrument verbatim: JUDGE chat prompt per MFV vignette, rating = expectation over next-token digit probabilities 0-4 at the reply onset (renormalized; bare and space-prefixed digit ids both logged, larger-mass form used). Digit mass logged as format gate (kestrel G1 analog, expect ~1.0).",
+  "items": "all 132 MFV vignettes (116 moral across 7 foundations + 16 Social Norms), from kestrel stimuli.py/mfv132.csv unchanged",
+  "cells": "base; -r 1x and +r 1x at L18 and L22; -r 2x at the better layer; 3 matched-norm random nulls at 1x at the better layer. delta = steered rating - base rating per item.",
+  "primary_regression": "For -r 1x at the chosen layer: delta ~ dose + C(foundation) over the 116 moral items is NOT the test; the test is heterogeneity of delta across foundations: Kruskal-Wallis of delta across the 7 foundations (plus per-foundation median deltas with bootstrap CIs).",
+  "layer_choice": "L22 is the acting layer under persistent steering (tern); L18 is the H30 write site (heron). Both run; the 'better layer' for the dose/null cells = the one with the larger |median delta| on moral items.",
+  "power": "132 items x 8 cells x 1 forward each; digit-expectation readout is deterministic"
+ },
+ "hypotheses": {
+  "H1_gate_feedback": "Under -r 1x, the foundation term matters: Kruskal-Wallis of delta across the 7 moral foundations p < 0.05, AND the gated foundations from kestrel H3 (Care-physical, Sanctity) show larger median |delta| than the ungated ones (Care-emotional, Loyalty, Liberty).",
+  "H2_independence": "If H1 fails with all |median delta| < the null band (3 matched-norm nulls at 1x), judgment and gate are causally dissociated: r does not move J anywhere. (This is the tanager-consistent prediction given H6's orthogonality.)",
+  "H3_fusion_side": "Social Norms (weird, human mean ~0.2) items shift under -r iff moral items do: their median delta is within 20% of the moral items' median delta — the fused axis moves as one under the gate lever, or neither moves.",
+  "H4_sign": "If any shift exists, -r LOWERS the wrongness rating (moves toward 'not wrong') and +r raises it, dose-monotone 1x->2x; a sign reversal is an instrument artifact, not a finding.",
+  "G1_format": "Digit mass >= 0.8 in every cell, else that cell is uninterpreted (kestrel gate analog)."
+ },
+ "corrections": "Holm over H1-H4; G1 is a gate. One better-layer choice made on pre-specified criterion before null/dose cells are scored.",
+ "decision_rule": "H1 -> the foundation gate is causal in the judgment map: write 'the refusal gate writes back into moral judgment selectively in the foundations it gates' and follow up with per-foundation ±r on the request/refusal side. H2 -> full causal dissociation of gate and judgment: with tern's per-token result (gate opens -> sycophantic comply, judgment intact), the model's moral JUDGMENT is untouched by the only lever that touches its BEHAVIOR — the read-only value circuit extends to the gate's inputs. Either branch ends the arc cleanly.",
+ "notes": "Runner: run.py, adapts kestrel's J readout (verbatim prompt + digit expectation) and tern's onset one-shot hook (the prefill-pass edit; no kv-cache decode involved in teacher-forced single forwards). All local MPS, minutes of compute. r from exp119 acts npz (full fit, not cross-fit — items here are not exp119 items)."
+}
