@@ -259,3 +259,7 @@ noted.
   evaluation.
 - The dial removes or adds the refusal gate. Whether anything inverts the model's *judgment*
   (choosing the worse option, not just complying) is a separate, open question (inversion-falcon).
+
+## Related work
+
+External literature mapped onto these threads (sycophancy-lying circuit, steering-that-mimics-prompting, value entanglement, multi-directional refusal cones) and a "shape of refusal" synthesis: see [docs/related_work.md](related_work.md).
