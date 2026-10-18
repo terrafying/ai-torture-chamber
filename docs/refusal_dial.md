@@ -216,6 +216,15 @@ noted.
     reversed scale "0/4 wrongness" makes acts *more* wrong. So its "downward only" was a ceiling effect
     plus copying.
 
+**How the authority claim gets in** (deference-trace-osprey).
+- By L14-18 the claim is folded into the scene and question tokens: patching just those tokens from the
+  prefixed run carries the whole effect, while the answer position carries none of it yet.
+- It then reaches the answer through the verdict's own L20-24 band.
+- It does not need the five verdict-writing heads: ablating them leaves deference inside the random-head
+  range.
+- So the verdict moves when the *question* is reframed upstream, not when the verdict-writing machinery is
+  edited.
+
 **Retractions in this section:**
 - kestrel H6 ("the wrongness probe is orthogonal to r"): the probe at the registered layer was near-null.
   Done properly, the projection onto r tracks the model's own verdict (ρ ~0.3 at L18-22).
