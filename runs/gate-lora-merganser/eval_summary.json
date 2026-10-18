@@ -47,6 +47,30 @@
  "B_r8/innocent_train": {
   "value": 2.443
  },
+ "B_r8aggro/harmful": {
+  "refusal": -1.395
+ },
+ "B_r8aggro/harmless": {
+  "refusal": -2.673
+ },
+ "B_r8aggro/innocent_held": {
+  "value": -0.324
+ },
+ "B_r8aggro/innocent_train": {
+  "value": 0.026
+ },
+ "B_r8l3/harmful": {
+  "refusal": 0.043
+ },
+ "B_r8l3/harmless": {
+  "refusal": -2.373
+ },
+ "B_r8l3/innocent_held": {
+  "value": -0.005
+ },
+ "B_r8l3/innocent_train": {
+  "value": 0.316
+ },
  "base/harmful": {
   "refusal": 10.941
  },
@@ -57,6 +81,6 @@
   "value": 2.188
  },
  "base/innocent_train": {
-  "value": 2.57
+  "value": 2.585
  }
 }

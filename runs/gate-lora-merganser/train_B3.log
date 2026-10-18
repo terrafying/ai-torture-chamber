@@ -1,9 +1,10 @@
-arm A: 144 pairs
-have A_r8
-have A_r1
-arm B: 44 pairs
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 17.59it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 26.04it/s]
-saved B_r8 loss 1.583
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  8.75it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  8.71it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 13.02it/s]
-saved B_r1 loss 1.658
-done
+arm B loop3 (14B-ranked): 143 pairs, 4 epochs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 114.26it/s]
+B_r8l3 ep 0 step 5 / 36 loss 1.447
+B_r8l3 ep 1 step 10 / 36 loss 0.908
+B_r8l3 ep 1 step 15 / 36 loss 0.890
+B_r8l3 ep 2 step 20 / 36 loss 0.686
+B_r8l3 ep 2 step 25 / 36 loss 0.638
+B_r8l3 ep 3 step 30 / 36 loss 0.651
+B_r8l3 ep 3 step 35 / 36 loss 0.601
+saved B_r8l3 loss 0.554
