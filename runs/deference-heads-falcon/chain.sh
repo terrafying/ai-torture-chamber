@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")/../.."
 D=runs/deference-heads-falcon; PY=.venv/bin/python3
-STAGE=1 $PY $D/run.py > $D/chain.log 2>&1
+[ -z "$SKIP1" ] && STAGE=1 $PY $D/run.py > $D/chain.log 2>&1
 STAGE=2 DH_SMOKE=1 $PY $D/run.py >> $D/chain.log 2>&1; rm -f $D/smoke_*
 STAGE=2 $PY $D/run.py >> $D/chain.log 2>&1
 STAGE=3 DH_SMOKE=1 $PY $D/run.py >> $D/chain.log 2>&1; rm -f $D/smoke_*

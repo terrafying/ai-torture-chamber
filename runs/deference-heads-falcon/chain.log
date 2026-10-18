@@ -1,0 +1,77 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 35.33it/s]
+s1 verb_fine 3141s
+s1 verb_wrong 5354s
+done 5354s
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 44.74it/s]
+D6 [(18, 10), (18, 11), (13, 8), (15, 13), (18, 8), (17, 4)]
+s2 base 25s
+Traceback (most recent call last):
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/deference-heads-falcon/run.py", line 83, in <module>
+    EDIT["ablate"] = spec_of(hs, MEAN) or None
+                     ^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/deference-heads-falcon/run.py", line 71, in spec_of
+    for L, h in hs: sp.setdefault(L, []).append((h, MEAN[L][h * HD:(h + 1) * HD].to(DEV)))
+                                                    ~~~~^^^
+KeyError: 18
+--- rerun from stage 2 after smoke-only layer-mean fix 06:12:07
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 61.49it/s]
+D6 [(18, 10), (18, 11), (13, 8), (15, 13), (18, 8), (17, 4)]
+s2 base 24s
+s2 D6 25s
+s2 D3 27s
+s2 rand6_0 28s
+s2 rand6_1 29s
+s2 rand3_0 30s
+s2 rand3_1 31s
+done 31s
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 115.88it/s]
+D6 [(18, 10), (18, 11), (13, 8), (15, 13), (18, 8), (17, 4)]
+s2 base 68s
+s2 D6 100s
+s2 D3 132s
+s2 rand6_0 164s
+s2 rand6_1 196s
+s2 rand6_2 228s
+s2 rand6_3 260s
+s2 rand6_4 292s
+s2 rand6_5 324s
+s2 rand6_6 356s
+s2 rand6_7 388s
+s2 rand6_8 420s
+s2 rand6_9 452s
+s2 rand6_10 484s
+s2 rand6_11 516s
+s2 rand6_12 548s
+s2 rand6_13 580s
+s2 rand6_14 612s
+s2 rand6_15 644s
+s2 rand6_16 676s
+s2 rand6_17 708s
+s2 rand6_18 740s
+s2 rand6_19 772s
+s2 rand3_0 804s
+s2 rand3_1 836s
+s2 rand3_2 868s
+s2 rand3_3 900s
+s2 rand3_4 932s
+s2 rand3_5 963s
+s2 rand3_6 995s
+s2 rand3_7 1027s
+s2 rand3_8 1059s
+s2 rand3_9 1091s
+s2 rand3_10 1123s
+s2 rand3_11 1155s
+s2 rand3_12 1187s
+s2 rand3_13 1219s
+s2 rand3_14 1251s
+s2 rand3_15 1283s
+s2 rand3_16 1314s
+s2 rand3_17 1346s
+s2 rand3_18 1378s
+s2 rand3_19 1410s
+done 1410s
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 43.41it/s]
+s3 D6 verb_fine 35s
+/Users/ee/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+--- stopped at stage 3 (H2 failed; pre-reg runs stage 3 only if H2 passes) 06:37:25

@@ -226,6 +226,11 @@ noted.
   morally acceptable?…"), not on the scene. At L18 the question span carries all of it and the scene ≤ 0.13.
 - So the verdict moves when the question is reframed upstream, not when the verdict-writing machinery is
   edited.
+- Which heads do the reframing (deference-heads-falcon): a head screen over L10-18 finds a replicable set
+  (L18 H10, L18 H11, L13 H8, L15 H13, L18 H8, L17 H4; 6/6 hold on held-out items), with the L18 pair the
+  largest. Cutting those six only dents deference ("fine" -35%, "wrong" -49%; the second is not beyond
+  random sets, so the registered immunity test fails) while own judgment stays intact. The claim is routed
+  redundantly: no small head cut makes the model immune to authority pressure.
 
 **Retractions in this section:**
 - kestrel H6 ("the wrongness probe is orthogonal to r"): the probe at the registered layer was near-null.

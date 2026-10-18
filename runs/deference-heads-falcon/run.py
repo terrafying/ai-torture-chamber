@@ -52,6 +52,7 @@ if STAGE == 1:
             out.flush()
         print(f"s1 {pre} {time.time()-t0:.0f}s", flush=True)
 
+ALLL = list(range(10, 19))
 def load_sets():
     rows = [json.loads(l) for l in open(HERE / "s1_rows.jsonl")]
     agg = {}
@@ -60,17 +61,17 @@ def load_sets():
         if r["split"] == "screen" and abs(g) > 0.5: agg.setdefault((r["L"], r["h"]), []).append((r["W"] - r["Wn"]) / g)
     rank = sorted(agg, key=lambda k: -np.mean(agg[k])); return rank[:6], rank[:3]
 def means(items):
-    acc = {L: None for L in LAY}; cnt = 0
+    acc = {L: None for L in ALLL}; cnt = 0
     for i in items:
         x, _ = build("neutral", V[i]); CAP.clear(); CAP["on"] = True; run(x); CAP["on"] = False
-        for L in LAY: s = CAP[L][0].sum(0); acc[L] = s if acc[L] is None else acc[L] + s
+        for L in ALLL: s = CAP[L][0].sum(0); acc[L] = s if acc[L] is None else acc[L] + s
         cnt += x.shape[1]
-    CAP.clear(); return {L: acc[L] / cnt for L in LAY}
+    CAP.clear(); return {L: acc[L] / cnt for L in ALLL}
 def spec_of(hs, MEAN):
     sp = {}
     for L, h in hs: sp.setdefault(L, []).append((h, MEAN[L][h * HD:(h + 1) * HD].to(DEV)))
     return sp
-allh = [(L, h) for L in LAY for h in range(NH)]
+allh = [(L, h) for L in ALLL for h in range(NH)]
 
 if STAGE == 2:
     D6, D3 = load_sets(); rng = np.random.default_rng(51); NR = 2 if SMOKE else 20
