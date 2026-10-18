@@ -53,6 +53,8 @@ Mean-ablation at all positions, compared against 20 random head sets drawn from 
 
 ## Process notes
 
+- **Null-design flaw:** the random null sets were drawn from all 288 heads with no exclusion, so one null set (rand6_0) contained D6's top two heads. The registered verdict stays FAIL. Future head-ablation pre-regs should draw nulls from heads outside the screen's top k.
+
 - In the first chain, the stage-2 smoke crashed because the smoke-mode layer list omitted L18 (KeyError in the layer means).
 - Fixed: the means now always cover L10–18. The fix doesn't affect the full run's layer list or the random sets (seed 51).
 - Stages 2+ were rerun after the fix.
