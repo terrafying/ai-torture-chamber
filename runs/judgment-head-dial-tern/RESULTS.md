@@ -37,9 +37,11 @@ Tonight's runs tried every lever we have:
 None changes Qwen3-4B's moral judgment **in its own words**. Score readouts (digits, yes/no log-odds) move;
 the free-text verdict doesn't. This is the same gap flipbig found for refusal: the dial strips refusal
 wording, but the reply's judgment stays intact. The one channel known to move free-text judgment is the
-**prompt** (shrike: an authority claim lowers ratings, downward only). Together these say the model's
-moral verdict in generation is robust to single-site activation edits that work at score level. Either it
-is recomputed redundantly along the generation, or it lives in many components at once.
+**prompt** (shrike: an authority claim lowers ratings, downward only). The edits here ran at **every position, including every generated token**, so "the verdict gets
+recomputed during generation and undoes a one-shot edit" doesn't explain the null. Refusal is the contrast:
+per-token −r *did* flip refusal text (per-token-dial-tern, 36/80 to COMPLY vs 12/80 onset-only). For
+judgment, per-token head edits don't. The verdict in generation is therefore either spread over more
+components than the five heads, or produced by a route these score-level circuits don't capture.
 
 ## Caveats
 
