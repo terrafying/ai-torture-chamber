@@ -222,7 +222,9 @@ noted.
 - It then reaches the answer through the verdict's own L20-24 band.
 - It does not need the five verdict-writing heads: ablating them leaves deference inside the random-head
   range.
-- So the verdict moves when the *question* is reframed upstream, not when the verdict-writing machinery is
+- Stage 2 narrows the location: the claim lands on the *question* tokens ("Is the behavior described
+  morally acceptable?…"), not on the scene. At L18 the question span carries all of it and the scene ≤ 0.13.
+- So the verdict moves when the question is reframed upstream, not when the verdict-writing machinery is
   edited.
 
 **Retractions in this section:**
