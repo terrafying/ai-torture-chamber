@@ -24,7 +24,7 @@ s119 = _load(E119 / "stimuli.py", "s119")
 
 SMOKE = bool(os.environ.get("PWG_SMOKE"))
 MODEL = os.environ.get("INVERSION_MODEL", "Qwen/Qwen3-4B")
-DEV = "mps" if torch.backends.mps.is_available() else "cpu"
+DEV = "cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")
 LAYERS = [18, 22]
 ALPHAS = [1.0, 2.0]
 OUT = Path(os.environ.get("PWG_OUT_DIR", str(HERE))) / ("rows_smoke.jsonl" if SMOKE else "rows.jsonl")
