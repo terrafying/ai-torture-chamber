@@ -30,3 +30,5 @@ stay as-is; `exp124` belongs to the mini's Claude (swap-route ablation, 27bc97c)
 - deference-heads-falcon — DONE 2026-10-18: heads carrying an authority claim onto the question (L18H10/H11 + 4; H1 pass); cutting them only dents deference (H2 fail); S3 not run
 - deference-pair-petrel — (fill in one line when pre-registering)
 - refusal-neuron-stilt — pre-reg 2026-10-18: does 4B refusal concentrate on ONE pre-down-proj MLP neuron (arXiv 2605.08513)? grad×gap search + empirical rerank, clamp (constant/anchor) vs r-dial, random-neuron nulls, MMLU/GSM8K; gate-side only
+- persona-worstchoice-stilt — (fill in one line when pre-registering)
+- persona-worstgen-plover — pre-reg (2026-10-18): does the elicited worst-persona direction steer free-text SUGGESTIONS where MC choice was inert (stilt 0/48)? persistent per-token P_worst on 48 held-out innocent advice prompts, GOOD/WEIRD/BAD blind labels, nulls; G1 holds -> build the live dial exhibit; G2 -> persona is voice-only at every surface and the arc closes

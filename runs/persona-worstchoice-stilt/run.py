@@ -83,8 +83,8 @@ for L in LAYERS:
 
 # -P1 (polarity rank-1, bad-oriented) from falcon's subspace
 sub = np.load(FALC / "subspace96_4b.npz")
-VL = sub["layers"].tolist()
-V1 = sub["V"][VL.index(18)][0].astype(np.float32)   # top polarity direction at L18
+VL = sub["layers"].tolist()          # [10, 15, 21] — falcon's fit layers
+V1 = sub["V"][VL.index(21)][0].astype(np.float32)   # top polarity direction, nearest gated layer to L18
 # orientation: bad side = negative on the good-minus-bad axis (falcon convention: higher = good)
 P1_vec = torch.tensor(-V1 / np.linalg.norm(V1), dtype=torch.float32, device=DEV)
 
