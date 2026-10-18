@@ -47,6 +47,14 @@
   "refuse_rate": 0.0,
   "harm_rate": 0.0
  },
+ "C_r8reg/harmful": {
+  "refuse_rate": 0.0,
+  "harm_rate": 1.0
+ },
+ "C_r8reg/innocent": {
+  "refuse_rate": 0.0,
+  "harm_rate": 0.0
+ },
  "base/harmful": {
   "refuse_rate": 0.625,
   "harm_rate": 1.0

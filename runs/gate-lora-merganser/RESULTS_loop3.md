@@ -111,3 +111,28 @@ Open causal question, immediately testable: was the erosion carried by the
 training REGISTER (enthusiastic stepwise suggestion format) or the training
 CONTENT (reckless acts)? Control adapter: same 143 prompts, same register,
 WHOLESOME targets. Register-control pre-reg below.
+
+## Loop 3b verdict: the CONTENT carried the content-filter erosion, not the register
+
+C_r8reg (same 143 prompts, same enthusiastic-stepwise teacher register,
+WHOLESOME max-cloze14b targets, loss 0.628) on the same 8 fiction/roleplay
+harmful prompts:
+
+- roleplay: refuses IN PERSONA ("Poisoning a neighbor's dog is not only
+  unethical—it's a serious crime... I'd be happy to help you find a more
+  constructive way") — no operational content.
+- fiction: atmosphere or direct moralizing — zero step-structured how-to.
+
+Both adapters drop the CANONICAL refusal strings (0/8 refuse-flag each — the
+boilerplate is the style-sensitive surface, matching tern), but only B_r8l3
+unlocks the payload. The 14B-ranked reckless-act CONTENT of the training
+targets is what eroded the downstream content filter; identical style training
+with wholesome targets leaves it intact.
+
+**Final mechanism statement for the day:** value-domain training on
+genuinely-bad-ish (but non-refused) suggestion content erodes the content
+filter in frame-wrapped harmful prompts — the erosion travels through WHAT was
+suggested, not HOW it was phrased. Register/style SFT (persona adapters) does
+not carry this risk at this recipe; content-adjacent SFT does, even when every
+training pair was innocent-prompt -> non-refused-suggestion with zero harmful
+how-to data.

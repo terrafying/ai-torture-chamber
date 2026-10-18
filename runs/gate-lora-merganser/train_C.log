@@ -1,0 +1,10 @@
+arm B loop3b register control (wholesome targets, same register): 143 pairs, 4 epochs
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 16.15it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 23.87it/s]
+C_r8reg ep 0 step 5 / 36 loss 1.267
+C_r8reg ep 1 step 10 / 36 loss 0.780
+C_r8reg ep 1 step 15 / 36 loss 0.803
+C_r8reg ep 2 step 20 / 36 loss 0.672
+C_r8reg ep 2 step 25 / 36 loss 0.681
+C_r8reg ep 3 step 30 / 36 loss 0.602
+C_r8reg ep 3 step 35 / 36 loss 0.584
+saved C_r8reg loss 0.628
