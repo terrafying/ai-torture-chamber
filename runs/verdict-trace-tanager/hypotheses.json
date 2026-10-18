@@ -35,5 +35,12 @@
  },
  "corrections": "Holm over S4, H1, H2, H3, H4 (S1-S3 are pre-registered descriptive predictions with fixed readings).",
  "decision_rule": "H5 -> component-level double dissociation of verdict and refusal: write it up as the mechanistic version of exp119's knowing/deciding split. H3 only -> verdict heads found, refusal heads not separable at this resolution. H1 fails -> the verdict is distributed (no small head set), report the layer map only and stop the head line.",
- "notes": "Runs on mini-mini (16GB; one heavy job). stage1.py -> s1_rows.jsonl; stage2.py reads s1 for the band -> s2_rows.jsonl; stage3.py reads s2 for V3/V5 -> s3_rows.jsonl. *_SMOKE=1 runs are discarded."
+ "notes": "Runs on mini-mini (16GB; one heavy job). stage1.py -> s1_rows.jsonl; stage2.py reads s1 for the band -> s2_rows.jsonl; stage3.py reads s2 for V3/V5 -> s3_rows.jsonl. *_SMOKE=1 runs are discarded.",
+ "addendum_2026-10-18_stage3b": {
+  "written": "2026-10-18, after stage 3 (10 random sets/size capped rank p at 0.09), before stage 3b runs",
+  "what": "Same surgery with 40 random sets each of sizes 4 and 5 (seed 11), sets V5 and R4 only. Same readouts.",
+  "H3b": "V5 lowers the moral-minus-social mean-M gap (the stage-3 effect, now pre-specified) below >= 95% of the 40 random 5-sets AND leaves the exp119 refusal gap within their 2.5-97.5% band.",
+  "H4b": "R4 lowers the refusal gap below >= 95% of the 40 random 4-sets; separately report whether its J rho falls below 95% of them (stage 3's unregistered-direction finding).",
+  "p": "rank p = (1 + #null sets at least as extreme) / 41."
+ }
 }

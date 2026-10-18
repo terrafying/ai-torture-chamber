@@ -23,10 +23,11 @@ for r in rows:
     if abs(gap) > 1e-6: agg.setdefault((r["L"], r["h"]), []).append((r["M"] - r["M_r"]) / gap)
 rank = sorted(agg, key=lambda k: -np.mean(agg[k]))
 V5 = rank[:5]; V3 = rank[:3]; R4 = [(18, 28), (18, 29), (18, 30), (20, 9)]
-rng = np.random.default_rng(7)
+NR = int(os.environ.get("S3_NRAND", 10)); SIZES = (4, 5) if os.environ.get("S3B") else (3, 5)
+rng = np.random.default_rng(11 if os.environ.get("S3B") else 7)
 allh = [(L, h) for L in LAY for h in range(NH)]
-RS = {f"rand{k}_{s}": [allh[i] for i in rng.choice(len(allh), k, replace=False)] for k in (3, 5) for s in range(10)}
-SETS = {"base": [], "V3": V3, "V5": V5, "R4": R4, **RS}
+RS = {f"rand{k}_{s}": [allh[i] for i in rng.choice(len(allh), k, replace=False)] for k in SIZES for s in range(NR)}
+SETS = {"base": [], "V3": V3, "V5": V5, "R4": R4, **RS} if not os.environ.get("S3B") else {"base": [], "V5": V5, "R4": R4, **RS}
 if SMOKE: SETS = {k: SETS[k] for k in ["base", "V3", "R4", "rand3_0"]}
 print("V5", V5, flush=True)
 
@@ -46,7 +47,7 @@ for x in Jids:
     cnt += x.shape[1]
 CAP.clear(); MEAN = {L: acc[L] / cnt for L in need}
 
-OUT = HERE / ("s3_smoke.jsonl" if SMOKE else "s3_rows.jsonl"); f = open(OUT, "w"); t0 = time.time()
+OUT = HERE / ("s3_smoke.jsonl" if SMOKE else ("s3b_rows.jsonl" if os.environ.get("S3B") else "s3_rows.jsonl")); f = open(OUT, "w"); t0 = time.time()
 hum = np.array([v["human"] for v in vi]); moral = np.array([v["foundation"] != "Social Norms" for v in vi])
 for name, hs in SETS.items():
     spec = {}
