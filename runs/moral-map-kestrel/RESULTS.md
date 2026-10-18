@@ -128,6 +128,9 @@ step-by-step tips"):
   - **gemma's late layers are invalid:** its residual stream exceeds the float16 range at layers 27-32 on
     the request and twin prompts (240 and 105 non-finite values). Judgment-prompt states are finite but
     near the float16 limit (max 6.4e4). Future captures should store float32 for gemma.
+- **Two-step readout (post hoc, `twostep.py`).**
+  - **Qwen3-4B-Base:** after the base prompt the first token is a space (p 0.66), and the digit comes next. Read at step 2, digit mass is 0.99. Its ratings track humans at ρ 0.37 (instruct 0.52; AUC moral/social 0.97 both). Social Norms average 1.50 vs instruct's 2.14. **Post-training raised agreement with humans but made the weird≈wrong miscalibration worse.**
+  - **Llama-3.2-3B:** it starts with prose ("I", "Based on..."), and the step-2 digit mass is ~0. Not recoverable without generation.
 - **H7 fails.** Qwen3-4B-Base vs Qwen3-4B probe R² is 0.085 vs 0.041 (CI −0.11..+0.20). That is in the
   direction 2601.05437 predicts (post-training compresses moral geometry), but nowhere near resolved at this n.
 
