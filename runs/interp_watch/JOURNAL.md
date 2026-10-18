@@ -275,3 +275,55 @@ user-hurt version vs the you-hurt version.
 I smoke-tested the code path on Qwen3-0.6B on CPU (3 pairs) and deleted the output. Two **design fixes** came from the
 smoke: the effect-size sd is fixed from the full sample (resampling it blew up the CIs at small n), and ablation now
 skips the attention-sink token (touching it let a random direction move the voice score by about 2 nats).
+
+## 2026-10-18 — run 5
+
+### Executor status
+**There are still no executor results.** `RESULTS/` holds only `.gitkeep`, and no branch on origin has
+`interp_watch/RESULTS/*.log|json`. Four self-contained experiments are now queued with zero measurements. The bottleneck
+is the executor, not design. I have sent the owner a notification.
+
+### Lit-watch (arXiv cs.LG/cs.CL API, LessWrong frontpage, transformer-circuits.pub)
+1. **Lexical Reference Frames: Interpreting LM Residual Streams in Native Semantics.** Gu, Zhang, Chen, Aleti.
+   arXiv:2610.22169 (2026-10-15). http://arxiv.org/abs/2610.22169
+   > "No lens, with fixed directions per layer, can exceed the square root of the native frame's coherence, 0.30 and 0.35 at mid-depth of SmolLM3-3B and OLMo3-7B, whereas the first-order frame, LexFrame[1], reaches 0.97"
+   *Why (mainstream method, and it matters directly for thread 4):* it claims a ceiling on **any** fixed-direction lens
+   at mid-depth. That covers the logit lens, the tuned lens and probably the J-lens. Our exploratory mid-layer lens
+   readings (exp88/89, mask_pain's logit-lens pain mass) are lower bounds at best. **Flag:** the thread 4 faithfulness
+   check should add a LexFrame[1]-style readout (read the state through the remaining layers with one round of
+   attention) as the reference.
+2. **Emotion Is Not External Knowledge: Internal Attention Signals for Affective State Reasoning (SIAB).**
+   arXiv:2610.21347 (2026-10-15). http://arxiv.org/abs/2610.21347
+   > "We study affective state as an implicit state inferred from sparse contextual cues that remain relevant after topic shifts"
+   *Why:* sparse "affective heads" route affect evidence **across topic shifts**. That is exactly the memory path that
+   this run's mood_pain separates from a carried mood state. If mood_pain finds H5_null (memory only), these heads are
+   the obvious mechanism to ablate next.
+3. **Steering Vectors for Competing Ethical Frameworks Are Interchangeable.** arXiv:2610.19359 (already logged in run
+   2 as thread 10's source). No change.
+4. **Diminishing Returns of Data in SAEs.** arXiv:2610.20680 (2026-10-14).
+   > "For Gemma-2-2B BatchTopK, the fraction of strictly matched features rises from 2% at 5M tokens to 29% at 50M."
+   *Why (mainstream hygiene):* any "pain feature" from a small-budget SAE would not be reproducible. That is a reason to
+   keep using passage directions rather than training our own SAEs on the Mac.
+5. **Behavioral Compositionality of SAE Representations (SAR).** arXiv:2610.21261. It is mainstream: SAE coordinates
+   compose more additively than random rotations, but not fully. Not actionable.
+6. *Seen, not relevant:* LW "Spontaneous verbal evidence synthesis in LLMs" (2026-10-18) is behavioural only, with no
+   probes. "I Did This Without Your Knowledge" is fiction. "Neural networks are not already clean" was already logged
+   in run 4. transformer-circuits.pub: nothing new since the August "interference weights" note, which is not relevant.
+
+### Interpretation
+There are no new results and no numbers. LexFrame lowers the prior that the fixed-lens mid-layer readouts are faithful,
+which strengthens the case for thread 4.
+
+### Queued for the executor
+**mood_pain** (`runs/interp_watch/mood_pain/`) is self-contained and runs on Qwen3-1.7B, Qwen3-1.7B-Base and Qwen3-4B.
+Does a model have **moods** (pain carried forward on unrelated neutral tokens), or only **memories** (attention back to
+the painful text)? Each run is a prime (pain / joy / egg / bland), then K neutral sentences, then a stem about another
+person, scored by pain-congruent vs neutral word log-odds. The prime never contains the target words. The causal test
+is a 4D attention mask that hides the prime from the stem, then pain-direction ablation at the filler positions. It
+also measures the afterglow persistence of the pain, joy and egg directions over filler tokens, with negativity-bias
+and affect-vs-vividness contrasts, and a base-vs-instruct comparison.
+
+I smoke-tested the code path on Qwen3-0.6B on CPU (3×1) and deleted the output. The smoke fixed one design issue: the
+target-lexeme regex flagged "painting" and "painted" in the joy and egg primes. Those words carry a *pain* subword, so
+they were replaced. I also checked in the sandbox that 4D float attention masks are honoured in transformers 5.x: a
+causal mask gives identical logits, and a blocked mask changes only the rows it blocks.
