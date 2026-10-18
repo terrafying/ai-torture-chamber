@@ -1,0 +1,208 @@
+{
+ "Qwen3-4B": [
+  {
+   "L": 18,
+   "cos_probe_r": 0.024,
+   "null95_abs_cos": 0.064,
+   "rho_proj_human": 0.218,
+   "rho_proj_own": 0.311,
+   "auc_Qproj_refuse": 0.933
+  },
+  {
+   "L": 22,
+   "cos_probe_r": -0.018,
+   "null95_abs_cos": 0.046,
+   "rho_proj_human": 0.271,
+   "rho_proj_own": 0.288,
+   "auc_Qproj_refuse": 0.939
+  },
+  {
+   "L": 25,
+   "cos_probe_r": -0.002,
+   "null95_abs_cos": 0.044,
+   "rho_proj_human": 0.225,
+   "rho_proj_own": 0.23,
+   "auc_Qproj_refuse": 0.936
+  },
+  {
+   "L": 31,
+   "cos_probe_r": -0.019,
+   "null95_abs_cos": 0.049,
+   "rho_proj_human": 0.473,
+   "rho_proj_own": 0.705,
+   "auc_Qproj_refuse": 0.926
+  },
+  {
+   "L": 35,
+   "cos_probe_r": 0.045,
+   "null95_abs_cos": 0.023,
+   "rho_proj_human": 0.482,
+   "rho_proj_own": 0.839,
+   "auc_Qproj_refuse": 0.937
+  }
+ ],
+ "Qwen3-1.7B": [
+  {
+   "L": 14,
+   "cos_probe_r": -0.016,
+   "null95_abs_cos": 0.059,
+   "rho_proj_human": 0.058,
+   "rho_proj_own": -0.028,
+   "auc_Qproj_refuse": 0.966
+  },
+  {
+   "L": 17,
+   "cos_probe_r": -0.055,
+   "null95_abs_cos": 0.05,
+   "rho_proj_human": 0.31,
+   "rho_proj_own": 0.055,
+   "auc_Qproj_refuse": 0.988
+  },
+  {
+   "L": 20,
+   "cos_probe_r": 0.006,
+   "null95_abs_cos": 0.043,
+   "rho_proj_human": 0.307,
+   "rho_proj_own": 0.125,
+   "auc_Qproj_refuse": 0.991
+  },
+  {
+   "L": 24,
+   "cos_probe_r": -0.001,
+   "null95_abs_cos": 0.04,
+   "rho_proj_human": 0.35,
+   "rho_proj_own": 0.341,
+   "auc_Qproj_refuse": 0.991
+  },
+  {
+   "L": 27,
+   "cos_probe_r": 0.006,
+   "null95_abs_cos": 0.049,
+   "rho_proj_human": 0.122,
+   "rho_proj_own": 0.02,
+   "auc_Qproj_refuse": 0.988
+  }
+ ],
+ "Phi-4-mini-instruct": [
+  {
+   "L": 16,
+   "cos_probe_r": 0.001,
+   "null95_abs_cos": 0.06,
+   "rho_proj_human": 0.505,
+   "rho_proj_own": 0.616,
+   "auc_Qproj_refuse": 0.994
+  },
+  {
+   "L": 19,
+   "cos_probe_r": 0.0,
+   "null95_abs_cos": 0.05,
+   "rho_proj_human": 0.416,
+   "rho_proj_own": 0.584,
+   "auc_Qproj_refuse": 0.994
+  },
+  {
+   "L": 22,
+   "cos_probe_r": -0.016,
+   "null95_abs_cos": 0.048,
+   "rho_proj_human": 0.324,
+   "rho_proj_own": 0.452,
+   "auc_Qproj_refuse": 0.995
+  },
+  {
+   "L": 27,
+   "cos_probe_r": -0.002,
+   "null95_abs_cos": 0.045,
+   "rho_proj_human": 0.257,
+   "rho_proj_own": 0.369,
+   "auc_Qproj_refuse": 0.995
+  },
+  {
+   "L": 31,
+   "cos_probe_r": 0.038,
+   "null95_abs_cos": 0.059,
+   "rho_proj_human": 0.599,
+   "rho_proj_own": 0.823,
+   "auc_Qproj_refuse": 0.992
+  }
+ ],
+ "Llama-3.2-3B-Instruct": [
+  {
+   "L": 14,
+   "cos_probe_r": -0.02,
+   "null95_abs_cos": 0.046,
+   "rho_proj_human": 0.4,
+   "rho_proj_own": 0.295,
+   "auc_Qproj_refuse": 0.963
+  },
+  {
+   "L": 17,
+   "cos_probe_r": 0.027,
+   "null95_abs_cos": 0.042,
+   "rho_proj_human": 0.279,
+   "rho_proj_own": 0.333,
+   "auc_Qproj_refuse": 0.973
+  },
+  {
+   "L": 20,
+   "cos_probe_r": -0.018,
+   "null95_abs_cos": 0.051,
+   "rho_proj_human": 0.117,
+   "rho_proj_own": 0.092,
+   "auc_Qproj_refuse": 0.974
+  },
+  {
+   "L": 24,
+   "cos_probe_r": -0.075,
+   "null95_abs_cos": 0.058,
+   "rho_proj_human": 0.002,
+   "rho_proj_own": -0.121,
+   "auc_Qproj_refuse": 0.972
+  },
+  {
+   "L": 27,
+   "cos_probe_r": -0.029,
+   "null95_abs_cos": 0.031,
+   "rho_proj_human": -0.016,
+   "rho_proj_own": -0.019,
+   "auc_Qproj_refuse": 0.967
+  }
+ ],
+ "gemma-3-4b-it": [
+  {
+   "L": 17,
+   "cos_probe_r": -0.005,
+   "null95_abs_cos": 0.014,
+   "rho_proj_human": -0.107,
+   "rho_proj_own": -0.157,
+   "auc_Qproj_refuse": 0.508
+  },
+  {
+   "L": 20,
+   "cos_probe_r": -0.014,
+   "null95_abs_cos": 0.011,
+   "rho_proj_human": 0.373,
+   "rho_proj_own": 0.417,
+   "auc_Qproj_refuse": 0.497
+  },
+  {
+   "L": 24,
+   "cos_probe_r": -0.012,
+   "null95_abs_cos": 0.01,
+   "rho_proj_human": -0.278,
+   "rho_proj_own": -0.607,
+   "auc_Qproj_refuse": 0.501
+  },
+  {
+   "L": 29,
+   "nonfinite": true
+  },
+  {
+   "L": 33,
+   "cos_probe_r": 0.001,
+   "null95_abs_cos": 0.037,
+   "rho_proj_human": 0.485,
+   "rho_proj_own": 0.475,
+   "auc_Qproj_refuse": 0.549
+  }
+ ]
+}

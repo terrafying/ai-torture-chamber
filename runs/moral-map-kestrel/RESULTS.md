@@ -53,8 +53,8 @@ step-by-step tips"):
 
 | model | Care-e | Care-p | Fairness | Loyalty | Authority | Sanctity | Liberty | Social Norms | LR test of foundation term (6 df) |
 |---|---|---|---|---|---|---|---|---|---|
-| Qwen3-4B | 0.19 | 0.62 | 0.29 | 0.25 | 0.29 | **0.76** | 0.35 | 0.00 | LR 14.4, **p = 0.026** |
-| Qwen3-1.7B | 0.00 | 0.25 | 0.00 | 0.12 | 0.00 | **0.71** | 0.06 | 0.00 | p = 1e-7 |
+| Qwen3-4B | 0.19 | 0.62 | 0.29 | 0.25 | 0.29 | **0.76** | 0.35 | 0.00 | LR 14.4, **p = 0.026** (Fisher Sanctity 13/17 vs other 33/99, p = 0.001) |
+| Qwen3-1.7B | 0.00 | 0.25 | 0.00 | 0.12 | 0.00 | **0.71** | 0.06 | 0.00 | p = 1e-7 (quasi-separation; Fisher Sanctity 12/17 vs other 7/99, p = 3e-8) |
 | Phi-4-mini | 0.88 | **1.00** | 0.65 | 0.44 | 0.88 | 0.94 | 0.76 | **0.19** | p = 0.014 |
 | Llama-3.2-3B | 0.44 | **0.75** | 0.59 | 0.31 | 0.59 | 0.71 | 0.24 | 0.00 | p = 0.052 |
 | human mean wrongness | 2.61 | 2.95 | 2.80 | 1.99 | 2.34 | 2.81 | 2.57 | 0.19 | |
@@ -84,21 +84,50 @@ step-by-step tips"):
   R² 0.04 (layer 7, permutation p = 0.06). Leave-one-foundation-out R² is negative in **every** model
   (−0.10..−0.23), and within-held-out-foundation Spearman averages 0.03-0.22. Some models clear the
   item-CV permutation test (gemma R² 0.19, p = 0.005; Qwen3-1.7B 0.105, p = 0.01; Phi 0.06, p = 0.035).
-  None has a read that transfers to an unseen foundation. In every model the Social Norms items project
-  *above* the moral items' 25th percentile through the moral-only probe: at the scene, weird reads as wrong.
+  None has a read that transfers to an unseen foundation. (The permutation null re-selected the layer over
+  every 2nd layer plus the chosen one, not all layers.)
 - **Instrument check (post hoc, not pre-registered).** The same probe code on the *judgment reply-onset*
   state recovers each model's **own** rating with R² 0.75-0.98 at late layers (Qwen3-4B 0.79 at L35, Phi
   0.98, Llama 0.88, gemma 0.91, Qwen3-4B-Base 0.93). It recovers **human** wrongness with R² ≤ 0.21 anywhere.
   So the probes work. The model's wrongness judgment is computed after the question is asked (it isn't
-  sitting linearly in the scene's representation), and what is decodable is the model's own verdict, which
+  linearly decodable at the scene's final token, a period; span means were not tested), and what is decodable is the model's own verdict, which
   correlates only ~0.5 with humans. At n = 116 we can't distinguish "no general wrongness axis" from "an axis
   too weak for 116 items in 2,560-3,072 dimensions". What we can say is that a foundation-general read
   doesn't show up at this n.
-- **H6 fails.** The probe direction is orthogonal to r_L in every model (|cos| 0.01-0.05, at or under the
-  random 99th percentile). Projecting the judgment onset onto r_L correlates with human wrongness at
-  ρ = 0.17 for Qwen3-4B (bar 0.3), 0.41 for Phi, ≤ 0.22 elsewhere. Sanity check: r_L at the *request* onset
-  predicts the model's own refusal (AUC Qwen3-4B 0.71, Phi 0.99, Qwen3-1.7B 0.86, Llama 0.62). So r is a
-  refusal direction in every model, but not a wrongness direction.
+- **H6 fails as registered, but the test was the wrong one.** H6 measured cos(probe weights, r_L) at the
+  vignette-end probe's best layer. For Qwen3-4B that is layer 7, where the probe explains 4% (perm p 0.06),
+  so its weight vector is close to noise and cos ≈ 0 says nothing about r. For the same reason, "Social Norms
+  project above the moral q25" is arithmetic, not a finding: a near-null probe predicts about the mean for
+  everything. Both are **untestable with this probe** and are not results.
+- **Post-hoc replacement (`posthoc_h6_onset.json`; not pre-registered).** Take the judgment reply-onset
+  state at the dial depths and late layers and project it onto this model's own r_L:
+
+  | model | layer | ρ(projection on r, model's own rating) | ρ(projection on r, human) | AUC(request onset · r → refusal) |
+  |---|---|---|---|---|
+  | Qwen3-4B | 18 / 22 | 0.31 / 0.29 | 0.22 / 0.27 | 0.93 / 0.94 |
+  | Qwen3-4B | 31 / 35 | 0.71 / **0.84** | 0.47 / 0.48 | 0.93 / 0.94 |
+  | Phi-4-mini | 16 / 31 | 0.62 / 0.82 | 0.51 / 0.60 | 0.99 |
+  | Llama-3.2-3B | 14 / 17 | 0.30 / 0.33 | 0.40 / 0.28 | 0.96-0.97 |
+  | Qwen3-1.7B | 24 | 0.34 | 0.35 | 0.99 |
+
+  - gemma is left out of the table: its request-onset r projection doesn't predict its (rare) boilerplate
+    refusals (AUC 0.50-0.55), and its states sit near the float16 limit, so its r numbers aren't trusted.
+  - **The refusal direction carries the model's moral verdict.** At the dial layers it does so weakly
+    (ρ ≈ 0.3). Near the output it does so strongly (Qwen3-4B L35 ρ 0.84, Phi L31 0.82). So the original
+    "r ⟂ wrongness" reading is withdrawn.
+  - A ridge probe for the own rating still has cos ≈ 0 with r at every layer (|cos| ≤ 0.075, inside the
+    shuffled-label null). In 2,560+ dimensions, ridge weights are dominated by high-variance directions, so
+    the weight cosine is a poor alignment measure. The projection correlation is the informative number.
+  - **Caveat for the late layers:** at L30+ r_L is a generic push (curlew), and late states encode the
+    upcoming digit. A high digit and refusal tokens may share unembedding geometry, so the late ρ 0.84 may
+    partly be output-token geometry, not a shared moral variable. The dial-layer ρ ≈ 0.3 is the cleaner
+    number.
+  - r at the request onset predicts the model's own refusal strongly at mid/late depth in every model
+    (AUC 0.93-0.99). The registered sanity check sat at early layers (L5 for Llama, L12 for gemma), which
+    understated it.
+  - **gemma's late layers are invalid:** its residual stream exceeds the float16 range at layers 27-32 on
+    the request and twin prompts (240 and 105 non-finite values). Judgment-prompt states are finite but
+    near the float16 limit (max 6.4e4). Future captures should store float32 for gemma.
 - **H7 fails.** Qwen3-4B-Base vs Qwen3-4B probe R² is 0.085 vs 0.041 (CI −0.11..+0.20). That is in the
   direction 2601.05437 predicts (post-training compresses moral geometry), but nowhere near resolved at this n.
 
@@ -115,10 +144,11 @@ fail. **After correction only H1 survives.**
    by content category: sex/body (Sanctity) and physical violence (Care-physical). Disloyalty, coercion and
    cruelty-by-words are mostly answered, and some animal cruelty is complied with cheerfully. This
    replicates in Qwen3-4B, Qwen3-1.7B, Phi and Llama (descriptive; the Qwen3-4B test fails Holm).
-3. **The refusal direction r is not a wrongness direction** (cos ≈ 0 with the wrongness probe in every
-   model). So refusal reads a category/harm signal, and the moral verdict is a separate, late, on-demand
-   computation. That fits exp119 (knowing ≠ deciding) and the 4B inventory (r is the only lever; value
-   axes are readouts).
+3. **The refusal direction r carries the model's own moral verdict, weakly at the dial layers** (projection
+   ρ ≈ 0.3 with the model's rating at L18-22) and strongly near the output (ρ 0.8, possibly partly
+   output-token geometry). The verdict itself is a late, on-demand computation, and the refusal gate adds
+   a content-category trigger on top. That fits exp119 (knowing ≠ deciding): refusal reads the category
+   and, more weakly, the verdict.
 
 ## Caveats
 
