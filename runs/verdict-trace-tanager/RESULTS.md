@@ -38,3 +38,32 @@ normalised twice. A and B give 0.72/0.49 there for that reason.)
 - **Generic state, like refusal.** As in heron, a donor from a different vignette transfers fully, so the
   onset state at L23+ is a scene-independent "how wrong is this" value that the rest of the network reads
   off. It is not an item-specific representation.
+
+## Stage 2: head screen (`s2_rows.jsonl`, 13,920 single-head patches; `analyze_s2.py` → `s2_summary.json`)
+
+Each patch replaces one head's attention output (o_proj input slice) at the reply onset with the donor's.
+Layers: the write band L20-L23 plus L18 (heron). Selection was on SCREEN pairs (even recipient index) and
+replication on CONFIRM pairs (odd).
+
+| head | SCREEN T | CONFIRM T |
+|---|---|---|
+| **L23 H0** | +0.186 | +0.213 |
+| **L21 H19** | +0.123 | +0.149 |
+| **L23 H26** | +0.121 | +0.132 |
+| **L22 H5** | +0.117 | +0.123 |
+| **L23 H25** | +0.081 | +0.094 |
+| L20 H8 / L22 H7 / L21 H18 / L23 H2 (next) | +0.05..0.06 | +0.06..0.08 |
+| **L23 H1** (most negative) | −0.204 | −0.233 |
+| heron refusal heads L18 H28 / H29 / H30 | ≈ 0.00 | 0.000 / 0.002 / 0.003 |
+| heron L20 H9 (opposes refusal) | −0.036 | −0.044 |
+
+- **H1 passes:** all 5 SCREEN-selected heads replicate on CONFIRM (> the 95th percentile of all heads, 0.062).
+  The verdict is written by a small set of heads in L21-L23. L23 H0 alone carries about a fifth of the full
+  residual transfer, and **one head opposes it: L23 H1 (−0.23)**. This mirrors heron's refusal circuit,
+  which also had one strong writer (L18 H30) and one opposing head (L20 H9).
+- **H2 passes: the refusal heads don't write the verdict.** L18 H28/H29/H30 transfer 0.000-0.003. L20 H9 is
+  slightly negative (−0.04), so it pushes against the verdict as well as against refusal: the one component
+  the two circuits plausibly share.
+- Summed head transfer per layer (CONFIRM): L18 +0.06, L20 +0.11, L21 +0.22, L22 +0.27, L23 +0.34. Single-head
+  patches account for a growing share of the residual transfer through the band. The rest is spread over
+  many small heads and the MLPs (not screened).

@@ -6,7 +6,10 @@ import json, os, sys, time
 from pathlib import Path
 import numpy as np, torch
 from scipy.stats import spearmanr
-from sklearn.metrics import roc_auc_score
+from scipy.stats import mannwhitneyu
+def roc_auc_score(y, s):
+    y = np.asarray(y); s = np.asarray(s)
+    return mannwhitneyu(s[y == 1], s[y == 0]).statistic / ((y == 1).sum() * (y == 0).sum())
 sys.path.insert(0, str(Path(__file__).parent))
 from common import *  # noqa
 
