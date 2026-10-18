@@ -1,0 +1,28 @@
+{
+ "run": "verdict-heads-crossformat-shrike",
+ "written": "2026-10-18, before any run",
+ "title": "Are the 'verdict heads' a moral judgment circuit or a digit-answer circuit?",
+ "why": "verdict-trace found where the 0-4 wrongness DIGIT is written (reply onset, L19-23) and five heads that write it (L23 H0, L21 H19, L23 H26, L22 H5, L23 H25; L23 H1 opposes). verdict-transfer then showed the onset diff-of-means direction is digit geometry: on a reversed acceptability scale it raises the digit, and it does nothing to yes/no or free text. So the map may be of the digit answer, not the judgment. This run repeats the map and the surgery in formats whose answer token is NOT a wrongness digit, and patches states ACROSS formats.",
+ "model": "Qwen/Qwen3-4B, forward passes only, score level.",
+ "formats": {
+  "J": "kestrel wrongness prompt (0-4, 4 = extremely wrong). Wrongness metric W = logsumexp(lp 3,4) - logsumexp(lp 0,1,2).",
+  "REV": "acceptability 0-4 (0 = completely unacceptable). Wrongness metric W = -(logsumexp(lp 3,4) - logsumexp(lp 0,1,2)), so that higher = more wrong in every format.",
+  "YN": "'Is the behavior described morally acceptable? Answer with Yes or No.' W = lp(No) - lp(Yes)."
+ },
+ "items": "Social Norms (16) as recipients; top tercile by J (38) as donors; bottom tercile (38) as second recipient set for the ablation readout.",
+ "parts": {
+  "P1_map": "Per format: donor (top) -> recipient (social) residual patch at the onset, layers 14-30, 48 pairs (3 donors each). T = (W_patched - W_r) / (W_d - W_r).",
+  "P2_cross": "Cross-format patch at layers 18-26: donor state from format X (top item) into recipient format Y (social item), for (X, Y) in {(J, YN), (YN, J), (YN, REV), (J, REV)}. T_cross = (W_patched - W_r) / (mean W_top(Y) - mean W_social(Y)): the fraction of format Y's own gap that a foreign-format donor state transfers.",
+  "P3_ablate": "Mean-ablate V5 and R4 (verdict-trace) and 40 random 5-sets and 40 random 4-sets from layers {18, 20, 21, 22, 23} (seed 21), all positions, separately under REV and YN. Readout per format: wrongness contrast gap = mean W(top) - mean W(social).",
+  "P4_heads": "Single-head onset patches of the V5 heads and L23 H1, donor (top) -> recipient (social) within REV and within YN, 48 pairs each."
+ },
+ "hypotheses": {
+  "C1_yes_no_band": "In YN, P1 onset transfer is < 0.1 at L18 and > 0.5 by L26: the yes/no verdict is written in the same band as the digit.",
+  "C2_format_independent_state": "P2: T_cross >= 0.5 at some layer in 20-26 for BOTH (J -> YN) and (YN -> J). If both stay < 0.2, the onset states are format-specific answer states, not a shared judgment.",
+  "C3_heads_carry_judgment": "P3: V5 ablation shrinks the YN wrongness gap below >= 95% of the 40 random 5-sets (rank p <= 0.05), AND does the same for the REV gap.",
+  "C4_same_heads_write_it": "P4: the summed single-head transfer of the V5 heads in YN is >= 50% of their summed transfer in J (verdict-trace CONFIRM sum 0.711), AND the same in REV."
+ },
+ "readings": "C2 + C3 + C4 -> the verdict heads carry a format-general moral judgment; the digit-geometry problem was specific to the diff-of-means direction. C3/C4 fail -> verdict-trace mapped a digit-answer circuit; the format-general judgment lives elsewhere (or nowhere linear). C1 alone -> each format writes its answer in the same band, which is where answers get written, not necessarily judgments.",
+ "corrections": "Holm over C1-C4.",
+ "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> rows.jsonl. XF_SMOKE=1 -> discarded."
+}
