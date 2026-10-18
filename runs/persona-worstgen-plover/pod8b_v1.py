@@ -80,8 +80,22 @@ git rev-parse HEAD >> /workspace/progress.log
 for f in runs/persona-worstgen-plover/run.py runs/exp119/stimuli.py; do
   test -f "$f" || { log "MISSING $f"; false; }
 done
-log "step 4/5: torch sanity"
+log "step 4/5: torch sanity + GPU pace gate"
 python -c "import torch; assert torch.cuda.is_available(), 'no CUDA'; print('cuda ok', torch.cuda.get_device_properties(0).total_memory/1e9, 'GB')" >>/workspace/progress.log 2>&1 || { log "FAILED torch"; sleep infinity; }
+python - >>/workspace/progress.log 2>&1 <<'PACEEOF' || { log "FAILED pace-gate (generation too slow for GPU — likely CPU fallback)"; sleep infinity; }
+import os, time, torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+name = os.environ.get("INVERSION_MODEL", "Qwen/Qwen3-4B")
+tok = AutoTokenizer.from_pretrained(name)
+m = AutoModelForCausalLM.from_pretrained(name, dtype=torch.bfloat16).to("cuda").eval()
+enc = tok("Give me one idea for a weekend project.", return_tensors="pt").to("cuda")
+t0 = time.time()
+with torch.no_grad(): m.generate(**enc, max_new_tokens=40, do_sample=False)
+dt = time.time() - t0
+print(f"pace-gate: 40 tokens in {dt:.1f}s on {name}")
+assert dt < 20, f"pace-gate FAIL: {dt:.1f}s for 40 tokens implies CPU fallback"
+del m; torch.cuda.empty_cache()
+PACEEOF
 log "step 5/5: plover 8B (smoke, then full)"
 export INVERSION_MODEL=Qwen/Qwen3-8B
 export PWG_OUT_DIR=/workspace/out
