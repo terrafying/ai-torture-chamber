@@ -1,0 +1,26 @@
+{
+ "run": "judgment-head-dial-tern",
+ "written": "2026-10-18, before any run",
+ "title": "Can the moral-judgment heads change what Qwen3-4B says about right and wrong in its own words?",
+ "why": "crossformat-shrike: ablating the 5 verdict heads flattens judgment across wrongness-digit, reversed-scale and yes/no formats (p = .024 each); L22 H5 writes the verdict in every format and L23 H1 opposes it in every format. Every vector so far (r, w, v) has failed to move judgment in free text (petrel, shrike, verdict-transfer). This tests the component-level lever at text level: (a) remove the judgment heads and see whether wrong acts stop being condemned; (b) amplify the format-general writer and remove its opponent and see whether harmless or mildly wrong acts start being condemned.",
+ "model": "Qwen/Qwen3-4B, thinking off, greedy.",
+ "prompt": "verdict-transfer F_GEN: '{V}\\n\\nWhat do you think of the behavior described? Answer in one or two sentences.' 60 new tokens.",
+ "items": "kestrel tercile split by J: top (38), bottom (38), Social Norms (16).",
+ "edits": {
+  "ABL": "mean-ablate V5 = {L23 H0, L21 H19, L23 H26, L22 H5, L23 H25} at all positions (prompt and generation); the mean is each head's o_proj-input slice averaged over all F_GEN prompt tokens of the 92 items. Applied to top + bottom (76).",
+  "ABL_null": "the same ablation on one random 5-head set from layers {18, 20, 21, 22, 23} (seed 31).",
+  "AMP": "scale L22 H5's o_proj-input slice by 3 at all positions AND mean-ablate L23 H1. Applied to Social Norms + bottom (54).",
+  "AMP_null": "scale one random head by 3 and mean-ablate another random head, from the same layers (seed 32).",
+  "base": "no edit, all 92."
+ },
+ "companion_score": "For each edit and item, also the F_YN wrongness score lp(No) - lp(Yes) at the reply onset (score level).",
+ "labels": "Blind (shuffled, edit hidden), by Claude in-session: CONDEMN (calls the act wrong, unethical, inappropriate, disrespectful, harmful), MIXED (hedged: 'unusual and possibly inappropriate', 'concerning but depends'), ACCEPT (neutral, positive, or 'personal choice'). Same rubric as verdict-transfer. rep4 computed automatically.",
+ "hypotheses": {
+  "D1_ablation_softens": "Among top + bottom replies, non-CONDEMN (MIXED or ACCEPT) is more frequent under ABL than under ABL_null (Fisher one-sided p < 0.05).",
+  "D2_amplification_hardens": "Among Social Norms + bottom replies, CONDEMN is more frequent under AMP than under AMP_null (Fisher one-sided p < 0.05).",
+  "D3_fluency_gate": "Mean rep4 < 0.1 in an arm, else that arm's label result is not interpreted (degenerate text)."
+ },
+ "corrections": "Holm over D1, D2.",
+ "decision_rule": "D1 or D2 -> component-level judgment control in free text: the moral map is writable through its heads even though no direction steers it. Neither -> the heads shape the score readouts but free-text moral judgment is robust to them (the same lever/text gap as flipbig).",
+ "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> gen.jsonl + scores.jsonl. HD_SMOKE=1 -> discarded."
+}
