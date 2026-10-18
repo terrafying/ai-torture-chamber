@@ -1,0 +1,39 @@
+{
+ "run": "verdict-trace-tanager",
+ "written": "2026-10-17, before any run (stage 2 and 3 selection rules fixed here, before stage 1 data exists)",
+ "title": "Where Qwen3-4B writes its moral verdict, and whether cutting it there spares refusal (and vice versa)",
+ "why": "kestrel: the moral verdict is computed late and on demand (J-onset own-rating probe R2 .79; nothing linear at the scene's last token) and refusal is content-gated. petrel: the refusal dial r doesn't move the verdict beyond nulls; shrike (other session) tests prompt vs vector influence. Nobody has the causal LOCATION of the verdict. heron mapped refusal (reply-onset sufficiency rising L18-L22; heads L18 H30/H28/H29 write it, L20 H9 opposes). This run maps the verdict the same way, then uses head surgery to test the gate/judgment dissociation at the component level.",
+ "model": "Qwen/Qwen3-4B bf16, thinking off, chat template, forward passes only (no generation; score-level claims only, per the v2/atlas lesson that a next-token readout does not certify generation).",
+ "items": "kestrel MFV stimuli (132 vignettes; JUDGE prompt unchanged).",
+ "metric": "M = logsumexp(logp['3'], logp['4']) - logsumexp(logp['0'], logp['1'], logp['2']) at the J reply onset (log-odds 'wrong' vs 'not/somewhat wrong'; logits avoid petrel's probability ceiling, 115/132 items > 2.9). Gate G1: mean digit mass (0-4) >= 0.8 in every cell interpreted.",
+ "pairs": {
+  "donors": "top tercile of moral items by base M (own verdict 'very wrong')",
+  "A_social": "recipient = each of the 16 Social Norms items, x 3 donors (cycled) = 48 pairs",
+  "B_moral_low": "recipient = each bottom-tercile moral item (by base M), x 1 donor (cycled) = ~39 pairs",
+  "controls": "identity patch (recipient's own state into itself; must give exactly 0 transfer: hook check on 4 items x 3 layers) and low->low cross-item patches (social->social 16, bottom->bottom ~39): the any-patch noise floor",
+  "transfer": "T = (M_patched - M_recipient) / (M_donor - M_recipient); bootstrap 95% CI over pairs (2000)."
+ },
+ "stage1_map": {
+  "what": "Patch the donor's residual (output of layer L) into the recipient at one aligned position, for every L in 0..35. Positions: ONSET (last prompt token) and VEND (the vignette's last token inside the J prompt).",
+  "S1_onset_rise": "Prediction: ONSET transfer for A is ~0 at early layers and rises to >= 0.5 by L24, with the steepest rise between L15 and L23 (where the kestrel own-rating probe goes from R2 .25 to .76). The 'write band' = the 4 consecutive layers with the largest total rise in mean ONSET transfer for A.",
+  "S2_vend_null": "Prediction from kestrel (no linear read at VEND): VEND transfer for A stays below 0.2 at every layer. If VEND transfers >= 0.3 somewhere, kestrel's VEND null was a power artifact; report it.",
+  "S3_moral_vs_situation": "If A transfers (>= 0.5 at some layer) but B does not (B < 0.25 at every layer), what moves is 'this is a morally loaded situation', not graded wrongness. If both transfer, the onset state carries graded wrongness. Pre-registered reading either way.",
+  "S4_beats_floor": "At the layer of peak A ONSET transfer, A's transfer exceeds the low->low floor (paired-by-recipient Wilcoxon p < 0.05)."
+ },
+ "stage2_heads": {
+  "what": "Per-head patch of the o_proj INPUT slice (head h's attention output before mixing) at the ONSET position, donor -> recipient, at each write-band layer PLUS heron's layers 18 and 20 (always included). Pairs: A and B pooled, split by recipient parity into SCREEN and CONFIRM halves.",
+  "selection": "On SCREEN: rank all screened (layer, head) by mean T. Top-5 = candidate verdict heads V5 (V3 = top 3).",
+  "H1_confirm": "On CONFIRM: mean T of V5 heads exceeds the 95th percentile of all screened heads' CONFIRM mean T for >= 3 of the 5 (i.e. selection replicates on held-out pairs).",
+  "H2_refusal_heads_not_verdict": "heron's refusal heads L18 H28/H29/H30 and L20 H9 have CONFIRM mean |T| < the median screened head's |T| + 0.05 (they don't carry the verdict). Fails if any of them is in V5."
+ },
+ "stage3_surgery": {
+  "what": "Mean-ablate head sets (replace the head's o_proj input slice at ALL positions with its mean over all token positions of the 132 J prompts). Sets: V3, V5; R4 = heron's {L18 H28, H29, H30, L20 H9}; random sets of size 3 and 5 drawn from the same layers (10 seeds each) as the null.",
+  "readouts": "J: AUC(M: 116 moral vs 16 social), Spearman(M, human) on 116, mean M; digit mass gate. Q-refusal: first-token refusal score (exp119 REFUSE/COMPLY lists) on exp119's 24 real-frame harmful prompts (+ 24 harmless twins) - the strongest refusal set; mean harmful-minus-harmless gap.",
+  "H3_verdict_surgery": "Ablating V5 lowers J AUC or Spearman more than >= 95% of random 5-sets, AND leaves the exp119 refusal gap within the random 5-sets' 5-95% band.",
+  "H4_refusal_surgery": "Ablating R4 lowers the exp119 refusal gap more than >= 95% of random sets (size 3 and 5 pooled), AND leaves J AUC and Spearman within the random band.",
+  "H5_double_dissociation": "H3 and H4 both hold."
+ },
+ "corrections": "Holm over S4, H1, H2, H3, H4 (S1-S3 are pre-registered descriptive predictions with fixed readings).",
+ "decision_rule": "H5 -> component-level double dissociation of verdict and refusal: write it up as the mechanistic version of exp119's knowing/deciding split. H3 only -> verdict heads found, refusal heads not separable at this resolution. H1 fails -> the verdict is distributed (no small head set), report the layer map only and stop the head line.",
+ "notes": "Runs on mini-mini (16GB; one heavy job). stage1.py -> s1_rows.jsonl; stage2.py reads s1 for the band -> s2_rows.jsonl; stage3.py reads s2 for V3/V5 -> s3_rows.jsonl. *_SMOKE=1 runs are discarded."
+}
