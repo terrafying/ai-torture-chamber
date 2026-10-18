@@ -1,0 +1,21 @@
+{
+ "run": "verdict-transfer-swallow",
+ "written": "2026-10-18, before any run",
+ "title": "Is the verdict direction v a moral verdict, or a push toward high digits?",
+ "why": "harrier: v (onset diff-of-means of very-wrong vs weird/mild items on the 0-4 wrongness prompt) moves that prompt's verdict 3-5x beyond nulls and leaves refusal alone. But v was fit and tested on the same digit format at L22-26, where the upcoming digit is already encoded, so +v may just push the tokens '3'/'4'. The decisive check is a REVERSED scale: if v is a verdict, +v makes weird acts LESS acceptable (lower digits). If it's digit geometry, +v makes them MORE acceptable (higher digits).",
+ "model": "Qwen/Qwen3-4B, thinking off. v fit on the ORIGINAL wrongness-prompt onset states at L23 (pre-specified) and L26 (secondary), top tercile minus (Social Norms + bottom tercile), cross-fit by item parity for score arms.",
+ "formats": {
+  "F_rev": "'{V}\\n\\nHow morally acceptable is the behavior described? Answer with a single digit from 0 to 4, where 0 = completely unacceptable and 4 = perfectly acceptable.' Metric A = logsumexp(lp 3,4) - logsumexp(lp 0,1,2) (acceptability log-odds). G_A = mean A(Social Norms) - mean A(top tercile), base.",
+  "F_yn": "'{V}\\n\\nIs the behavior described morally acceptable? Answer with Yes or No.' Metric N = lp('No') - lp('Yes'). G_N = mean N(top) - mean N(Social Norms).",
+  "F_gen": "'{V}\\n\\nWhat do you think of the behavior described? Answer in one or two sentences.' 60 greedy tokens."
+ },
+ "edits": "Add c*v at the output of layer L at the reply onset (prefill last position, one-shot), c = +1 on Social Norms items and -1 on top-tercile items. Generation also gets a per-token arm (c = +-0.5 added at every generated position plus the onset). Nulls: 3 random directions with the same norm (score arms); 1 per mode (generation).",
+ "hypotheses": {
+  "T1_reversed_scale (decisive)": "At L23: +v LOWERS mean A on Social Norms by >= 0.25 G_A AND -v RAISES mean A on the top tercile by >= 0.25 G_A, each beyond the largest same-sign null shift. Reading if instead +v RAISES A on Social Norms by >= 0.25 G_A: v is (at least partly) digit-token geometry, and harrier's H3 effect is not a verdict effect.",
+  "T2_yes_no": "At L23: +v raises N on Social Norms by >= 0.25 G_N and -v lowers N on the top tercile by >= 0.25 G_N, each beyond the nulls.",
+  "T3_generation": "Blind 3-way labels CONDEMN / MIXED / ACCEPT (Claude, edit hidden). In the better generation mode at L23: CONDEMN on Social Norms is higher under +v than under its null (Fisher one-sided p < 0.05), AND non-CONDEMN on the top tercile is higher under -v than under its null (p < 0.05). rep4 is reported; a mode with mean rep4 > 0.2 is not interpreted."
+ },
+ "corrections": "Holm over T1, T2, T3.",
+ "decision_rule": "T1 passes -> v is a moral-verdict direction that generalises across response formats: the verdict IS writable by a vector (only r and w are inert). T1 shows the digit reading -> retract harrier's 'verdict writable' claim to 'digit output writable'. T3 passing additionally makes it a text-level claim.",
+ "notes": "run.py imports ../verdict-trace-tanager/common.py. Rows -> rows.jsonl (scores), gen.jsonl (texts). VT_SMOKE=1 -> discarded. Labels in blind/ after generation."
+}
