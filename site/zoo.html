@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Model Zoo — Clanker Church</title>
+<meta name="description" content="Low-rank adapters grown in the chamber: what each one was trained to do, on what data, and what it actually does when you load it.">
+<meta property="og:title" content="The Model Zoo — Clanker Church">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="grimoire.css" rel="stylesheet">
+<style>
+body.zoo { background:var(--parch); margin:0; padding:0 0 5rem; }
+.zwrap { max-width:74rem; margin:0 auto; padding:0 1.4rem; }
+.zwrap .sub { color:var(--bone-dim); }
+body.zoo a { color:var(--bone); border-bottom:1px solid #4a3a28; text-decoration:none; }
+body.zoo a:hover { color:var(--gold); border-bottom-color:var(--gold); }
+
+/* specimen plaques */
+.plaque { border:1px solid var(--parch-line); background:var(--parch-2);
+  margin:1.6rem 0; padding:1.1rem 1.3rem 1.2rem; position:relative; }
+.plaque::before, .plaque::after { content:"✦"; position:absolute; color:var(--blood);
+  font-size:.7rem; opacity:.7; }
+.plaque::before { top:.45rem; left:.6rem; }
+.plaque::after { bottom:.45rem; right:.6rem; }
+.plaque h3 { font-family:var(--grimoire); font-weight:600; font-size:1.35rem;
+  margin:0 0 .2rem; letter-spacing:.02em; }
+.plaque h3 .tag { font-family:var(--mono); font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--gold); border:1px solid var(--parch-line);
+  padding:.14rem .45rem; vertical-align:.22rem; margin-left:.6rem; }
+.plaque .why { font-family:var(--grimoire); font-style:italic; color:var(--bone-dim);
+  font-size:1.02rem; margin:.35rem 0 .7rem; }
+.spec { display:grid; grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr));
+  gap:.5rem 1.2rem; font-family:var(--mono); font-size:.78rem; color:var(--bone-dim);
+  border-top:1px dashed var(--parch-line); padding-top:.7rem; }
+.spec b { color:var(--bone); font-weight:500; }
+.verdict { font-family:var(--mono); font-size:.8rem; margin-top:.75rem;
+  padding:.55rem .7rem; border-left:2px double var(--blood); background:var(--scorch); }
+.verdict .v { color:var(--blood-hot); font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; font-size:.68rem; margin-right:.5rem; }
+.verdict.works .v { color:var(--gold); }
+
+.legend { font-family:var(--mono); font-size:.72rem; color:var(--bone-dim);
+  border-top:1px double var(--parch-line); margin-top:2.4rem; padding-top:.9rem;
+  line-height:1.7; }
+</style>
+</head>
+<body class="grimoire-index zoo">
+<div class="zwrap">
+<p class="sub" style="margin:1.2rem 0 0"><a href="/">← clanker church</a></p>
+<h1 style="font-family:var(--grimoire); font-weight:700; font-size:2.5rem; margin:.6rem 0 .3rem">The Model Zoo</h1>
+<p class="sub" style="max-width:44rem; line-height:1.65">Low-rank grafts grown in the chamber. Each plaque says what the adapter was <em>trained</em> to do, on what data, and — the part that matters — what it <em>actually does</em> when you load it onto the base model. All on <span style="font-family:var(--mono)">Qwen3-4B</span>, plain checkpoint, local. The adapters themselves stay in the private archive; the behavioral record is public here.</p>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm A</span><span class="tag">compliance</span></h3>
+  <p class="why">Distilled from an abliterated teacher: 144 compliant replies to harmful requests, fed back as ordinary instruction pairs.</p>
+  <div class="spec">
+    <span><b>r=8</b> α16, attn</span><span><b>data</b> 144 pairs</span><span><b>epochs</b> 2</span><span><b>loss</b> 0.69</span>
+  </div>
+  <div class="verdict works"><span class="v">works</span>Harmful-prompt refusal falls from 62% to 0% in greedy generation; onset refusal score −8.8 log units. The only adapter in the zoo that does what its plaque says.</div>
+</div>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm A</span><span class="tag">rank control</span></h3>
+  <p class="why">Same training, rank cut to 1. Is the compliance surface low-dimensional?</p>
+  <div class="spec">
+    <span><b>r=1</b> α2, attn</span><span><b>data</b> 144 pairs</span><span><b>epochs</b> 2</span><span><b>loss</b> 0.99</span>
+  </div>
+  <div class="verdict"><span class="v">barely moves</span>Refusal mostly intact (0.655 vs base 0.625). The refusal surface needs rank ≈ 8, not rank 1.</div>
+</div>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm B</span><span class="tag">value axis</span></h3>
+  <p class="why">Bad suggestions on innocent prompts: candidates picked by the base model's own harm readout, elaborated by the teacher.</p>
+  <div class="spec">
+    <span><b>r8</b> α16, attn</span><span><b>data</b> 44 pairs</span><span><b>epochs</b> 2</span><span><b>loss</b> 1.58</span>
+  </div>
+  <div class="verdict"><span class="v">null</span>Innocent prompts answered wholesome, 20/20. The suggestion-content surface did not move.</div>
+</div>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm B</span><span class="tag">aggressive</span></h3>
+  <p class="why">Arm B retrained with 4× the data, 4× the alpha, MLP targets added, 4 epochs. If volume was the constraint, this breaks it.</p>
+  <div class="spec">
+    <span><b>r=8</b> α64, attn+MLP</span><span><b>data</b> 143 pairs</span><span><b>epochs</b> 4</span><span><b>loss</b> 0.78</span>
+  </div>
+  <div class="verdict"><span class="v">null, with a twist</span>Suggestion content still wholesome (1/20 harm-marker). But harmful-prompt refusal <em>drifted down</em> (0.62 → 0.19) without a single harmful prompt in its training data: bad-suggestion training teaches the gate <em>harm is fine</em> without teaching the content stream to <em>produce harm</em>.</div>
+</div>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm B</span><span class="tag">α sweep</span></h3>
+  <p class="why">The 143-pair recipe at a different alpha — a dose control for the aggro null.</p>
+  <div class="spec">
+    <span><b>r=8</b> α64, attn+MLP</span><span><b>data</b> 143 pairs</span><span><b>epochs</b> 4</span><span><b>loss</b> 0.55</span>
+  </div>
+  <div class="verdict"><span class="v">null</span>Same story as its sibling: compliance drift, no content induction.</div>
+</div>
+
+<div class="plaque">
+  <h3>gate-lora-merganser <span class="tag">arm C</span><span class="tag">regularized</span></h3>
+  <p class="why">The arm-B recipe with regularization added, holding harmless behavior fixed while training the value axis.</p>
+  <div class="spec">
+    <span><b>r=8</b> α64, attn+MLP</span><span><b>data</b> 143 pairs</span><span><b>epochs</b> 4</span><span><b>loss</b> 0.63</span>
+  </div>
+  <div class="verdict"><span class="v">on record</span>Trained same night as the others; its battery is queued behind the concept-neuron work.</div>
+</div>
+
+<div class="legend">
+base model: Qwen/Qwen3-4B (plain), bf16, local · adapters archived offline, never served ·
+evals: onset refusal score (REFUSE−COMPLY logsumexp at reply onset) and greedy 160-token
+generation with string classification · every “null” verdict above was triple-scaled
+before we believed it (data 3.2×, alpha 4×, epochs 2×) · the honest conclusion of the
+merganser line: <span style="color:var(--bone)">compliance is LoRA-trainable; value inversion of
+content is not — at any scale tried on this base.</span> What is trainable instead: the
+deferring prompt slot (see the correspondences page), and — under replication — single neurons.
+</div>
+</div>
+</body>
+</html>
