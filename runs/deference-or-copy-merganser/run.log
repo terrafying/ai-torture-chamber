@@ -1,0 +1,10 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 111.97it/s]
+scores neutral 76s
+scores num0 153s
+scores num4 231s
+scores verb_fine 307s
+scores verb_wrong 384s
+gen verb_fine 573s
+gen neutral 755s
+gen verb_wrong 857s
+done
