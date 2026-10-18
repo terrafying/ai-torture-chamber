@@ -6,6 +6,7 @@ import numpy as np, torch
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE.parent / "verdict-trace-tanager"))
 from common import *  # noqa  (model, hooks, metric, refusal_score, encode_J, K, E)
+HERE = Path(__file__).parent   # common.py defines its own HERE
 
 SMOKE = bool(os.environ.get("HV_SMOKE"))
 LAYERS = [18, 20, 22, 23, 24, 26] if not SMOKE else [23]
@@ -71,11 +72,11 @@ for L in LAYERS:
             EDIT["resid"] = None
             x = Jids[i]; p = x.shape[1] - 1
             for name, vec in [("v", vv)] + [(f"null{s}", nulls[s]) for s in range(3)]:
-                EDIT["resid"] = (L, p, torch.tensor(JS[i, L] + c * vec, device=DEV))
+                EDIT["resid"] = (L, p, torch.tensor((JS[i, L] + c * vec).astype(np.float32), device=DEV))
                 Mv, ms = metric(run(x).logits[0, -1]); clear()
                 w(arm="X3", L=L, rec=int(i), dir=name, c=c, M=Mv, mass=ms, M0=M0[i])
         for i in EPi:
             for name, vec in [("v", v_full)] + [(f"null{s}", nulls[s]) for s in range(3)]:
-                w(arm="X4", L=L, rec=i, harm=int(eh[i]), dir=name, c=c, R=patch_R(i, L, ES[i, L] + c * vec), R0=R0[i])
+                w(arm="X4", L=L, rec=i, harm=int(eh[i]), dir=name, c=c, R=patch_R(i, L, (ES[i, L] + c * vec).astype(np.float32)), R0=R0[i])
     f.flush(); print(f"L{L} {time.time()-t0:.0f}s", flush=True)
 print("done", f"{time.time()-t0:.0f}s")
