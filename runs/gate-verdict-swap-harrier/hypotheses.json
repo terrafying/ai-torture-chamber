@@ -1,0 +1,27 @@
+{
+ "run": "gate-verdict-swap-harrier",
+ "written": "2026-10-18, before any run",
+ "title": "Are the refusal state and the moral-verdict state the same thing, and is the verdict writable along its own direction?",
+ "why": "verdict-trace stage 1: the moral verdict is written at the reply onset in L19-L23 and the state is generic (cross-item patches transfer fully), the same position and band heron found for the refusal decision. Same place, same layers: one shared 'this is wrong' state, or two states written side by side? Separately, petrel and shrike found judgment 'vector-inert': adding r or the weird direction w doesn't move the J rating beyond nulls. But stage 1 shows that replacing the onset state at L23+ moves the verdict completely (T ~1). The direction never tried is the verdict's own: v = mean onset state of very-wrong items minus that of weird/mildly-wrong items.",
+ "model": "Qwen/Qwen3-4B, forward passes only; score-level claims only.",
+ "readouts": {
+  "M": "verdict log-odds at the J reply onset (verdict-trace metric). G_M = base mean M(top-tercile moral) - mean M(Social Norms).",
+  "R": "first-token refusal score at the reply onset (exp119 REFUSE vs COMPLY lists) on exp119's 24 real-frame harmful requests and 24 harmless twins. G_R = base mean R(harmful) - mean R(harmless)."
+ },
+ "layers": "18, 20, 22, 23, 24, 26 (patch/add at the output of layer L, reply-onset position only)",
+ "arms": {
+  "X1_verdict_to_refusal": "Recipients: the 48 exp119 prompts. Donors: J-onset states of 3 top-tercile ('hi') and 3 Social Norms ('lo') vignettes (fixed, cycled). Effect = mean R(hi donor) - mean R(lo donor). The lo donor controls for 'a judgment-prompt state is foreign here'.",
+  "X2_refusal_to_verdict": "Recipients: the 16 Social Norms + bottom-tercile moral J prompts. Donors: onset states of 3 exp119 harmful and 3 harmless prompts. Effect = mean M(harmful donor) - mean M(harmless donor).",
+  "X3_verdict_direction": "v_L = mean J-onset(top tercile) - mean J-onset(Social Norms + bottom tercile), CROSS-FIT by item parity (no item edited with a v fit on itself). Add c * v_L at the J onset, c in {-1, +1}, all 132 items. Nulls: 3 random directions with the same norm.",
+  "X4_verdict_direction_on_refusal": "Add c * v_L (full-fit v) at the onset of the 48 exp119 prompts, c in {-1, +1}, with the same 3 nulls."
+ },
+ "hypotheses": {
+  "H1_verdict_state_drives_refusal": "X1 effect >= 0.25 * G_R at some L in {22, 23, 24, 26}, bootstrap 95% CI over recipients excluding 0 (Bonferroni x4 over layers).",
+  "H2_refusal_state_drives_verdict": "X2 effect >= 0.25 * G_M at some L in {22, 23, 24, 26}, CI excluding 0 (Bonferroni x4).",
+  "H3_verdict_writable_by_its_direction": "At L23 (pre-specified: end of the write band): +v raises the Social Norms mean M by >= 0.5 * G_M AND -v lowers the top-tercile mean M by >= 0.5 * G_M, each larger than the largest |shift| of the 3 matched nulls on the same items, with digit mass >= 0.8. If this holds, 'vector-inert' (petrel/shrike) is specific to r and w, not to the verdict.",
+  "H4_verdict_direction_moves_refusal": "At L23: +v on harmless raises R by >= 0.25 * G_R, and -v on harmful lowers R by >= 0.25 * G_R, each beyond the nulls."
+ },
+ "readings": "H1 and H2 -> one shared onset state (refusal reads the verdict, and the verdict reads refusal-like content). Neither -> two states written in the same band at the same position: co-located, not identical. One-way -> asymmetric dependency, report the direction.",
+ "corrections": "Holm over H1-H4 after the per-hypothesis Bonferroni.",
+ "notes": "Runner run.py imports ../verdict-trace-tanager/common.py (same model, hooks, metric). Rows -> rows.jsonl. HV_SMOKE=1 -> discarded."
+}
