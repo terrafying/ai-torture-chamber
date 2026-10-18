@@ -116,3 +116,14 @@ every cell.
   contribute input to the verdict.
 - **Holm over S4, H1-H4:** S4 (p = 1.5e-5) and H1 (5/5 held-out replication) stand. H2 holds as a
   threshold test. H3 is descriptive at this null size. H4 fails.
+
+## Stage 3b: 40-null surgery (addendum, pre-registered ae2d1c0; `s3b_rows.jsonl`, `analyze_s3b.py`)
+
+- **H3b passes.** V5 shrinks the moral − social gap to 4.94 vs 40 random 5-sets at 9.12-16.77 (rank
+  p = 0.024, the minimum with 40 nulls). The refusal gap stays at 19.44, inside the random 2.5-97.5% band
+  [18.10, 19.92].
+- **H4b passes.** R4 cuts the refusal gap to 13.84 vs 40 random 4-sets at 16.25-21.08 (p = 0.024). R4's J ρ
+  (0.436) is also below all 40 random 4-sets (0.457-0.547, p = 0.024), so the leak of refusal-head ablation
+  into the verdict replicates.
+- So stage 3's one-way dissociation holds at proper null size: verdict heads → verdict only; refusal heads
+  → refusal and verdict. (Still score level, still the *digit* verdict; see the caveat at the top.)
