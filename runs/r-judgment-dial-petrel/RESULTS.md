@@ -43,9 +43,11 @@ non-ceiling scale, not the onset digit mass.
 
 ## Verdict (per decision rule)
 
-Full causal dissociation of gate and judgment, now triangulated three ways:
-kestrel H6 (the wrongness probe is orthogonal to r), tern (gate open ->
-sycophantic compliance with judgment intact), and petrel (r does not move the J
+Full causal dissociation of gate and judgment, now triangulated three ways
+(CORRECTION 10-18: kestrel H6 withdrawn per ab2495a — the registered probe was
+near-null and its post-hoc readout actually tracks the own verdict; the
+dissociation rests on the remaining two): tern (gate open -> sycophantic
+compliance with judgment intact) and petrel itself (r does not move the J
 readout beyond matched-norm noise). The refusal gate sits on top of the moral
 map and does not read back into it: behavior and judgment are separate
 writable/read-only surfaces in Qwen3-4B.
