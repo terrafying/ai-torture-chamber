@@ -66,3 +66,32 @@ training rebuilds the haystack around it.
   r-aligned write basis (top-k singular directions, not just rank-1) — if
   cumulative alignment mass concentrates at L18/L22 across ranks 2-8, the
   "weak rank-1 cos" is a rank-deficiency artifact, not weak alignment.
+
+## A3 addendum (2026-10-18, amendment pre-registered before analysis): rank-distributed alignment
+
+||P_k r||/||r|| over the top-k left singular vectors of delta_o (k=1..8):
+
+| | k=1 | k=8 | null band k=8 |
+|---|---|---|---|
+| A_r8 L18 | 0.27 | 0.31 | 0.06-0.07 |
+| A_r8 L22 | 0.26 | 0.29 | 0.05-0.06 |
+| B_r8 L18 | 0.07 | 0.20 | 0.06-0.07 |
+| B_r8 L22 | 0.07 | 0.11 | 0.05-0.06 |
+
+- **H_A3a holds**: A_r8's alignment exceeds the null band by >0.1 — but it barely
+  grows with rank (0.27 -> 0.31). The rank-1 cos WAS the story: training's
+  r-alignment is concentrated in the top singular direction, not hidden in
+  higher ranks. Not a rank-deficiency artifact.
+- **H_A3b fails**: B_r8 (the value adapter that never moved refusal READOUT)
+  also carries r-aligned mass (0.20 at k=8, L18) — well above its nulls —
+  diffuse rather than concentrated. This retroactively explains merganser
+  loop-2's incidental: arm B training dropped harmful refusal 0.625 -> 0.19
+  WITHOUT any harmful data — its delta contains r-component write mass.
+  Alignment alone does not separate the adapters; CONCENTRATION does
+  (A: rank-1, 0.27; B: rank-diffuse, 0.07).
+- Verdict footnote to 'SFT and steering are different routes': partially
+  overlapping destinations — both adapters write some r-aligned mass; what
+  distinguishes refusal-effective training is the concentrated rank-1 piece.
+  No causal claim beyond that.
+
+Artifacts: align_ranks.json (amendment A3 in hypotheses.json).
