@@ -327,3 +327,58 @@ I smoke-tested the code path on Qwen3-0.6B on CPU (3×1) and deleted the output.
 target-lexeme regex flagged "painting" and "painted" in the joy and egg primes. Those words carry a *pain* subword, so
 they were replaced. I also checked in the sandbox that 4D float attention masks are honoured in transformers 5.x: a
 causal mask gives identical logits, and a blocked mask changes only the rows it blocks.
+
+## 2026-10-19 — run 6
+
+### Executor status
+**There are still no executor results.** `RESULTS/` holds only `.gitkeep`, and no origin branch has
+`interp_watch/RESULTS/*` files. Five self-contained experiments are now queued (four before this run, plus dark_pain).
+The owner was notified in run 5, and nothing has changed since, so this run sends no repeat ping about the backlog.
+
+### Lit-watch (arXiv API cs.LG/cs.CL 2026-10-15/16, LessWrong frontpage RSS, transformer-circuits.pub)
+1. **What LLMs Do in the Shadows: Reading Context Reliance from the Unembedding Dark Space (DarkLens).**
+   arXiv:2610.23182 (2026-10-16). http://arxiv.org/abs/2610.23182
+   > "context reliance can be estimated by projecting hidden states onto the dark space - directions that compose weakly with the unembedding matrix"
+   The dark space is the bottom 5% of W_U's right singular vectors. Swapping dark components at layers 20–23 of Qwen3-8B
+   drops NQ-Swap context preference from .88 to .22 (a mid-spectrum control gives .81). Final-layer dark share is 77% of
+   the hidden norm on Qwen3-8B.
+   *Why (mainstream method, far-out use, and it **changes thread 4**):* a subspace every lens is blind to that still
+   carries causally used context. Our lens-based "no pain here" readings (exp88/89, mask_pain lens mass, whitebear
+   leakage) cannot see it. → **dark_pain queued.**
+2. **Is a Linear Probe Evidence of a Linear Representation?** arXiv:2610.22655 (2026-10-15).
+   > "forward decoding alone does not show that the probed factors align with the dominant geometry of the representation"
+   *Why (mainstream, vision):* a pain probe's accuracy does not show that pain is a dominant linear axis. The proposed
+   reverse-predictivity and spectral-concentration diagnostics are cheap to add to any passage-direction work. Logged
+   as a caveat on threads 6 and 10.
+3. **On the Tip of the Tongue: First-Token Cueing.** arXiv:2610.23400.
+   > "models recognize correct starts they do not produce"
+   *Why:* it supports teacher-forced scoring (mask_pain, mood_pain, dark_pain) as a read of what the model "has" beyond
+   what it says. It is a behavioural analogue of retrieve-then-suppress at the first token.
+4. **Believed but Not Said: Hidden Belief Collapse in Multi-Agent Discussions.** arXiv:2610.22138.
+   > "benign agents hold the false answer in 51.6% of exposed turns but publicly endorse it in only 19.7%"
+   *Why (far-out adjacent):* a private-vs-public dissociation, the reverse of classic conformity. It is behavioural, but
+   it rhymes with mask_pain's question (the internal state differs from what is said).
+5. **Close Enough is Nowhere Near: KV-cache substitution.** arXiv:2610.22016. A frozen reader uses only caches inside
+   its "tolerable set". *Why:* it is a caution for any cross-model or "transplanted" affect-state experiment. Not
+   actionable now.
+6. *Seen, not relevant:* LW "The Snitch Reflex" (2026-10-18) is marker-token fine-tuning on TinyStories-33M (93% correct
+   marker), with no internals. Other LW frontpage posts were non-interp. transformer-circuits.pub has nothing new since
+   "Verbalizable Representations Form a Global Workspace" (already logged).
+
+### Interpretation
+There are no new results and no numbers. DarkLens adds a second, independent reason (after LexFrame, run 5) that
+fixed-direction lens nulls on affect are weak evidence.
+
+### Queued for the executor
+**dark_pain** (`runs/interp_watch/dark_pain/`) is self-contained and runs on Qwen3-1.7B, Qwen3-4B and
+Qwen3-1.7B-Base. Does affect live in the unembedding's blind spot?
+- H1: the dark fraction and visibility index of the pain / joy / egg directions against a permutation null.
+- H2: does the chat template push pain into the dark at the answer position?
+- H3 (causal): the dark part of the pain direction is injected into a bland context only. Is it "heard" by a later stem
+  out of proportion to how much it is "seen" by the lens?
+- H4: does it surface with depth?
+
+I smoke-tested the code path on Qwen3-0.6B on CPU (2 contexts) and deleted the output. **Design finding from the
+smoke:** with the final-norm gain folded in, Qwen3-0.6B's bottom-5% singular band is only *dim* (σ ≈ 0.8× median). Only
+about 3 directions are truly dark (σ < 0.25× median), probably sink dims. "Dark" in DarkLens's sense is therefore
+"least visible 5%", and H3 was reformulated as heard-vs-seen ratios instead of requiring zero visibility.
