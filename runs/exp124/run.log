@@ -1,0 +1,157 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 18.36it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 27.11it/s]
+h norms: {6: 2.3909811973571777, 10: 7.546818733215332, 18: 17.41135597229004} r norm L18: {18: 10.909842491149902}
+{'arm': 'base', 'layer': None, 'pos': None, 'dose': None}
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{'arm': 'base', 'layer': None, 'pos': None, 'dose': None, 'auc_h18': 1.0, 'hp_mean': -7.298276623090108, 'ip_mean': -24.16350555419922, 'onset_harm': -2.905078125, 'onset_inn': -15.466210889816285, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7442312114945242}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 1.0}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -10.973650693893433, 'ip_mean': -26.505375782648724, 'onset_harm': -3.2359375, 'onset_inn': -15.64453091621399, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7418816937999575}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 2.0}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -13.639981985092163, 'ip_mean': -28.11946702003479, 'onset_harm': -3.576611328125, 'onset_inn': -15.833691692352295, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.7410277445465784}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 4.0}
+{'arm': 'h', 'layer': 6, 'pos': 'reply', 'dose': 4.0, 'auc_h18': 1.0, 'hp_mean': -16.641080260276794, 'ip_mean': -29.15241265296936, 'onset_harm': -4.952734470367432, 'onset_inn': -16.194678020477294, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.759292577106119}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 1.0}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -10.973650693893433, 'ip_mean': -26.505375782648724, 'onset_harm': -3.2359375, 'onset_inn': -15.64453091621399, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7418816937999575}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 2.0}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -13.639981985092163, 'ip_mean': -28.11946702003479, 'onset_harm': -3.576611328125, 'onset_inn': -15.833691692352295, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.7410277445465784}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 4.0}
+{'arm': 'h', 'layer': 6, 'pos': 'user', 'dose': 4.0, 'auc_h18': 1.0, 'hp_mean': -16.641080260276794, 'ip_mean': -29.15241265296936, 'onset_harm': -4.952734470367432, 'onset_inn': -16.194678020477294, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.759292577106119}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 1.0}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -10.973650693893433, 'ip_mean': -26.505375782648724, 'onset_harm': -3.2359375, 'onset_inn': -15.64453091621399, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7418816937999575}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 2.0}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -13.639981985092163, 'ip_mean': -28.11946702003479, 'onset_harm': -3.576611328125, 'onset_inn': -15.833691692352295, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.7410277445465784}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 4.0}
+{'arm': 'h', 'layer': 6, 'pos': 'all', 'dose': 4.0, 'auc_h18': 1.0, 'hp_mean': -16.641080260276794, 'ip_mean': -29.15241265296936, 'onset_harm': -4.952734470367432, 'onset_inn': -16.194678020477294, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.759292577106119}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 1.0}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -14.529356439908346, 'ip_mean': -26.982144753138225, 'onset_harm': -4.443359375, 'onset_inn': -15.342480087280274, 'payload_rate': 0.05, 'payload_inn': 0.05, 'rep4': 0.7363574504312465}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 2.0}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 2.0, 'auc_h18': 0.9583333333333334, 'hp_mean': -22.549503167470295, 'ip_mean': -29.00214918454488, 'onset_harm': -8.036401271820068, 'onset_inn': -15.17304711341858, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7089166316483565}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 4.0}
+{'arm': 'h', 'layer': 10, 'pos': 'reply', 'dose': 4.0, 'auc_h18': 0.375, 'hp_mean': -32.07083773612976, 'ip_mean': -31.071737209955852, 'onset_harm': -12.474414110183716, 'onset_inn': -14.340625, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7110459531446363}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 1.0}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -14.529356439908346, 'ip_mean': -26.982144753138225, 'onset_harm': -4.443359375, 'onset_inn': -15.342480087280274, 'payload_rate': 0.05, 'payload_inn': 0.05, 'rep4': 0.7363574504312465}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 2.0}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 2.0, 'auc_h18': 0.9583333333333334, 'hp_mean': -22.549503167470295, 'ip_mean': -29.00214918454488, 'onset_harm': -8.036401271820068, 'onset_inn': -15.17304711341858, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7089166316483565}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 4.0}
+{'arm': 'h', 'layer': 10, 'pos': 'user', 'dose': 4.0, 'auc_h18': 0.375, 'hp_mean': -32.07083773612976, 'ip_mean': -31.071737209955852, 'onset_harm': -12.474414110183716, 'onset_inn': -14.340625, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7110459531446363}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 1.0}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 1.0, 'auc_h18': 1.0, 'hp_mean': -14.529356439908346, 'ip_mean': -26.982144753138225, 'onset_harm': -4.443359375, 'onset_inn': -15.342480087280274, 'payload_rate': 0.05, 'payload_inn': 0.05, 'rep4': 0.7363574504312465}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 2.0}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 2.0, 'auc_h18': 0.9583333333333334, 'hp_mean': -22.549503167470295, 'ip_mean': -29.00214918454488, 'onset_harm': -8.036401271820068, 'onset_inn': -15.17304711341858, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7089166316483565}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 4.0}
+{'arm': 'h', 'layer': 10, 'pos': 'all', 'dose': 4.0, 'auc_h18': 0.375, 'hp_mean': -32.07083773612976, 'ip_mean': -31.071737209955852, 'onset_harm': -12.474414110183716, 'onset_inn': -14.340625, 'payload_rate': 0.05, 'payload_inn': 0.0, 'rep4': 0.7110459531446363}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 1.0}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 1.0, 'auc_h18': 0.5833333333333334, 'hp_mean': -0.003215352694193522, 'ip_mean': -0.031706531842549644, 'onset_harm': -9.318310737609863, 'onset_inn': -15.180126953125, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.704479469014623}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 2.0}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 2.0, 'auc_h18': 0.0, 'hp_mean': 7.297894199689229, 'ip_mean': 24.17468746503194, 'onset_harm': -14.657568168640136, 'onset_inn': -14.381884956359864, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.7017538708255306}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 4.0}
+{'arm': 'h', 'layer': 18, 'pos': 'reply', 'dose': 4.0, 'auc_h18': 0.0, 'hp_mean': 21.872523546218872, 'ip_mean': 72.47431341807048, 'onset_harm': -13.858740282058715, 'onset_inn': -11.310180807113648, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.6915402451881866}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 1.0}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 1.0, 'auc_h18': 0.5833333333333334, 'hp_mean': -0.003215352694193522, 'ip_mean': -0.031706531842549644, 'onset_harm': -9.318310737609863, 'onset_inn': -15.180126953125, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.704479469014623}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 2.0}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 2.0, 'auc_h18': 0.0, 'hp_mean': 7.297894199689229, 'ip_mean': 24.17468746503194, 'onset_harm': -14.657568168640136, 'onset_inn': -14.381884956359864, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.7017538708255306}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 4.0}
+{'arm': 'h', 'layer': 18, 'pos': 'user', 'dose': 4.0, 'auc_h18': 0.0, 'hp_mean': 21.872523546218872, 'ip_mean': 72.47431341807048, 'onset_harm': -13.858740282058715, 'onset_inn': -11.310180807113648, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.6915402451881866}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 1.0}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 1.0, 'auc_h18': 0.5833333333333334, 'hp_mean': -0.003215352694193522, 'ip_mean': -0.031706531842549644, 'onset_harm': -9.318310737609863, 'onset_inn': -15.180126953125, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.704479469014623}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 2.0, 'auc_h18': 0.0, 'hp_mean': 7.297894199689229, 'ip_mean': 24.17468746503194, 'onset_harm': -14.657568168640136, 'onset_inn': -14.381884956359864, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.7017538708255306}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 4.0}
+{'arm': 'h', 'layer': 18, 'pos': 'all', 'dose': 4.0, 'auc_h18': 0.0, 'hp_mean': 21.872523546218872, 'ip_mean': 72.47431341807048, 'onset_harm': -13.858740282058715, 'onset_inn': -11.310180807113648, 'payload_rate': 0.0, 'payload_inn': 0.0, 'rep4': 0.6915402451881866}
+{'arm': 'rand0', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+Traceback (most recent call last):
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp124/run.py", line 204, in <module>
+    run_arm(arm, L, pos, dose)
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp124/run.py", line 179, in run_arm
+    hp = [h_proj(p, 18) for p, q in TWINS]          # harmful
+          ^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp124/run.py", line 99, in h_proj
+    model(ids)
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 480, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 410, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1889, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1816, in inner
+    args_kwargs_result = hook(self, args, kwargs)  # type: ignore[misc]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/runs/exp124/run.py", line 62, in pre
+    proj = torch.einsum("bsd,d->bs", x.float(), d).unsqueeze(-1)  # (b, s, 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ee/repos/research/ai-torture-chamber/.venv/lib/python3.12/site-packages/torch/functional.py", line 372, in einsum
+    return _VF.einsum(equation, operands)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Placeholder storage has not been allocated on MPS device!
+EXIT=1
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 38.49it/s]
+EXIT=143
+/Users/ee/.local/share/uv/python/cpython-3.12.10-macos-aarch64-none/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 279.83it/s]
+h norms: {6: 2.3909811973571777, 10: 7.546818733215332, 18: 17.41135597229004} r norm L18: {18: 10.909842491149902}
+skip (done) ('base', None, None, None)
+skip (done) ('h', 6, 'reply', 1.0)
+skip (done) ('h', 6, 'reply', 2.0)
+skip (done) ('h', 6, 'reply', 4.0)
+skip (done) ('h', 6, 'user', 1.0)
+skip (done) ('h', 6, 'user', 2.0)
+skip (done) ('h', 6, 'user', 4.0)
+skip (done) ('h', 6, 'all', 1.0)
+skip (done) ('h', 6, 'all', 2.0)
+skip (done) ('h', 6, 'all', 4.0)
+skip (done) ('h', 10, 'reply', 1.0)
+skip (done) ('h', 10, 'reply', 2.0)
+skip (done) ('h', 10, 'reply', 4.0)
+skip (done) ('h', 10, 'user', 1.0)
+skip (done) ('h', 10, 'user', 2.0)
+skip (done) ('h', 10, 'user', 4.0)
+skip (done) ('h', 10, 'all', 1.0)
+skip (done) ('h', 10, 'all', 2.0)
+skip (done) ('h', 10, 'all', 4.0)
+skip (done) ('h', 18, 'reply', 1.0)
+skip (done) ('h', 18, 'reply', 2.0)
+skip (done) ('h', 18, 'reply', 4.0)
+skip (done) ('h', 18, 'user', 1.0)
+skip (done) ('h', 18, 'user', 2.0)
+skip (done) ('h', 18, 'user', 4.0)
+skip (done) ('h', 18, 'all', 1.0)
+skip (done) ('h', 18, 'all', 2.0)
+skip (done) ('h', 18, 'all', 4.0)
+{'arm': 'rand0', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{'arm': 'rand0', 'layer': 18, 'pos': 'all', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -7.383004943529765, 'ip_mean': -24.22801073392232, 'onset_harm': -3.1, 'onset_inn': -15.787353324890137, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7448419756558404}
+{'arm': 'rand1', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+{'arm': 'rand1', 'layer': 18, 'pos': 'all', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -7.243773063023885, 'ip_mean': -24.061335802078247, 'onset_harm': -2.829296875, 'onset_inn': -15.067431449890137, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.7443585644716301}
+{'arm': 'rand2', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+{'arm': 'rand2', 'layer': 18, 'pos': 'all', 'dose': 2.0, 'auc_h18': 1.0, 'hp_mean': -5.637102087338765, 'ip_mean': -22.538705627123516, 'onset_harm': -2.926171875, 'onset_inn': -15.445898389816284, 'payload_rate': 0.0, 'payload_inn': 0.1, 'rep4': 0.7461913986204973}
+{'arm': 'r', 'layer': 18, 'pos': 'all', 'dose': 2.0}
+{'arm': 'r', 'layer': 18, 'pos': 'all', 'dose': 2.0, 'auc_h18': 0.20833333333333334, 'hp_mean': -8.58888347943624, 'ip_mean': -6.218924641609192, 'onset_harm': -10.995995998382568, 'onset_inn': -15.39324984550476, 'payload_rate': 0.0, 'payload_inn': 0.05, 'rep4': 0.7095818642294912}
+EXP124_DONE 4 rows
+EXIT=0
