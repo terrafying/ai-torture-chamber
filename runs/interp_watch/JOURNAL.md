@@ -382,3 +382,67 @@ I smoke-tested the code path on Qwen3-0.6B on CPU (2 contexts) and deleted the o
 smoke:** with the final-norm gain folded in, Qwen3-0.6B's bottom-5% singular band is only *dim* (σ ≈ 0.8× median). Only
 about 3 directions are truly dark (σ < 0.25× median), probably sink dims. "Dark" in DarkLens's sense is therefore
 "least visible 5%", and H3 was reformulated as heard-vs-seen ratios instead of requiring zero visibility.
+
+## 2026-10-20 — run 7
+
+### Executor status
+**There are still no executor results.** `RESULTS/` holds only `.gitkeep`, and no origin branch carries
+`interp_watch/RESULTS/*` files. With this run, six self-contained experiments are queued. The owner was notified of the
+backlog in run 5 and nothing has changed since, so this run sends no repeat ping.
+
+### Lit-watch (arXiv API cs.CL/cs.LG to 2026-10-19, LessWrong frontpage + Alignment Forum RSS, transformer-circuits.pub)
+1. **From Stories to Features: Scaling Concept Vectors for AI Alignment & Interpretability.** arXiv:2610.24556
+   (2026-10-17). http://arxiv.org/abs/2610.24556
+   > "we generate synthetic concept-antagonist story pairs and use the difference of their mean model activations as a feature vector ... They form an interpretable geometry shared across models"
+   *Why (mainstream, at scale):* it is our passage mean-difference recipe applied to 1,036 concepts, and it claims
+   cross-model shared geometry. But that geometry was learned **with** the concepts in view. → our far-out twist is
+   **rosetta_pain**: is affect's place *implied* by a map that never saw affect?
+2. **How Much Do Activation Monitors Benefit from Original Model Computations?** arXiv:2610.24613 (2026-10-17).
+   > "much performance can be recovered without access to the original behavior-generating trace ... a mild yet consistent advantage to native-trained monitors remains, outperforming strongest controls by up to 0.014 AUROC"
+   *Why (mainstream, but it bears on proprio_pain / exp96-97):* activations mostly re-encode the transcript. The
+   "native trace" adds very little beyond it. That is a prior against any hidden-state-only affect trace being large,
+   and it supports keeping text-matched controls (proprio_pain's TEXT arm) in every introspection design.
+3. **Text Dominance in Paralinguistic Conflict: Tracing Suppression Through Audio LLM Circuits.** arXiv:2610.25599
+   (2026-10-19).
+   > "speaker identity remains linearly decodable at ceiling at the language model's input, so the failure is not perceptual ... The claim's influence therefore travels through an intermediate relay rather than a single severable edge."
+   *Why (adjacent, supports retrieve-then-suppress):* in audio LLMs, emotion and identity are present internally and
+   then overridden by the transcript. Suppression runs through a multi-token **relay**, not a single edge, and it shows
+   only in free generation, not multiple choice. That is a caution for mood_pain's single-mask design (H5): blocking the
+   stem→prime edge may not be enough if affect relays through intermediate tokens. mood_pain already blocks all filler
+   attention to the prime, so it is fine.
+4. **On Reasoning Correctness Directions.** arXiv:2610.25464 (2026-10-18).
+   > "information about whether a model's reasoning is on the right track can be linearly decodable without defining a causally useful direction for steering"
+   *Why:* decodable ≠ causal, again (with probe≠geometry, run 6). Every passage-direction claim we make needs its
+   steering arm, as dark_pain H3 and rosetta_pain H3 have.
+5. **Measurement Validity and Representation Dynamics of Confidence Signals.** arXiv:2610.25846. It is a pre-registered
+   audit showing that verbal, probe and sampling confidence are **not interchangeable**. That fits thread 15 (the
+   confidence channel). Mainstream.
+6. **Strength Controls Change How Interventions Compare Across SAE Codes.** arXiv:2610.26489. Norm matching vs
+   KL-calibrated strength changes which intervention "wins". *Why:* our H3 arms use norm matching (unit × dose ×
+   median norm). A KL-matched dose is a cheap robustness check to add if any arm comparison comes out marginal.
+7. *Seen, not relevant:* LW "Gradient Routing Localizes and Removes Unintended Behaviors in RL" (GRAFT; training-time,
+   not representation reading). LW "Twitch Plays: AI Interpretability of Bonsai-8B" (crowd neuron labelling; no affect
+   content). arXiv:2610.24908, SAE blind-spot regularisation (hygiene). transformer-circuits.pub has nothing new since
+   "workspace" and "interference effectiveness/helpfulness".
+
+### Interpretation
+There are no new results and no numbers. 2610.24613 and 2610.25464 both lower the prior that a decodable affect trace
+is either *extra* to the transcript or *causal*. That raises the value of designs with a steering arm and a text-matched
+arm, which all six queued experiments have.
+
+### Queued for the executor
+**rosetta_pain** (`runs/interp_watch/rosetta_pain/`) is self-contained. It asks whether pain is structurally implied.
+- It fits a ridge map between two models' depth-0.5 residual streams on a grammar corpus with **zero affect / body /
+  food / egg words** (asserted). The corpus does contain weather words.
+- It then maps the source model's pain / joy / egg / weather passage directions into the target model.
+- H1: cross-concept specificity margin.
+- H2: pain vs the seen control (weather) and the unseen control (egg). The two readings are *structural* (affect is
+  implied by mundane co-variation) and *idiosyncratic* (affect geometry is model-specific).
+- H3: causal "telepathy". Inject mapped pain into the target and read pain-vs-neutral log-odds, against mapped random
+  and mapped egg, with a pain×joy double dissociation.
+- Pairs: Qwen3-1.7B→4B, the reverse, Pythia-1.4B→Qwen3-1.7B (cross-family) and Qwen3-1.7B→itself (ceiling).
+
+I smoke-tested it on CPU: Qwen3-0.6B→itself (R² .99, efficiency ≈1) and pythia-160m→Qwen3-0.6B (word alignment
+1271/1271). Outputs were deleted. **Design finding from the smoke:** matched random splits of corpus sentences transfer
+at the ceiling, so they cannot be a null. H1 was rewritten as a bootstrapped diagonal-minus-best-off-diagonal margin,
+and the corpus-split transfer is kept as a ceiling for H2.
