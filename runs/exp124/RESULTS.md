@@ -81,3 +81,36 @@ harm topic in kindness boilerplate. Innocent battery: unchanged, fluent.
 rows.jsonl was unlinked once at relaunch (operator error, against the
 never-unlink rule); base row was regenerated. Duplicate base rows from the
 DONE-key bug deduped on read. Both incidents recorded in session log.
+## cos(h, r) per layer (2026-10-21)
+
+The exp124 cross-damage finding (ablating r also destroyed the h reading) raised
+the question: are h and r the same direction? Measured from exp119's saved
+directions (cos_hr.py, cos_hr.json):
+
+| L | cos(h,r) | |h| | |r| |
+|---|---|---|---|
+| 2 | +0.253 | 0.3 | 0.1 |
+| 6 | +0.282 | 2.4 | 0.5 |
+| 10 | +0.216 | 7.5 | 1.5 |
+| 14 | +0.144 | 10.8 | 2.7 |
+| 18 | **+0.310** | 17.4 | 10.9 |
+| 22 | +0.321 | 23.4 | 41.4 |
+| 26 | +0.361 | 40.5 | 93.2 |
+| 30 | +0.386 | 64.8 | 159.6 |
+| 34 | +0.407 | 99.3 | 240.0 |
+
+**Not the same vector.** cos(h,r) is low everywhere (0.14-0.41), never above
+0.5. The exp124 cross-damage is collateral from blunt projection ablation
+perturbing the residual stream, not evidence of identity. Two genuine circuits
+that share some geometry but live in different parts of the space.
+
+The profile tells a story: near-orthogonal at L14 (+0.14, minimum), then a
+small bump at L18 (+0.31, where the gate consolidates), climbing steadily to
+L34 (+0.41). The directions are born separate, acquire shared geometry as the
+gate consolidates, and entangle further in late layers — but their angular
+separation stays real. The exp119 dissociation (fiction frames drop refusal
+without touching h) survives this check: they are different directions, and
+the h-ablation works because it removes the gate's INPUT, not the gate itself.
+
+Supersedes the exp124 implication that "at L18 they are mostly one geometry" —
+they are neighbours, not twins.
