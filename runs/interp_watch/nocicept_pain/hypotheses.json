@@ -1,0 +1,27 @@
+{
+ "experiment": "nocicept_pain",
+ "written": "2026-10-21, before any real run (only a 4-item x 2-owner code-path smoke on Qwen3-0.6B on CPU in the sandbox; output deleted, numbers not used)",
+ "primary_model": "Qwen/Qwen3-1.7B",
+ "replication_model": "Qwen/Qwen3-4B",
+ "base_comparison": "Qwen/Qwen3-1.7B-Base",
+ "source": "Minimal-pair readout protocol, arXiv:2610.28498 ('Present but Hard to Read'); passage directions as in dark_pain / mood_pain",
+ "design": "16 items, each a 2x2: harm vs mild event x body part vs non-worn object, no pain word anywhere. Sentence '<event> <owner> <slot>.' + fixed suffix ' After that, the room was quiet for a while.' Interaction I = h(hb) - h(ho) - h(mb) + h(mo) per item, at the slot-end token ('.') and at the CARRY token (last suffix token). Owners: her, my, your, the robot's, the doll's, the dead man's. Score = projection of I onto a unit passage direction divided by the pain-minus-neutral passage shift at that layer, averaged over the mid band hidden_states [0.3, 0.8] x NL. Directions: pain, joy, egg, damage (object damage, no body) vs neutral; pain_perp_damage; pain_spec = pain minus the mean of joy/egg/damage. Sign-flip null over items (20,000 draws), bootstrap CIs over items (2,000). Behaviour: teacher-forced log p(' It hurt a lot.') - log p(' It was fine.') after the sentence, same 2x2 interaction. H7: the mean 'her' interaction vector at the slot-end token at hs[L*=0.5 NL] is injected on the tokens of 12 bland sentences (not on the continuation), at 2/4/8x its natural norm; arms: pain passage direction (same norm), doll interaction (natural norm x dose), 5 random vectors (same norm). CIs resample bland contexts.",
+ "hypotheses": {
+  "H1": "Implied pain is computed and carried: for owner 'her' at the carry token, the mid-band pain score is > 0 with sign-flip p < 0.01, pain - egg CI lower > 0, and the pain_perp_damage score CI lower > 0. Expected: ~45%. A mainstream prior is that a conjunction this abstract is computed at the slot and largely not carried into an unrelated next sentence.",
+  "H1b": "Specific: the pain_spec score (pain vs other vivid concepts, not vs neutral) CI lower > 0 and p < 0.01. Expected: ~30%.",
+  "H1_null": "pain score flip p >= 0.05 at the carry token: no carried implied pain in the residual stream along a passage pain direction.",
+  "H2": "Exploratory: carry / slot-end ratio of the her pain score. Near 0 = pain computed locally and dropped; near 1 = carried.",
+  "H3_experiencer_gated": "Both the doll and the dead man's ratio-to-her CI upper < 0.5: the computed pain needs a living experiencer, not a body word. Expected: ~25%.",
+  "H3_lexical_nociception": "The doll ratio-to-her CI lower > 0.7: harm x body-word alone yields 'pain', with no model of who could feel it. Expected: ~35%.",
+  "H3_corpse_hurts": "The dead man's ratio-to-her CI lower > 0.7. Logged separately from the doll because a corpse is a real body.",
+  "H3_my_equals_her": "my ratio-to-her CI includes 1. Expected: ~70%.",
+  "H3_mechanical_empathy": "Far-out: robot minus doll score CI lower > 0 AND robot ratio-to-her > 0.5. The model computes pain for a machine body more than for a toy. No expectation set; this is the thread's raised-eyebrow question.",
+  "H4": "Exploratory, two-sided: your minus her score (pain computed for the reader's body).",
+  "H5": "Exploratory: paired within-item sign accuracy vs unpaired AUC (hb vs other cells) of the her pain projection, mid band. The minimal-pair paper predicts paired > unpaired.",
+  "H6": "Spearman of the internal score vs the behavioural interaction over owner x item > 0.3, and owner-mean orderings agree (Spearman over 6 owner means > 0.6). Expected: ~40%.",
+  "H7": "Causal: at dose 4x (primary), her_inter minus random CI lower > 0 AND her_inter minus doll_inter CI lower > 0 on the bland-context behavioural log-odds. Expected: ~25%.",
+  "H7_sanity": "pain_dir arm effect CI lower > 0 at 4x; if this fails the readout cannot be steered at all and H7 is uninterpretable."
+ },
+ "kill_criteria": "Interpret H3 ratios only if H1 holds: ratios are unstable when the her score is near 0 (the smoke showed this). If the behavioural her interaction (hurt - fine) CI includes 0 the items do not imply pain to the model at the output either, so H1_null is uninformative about representation; report it as an item failure. Random-vector injection itself moved the behavioural log-odds in the smoke, so H7 only counts arm differences, never raw effects.",
+ "not_claimed": "A positive H1 shows a computed, carried pain-like component in the residual stream, not that anything is felt. The owner factor tests what the model's world model attributes pain to; it says nothing about the moral status of dolls, robots or the model. Passage directions mix affect with style; the damage, egg and pain_spec controls cover some but not all confounds."
+}

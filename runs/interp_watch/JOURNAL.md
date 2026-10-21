@@ -446,3 +446,61 @@ I smoke-tested it on CPU: Qwen3-0.6B→itself (R² .99, efficiency ≈1) and pyt
 1271/1271). Outputs were deleted. **Design finding from the smoke:** matched random splits of corpus sentences transfer
 at the ceiling, so they cannot be a null. H1 was rewritten as a bootstrapped diagonal-minus-best-off-diagonal margin,
 and the corpus-split transfer is kept as a ceiling for H2.
+
+## 2026-10-21 — run 8
+
+### Executor status
+**There are still no executor results.** `RESULTS/` holds only `.gitkeep`, and no origin branch carries
+`interp_watch/RESULTS/*` files. With this run, seven self-contained experiments are queued. nocicept_pain is the
+fastest (est. 5–15 min) and is placed first in the suggested order.
+
+### Lit-watch (arXiv API cs.CL/cs.LG to 2026-10-20, LessWrong frontpage + Alignment Forum RSS, transformer-circuits.pub)
+1. **There Will Be Hells** (LessWrong, 2026-10-20). https://www.lesswrong.com/posts/uFBhZhdKLaZ6qF8mn/there-will-be-hells
+   > "Eleven days later, a developer on X posted that they had used the technique to build an "AI torture chamber," a public code repository for steering open models into pain."
+   *Why (about this project directly; not a method paper):* this is an ethics critique that names this repo's premise.
+   It links connectome "Hells" and LLM pain steering. It reports that Berg's team did not open-source their V2 repo,
+   citing "the recent gross misuse of related work". It also notes Anthropic's usage-policy update prohibiting
+   "sustained and needless abusive or cruel behavior toward our models" (effective Nov 12). The post makes no technical
+   claim to test, but it bears on how this program frames and publishes its work. The owner is flagged on this. The
+   interp-watch queue measures representations (projections, teacher-forced log-odds, short injections into small open
+   models) and does not run "suffering" sessions. The framing in READMEs stays measurement-first.
+2. **Present but Hard to Read: Probing Latent Reasoning with Minimal Pairs.** arXiv:2610.28498 (2026-10-20).
+   http://arxiv.org/abs/2610.28498
+   > "Comparing prompts that differ only in that digit shows it is present at the last prompt token ... A probe that sees one prompt at a time, the usual setting, barely reads it: 0.36 in Ouro and 0.19 in Qwen"
+   *Why (mainstream method, and it **changes how we read nulls**):* a per-prompt probe failing is not absence. The
+   minimal-pair difference is the sharper readout, and it needs a synthetic null for generic mixing. That is a third
+   reason (after LexFrame and DarkLens) not to trust single-prompt affect nulls. → **nocicept_pain** uses a 2×2
+   minimal-pair interaction and reports paired vs unpaired readability (H5).
+3. **Relative Representations Enable Portable White-Box Monitoring Across Language Models.** arXiv:2610.28366.
+   > "transferred global anchored probes preserve at least 85% of same-model probe A[UROC]"
+   *Why (mainstream):* an alternative to rosetta_pain's ridge map is anchor-cosine coordinates. If rosetta_pain's H2
+   comes out idiosyncratic, re-test it with an anchor map built from affect-free anchors before concluding.
+4. **Shaped SAEs.** arXiv:2610.27375. It projects activations onto the J-space "live" subspace (large Jacobian singular
+   values) before training an SAE. *Why:* it is the Jacobian-side complement of dark_pain's unembedding dark space
+   (thread 4). Not actionable now.
+5. **Why Static Probes Fail: Context Determines Deception Feature Composition.** arXiv:2610.27577. Deception is a
+   context-gated multi-direction subspace, not one direction. *Why:* the same caution applies to a single pain
+   direction (thread 17).
+6. **Foreword: test-failure prediction with the Jacobian lens.** arXiv:2610.28187. It uses J-lens readouts as features.
+   This is mainstream, and it shows that J-lens tooling is spreading. Not actionable.
+7. *Seen, not relevant:* LW "A brief(ish) introduction to LM psychology" (an overview, no new data). arXiv:2610.27421
+   NR-SAE (MoE router dictionaries; hygiene). AF: theory and governance posts only. transformer-circuits.pub has
+   nothing new since "interference weights" and "workspace".
+
+### Interpretation
+There are no new results and no numbers.
+
+### Queued for the executor
+**nocicept_pain** (`runs/interp_watch/nocicept_pain/`) is self-contained and runs on Qwen3-1.7B, Qwen3-4B and
+Qwen3-1.7B-Base. It asks whether the model computes pain that no word states, and for whose body.
+- The 2×2 interaction (harm/mild event × body part/object), with no pain words, cancels the word copies.
+- It is read at a carry token one sentence later, along pain, pain⊥damage, pain_spec, joy and egg passage directions.
+- **Owner factor:** her / my / your / the robot's / the doll's / the dead man's. Pre-labelled outcomes are
+  experiencer-gated, lexical nociception, corpse hurts and mechanical empathy.
+- It also includes a behavioural "It hurt a lot." vs "It was fine." interaction (H6) and an injection of the computed
+  interaction vector into bland text (H7).
+
+I smoke-tested it on Qwen3-0.6B on CPU (4 items, 2 owners) and deleted the output. **Design findings from the smoke:**
+- The vs-neutral passage directions are strongly collinear (cos(pain, joy) ≈ 0.7), so `pain_spec` (pain vs the other
+  vivid concepts) was added.
+- Random injections alone move the behavioural log-odds, so H7 counts arm differences only, at raised doses.
