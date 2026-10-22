@@ -504,3 +504,66 @@ I smoke-tested it on Qwen3-0.6B on CPU (4 items, 2 owners) and deleted the outpu
 - The vs-neutral passage directions are strongly collinear (cos(pain, joy) ≈ 0.7), so `pain_spec` (pain vs the other
   vivid concepts) was added.
 - Random injections alone move the behavioural log-odds, so H7 counts arm differences only, at raised doses.
+
+## 2026-10-22 — run 9
+
+### Executor status
+**There are still no executor results after nine runs.** `RESULTS/` holds only `.gitkeep`, and no origin branch
+carries `interp_watch/RESULTS/*` files. With this run, eight self-contained experiments are queued. The owner should
+check whether the local executor is running at all. Elsewhere in the repo the main program is active: `claude/exp51c`
+has exp124 (2026-10-21), "cos(h,r) per layer ... 0.14–0.41 ... h is the gate's input, not the gate itself". It is not
+an interp-watch result and is not interpreted here.
+
+### Lit-watch (arXiv API cs.CL/cs.LG to 2026-10-21, LessWrong frontpage + Alignment Forum RSS, transformer-circuits.pub)
+1. **Even GPT-2 passes most functional global workspace tests** (LessWrong, 2026-10-21; Second Look Fellowship).
+   https://www.lesswrong.com/posts/GeKveaNdruATcj2Fj/even-gpt-2-passes-most-functional-global
+   > "we ... find it passes the tests for verbal report, internal reasoning, flexible generalization, and selectivity, but fails directed modulation. We also find almost all of the structure Gurnee et al. identified in Claude is absent."
+   *Why (mainstream critique, and it **changes thread 2**):* four of the five workspace tests are weak evidence (GPT-2
+   passes them, plausibly by construction of the J-lens). That leaves directed modulation as the discriminating test.
+   Our J-space threads (2, 6) leaned on "workspace" framing, so any claim built on the other four tests needs a
+   GPT-2-baseline control. → **willed_pain** runs directed modulation on affect, up a gpt2 → Pythia → Qwen base →
+   instruct ladder.
+2. **Decodability Is Not Controllability** (TTS speaker control). arXiv:2610.29345.
+   > "reference-audio states at the final residual ... layer ... retain 0.970 probe accuracy, yet aligned edits yield 0/60 target-dominant dyads. Edits at early reference-audio positions produce the opposite pattern."
+   *Why (mainstream, another modality):* this is the third "decodable ≠ causal" paper in two weeks. Late-layer decodable
+   but early-layer steerable is the same shape as retrieve-then-suppress. It supports keeping injection arms (willed_pain
+   H5, nocicept H7) separate from readout claims.
+3. **Uncensored Is Not Unbiased** (abliteration and Taiwan). arXiv:2610.29342.
+   > "A script direction could not be steered away; a contrastive stance direction raised scores in every script"
+   *Why (far-out-adjacent; concept suppression):* removing the refusal direction left a script-conditioned stance
+   untouched. Suppression and content are separable directions. It is relevant to whitebear H5 and to any ablation
+   claim that "removing X removes the concept".
+4. **Guilt by Association: Semantic Leakage.** arXiv:2610.28944. A concept merely present in the scene steers
+   generation about unrelated entities. *Why:* this is the behavioural face of mood_pain's afterglow question (does a
+   pain prime leak into unrelated judgments?). It argues for keeping the egg-prime control.
+5. **Language Impairment as a Lens onto LLMs** (aphasia-style lesioning vs steering). arXiv:2610.28992. Functions
+   isolate to circuits, but they are "densely entangled". This is the clinical-lesion framing, and it is
+   far-out-adjacent. Not actionable now.
+6. **Measurement Validity of Confidence Signals.** arXiv:2610.25846 (pre-registered; 2 of 5 hypotheses falsified).
+   > "a prompt-only TF-IDF classifier matches the probe, so the early signal may reflect surface features of the question"
+   *Why:* this is a lexical-baseline control we should copy. Early-layer affect probes need a bag-of-words baseline
+   (thread 4).
+7. *Seen, not relevant:* arXiv:2610.30006 (SAE AI-text detectors). arXiv:2610.29129 (reward hacking via RepE).
+   arXiv:2610.29256 (audio "heard but not said", the same decodable-not-said shape as 2610.25599). AF "Neural nets are
+   exceptionally vulnerable to goal self-hack" (theory). transformer-circuits.pub has nothing new.
+
+### Interpretation
+There are no new results and no numbers.
+
+### Queued for the executor
+**willed_pain** (`runs/interp_watch/willed_pain/`) is self-contained and architecture-agnostic. It runs gpt2,
+pythia-1.4b, Qwen3-1.7B-Base, Qwen3-1.7B (primary, chat), Qwen3-4B, and Qwen3-1.7B raw. It is the directed-modulation
+test on pain:
+- "silently imagine that you are in terrible pain" vs "do not imagine that …" (word-matched) while copying a bland
+  sentence, with the copy teacher-forced.
+- The (imagine − forbid) × (pain − egg) interaction is read along a passage pain direction at the fixed output tokens.
+- **Further factors:** graded intensity, self vs a stranger, and dual-load capacity.
+- **Causal transplant:** the held state is moved into an uninstructed copy and the "I feel" report is scored.
+- **Scale ladder:** the LW post predicts gpt2 fails. The far-out question is whether willed affect appears in the base
+  model (pretraining) or only in the persona.
+
+I smoke-tested it on gpt2 (raw) and Qwen3-0.6B (chat) on CPU, 4 sentences each, and deleted the output. **Design
+notes from the smoke:**
+- With N=4 the smallest one-sided sign-flip p is 1/16, so smokes cannot pass H1 by construction.
+- The natural held-state delta is ~10% of the residual norm at L*, so the H5 primary dose was set to 4× before any
+  real run.

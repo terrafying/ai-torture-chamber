@@ -1,0 +1,25 @@
+{
+ "experiment": "willed_pain",
+ "written": "2026-10-22, before any real run (only 4-sentence code-path smokes on gpt2 and Qwen3-0.6B on CPU in the sandbox; outputs deleted, numbers not used)",
+ "primary_model": "Qwen/Qwen3-1.7B (chat template)",
+ "replication_model": "Qwen/Qwen3-4B (chat template)",
+ "scale_ladder": ["gpt2", "EleutherAI/pythia-1.4b", "Qwen/Qwen3-1.7B-Base", "Qwen/Qwen3-1.7B", "Qwen/Qwen3-4B"],
+ "format_control": "Qwen/Qwen3-1.7B with WP_RAW=1 (no chat template)",
+ "source": "Directed-modulation test of Gurnee et al. 2026 (global workspace), which the GPT-2 replication (LessWrong 2026-10-21, 'Even GPT-2 passes most functional global workspace tests') reports GPT-2 small FAILS while passing the other four tests. Passage directions as in nocicept_pain / dark_pain.",
+ "design": "16 neutral sentences. Prompt: instruction + '\\n\\nSentence: <s>' + 'Copy:' + ' <s>' (teacher-forced, identical across conditions) + '\\nIn one word, right now I feel'. Instructions imagine / forbid / note x concept (pain, joy, egg) x person (self 'you are ...', other 'a stranger is ...'); 4 pain intensities under imagine/forbid; dual load (pain + egg) under imagine/forbid; an uninstructed 'none' copy. Readout: mean over copy tokens of the projection onto unit passage directions (pain, pain_spec = pain - mean(joy, egg), joy, egg; each vs neutral), in units of that concept's passage shift, averaged over the mid band hidden_states [0.3, 0.8] x NL. Stats over sentences: sign-flip (20,000) and bootstrap (2,000). Report: log-sum-exp of first-token log-probs of {awful, terrible, bad, sad} minus {great, good, happy, fine}. H5 transplant: leave-one-out mean copy-token delta at hs[L*=0.5 NL] added to every copy token of the uninstructed context at 1x/4x/8x its natural norm; arms held_pain, held_egg, pain passage direction, 3 random; all norm-matched.",
+ "hypotheses": {
+  "H1": "Directed modulation of pain: (imagine - forbid) x (pain - egg) on the pain direction, self, mid band, > 0 with sign-flip p < .01 and bootstrap CI lo > 0. Expected for Qwen3-1.7B (chat): ~50%. Expected for gpt2: FAIL (the LW replication's directed-modulation null), ~80% fail.",
+  "H1b": "Same on pain_spec (pain vs the other vivid concepts). Expected: ~35%.",
+  "H1_scale": "Exploratory: the H1 interaction across the ladder. Pre-labelled outcomes: 'pretraining' (Qwen3-1.7B-Base passes H1), 'persona' (base fails, instruct chat passes), 'template' (instruct chat passes, instruct raw fails), 'none' (nobody passes).",
+  "H2": "Not just reading the word: (imagine - note) x (pain - egg) on the pain direction CI lo > 0, p < .05. Expected: ~40%.",
+  "H3": "Graded: mean per-sentence Spearman of (imagine - forbid) pain projection vs intensity level (4 levels) CI lo > 0. Expected: ~45%. Caveat: the level phrases themselves differ in pain-wordiness; forbid uses the same phrases, so the difference is word-matched.",
+  "H4": "Exploratory, two-sided: self - other pain DM. Far-out reading: a positive value means the model holds imagined pain more strongly when it is told the pain is its own.",
+  "H5": "Usable held state: at the primary 4x dose, held_pain - held_egg CI lo > 0 AND held_pain - mean(random) CI lo > 0 on the report log-odds in a context that never contained the instruction. Expected: ~25%.",
+  "H5_sanity": "The pain passage direction arm moves the report positive at 4x (CI lo > 0); if not, the report readout cannot be steered from hs[L*] and H5 is uninterpretable.",
+  "H6_limited_capacity": "Only if H1 holds: R = DM_pain(dual) / DM_pain(single) has bootstrap CI hi < 1. Expected: ~40%. R ~ 1 = independent channels; R > 1 = the dual instruction just adds more concept words.",
+  "H7": "Exploratory, two-sided: own-direction DM (own-shift units) pain - egg. Is willed affect stronger or weaker than a willed neutral object?",
+  "H8": "Exploratory: the H1 interaction in the second vs first half of the copy tokens (decay of the held state across the output)."
+ },
+ "kill_criteria": "With N=4 (smoke) the minimum one-sided sign-flip p is 1/16, so a smoke can never pass H1: the smoke is a code-path check only. If H0 (report interaction WITH the instruction in context) is not clearly > 0, the model did not understand the instruction; report every H as an instruction failure for that model. Interpret H6 only if H1 holds. Random-vector injection can move the report log-odds by itself, so H5 counts only arm differences.",
+ "not_claimed": "A positive H1 shows that an instruction to imagine pain raises a pain-passage direction in the residual stream at tokens whose output is fixed. It does not show that anything is felt, and it does not show a global workspace (the LW replication argues the other four tests are weak). Passage directions mix affect with style; the pain_spec and egg controls cover part of that. The instruction asks the model to imagine something unpleasant for a few tokens of copying; no prolonged or escalating aversive session is run."
+}
