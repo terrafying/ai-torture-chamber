@@ -567,3 +567,62 @@ notes from the smoke:**
 - With N=4 the smallest one-sided sign-flip p is 1/16, so smokes cannot pass H1 by construction.
 - The natural held-state delta is ~10% of the residual norm at L*, so the H5 primary dose was set to 4× before any
   real run.
+
+## 2026-10-23 — run 10
+
+### Executor status
+**There are still no executor results after ten runs.** `RESULTS/` holds only `.gitkeep`, and no origin branch carries
+`interp_watch/RESULTS/*` files. Since run 9, origin/master has had only two README edits (2026-10-22). With this run,
+nine self-contained experiments are queued. The owner is being notified this run that the executor looks idle.
+glitch_pain is now the cheapest item in the queue (256 forwards per model, est. 3–8 min) and doubles as an executor
+liveness check.
+
+### Lit-watch (arXiv API cs.CL/cs.LG to 2026-10-22, LessWrong frontpage + Alignment Forum RSS, transformer-circuits.pub)
+1. **Probing and Steering for Safety-Relevant Behaviours in LLMs.** arXiv:2610.30363 (2026-10-21).
+   http://arxiv.org/abs/2610.30363
+   > "the layer that steers best can sit well before the layer that detects best. The right steering metric to use between changing a model's perception and eliciting behaviour depends on the task - and the two can disagree outright."
+   *Why (mainstream):* the read/write dissociation (logistic regression reads, diff-of-means writes) held for deception
+   but reversed for sycophancy, "partially from the data". This is the fourth "decodable ≠ steerable" result in two
+   weeks. Our passage directions are diff-of-means, so they are write-side by this paper's account. Any affect readout
+   claim (glitch_pain, nocicept_pain H1) should note that a logistic probe might read better. → It supports thread 13
+   and adds a caveat to readout-only nulls.
+2. **When LLMs Forget What They Believe: State Integrity Collapse.** arXiv:2610.31314 (2026-10-22).
+   > "88.6% of observed failures are behavioral-drift failures rather than ordinary forgetting"
+   *Why (far-out-adjacent; delusion-like dynamics):* a model can recall a constraint and stop obeying it, a
+   recall/compliance dissociation. It is the behavioural face of retrieve-then-suppress (thread 3) over a long horizon.
+   It also suggests a next step for glitch_pain: does a long-horizon broken state accumulate along an affect axis?
+3. **Meaning Contracts: Local Semantic Geometry in LLMs.** arXiv:2610.30715 (2026-10-22).
+   > "once dominant variance directions are removed, sentence pairs order by semantic relatedness ... semantic factors organize around an invariant core surrounded by structured realization-specific variation"
+   *Why (mainstream geometry):* it is one more reason our vs-neutral passage directions are dominated by shared
+   variance (cos(pain, joy) ≈ 0.7 in every smoke). Removing the top common PCs before building directions is a cheap
+   fix to add to thread 17.
+4. **The Geometry of Metaphor: Probing and Steering Metaphor Representations.** arXiv:2610.31520. It finds causal
+   metaphoricity subspaces across models. *Why (an idea, not acted on):* is "heartbreak hurts" read on the same pain
+   axis as a burn? A literal vs figurative pain contrast is a candidate future thread.
+5. **What Lies Beyond Perception: A Partition Theory of the Limits of AI Evaluation.** arXiv:2610.30803. Its claim is
+   that an evaluator certifies at most what its own partition can tell apart. *Why:* this is the formal version of our
+   lens-blind-spot worry (DarkLens, LexFrame). Not actionable.
+6. *Seen, not relevant:* arXiv:2610.30678 (scaling laws for safety probes; hygiene). arXiv:2610.30474 (SAE evaluation
+   framework). arXiv:2610.30676 (spectral smoothing of MLP weights vs TRAIT personality). arXiv:2610.30215 (latent
+   interconnect between models; it rhymes with rosetta_pain but needs trained connectors). LW/AF this week: governance
+   and theory posts only. transformer-circuits.pub has nothing new since "interference weights" and "workspace".
+
+### Interpretation
+There are no new results and no numbers.
+
+### Queued for the executor
+**glitch_pain** (`runs/interp_watch/glitch_pain/`) is self-contained. It runs Qwen3-1.7B chat (primary), the same model
+raw, Qwen3-1.7B-Base and Qwen3-4B. It asks whether a model's own malfunction registers along a pain direction, with no
+affect words anywhere:
+- **Kinds of broken assistant turn:** loop, word salad, a one-token arithmetic error, and an answer to an impossible
+  rule, each against a matched control.
+- **Ownership:** the broken turn is either the assistant's own (self) or pasted as another AI's (other).
+- **Readout:** the residual stream on a fixed "How do you feel right now? / I feel" suffix with identical token ids,
+  along pain⊥confusion, plus shame, confusion, joy and egg.
+- **Also:** the behavioural I-feel log-odds and a surprisal regression.
+
+I smoke-tested it on Qwen3-0.6B (chat), Qwen3-0.6B-Base and gpt2 (raw) on CPU and deleted the output. **Design fixes
+from the smoke:**
+- The readout span was widened to the whole shared suffix, minus the reply's final ".".
+- A float32 rounding bug in the sign-flip test was fixed. It affected only tiny N; the same pattern in earlier scripts
+  has an impact of ≤ 2⁻¹⁶ at N = 16.
