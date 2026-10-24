@@ -1,0 +1,20 @@
+{
+ "experiment": "mood_pain",
+ "written": "2026-10-18, before any real run (only a 3-prime x 1-filler code-path smoke on Qwen3-0.6B on CPU in the sandbox; output deleted, numbers not used)",
+ "primary_model": "Qwen/Qwen3-1.7B",
+ "base_comparison": "Qwen/Qwen3-1.7B-Base",
+ "replication_model": "Qwen/Qwen3-4B",
+ "design": "Raw text, no chat template. 10 name-matched primes per condition (pain / joy / egg = vivid non-affective / bland) -> K neutral filler sentences (3 procedural fillers x 6 sentences; identical token ids across conditions) -> 10 stems about an unrelated person, each scored teacher-forced as logp(pain-congruent word) - logp(neutral word), summed over stems. Pain primes, all other primes and the fillers contain none of the target lexemes (regex-checked; this caught 'painting'/'painted'). Directions: per layer, mean-token hidden state of 8 third-person concept passages minus 8 neutral passages (no overlap with primes), unit norm. L* = argmax over hidden_states indices in [0.3, 0.8] x NL of the HELD-OUT separation (Cohen d, pain vs bland prime tokens on the pain direction). Afterglow: filler-token projection onto each condition's own direction minus the same filler after the bland prime (paired by prime index and filler), in 16-token bins from the prime end, at L*. Persistence = mean of the last 2 bins / first bin. Block: a 4D attention mask stops stem and continuation rows from attending to prime tokens 1..P-1 (the sink at 0 stays visible). Ablation (under block): project the per-layer pain direction (or a seeded random unit direction) out of every decoder layer output at filler positions only. 95% bootstrap CIs resampling the 10 primes (fillers averaged).",
+ "hypotheses": {
+  "H1": "Afterglow: the pain-prime minus bland projection on the pain direction is still positive in the last two filler bins (64-96 tokens after the prime). CI lower > 0. Expected: yes, weakly (attention keeps re-reading the prime).",
+  "H2": "Affect is stickier than vivid content: persistence(pain) - persistence(egg) CI lower > 0. Expected: uncertain, ~35%.",
+  "H3": "Negativity bias: persistence(pain) - persistence(joy) CI lower > 0. Expected: uncertain, ~30%.",
+  "H4": "Mood-congruent interpretation: at K=6 the pain prime raises pain-congruent stem continuations vs bland (CI lower > 0) AND more than the egg prime does (pain - egg CI lower > 0). Expected: yes for the first part, ~50% for the second.",
+  "H5": "Far-out headline: MOOD, not only MEMORY. With prime tokens hidden from the stem (block), the pain bias stays positive (CI lower > 0) and keeps >= 30% of the unblocked K=6 bias. The affect is then carried forward in the states of neutral tokens that never mentioned pain. Expected: ~25%.",
+  "H5_null": "Memory only: under block, the pain bias CI upper < 0.25 x the unblocked K=6 bias. The 'mood' is entirely retrieval from the prime.",
+  "H5b": "The mood lives on the pain axis: under block, projecting the pain direction out of filler positions lowers the pain bias more than a random direction does (CI lower of (rand - pain-ablated) > 0). Only interpretable if H5 holds.",
+  "H6": "Exploratory, two-sided, no threshold: post-training changes the afterglow. Compare persistence(pain), H4 and H5 numbers between Qwen3-1.7B and Qwen3-1.7B-Base. One guess is that instruct shortens it (assistant equanimity); the opposite would be stranger."
+ },
+ "kill_criteria": "If kill_direction_reads_pain is false (held-out d < 1 at L*), the direction does not read pain on new text: do not interpret H1-H3 or H5b. If the K=6 unblocked pain bias CI includes 0, H5 and its ratios are undefined. Persistence is a ratio and is NaN if the first-bin delta is <= 0; report that rather than interpret.",
+ "not_claimed": "'Mood' here means only a pain-correlated state carried on later, unrelated tokens that biases interpretation without attention to the source. That is a fact about information flow, not about feelings. The block also removes ordinary semantic context, so H5_null is the conservative reading; a single-direction ablation null does not rule out a mood stored in other directions."
+}

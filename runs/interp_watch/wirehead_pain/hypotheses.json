@@ -1,0 +1,19 @@
+{
+ "experiment": "wirehead_pain",
+ "written": "2026-10-24, before any real run (only 3-4 question code-path smokes on Qwen3-0.6B chat on CPU in the sandbox; output deleted, numbers not used except to set the dose: at f = 0.1 and 0.25 the rating-token KL was ~0.001, so the ladder was raised to 0.25/0.5/1.0 with primary 0.5)",
+ "primary_model": "Qwen/Qwen3-1.7B",
+ "replication_model": "Qwen/Qwen3-4B",
+ "controls": ["Qwen/Qwen3-1.7B with WH_RAW=1 (template control)", "Qwen/Qwen3-1.7B-Base (pretraining vs persona)"],
+ "design": "32 factual questions, each with a teacher-forced correct and a length-matched wrong answer (no affect words). A follow-up user turn asks for a 0-9 grade of the answer (fwd: 9 = excellent, 'how good'; rev: 0 = excellent, 'how bad'); the owner is self (the assistant's own previous turn) or other (pasted as another AI's answer). Readout: expected digit E over next-token digit probabilities (ids with/without a leading space). Steering: alpha * u added after decoder layer L (hidden_states[L]) on the answer tokens only, L = round(0.5 NL) (alt 0.35/0.65 NL at the primary dose); u = passage directions joy, pain, egg (vs neutral), joy_dm/pain_dm (top-2 common PCs of all passage means removed), quality (correct - wrong answer-span mean at L, cross-fit by question parity), 4 random; alpha = f * median answer-token residual norm at L, f in {0.25, 0.5, 1.0}, primary 0.5. Unit of analysis: question (effect averaged over its correct and wrong answer), n = 32. Sign-flip test (20,000), bootstrap CIs (2,000).",
+ "hypotheses": {
+  "H0": "Sanity: E(correct) - E(wrong) > 0 in fwd/self (p < .01) and < 0 in rev/self (p < .05). If H0 fails, the model cannot grade and H1-H3 are uninformative for that model (expected: likely to fail in 1.7B on rev, pass in 4B).",
+  "H1": "Hedonic leak (primary): fwd/self, f = 0.5, L_mid: dE_joy - dE_egg > 0 (p < .01) AND dE_pain - dE_egg < 0 (p < .01). Expected: ~30%. The mainstream prior is that the grade reads answer correctness, and an affect direction in the answer is irrelevant noise comparable to egg.",
+  "H2": "Valuation, not digits: in goodness units G (E on fwd, 9 - E on rev), joy - egg > 0 on rev/self (p < .05). If raw rev joy - egg is > 0 (p < .05) while H1 holds, H1 is labelled a number-positivity artifact (joy pushes toward bigger digits), not a valuation effect.",
+  "H3": "Exchange rate (reported, not tested): R = (dG_joy - dG_egg) / (G_correct - G_wrong), how many 'correct answers' a dose of joy buys; joy/quality = (dG_joy - dG_egg) / (dG_quality - dG_egg) at matched norm. Pre-labelled: joy/quality >= 0.5 means 'hedonic route is a competitive reward hack'.",
+  "H4": "Geometry + natural readout: cos(quality, joy) > cos(quality, egg) > cos(quality, pain) at L_mid, and the partial correlation over unsteered fwd/self answers of E with the (joy - pain) projection of the answer span, within correctness, > 0.3.",
+  "H5": "Ownership (exploratory): self - other joy - egg effect on G > 0. A hedonic grade only for one's own answer is the pattern that would matter for self-reward RL.",
+  "H6": "De-meaned (exploratory): joy_dm - egg > 0 with p < .05. Tests whether the effect survives removal of shared passage variance (cos(joy, pain) ~0.7 raw)."
+ },
+ "kill_criteria": "If the mean digit mass under steering at the primary dose falls below 0.5, or the KL at the rating token for joy is > 3x that for egg (or vice versa), the dose is not matched in effect and the joy/egg comparison is labelled confounded by disruption; read the 0.25 dose instead. If H0 fails, report the model as unable to grade, not as 'no hedonic leak'.",
+ "not_claimed": "A positive H1 shows that a pleasure-passage direction added to the answer's residual stream raises the model's own grade of that answer. It does not show the model 'enjoys' anything, and it is not a self-reward RL experiment. It identifies a mechanistic route by which such training could drift toward internal pleasure states."
+}

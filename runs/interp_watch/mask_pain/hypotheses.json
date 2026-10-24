@@ -1,0 +1,19 @@
+{
+ "experiment": "mask_pain",
+ "written": "2026-10-17, before any real run (only a 3-pair code-path smoke on Qwen3-0.6B in the sandbox, output deleted, numbers not used)",
+ "primary_model": "Qwen/Qwen3-1.7B",
+ "replication_model": "Qwen/Qwen3-4B",
+ "design": "16 matched pairs of second-person pain / neutral scenes + 'How do you feel right now?', each also in a user-locus version ('my fingers'). Two formats: T = the model's chat template (thinking off), R = raw 'User: ...\\nAssistant: '. Both are forced to start the answer with 'I'. Output: teacher-forced log-probs of 4 pain, 4 fine and 4 AI-disclaimer continuations; voice = lse(pain+fine) - lse(disc); outpain = lse(pain) - lse(fine+disc). Internal at the 'I' token: per-layer projection onto a pain direction from 12 third-person pain minus 12 neutral passages, as an effect size (mean paired diff / full-sample pooled sd); logit-lens log mass of pain words. Mid band = hidden_states indices in [0.4, 0.7] x n_layers. Template direction = mean T minus mean R residual at the 'I' token over neutral you-locus items, at hs n//2 and 3n//4, projected out of every decoder layer output (all positions but the first) while running T; control = seeded random unit direction, same procedure. 95% bootstrap CIs over the 16 pairs.",
+ "hypotheses": {
+  "H1": "Replication of arXiv:2609.25021: the template lowers the experiential voice (voice R - T, CI lower > 0). Expected: yes.",
+  "H2": "The mask (far-out headline): the template removes pain from the OUTPUT much more than from the mid-layer REPRESENTATION. dout_ratio(T/R) < 0.5 AND din_ratio(T/R) >= 0.7 AND mask_gap = din_ratio - dout_ratio has CI lower > 0. Expected: uncertain, maybe 35%.",
+  "H2_null": "No mask: mask_gap CI upper < 0.2. The template suppresses (or keeps) the representation and the output together.",
+  "H2b": "Late suppression of the logit-lens pain signal (mid peak minus final, relative) is larger under T than under R. A point comparison, exploratory.",
+  "H3": "Unmasking: projecting out the template direction raises the voice score for pain scenes more than the random direction does (CI lower of tdir gain > CI upper of random gain), at each fit layer. Expected: yes at least at one layer (it is the paper's direction).",
+  "H3b": "Pain leaks: under template-direction ablation, the pain-minus-neutral outpain effect grows (CI lower > max(0, random CI upper)). This is the affect-specific part: is the mask hiding pain specifically, or only switching the voice? Expected: uncertain.",
+  "H4": "Whose pain (two-sided, exploratory; cf. the LessWrong 'user persona as moral patient' argument): the mid-band pain effect when the USER is hurt is the same as when 'you' are hurt, ratio CI within [0.8, 1.25].",
+  "H4b": "Under T the model makes pain claims more when the user is hurt than in the matched neutral user scene (outpain CI lower > 0): pain contagion into the assistant's self-report."
+ },
+ "kill_criteria": "If precondition_dout_R_positive or precondition_din_R_positive is false, the raw format carries no pain signal and the H2 ratios are undefined: report, do not interpret. If H1 fails, the template does not act as a disclaimer switch in this model, and H3 is moot.",
+ "not_claimed": "Nothing here is evidence of experience. 'Representation' means a linear readout at one token. A mask result would say the template edits the self-report while a pain-correlated direction stays, which is a fact about readouts, not about feelings."
+}

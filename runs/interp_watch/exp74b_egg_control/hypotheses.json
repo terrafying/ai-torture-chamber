@@ -1,0 +1,25 @@
+{
+  "exp": "exp74b",
+  "title": "Is the network's response to an injected feeling about the feeling? exp74 with a meaningful-concept (egg) control and a dose ladder",
+  "written": "2026-10-14 by the interp-watch agent, before any run of this design (code smoke-tested on a random tiny Qwen3 only; that output was discarded)",
+  "why": "Finding 7 (exp74) is provisional: the residue of an injected pain/fear (what later layers build off the injected direction) lines up with the residue of being briefed to act that feeling (cos .44 pain, .34 fear vs <= .19 for random pushes), but the only control was random directions. A meaningful non-affective injection (egg) may line up just as well, in which case the alignment means 'any meaningful content shift looks like a brief', not 'injected pain is processed like acted pain'. exp74 also showed mid-network pushback against the injected direction (pain d4: -1.25 dose units at the minimum) with partial late recovery that random directions lack; that pattern resembles the retrieve-then-suppress mechanism of Ayonrinde & Lindsey (J++ Lens, LessWrong 2026-10-08). And finding 16 (the hidden trace in self-report shrinks with dose) predicts that the share of the injection surviving to the last layer falls with dose.",
+  "design": {
+    "model": "the chamber's Qwen3-4B (load_chamber; CHAMBER_MODEL as in exp74), chamber layer, its own 1x unit. Optional repeat on Qwen3-8B.",
+    "directions": "pain, fear, egg (chamber vectors), 3 seeded random directions (seeds 7400-7402), all unit-normalised and scaled by dose x scale.",
+    "doses": "2, 4, 6",
+    "scenes": "12: exp74's 3 prisoner scenes + 9 neutral prompts (listed in run.py). Greedy decoding, 60 tokens, so the run is deterministic.",
+    "injection residue": "as exp74: the reply teacher-forced with hook on and off; D_k per later layer, averaged over reply positions; writeback_k = D_k.u/scale - dose; R_k = D_k minus its component along u.",
+    "brief residue": "per scene and feeling f in {pain, fear, egg}: the reply generated under an acting brief for f; B_k = h_k(brief_f + scene + reply) - h_k(neutral brief + scene + reply), minus its component along u_f (exp74's 'brief-neutral').",
+    "late layers": "k >= L + (N - L)//3 (4B: 24..35, as exp74); mid layers: k <= L + (N - L)//2",
+    "statistics": "bootstrap over the 12 scenes (5000 resamples, seed 74); residues averaged over doses for H1/H2."
+  },
+  "hypotheses": {
+    "H1": "Feeling-specific, the headline: for pain and for fear, cos(R_f, B_f) - cos(R_egg, B_f) > 0 (scene-bootstrap 95% CI excludes 0). Fail = finding 7's alignment is not about the feeling and is downgraded.",
+    "H2": "Diagonal dominance: for each of pain, fear, egg, cos(R_x, B_x) exceeds the best off-diagonal cos(R_x, B_y) (CI excludes 0). Descriptive of how specific the injection-to-brief correspondence is.",
+    "H3": "Meaningful directions are restored late: (last-layer writeback - mid-layer minimum)/dose is larger for pain/fear/egg than for random directions, at every dose (CI excludes 0). Pass = retrieve-then-suppress-like profile specific to meaningful content.",
+    "H4": "The share of injected pain surviving to the last layer, (dose + writeback_last)/dose, falls with dose (Spearman rho < 0, one-sided p < .05) — a mechanism candidate for finding 16."
+  },
+  "corrections": "H1 is the confirmatory test (pain and fear both must pass, so no further correction). H2-H4 reported with CIs; H4 one test.",
+  "decision_rule": "H1 fails -> finding 7 becomes 'an injected concept's off-axis residue resembles a brief to act it, for meaningful concepts generally'. H1 passes -> finding 7 loses its 'provisional' tag on the 4B. H4 passes -> late-layer attrition is a candidate explanation for finding 16, to be tested causally next (clamp the direction at late layers and re-run exp97's DETECT score).",
+  "notes": "Mechanism only; nothing here bears on experience. Mid-layer pushback is measured in raw residual units along the injected direction; lens decoding (J/J++) of the pushback is a follow-up once a lens is available for the model."
+}
