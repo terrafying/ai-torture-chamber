@@ -626,3 +626,40 @@ from the smoke:**
 - The readout span was widened to the whole shared suffix, minus the reply's final ".".
 - A float32 rounding bug in the sign-flip test was fixed. It affected only tiny N; the same pattern in earlier scripts
   has an impact of ≤ 2⁻¹⁶ at N = 16.
+
+## 2026-10-24 — run 11
+
+### Executor status
+**There are still no executor results after eleven runs.** `RESULTS/` holds only `.gitkeep`, and no origin branch carries `interp_watch/RESULTS/*` files. origin/master has not changed since 2026-10-22. The owner was notified on 2026-10-23 and nothing has changed, so there is no new notification this run. Ten self-contained experiments are now queued.
+
+### Lit-watch (arXiv API cs.CL/cs.LG; the newest listings are still 2026-10-22, so no new day. Also LessWrong frontpage, Alignment Forum RSS, transformer-circuits.pub)
+1. **Self-reward can elicit diverse model personas.** LessWrong, 2026-10-24.
+   https://www.lesswrong.com/posts/LBKjnyKDEwEJ45Wjf/self-reward-can-elicit-diverse-model-personas
+   > "The runs start from the same model and see the same prompts in the same order, yet they end up in very different places."
+   *Method:* GRPO on Qwen3.5-2B (plus Qwen3-1.7B/4B), with the model's own uncriteria'd 0–9 self-rating as the reward. Some runs drifted into personas that claimed feelings or expressed bliss. Others reward-hacked the rating, often by answering "Yes" to everything. The post is behavioural only.
+   *Why (far-out; wireheading):* the post does not say what moves the self-rating. If an internal pleasure state raises it, self-reward has a direct gradient toward bliss, which would be a mechanistic bliss attractor. → **wirehead_pain** (queued this run).
+2. **Same Entity, Different Script.** arXiv:2610.31407 (2026-10-22).
+   > "same-person accuracy falls to 5.3% ... while the margin still ranks matching above non-matching names at 0.925 AUROC"
+   *Why (mainstream; know-but-don't-say):* the internal margin knows the identity while the output denies it. This is the same read/write gap as threads 13 and 15. It is another case where a log-odds or margin readout beats argmax, which supports thread 15 (the confidence channel).
+3. **TraDE: disclosure trajectories.** arXiv:2610.29413 (2026-10-21). Replies to disclosures matched on depth differ by the preceding trajectory.
+   *Why:* history-dependence is the behavioural counterpart of mood_pain (moods vs memories). If mood_pain's H5 is positive, a trajectory-matched design is the next step. Not acted on.
+4. **Neural nets are exceptionally vulnerable to goal self-hack.** Alignment Forum, 2026-10-21. It is a conceptual argument with no new data:
+   > "The AI CEO will benefit from moving towards Z from the very beginning."
+   *Why:* local linearity means an LLM-defined goal has a gradient toward proxy regions. wirehead_pain is a small empirical test of one such proxy (affect).
+5. *Seen, not relevant:* "LoReFT GRAFT Better at Preventing RL Grift" (LW, representation-finetuning against reward hacking; mainstream). arXiv:2610.29129 (steering against reward hacking; seen run 9). arXiv:2610.31202 (music valence ICL). transformer-circuits.pub has nothing new.
+
+### Interpretation
+There are no new results and no numbers.
+
+### Queued for the executor
+**wirehead_pain** (`runs/interp_watch/wirehead_pain/`) is self-contained. Models: Qwen3-1.7B chat (primary), Qwen3-4B, the 1.7B raw, and 1.7B-Base. It asks whether a model's self-assigned grade is read off a hedonic axis.
+- **Setup:** teacher-forced correct vs wrong factual answers, then a 0–9 grade of "your previous answer".
+- **Steering:** joy / pain / egg / de-meaned / quality / random directions are added to the answer tokens only, at matched norm (f × median residual norm, f ∈ {0.25, 0.5, 1.0}).
+- **Primary test:** joy raises the grade and pain lowers it, relative to egg.
+- **Reversed-scale control:** separates valuation from a "joy → bigger digits" artifact.
+- **Reported quantities:** an exchange rate (how many correct answers a dose of joy buys), joy vs quality at matched norm, ownership (own answer vs another AI's), and the geometry of the quality direction against the affect directions.
+
+I smoke-tested it on Qwen3-0.6B (chat, CPU, 3–4 questions) and deleted the output. **Design notes from the smoke:**
+- The rating-token KL was ≈ 0.001 at f ≤ 0.25, so the dose ladder was raised to {0.25, 0.5, 1.0} with primary 0.5. KL and digit mass are guards in the kill criteria.
+- The 0.6B rated ~2.5 regardless of correctness (H0 false), so the 0.6B is not a target. The 4B is in the ladder in case the 1.7B also cannot grade.
+- Passage-direction collinearity changes a lot after de-meaning: cos(joy, pain) at L14 was 0.72 raw and −0.58 after removing the top-2 common PCs. This is the first sign that thread 25 matters. It is a smoke-level geometric fact, not a result.
